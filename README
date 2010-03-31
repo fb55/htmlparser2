@@ -1,0 +1,28 @@
+A forgiving HTML parser written in JS for Node.
+Reads in imperfect HTML and spits out a simple object model.
+
+Usage:
+	var htmlparser = require("node-htmlparser");
+	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
+	var htmlDom = htmlparser4.ParseHtml(rawHtml);
+	sys.puts(sys.inspect(htmlDoc, false, null));
+	
+	Outputs...
+		[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
+		, { raw: 'script language= javascript'
+		  , data: 'script language= javascript'
+		  , type: 'script'
+		  , name: 'script'
+		  , attribs: { language: 'javascript' }
+		  , children: 
+		     [ { raw: 'var foo = \'<bar>\';<'
+		       , data: 'var foo = \'<bar>\';<'
+		       , type: 'text'
+		       }
+		     ]
+		  }
+		, { raw: '<!-- Waah! -- '
+		  , data: '<!-- Waah! -- '
+		  , type: 'comment'
+		  }
+		]
