@@ -26,16 +26,10 @@ var emptyTags = {
     embed: 1
 };
 
-var reTrim = /(^\s+|\s+$)/gm;
-var reTrimTag = /\s*\/\s*$/gm;
-var reTrimEndTag = /^\s*\/\s*/gm;
+var reTrim = /(^\s+|\s+$)/g;
+var reTrimTag = /\s*\/\s*$/g;
+var reTrimEndTag = /^\s*\/\s*/g;
 var reTrimComment = /(^\!--|--$)/g;
-
-function StringTagFind(data, offset) {
-    var start = data.indexOf("<", offset);
-    var end = data.indexOf(">", offset);
-    return start < end ? start : end;
-}
 
 function NestTags(elements) {
     var nested = [];
@@ -78,12 +72,10 @@ function NestTags(elements) {
                             while (pos < tagStack.length - 1) tagStack.pop();
                     }
                 } else {
-                    if (!emptyTags[element.name]) {
-                        if (!tagStack.last().children)
-                            tagStack.last().children = [];
-                        tagStack.last().children.push(element);
-                        tagStack.push(element);
-                    }
+                    if (!tagStack.last().children)
+                        tagStack.last().children = [];
+                    tagStack.last().children.push(element);
+                    if (!emptyTags[element.name]) tagStack.push(element);
                 }
             } else {
                 if (!tagStack.last().children) tagStack.last().children = [];
@@ -96,7 +88,7 @@ function NestTags(elements) {
 }
 
 function ParseAttribs(element) {
-    var tagName = element.data.split(/\s/, 1)[0];
+    var tagName = element.data.split(/\s/g, 1)[0];
     var attribRaw = element.data.substring(tagName.length);
     if (attribRaw.length < 1) return;
 
@@ -138,7 +130,7 @@ function ParseTagName(data) {
     return data
         .replace(reTrimEndTag, "/")
         .replace(reTrimTag, "")
-        .split(" ")
+        .split(/\s/)
         .shift()
         .toLowerCase();
 }
@@ -152,6 +144,7 @@ function ParseTags(data) {
     var next = 0;
     var end = data.length - 1;
     var state = ElementType.Text;
+    var prevTagSep = "";
     var tagStack = [];
 
     while (reTags.test(data)) {
@@ -183,11 +176,13 @@ function ParseTags(data) {
                             if (element.raw != "") {
                                 var prevElement = elements[elements.length - 1];
                                 prevElement.raw = prevElement.data =
-                                    prevElement.raw + element.raw + tagSep;
+                                    prevElement.raw + prevTagSep + element.raw;
                                 element.raw = element.data = "";
-                            }
+                            } else
+                                prevElement.raw = prevElement.data =
+                                    prevElement.raw + prevTagSep + element.raw;
                         } else if (element.raw != "")
-                            element.raw = element.data = element.raw + tagSep;
+                            element.raw = element.data = element.raw;
                     }
                 }
             } else if (tagStack[tagStack.length - 1] == ElementType.Style) {
@@ -203,11 +198,13 @@ function ParseTags(data) {
                             if (element.raw != "") {
                                 var prevElement = elements[elements.length - 1];
                                 prevElement.raw = prevElement.data =
-                                    prevElement.raw + element.raw + tagSep;
+                                    prevElement.raw + prevTagSep + element.raw;
                                 element.raw = element.data = "";
-                            }
+                            } else
+                                prevElement.raw = prevElement.data =
+                                    prevElement.raw + prevTagSep + element.raw;
                         } else if (element.raw != "")
-                            element.raw = element.data = element.raw + tagSep;
+                            element.raw = element.data = element.raw;
                     }
                 }
             } else if (tagStack[tagStack.length - 1] == ElementType.Comment) {
@@ -305,7 +302,9 @@ function ParseTags(data) {
         }
         state = tagSep == "<" ? ElementType.Tag : ElementType.Text;
         current = next + 1;
+        prevTagSep = tagSep;
     }
+
     if (current < end) {
         var rawData = data.substring(current);
         var element = {
