@@ -1,13 +1,34 @@
+/***********************************************
+Copyright 2010, Chris Winberry. All rights reserved.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+***********************************************/
+
 var sys = require("sys");
 
 //Types of elements found in the DOM
 var ElementType = {
-	  Text: "text"
-	, Tag: "tag"
-	, Directive: "directive"
-	, Comment: "comment"
-	, Script: "script"
-	, Style: "style"
+	  Text: "text" //Plain text
+	, Directive: "directive" //Special tag <!...>
+	, Comment: "comment" //Special tag <!--...-->
+	, Script: "script" //Special tag <script>...</script>
+	, Style: "style" //Special tag <style>...</style>
+	, Tag: "tag" //Any tag that isn't special
 }
 
 //HTML Tags that shouldn't contain child nodes
@@ -28,15 +49,16 @@ var emptyTags = {
 	, embed: 1
 }
 
-//Regular expressions used for cleaning up and parsing (not stateful)
-var reTrim = /(^\s+|\s+$)/g;
-var reTrimTag = /\s*\/\s*$/g;
-var reTrimEndTag = /^\s*\/\s*/g;
-var reTrimComment = /(^\!--|--$)/g;
-var reWhitespace = /\s/g;
+//Regular expressions used for cleaning up and parsing (stateless)
+var reTrim = /(^\s+|\s+$)/g; //Trim leading/trailing whitespace
+var reTrimTag = /\s*\/\s*$/g; //Remove extraneous whitespace from self-closing tag
+var reTrimEndTag = /^\s*\/\s*/g; //Remove extraneous whitespace from closing tag name
+var reTrimComment = /(^\!--|--$)/g; //Remove comment tag markup from comment contents
+var reWhitespace = /\s/g; //Used to find any whitespace to split on
 //Regular expressions used for parsing (stateful)
-var reAttrib = /([^=<>\"\'\s]+)\s*=\s*"([^"]*)"|([^=<>\"\'\s]+)\s*=\s*'([^']*)'|([^=<>\"\'\s]+)\s*=\s*([^'"\s]+)|([^=<>\"\'\s\/]+)/g;
-var reTags = /[\<\>]/g;
+var reAttrib = //Find attributes in a tag
+	/([^=<>\"\'\s]+)\s*=\s*"([^"]*)"|([^=<>\"\'\s]+)\s*=\s*'([^']*)'|([^=<>\"\'\s]+)\s*=\s*([^'"\s]+)|([^=<>\"\'\s\/]+)/g;
+var reTags = /[\<\>]/g; //Find tag markers
 
 //Takes in an array of elements and folds it into an nested DOM
 function NestTags (elements) {
@@ -111,6 +133,7 @@ function ParseAttribs (element) {
 		return;
 
 	var match;
+	reAttrib.lastIndex = 0;
 	while (match = reAttrib.exec(attribRaw)) {
 		if (!element.attribs)
 			element.attribs = {};
@@ -134,7 +157,7 @@ function ParseTagAttribs (elements) {
 	while (idx < idxEnd) {
 		var element = elements[idx++];
 		if (element.type == ElementType.Tag || element.type == ElementType.Script || element.type == ElementType.style)
-			ParseAttribs(element);
+			this.ParseAttribs(element);
 	}
 
 	return(elements);
@@ -170,7 +193,7 @@ function ParseTags (data) {
 			, type: state
 		};
 
-		var elementName = ParseTagName(element.data);
+		var elementName = this.ParseTagName(element.data);
 
 		//This section inspects the current tag stack and modifies the current
 		//element if we're actually parsing a special area (script/comment/style tag)
@@ -325,15 +348,55 @@ function ParseTags (data) {
 			, type: state
 			};
 		if (state == ElementType.Tag || state == ElementType.Script || state == ElementType.Style)
-			element.name = ParseTagName(element.data);
+			element.name = this.ParseTagName(element.data);
 		elements.push(element);
 	}
 
 	return(elements);
 }
 
-exports.ParseHtml = function ParseHtml (data) {
-	return(NestTags(ParseTagAttribs(ParseTags(data))));
+function ParseComplete (data) {
+	this.Reset();
+	this.dom = this.NestTags(this.ParseTagAttribs(this.ParseTags(data)));
+	this.Done();
+	return(this.dom);
 }
+
+function ParseChunk (data) {
+	if (this._done)
+		throw new Error("Attempted to parse chunk after parsing already done");
+	throw new Error("Not implemented");
+}
+
+function Done () {
+	this._done = true;
+	//TODO: Consume any leftover data
+}
+
+function Reset () {
+	this.dom = [];
+	this._buffer = "";
+	this._done = false;
+}
+
+function Parser () {
+	this.Reset();
+}
+//Public
+Parser.prototype.dom = null;
+Parser.prototype.ParseComplete = ParseComplete;
+Parser.prototype.ParseChunk = ParseChunk;
+Parser.prototype.Done = Done;
+Parser.prototype.Reset = Reset;
+//Private
+Parser.prototype._buffer = null;
+Parser.prototype._done = false;
+Parser.prototype.NestTags = NestTags;
+Parser.prototype.ParseTagAttribs = ParseTagAttribs;
+Parser.prototype.ParseAttribs = ParseAttribs;
+Parser.prototype.ParseTagName = ParseTagName;
+Parser.prototype.ParseTags = ParseTags;
+
+exports.Parser = Parser;
 
 exports.ElementType = ElementType;
