@@ -5,6 +5,7 @@ exports.expected =
   , data: 'style type="text/css"'
   , type: 'style'
   , name: 'style'
+  , attribs: { type: 'text/css' }
   , children:
      [ { raw: '\n body > p\n	{ font-weight: bold; }'
        , data: '\n body > p\n	{ font-weight: bold; }'
