@@ -4,9 +4,10 @@ Reads in imperfect HTML and spits out a simple object model.
 Usage:
 	var htmlparser = require("node-htmlparser");
 	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
+	var handler = new htmlparser.DefaultHandler();
 	var parser = new htmlparser.Parser();
-	var htmlDom = htmlparser.ParseComplete(rawHtml);
-	sys.puts(sys.inspect(htmlDom, false, null));
+	htmlparser.ParseComplete(rawHtml);
+	sys.puts(sys.inspect(handler.dom, false, null));
 	
 	Outputs...
 		[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
