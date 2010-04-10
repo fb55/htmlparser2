@@ -24,22 +24,39 @@ var fs = require("fs");
 var htmlparser = require("./node-htmlparser");
 
 var testFolder = "./tests";
+var chunkSize = 5;
 	
 var testFiles = fs.readdirSync(testFolder);
 var testCount = 0;
 var failedCount = 0;
-var parser = new htmlparser.Parser();
+var handler = new htmlparser.DefaultHandler();
+var parser = new htmlparser.Parser(handler);
 for (var i in testFiles) {
 	testCount++;
 	var fileParts = testFiles[i].split(".");
 	fileParts.pop();
 	var moduleName = fileParts.join(".");
 	var test = require(testFolder + "/" + moduleName);
-	var result = sys.inspect(parser.ParseComplete(test.html), false, null) === sys.inspect(test.expected, false, null);
-	sys.puts("[" + test.name + "\]: " + (result ? "passed" : "FAILED"));
-	if (!result) {
+	parser.ParseComplete(test.html);
+	var resultComplete = handler.dom;
+	var chunkPos = 0;
+	parser.Reset();
+	while (chunkPos < test.html.length) {
+		parser.ParseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
+		chunkPos += chunkSize;
+	}
+	parser.Done();
+	var resultChunk = handler.dom;
+	var testResult =
+		sys.inspect(resultComplete, false, null) === sys.inspect(test.expected, false, null)
+		&&
+		sys.inspect(resultChunk, false, null) === sys.inspect(test.expected, false, null)
+		;
+	sys.puts("[" + test.name + "\]: " + (resultComplete ? "passed" : "FAILED"));
+	if (!resultComplete) {
 		failedCount++;
-		sys.puts(sys.inspect(parser.ParseComplete(test.html), false, null));
+		sys.puts(sys.inspect(resultComplete, false, null));
+		sys.puts(sys.inspect(resultChunk, false, null));
 		sys.puts(sys.inspect(test.expected, false, null));
 	}
 }
