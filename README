@@ -1,15 +1,21 @@
-A forgiving HTML parser written in JS for Node.
-Reads in imperfect HTML and spits out a simple object model.
+A forgiving HTML parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser).
+The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
-Usage:
+Node Usage:
 	var htmlparser = require("node-htmlparser");
 	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
 	var handler = new htmlparser.DefaultHandler();
-	var parser = new htmlparser.Parser();
-	htmlparser.ParseComplete(rawHtml);
+	var parser = new htmlparser.Parser(handler);
+	parser.ParseComplete(rawHtml);
 	sys.puts(sys.inspect(handler.dom, false, null));
-	
-	Outputs...
+
+Browser Usage:
+	var handler = new Tautologistics.NodeHtmlParser.DefaultHandler();
+	var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+	parser.ParseComplete(document.body.innerHTML);
+	alert(JSON.stringify(handler.dom, null, 2));
+
+Example output...
 		[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
 		, { raw: 'script language= javascript'
 		  , data: 'script language= javascript'
