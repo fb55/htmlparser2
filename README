@@ -1,5 +1,10 @@
-A forgiving HTML parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser).
-The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
+A forgiving HTML parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
+
+Run tests under node:
+	node runtests.js
+
+Run tests in browser:
+	View runtests.html in any browser
 
 Node Usage:
 	var htmlparser = require("node-htmlparser");
