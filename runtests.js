@@ -1,5 +1,5 @@
 /***********************************************
-Copyright 2010, Chris Winberry. All rights reserved.
+Copyright 2010, Chris Winberry <chris@winberry.net>. All rights reserved.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to
 deal in the Software without restriction, including without limitation the
@@ -25,7 +25,7 @@ var htmlparser = require("./node-htmlparser");
 
 var testFolder = "./tests";
 var chunkSize = 5;
-	
+
 var testFiles = fs.readdirSync(testFolder);
 var testCount = 0;
 var failedCount = 0;
@@ -52,11 +52,14 @@ for (var i in testFiles) {
 		&&
 		sys.inspect(resultChunk, false, null) === sys.inspect(test.expected, false, null)
 		;
-	sys.puts("[" + test.name + "\]: " + (resultComplete ? "passed" : "FAILED"));
-	if (!resultComplete) {
+	sys.puts("[" + test.name + "\]: " + (testResult ? "passed" : "FAILED"));
+	if (!testResult) {
 		failedCount++;
+		sys.puts("== Complete ==");
 		sys.puts(sys.inspect(resultComplete, false, null));
+		sys.puts("== Chunked ==");
 		sys.puts(sys.inspect(resultChunk, false, null));
+		sys.puts("== Expected ==");
 		sys.puts(sys.inspect(test.expected, false, null));
 	}
 }
