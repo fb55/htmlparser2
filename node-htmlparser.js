@@ -1,5 +1,5 @@
 /***********************************************
-Copyright 2010, Chris Winberry. All rights reserved.
+Copyright 2010, Chris Winberry <chris@winberry.net>. All rights reserved.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to
 deal in the Software without restriction, including without limitation the
@@ -19,7 +19,30 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 ***********************************************/
 
-var sys = require("sys");
+(function () {
+
+function RunningInNode () {
+	return(
+		(typeof require) == "function"
+		&&
+		(typeof exports) == "object"
+		&&
+		(typeof module) == "object"
+		&&
+		(typeof __filename) == "string"
+		&&
+		(typeof __dirname) == "string"
+		);
+}
+
+if (!RunningInNode()) {
+	if (!this.Tautologistics)
+		this.Tautologistics = {};
+	else if (this.Tautologistics.NodeHtmlParser)
+		return; //NodeHtmlParser already defined!
+	this.Tautologistics.NodeHtmlParser = {};
+	exports = this.Tautologistics.NodeHtmlParser;
+}
 
 //Types of elements found in the DOM
 var ElementType = {
@@ -32,7 +55,7 @@ var ElementType = {
 }
 
 //HTML Tags that shouldn't contain child nodes
-var emptyTags = {
+var EmptyTags = {
 	  area: 1
 	, base: 1
 	, basefont: 1
@@ -59,68 +82,6 @@ var reWhitespace = /\s/g; //Used to find any whitespace to split on
 var reAttrib = //Find attributes in a tag
 	/([^=<>\"\'\s]+)\s*=\s*"([^"]*)"|([^=<>\"\'\s]+)\s*=\s*'([^']*)'|([^=<>\"\'\s]+)\s*=\s*([^'"\s]+)|([^=<>\"\'\s\/]+)/g;
 var reTags = /[\<\>]/g; //Find tag markers
-
-/*
-//Takes in an array of elements and folds it into an nested DOM
-function NestTags () {
-	//List of parents to the currently element being processed
-	var tagStack = [];
-	tagStack.last = function last () {
-		return(this.length ? this[this.length - 1] : null);
-	}
-
-	var idxEnd = this._elements.length;
-	var idx = 0;
-	//Loop through all the elements in the list
-	while (idx < idxEnd) {
-		var element = this._elements[idx++];
-
-		if (!tagStack.last()) { //There are no parent elements
-			//If the element can be a container, add it to the tag stack and the top level list
-			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
-				if (element.name[0] != "/") { //Ignore closing tags that obviously don't have an opening tag
-					this.dom.push(element);
-					if (!emptyTags[element.name]) { //Don't add tags to the tag stack that can't have children
-						tagStack.push(element);
-					}
-				}
-			}
-			else //Otherwise just add to the top level list
-				this.dom.push(element);
-		}
-		else { //There are parent elements
-			//If the element can be a container, add it as a child of the element
-			//on top of the tag stack and then add it to the tag stack
-			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
-				if (element.name[0] == "/") {
-					//This is a closing tag, scan the tagStack to find the matching opening tag
-					//and pop the stack up to the opening tag's parent
-					var baseName = element.name.substring(1);
-					if (!emptyTags[baseName]) {
-						var pos = tagStack.length - 1;
-						while (pos > -1 && tagStack[pos--].name != baseName) { }
-						if (pos > -1 || tagStack[0].name == baseName)
-							while (pos < tagStack.length - 1)
-								tagStack.pop();
-					}
-				}
-				else { //This is not a closing tag
-					if (!tagStack.last().children)
-						tagStack.last().children = [];
-					tagStack.last().children.push(element);
-					if (!emptyTags[element.name]) //Don't add tags to the tag stack that can't have children
-						tagStack.push(element);
-				}
-			}
-			else { //This is not a container element
-				if (!tagStack.last().children)
-					tagStack.last().children = [];
-				tagStack.last().children.push(element);
-			}
-		}
-	}
-}
-*/
 
 //Takes an element and adds an "attribs" property for any element attributes found 
 function ParseAttribs (element) {
@@ -324,7 +285,7 @@ function ParseTags () {
 		this._prevTagSep = tagSep;
 	}
 
-	this._buffer = (this._current < bufferEnd) ? this._buffer.substring(this._current) : "";
+	this._buffer = (this._current <= bufferEnd) ? this._buffer.substring(this._current) : "";
 	this._current = 0;
 
 	this.WriteHandler();
@@ -505,7 +466,7 @@ function DefaultHandler () {
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
 				if (element.name[0] != "/") { //Ignore closing tags that obviously don't have an opening tag
 					this.dom.push(element);
-					if (!emptyTags[element.name]) { //Don't add tags to the tag stack that can't have children
+					if (!EmptyTags[element.name]) { //Don't add tags to the tag stack that can't have children
 						this._tagStack.push(element);
 					}
 				}
@@ -521,7 +482,7 @@ function DefaultHandler () {
 					//This is a closing tag, scan the tagStack to find the matching opening tag
 					//and pop the stack up to the opening tag's parent
 					var baseName = element.name.substring(1);
-					if (!emptyTags[baseName]) {
+					if (!EmptyTags[baseName]) {
 						var pos = this._tagStack.length - 1;
 						while (pos > -1 && this._tagStack[pos--].name != baseName) { }
 						if (pos > -1 || this._tagStack[0].name == baseName)
@@ -533,7 +494,7 @@ function DefaultHandler () {
 					if (!this._tagStack.last().children)
 						this._tagStack.last().children = [];
 					this._tagStack.last().children.push(element);
-					if (!emptyTags[element.name]) //Don't add tags to the tag stack that can't have children
+					if (!EmptyTags[element.name]) //Don't add tags to the tag stack that can't have children
 						this._tagStack.push(element);
 				}
 			}
@@ -550,3 +511,5 @@ exports.Parser = Parser;
 exports.DefaultHandler = DefaultHandler;
 
 exports.ElementType = ElementType;
+
+})();
