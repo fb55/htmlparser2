@@ -478,7 +478,7 @@ function DefaultHandler (callback) {
 					throw error;
 				else
 					return;
-			this._callback(error);
+			this._callback(error, this.dom);
 	}
 	DefaultHandler.prototype.handleElement = function DefaultHandler$handleElement (element) {
 		if (this._done)
