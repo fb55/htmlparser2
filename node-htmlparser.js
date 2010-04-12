@@ -384,11 +384,17 @@ IN THE SOFTWARE.
 
     function ParseChunk(data) {
         if (this._done)
-            throw new Error(
-                "Attempted to parse chunk after parsing already done"
+            this.HandleError(
+                new Error("Attempted to parse chunk after parsing already done")
             );
         this._buffer += data;
         this.ParseTags();
+    }
+
+    function HandleError(error) {
+        if (typeof this._handler.error == "function")
+            this._handler.error(error);
+        else throw error;
     }
 
     function Done() {
@@ -488,9 +494,11 @@ IN THE SOFTWARE.
     Parser.prototype.ParseTags = ParseTags;
     Parser.prototype.ValidateHandler = ValidateHandler;
     Parser.prototype.WriteHandler = WriteHandler;
+    Parser.prototype.HandleError = HandleError;
 
-    function DefaultHandler() {
+    function DefaultHandler(callback) {
         this.reset();
+        if (typeof callback == "function") this._callback = callback;
     }
     //**Public**//
     //Properties//
@@ -508,7 +516,7 @@ IN THE SOFTWARE.
     //Signals the handler that parsing is done
     DefaultHandler.prototype.done = function DefaultHandler$done() {
         this._done = true;
-        //TODO: trigger any callbacks
+        this.handleCallback(null);
     };
     DefaultHandler.prototype.writeTag = function DefaultHandler$writeTag(
         element
@@ -530,18 +538,32 @@ IN THE SOFTWARE.
     ) {
         this.handleElement(element);
     };
+    DefaultHandler.prototype.error = function DefaultHandler$error(error) {
+        this.handleCallback(error);
+    };
 
     //**Private**//
     //Properties//
+    DefaultHandler.prototype._callback = null; //Callback to respond to when parsing done
     DefaultHandler.prototype._done = false; //Flag indicating whether handler has been notified of parsing completed
     DefaultHandler.prototype._tagStack = null; //List of parents to the currently element being processed
     //Methods//
+    DefaultHandler.prototype.handleCallback = function DefaultHandler$handleCallback(
+        error
+    ) {
+        if (typeof this._callback != "function")
+            if (error) throw error;
+            else return;
+        this._callback(error);
+    };
     DefaultHandler.prototype.handleElement = function DefaultHandler$handleElement(
         element
     ) {
         if (this._done)
-            throw Error(
-                "Writing to the handler after done() called is not allowed without a reset()"
+            this.handleCallback(
+                new Error(
+                    "Writing to the handler after done() called is not allowed without a reset()"
+                )
             );
         if (!this._tagStack.last()) {
             //There are no parent elements
