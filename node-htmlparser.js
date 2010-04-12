@@ -554,7 +554,7 @@ IN THE SOFTWARE.
         if (typeof this._callback != "function")
             if (error) throw error;
             else return;
-        this._callback(error);
+        this._callback(error, this.dom);
     };
     DefaultHandler.prototype.handleElement = function DefaultHandler$handleElement(
         element
