@@ -29,7 +29,10 @@ var chunkSize = 5;
 var testFiles = fs.readdirSync(testFolder);
 var testCount = 0;
 var failedCount = 0;
-var handler = new htmlparser.DefaultHandler();
+var handler = new htmlparser.DefaultHandler(function (error) {
+	if (error)
+		sys.puts("Handler error: " + error);
+});
 var parser = new htmlparser.Parser(handler);
 for (var i in testFiles) {
 	testCount++;

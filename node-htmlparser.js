@@ -322,9 +322,16 @@ function ParseComplete (data) {
 
 function ParseChunk (data) {
 	if (this._done)
-		throw new Error("Attempted to parse chunk after parsing already done");
+		this.HandleError(new Error("Attempted to parse chunk after parsing already done"));
 	this._buffer += data;
 	this.ParseTags();
+}
+
+function HandleError (error) {
+	if ((typeof this._handler.error) == "function")
+		this._handler.error(error);
+	else
+		throw error;
 }
 
 function Done () {
@@ -418,9 +425,12 @@ function Parser (handler) {
 	Parser.prototype.ParseTags = ParseTags;
 	Parser.prototype.ValidateHandler = ValidateHandler;
 	Parser.prototype.WriteHandler = WriteHandler;
+	Parser.prototype.HandleError = HandleError;
 
-function DefaultHandler () {
+function DefaultHandler (callback) {
 	this.reset();
+	if ((typeof callback) == "function")
+		this._callback = callback;
 }
 	//**Public**//
 	//Properties//
@@ -436,31 +446,43 @@ function DefaultHandler () {
 		}
 	}
 	//Signals the handler that parsing is done
-	DefaultHandler.prototype.done = function DefaultHandler$done() {
+	DefaultHandler.prototype.done = function DefaultHandler$done () {
 		this._done = true;
-		//TODO: trigger any callbacks
-	} 
-	DefaultHandler.prototype.writeTag = function DefaultHandler$writeTag(element) {
+		this.handleCallback(null);
+	}
+	DefaultHandler.prototype.writeTag = function DefaultHandler$writeTag (element) {
 		this.handleElement(element);
 	} 
-	DefaultHandler.prototype.writeText = function DefaultHandler$writeText(element) {
+	DefaultHandler.prototype.writeText = function DefaultHandler$writeText (element) {
 		this.handleElement(element);
 	} 
-	DefaultHandler.prototype.writeComment = function DefaultHandler$writeComment(element) {
+	DefaultHandler.prototype.writeComment = function DefaultHandler$writeComment (element) {
 		this.handleElement(element);
 	} 
-	DefaultHandler.prototype.writeDirective = function DefaultHandler$writeDirective(element) {
+	DefaultHandler.prototype.writeDirective = function DefaultHandler$writeDirective (element) {
 		this.handleElement(element);
+	}
+	DefaultHandler.prototype.error = function DefaultHandler$error (error) {
+		this.handleCallback(error);
 	}
 
 	//**Private**//
 	//Properties//
+	DefaultHandler.prototype._callback = null; //Callback to respond to when parsing done
 	DefaultHandler.prototype._done = false; //Flag indicating whether handler has been notified of parsing completed
 	DefaultHandler.prototype._tagStack = null; //List of parents to the currently element being processed
 	//Methods//
+	DefaultHandler.prototype.handleCallback = function DefaultHandler$handleCallback (error) {
+			if ((typeof this._callback) != "function")
+				if (error)
+					throw error;
+				else
+					return;
+			this._callback(error);
+	}
 	DefaultHandler.prototype.handleElement = function DefaultHandler$handleElement (element) {
 		if (this._done)
-			throw Error("Writing to the handler after done() called is not allowed without a reset()");
+			this.handleCallback(new Error("Writing to the handler after done() called is not allowed without a reset()"));
 		if (!this._tagStack.last()) { //There are no parent elements
 			//If the element can be a container, add it to the tag stack and the top level list
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {

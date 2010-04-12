@@ -33,7 +33,10 @@
 
 		<script language="JavaScript">
 			var chunkSize = 5;
-			var handler = new Tautologistics.NodeHtmlParser.DefaultHandler();
+			var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error) {
+				if (error)
+					document.write("<hr>Handler error: " + error + "<hr>");
+			});
 			var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
 			var testCount = 0;
 			var failedCount = 0;
