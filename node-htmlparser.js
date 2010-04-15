@@ -78,6 +78,7 @@ var reTrimTag = /\s*\/\s*$/g; //Remove extraneous whitespace from self-closing t
 var reTrimEndTag = /^\s*\/\s*/g; //Remove extraneous whitespace from closing tag name
 var reTrimComment = /(^\!--|--$)/g; //Remove comment tag markup from comment contents
 var reWhitespace = /\s/g; //Used to find any whitespace to split on
+var reTagName = /^\s*(\/?)\s*([^\s\/]+)/; //Used to find the tag name for an element
 //Regular expressions used for parsing (stateful)
 var reAttrib = //Find attributes in a tag
 	/([^=<>\"\'\s]+)\s*=\s*"([^"]*)"|([^=<>\"\'\s]+)\s*=\s*'([^']*)'|([^=<>\"\'\s]+)\s*=\s*([^'"\s]+)|([^=<>\"\'\s\/]+)/g;
@@ -127,7 +128,12 @@ function ParseTagAttribs (elements) {
 
 //Extracts the base tag name from the data value of an element
 function ParseTagName (data) {
-	return(data.replace(reTrimEndTag, "/").replace(reTrimTag, "").split(reWhitespace).shift().toLowerCase());
+	if (data == null || data == "")
+		return("");
+	var match = reTagName.exec(data);
+	if (!match)
+		return("");
+	return((match[1] ? "/" : "") + match[2]);
 }
 
 //Parses through HTML text and returns an array of found elements
