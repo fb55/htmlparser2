@@ -6,29 +6,37 @@ var http = require("http");
 var htmlparser = require("./node-htmlparser");
 var libxml = require('./libxmljs');
 
-function GetTime () {
+var testNHP = true; //Should node-htmlparser be exercised?
+var testLXJS = true; //Should libxmljs be exercised?
+var testIterations = 100; //Number of test loops to run
+
+var testHost = "nodejs.org"; //Host to fetch test HTML from
+var testPort = 80; //Port on host to fetch test HTML from
+var testPath = "/api.html"; //Path on host to fetch HTML from
+
+function getMillisecs () {
 	return((new Date()).getTime());
 }
 
-function TimeCode (loops, func) {
-	var start = GetTime();
+function timeExecutions (loops, func) {
+	var start = getMillisecs();
 
 	while (loops--)
 		func();
 
-	return(GetTime() - start);
+	return(getMillisecs() - start);
 }
 
 var html = "";
-http.createClient(80, "en.wikipedia.org")
-	.request("GET", "/wiki/Javascript", {host: "en.wikipedia.org"})
+http.createClient(testPort, testHost)
+	.request("GET", testPath, { host: testHost })
 	.addListener("response", function (response) {
 		if (response.statusCode == "200") {
 			response.setEncoding("utf8");
 			response.addListener("data", function (chunk) {
 				html += chunk;
 			}).addListener("end", function() {
-				var timeNodeHtmlParser = TimeCode(100, function () {
+				var timeNodeHtmlParser = !testNHP ? 0 : timeExecutions(testIterations, function () {
 					var handler = new htmlparser.DefaultHandler(function(err, dom) {
 						if (err)
 							sys.debug("Error: " + err);
@@ -37,13 +45,16 @@ http.createClient(80, "en.wikipedia.org")
 					parser.ParseComplete(html);
 				})
 				
-				var timeLibXmlJs = TimeCode(100, function () {
+				var timeLibXmlJs = !testLXJS ? 0 : timeExecutions(testIterations, function () {
 					var dom = libxml.parseHtmlString(html);
 				})
-				
-				sys.debug("NodeHtmlParser: "  + timeNodeHtmlParser);
-				sys.debug("LibXmlJs: "  + timeLibXmlJs);
-				sys.debug("Difference: " + ((timeNodeHtmlParser - timeLibXmlJs) / timeLibXmlJs) * 100);
+
+				if (testNHP)
+					sys.debug("NodeHtmlParser: "  + timeNodeHtmlParser);
+				if (testLXJS)
+					sys.debug("LibXmlJs: "  + timeLibXmlJs);
+				if (testNHP && testLXJS)
+					sys.debug("Difference: " + ((timeNodeHtmlParser - timeLibXmlJs) / timeLibXmlJs) * 100);
 			});
 		}
 		else
