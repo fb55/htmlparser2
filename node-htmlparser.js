@@ -20,7 +20,7 @@ IN THE SOFTWARE.
 ***********************************************/
 
 (function() {
-    function RunningInNode() {
+    function runningInNode() {
         return (
             typeof require == "function" &&
             typeof exports == "object" &&
@@ -30,7 +30,7 @@ IN THE SOFTWARE.
         );
     }
 
-    if (!RunningInNode()) {
+    if (!runningInNode()) {
         if (!this.Tautologistics) this.Tautologistics = {};
         else if (this.Tautologistics.NodeHtmlParser) return; //NodeHtmlParser already defined!
         this.Tautologistics.NodeHtmlParser = {};
@@ -47,37 +47,130 @@ IN THE SOFTWARE.
         Tag: "tag" //Any tag that isn't special
     };
 
-    //HTML Tags that shouldn't contain child nodes
-    var EmptyTags = {
-        area: 1,
-        base: 1,
-        basefont: 1,
-        br: 1,
-        col: 1,
-        frame: 1,
-        hr: 1,
-        img: 1,
-        input: 1,
-        isindex: 1,
-        link: 1,
-        meta: 1,
-        param: 1,
-        embed: 1
-    };
+    function Parser(handler) {
+        this.validateHandler(handler);
+        this._handler = handler;
+        this.reset();
+    }
 
+    //**"Static"**//
     //Regular expressions used for cleaning up and parsing (stateless)
-    var reTrim = /(^\s+|\s+$)/g; //Trim leading/trailing whitespace
-    var reTrimTag = /\s*\/\s*$/g; //Remove extraneous whitespace from self-closing tag
-    var reTrimEndTag = /^\s*\/\s*/g; //Remove extraneous whitespace from closing tag name
-    var reTrimComment = /(^\!--|--$)/g; //Remove comment tag markup from comment contents
-    var reWhitespace = /\s/g; //Used to find any whitespace to split on
-    var reTagName = /^\s*(\/?)\s*([^\s\/]+)/; //Used to find the tag name for an element
+    Parser._reTrim = /(^\s+|\s+$)/g; //Trim leading/trailing whitespace
+    Parser._reTrimComment = /(^\!--|--$)/g; //Remove comment tag markup from comment contents
+    Parser._reWhitespace = /\s/g; //Used to find any whitespace to split on
+    Parser._reTagName = /^\s*(\/?)\s*([^\s\/]+)/; //Used to find the tag name for an element
+
     //Regular expressions used for parsing (stateful)
-    var reAttrib = /([^=<>\"\'\s]+)\s*=\s*"([^"]*)"|([^=<>\"\'\s]+)\s*=\s*'([^']*)'|([^=<>\"\'\s]+)\s*=\s*([^'"\s]+)|([^=<>\"\'\s\/]+)/g; //Find attributes in a tag
-    var reTags = /[\<\>]/g; //Find tag markers
+    Parser._reAttrib = /([^=<>\"\'\s]+)\s*=\s*"([^"]*)"|([^=<>\"\'\s]+)\s*=\s*'([^']*)'|([^=<>\"\'\s]+)\s*=\s*([^'"\s]+)|([^=<>\"\'\s\/]+)/g; //Find attributes in a tag
+    Parser._reTags = /[\<\>]/g; //Find tag markers
+
+    //**Public**//
+    //Methods//
+    //Parses a complete HTML and pushes it to the handler
+    Parser.prototype.parseComplete = function Parser$parseComplete(data) {
+        this.reset();
+        this.parseChunk(data);
+        this.done();
+    };
+    Parser.prototype.ParseComplete = Parser.prototype.parseComplete; //TODO: remove next version
+
+    //Parses a piece of an HTML document
+    Parser.prototype.parseChunk = function Parser$parseChunk(data) {
+        if (this._done)
+            this.handleError(
+                new Error("Attempted to parse chunk after parsing already done")
+            );
+        this._buffer += data;
+        this.parseTags();
+    };
+    Parser.prototype.ParseChunk = Parser.prototype.parseChunk; //TODO: remove next version
+
+    //Tells the parser that the HTML being parsed is complete
+    Parser.prototype.done = function Parser$done() {
+        if (this._done) return;
+        this._done = true;
+
+        //Push any unparsed text into a final element in the element list
+        if (this._buffer.length) {
+            var rawData = this._buffer;
+            this._buffer = "";
+            var element = {
+                raw: rawData,
+                data:
+                    this._parseState == ElementType.Text
+                        ? rawData
+                        : rawData.replace(Parser._reTrim, ""),
+                type: this._parseState
+            };
+            if (
+                this._parseState == ElementType.Tag ||
+                this._parseState == ElementType.Script ||
+                this._parseState == ElementType.Style
+            )
+                element.name = this.parseTagName(element.data);
+            this.parseAttribs(element);
+            this._elements.push(element);
+        }
+
+        this.writeHandler();
+        this._handler.done();
+    };
+    Parser.prototype.Done = Parser.prototype.done; //TODO: remove next version
+
+    //Resets the parser to a blank state, ready to parse a new HTML document
+    Parser.prototype.reset = function Parser$reset() {
+        this._buffer = "";
+        this._done = false;
+        this._elements = [];
+        this._elementsCurrent = 0;
+        this._current = 0;
+        this._next = 0;
+        this._parseState = ElementType.Text;
+        this._prevTagSep = "";
+        this._tagStack = [];
+        this._handler.reset();
+    };
+    Parser.prototype.Reset = Parser.prototype.reset; //TODO: remove next version
+
+    //**Private**//
+    //Properties//
+    Parser.prototype._handler = null; //Handler for parsed elements
+    Parser.prototype._buffer = null; //Buffer of unparsed data
+    Parser.prototype._done = false; //Flag indicating whether parsing is done
+    Parser.prototype._elements = null; //Array of parsed elements
+    Parser.prototype._elementsCurrent = 0; //Pointer to last element in _elements that has been processed
+    Parser.prototype._current = 0; //Position in data that has already been parsed
+    Parser.prototype._next = 0; //Position in data of the next tag marker (<>)
+    Parser.prototype._parseState = ElementType.Text; //Current type of element being parsed
+    Parser.prototype._prevTagSep = ""; //Previous tag marker found
+    //Stack of element types previously encountered; keeps track of when
+    //parsing occurs inside a script/comment/style tag
+    Parser.prototype._tagStack = null;
+
+    //Methods//
+    //Takes an array of elements and parses any found attributes
+    Parser.prototype.parseTagAttribs = function Parser$parseTagAttribs(
+        elements
+    ) {
+        var idxEnd = elements.length;
+        var idx = 0;
+
+        while (idx < idxEnd) {
+            var element = elements[idx++];
+            if (
+                element.type == ElementType.Tag ||
+                element.type == ElementType.Script ||
+                element.type == ElementType.style
+            )
+                this.parseAttribs(element);
+        }
+
+        return elements;
+    };
+    Parser.prototype.ParseTagAttribs = Parser.prototype.parseTagAttribs; //TODO: remove next version
 
     //Takes an element and adds an "attribs" property for any element attributes found
-    function ParseAttribs(element) {
+    Parser.prototype.parseAttribs = function Parser$parseAttribs(element) {
         //Only parse attributes for tags
         if (
             element.type != ElementType.Script &&
@@ -86,13 +179,13 @@ IN THE SOFTWARE.
         )
             return;
 
-        var tagName = element.data.split(reWhitespace, 1)[0];
+        var tagName = element.data.split(Parser._reWhitespace, 1)[0];
         var attribRaw = element.data.substring(tagName.length);
         if (attribRaw.length < 1) return;
 
         var match;
-        reAttrib.lastIndex = 0;
-        while ((match = reAttrib.exec(attribRaw))) {
+        Parser._reAttrib.lastIndex = 0;
+        while ((match = Parser._reAttrib.exec(attribRaw))) {
             if (!element.attribs) element.attribs = {};
 
             if (typeof match[1] == "string")
@@ -104,39 +197,24 @@ IN THE SOFTWARE.
             else if (typeof match[7] == "string")
                 element.attribs[match[7]] = match[7];
         }
-    }
-
-    //Takes an array of elements and parses any found attributes
-    function ParseTagAttribs(elements) {
-        var idxEnd = elements.length;
-        var idx = 0;
-
-        while (idx < idxEnd) {
-            var element = elements[idx++];
-            if (
-                element.type == ElementType.Tag ||
-                element.type == ElementType.Script ||
-                element.type == ElementType.style
-            )
-                this.ParseAttribs(element);
-        }
-
-        return elements;
-    }
+    };
+    Parser.prototype.ParseAttribs = Parser.prototype.parseAttribs; //TODO: remove next version
 
     //Extracts the base tag name from the data value of an element
-    function ParseTagName(data) {
+    Parser.prototype.parseTagName = function Parser$parseTagName(data) {
         if (data == null || data == "") return "";
-        var match = reTagName.exec(data);
+        var match = Parser._reTagName.exec(data);
         if (!match) return "";
         return (match[1] ? "/" : "") + match[2];
-    }
+    };
+    Parser.prototype.ParseTagName = Parser.prototype.parseTagName; //TODO: remove next version
 
     //Parses through HTML text and returns an array of found elements
-    function ParseTags() {
+    //I admit, this function is rather large but splitting up had an noticeable impact on speed
+    Parser.prototype.parseTags = function Parser$parseTags() {
         var bufferEnd = this._buffer.length - 1;
-        while (reTags.test(this._buffer)) {
-            this._next = reTags.lastIndex - 1;
+        while (Parser._reTags.test(this._buffer)) {
+            this._next = Parser._reTags.lastIndex - 1;
             var tagSep = this._buffer[this._next]; //The currently found tag marker
             var rawData = this._buffer.substring(this._current, this._next); //The next chunk of data to parse
 
@@ -146,11 +224,11 @@ IN THE SOFTWARE.
                 data:
                     this._parseState == ElementType.Text
                         ? rawData
-                        : rawData.replace(reTrim, ""),
+                        : rawData.replace(Parser._reTrim, ""),
                 type: this._parseState
             };
 
-            var elementName = this.ParseTagName(element.data);
+            var elementName = this.parseTagName(element.data);
 
             //This section inspects the current tag stack and modifies the current
             //element if we're actually parsing a special area (script/comment/style tag)
@@ -248,7 +326,7 @@ IN THE SOFTWARE.
                             ];
                             prevElement.raw = prevElement.data = (
                                 prevElement.raw + element.raw
-                            ).replace(reTrimComment, "");
+                            ).replace(Parser._reTrimComment, "");
                             element.raw = element.data = ""; //This causes the current element to not be added to the element list
                             element.type = ElementType.Text;
                         } //Previous element not a comment
@@ -291,7 +369,7 @@ IN THE SOFTWARE.
                         tagSep == ">"
                     )
                         element.raw = element.data = element.raw.replace(
-                            reTrimComment,
+                            Parser._reTrimComment,
                             ""
                         );
                     else {
@@ -322,7 +400,7 @@ IN THE SOFTWARE.
 
             //Add all tags and non-empty text elements to the element list
             if (element.raw != "" || element.type != ElementType.Text) {
-                this.ParseAttribs(element);
+                this.parseAttribs(element);
                 this._elements.push(element);
                 //If tag self-terminates, add an explicit, separate closing tag
                 if (
@@ -350,10 +428,33 @@ IN THE SOFTWARE.
                 : "";
         this._current = 0;
 
-        this.WriteHandler();
-    }
+        this.writeHandler();
+    };
+    Parser.prototype.ParseTags = Parser.prototype.parseTags; //TODO: remove next version
 
-    function WriteHandler(forceFlush) {
+    //Checks the handler to make it is an object with the right "interface"
+    Parser.prototype.validateHandler = function Parser$validateHandler(
+        handler
+    ) {
+        if (typeof handler != "object")
+            throw new Error("Handler is not an object");
+        if (typeof handler.reset != "function")
+            throw new Error("Handler method 'reset' is invalid");
+        if (typeof handler.done != "function")
+            throw new Error("Handler method 'done' is invalid");
+        if (typeof handler.writeTag != "function")
+            throw new Error("Handler method 'writeTag' is invalid");
+        if (typeof handler.writeText != "function")
+            throw new Error("Handler method 'writeText' is invalid");
+        if (typeof handler.writeComment != "function")
+            throw new Error("Handler method 'writeComment' is invalid");
+        if (typeof handler.writeDirective != "function")
+            throw new Error("Handler method 'writeDirective' is invalid");
+    };
+    Parser.prototype.ValidateHandler = Parser.prototype.validateHandler; //TODO: remove next version
+
+    //Writes parsed elements out to the handler
+    Parser.prototype.writeHandler = function Parser$writeHandler(forceFlush) {
         forceFlush = !!forceFlush;
         if (this._tagStack.length && !forceFlush) return;
         while (this._elements.length) {
@@ -373,132 +474,40 @@ IN THE SOFTWARE.
                     break;
             }
         }
-    }
+    };
+    Parser.prototype.WriteHandler = Parser.prototype.writeHandler; //TODO: remove next version
 
-    function ParseComplete(data) {
-        this.Reset();
-        this.ParseChunk(data);
-        this.Done();
-    }
-
-    function ParseChunk(data) {
-        if (this._done)
-            this.HandleError(
-                new Error("Attempted to parse chunk after parsing already done")
-            );
-        this._buffer += data;
-        this.ParseTags();
-    }
-
-    function HandleError(error) {
+    Parser.prototype.handleError = function Parser$handleError(error) {
         if (typeof this._handler.error == "function")
             this._handler.error(error);
         else throw error;
-    }
-
-    function Done() {
-        if (this._done) return;
-        this._done = true;
-
-        //Push any unparsed text into a final element in the element list
-        if (this._buffer.length) {
-            var rawData = this._buffer;
-            this._buffer = "";
-            var element = {
-                raw: rawData,
-                data:
-                    this._parseState == ElementType.Text
-                        ? rawData
-                        : rawData.replace(reTrim, ""),
-                type: this._parseState
-            };
-            if (
-                this._parseState == ElementType.Tag ||
-                this._parseState == ElementType.Script ||
-                this._parseState == ElementType.Style
-            )
-                element.name = this.ParseTagName(element.data);
-            this.ParseAttribs(element);
-            this._elements.push(element);
-        }
-
-        this.WriteHandler();
-        this._handler.done();
-    }
-
-    function Reset() {
-        this.dom = [];
-        this._buffer = "";
-        this._done = false;
-        this._elements = [];
-        this._elementsCurrent = 0;
-        this._current = 0;
-        this._next = 0;
-        this._parseState = ElementType.Text;
-        this._prevTagSep = "";
-        this._tagStack = [];
-        this._handler.reset();
-    }
-
-    function ValidateHandler(handler) {
-        if (typeof handler != "object")
-            throw new Error("Handler is not an object");
-        if (typeof handler.reset != "function")
-            throw new Error("Handler method 'reset' is invalid");
-        if (typeof handler.done != "function")
-            throw new Error("Handler method 'done' is invalid");
-        if (typeof handler.writeTag != "function")
-            throw new Error("Handler method 'writeTag' is invalid");
-        if (typeof handler.writeText != "function")
-            throw new Error("Handler method 'writeText' is invalid");
-        if (typeof handler.writeComment != "function")
-            throw new Error("Handler method 'writeComment' is invalid");
-        if (typeof handler.writeDirective != "function")
-            throw new Error("Handler method 'writeDirective' is invalid");
-    }
-
-    function Parser(handler) {
-        this.ValidateHandler(handler);
-        this._handler = handler;
-        this.Reset();
-    }
-    //**Public**//
-    //Properties//
-    Parser.prototype.dom = null; //Parsed and nested elements
-    //Methods//
-    Parser.prototype.ParseComplete = ParseComplete;
-    Parser.prototype.ParseChunk = ParseChunk;
-    Parser.prototype.Done = Done;
-    Parser.prototype.Reset = Reset;
-
-    //**Private**//
-    //Properties//
-    Parser.prototype._handler = null; //Handler for parsed elements
-    Parser.prototype._buffer = null; //Buffer of unparsed data
-    Parser.prototype._done = false; //Flag indicating whether parsing is done
-    Parser.prototype._elements = null; //Array of parsed elements
-    Parser.prototype._elementsCurrent = 0; //Pointer to last element in _elements that has been processed
-    Parser.prototype._current = 0; //Position in data that has already been parsed
-    Parser.prototype._next = 0; //Position in data of the next tag marker (<>)
-    Parser.prototype._parseState = ElementType.Text; //Current type of element being parsed
-    Parser.prototype._prevTagSep = ""; //Previous tag marker found
-    //Stack of element types previously encountered; keeps track of when
-    //parsing occurs inside a script/comment/style tag
-    Parser.prototype._tagStack = null;
-    //Methods//
-    //	Parser.prototype.NestTags = NestTags;
-    Parser.prototype.ParseTagAttribs = ParseTagAttribs;
-    Parser.prototype.ParseAttribs = ParseAttribs;
-    Parser.prototype.ParseTagName = ParseTagName;
-    Parser.prototype.ParseTags = ParseTags;
-    Parser.prototype.ValidateHandler = ValidateHandler;
-    Parser.prototype.WriteHandler = WriteHandler;
-    Parser.prototype.HandleError = HandleError;
+    };
+    Parser.prototype.HandleError = Parser.prototype.handleError; //TODO: remove next version
 
     function DefaultHandler(callback) {
         this.reset();
         if (typeof callback == "function") this._callback = callback;
     }
+
+    //**"Static"**//
+    //HTML Tags that shouldn't contain child nodes
+    DefaultHandler._emptyTags = {
+        area: 1,
+        base: 1,
+        basefont: 1,
+        br: 1,
+        col: 1,
+        frame: 1,
+        hr: 1,
+        img: 1,
+        input: 1,
+        isindex: 1,
+        link: 1,
+        meta: 1,
+        param: 1,
+        embed: 1
+    };
+
     //**Public**//
     //Properties//
     DefaultHandler.prototype.dom = null; //The hierarchical object containing the parsed HTML
@@ -575,7 +584,7 @@ IN THE SOFTWARE.
                 if (element.name[0] != "/") {
                     //Ignore closing tags that obviously don't have an opening tag
                     this.dom.push(element);
-                    if (!EmptyTags[element.name]) {
+                    if (!DefaultHandler._emptyTags[element.name]) {
                         //Don't add tags to the tag stack that can't have children
                         this._tagStack.push(element);
                     }
@@ -595,7 +604,7 @@ IN THE SOFTWARE.
                     //This is a closing tag, scan the tagStack to find the matching opening tag
                     //and pop the stack up to the opening tag's parent
                     var baseName = element.name.substring(1);
-                    if (!EmptyTags[baseName]) {
+                    if (!DefaultHandler._emptyTags[baseName]) {
                         var pos = this._tagStack.length - 1;
                         while (
                             pos > -1 &&
@@ -610,7 +619,7 @@ IN THE SOFTWARE.
                     if (!this._tagStack.last().children)
                         this._tagStack.last().children = [];
                     this._tagStack.last().children.push(element);
-                    if (!EmptyTags[element.name])
+                    if (!DefaultHandler._emptyTags[element.name])
                         //Don't add tags to the tag stack that can't have children
                         this._tagStack.push(element);
                 }
