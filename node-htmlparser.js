@@ -86,7 +86,7 @@ function Parser (handler) {
 	Parser.prototype.parseChunk = function Parser$parseChunk (data) {
 		if (this._done)
 			this.handleError(new Error("Attempted to parse chunk after parsing already done"));
-		this._buffer += data;
+		this._buffer += data; //FIXME: this can be a bottleneck
 		this.parseTags();
 	}
 	Parser.prototype.ParseChunk = Parser.prototype.parseChunk; //TODO: remove next version
@@ -494,6 +494,8 @@ function DefaultHandler (callback) {
 	DefaultHandler.prototype.handleElement = function DefaultHandler$handleElement (element) {
 		if (this._done)
 			this.handleCallback(new Error("Writing to the handler after done() called is not allowed without a reset()"));
+//		delete element.raw; //FIXME: Serious performance problem here
+//		element.raw = null; //FIXME: Not clean
 		if (!this._tagStack.last()) { //There are no parent elements
 			//If the element can be a container, add it to the tag stack and the top level list
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
