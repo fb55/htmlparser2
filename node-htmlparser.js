@@ -418,8 +418,14 @@ function Parser (handler) {
 	}
 	Parser.prototype.HandleError = Parser.prototype.handleError; //TODO: remove next version
 
-function DefaultHandler (callback) {
+//TODO: add support for options: ignoreWhitespace, verbose (keep data for tags and raw for all)
+function DefaultHandler (callback, options) {
 	this.reset();
+	this._options = options ? options : { };
+	if (this._options.ignoreWhitespace == undefined)
+		this._options.ignoreWhitespace = false; //Keep whitespace-only text nodes
+	if (this._options.verbose == undefined)
+		this._options.verbose = true; //Keep data property for tags and raw property for all
 	if ((typeof callback) == "function")
 		this._callback = callback;
 }
@@ -442,6 +448,8 @@ function DefaultHandler (callback) {
 		, param: 1
 		, embed: 1
 	}
+	//Regex to detect whitespace only text nodes
+	DefaultHandler.reWhitespace = /^\s*$/;
 
 	//**Public**//
 	//Properties//
@@ -465,6 +473,9 @@ function DefaultHandler (callback) {
 		this.handleElement(element);
 	} 
 	DefaultHandler.prototype.writeText = function DefaultHandler$writeText (element) {
+		if (this._options.ignoreWhitespace)
+			if (DefaultHandler.reWhitespace.test(element.data))
+				return;
 		this.handleElement(element);
 	} 
 	DefaultHandler.prototype.writeComment = function DefaultHandler$writeComment (element) {
@@ -479,6 +490,7 @@ function DefaultHandler (callback) {
 
 	//**Private**//
 	//Properties//
+	DefaultHandler.prototype._options = null; //Handler options for how to behave
 	DefaultHandler.prototype._callback = null; //Callback to respond to when parsing done
 	DefaultHandler.prototype._done = false; //Flag indicating whether handler has been notified of parsing completed
 	DefaultHandler.prototype._tagStack = null; //List of parents to the currently element being processed
@@ -494,8 +506,13 @@ function DefaultHandler (callback) {
 	DefaultHandler.prototype.handleElement = function DefaultHandler$handleElement (element) {
 		if (this._done)
 			this.handleCallback(new Error("Writing to the handler after done() called is not allowed without a reset()"));
-//		delete element.raw; //FIXME: Serious performance problem here
-//		element.raw = null; //FIXME: Not clean
+		if (!this._options.verbose) {
+//			element.raw = null; //FIXME: Not clean
+			//FIXME: Serious performance problem using delete
+			delete element.raw;
+			if (element.type == "tag" || element.type == "script" || element.type == "comment")
+				delete element.data;
+		}
 		if (!this._tagStack.last()) { //There are no parent elements
 			//If the element can be a container, add it to the tag stack and the top level list
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {

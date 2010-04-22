@@ -29,17 +29,17 @@ var chunkSize = 5;
 var testFiles = fs.readdirSync(testFolder);
 var testCount = 0;
 var failedCount = 0;
-var handler = new htmlparser.DefaultHandler(function (error) {
-	if (error)
-		sys.puts("Handler error: " + error);
-});
-var parser = new htmlparser.Parser(handler);
 for (var i in testFiles) {
 	testCount++;
 	var fileParts = testFiles[i].split(".");
 	fileParts.pop();
 	var moduleName = fileParts.join(".");
 	var test = require(testFolder + "/" + moduleName);
+	var handler = new htmlparser.DefaultHandler(function (error) {
+		if (error)
+			sys.puts("Handler error: " + error);
+	}, test.options);
+	var parser = new htmlparser.Parser(handler);
 	parser.ParseComplete(test.html);
 	var resultComplete = handler.dom;
 	var chunkPos = 0;
