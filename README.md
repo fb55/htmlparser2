@@ -63,7 +63,10 @@ View runtests.html in any browser
 ##Handler Options
 
 ###Usage
-	var handler = new htmlparser.DefaultHandler(function (error) { ... }, { verbose: false, ignoreWhitespace: true });
+	var handler = new htmlparser.DefaultHandler(
+		  function (error) { ... }
+		, { verbose: false, ignoreWhitespace: true }
+		);
 	
 ###Option: ignoreWhitespace
 Indicates whether the DOM should exclude text nodes that consists solely of whitespace. The default value is "false".
