@@ -10,7 +10,7 @@ node runtests.js
 View runtests.html in any browser
 
 ##Usage In Node
-var htmlparser = require("node-htmlparser");
+``var htmlparser = require("node-htmlparser");
 var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
 var handler = new htmlparser.DefaultHandler(function (error) {
 	if (error)
@@ -20,10 +20,10 @@ var handler = new htmlparser.DefaultHandler(function (error) {
 });
 var parser = new htmlparser.Parser(handler);
 parser.ParseComplete(rawHtml);
-sys.puts(sys.inspect(handler.dom, false, null));
+sys.puts(sys.inspect(handler.dom, false, null));``
 
 ##Usage In Browser
-var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error) {
+``var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error) {
 	if (error)
 		[...do something for errors...]
 	else
@@ -31,10 +31,10 @@ var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error) 
 });
 var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
 parser.ParseComplete(document.body.innerHTML);
-alert(JSON.stringify(handler.dom, null, 2));
+alert(JSON.stringify(handler.dom, null, 2));``
 
 ##Example output
-[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
+``[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
 , { raw: 'script language= javascript'
   , data: 'script language= javascript'
   , type: 'script'
@@ -51,7 +51,7 @@ alert(JSON.stringify(handler.dom, null, 2));
   , data: '<!-- Waah! -- '
   , type: 'comment'
   }
-]
+]``
 
 ##Streaming To Parser
 		
