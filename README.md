@@ -4,7 +4,7 @@ A forgiving HTML parser written in JS for both the browser and NodeJS (yes, desp
 ##Running Tests
 
 ###Run tests under node:
-node runtests.js
+	node runtests.js
 
 ###Run tests in browser:
 View runtests.html in any browser
@@ -12,7 +12,7 @@ View runtests.html in any browser
 ##Usage In Node
 	var htmlparser = require("node-htmlparser");
 	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
-	var handler = new htmlparser.DefaultHandler(function (error) {
+	var handler = new htmlparser.DefaultHandler(function (error, dom) {
 		if (error)
 			[...do something for errors...]
 		else
@@ -23,7 +23,7 @@ View runtests.html in any browser
 	sys.puts(sys.inspect(handler.dom, false, null));
 
 ##Usage In Browser
-	var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error) {
+	var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
 		if (error)
 			[...do something for errors...]
 		else
@@ -54,7 +54,85 @@ View runtests.html in any browser
 	]
 
 ##Streaming To Parser
-		
+	while (...) {
+		...
+		parser.ParseChunk(chunk);
+	}	
 
 ##Handler Options
 
+###Usage
+	var handler = new htmlparser.DefaultHandler(function (error) { ... }, { verbose: false, ignoreWhitespace: true });
+	
+###Option: ignoreWhitespace
+Indicates whether the DOM should exclude text nodes that consists solely of whitespace. The default value is "false".
+
+####Example: true
+The following HTML:
+	<font>
+		<br>this is the text
+	<font>
+becomes:
+	[ { raw: 'font'
+	  , data: 'font'
+	  , type: 'tag'
+	  , name: 'font'
+	  , children: 
+	     [ { raw: 'br', data: 'br', type: 'tag', name: 'br' }
+	     , { raw: 'this is the text\n'
+	       , data: 'this is the text\n'
+	       , type: 'text'
+	       }
+	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
+	     ]
+	  }
+	]
+
+####Example: false
+The following HTML:
+	<font>
+		<br>this is the text
+	<font>
+becomes:
+	[ { raw: 'font'
+	  , data: 'font'
+	  , type: 'tag'
+	  , name: 'font'
+	  , children: 
+	     [ { raw: '\n\t', data: '\n\t', type: 'text' }
+	     , { raw: 'br', data: 'br', type: 'tag', name: 'br' }
+	     , { raw: 'this is the text\n'
+	       , data: 'this is the text\n'
+	       , type: 'text'
+	       }
+	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
+	     ]
+	  }
+	]
+
+###Option: verbose
+Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
+
+####Example: true
+The following HTML:
+	<a href="test.html">xxx</a>
+becomes:
+	[ { raw: 'a href="test.html"'
+	  , data: 'a href="test.html"'
+	  , type: 'tag'
+	  , name: 'a'
+	  , attribs: { href: 'test.html' }
+	  , children: [ { raw: 'xxx', data: 'xxx', type: 'text' } ]
+	  }
+	]
+
+####Example: false
+The following HTML:
+	<a href="test.html">xxx</a>
+becomes:
+	[ { type: 'tag'
+	  , name: 'a'
+	  , attribs: { href: 'test.html' }
+	  , children: [ { data: 'xxx', type: 'text' } ]
+	  }
+	]
