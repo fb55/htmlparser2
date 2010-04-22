@@ -19,7 +19,7 @@ View runtests.html in any browser
 			[...parsing done, do something...]
 	});
 	var parser = new htmlparser.Parser(handler);
-	parser.ParseComplete(rawHtml);
+	parser.parseComplete(rawHtml);
 	sys.puts(sys.inspect(handler.dom, false, null));
 
 ##Usage In Browser
@@ -30,7 +30,7 @@ View runtests.html in any browser
 			[...parsing done, do something...]
 	});
 	var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
-	parser.ParseComplete(document.body.innerHTML);
+	parser.parseComplete(document.body.innerHTML);
 	alert(JSON.stringify(handler.dom, null, 2));
 
 ##Example output
@@ -56,8 +56,9 @@ View runtests.html in any browser
 ##Streaming To Parser
 	while (...) {
 		...
-		parser.ParseChunk(chunk);
-	}	
+		parser.parseChunk(chunk);
+	}
+	parser.done();	
 
 ##Handler Options
 
