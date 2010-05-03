@@ -40,15 +40,15 @@ for (var i in testFiles) {
 			sys.puts("Handler error: " + error);
 	}, test.options);
 	var parser = new htmlparser.Parser(handler);
-	parser.ParseComplete(test.html);
+	parser.parseComplete(test.html);
 	var resultComplete = handler.dom;
 	var chunkPos = 0;
-	parser.Reset();
+	parser.reset();
 	while (chunkPos < test.html.length) {
-		parser.ParseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
+		parser.parseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
 		chunkPos += chunkSize;
 	}
-	parser.Done();
+	parser.done();
 	var resultChunk = handler.dom;
 	var testResult =
 		sys.inspect(resultComplete, false, null) === sys.inspect(test.expected, false, null)

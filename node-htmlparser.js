@@ -80,7 +80,6 @@ function Parser (handler) {
 		this.parseChunk(data);
 		this.done();
 	}
-	Parser.prototype.ParseComplete = Parser.prototype.parseComplete; //TODO: remove next version
 
 	//Parses a piece of an HTML document
 	Parser.prototype.parseChunk = function Parser$parseChunk (data) {
@@ -89,7 +88,6 @@ function Parser (handler) {
 		this._buffer += data; //FIXME: this can be a bottleneck
 		this.parseTags();
 	}
-	Parser.prototype.ParseChunk = Parser.prototype.parseChunk; //TODO: remove next version
 
 	//Tells the parser that the HTML being parsed is complete
 	Parser.prototype.done = function Parser$done () {
@@ -115,7 +113,6 @@ function Parser (handler) {
 		this.writeHandler();
 		this._handler.done();
 	}
-	Parser.prototype.Done = Parser.prototype.done; //TODO: remove next version
 
 	//Resets the parser to a blank state, ready to parse a new HTML document
 	Parser.prototype.reset = function Parser$reset () {
@@ -130,7 +127,6 @@ function Parser (handler) {
 		this._tagStack = [];
 		this._handler.reset();
 	}
-	Parser.prototype.Reset = Parser.prototype.reset; //TODO: remove next version
 	
 	//**Private**//
 	//Properties//
@@ -161,7 +157,6 @@ function Parser (handler) {
 	
 		return(elements);
 	}
-	Parser.prototype.ParseTagAttribs = Parser.prototype.parseTagAttribs; //TODO: remove next version
 
 	//Takes an element and adds an "attribs" property for any element attributes found 
 	Parser.prototype.parseAttribs = function Parser$parseAttribs (element) {
@@ -190,7 +185,6 @@ function Parser (handler) {
 				element.attribs[match[7]] = match[7];
 		}
 	}
-	Parser.prototype.ParseAttribs = Parser.prototype.parseAttribs; //TODO: remove next version
 
 	//Extracts the base tag name from the data value of an element
 	Parser.prototype.parseTagName = function Parser$parseTagName (data) {
@@ -201,7 +195,6 @@ function Parser (handler) {
 			return("");
 		return((match[1] ? "/" : "") + match[2]);
 	}
-	Parser.prototype.ParseTagName = Parser.prototype.parseTagName; //TODO: remove next version
 
 	//Parses through HTML text and returns an array of found elements
 	//I admit, this function is rather large but splitting up had an noticeable impact on speed
@@ -364,7 +357,6 @@ function Parser (handler) {
 	
 		this.writeHandler();
 	}
-	Parser.prototype.ParseTags = Parser.prototype.parseTags; //TODO: remove next version
 
 	//Checks the handler to make it is an object with the right "interface"
 	Parser.prototype.validateHandler = function Parser$validateHandler (handler) {
@@ -383,7 +375,6 @@ function Parser (handler) {
 		if ((typeof handler.writeDirective) != "function")
 			throw new Error("Handler method 'writeDirective' is invalid");
 	}
-	Parser.prototype.ValidateHandler = Parser.prototype.validateHandler; //TODO: remove next version
 
 	//Writes parsed elements out to the handler
 	Parser.prototype.writeHandler = function Parser$writeHandler (forceFlush) {
@@ -408,7 +399,6 @@ function Parser (handler) {
 			}
 		}
 	}
-	Parser.prototype.WriteHandler = Parser.prototype.writeHandler; //TODO: remove next version
 
 	Parser.prototype.handleError = function Parser$handleError (error) {
 		if ((typeof this._handler.error) == "function")
@@ -416,7 +406,6 @@ function Parser (handler) {
 		else
 			throw error;
 	}
-	Parser.prototype.HandleError = Parser.prototype.handleError; //TODO: remove next version
 
 //TODO: add support for options: ignoreWhitespace, verbose (keep data for tags and raw for all)
 function DefaultHandler (callback, options) {
@@ -510,7 +499,7 @@ function DefaultHandler (callback, options) {
 //			element.raw = null; //FIXME: Not clean
 			//FIXME: Serious performance problem using delete
 			delete element.raw;
-			if (element.type == "tag" || element.type == "script" || element.type == "comment")
+			if (element.type == "tag" || element.type == "script" || element.type == "style")
 				delete element.data;
 		}
 		if (!this._tagStack.last()) { //There are no parent elements
