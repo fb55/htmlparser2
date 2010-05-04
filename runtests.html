@@ -47,15 +47,15 @@
 					}, test.options);
 					var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
 					document.write("<b>" + test.name + "</b>: ");
-					parser.ParseComplete(test.html);
+					parser.parseComplete(test.html);
 					var resultComplete = handler.dom;
 					var chunkPos = 0;
-					parser.Reset();
+					parser.reset();
 					while (chunkPos < test.html.length) {
-						parser.ParseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
+						parser.parseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
 						chunkPos += chunkSize;
 					}
-					parser.Done();
+					parser.done();
 					var resultChunk = handler.dom;
 					var testResult =
 						JSON.stringify(resultComplete).toString() === JSON.stringify(test.expected).toString()

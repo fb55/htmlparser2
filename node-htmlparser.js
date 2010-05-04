@@ -547,10 +547,88 @@ function DefaultHandler (callback, options) {
 		}
 	}
 
+	var DomUtils = {
+		  testElement: function DomUtils$testElement (options, element) {
+			if (!element) {
+				return(false);
+			}
+	
+			for (var key in options) {
+				if (key == "tag_name") {
+					if (element.type != "tag" && element.type != "script" && element.type != "style") {
+						return(false);
+					}
+					if (options["tag_name"] != element.name) {
+						return(false);
+					}
+				} else if (key == "tag_type") {
+					if (element.type != options["tag_type"]) {
+						return(false);
+					}
+				} else if (key == "tag_contains") {
+					if (element.type != "text" && element.type != "comment" && element.type != "directive") {
+						return(false);
+					}
+					if (!element.data) {
+						return(false);
+					}
+					if (element.data.indexOf(options["tag_contains"]) < 0) {
+						return(false);
+					}
+				} else {
+					if (!element.attribs || options[key] != element.attribs[key]) {
+						return(false);
+					}
+				}
+			}
+		
+			return(true);
+		}
+	
+		, getElements: function DomUtils$getElements (options, currentElement) {
+			if (!currentElement)
+				return([]);
+	
+			var found = [];
+			var elementList;
+	
+			if (DomUtils.testElement(options, currentElement)) {
+				found.push(currentElement);
+			}
+	
+			if (currentElement.children)
+				elementList = currentElement.children;
+			else if (currentElement instanceof Array)
+				elementList = currentElement;
+			else
+				return(found);
+	
+			for (var i = 0; i < elementList.length; i++)
+				found = found.concat(DomUtils.getElements(options, elementList[i]));
+	
+			return(found);
+		}
+		
+		, getElementById: function DomUtils$getElementById (id, currentElement) {
+			var result = DomUtils.getElements({ id: id }, currentElement);
+			return(result.length ? result[0] : null);
+		}
+		
+		, getElementsByTagName: function DomUtils$getElementsByTagName (name, currentElement) {
+			return(DomUtils.getElements({ tag_name: name }, currentElement));
+		}
+		
+		, getElementsByTagType: function DomUtils$getElementsByTagType (type, currentElement) {
+			return(DomUtils.getElements({ tag_type: type }, currentElement));
+		}
+	}
+
 exports.Parser = Parser;
 
 exports.DefaultHandler = DefaultHandler;
 
 exports.ElementType = ElementType;
+
+exports.DomUtils = DomUtils;
 
 })();

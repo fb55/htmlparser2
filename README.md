@@ -140,3 +140,7 @@ becomes:
 	  , children: [ { data: 'xxx', type: 'text' } ]
 	  }
 	]
+
+##DomUtils
+
+###TBD (see utils_example.js for now)
