@@ -42,7 +42,7 @@ http.createClient(testPort, testHost)
 							sys.debug("Error: " + err);
 					});
 					var parser = new htmlparser.Parser(handler);
-					parser.ParseComplete(html);
+					parser.parseComplete(html);
 				})
 				
 				var timeLibXmlJs = !testLXJS ? 0 : timeExecutions(testIterations, function () {

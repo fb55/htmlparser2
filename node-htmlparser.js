@@ -203,7 +203,7 @@ function Parser (handler) {
 		var bufferEnd = this._buffer.length - 1;
 		while (Parser._reTags.test(this._buffer)) {
 			this._next = Parser._reTags.lastIndex - 1;
-			var tagSep = this._buffer[this._next]; //The currently found tag marker
+			var tagSep = this._buffer.charAt(this._next); //The currently found tag marker
 			var rawData = this._buffer.substring(this._current, this._next); //The next chunk of data to parse
 	
 			//A new element to eventually be appended to the element list
@@ -259,7 +259,7 @@ function Parser (handler) {
 				}
 				else if (this._tagStack[this._tagStack.length - 1] == ElementType.Comment) { //We're currently in a comment tag
 					var rawLen = element.raw.length;
-					if (element.raw[rawLen - 1] == "-" && element.raw[rawLen - 1] == "-" && tagSep == ">") {
+					if (element.raw.charAt(rawLen - 2) == "-" && element.raw.charAt(rawLen - 1) == "-" && tagSep == ">") {
 						//Actually, we're no longer in a style tag, so pop it off the stack
 						this._tagStack.pop();
 						//If the previous element is a comment, append the current text to it
@@ -296,7 +296,7 @@ function Parser (handler) {
 					delete element["name"];
 					var rawLen = element.raw.length;
 					//Check if the comment is terminated in the current element
-					if (element.raw[rawLen - 1] == "-" && element.raw[rawLen - 2] == "-" && tagSep == ">")
+					if (element.raw.charAt(rawLen - 1) == "-" && element.raw.charAt(rawLen - 2) == "-" && tagSep == ">")
 						element.raw = element.data = element.raw.replace(Parser._reTrimComment, "");
 					else { //It's not so push the comment onto the tag stack
 						element.raw += tagSep;
@@ -310,7 +310,7 @@ function Parser (handler) {
 				else if (element.name == "script") {
 					element.type = ElementType.Script;
 					//Special tag, push onto the tag stack if not terminated
-					if (element.data[element.data.length - 1] != "/")
+					if (element.data.charAt(element.data.length - 1) != "/")
 						this._tagStack.push(ElementType.Script);
 				}
 				else if (element.name == "/script")
@@ -318,12 +318,12 @@ function Parser (handler) {
 				else if (element.name == "style") {
 					element.type = ElementType.Style;
 					//Special tag, push onto the tag stack if not terminated
-					if (element.data[element.data.length - 1] != "/")
+					if (element.data.charAt(element.data.length - 1) != "/")
 						this._tagStack.push(ElementType.Style);
 				}
 				else if (element.name == "/style")
 					element.type = ElementType.Style;
-				if (element.name && element.name[0] == "/")
+				if (element.name && element.name.charAt(0) == "/")
 					element.data = element.name;
 			}
 	
@@ -339,7 +339,7 @@ function Parser (handler) {
 					&&
 					element.type != ElementType.Directive
 					&&
-					element.data[element.data.length - 1] == "/"
+					element.data.charAt(element.data.length - 1) == "/"
 					)
 					this._elements.push({
 						  raw: "/" + element.name
@@ -506,7 +506,7 @@ function DefaultHandler (callback, options) {
 		if (!this._tagStack.last()) { //There are no parent elements
 			//If the element can be a container, add it to the tag stack and the top level list
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
-				if (element.name[0] != "/") { //Ignore closing tags that obviously don't have an opening tag
+				if (element.name.charAt(0) != "/") { //Ignore closing tags that obviously don't have an opening tag
 					this.dom.push(element);
 					if (!DefaultHandler._emptyTags[element.name]) { //Don't add tags to the tag stack that can't have children
 						this._tagStack.push(element);
@@ -520,7 +520,7 @@ function DefaultHandler (callback, options) {
 			//If the element can be a container, add it as a child of the element
 			//on top of the tag stack and then add it to the tag stack
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
-				if (element.name[0] == "/") {
+				if (element.name.charAt(0) == "/") {
 					//This is a closing tag, scan the tagStack to find the matching opening tag
 					//and pop the stack up to the opening tag's parent
 					var baseName = element.name.substring(1);
