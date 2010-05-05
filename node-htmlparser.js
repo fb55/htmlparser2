@@ -172,17 +172,18 @@ function Parser (handler) {
 		var match;
 		Parser._reAttrib.lastIndex = 0;
 		while (match = Parser._reAttrib.exec(attribRaw)) {
-			if (!element.attribs)
+			if (element.attribs == undefined)
 				element.attribs = {};
 	
-			if (typeof match[1] == "string")
+			if (typeof match[1] == "string" && match[1].length) {
 				element.attribs[match[1]] = match[2];
-			else if (typeof match[3] == "string")
-				element.attribs[match[3]] = match[4];
-			else if (typeof match[5] == "string")
+			} else if (typeof match[3] == "string" && match[3].length) {
+				element.attribs[match[3].toString()] = match[4].toString();
+			} else if (typeof match[5] == "string" && match[5].length) {
 				element.attribs[match[5]] = match[6];
-			else if (typeof match[7] == "string")
+			} else if (typeof match[7] == "string" && match[7].length) {
 				element.attribs[match[7]] = match[7];
+			}
 		}
 	}
 
