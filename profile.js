@@ -46,7 +46,7 @@ http.createClient(testPort, testHost)
                                   }
                               );
                               var parser = new htmlparser.Parser(handler);
-                              parser.ParseComplete(html);
+                              parser.parseComplete(html);
                           });
 
                     var timeLibXmlJs = !testLXJS
