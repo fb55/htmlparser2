@@ -3,7 +3,7 @@
 var sys = require("sys");
 var htmlparser = require("./node-htmlparser");
 
-var html = "<a>text a</a><b id='x'>text b</b><c class='y'>text c</c><d id='z' class='w'><e>text e</e></d>";
+var html = "<a>text a</a><b id='x'>text b</b><c class='y'>text c</c><d id='z' class='w'><e>text e</e></d><g class='g h i'>hhh</g>";
 
 var handler = new htmlparser.DefaultHandler(function(err, dom) {
 	if (err) {
@@ -15,6 +15,8 @@ var handler = new htmlparser.DefaultHandler(function(err, dom) {
 		sys.debug("id: " + sys.inspect(id, false, null));
 		var class = htmlparser.DomUtils.getElements({ class: "y" }, dom);
 		sys.debug("class: " + sys.inspect(class, false, null));
+		var multiclass = htmlparser.DomUtils.getElements({ class: function (value) { return(value && value.indexOf("h") > -1); } }, dom);
+		sys.debug("multiclass: " + sys.inspect(multiclass, false, null));
 		var name = htmlparser.DomUtils.getElementsByTagName("a", dom);
 		sys.debug("name: " + sys.inspect(name, false, null));
 		var text = htmlparser.DomUtils.getElementsByTagType("text", dom);
