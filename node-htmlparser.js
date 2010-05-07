@@ -658,13 +658,9 @@ IN THE SOFTWARE.
                     ) {
                         return false;
                     }
-                    if (options["tag_name"] != element.name) {
-                        return false;
-                    }
+                    return options["tag_name"](element.name);
                 } else if (key == "tag_type") {
-                    if (element.type != options["tag_type"]) {
-                        return false;
-                    }
+                    return options["tag_type"](element.type);
                 } else if (key == "tag_contains") {
                     if (
                         element.type != "text" &&
@@ -673,19 +669,11 @@ IN THE SOFTWARE.
                     ) {
                         return false;
                     }
-                    if (!element.data) {
-                        return false;
-                    }
-                    if (element.data.indexOf(options["tag_contains"]) < 0) {
-                        return false;
-                    }
+                    return options["tag_contains"](element.data);
                 } else {
-                    if (
-                        !element.attribs ||
-                        options[key] != element.attribs[key]
-                    ) {
-                        return false;
-                    }
+                    return (
+                        element.attribs && options[key](element.attribs[key])
+                    );
                 }
             }
 
@@ -693,10 +681,23 @@ IN THE SOFTWARE.
         },
 
         getElements: function DomUtils$getElements(options, currentElement) {
-            if (!currentElement) return [];
+            if (!currentElement) {
+                return [];
+            }
 
             var found = [];
             var elementList;
+
+            function getTest(checkVal) {
+                return typeof options[key] == "function"
+                    ? checkVal
+                    : function(value) {
+                          return value == checkVal;
+                      };
+            }
+            for (var key in options) {
+                options[key] = getTest(options[key]);
+            }
 
             if (DomUtils.testElement(options, currentElement)) {
                 found.push(currentElement);
