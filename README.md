@@ -1,5 +1,5 @@
 #NodeHtmlParser
-A forgiving HTML parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
+A forgiving HTML/XML parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
 ##Running Tests
 
@@ -138,6 +138,29 @@ becomes:
 	  , name: 'a'
 	  , attribs: { href: 'test.html' }
 	  , children: [ { data: 'xxx', type: 'text' } ]
+	  }
+	]
+
+###Option: enforceEmptyTags
+Indicates whether the DOM should prevent children on tags marked as empty in the HTML spec. Typically this should be set to "true" HTML parsing and "false" for XML parsing. The default value is "true".
+
+####Example: true
+The following HTML:
+	<link>text</link>
+becomes:
+	[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
+	, { raw: 'text', data: 'text', type: 'text' }
+	]
+
+####Example: false
+The following HTML:
+	<link>text</link>
+becomes:
+	[ { raw: 'link'
+	  , data: 'link'
+	  , type: 'tag'
+	  , name: 'link'
+	  , children: [ { raw: 'text', data: 'text', type: 'text' } ]
 	  }
 	]
 
