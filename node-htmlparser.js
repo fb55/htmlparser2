@@ -18,6 +18,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 ***********************************************/
+/* v1.5.0 */
 
 (function () {
 
@@ -416,6 +417,8 @@ function DefaultHandler (callback, options) {
 		this._options.ignoreWhitespace = false; //Keep whitespace-only text nodes
 	if (this._options.verbose == undefined)
 		this._options.verbose = true; //Keep data property for tags and raw property for all
+	if (this._options.enforceEmptyTags == undefined)
+		this._options.enforceEmptyTags = true; //Don't allow children for HTML tags defined as empty in spec
 	if ((typeof callback) == "function")
 		this._callback = callback;
 }
@@ -508,7 +511,7 @@ function DefaultHandler (callback, options) {
 			if (element.type != ElementType.Text && element.type != ElementType.Comment && element.type != ElementType.Directive) {
 				if (element.name.charAt(0) != "/") { //Ignore closing tags that obviously don't have an opening tag
 					this.dom.push(element);
-					if (!DefaultHandler._emptyTags[element.name]) { //Don't add tags to the tag stack that can't have children
+					if (!this._options.enforceEmptyTags || !DefaultHandler._emptyTags[element.name]) { //Don't add tags to the tag stack that can't have children
 						this._tagStack.push(element);
 					}
 				}
@@ -524,7 +527,7 @@ function DefaultHandler (callback, options) {
 					//This is a closing tag, scan the tagStack to find the matching opening tag
 					//and pop the stack up to the opening tag's parent
 					var baseName = element.name.substring(1);
-					if (!DefaultHandler._emptyTags[baseName]) {
+					if (!this._options.enforceEmptyTags || !DefaultHandler._emptyTags[baseName]) {
 						var pos = this._tagStack.length - 1;
 						while (pos > -1 && this._tagStack[pos--].name != baseName) { }
 						if (pos > -1 || this._tagStack[0].name == baseName)
@@ -536,7 +539,7 @@ function DefaultHandler (callback, options) {
 					if (!this._tagStack.last().children)
 						this._tagStack.last().children = [];
 					this._tagStack.last().children.push(element);
-					if (!DefaultHandler._emptyTags[element.name]) //Don't add tags to the tag stack that can't have children
+					if (!this._options.enforceEmptyTags || !DefaultHandler._emptyTags[element.name]) //Don't add tags to the tag stack that can't have children
 						this._tagStack.push(element);
 				}
 			}

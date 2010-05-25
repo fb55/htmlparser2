@@ -3,13 +3,13 @@
 var sys = require("sys");
 var htmlparser = require("./node-htmlparser");
 
-var html = "<a href=\"test.html\">xxx</a>";
+var html = "<link>text</link>";
 
 var handler = new htmlparser.DefaultHandler(function(err, dom) {
 	if (err)
 		sys.debug("Error: " + err);
 	else
 		sys.debug(sys.inspect(dom, false, null));
-}, { verbose: false });
+}, { enforceEmptyTags: true });
 var parser = new htmlparser.Parser(handler);
-parser.ParseComplete(html);
+parser.parseComplete(html);
