@@ -41,6 +41,8 @@
 		<script language="JavaScript" src="tests/17-xml_namespace.js"></script>
 		<script language="JavaScript" src="tests/18-enforce_empty_tags.js"></script>
 		<script language="JavaScript" src="tests/19-ignore_empty_tags.js"></script>
+		<script language="JavaScript" src="tests/20-rss.js"></script>
+		<script language="JavaScript" src="tests/21-atom.js"></script>
 		<!-- //TODO: dynamic loading of test files -->
 	</head>
 	<body style="font-size: small; font-family:Arial, Helvetica, sans-serif;">
@@ -53,10 +55,15 @@
 				testCount++;
 				var test = Tautologistics.NodeHtmlParser.Tests.shift();
 				try {
-					var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error) {
+					var handlerCallback = function handlerCallback (error) {
 						if (error)
 							document.write("<hr>Handler error: " + error + "<hr>");
-					}, test.options);
+					}
+					var handler = (test.type == "rss") ?
+						new Tautologistics.NodeHtmlParser.RssHandler(handlerCallback, test.options)
+						:
+						new Tautologistics.NodeHtmlParser.DefaultHandler(handlerCallback, test.options)
+						;
 					var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
 					document.write("<b>" + test.name + "</b>: ");
 					parser.parseComplete(test.html);
