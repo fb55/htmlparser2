@@ -1,5 +1,5 @@
 #NodeHtmlParser
-A forgiving HTML/XML parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
+A forgiving HTML/XML/RSS parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
 ##Running Tests
 
@@ -60,7 +60,24 @@ View runtests.html in any browser
 	}
 	parser.done();	
 
-##Handler Options
+##Parsing RSS/Atom Feeds
+
+	new htmlparser.RssHandler(function (error, dom) {
+		...
+	});
+
+###Usage In Browser
+	var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
+		if (error)
+			[...do something for errors...]
+		else
+			[...parsing done, do something...]
+	});
+	var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+	parser.parseComplete(document.body.innerHTML);
+	alert(JSON.stringify(handler.dom, null, 2));
+
+##DefaultHandler Options
 
 ###Usage
 	var handler = new htmlparser.DefaultHandler(

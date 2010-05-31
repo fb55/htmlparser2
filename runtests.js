@@ -35,10 +35,15 @@ for (var i in testFiles) {
 	fileParts.pop();
 	var moduleName = fileParts.join(".");
 	var test = require(testFolder + "/" + moduleName);
-	var handler = new htmlparser.DefaultHandler(function (error) {
+	var handlerCallback = function handlerCallback (error) {
 		if (error)
 			sys.puts("Handler error: " + error);
-	}, test.options);
+	}
+	var handler = (test.type == "rss") ?
+		new htmlparser.RssHandler(handlerCallback, test.options)
+		:
+		new htmlparser.DefaultHandler(handlerCallback, test.options)
+		;
 	var parser = new htmlparser.Parser(handler);
 	parser.parseComplete(test.html);
 	var resultComplete = handler.dom;

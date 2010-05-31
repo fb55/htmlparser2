@@ -304,7 +304,7 @@ function Parser (handler) {
 						this._tagStack.push(ElementType.Comment);
 					}
 				}
-				else if (element.raw.indexOf("!") == 0) {
+				else if (element.raw.indexOf("!") == 0 || element.raw.indexOf("?") == 0) {
 					element.type = ElementType.Directive;
 					//TODO: what about CDATA?
 				}
@@ -409,7 +409,111 @@ function Parser (handler) {
 			throw error;
 	}
 
-//TODO: add support for options: ignoreWhitespace, verbose (keep data for tags and raw for all)
+//TODO: make this a trully streamable handler
+function RssHandler (callback) {
+	RssHandler.super_.call(this, callback, { ignoreWhitespace: true, verbose: false, enforceEmptyTags: false });
+}
+inherits(RssHandler, DefaultHandler);
+
+	RssHandler.prototype.done = function RssHandler$done () {
+		var feed = { };
+		var feedRoot;
+
+		var found = DomUtils.getElementsByTagName(function (value) { return(value == "rss" || value == "feed"); }, this.dom, false);
+		if (found.length) {
+			feedRoot = found[0];
+		}
+		if (feedRoot) {
+			if (feedRoot.name == "rss") {
+				feed.type = "rss";
+				feedRoot = feedRoot.children[0]; //<channel/>
+				feed.id = "";
+//				require("sys").debug(require("sys").inspect(feedRoot, false, null));
+//				require("sys").debug(require("sys").inspect(DomUtils.getElementsByTagName("title", feedRoot.children, false)[0].children[0].data, false, null));
+				try {
+					feed.title = DomUtils.getElementsByTagName("title", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				try {
+					feed.link = DomUtils.getElementsByTagName("link", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				try {
+					feed.description = DomUtils.getElementsByTagName("description", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				try {
+					feed.updated = new Date(DomUtils.getElementsByTagName("lastBuildDate", feedRoot.children, false)[0].children[0].data);
+				} catch (ex) { }
+				try {
+					feed.author = DomUtils.getElementsByTagName("managingEditor", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				feed.items = [];
+				DomUtils.getElementsByTagName("item", feedRoot.children).forEach(function (item, index, list) {
+					var entry = {};
+					try {
+						entry.id = DomUtils.getElementsByTagName("guid", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.title = DomUtils.getElementsByTagName("title", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.link = DomUtils.getElementsByTagName("link", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.description = DomUtils.getElementsByTagName("description", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.pubDate = new Date(DomUtils.getElementsByTagName("pubDate", item.children, false)[0].children[0].data);
+					} catch (ex) { }
+					feed.items.push(entry);
+				});
+			} else {
+				feed.type = "atom";
+				try {
+					feed.id = DomUtils.getElementsByTagName("id", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				try {
+					feed.title = DomUtils.getElementsByTagName("title", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				try {
+					feed.link = DomUtils.getElementsByTagName("link", feedRoot.children, false)[0].attribs.href;
+				} catch (ex) { }
+				try {
+					feed.description = DomUtils.getElementsByTagName("subtitle", feedRoot.children, false)[0].children[0].data;
+				} catch (ex) { }
+				try {
+					feed.updated = new Date(DomUtils.getElementsByTagName("updated", feedRoot.children, false)[0].children[0].data);
+				} catch (ex) { }
+				try {
+					feed.author = DomUtils.getElementsByTagName("email", feedRoot.children, true)[0].children[0].data;
+				} catch (ex) { }
+				feed.items = [];
+				DomUtils.getElementsByTagName("entry", feedRoot.children).forEach(function (item, index, list) {
+					var entry = {};
+					try {
+						entry.id = DomUtils.getElementsByTagName("id", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.title = DomUtils.getElementsByTagName("title", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.link = DomUtils.getElementsByTagName("link", item.children, false)[0].attribs.href;
+					} catch (ex) { }
+					try {
+						entry.description = DomUtils.getElementsByTagName("summary", item.children, false)[0].children[0].data;
+					} catch (ex) { }
+					try {
+						entry.pubDate = new Date(DomUtils.getElementsByTagName("updated", item.children, false)[0].children[0].data);
+					} catch (ex) { }
+					feed.items.push(entry);
+				});
+			}
+
+			this.dom = feed;
+		}
+		RssHandler.super_.prototype.done.call(this);
+	}
+
+///////////////////////////////////////////////////
+
 function DefaultHandler (callback, options) {
 	this.reset();
 	this._options = options ? options : { };
@@ -578,7 +682,9 @@ function DefaultHandler (callback, options) {
 			return(true);
 		}
 	
-		, getElements: function DomUtils$getElements (options, currentElement) {
+		, getElements: function DomUtils$getElements (options, currentElement, recurse) {
+			recurse = !!recurse;
+
 			if (!currentElement) {
 				return([]);
 			}
@@ -597,7 +703,7 @@ function DefaultHandler (callback, options) {
 				found.push(currentElement);
 			}
 	
-			if (currentElement.children)
+			if (recurse && currentElement.children)
 				elementList = currentElement.children;
 			else if (currentElement instanceof Array)
 				elementList = currentElement;
@@ -605,28 +711,41 @@ function DefaultHandler (callback, options) {
 				return(found);
 	
 			for (var i = 0; i < elementList.length; i++)
-				found = found.concat(DomUtils.getElements(options, elementList[i]));
+				found = found.concat(DomUtils.getElements(options, elementList[i], recurse));
 	
 			return(found);
 		}
 		
-		, getElementById: function DomUtils$getElementById (id, currentElement) {
-			var result = DomUtils.getElements({ id: id }, currentElement);
+		, getElementById: function DomUtils$getElementById (id, currentElement, recurse) {
+			recurse = !!recurse;
+			var result = DomUtils.getElements({ id: id }, currentElement, recurse);
 			return(result.length ? result[0] : null);
 		}
 		
-		, getElementsByTagName: function DomUtils$getElementsByTagName (name, currentElement) {
-			return(DomUtils.getElements({ tag_name: name }, currentElement));
+		, getElementsByTagName: function DomUtils$getElementsByTagName (name, currentElement, recurse) {
+			recurse = !!recurse;
+			return(DomUtils.getElements({ tag_name: name }, currentElement, recurse));
 		}
 		
-		, getElementsByTagType: function DomUtils$getElementsByTagType (type, currentElement) {
-			return(DomUtils.getElements({ tag_type: type }, currentElement));
+		, getElementsByTagType: function DomUtils$getElementsByTagType (type, currentElement, recurse) {
+			recurse = !!recurse;
+			return(DomUtils.getElements({ tag_type: type }, currentElement, recurse));
 		}
+	}
+
+	function inherits (ctor, superCtor) {
+		var tempCtor = function(){};
+		tempCtor.prototype = superCtor.prototype;
+		ctor.super_ = superCtor;
+		ctor.prototype = new tempCtor();
+		ctor.prototype.constructor = ctor;
 	}
 
 exports.Parser = Parser;
 
 exports.DefaultHandler = DefaultHandler;
+
+exports.RssHandler = RssHandler;
 
 exports.ElementType = ElementType;
 
