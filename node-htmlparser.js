@@ -1,3 +1,4 @@
+var sys = require("sys");
 /***********************************************
 Copyright 2010, Chris Winberry <chris@winberry.net>. All rights reserved.
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -507,8 +508,6 @@ IN THE SOFTWARE.
                 feed.type = "rss";
                 feedRoot = feedRoot.children[0]; //<channel/>
                 feed.id = "";
-                //				require("sys").debug(require("sys").inspect(feedRoot, false, null));
-                //				require("sys").debug(require("sys").inspect(DomUtils.getElementsByTagName("title", feedRoot.children, false)[0].children[0].data, false, null));
                 try {
                     feed.title = DomUtils.getElementsByTagName(
                         "title",
@@ -910,9 +909,11 @@ IN THE SOFTWARE.
         getElements: function DomUtils$getElements(
             options,
             currentElement,
-            recurse
+            recurse,
+            limit
         ) {
-            recurse = !!recurse;
+            recurse = recurse === undefined || recurse === null || !!recurse;
+            limit = isNaN(parseInt(limit)) ? -1 : parseInt(limit);
 
             if (!currentElement) {
                 return [];
@@ -922,30 +923,45 @@ IN THE SOFTWARE.
             var elementList;
 
             function getTest(checkVal) {
-                return typeof options[key] == "function"
-                    ? checkVal
-                    : function(value) {
-                          return value == checkVal;
-                      };
+                return function(value) {
+                    return value == checkVal;
+                };
             }
             for (var key in options) {
-                options[key] = getTest(options[key]);
+                if (typeof options[key] != "function") {
+                    options[key] = getTest(options[key]);
+                }
             }
 
             if (DomUtils.testElement(options, currentElement)) {
                 found.push(currentElement);
             }
 
-            if (recurse && currentElement.children)
-                elementList = currentElement.children;
-            else if (currentElement instanceof Array)
-                elementList = currentElement;
-            else return found;
+            if (limit >= 0 && found.length >= limit) {
+                return found;
+            }
 
-            for (var i = 0; i < elementList.length; i++)
+            if (recurse && currentElement.children) {
+                elementList = currentElement.children;
+            } else if (currentElement instanceof Array) {
+                elementList = currentElement;
+            } else {
+                return found;
+            }
+
+            for (var i = 0; i < elementList.length; i++) {
                 found = found.concat(
-                    DomUtils.getElements(options, elementList[i], recurse)
+                    DomUtils.getElements(
+                        options,
+                        elementList[i],
+                        recurse,
+                        limit
+                    )
                 );
+                if (limit >= 0 && found.length >= limit) {
+                    break;
+                }
+            }
 
             return found;
         },
@@ -955,11 +971,11 @@ IN THE SOFTWARE.
             currentElement,
             recurse
         ) {
-            recurse = !!recurse;
             var result = DomUtils.getElements(
                 { id: id },
                 currentElement,
-                recurse
+                recurse,
+                1
             );
             return result.length ? result[0] : null;
         },
@@ -967,26 +983,28 @@ IN THE SOFTWARE.
         getElementsByTagName: function DomUtils$getElementsByTagName(
             name,
             currentElement,
-            recurse
+            recurse,
+            limit
         ) {
-            recurse = !!recurse;
             return DomUtils.getElements(
                 { tag_name: name },
                 currentElement,
-                recurse
+                recurse,
+                limit
             );
         },
 
         getElementsByTagType: function DomUtils$getElementsByTagType(
             type,
             currentElement,
-            recurse
+            recurse,
+            limit
         ) {
-            recurse = !!recurse;
             return DomUtils.getElements(
                 { tag_type: type },
                 currentElement,
-                recurse
+                recurse,
+                limit
             );
         }
     };
