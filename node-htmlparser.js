@@ -1,4 +1,3 @@
-var sys = require("sys");
 /***********************************************
 Copyright 2010, Chris Winberry <chris@winberry.net>. All rights reserved.
 Permission is hereby granted, free of charge, to any person obtaining a copy
