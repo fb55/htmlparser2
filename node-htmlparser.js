@@ -1,3 +1,4 @@
+var sys = require("sys");
 /***********************************************
 Copyright 2010, Chris Winberry <chris@winberry.net>. All rights reserved.
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -428,8 +429,6 @@ inherits(RssHandler, DefaultHandler);
 				feed.type = "rss";
 				feedRoot = feedRoot.children[0]; //<channel/>
 				feed.id = "";
-//				require("sys").debug(require("sys").inspect(feedRoot, false, null));
-//				require("sys").debug(require("sys").inspect(DomUtils.getElementsByTagName("title", feedRoot.children, false)[0].children[0].data, false, null));
 				try {
 					feed.title = DomUtils.getElementsByTagName("title", feedRoot.children, false)[0].children[0].data;
 				} catch (ex) { }
@@ -682,8 +681,9 @@ function DefaultHandler (callback, options) {
 			return(true);
 		}
 	
-		, getElements: function DomUtils$getElements (options, currentElement, recurse) {
-			recurse = !!recurse;
+		, getElements: function DomUtils$getElements (options, currentElement, recurse, limit) {
+			recurse = (recurse === undefined || recurse === null) || !!recurse;
+			limit = isNaN(parseInt(limit)) ? -1 : parseInt(limit);
 
 			if (!currentElement) {
 				return([]);
@@ -693,43 +693,51 @@ function DefaultHandler (callback, options) {
 			var elementList;
 
 			function getTest (checkVal) {
-				return(((typeof options[key]) == "function") ? checkVal : function (value) { return(value == checkVal); });
+				return(function (value) { return(value == checkVal); });
 			}
 			for (var key in options) {
-				options[key] = getTest(options[key]);
+				if ((typeof options[key]) != "function") {
+					options[key] = getTest(options[key]);
+				}
 			}
 	
 			if (DomUtils.testElement(options, currentElement)) {
 				found.push(currentElement);
 			}
-	
-			if (recurse && currentElement.children)
-				elementList = currentElement.children;
-			else if (currentElement instanceof Array)
-				elementList = currentElement;
-			else
+
+			if (limit >= 0 && found.length >= limit) {
 				return(found);
+			}
+
+			if (recurse && currentElement.children) {
+				elementList = currentElement.children;
+			} else if (currentElement instanceof Array) {
+				elementList = currentElement;
+			} else {
+				return(found);
+			}
 	
-			for (var i = 0; i < elementList.length; i++)
-				found = found.concat(DomUtils.getElements(options, elementList[i], recurse));
+			for (var i = 0; i < elementList.length; i++) {
+				found = found.concat(DomUtils.getElements(options, elementList[i], recurse, limit));
+				if (limit >= 0 && found.length >= limit) {
+					break;
+				}
+			}
 	
 			return(found);
 		}
 		
 		, getElementById: function DomUtils$getElementById (id, currentElement, recurse) {
-			recurse = !!recurse;
-			var result = DomUtils.getElements({ id: id }, currentElement, recurse);
+			var result = DomUtils.getElements({ id: id }, currentElement, recurse, 1);
 			return(result.length ? result[0] : null);
 		}
 		
-		, getElementsByTagName: function DomUtils$getElementsByTagName (name, currentElement, recurse) {
-			recurse = !!recurse;
-			return(DomUtils.getElements({ tag_name: name }, currentElement, recurse));
+		, getElementsByTagName: function DomUtils$getElementsByTagName (name, currentElement, recurse, limit) {
+			return(DomUtils.getElements({ tag_name: name }, currentElement, recurse, limit));
 		}
 		
-		, getElementsByTagType: function DomUtils$getElementsByTagType (type, currentElement, recurse) {
-			recurse = !!recurse;
-			return(DomUtils.getElements({ tag_type: type }, currentElement, recurse));
+		, getElementsByTagType: function DomUtils$getElementsByTagType (type, currentElement, recurse, limit) {
+			return(DomUtils.getElements({ tag_type: type }, currentElement, recurse, limit));
 		}
 	}
 
