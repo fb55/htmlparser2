@@ -1,6 +1,10 @@
 #NodeHtmlParser
 A forgiving HTML/XML/RSS parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
+##Installing
+
+  npm install htmlparser
+
 ##Running Tests
 
 ###Run tests under node:
