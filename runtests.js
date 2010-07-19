@@ -21,7 +21,7 @@ IN THE SOFTWARE.
 
 var sys = require("sys");
 var fs = require("fs");
-var htmlparser = require("./node-htmlparser");
+var htmlparser = require("./lib/node-htmlparser");
 
 var testFolder = "./tests";
 var chunkSize = 5;
