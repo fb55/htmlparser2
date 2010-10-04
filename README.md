@@ -177,3 +177,10 @@ becomes:
 ##DomUtils
 
 ###TBD (see utils_example.js for now)
+
+##Related Projects
+
+Looking for CSS selectors to search the DOM? Try Node-SoupSelect, a port of SoupSelect to NodeJS: http://github.com/harryf/node-soupselect
+
+There's also a port of hpricot to NodeJS that uses node-HtmlParser for HTML parsing: http://github.com/silentrob/Apricot
+

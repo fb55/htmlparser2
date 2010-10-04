@@ -1,9 +1,9 @@
 //node --prof --prof_auto profile.js
 //deps/v8/tools/mac-tick-processor v8.log
 var sys = require("sys");
-var htmlparser = require("./node-htmlparser");
+var htmlparser = require("./lib/node-htmlparser");
 
-var html = "<a>text a</a><b id='x'>text b</b><c class='y'>text c</c><d id='z' class='w'><e>text e</e></d><g class='g h i'>hhh</g>";
+var html = "<a>text a</a><b id='x'>text b</b><c class='y'>text c</c><d id='z' class='w'><e>text e</e></d><g class='g h i'>hhh</g><yy>hellow</yy><yy id='secondyy'>world</yy>";
 
 var handler = new htmlparser.DefaultHandler(function(err, dom) {
 	if (err) {
@@ -25,6 +25,10 @@ var handler = new htmlparser.DefaultHandler(function(err, dom) {
 		nested = htmlparser.DomUtils.getElementsByTagName("e", nested);
 		nested = htmlparser.DomUtils.getElementsByTagType("text", nested);
 		sys.debug("nested: " + sys.inspect(nested, false, null));
+		var double = htmlparser.DomUtils.getElementsByTagName("yy", dom);
+		sys.debug("double: " + sys.inspect(double, false, null));
+		var single = htmlparser.DomUtils.getElements( { tag_name: "yy", id: "secondyy" }, dom);
+		sys.debug("single: " + sys.inspect(single, false, null));
 	}
 }, { verbose: false });
 var parser = new htmlparser.Parser(handler);
