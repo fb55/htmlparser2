@@ -26,6 +26,10 @@ if (!RunningInNode()) {
 }
 
 exports.name = "Comment within text";
+exports.options = {
+	  handler: {}
+	, parser: {}
+};
 exports.html = "this is <!-- the comment --> the text";
 exports.expected =
 [ { raw: 'this is '

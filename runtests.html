@@ -43,6 +43,7 @@
 		<script language="JavaScript" src="tests/19-ignore_empty_tags.js"></script>
 		<script language="JavaScript" src="tests/20-rss.js"></script>
 		<script language="JavaScript" src="tests/21-atom.js"></script>
+		<script language="JavaScript" src="tests/22-position_data.js"></script>
 		<!-- //TODO: dynamic loading of test files -->
 	</head>
 	<body style="font-size: small; font-family:Arial, Helvetica, sans-serif;">
@@ -60,11 +61,11 @@
 							document.write("<hr>Handler error: " + error + "<hr>");
 					}
 					var handler = (test.type == "rss") ?
-						new Tautologistics.NodeHtmlParser.RssHandler(handlerCallback, test.options)
+						new Tautologistics.NodeHtmlParser.RssHandler(handlerCallback, test.options.handler)
 						:
-						new Tautologistics.NodeHtmlParser.DefaultHandler(handlerCallback, test.options)
+						new Tautologistics.NodeHtmlParser.DefaultHandler(handlerCallback, test.options.handler)
 						;
-					var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+					var parser = new Tautologistics.NodeHtmlParser.Parser(handler, test.options.parser);
 					document.write("<b>" + test.name + "</b>: ");
 					parser.parseComplete(test.html);
 					var resultComplete = handler.dom;

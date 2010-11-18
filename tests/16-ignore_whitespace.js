@@ -26,8 +26,11 @@ if (!RunningInNode()) {
 }
 
 exports.name = "Options 'ignoreWhitespace' set to 'true'";
+exports.options = {
+	  handler: { ignoreWhitespace: true }
+	, parser: {}
+};
 exports.html = "Line one\n<br> \t\n<br>\nline two<font>\n <br> x </font>";
-exports.options = { ignoreWhitespace: true };
 exports.expected =
 [ { raw: 'Line one\n'
   , data: 'Line one\n'

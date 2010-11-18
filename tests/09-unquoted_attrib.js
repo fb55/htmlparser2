@@ -26,6 +26,10 @@ if (!RunningInNode()) {
 }
 
 exports.name = "Unquoted attributes";
+exports.options = {
+	  handler: {}
+	, parser: {}
+};
 exports.html = "<font size= 14>the text</font>";
 exports.expected =
 [ { raw: 'font size= 14'

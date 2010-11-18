@@ -1,7 +1,7 @@
 {
 	  "name": "htmlparser"
 	, "description": "Forgiving HTML/XML/RSS Parser in JS for *both* Node and Browsers"
-	, "version": "1.6.2"
+	, "version": "1.7.1"
 	, "author": "Chris Winberry <chris@winberry.net>"
 	, "contributors": []
 	, "repository": {

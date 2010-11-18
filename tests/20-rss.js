@@ -26,6 +26,11 @@ if (!RunningInNode()) {
 }
 
 exports.name = "RSS (2.0)";
+exports.options = {
+	  handler: {}
+	, parser: {}
+};
+exports.type = "rss";
 //http://cyber.law.harvard.edu/rss/examples/rss2sample.xml
 exports.html = '<?xml version="1.0"?>\
 <rss version="2.0">\
@@ -74,8 +79,6 @@ exports.html = '<?xml version="1.0"?>\
       </item>\
    </channel>\
 </rss>';
-exports.options = { };
-exports.type = "rss";
 exports.expected = {
 	  type: "rss"
 	, id: ""

@@ -26,6 +26,10 @@ if (!RunningInNode()) {
 }
 
 exports.name = "Text outside tags";
+exports.options = {
+	  handler: {}
+	, parser: {}
+};
 exports.html = "Line one\n<br>\nline two";
 exports.expected =
 [ { raw: 'Line one\n'
