@@ -20,8 +20,11 @@
     }
 
     exports.name = "Ignore empty tags";
+    exports.options = {
+        handler: { enforceEmptyTags: false },
+        parser: {}
+    };
     exports.html = "<link>text</link>";
-    exports.options = { enforceEmptyTags: false };
     exports.expected = [
         {
             raw: "link",

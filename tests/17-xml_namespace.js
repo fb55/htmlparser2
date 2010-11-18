@@ -20,6 +20,10 @@
     }
 
     exports.name = "XML Namespace";
+    exports.options = {
+        handler: {},
+        parser: {}
+    };
     exports.html = "<ns:tag>text</ns:tag>";
     exports.expected = [
         {

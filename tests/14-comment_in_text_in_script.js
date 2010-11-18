@@ -20,6 +20,10 @@
     }
 
     exports.name = "Comment within text within script";
+    exports.options = {
+        handler: {},
+        parser: {}
+    };
     exports.html = "<script>this is <!-- the comment --> the text</script>";
     exports.expected = [
         {

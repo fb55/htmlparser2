@@ -20,6 +20,11 @@
     }
 
     exports.name = "Atom (1.0)";
+    exports.options = {
+        handler: {},
+        parser: {}
+    };
+    exports.type = "rss";
     //http://en.wikipedia.org/wiki/Atom_%28standard%29
     exports.html =
         '<?xml version="1.0" encoding="utf-8"?>\
@@ -48,8 +53,6 @@
 	</entry>\
 \
 </feed>';
-    exports.options = {};
-    exports.type = "rss";
     exports.expected = {
         type: "atom",
         id: "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",

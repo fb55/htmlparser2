@@ -20,6 +20,10 @@
     }
 
     exports.name = "Special char in comment";
+    exports.options = {
+        handler: {},
+        parser: {}
+    };
     exports.html =
         "<head><!-- commented out tags <title>Test</title>--></head>";
     exports.expected = [

@@ -20,6 +20,10 @@
     }
 
     exports.name = "Basic test";
+    exports.options = {
+        handler: {},
+        parser: {}
+    };
     exports.html =
         "<html><title>The Title</title><body>Hello world</body></html>";
     exports.expected = [

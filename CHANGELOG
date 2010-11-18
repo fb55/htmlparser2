@@ -1,4 +1,25 @@
 
+v1.7.1
+	* Document position feature disabled until it works correctly with chunked parsing
+
+v1.7.0
+	* Empty tag checking switch to being case insensitive [fgnass]
+	* Added feature to include document position (row, col) in element data [fgnass]
+	* Added parser option "includeLocation" to enable document position data
+
+v1.6.4
+	* Fixed 'prevElement' error [Swizec]
+
+v1.6.3
+	* Updated to support being an npm package
+	* Fixed DomUtils.testElement()
+
+v1.6.1
+	* Optimized DomUtils by up to 2-3x 
+
+v1.6.0
+	* Added support for RSS/Atom feeds
+
 v1.5.0
 	* Added DefaultHandler option "enforceEmptyTags" so that XML can be parsed correctly
 

@@ -40,9 +40,12 @@ for (var i in testFiles) {
     };
     var handler =
         test.type == "rss"
-            ? new htmlparser.RssHandler(handlerCallback, test.options)
-            : new htmlparser.DefaultHandler(handlerCallback, test.options);
-    var parser = new htmlparser.Parser(handler);
+            ? new htmlparser.RssHandler(handlerCallback, test.options.handler)
+            : new htmlparser.DefaultHandler(
+                  handlerCallback,
+                  test.options.handler
+              );
+    var parser = new htmlparser.Parser(handler, test.options.parser);
     parser.parseComplete(test.html);
     var resultComplete = handler.dom;
     var chunkPos = 0;
