@@ -1,4 +1,7 @@
 
+v1.7.2
+	* Document position feature fixed to work correctly with chunked parsing
+
 v1.7.1
 	* Document position feature disabled until it works correctly with chunked parsing
 
