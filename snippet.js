@@ -1,7 +1,7 @@
 //node --prof --prof_auto profile.js
 //deps/v8/tools/mac-tick-processor v8.log
 var sys = require("sys");
-var htmlparser = require("./node-htmlparser");
+var htmlparser = require("./htmlparser");
 
 var html = "<link>text</link>";
 
