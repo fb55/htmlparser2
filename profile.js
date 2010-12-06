@@ -3,16 +3,16 @@
 var sys = require("sys");
 var fs = require("fs");
 var http = require("http");
-var htmlparser = require("./node-htmlparser");
-var libxml = require('./libxmljs');
+var htmlparser = require("./lib/htmlparser");
+//var libxml = require('./libxmljs');
 
 var testNHP = true; //Should node-htmlparser be exercised?
-var testLXJS = true; //Should libxmljs be exercised?
+var testLXJS = false; //Should libxmljs be exercised?
 var testIterations = 100; //Number of test loops to run
 
-var testHost = "nodejs.org"; //Host to fetch test HTML from
+var testHost = "localhost"; //Host to fetch test HTML from
 var testPort = 80; //Port on host to fetch test HTML from
-var testPath = "/api.html"; //Path on host to fetch HTML from
+var testPath = "/~chris/feed.xml"; //Path on host to fetch HTML from
 
 function getMillisecs () {
 	return((new Date()).getTime());
@@ -41,7 +41,7 @@ http.createClient(testPort, testHost)
 						if (err)
 							sys.debug("Error: " + err);
 					});
-					var parser = new htmlparser.Parser(handler);
+					var parser = new htmlparser.Parser(handler, { includeLocation: true });
 					parser.parseComplete(html);
 				})
 				

@@ -1,7 +1,7 @@
 {
 	  "name": "htmlparser"
 	, "description": "Forgiving HTML/XML/RSS Parser in JS for *both* Node and Browsers"
-	, "version": "1.7.2"
+	, "version": "1.7.3"
 	, "author": "Chris Winberry <chris@winberry.net>"
 	, "contributors": []
 	, "repository": {
@@ -12,9 +12,9 @@
 		  "mail": "chris@winberry.net"
 		, "web": "http://github.com/tautologistics/node-htmlparser/issues"
 	}
-	, "os": [ "linux", "darwin", "freebsd" ]
+	, "os": [ "linux", "darwin", "freebsd", "win32" ]
 	, "directories": { "lib": "./lib/" }
-	, "main": "./lib/node-htmlparser"
+	, "main": "./lib/htmlparser"
 	, "engines": { "node": ">=0.1.33" }
 	, "licenses": [{
 		  "type": "MIT"
