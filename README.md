@@ -14,7 +14,7 @@ A forgiving HTML/XML/RSS parser written in JS for both the browser and NodeJS (y
 View runtests.html in any browser
 
 ##Usage In Node
-	var htmlparser = require("node-htmlparser");
+	var htmlparser = require("htmlparser");
 	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
 	var handler = new htmlparser.DefaultHandler(function (error, dom) {
 		if (error)
@@ -182,5 +182,5 @@ becomes:
 
 Looking for CSS selectors to search the DOM? Try Node-SoupSelect, a port of SoupSelect to NodeJS: http://github.com/harryf/node-soupselect
 
-There's also a port of hpricot to NodeJS that uses node-HtmlParser for HTML parsing: http://github.com/silentrob/Apricot
+There's also a port of hpricot to NodeJS that uses HtmlParser for HTML parsing: http://github.com/silentrob/Apricot
 
