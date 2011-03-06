@@ -1,3 +1,5 @@
+v1.8.0
+	*
 
 v1.7.3
 	* Renamed node-htmlparser.* to htmlparser.* and created shims for people still expecting node-htmlparser.*
