@@ -39,6 +39,7 @@ for (var i in testFiles) {
 		if (error)
 			sys.puts("Handler error: " + error);
 	}
+	console.log(testFiles[i]);
 	var handler = (test.type == "rss") ?
 		new htmlparser.RssHandler(handlerCallback, test.options.handler)
 		:
