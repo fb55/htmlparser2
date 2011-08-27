@@ -21,15 +21,15 @@ IN THE SOFTWARE.
 
 var sys = require("sys");
 var fs = require("fs");
-var htmlparser = require("./lib/htmlparser");
+var htmlparser = require("../lib/htmlparser");
 
-var testFolder = "./tests";
+var testFolder = ".";
 var chunkSize = 5;
 
 var testFiles = fs.readdirSync(testFolder);
 var testCount = 0;
 var failedCount = 0;
-for (var i in testFiles) {
+for (var i = 1; i < testFiles.length; i++) {
 	testCount++;
 	var fileParts = testFiles[i].split(".");
 	fileParts.pop();
