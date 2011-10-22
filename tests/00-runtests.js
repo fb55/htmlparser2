@@ -29,18 +29,18 @@ var chunkSize = 5;
 var testFiles = fs.readdirSync(testFolder);
 var testCount = 0;
 var failedCount = 0;
+var totalTime = 0;
 for (var i = 1; i < testFiles.length; i++) {
     testCount++;
-    var fileParts = testFiles[i].split(".");
-    fileParts.pop();
-    var moduleName = fileParts.join(".");
+    var moduleName = testFiles[i];
     var test = require(testFolder + "/" + moduleName);
     var handlerCallback = function handlerCallback(error) {
         if (error) sys.puts("Handler error: " + error);
     };
     console.log(testFiles[i]);
+    var start = Date.now();
     var handler =
-        test.type == "rss"
+        test.type === "rss"
             ? new htmlparser.RssHandler(handlerCallback, test.options.handler)
             : new htmlparser.DefaultHandler(
                   handlerCallback,
@@ -62,7 +62,17 @@ for (var i = 1; i < testFiles.length; i++) {
             sys.inspect(test.expected, false, null) &&
         sys.inspect(resultChunk, false, null) ===
             sys.inspect(test.expected, false, null);
-    sys.puts("[" + test.name + "]: " + (testResult ? "passed" : "FAILED"));
+    var took = Date.now() - start;
+    totalTime += took;
+    sys.puts(
+        "[" +
+            test.name +
+            "]: " +
+            (testResult ? "passed" : "FAILED") +
+            " (took: " +
+            took +
+            "ms)"
+    );
     if (!testResult) {
         failedCount++;
         sys.puts("== Complete ==");
@@ -75,3 +85,4 @@ for (var i = 1; i < testFiles.length; i++) {
 }
 sys.puts("Total tests: " + testCount);
 sys.puts("Failed tests: " + failedCount);
+sys.puts("Total time: " + totalTime);
