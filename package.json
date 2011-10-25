@@ -10,7 +10,7 @@
 	}
 	, "bugs": {
 		  "mail": "me@feedic.com"
-		, "web": "http://github.com/fb55/node-htmlparser/issues"
+		, "url": "http://github.com/fb55/node-htmlparser/issues"
 	}
 	, "directories": { "lib": "./lib/" }
 	, "main": "./lib/htmlparser"
