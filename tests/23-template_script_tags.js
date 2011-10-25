@@ -13,8 +13,8 @@ exports.expected = [
         attribs: { type: "text/template" },
         children: [
             {
-                raw: "<h1>Heading1</h1>",
-                data: "<h1>Heading1</h1>",
+                raw: " <h1>Heading1</h1>",
+                data: " <h1>Heading1</h1>",
                 type: "text"
             }
         ]
