@@ -2,10 +2,10 @@
 A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
 ##Installing
-	`npm install htmlparser`
+	npm install htmlparser
 
 ##Running Tests
-	`node tests/00-runtests.js`
+	node tests/00-runtests.js
 
 ##Usage
 	var htmlparser = require("htmlparser");
@@ -42,24 +42,24 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 	]
 
 ##Streaming To Parser
-	`while (...) {
+	while (...) {
 		...
 		parser.parseChunk(chunk);
 	}
-	parser.done();`
+	parser.done();
 
 ##Parsing RSS/Atom Feeds
-	`new htmlparser.RssHandler(function (error, dom) {
+	new htmlparser.RssHandler(function (error, dom) {
 		...
-	});`
+	});
 
 ##DefaultHandler Options
 
 ###Usage
-	`var handler = new htmlparser.DefaultHandler(
+	var handler = new htmlparser.DefaultHandler(
 		  function (error) { ... }
 		, { verbose: false, ignoreWhitespace: true }
-		);`
+		);
 	
 ###Option: ignoreWhitespace
 Indicates whether the DOM should exclude text nodes that consists solely of whitespace. The default value is "false".
@@ -67,13 +67,13 @@ Indicates whether the DOM should exclude text nodes that consists solely of whit
 ####Example: true
 The following HTML:
 
-	`<font>
+	<font>
 		<br>this is the text
-	<font>`
+	<font>
 
 becomes:
 
-	`[ { raw: 'font'
+	[ { raw: 'font'
 	  , data: 'font'
 	  , type: 'tag'
 	  , name: 'font'
@@ -86,18 +86,18 @@ becomes:
 	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
 	     ]
 	  }
-	]`
+	]
 
 ####Example: false
 The following HTML:
 
-	`<font>
+	<font>
 		<br>this is the text
-	<font>`
+	<font>
 
 becomes:
 
-	`[ { raw: 'font'
+	[ { raw: 'font'
 	  , data: 'font'
 	  , type: 'tag'
 	  , name: 'font'
@@ -111,7 +111,7 @@ becomes:
 	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
 	     ]
 	  }
-	]`
+	]
 
 ###Option: verbose
 Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
@@ -119,32 +119,32 @@ Indicates whether to include extra information on each node in the DOM. This inf
 ####Example: true
 The following HTML:
 
-	`<a href="test.html">xxx</a>`
+	<a href="test.html">xxx</a>
 
 becomes:
 
-	`[ { raw: 'a href="test.html"'
+	[ { raw: 'a href="test.html"'
 	  , data: 'a href="test.html"'
 	  , type: 'tag'
 	  , name: 'a'
 	  , attribs: { href: 'test.html' }
 	  , children: [ { raw: 'xxx', data: 'xxx', type: 'text' } ]
 	  }
-	]`
+	]
 
 ####Example: false
 The following HTML:
 
-	`<a href="test.html">xxx</a>`
+	<a href="test.html">xxx</a>
 
 becomes:
 
-	`[ { type: 'tag'
+	[ { type: 'tag'
 	  , name: 'a'
 	  , attribs: { href: 'test.html' }
 	  , children: [ { data: 'xxx', type: 'text' } ]
 	  }
-	]`
+	]
 
 ###Option: enforceEmptyTags
 Indicates whether the DOM should prevent children on tags marked as empty in the HTML spec. Typically this should be set to "true" HTML parsing and "false" for XML parsing. The default value is "true".
@@ -152,25 +152,25 @@ Indicates whether the DOM should prevent children on tags marked as empty in the
 ####Example: true
 The following HTML:
 
-	`<link>text</link>`
+	<link>text</link>
 
 becomes:
 
-	`[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
+	[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
 	, { raw: 'text', data: 'text', type: 'text' }
-	]`
+	]
 
 ####Example: false
 The following HTML:
 
-	`<link>text</link>`
+	<link>text</link>
 
 becomes:
 
-	`[ { raw: 'link'
+	[ { raw: 'link'
 	  , data: 'link'
 	  , type: 'tag'
 	  , name: 'link'
 	  , children: [ { raw: 'text', data: 'text', type: 'text' } ]
 	  }
-	]`
+	]
