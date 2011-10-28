@@ -1,21 +1,15 @@
 #NodeHtmlParser
-A forgiving HTML/XML/RSS parser written in JS for both the browser and NodeJS (yes, despite the name it works just fine in any modern browser). The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
+A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
 ##Installing
-
-	npm install htmlparser
+	`npm install htmlparser`
 
 ##Running Tests
+	`node tests/00-runtests.js`
 
-###Run tests under node:
-	node runtests.js
-
-###Run tests in browser:
-View runtests.html in any browser
-
-##Usage In Node
+##Usage
 	var htmlparser = require("htmlparser");
-	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
+	var rawHtml = "Xyz &lt;script language= javascript>var foo = '&lt;&lt;bar>>';&lt; /  script>&lt;!--&lt;!-- Waah! -- -->";
 	var handler = new htmlparser.DefaultHandler(function (error, dom) {
 		if (error)
 			[...do something for errors...]
@@ -26,16 +20,6 @@ View runtests.html in any browser
 	parser.parseComplete(rawHtml);
 	sys.puts(sys.inspect(handler.dom, false, null));
 
-##Usage In Browser
-	var handler = new Tautologistics.NodeHtmlParser.DefaultHandler(function (error, dom) {
-		if (error)
-			[...do something for errors...]
-		else
-			[...parsing done, do something...]
-	});
-	var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
-	parser.parseComplete(document.body.innerHTML);
-	alert(JSON.stringify(handler.dom, null, 2));
 
 ##Example output
 	[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
@@ -45,47 +29,47 @@ View runtests.html in any browser
 	  , name: 'script'
 	  , attribs: { language: 'javascript' }
 	  , children: 
-	     [ { raw: 'var foo = \'<bar>\';<'
-	       , data: 'var foo = \'<bar>\';<'
+	     [ { raw: 'var foo = \'&lt;bar>\';&lt;'
+	       , data: 'var foo = \'&lt;bar>\';&lt;'
 	       , type: 'text'
 	       }
 	     ]
 	  }
-	, { raw: '<!-- Waah! -- '
-	  , data: '<!-- Waah! -- '
+	, { raw: '&lt;!-- Waah! -- '
+	  , data: '&lt;!-- Waah! -- '
 	  , type: 'comment'
 	  }
 	]
 
 ##Streaming To Parser
-	while (...) {
+	`while (...) {
 		...
 		parser.parseChunk(chunk);
 	}
-	parser.done();	
+	parser.done();`
 
 ##Parsing RSS/Atom Feeds
 
-	new htmlparser.RssHandler(function (error, dom) {
+	`new htmlparser.RssHandler(function (error, dom) {
 		...
-	});
+	});`
 
 ##DefaultHandler Options
 
 ###Usage
-	var handler = new htmlparser.DefaultHandler(
+	`var handler = new htmlparser.DefaultHandler(
 		  function (error) { ... }
 		, { verbose: false, ignoreWhitespace: true }
-		);
+		);`
 	
 ###Option: ignoreWhitespace
 Indicates whether the DOM should exclude text nodes that consists solely of whitespace. The default value is "false".
 
 ####Example: true
 The following HTML:
-	<font>
-		<br>this is the text
-	<font>
+	`&lt;font>
+		&lt;br>this is the text
+	&lt;font>`
 becomes:
 	[ { raw: 'font'
 	  , data: 'font'
@@ -104,11 +88,11 @@ becomes:
 
 ####Example: false
 The following HTML:
-	<font>
-		<br>this is the text
-	<font>
+	`&lt;font>
+		&lt;br>this is the text
+	&lt;font>`
 becomes:
-	[ { raw: 'font'
+	`[ { raw: 'font'
 	  , data: 'font'
 	  , type: 'tag'
 	  , name: 'font'
@@ -122,65 +106,54 @@ becomes:
 	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
 	     ]
 	  }
-	]
+	]`
 
 ###Option: verbose
-Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
+Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "&lt;" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
 
 ####Example: true
 The following HTML:
-	<a href="test.html">xxx</a>
+	`&lt;a href="test.html">xxx&lt;/a>`
 becomes:
-	[ { raw: 'a href="test.html"'
+	`[ { raw: 'a href="test.html"'
 	  , data: 'a href="test.html"'
 	  , type: 'tag'
 	  , name: 'a'
 	  , attribs: { href: 'test.html' }
 	  , children: [ { raw: 'xxx', data: 'xxx', type: 'text' } ]
 	  }
-	]
+	]`
 
 ####Example: false
 The following HTML:
-	<a href="test.html">xxx</a>
+	`&lt;a href="test.html">xxx&lt;/a>`
 becomes:
-	[ { type: 'tag'
+	`[ { type: 'tag'
 	  , name: 'a'
 	  , attribs: { href: 'test.html' }
 	  , children: [ { data: 'xxx', type: 'text' } ]
 	  }
-	]
+	]`
 
 ###Option: enforceEmptyTags
 Indicates whether the DOM should prevent children on tags marked as empty in the HTML spec. Typically this should be set to "true" HTML parsing and "false" for XML parsing. The default value is "true".
 
 ####Example: true
 The following HTML:
-	<link>text</link>
+	`&lt;link>text&lt;/link>`
 becomes:
-	[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
+	`[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
 	, { raw: 'text', data: 'text', type: 'text' }
-	]
+	]`
 
 ####Example: false
 The following HTML:
-	<link>text</link>
+	`&lt;link>text&lt;/link>`
 becomes:
-	[ { raw: 'link'
+	`[ { raw: 'link'
 	  , data: 'link'
 	  , type: 'tag'
 	  , name: 'link'
 	  , children: [ { raw: 'text', data: 'text', type: 'text' } ]
 	  }
-	]
-
-##DomUtils
-
-###TBD (see utils_example.js for now)
-
-##Related Projects
-
-Looking for CSS selectors to search the DOM? Try Node-SoupSelect, a port of SoupSelect to NodeJS: http://github.com/harryf/node-soupselect
-
-There's also a port of hpricot to NodeJS that uses HtmlParser for HTML parsing: http://github.com/silentrob/Apricot
-
+	]`
