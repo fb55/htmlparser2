@@ -13,7 +13,7 @@
 		, "url": "http://github.com/fb55/node-htmlparser/issues"
 	}
 	, "directories": { "lib": "./lib/" }
-	, "main": "./lib/htmlparser"
+	, "main": "./lib/"
 	, "engines": { "node": ">0" }
 	, "licenses": [{
 		  "type": "MIT"
