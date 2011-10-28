@@ -1,6 +1,6 @@
 var sys = require("sys");
 var fs = require("fs");
-var htmlparser = require("../lib/htmlparser");
+var htmlparser = require("..");
 
 var testFolder = ".";
 var chunkSize = 5;
