@@ -49,7 +49,6 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 	parser.done();`
 
 ##Parsing RSS/Atom Feeds
-
 	`new htmlparser.RssHandler(function (error, dom) {
 		...
 	});`
@@ -67,11 +66,14 @@ Indicates whether the DOM should exclude text nodes that consists solely of whit
 
 ####Example: true
 The following HTML:
+
 	`<font>
 		<br>this is the text
 	<font>`
+
 becomes:
-	[ { raw: 'font'
+
+	`[ { raw: 'font'
 	  , data: 'font'
 	  , type: 'tag'
 	  , name: 'font'
@@ -84,14 +86,17 @@ becomes:
 	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
 	     ]
 	  }
-	]
+	]`
 
 ####Example: false
 The following HTML:
+
 	`<font>
 		<br>this is the text
 	<font>`
+
 becomes:
+
 	`[ { raw: 'font'
 	  , data: 'font'
 	  , type: 'tag'
@@ -113,8 +118,11 @@ Indicates whether to include extra information on each node in the DOM. This inf
 
 ####Example: true
 The following HTML:
+
 	`<a href="test.html">xxx</a>`
+
 becomes:
+
 	`[ { raw: 'a href="test.html"'
 	  , data: 'a href="test.html"'
 	  , type: 'tag'
@@ -126,8 +134,11 @@ becomes:
 
 ####Example: false
 The following HTML:
+
 	`<a href="test.html">xxx</a>`
+
 becomes:
+
 	`[ { type: 'tag'
 	  , name: 'a'
 	  , attribs: { href: 'test.html' }
@@ -140,16 +151,22 @@ Indicates whether the DOM should prevent children on tags marked as empty in the
 
 ####Example: true
 The following HTML:
+
 	`<link>text</link>`
+
 becomes:
+
 	`[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
 	, { raw: 'text', data: 'text', type: 'text' }
 	]`
 
 ####Example: false
 The following HTML:
+
 	`<link>text</link>`
+
 becomes:
+
 	`[ { raw: 'link'
 	  , data: 'link'
 	  , type: 'tag'
