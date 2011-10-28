@@ -17,7 +17,7 @@
     "directories": {
         "lib": "./lib/"
     },
-    "main": "./lib/htmlparser",
+    "main": "./lib/",
     "engines": {
         "node": ">0"
     },
