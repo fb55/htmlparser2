@@ -9,7 +9,7 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 
 ##Usage
 	var htmlparser = require("htmlparser");
-	var rawHtml = "Xyz &lt;script language= javascript>var foo = '&lt;&lt;bar>>';&lt; /  script>&lt;!--&lt;!-- Waah! -- -->";
+	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
 	var handler = new htmlparser.DefaultHandler(function (error, dom) {
 		if (error)
 			[...do something for errors...]
@@ -29,14 +29,14 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 	  , name: 'script'
 	  , attribs: { language: 'javascript' }
 	  , children: 
-	     [ { raw: 'var foo = \'&lt;bar>\';&lt;'
-	       , data: 'var foo = \'&lt;bar>\';&lt;'
+	     [ { raw: 'var foo = \'<bar>\';<'
+	       , data: 'var foo = \'<bar>\';<'
 	       , type: 'text'
 	       }
 	     ]
 	  }
-	, { raw: '&lt;!-- Waah! -- '
-	  , data: '&lt;!-- Waah! -- '
+	, { raw: '<!-- Waah! -- '
+	  , data: '<!-- Waah! -- '
 	  , type: 'comment'
 	  }
 	]
@@ -67,9 +67,9 @@ Indicates whether the DOM should exclude text nodes that consists solely of whit
 
 ####Example: true
 The following HTML:
-	`&lt;font>
-		&lt;br>this is the text
-	&lt;font>`
+	`<font>
+		<br>this is the text
+	<font>`
 becomes:
 	[ { raw: 'font'
 	  , data: 'font'
@@ -88,9 +88,9 @@ becomes:
 
 ####Example: false
 The following HTML:
-	`&lt;font>
-		&lt;br>this is the text
-	&lt;font>`
+	`<font>
+		<br>this is the text
+	<font>`
 becomes:
 	`[ { raw: 'font'
 	  , data: 'font'
@@ -109,11 +109,11 @@ becomes:
 	]`
 
 ###Option: verbose
-Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "&lt;" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
+Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
 
 ####Example: true
 The following HTML:
-	`&lt;a href="test.html">xxx&lt;/a>`
+	`<a href="test.html">xxx</a>`
 becomes:
 	`[ { raw: 'a href="test.html"'
 	  , data: 'a href="test.html"'
@@ -126,7 +126,7 @@ becomes:
 
 ####Example: false
 The following HTML:
-	`&lt;a href="test.html">xxx&lt;/a>`
+	`<a href="test.html">xxx</a>`
 becomes:
 	`[ { type: 'tag'
 	  , name: 'a'
@@ -140,7 +140,7 @@ Indicates whether the DOM should prevent children on tags marked as empty in the
 
 ####Example: true
 The following HTML:
-	`&lt;link>text&lt;/link>`
+	`<link>text</link>`
 becomes:
 	`[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
 	, { raw: 'text', data: 'text', type: 'text' }
@@ -148,7 +148,7 @@ becomes:
 
 ####Example: false
 The following HTML:
-	`&lt;link>text&lt;/link>`
+	`<link>text</link>`
 becomes:
 	`[ { raw: 'link'
 	  , data: 'link'
