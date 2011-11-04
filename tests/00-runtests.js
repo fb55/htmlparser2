@@ -12,7 +12,6 @@ var totalTime = 0;
 var name = __filename.split("/").slice(-1)[0];
 for (var i = 1; i < testFiles.length; i++) {
 	if(testFiles[i] === name) continue;
-	console.log(testFiles[i], __filename);
 	testCount++;
 	var moduleName = testFiles[i];
 	var test = require(testFolder + "/" + moduleName);
