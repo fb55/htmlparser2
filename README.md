@@ -7,10 +7,10 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 ##Running Tests
 	node tests/00-runtests.js
 
-##How is this different from (node-htmlparser)[https://github.com/tautologistics/node-htmlparser]?
+##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 This is a fork of the project above. The main difference is that this is just intended to be used with node. Besides, the code is much better structured, has less duplications and is ~20% faster than the original (messured using npm module `ben` using RssHandler with the TechCrunch feed, exact result: 54ms vs. 68ms). 
 
-Besides, it features an additional handler that provides the interface of (sax.js)[https://github.com/isaacs/sax-js] (written for my readability port (readabilitySAX)[https://github.com/fb55/readabilitysax] & performs there great). I also fixed a couple of bugs & included some pull requests for the original project (eg. RDF feed support).
+Besides, it features an additional handler that provides the interface of [sax.js](https://github.com/isaacs/sax-js) (written for my readability port [readabilitySAX](https://github.com/fb55/readabilitysax) & performs there great). I also fixed a couple of bugs & included some pull requests for the original project (eg. [RDF feed support](https://github.com/tautologistics/node-htmlparser/pull/35)).
 
 ##Usage
 
