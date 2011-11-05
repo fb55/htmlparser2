@@ -3,7 +3,7 @@ exports.options = {
     handler: {},
     parser: {}
 };
-exports.html = '<script type="text/template"> <h1>Heading1</h1></script>';
+exports.html = '<script type="text/template"><h1>Heading1</h1></script>';
 exports.expected = [
     {
         raw: 'script type="text/template"',
@@ -13,8 +13,8 @@ exports.expected = [
         attribs: { type: "text/template" },
         children: [
             {
-                raw: " <h1>Heading1</h1>",
-                data: " <h1>Heading1</h1>",
+                raw: "<h1>Heading1</h1>",
+                data: "<h1>Heading1</h1>",
                 type: "text"
             }
         ]
