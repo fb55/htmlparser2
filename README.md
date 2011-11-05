@@ -10,7 +10,7 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 ##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 This is a fork of the project above. The main difference is that this is just intended to be used with node. Besides, the code is much better structured, has less duplications and is ~20% faster than the original (messured using npm module `ben` using RssHandler with the TechCrunch feed, exact result: 54ms vs. 68ms). 
 
-Besides, it features an additional handler that provides the interface of [sax.js](https://github.com/isaacs/sax-js) (written for my readability port [readabilitySAX](https://github.com/fb55/readabilitysax) & performs there great). I also fixed a couple of bugs & included some pull requests for the original project (eg. [RDF feed support](https://github.com/tautologistics/node-htmlparser/pull/35)).
+Besides, it features an additional handler that provides the interface of [sax.js](https://github.com/isaacs/sax-js) (written for my readability port [readabilitySAX](https://github.com/fb55/readabilitysax)). I also fixed a couple of bugs & included some pull requests for the original project (eg. [RDF feed support](https://github.com/tautologistics/node-htmlparser/pull/35)).
 
 ##Usage
 
@@ -64,7 +64,18 @@ Besides, it features an additional handler that provides the interface of [sax.j
 		...
 	});
 
-##DefaultHandler Options
+##Parser options
+
+###Usage
+	var Parser = new htmlparser.Parser(handler, options);
+
+###Option: includeLocation
+Indicates whether the parser should include the location of a token as part of it. Default: false.
+
+###Option: xmlMode
+Indicates whether `<script>` and `<style>` tags should get special treatment. If false, their content will be text only. For RSS feeds and other XML content (not HTML), set this to true. Default: false.
+
+##DefaultHandler options
 
 ###Usage
 	var handler = new htmlparser.DefaultHandler(function (error) {...}, {
