@@ -1,13 +1,19 @@
-#NodeHtmlParser
+#htmlparser2
 A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
 ##Installing
-	npm install htmlparser
+	npm install htmlparser2
 
 ##Running Tests
 	node tests/00-runtests.js
 
+##How is this different from (node-htmlparser)[https://github.com/tautologistics/node-htmlparser]?
+This is a fork of the project above. The main difference is that this is just intended to be used with node. Besides, the code is much better structured, has less duplications and is ~20% faster than the original (messured using npm module `ben` using RssHandler with the TechCrunch feed, exact result: 54ms vs. 68ms). 
+
+Besides, it features an additional handler that provides the interface of (sax.js)[https://github.com/isaacs/sax-js] (written for my readability port (readabilitySAX)[https://github.com/fb55/readabilitysax] & performs there great). I also fixed a couple of bugs & included some pull requests for the original project (eg. RDF feed support).
+
 ##Usage
+
 	var htmlparser = require("htmlparser");
 	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
 	var handler = new htmlparser.DefaultHandler(function (error, dom) {
@@ -22,24 +28,29 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 
 
 ##Example output
-	[ { raw: 'Xyz ', data: 'Xyz ', type: 'text' }
-	, { raw: 'script language= javascript'
-	  , data: 'script language= javascript'
-	  , type: 'script'
-	  , name: 'script'
-	  , attribs: { language: 'javascript' }
-	  , children: 
-	     [ { raw: 'var foo = \'<bar>\';<'
-	       , data: 'var foo = \'<bar>\';<'
-	       , type: 'text'
-	       }
-	     ]
-	  }
-	, { raw: '<!-- Waah! -- '
-	  , data: '<!-- Waah! -- '
-	  , type: 'comment'
-	  }
-	]
+
+	[{
+		raw: 'Xyz ',
+		data: 'Xyz ',
+		type: 'text'
+	}, {
+		raw: 'script language= javascript',
+		data: 'script language= javascript',
+		type: 'script',
+		name: 'script',
+		attribs: {
+			language: 'javascript'
+		},
+		children: [{
+			raw: 'var foo = \'<bar>\';<',
+			data: 'var foo = \'<bar>\';<',
+			type: 'text'
+		}]
+	}, {
+		raw: '<!-- Waah! -- ',
+		data: '<!-- Waah! -- ',
+		type: 'comment'
+	}]
 
 ##Streaming To Parser
 	while (...) {
@@ -56,121 +67,140 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 ##DefaultHandler Options
 
 ###Usage
-	var handler = new htmlparser.DefaultHandler(
-		  function (error) { ... }
-		, { verbose: false, ignoreWhitespace: true }
-		);
+	var handler = new htmlparser.DefaultHandler(function (error) {...}, {
+		verbose: false,
+		ignoreWhitespace: true
+	});
 	
 ###Option: ignoreWhitespace
-Indicates whether the DOM should exclude text nodes that consists solely of whitespace. The default value is "false".
+Indicates whether the DOM should exclude text nodes that consists solely of whitespace. The default value is "false". 
+
+The following HTML will be used:
+
+	<font>
+		<br>this is the text
+	<font>
 
 ####Example: true
-The following HTML:
 
-	<font>
-		<br>this is the text
-	<font>
-
-becomes:
-
-	[ { raw: 'font'
-	  , data: 'font'
-	  , type: 'tag'
-	  , name: 'font'
-	  , children: 
-	     [ { raw: 'br', data: 'br', type: 'tag', name: 'br' }
-	     , { raw: 'this is the text\n'
-	       , data: 'this is the text\n'
-	       , type: 'text'
-	       }
-	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
-	     ]
-	  }
-	]
+	[{
+		raw: 'font',
+		data: 'font',
+		type: 'tag',
+		name: 'font',
+		children: [{
+			raw: 'br',
+			data: 'br',
+			type: 'tag',
+			name: 'br'
+		}, {
+			raw: 'this is the text\n',
+			data: 'this is the text\n',
+			type: 'text'
+		}, {
+			raw: 'font',
+			data: 'font',
+			type: 'tag',
+			name: 'font'
+		}]
+	}]
 
 ####Example: false
-The following HTML:
 
-	<font>
-		<br>this is the text
-	<font>
-
-becomes:
-
-	[ { raw: 'font'
-	  , data: 'font'
-	  , type: 'tag'
-	  , name: 'font'
-	  , children: 
-	     [ { raw: '\n\t', data: '\n\t', type: 'text' }
-	     , { raw: 'br', data: 'br', type: 'tag', name: 'br' }
-	     , { raw: 'this is the text\n'
-	       , data: 'this is the text\n'
-	       , type: 'text'
-	       }
-	     , { raw: 'font', data: 'font', type: 'tag', name: 'font' }
-	     ]
-	  }
-	]
+	[{
+		raw: 'font',
+		data: 'font',
+		type: 'tag',
+		name: 'font',
+		children: [{
+			raw: '\n\t',
+			data: '\n\t',
+			type: 'text'
+		}, {
+			raw: 'br',
+			data: 'br',
+			type: 'tag',
+			name: 'br'
+		}, {
+			raw: 'this is the text\n',
+			data: 'this is the text\n',
+			type: 'text'
+		}, {
+			raw: 'font',
+			data: 'font',
+			type: 'tag',
+			name: 'font'
+		}]
+	}]
 
 ###Option: verbose
-Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true". 
+Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true".
+
+The following HTML is used:
+
+	<a href="test.html">xxx</a>
 
 ####Example: true
-The following HTML:
 
-	<a href="test.html">xxx</a>
-
-becomes:
-
-	[ { raw: 'a href="test.html"'
-	  , data: 'a href="test.html"'
-	  , type: 'tag'
-	  , name: 'a'
-	  , attribs: { href: 'test.html' }
-	  , children: [ { raw: 'xxx', data: 'xxx', type: 'text' } ]
-	  }
-	]
+	[{
+		raw: 'a href="test.html"',
+		data: 'a href="test.html"',
+		type: 'tag',
+		name: 'a',
+		attribs: {
+			href: 'test.html'
+		},
+		children: [{
+			raw: 'xxx',
+			data: 'xxx',
+			type: 'text'
+		}]
+	}]
 
 ####Example: false
-The following HTML:
 
-	<a href="test.html">xxx</a>
-
-becomes:
-
-	[ { type: 'tag'
-	  , name: 'a'
-	  , attribs: { href: 'test.html' }
-	  , children: [ { data: 'xxx', type: 'text' } ]
-	  }
-	]
+	[{
+		type: 'tag',
+		name: 'a',
+		attribs: {
+			href: 'test.html'
+		},
+		children: [{
+			data: 'xxx',
+			type: 'text'
+		}]
+	}]
 
 ###Option: enforceEmptyTags
 Indicates whether the DOM should prevent children on tags marked as empty in the HTML spec. Typically this should be set to "true" HTML parsing and "false" for XML parsing. The default value is "true".
 
-####Example: true
-The following HTML:
+The following HTML is used:
 
 	<link>text</link>
 
-becomes:
+####Example: true
 
-	[ { raw: 'link', data: 'link', type: 'tag', name: 'link' }
-	, { raw: 'text', data: 'text', type: 'text' }
-	]
+	[{
+		raw: 'link',
+		data: 'link',
+		type: 'tag',
+		name: 'link'
+	}, {
+		raw: 'text',
+		data: 'text',
+		type: 'text'
+	}]
 
 ####Example: false
-The following HTML:
 
-	<link>text</link>
-
-becomes:
-
-	[ { raw: 'link'
-	  , data: 'link'
-	  , type: 'tag'
-	  , name: 'link'
-	  , children: [ { raw: 'text', data: 'text', type: 'text' } ]
-	  }
-	]
+	[{
+		raw: 'link',
+		data: 'link',
+		type: 'tag',
+		name: 'link',
+		children: [{
+			raw: 'text',
+			data: 'text',
+			type: 'text'
+		}]
+	}]
