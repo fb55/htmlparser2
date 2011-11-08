@@ -1,69 +1,55 @@
-var sys = require("sys");
 var fs = require("fs");
-var htmlparser = require("..");
 
-var testFolder = ".";
-var chunkSize = 5;
+var testCount = 0,
+	failCount = 0,
+	totalTime = 0;
 
-var testFiles = fs.readdirSync(testFolder);
-var testCount = 0;
-var failedCount = 0;
-var totalTime = 0;
-var name = __filename.split("/").slice(-1)[0];
-var handler;
-for (var i = 1; i < testFiles.length; i++) {
-	if(testFiles[i] === name) continue;
-	testCount++;
-	var moduleName = testFiles[i];
-	var test = require(testFolder + "/" + moduleName);
-	var handlerCallback = function handlerCallback (error) {
-		if (error)
-			sys.puts("Handler error: " + error);
-	}
-	console.log(testFiles[i]);
-	var start = Date.now();
-	if(test.type === "rss"){
-		handler = new htmlparser.RssHandler(handlerCallback, test.options.handler);
-	}
-	else if(test.type === "event"){
-		handler = new htmlparser.EventedHandler(test.options.handler);
-	}
-	else{
-		handler = new htmlparser.DefaultHandler(handlerCallback, test.options.handler);
-	}
-	var parser = new htmlparser.Parser(handler, test.options.parser);
-	parser.parseComplete(test.html);
-	var resultComplete = handler.dom;
-	if(test.type === "event"){
-		resultComplete = test.result;
-		test.result = [];
-	}
-	var chunkPos = 0;
-	parser.reset();
-	while (chunkPos < test.html.length) {
-		parser.parseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
-		chunkPos += chunkSize;
-	}
-	parser.done();
-	var resultChunk = handler.dom;
-	if(test.type === "event"){
-		resultChunk = test.result;
-	}
-	var testResult = sys.inspect(resultComplete, false, null) === sys.inspect(test.expected, false, null)
-					&& sys.inspect(resultChunk, false, null) === sys.inspect(test.expected, false, null);
-	var took = Date.now() - start;
-	totalTime += took;
-	sys.puts("[" + test.name + "\]: " + (testResult ? "passed" : "FAILED") + " (took: " + took + "ms)");
-	if (!testResult) {
-		failedCount++;
-		sys.puts("== Complete ==");
-		sys.puts(sys.inspect(resultComplete, false, null));
-		sys.puts("== Chunked ==");
-		sys.puts(sys.inspect(resultChunk, false, null));
-		sys.puts("== Expected ==");
-		sys.puts(sys.inspect(test.expected, false, null));
-	}
-}
-sys.puts("Total time: " + totalTime);
-sys.puts("Total tests: " + testCount);
-sys.puts("Failed tests: " + failedCount);
+function runTests(test){
+	var begin = Date.now();
+	//read files, load them, run them
+	fs.readdirSync(test.dir
+	).map(function(file){
+		return require(test.dir + file);
+	}).forEach(function(file){
+		var second = false,
+			failed = false,
+			start = Date.now()
+			took = 0;
+		
+		console.log("Testing:", file.name);
+		
+		test.test(file, function(err, dom){
+			if(err) console.log("Handler error:", err);
+			took += Date.now() - start;
+			
+			var expected = JSON.stringify(file.expected, null, 2),
+				got = JSON.stringify(dom, null, 2);
+			if(expected !== got){
+				failed = true;
+				console.log("Expected", expected, "Got", got, second);
+			}
+			
+			start = Date.now();
+			
+			if(second){
+				testCount+=1;
+				if(failed) failCount+=1;
+				
+				console.log("["+file.name+"]:",failed?"failed":"passed","(took",took,"ms)"); 
+			}
+			else second = true;
+		});
+	});
+	var took = Date.now()-begin;
+	totalTime+=took;
+	console.log(test.dir,"took",took);
+};
+
+//run all tests
+var tests = ["./01-html.js", "./02-feed.js", "./03-events.js"];
+tests.map(require).forEach(runTests);
+
+//log the results
+console.log("Total time:", totalTime);
+console.log("Total tests:", testCount);
+console.log("Failed tests:", failCount);
