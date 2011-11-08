@@ -1,7 +1,7 @@
 {
 	  "name": "htmlparser2"
 	, "description": "Forgiving HTML/XML/RSS Parser for Node. This version is optimised and cleaned and provides a SAX interface (EventedHandler)."
-	, "version": "1.2.0"
+	, "version": "1.5.0"
 	, "author": "Felix Boehm <me@feedic.com>"
 	, "contributors": [ "Chris Winberry <chris@winberry.net>" ]
 	, "repository": {
