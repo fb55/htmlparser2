@@ -29,24 +29,19 @@ Besides, it features an additional handler that provides the interface of [sax.j
 ##Example output
 
 	[{
-		raw: 'Xyz ',
 		data: 'Xyz ',
 		type: 'text'
 	}, {
-		raw: 'script language= javascript',
-		data: 'script language= javascript',
 		type: 'script',
 		name: 'script',
 		attribs: {
 			language: 'javascript'
 		},
 		children: [{
-			raw: 'var foo = \'<bar>\';<',
 			data: 'var foo = \'<bar>\';<',
 			type: 'text'
 		}]
 	}, {
-		raw: '<!-- Waah! -- ',
 		data: '<!-- Waah! -- ',
 		type: 'comment'
 	}]
