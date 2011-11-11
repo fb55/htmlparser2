@@ -7,19 +7,19 @@ exports.html =
     '<head><script language="Javascript">var foo = "<bar>"; alert(2 > foo); var baz = 10 << 2; var zip = 10 >> 1; var yap = "<<>>>><<";</script></head>';
 exports.expected = [
     {
-        raw: "head",
-        data: "head",
         type: "tag",
         name: "head",
         children: [
             {
                 type: "script",
                 name: "script",
-                attribs: { language: "Javascript" },
+                attribs: {
+                    language: "Javascript"
+                },
                 children: [
                     {
                         data:
-                            'var foo = "<bar>"; alert(2 > foo); var baz = 10 << 2; var zip = 10 >> 1; var yap = "<<>>>><<";',
+                            "var foo = '<bar>'; alert(2 > foo); var baz = 10 << 2; var zip = 10 >> 1; var yap = '<<>>>><<';",
                         type: "text"
                     }
                 ]
