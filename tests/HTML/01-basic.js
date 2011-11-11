@@ -7,34 +7,29 @@ exports.html =
     "<!DOCTYPE html><html><title>The Title</title><body>Hello world</body></html>";
 exports.expected = [
     {
-        raw: "!DOCTYPE html",
+        name: "!DOCTYPE",
         data: "!DOCTYPE html",
-        type: "directive",
-        name: "!DOCTYPE"
+        type: "directive"
     },
     {
-        raw: "html",
-        data: "html",
         type: "tag",
         name: "html",
         children: [
             {
-                raw: "title",
-                data: "title",
                 type: "tag",
                 name: "title",
                 children: [
-                    { raw: "The Title", data: "The Title", type: "text" }
+                    {
+                        data: "The Title",
+                        type: "text"
+                    }
                 ]
             },
             {
-                raw: "body",
-                data: "body",
                 type: "tag",
                 name: "body",
                 children: [
                     {
-                        raw: "Hello world",
                         data: "Hello world",
                         type: "text"
                     }

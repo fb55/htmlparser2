@@ -5,6 +5,12 @@ exports.options = {
 };
 exports.html = "<br>text</br>";
 exports.expected = [
-    { raw: "br", data: "br", type: "tag", name: "br" },
-    { raw: "text", data: "text", type: "text" }
+    {
+        type: "tag",
+        name: "br"
+    },
+    {
+        data: "text",
+        type: "text"
+    }
 ];
