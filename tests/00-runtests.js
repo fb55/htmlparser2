@@ -9,9 +9,11 @@ function runTests(test) {
     //read files, load them, run them
     fs.readdirSync(test.dir)
         .map(function(file) {
+            if (file[0] === ".") return false;
             return require(test.dir + file);
         })
         .forEach(function(file) {
+            if (file === false) return;
             var second = false,
                 failed = false,
                 start = Date.now();

@@ -6,10 +6,13 @@ exports.options = {
 exports.html = "<link>text</link>";
 exports.expected = [
     {
-        raw: "link",
-        data: "link",
         type: "tag",
         name: "link",
-        children: [{ raw: "text", data: "text", type: "text" }]
+        children: [
+            {
+                data: "text",
+                type: "text"
+            }
+        ]
     }
 ];
