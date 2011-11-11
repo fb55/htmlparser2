@@ -14,8 +14,6 @@ exports.test = function(test, cb){
 	for(var i = 0; i < test.callbacks.length; i+=2){
 		cbs[test.callbacks[i]] = test.callbacks[i+1].bind(tokens);
 	};
-	var close = cbs.onclosetag;
-	cbs.onclosetag = function(b){console.log("close",b);close(b)}
 	var handler = new EventedHandler(cbs, test.options.handler);
 	helper.writeToParser(handler, test.options.parser, test.html);
 }

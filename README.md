@@ -26,7 +26,6 @@ Besides, it features an additional handler that provides the interface of [sax.j
 	parser.parseComplete(rawHtml);
 	sys.puts(sys.inspect(handler.dom, false, null));
 
-
 ##Example output
 
 	[{
