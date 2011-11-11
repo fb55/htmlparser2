@@ -4,7 +4,13 @@ exports.options = {
 	, parser: {}
 };
 exports.html = "<br>text</br>";
-exports.expected =
-	[ { raw: 'br', data: 'br', type: 'tag', name: 'br' }
-	, { raw: 'text', data: 'text', type: 'text' }
-	];
+exports.expected = [
+  {
+    "type": "tag",
+    "name": "br"
+  },
+  {
+    "data": "text",
+    "type": "text"
+  }
+];

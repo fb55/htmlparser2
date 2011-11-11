@@ -4,17 +4,18 @@ exports.options = {
 	, parser: {}
 };
 exports.html = "<\n font\t\n size='14' \n>the text<\n /	\nfont	 \n>";
-exports.expected =
-[ { raw: '\n font	\n size=\'14\' \n'
-  , data: 'font	\n size=\'14\''
-  , type: 'tag'
-  , name: 'font'
-  , attribs: { size: '14' }
-  , children:
-     [ { raw: 'the text'
-       , data: 'the text'
-       , type: 'text'
-       }
-     ]
+exports.expected = [
+  {
+    "type": "tag",
+    "name": "font",
+    "attribs": {
+      "size": "14"
+    },
+    "children": [
+      {
+        "data": "the text",
+        "type": "text"
+      }
+    ]
   }
 ];
