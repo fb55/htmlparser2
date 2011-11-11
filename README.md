@@ -58,8 +58,8 @@ Besides, it features an additional handler that provides the interface of [sax.j
 	}
 	parser.done();
 
-##Parsing RSS/Atom Feeds
-	new htmlparser.RssHandler(function (error, dom) {
+##Parsing RSS/RDF/Atom Feeds
+	new htmlparser.FeedHandler(function (error, dom) {
 		...
 	});
 
@@ -78,7 +78,6 @@ Indicates whether `<script>` and `<style>` tags should get special treatment. If
 
 ###Usage
 	var handler = new htmlparser.DefaultHandler(function (error) {...}, {
-		verbose: false,
 		ignoreWhitespace: true
 	});
 	
@@ -94,22 +93,15 @@ The following HTML will be used:
 ####Example: true
 
 	[{
-		raw: 'font',
-		data: 'font',
 		type: 'tag',
 		name: 'font',
 		children: [{
-			raw: 'br',
-			data: 'br',
 			type: 'tag',
 			name: 'br'
 		}, {
-			raw: 'this is the text\n',
 			data: 'this is the text\n',
 			type: 'text'
 		}, {
-			raw: 'font',
-			data: 'font',
 			type: 'tag',
 			name: 'font'
 		}]
@@ -118,66 +110,20 @@ The following HTML will be used:
 ####Example: false
 
 	[{
-		raw: 'font',
-		data: 'font',
 		type: 'tag',
 		name: 'font',
 		children: [{
-			raw: '\n\t',
 			data: '\n\t',
 			type: 'text'
 		}, {
-			raw: 'br',
-			data: 'br',
 			type: 'tag',
 			name: 'br'
 		}, {
-			raw: 'this is the text\n',
 			data: 'this is the text\n',
 			type: 'text'
 		}, {
-			raw: 'font',
-			data: 'font',
 			type: 'tag',
 			name: 'font'
-		}]
-	}]
-
-###Option: verbose
-Indicates whether to include extra information on each node in the DOM. This information consists of the "raw" attribute (original, unparsed text found between "<" and ">") and the "data" attribute on "tag", "script", and "comment" nodes. The default value is "true".
-
-The following HTML is used:
-
-	<a href="test.html">xxx</a>
-
-####Example: true
-
-	[{
-		raw: 'a href="test.html"',
-		data: 'a href="test.html"',
-		type: 'tag',
-		name: 'a',
-		attribs: {
-			href: 'test.html'
-		},
-		children: [{
-			raw: 'xxx',
-			data: 'xxx',
-			type: 'text'
-		}]
-	}]
-
-####Example: false
-
-	[{
-		type: 'tag',
-		name: 'a',
-		attribs: {
-			href: 'test.html'
-		},
-		children: [{
-			data: 'xxx',
-			type: 'text'
 		}]
 	}]
 
@@ -191,12 +137,9 @@ The following HTML is used:
 ####Example: true
 
 	[{
-		raw: 'link',
-		data: 'link',
 		type: 'tag',
 		name: 'link'
 	}, {
-		raw: 'text',
 		data: 'text',
 		type: 'text'
 	}]
@@ -204,12 +147,9 @@ The following HTML is used:
 ####Example: false
 
 	[{
-		raw: 'link',
-		data: 'link',
 		type: 'tag',
 		name: 'link',
 		children: [{
-			raw: 'text',
 			data: 'text',
 			type: 'text'
 		}]
