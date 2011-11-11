@@ -4,6 +4,15 @@ exports.options = {
 	, parser: {}
 };
 exports.html = "<ns:tag>text</ns:tag>";
-exports.expected =
-	[ { raw: 'ns:tag', data: 'ns:tag', type: 'tag', name: 'ns:tag', children: [ { raw: 'text', data: 'text', type: 'text' } ] }
-	];
+exports.expected = [
+  {
+    "type": "tag",
+    "name": "ns:tag",
+    "children": [
+      {
+        "data": "text",
+        "type": "text"
+      }
+    ]
+  }
+];

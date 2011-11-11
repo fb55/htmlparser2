@@ -4,9 +4,15 @@ exports.options = {
 	, parser: {}
 };
 exports.html = "<link>text</link>";
-exports.expected =
-	[
-		  { raw: 'link', data: 'link', type: 'tag', name: 'link', children: [
-		  	{ raw: 'text', data: 'text', type: 'text' }
-		  ] }
-	];
+exports.expected = [
+  {
+    "type": "tag",
+    "name": "link",
+    "children": [
+      {
+        "data": "text",
+        "type": "text"
+      }
+    ]
+  }
+];
