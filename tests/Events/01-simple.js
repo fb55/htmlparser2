@@ -1,5 +1,4 @@
 exports.name = "simple";
-exports.type = "event";
 exports.options = {handler: {}, parser: {}};
 exports.html = "<h1 class=test>adsf</h1>";
 exports.expected = [ { event: 'open',
