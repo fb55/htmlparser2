@@ -19,7 +19,7 @@ exports.expected = [
                 children: [
                     {
                         data:
-                            "var foo = '<bar>'; alert(2 > foo); var baz = 10 << 2; var zip = 10 >> 1; var yap = '<<>>>><<';",
+                            'var foo = "<bar>"; alert(2 > foo); var baz = 10 << 2; var zip = 10 >> 1; var yap = "<<>>>><<";',
                         type: "text"
                     }
                 ]
