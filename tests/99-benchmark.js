@@ -1,8 +1,7 @@
 var xml = Array(5e3).join(
         "<!directive><tag attr='value'> text <!--Comment<>--></tag>"
     ),
-    handler = new (require("../lib/EventedHandler.js"))(),
-    parser = new (require("../lib/Parser.js"))(handler),
+    parser = new (require("../lib/Parser.js"))({}),
     ben = require("ben");
 
 console.log(
