@@ -1,5 +1,4 @@
-var helper = require("./test-helper.js"),
-	EventedHandler = require("../lib/EventedHandler.js");
+var helper = require("./test-helper.js");
 
 exports.dir = "./Events/";
 
