@@ -48,8 +48,9 @@ function runTests(test){
 };
 
 //run all tests
-var tests = ["./01-html.js", "./02-feed.js", "./03-events.js"];
-tests.map(require).forEach(runTests);
+["./01-html.js", "./02-feed.js", "./03-events.js", "./04-dom_utils.js"]
+	.map(require)
+	.forEach(runTests);
 
 //log the results
 console.log("Total time:", totalTime);
