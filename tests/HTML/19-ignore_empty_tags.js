@@ -1,7 +1,7 @@
-exports.name = "Ignore empty tags";
+exports.name = "Ignore empty tags (xml mode)";
 exports.options = {
-	  handler: { enforceEmptyTags: false }
-	, parser: {}
+	  handler: {}
+	, parser: {xmlMode:true}
 };
 exports.html = "<link>text</link>";
 exports.expected = [

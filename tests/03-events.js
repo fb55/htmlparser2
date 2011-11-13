@@ -26,6 +26,5 @@ exports.test = function(test, cb){
 			cb(null, tokens.splice(0));
 		}
 	};
-	var handler = new EventedHandler(cbs, test.options.handler);
-	helper.writeToParser(handler, test.options.parser, test.html);
+	helper.writeToParser(cbs, test.options.parser, test.html);
 }

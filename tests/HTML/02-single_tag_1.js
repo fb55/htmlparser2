@@ -12,5 +12,9 @@ exports.expected = [
   {
     "data": "text",
     "type": "text"
+  },
+  {
+    "type": "tag",
+    "name": "br"
   }
 ];
