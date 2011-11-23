@@ -12,6 +12,8 @@ This is a fork of the project above. The main difference is that this is just in
 
 Besides, it features an additional handler that provides the interface of [sax.js](https://github.com/isaacs/sax-js) (written for my readability port [readabilitySAX](https://github.com/fb55/readabilitysax)). I also fixed a couple of bugs & included some pull requests for the original project (eg. [RDF feed support](https://github.com/tautologistics/node-htmlparser/pull/35)).
 
+The support for location data and verbose output was removed a couple of versions ago. It's still available in [this earlier version](https://github.com/FB55/node-htmlparser/tree/e1ae2b231c66caf75ca9b1328925e0cf95bfecc2) of htmlparser2 (if you really need it, for whatever reason that may be).
+
 ##Usage
 
 	var htmlparser = require("htmlparser");
