@@ -1,22 +1,29 @@
 {
-	  "name": "htmlparser2"
-	, "description": "Forgiving HTML/XML/RSS Parser for Node. This version is optimised and cleaned and provides a SAX interface (EventedHandler)."
-	, "version": "1.5.0"
-	, "author": "Felix Boehm <me@feedic.com>"
-	, "contributors": [ "Chris Winberry <chris@winberry.net>" ]
-	, "repository": {
-		  "type": "git"
-		, "url": "git://github.com/fb55/node-htmlparser.git"
-	}
-	, "bugs": {
-		  "mail": "me@feedic.com"
-		, "url": "http://github.com/fb55/node-htmlparser/issues"
-	}
-	, "directories": { "lib": "./lib/" }
-	, "main": "./lib/"
-	, "engines": { "node": ">0" }
-	, "licenses": [{
-		  "type": "MIT"
-		, "url": "http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE"
+	"name": "htmlparser2",
+	"description": "Forgiving HTML/XML/RSS Parser for Node. This version is optimised and cleaned and provides a SAX interface.",
+	"version": "1.9.0",
+	"author": "Felix Boehm <me@feedic.com>",
+	"contributors": ["Chris Winberry <chris@winberry.net>"],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/fb55/node-htmlparser.git"
+	},
+	"bugs": {
+		"mail": "me@feedic.com",
+		"url": "http://github.com/fb55/node-htmlparser/issues"
+	},
+	"directories": {
+		"lib": "./lib/"
+	},
+	"main": "./lib/",
+	"scripts": {
+		"test": "make test"
+	},
+	"engines": {
+		"node": ">0"
+	},
+	"licenses": [{
+		"type": "MIT",
+		"url": "http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE"
 	}]
 }
