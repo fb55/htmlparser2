@@ -56,3 +56,7 @@ function runTests(test){
 console.log("Total time:", totalTime);
 console.log("Total tests:", testCount);
 console.log("Failed tests:", failCount);
+
+if(failCount !== 0){
+	throw Error("Encountered " + failCount + " errors!");
+}
