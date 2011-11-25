@@ -1,7 +1,9 @@
 exports.name = "RSS (2.0)";
 exports.options = {
     handler: {},
-    parser: { xmlMode: true }
+    parser: {
+        xmlMode: true
+    }
 };
 exports.type = "rss";
 //http://cyber.law.harvard.edu/rss/examples/rss2sample.xml

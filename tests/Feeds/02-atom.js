@@ -1,7 +1,9 @@
 exports.name = "Atom (1.0)";
 exports.options = {
     handler: {},
-    parser: { xmlMode: true }
+    parser: {
+        xmlMode: true
+    }
 };
 exports.type = "rss";
 //http://en.wikipedia.org/wiki/Atom_%28standard%29
