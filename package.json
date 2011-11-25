@@ -17,7 +17,7 @@
 	},
 	"main": "./lib/",
 	"scripts": {
-		"test": "make test"
+		"test": "cd tests && node 00-runtests.js"
 	},
 	"engines": {
 		"node": ">0"
