@@ -7,6 +7,10 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 ##Running Tests
 	node tests/00-runtests.js
 
+This project is linked to [Travis CI](http://travis-ci.org/). The latest builds status is:
+
+[![Build Status](https://secure.travis-ci.org/FB55/node-htmlparser.png)](http://travis-ci.org/FB55/node-htmlparser)
+
 ##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 This is a fork of the project above. The main difference is that this is just intended to be used with node. Besides, the code is much better structured, has less duplications and is remarkably faster than the original. 
 
