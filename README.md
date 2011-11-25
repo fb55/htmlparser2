@@ -27,12 +27,13 @@ The support for location data and verbose output was removed a couple of version
 			[...do something for errors...]
 		else
 			[...parsing done, do something...]
+            console.log(dom);
 	});
 	var parser = new htmlparser.Parser(handler);
-	parser.parseComplete(rawHtml);
-	sys.puts(sys.inspect(handler.dom, false, null));
+	parser.write(rawHtml);
+    parser.done();
 
-##Example output
+Output:
 
 	[{
 		data: 'Xyz ',
@@ -55,7 +56,7 @@ The support for location data and verbose output was removed a couple of version
 ##Streaming To Parser
 	while (...) {
 		...
-		parser.parseChunk(chunk);
+		parser.write(chunk);
 	}
 	parser.done();
 
