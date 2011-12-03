@@ -20,50 +20,59 @@ The support for location data and verbose output was removed a couple of version
 
 ##Usage
 
-	var htmlparser = require("htmlparser");
-	var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
-	var handler = new htmlparser.DefaultHandler(function (error, dom) {
-		if (error)
-			[...do something for errors...]
-		else
-			[...parsing done, do something...]
-            console.log(dom);
-	});
-	var parser = new htmlparser.Parser(handler);
-	parser.write(rawHtml);
-    parser.done();
+```javascript
+var htmlparser = require("htmlparser");
+var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
+var handler = new htmlparser.DefaultHandler(function (error, dom) {
+    if (error)
+    	[...do something for errors...]
+    else
+    	[...parsing done, do something...]
+        console.log(dom);
+});
+var parser = new htmlparser.Parser(handler);
+parser.write(rawHtml);
+parser.done();
+```
 
 Output:
 
-	[{
-		data: 'Xyz ',
-		type: 'text'
-	}, {
-		type: 'script',
-		name: 'script',
-		attribs: {
-			language: 'javascript'
-		},
-		children: [{
-			data: 'var foo = \'<bar>\';<',
-			type: 'text'
-		}]
-	}, {
-		data: '<!-- Waah! -- ',
-		type: 'comment'
-	}]
+```javascript
+[{
+    data: 'Xyz ',
+    type: 'text'
+}, {
+    type: 'script',
+    name: 'script',
+    attribs: {
+    	language: 'javascript'
+    },
+    children: [{
+    	data: 'var foo = \'<bar>\';<',
+    	type: 'text'
+    }]
+}, {
+    data: '<!-- Waah! -- ',
+    type: 'comment'
+}]
+```
 
 ##Streaming To Parser
-	while (...) {
-		...
-		parser.write(chunk);
-	}
-	parser.done();
+```javascript
+while (...) {
+    ...
+    parser.write(chunk);
+}
+parser.done();
+```
 
 ##Parsing RSS/RDF/Atom Feeds
-	new htmlparser.FeedHandler(function (error, dom) {
-		...
-	});
+
+```javascript
+new htmlparser.FeedHandler(function (error, feed) {
+    ...
+});
+```
 
 ##Further reading
 * [Parser options](https://github.com/FB55/node-htmlparser/wiki/Parser-options)
