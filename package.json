@@ -1,7 +1,7 @@
 {
 	"name": "htmlparser2",
 	"description": "Forgiving HTML/XML/RSS Parser for Node. This version is optimised and cleaned and provides a SAX interface.",
-	"version": "2.0.2",
+	"version": "2.1.1",
 	"author": "Felix Boehm <me@feedic.com>",
 	"contributors": ["Chris Winberry <chris@winberry.net>"],
 	"repository": {
@@ -19,9 +19,7 @@
 	"scripts": {
 		"test": "cd tests && node 00-runtests.js"
 	},
-	"engines": {
-		"node": ">0"
-	},
+	"engines": "node >= 0.3.0",
 	"licenses": [{
 		"type": "MIT",
 		"url": "http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE"
