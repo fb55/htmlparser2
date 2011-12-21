@@ -7,15 +7,15 @@ var testCount = 0,
 function runTests(test){
 	var begin = Date.now();
 	//read files, load them, run them
-	fs.readdirSync(test.dir
+	fs.readdirSync(__dirname + test.dir
 	).map(function(file){
 		if(file[0] === ".") return false;
-		return require(test.dir + file);
+		return require(__dirname + test.dir + file);
 	}).forEach(function(file){
 		if(file === false) return;
 		var second = false,
 			failed = false,
-			start = Date.now()
+			start = Date.now(),
 			took = 0;
 		
 		console.log("Testing:", file.name);

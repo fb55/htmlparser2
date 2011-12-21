@@ -3,7 +3,7 @@
 var helper = require("./test-helper.js"),
 	DefaultHandler = require("../lib/DefaultHandler.js");
 
-exports.dir = "./HTML/";
+exports.dir = "/HTML/";
 
 /*
 	function test()
