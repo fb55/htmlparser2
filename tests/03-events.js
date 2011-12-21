@@ -1,6 +1,6 @@
 var helper = require("./test-helper.js");
 
-exports.dir = "./Events/";
+exports.dir = "/Events/";
 
 exports.test = function(test, cb) {
     var tokens = [];

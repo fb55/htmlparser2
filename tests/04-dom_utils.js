@@ -1,5 +1,3 @@
-var DomUtils = require("../lib/DomUtils.js");
-
 //generate a dom
 var handler = new (require("../lib/DefaultHandler.js"))();
 
@@ -11,7 +9,7 @@ new (require("../lib/Parser.js"))(handler).parseComplete(
 
 var dom = handler.dom;
 
-exports.dir = "./DomUtils/";
+exports.dir = "/DomUtils/";
 
 exports.test = function(test, cb) {
     cb(null, test.getElements(dom));
