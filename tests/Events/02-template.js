@@ -3,30 +3,43 @@ exports.options = {handler: {}, parser: {}};
 exports.html = "<script type=\"text/template\"><h1>Heading1</h1></script>";
 exports.expected = [
   {
-    "event": "open",
-    "name": "script",
-    "attributes": {
-      "type": "text/template"
-    }
+    "event": "opentag",
+    "data": [
+      "script",
+      {
+        "type": "text/template"
+      },
+      "script"
+    ]
   },
   {
     "event": "text",
-    "text": "<h1"
+    "data": [
+      "<h1"
+    ]
   },
   {
     "event": "text",
-    "text": ">Heading1"
+    "data": [
+      ">Heading1"
+    ]
   },
   {
     "event": "text",
-    "text": "</h1"
+    "data": [
+      "</h1"
+    ]
   },
   {
     "event": "text",
-    "text": ">"
+    "data": [
+      ">"
+    ]
   },
   {
-    "event": "close",
-    "name": "script"
+    "event": "closetag",
+    "data": [
+      "script"
+    ]
   }
 ];

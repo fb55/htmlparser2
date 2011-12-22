@@ -1,29 +1,44 @@
-var helper = require("./test-helper.js");
+var helper = require("./test-helper.js"),
+	sliceArr = Array.prototype.slice;
 
 exports.dir = "/Events/";
 
 exports.test = function(test, cb){
-	var tokens = [];
-	var cbs = {
-		onopentag: function(name, attributes){
-			tokens.push({event:"open", name: name, attributes: attributes});
-		},
-		onclosetag: function(name){
-			tokens.push({event:"close", name: name});
-		},
-		ontext: function(text){
-			tokens.push({event:"text", text: text});
-		},
-		oncomment: function(data){
-			tokens.push({event:"comment", data:data});
-		},
-		onprocessinginstruction: function(name, data){
-			tokens.push({event:"processing", name:name, data:data});
-		},
-		onend: function(){
-			//deletes all tokens
-			cb(null, tokens.splice(0));
-		}
-	};
+	var tokens = [], cbs;
+	if(typeof Proxy !== "undefined"){
+		cbs = Proxy.create({ get: function(a, name){
+			if(name === "onend"){
+				return function(){
+					cb(null, tokens.splice(0));
+				}
+			}
+			if(name === "onreset") return function(){};
+			return function(){
+				tokens.push({
+					event: name.substr(2),
+					data: sliceArr.apply(arguments)
+				});
+			}
+		}});
+	}
+	else{
+		cbs = {
+			onerror: cb,
+			onend: function(){
+				cb(null, tokens.splice(0));
+			}
+		};
+		["cdatastart", "cdataend", "text"
+		, "processinginstruction", "comment"
+		, "commentend", "closetag"
+		, "opentag"].forEach(function(name){
+			cbs["on" + name] = function(){
+				tokens.push({
+					event: name,
+					data: sliceArr.apply(arguments)
+				});
+			}
+		});
+	}
 	helper.writeToParser(cbs, test.options.parser, test.html);
 };

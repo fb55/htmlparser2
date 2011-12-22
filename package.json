@@ -17,7 +17,7 @@
 	},
 	"main": "./lib/",
 	"scripts": {
-		"test": "node tests/00-runtests.js"
+		"test": "node --harmony_proxies tests/00-runtests.js"
 	},
 	"engines": "node >= 0.3.0",
 	"licenses": [{
