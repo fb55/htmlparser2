@@ -28,10 +28,7 @@ exports.test = function(test, cb){
 				cb(null, tokens.splice(0));
 			}
 		};
-		["cdatastart", "cdataend", "text"
-		, "processinginstruction", "comment"
-		, "commentend", "closetag"
-		, "opentag"].forEach(function(name){
+		helper.EVENTS.forEach(function(name){
 			cbs["on" + name] = function(){
 				tokens.push({
 					event: name,

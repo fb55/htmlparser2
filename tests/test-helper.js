@@ -11,3 +11,5 @@ exports.writeToParser = function(handler, options, data){
 	//then parse everything
 	parser.parseComplete(data);
 }
+
+exports.EVENTS = ["cdatastart", "cdataend", "text", "processinginstruction", "comment", "commentend", "closetag", "opentag"/*, "error", "end"*/];
