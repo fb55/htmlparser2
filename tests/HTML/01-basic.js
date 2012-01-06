@@ -3,8 +3,9 @@ exports.options = {
     handler: {},
     parser: {}
 };
-exports.html =
-    "<!DOCTYPE html><html><title>The Title</title><body>Hello world</body></html>";
+exports.html = require("fs")
+    .readFileSync(__dirname + "/../Documents/Basic.html")
+    .toString();
 exports.expected = [
     {
         name: "!DOCTYPE",
