@@ -1,8 +1,8 @@
 var fs = require("fs");
 
-var testCount = 0,
-	failCount = 0,
-	totalTime = 0;
+var runCount = 0,
+	testCount = 0,
+	failCount = 0;
 
 function runTests(test){
 	var begin = Date.now();
@@ -14,15 +14,14 @@ function runTests(test){
 	}).forEach(function(file){
 		if(file === false) return;
 		var second = false,
-			failed = false,
-			start = Date.now(),
-			took = 0;
+			failed = false;
+		
+		runCount++;
 		
 		console.log("Testing:", file.name);
 		
 		test.test(file, function(err, dom){
 			if(err) console.log("Handler error:", err);
-			took += Date.now() - start;
 			
 			var expected = JSON.stringify(file.expected, null, 2),
 				got = JSON.stringify(dom, null, 2);
@@ -31,32 +30,37 @@ function runTests(test){
 				console.log("Expected", expected, "Got", got, second);
 			}
 			
-			start = Date.now();
-			
 			if(second){
-				testCount+=1;
-				if(failed) failCount+=1;
+				runCount--;
+				testCount++;
+				if(failed) failCount++;
 				
-				console.log("["+file.name+"]:",failed?"failed":"passed","(took",took,"ms)"); 
+				console.log("["+file.name+"]:", failed ? "failed":"passed"); 
 			}
 			else second = true;
 		});
 	});
-	var took = Date.now()-begin;
-	totalTime+=took;
-	console.log(test.dir,"took",took);
+	console.log("->", test.dir.slice(1, -1), "iterated");
 };
 
 //run all tests
-["./01-html.js", "./02-feed.js", "./03-events.js", "./04-dom_utils.js"]
-	.map(require)
-	.forEach(runTests);
+[
+ "./01-html.js",
+ "./02-feed.js",
+ "./03-events.js",
+ "./04-dom_utils.js",
+ "./05-stream.js"
+].map(require).forEach(runTests);
 
 //log the results
-console.log("Total time:", totalTime);
-console.log("Total tests:", testCount);
-console.log("Failed tests:", failCount);
-
-if(failCount !== 0){
-	throw Error("Encountered " + failCount + " errors!");
-}
+(function check(){
+	if(runCount !== 0){
+		return setTimeout(check, 50);
+	}
+	console.log("Total tests:", testCount);
+	console.log("Failed tests:", failCount);
+	
+	if(failCount !== 0){
+		throw Error("Encountered " + failCount + " errors!");
+	}
+})();
