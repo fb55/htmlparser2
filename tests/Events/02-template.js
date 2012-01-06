@@ -3,6 +3,12 @@ exports.options = {handler: {}, parser: {}};
 exports.html = "<script type=\"text/template\"><h1>Heading1</h1></script>";
 exports.expected = [
   {
+    "event": "opentagname",
+    "data": [
+      "script"
+    ]
+  },
+  {
     "event": "opentag",
     "data": [
       "script",
@@ -10,6 +16,13 @@ exports.expected = [
         "type": "text/template"
       },
       "script"
+    ]
+  },
+  {
+    "event": "attribute",
+    "data": [
+      "type",
+      "text/template"
     ]
   },
   {

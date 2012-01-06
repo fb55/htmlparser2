@@ -1,7 +1,13 @@
-exports.name = "simple";
+exports.name = "CDATA";
 exports.options = {handler: {}, parser: {}};
 exports.html = "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag>";
 exports.expected = [
+  {
+    "event": "opentagname",
+    "data": [
+      "tag"
+    ]
+  },
   {
     "event": "opentag",
     "data": [

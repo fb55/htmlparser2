@@ -1,7 +1,13 @@
-exports.name = "simple";
+exports.name = "Lowercase tags";
 exports.options = {handler: {}, parser: {lowerCaseTags:true}};
 exports.html = "<H1 class=test>adsf</H1>";
 exports.expected = [
+  {
+    "event": "opentagname",
+    "data": [
+      "h1"
+    ]
+  },
   {
     "event": "opentag",
     "data": [
@@ -10,6 +16,13 @@ exports.expected = [
         "class": "test"
       },
       "tag"
+    ]
+  },
+  {
+    "event": "attribute",
+    "data": [
+      "class",
+      "test"
     ]
   },
   {
