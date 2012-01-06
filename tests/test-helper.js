@@ -13,6 +13,7 @@ exports.writeToParser = function(handler, options, data) {
 };
 
 exports.EVENTS = [
+    "attribute",
     "cdatastart",
     "cdataend",
     "text",
@@ -20,5 +21,6 @@ exports.EVENTS = [
     "comment",
     "commentend",
     "closetag",
-    "opentag" /*, "error", "end"*/
+    "opentag",
+    "opentagname" /*, "error", "end"*/
 ];

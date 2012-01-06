@@ -3,6 +3,10 @@ exports.options = { handler: {}, parser: {} };
 exports.html = "<h1 class=test>adsf</h1>";
 exports.expected = [
     {
+        event: "opentagname",
+        data: ["h1"]
+    },
+    {
         event: "opentag",
         data: [
             "h1",
@@ -11,6 +15,10 @@ exports.expected = [
             },
             "tag"
         ]
+    },
+    {
+        event: "attribute",
+        data: ["class", "test"]
     },
     {
         event: "text",
