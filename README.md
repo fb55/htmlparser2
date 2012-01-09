@@ -1,15 +1,9 @@
-#htmlparser2
+#htmlparser2 [![Build Status](https://secure.travis-ci.org/FB55/node-htmlparser.png)](http://travis-ci.org/FB55/node-htmlparser)
+
 A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
 ##Installing
 	npm install htmlparser2
-
-##Running Tests
-	node tests/00-runtests.js
-
-This project is linked to [Travis CI](http://travis-ci.org/). The latest builds status is:
-
-[![Build Status](https://secure.travis-ci.org/FB55/node-htmlparser.png)](http://travis-ci.org/FB55/node-htmlparser)
 
 ##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 This is a fork of the project above. The main difference is that this is just intended to be used with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)). Besides, the code is much better structured, has less duplications and is remarkably faster than the original. 
