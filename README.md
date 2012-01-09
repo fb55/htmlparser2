@@ -23,7 +23,7 @@ The support for location data and verbose output was removed a couple of version
 ```javascript
 var htmlparser = require("htmlparser");
 var rawHtml = "Xyz <script language= javascript>var foo = '<<bar>>';< /  script><!--<!-- Waah! -- -->";
-var handler = new htmlparser.DefaultHandler(function (error, dom) {
+var handler = new htmlparser.DomHandler(function (error, dom) {
     if (error)
     	[...do something for errors...]
     else
