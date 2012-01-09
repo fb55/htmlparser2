@@ -25,10 +25,10 @@ var parser = new htmlparser.Parser({
 		}
 	},
 	ontext: function(text){
-		console.log(text);
+		console.log("-->", text);
 	},
 	onclosetag: function(tagname){
-		if(name === "script"){
+		if(tagname === "script"){
 			console.log("That's it?!");
 		}
 	}
