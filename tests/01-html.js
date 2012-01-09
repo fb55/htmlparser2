@@ -1,7 +1,7 @@
 //Runs tests for HTML
 
 var helper = require("./test-helper.js"),
-	DefaultHandler = require("../lib/DefaultHandler.js");
+	DefaultHandler = require("../lib/DomHandler.js");
 
 exports.dir = "/HTML/";
 

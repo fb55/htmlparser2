@@ -1,5 +1,5 @@
 //generate a dom
-var handler = new (require("../lib/DefaultHandler.js"))();
+var handler = new (require("../lib/DomHandler.js"))();
 
 (new (require("../lib/Parser.js"))(handler)).parseComplete(
 	Array(21).join("<?xml><tag1 id='asdf'> <script>text</script> <!-- comment --> <tag2> text </tag1>")
