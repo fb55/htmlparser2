@@ -16,7 +16,7 @@ exports.expected = [
     },
     {
         event: "text",
-        data: [" asdf "]
+        data: [" asdf >"]
     },
     {
         event: "text",
