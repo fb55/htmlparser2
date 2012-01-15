@@ -6,8 +6,19 @@
 	, "contributors": []
 	, "repository": {
 		  "type": "git"
-		, "url": "git://github.com/tautologistics/node-htmlparser.git"
+		, "url": "https://github.com/tautologistics/node-htmlparser"
 	}
+	, "keywords" : [
+		  "html"
+		, "xml"
+		, "rss"
+		, "parser"
+	]
+	, "directories": {
+		"lib": "./lib"
+	}
+	, "main": "./lib/htmlparser.js"
+	, "homepage": "http://github.com/tautologistics/node-htmlparser"
 	, "bugs": {
 		  "mail": "chris@winberry.net"
 		, "url": "http://github.com/tautologistics/node-htmlparser/issues"
