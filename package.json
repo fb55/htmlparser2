@@ -10,7 +10,7 @@
 	}
 	, "bugs": {
 		  "mail": "chris@winberry.net"
-		, "web": "http://github.com/tautologistics/node-htmlparser/issues"
+		, "url": "http://github.com/tautologistics/node-htmlparser/issues"
 	}
 	, "os": [ "linux", "darwin", "freebsd", "win32" ]
 	, "directories": { "lib": "./lib/" }
