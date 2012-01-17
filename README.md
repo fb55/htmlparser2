@@ -37,7 +37,7 @@ parser.write("Xyz <script language= javascript>var foo = '<<bar>>';< /  script>"
 parser.done();
 ```
 
-Output:
+Output (simplified):
 
 ```javascript
 --> Xyz 
