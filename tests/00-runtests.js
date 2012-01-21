@@ -45,7 +45,7 @@ function runTests(test){
 
 //run all tests
 [
- "./01-html.js",
+ "./01-dom.js",
  "./02-feed.js",
  "./03-events.js",
  "./04-dom_utils.js",
