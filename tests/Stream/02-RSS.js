@@ -44,8 +44,7 @@ exports.expected = [
       "rss",
       {
         "version": "2.0"
-      },
-      "tag"
+      }
     ]
   },
   {
@@ -71,8 +70,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "channel",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -91,8 +89,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "title",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -123,8 +120,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "link",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -155,8 +151,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "description",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -187,8 +182,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "language",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -219,8 +213,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "pubDate",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -251,8 +244,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "lastBuildDate",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -283,8 +275,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "docs",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -315,8 +306,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "generator",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -347,8 +337,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "managingEditor",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -379,8 +368,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "webMaster",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -411,8 +399,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "item",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -431,8 +418,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "title",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -463,8 +449,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "link",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -495,8 +480,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "description",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -527,8 +511,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "pubDate",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -559,8 +542,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "guid",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -603,8 +585,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "item",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -623,8 +604,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "description",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -655,8 +635,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "pubDate",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -687,8 +666,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "guid",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -731,8 +709,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "item",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -751,8 +728,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "title",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -783,8 +759,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "link",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -815,8 +790,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "description",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -847,8 +821,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "pubDate",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -879,8 +852,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "guid",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -923,8 +895,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "item",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -943,8 +914,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "title",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -975,8 +945,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "link",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -1007,8 +976,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "description",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -1039,8 +1007,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "pubDate",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -1071,8 +1038,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "guid",
-      {},
-      "tag"
+      {}
     ]
   },
   {

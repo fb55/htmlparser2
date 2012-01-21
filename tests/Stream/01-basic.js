@@ -20,8 +20,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "html",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -34,8 +33,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "title",
-      {},
-      "tag"
+      {}
     ]
   },
   {
@@ -60,8 +58,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "body",
-      {},
-      "tag"
+      {}
     ]
   },
   {

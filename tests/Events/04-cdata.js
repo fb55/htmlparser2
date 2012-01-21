@@ -12,8 +12,7 @@ exports.expected = [
     "event": "opentag",
     "data": [
       "tag",
-      {},
-      "tag"
+      {}
     ]
   },
   {
