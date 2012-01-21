@@ -13,7 +13,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["html", {}, "tag"]
+        data: ["html", {}]
     },
     {
         event: "opentagname",
@@ -21,7 +21,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["title", {}, "tag"]
+        data: ["title", {}]
     },
     {
         event: "text",
@@ -37,7 +37,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["body", {}, "tag"]
+        data: ["body", {}]
     },
     {
         event: "text",

@@ -33,8 +33,7 @@ exports.expected = [
             "rss",
             {
                 version: "2.0"
-            },
-            "tag"
+            }
         ]
     },
     {
@@ -51,7 +50,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["channel", {}, "tag"]
+        data: ["channel", {}]
     },
     {
         event: "text",
@@ -63,7 +62,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["title", {}, "tag"]
+        data: ["title", {}]
     },
     {
         event: "text",
@@ -83,7 +82,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["link", {}, "tag"]
+        data: ["link", {}]
     },
     {
         event: "closetag",
@@ -103,7 +102,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["description", {}, "tag"]
+        data: ["description", {}]
     },
     {
         event: "text",
@@ -123,7 +122,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["language", {}, "tag"]
+        data: ["language", {}]
     },
     {
         event: "text",
@@ -143,7 +142,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["pubDate", {}, "tag"]
+        data: ["pubDate", {}]
     },
     {
         event: "text",
@@ -163,7 +162,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["lastBuildDate", {}, "tag"]
+        data: ["lastBuildDate", {}]
     },
     {
         event: "text",
@@ -183,7 +182,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["docs", {}, "tag"]
+        data: ["docs", {}]
     },
     {
         event: "text",
@@ -203,7 +202,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["generator", {}, "tag"]
+        data: ["generator", {}]
     },
     {
         event: "text",
@@ -223,7 +222,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["managingEditor", {}, "tag"]
+        data: ["managingEditor", {}]
     },
     {
         event: "text",
@@ -243,7 +242,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["webMaster", {}, "tag"]
+        data: ["webMaster", {}]
     },
     {
         event: "text",
@@ -263,7 +262,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["item", {}, "tag"]
+        data: ["item", {}]
     },
     {
         event: "text",
@@ -275,7 +274,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["title", {}, "tag"]
+        data: ["title", {}]
     },
     {
         event: "text",
@@ -295,7 +294,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["link", {}, "tag"]
+        data: ["link", {}]
     },
     {
         event: "closetag",
@@ -315,7 +314,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["description", {}, "tag"]
+        data: ["description", {}]
     },
     {
         event: "text",
@@ -337,7 +336,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["pubDate", {}, "tag"]
+        data: ["pubDate", {}]
     },
     {
         event: "text",
@@ -357,7 +356,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["guid", {}, "tag"]
+        data: ["guid", {}]
     },
     {
         event: "text",
@@ -385,7 +384,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["item", {}, "tag"]
+        data: ["item", {}]
     },
     {
         event: "text",
@@ -397,7 +396,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["description", {}, "tag"]
+        data: ["description", {}]
     },
     {
         event: "text",
@@ -419,7 +418,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["pubDate", {}, "tag"]
+        data: ["pubDate", {}]
     },
     {
         event: "text",
@@ -439,7 +438,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["guid", {}, "tag"]
+        data: ["guid", {}]
     },
     {
         event: "text",
@@ -467,7 +466,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["item", {}, "tag"]
+        data: ["item", {}]
     },
     {
         event: "text",
@@ -479,7 +478,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["title", {}, "tag"]
+        data: ["title", {}]
     },
     {
         event: "text",
@@ -499,7 +498,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["link", {}, "tag"]
+        data: ["link", {}]
     },
     {
         event: "closetag",
@@ -519,7 +518,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["description", {}, "tag"]
+        data: ["description", {}]
     },
     {
         event: "text",
@@ -541,7 +540,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["pubDate", {}, "tag"]
+        data: ["pubDate", {}]
     },
     {
         event: "text",
@@ -561,7 +560,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["guid", {}, "tag"]
+        data: ["guid", {}]
     },
     {
         event: "text",
@@ -589,7 +588,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["item", {}, "tag"]
+        data: ["item", {}]
     },
     {
         event: "text",
@@ -601,7 +600,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["title", {}, "tag"]
+        data: ["title", {}]
     },
     {
         event: "text",
@@ -621,7 +620,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["link", {}, "tag"]
+        data: ["link", {}]
     },
     {
         event: "closetag",
@@ -641,7 +640,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["description", {}, "tag"]
+        data: ["description", {}]
     },
     {
         event: "text",
@@ -663,7 +662,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["pubDate", {}, "tag"]
+        data: ["pubDate", {}]
     },
     {
         event: "text",
@@ -683,7 +682,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["guid", {}, "tag"]
+        data: ["guid", {}]
     },
     {
         event: "text",

@@ -12,8 +12,7 @@ exports.expected = [
             "script",
             {
                 type: "text/template"
-            },
-            "script"
+            }
         ]
     },
     {

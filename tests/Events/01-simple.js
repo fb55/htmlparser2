@@ -12,8 +12,7 @@ exports.expected = [
             "h1",
             {
                 class: "test"
-            },
-            "tag"
+            }
         ]
     },
     {

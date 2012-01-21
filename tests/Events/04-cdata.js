@@ -8,7 +8,7 @@ exports.expected = [
     },
     {
         event: "opentag",
-        data: ["tag", {}, "tag"]
+        data: ["tag", {}]
     },
     {
         event: "cdatastart",
