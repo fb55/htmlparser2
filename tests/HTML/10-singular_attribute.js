@@ -10,7 +10,7 @@ exports.expected = [
     "name": "option",
     "attribs": {
       "value": "foo",
-      "selected": "selected"
+      "selected": ""
     }
   }
 ];
