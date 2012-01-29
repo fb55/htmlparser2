@@ -11,7 +11,7 @@ exports.html = require("fs")
     .toString();
 
 exports.expected = {
-    type: "rdf:RDF",
+    type: "rdf",
     id: "",
     title: "craigslist | all community in SF bay area",
     link: "http://sfbay.craigslist.org/ccc/",
