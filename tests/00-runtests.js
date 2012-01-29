@@ -13,7 +13,6 @@ function getSortedObject(obj){
 };
 
 function runTests(test){
-	var begin = Date.now();
 	//read files, load them, run them
 	fs.readdirSync(__dirname + test.dir
 	).map(function(file){

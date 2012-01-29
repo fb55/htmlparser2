@@ -1,11 +1,4 @@
 exports.name = "RSS (2.0)";
-exports.options = {
-	handler: {},
-	parser: {
-		xmlMode: true
-	}
-};
-exports.type = "rss";
 exports.html = require("fs").readFileSync(__dirname+"/../Documents/RSS_Example.xml").toString();
 exports.expected = {
 	type: "rss",
