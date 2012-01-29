@@ -4,6 +4,16 @@ var runCount = 0,
     testCount = 0,
     failCount = 0;
 
+function getSortedObject(obj) {
+    if (typeof obj !== "object" || Array.isArray(obj)) return obj;
+    return Object.keys(obj)
+        .sort()
+        .reduce(function(o, name) {
+            o[name] = obj[name];
+            return o;
+        }, {});
+}
+
 function runTests(test) {
     var begin = Date.now();
     //read files, load them, run them
@@ -24,8 +34,12 @@ function runTests(test) {
             test.test(file, function(err, dom) {
                 if (err) console.log("Handler error:", err);
 
-                var expected = JSON.stringify(file.expected, null, 2),
-                    got = JSON.stringify(dom, null, 2);
+                var expected = JSON.stringify(
+                        getSortedObject(file.expected),
+                        null,
+                        2
+                    ),
+                    got = JSON.stringify(getSortedObject(dom), null, 2);
                 if (expected !== got) {
                     failed = true;
                     console.log("Expected", expected, "Got", got, second);
