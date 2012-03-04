@@ -1,5 +1,5 @@
 exports.name = "RSS (2.0)";
-exports.html = require("fs").readFileSync(__dirname+"/../Documents/RSS_Example.xml").toString();
+exports.file = "/RSS_Example.xml";
 exports.expected = {
 	type: "rss",
 	id: "",

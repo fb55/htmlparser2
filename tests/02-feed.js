@@ -2,6 +2,7 @@
 
 var helper = require("./test-helper.js"),
 	FeedHandler = require("../lib/FeedHandler.js"),
+	fs = require("fs"),
 	parserOpts = {
 		xmlMode: true
 	};
@@ -13,5 +14,6 @@ exports.test = function(test, cb){
 		if(err) cb(err, 0); //return the error
 		else cb(null, dom);
 	});
-	helper.writeToParser(handler, parserOpts, test.html);
+	var file = fs.readFileSync(__dirname + "/Documents/" + test.file).toString();
+	helper.writeToParser(handler, parserOpts, file);
 };

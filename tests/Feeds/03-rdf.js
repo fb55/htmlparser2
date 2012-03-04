@@ -1,5 +1,5 @@
 exports.name = "RDF test";
-exports.html = require("fs").readFileSync(__dirname+"/../Documents/RDF_Example.xml").toString();
+exports.file = "/RDF_Example.xml";
 exports.expected = {
   "type": "rdf",
   "id": "",
