@@ -1,0 +1,42 @@
+{
+  "name": "Options 'ignoreWhitespace' set to 'true'",
+  "options": {
+    "handler": {
+      "ignoreWhitespace": true
+    },
+    "parser": {}
+  },
+  "html": "Line one\n<br> \t\n<br>\nline two<font>\n <br> x </font>",
+  "expected": [
+    {
+      "data": "Line one\n",
+      "type": "text"
+    },
+    {
+      "type": "tag",
+      "name": "br"
+    },
+    {
+      "type": "tag",
+      "name": "br"
+    },
+    {
+      "data": "\nline two",
+      "type": "text"
+    },
+    {
+      "type": "tag",
+      "name": "font",
+      "children": [
+        {
+          "type": "tag",
+          "name": "br"
+        },
+        {
+          "data": " x ",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

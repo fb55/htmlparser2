@@ -1,0 +1,14 @@
+{
+  "name": "Only text",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "this is the text",
+  "expected": [
+    {
+      "data": "this is the text",
+      "type": "text"
+    }
+  ]
+}

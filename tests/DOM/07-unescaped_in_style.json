@@ -1,0 +1,23 @@
+{
+  "name": "Unescaped chars in style",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "<style type=\"text/css\">\n body > p\n\t{ font-weight: bold; }</style>",
+  "expected": [
+    {
+      "type": "style",
+      "name": "style",
+      "attribs": {
+        "type": "text/css"
+      },
+      "children": [
+        {
+          "data": "\n body > p\n\t{ font-weight: bold; }",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

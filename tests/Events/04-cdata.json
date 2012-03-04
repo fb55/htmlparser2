@@ -1,0 +1,85 @@
+{
+  "name": "CDATA",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag>",
+  "expected": [
+    {
+      "event": "opentagname",
+      "data": [
+        "tag"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "tag",
+        {}
+      ]
+    },
+    {
+      "event": "cdatastart",
+      "data": []
+    },
+    {
+      "event": "text",
+      "data": [
+        " asdf >"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "<"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "asdf>"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "<"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "/adsf>"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "<"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        ">"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        " fo"
+      ]
+    },
+    {
+      "event": "cdataend",
+      "data": []
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "tag"
+      ]
+    }
+  ]
+}

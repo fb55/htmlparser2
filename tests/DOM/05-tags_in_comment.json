@@ -1,0 +1,20 @@
+{
+  "name": "Special char in comment",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "<head><!-- commented out tags <title>Test</title>--></head>",
+  "expected": [
+    {
+      "type": "tag",
+      "name": "head",
+      "children": [
+        {
+          "data": " commented out tags <title>Test</title>",
+          "type": "comment"
+        }
+      ]
+    }
+  ]
+}
