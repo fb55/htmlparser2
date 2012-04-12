@@ -1,6 +1,15 @@
 v1.8.0
 	*
 
+v1.7.6
+	* Removed "os" entry from package.json
+
+v1.7.5
+	* Fixed case sensitivity of tag names in DefaultHandler, fixed README.md formatting
+
+v1.7.4
+	* Updated copyright dates
+
 v1.7.3
 	* Renamed node-htmlparser.* to htmlparser.* and created shims for people still expecting node-htmlparser.*
 
