@@ -1,5 +1,16 @@
-v1.8.0
-	*
+v2.0.0
+	* Brand new parser, handles edge cases old parser did not
+	* Parser handlers renamed to builders
+	* Builder method signature simplified
+	* Moved element position calculation to builders for efficiency
+	* Added case-sensitivity options for tag and attribute names
+	* Parser output minimized (unecessary values removed)
+	* Element attribute list renamed from attribs to attributes
+	* Node types consolidated; "script" and "style" moved to "tag"
+	* An order of magnitude more tests, with many targeting the parser rather than just the builders
+	* Tests consolidated into single files per test type (e.g. parser tests, html tests, rss tests)
+	* Testing code rewritten (e.g. direct object comparator instead of comparison of and object's JSON)
+	* Brand new bugs! (not sure what they are yet but I am sure there are at least a few)
 
 v1.7.6
 	* Removed "os" entry from package.json
