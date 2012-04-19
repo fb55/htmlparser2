@@ -40,7 +40,7 @@ That's it?!
 Read more about the parser in the [wiki](https://github.com/FB55/node-htmlparser/wiki/Parser-options).
 
 ##Get a DOM
-The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that may be manipulated using the `DomUtils` helper.
+The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that can be manipulated using the `DomUtils` helper.
 
 Read more about the DomHandler in the [wiki](https://github.com/FB55/node-htmlparser/wiki/DomHandler).
 
@@ -53,7 +53,7 @@ new htmlparser.FeedHandler(function(<error> error, <object> feed){
 ```
 
 ##Performance
-Using a slightly modified version of [node-expat](https://github.com/astro/node-expat)s `bench.js`, I received the following results (on a MacBook (late 2010):
+Using a slightly modified version of [node-expat](https://github.com/astro/node-expat)s `bench.js`, I received the following results (on a MacBook (late 2010)):
 
 * [htmlparser](https://github.com/tautologistics/node-htmlparser): 51779 el/s
 * [sax.js](https://github.com/isaacs/sax-js): 53169 el/s
@@ -63,9 +63,9 @@ Using a slightly modified version of [node-expat](https://github.com/astro/node-
 The test may be found in `tests/bench.js`.
 
 ##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
-This is a fork of the project above. The main difference is that this is just intended to be used with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)). Besides, the code is much better structured, has less duplications and is remarkably faster than the original. 
+This is a fork of the project above. The main difference is that this is intended to be used only with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)). Besides, the code is much better structured, has less duplications and is remarkably faster than the original. 
 
-The parser now provides a callback interface close to [sax.js](https://github.com/isaacs/sax-js) (originally intended for [readabilitySAX](https://github.com/fb55/readabilitysax)). I also fixed a couple of bugs & included some pull requests for the original project (eg. [RDF feed support](https://github.com/tautologistics/node-htmlparser/pull/35)).
+The parser now provides a callback interface close to [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)). I also fixed a couple of bugs & included some pull requests for the original project (eg. [RDF feed support](https://github.com/tautologistics/node-htmlparser/pull/35)).
 
 The support for location data and verbose output was removed a couple of versions ago. It's still available in the [verbose branch](https://github.com/FB55/node-htmlparser/tree/verbose). 
 
