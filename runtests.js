@@ -1,15 +1,15 @@
 /***********************************************
-Copyright 2010, Chris Winberry <chris@winberry.net>. All rights reserved.
+Copyright 2010 - 2012, Chris Winberry <chris@winberry.net>. All rights reserved.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to
 deal in the Software without restriction, including without limitation the
 rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
 sell copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
- 
+
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
- 
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,57 +19,206 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 ***********************************************/
 
-var sys = require("sys");
+Object.prototype.equals = function (x) {
+    //http://stackoverflow.com/questions/1068834/object-comparison-in-javascript
+    var p;
+
+    for (p in this) {
+        if (typeof(x[p]) == 'undefined') {
+            // console.log('Missing property: ', p);
+            return false;
+        }
+    }
+
+    for (p in x) {
+        if (typeof(this[p]) == 'undefined') {
+            // console.log('Extra property: ', p);
+            return false;
+        }
+    }
+
+    for (p in this) {
+        if (this[p]) {
+            switch(typeof(this[p])) {
+                case 'object':
+                    if (!this[p].equals(x[p])) {
+                        // console.log('Mismatched property: ', p);
+                        return false;
+                    }
+                    break;
+                case 'function':
+                    if (typeof(x[p])=='undefined' || (p != 'equals' && this[p].toString() != x[p].toString())) {
+                        // console.log('Mismatched property: ', p);
+                        return false;
+                    }
+                    break;
+                default:
+                    if (this[p] != x[p]) {
+                        // console.log('Mismatched property: ', p);
+                        return false;
+                    }
+            }
+        } else {
+            if (x[p]) {
+                // console.log('Poop: ', p);
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+var util = require("util");
 var fs = require("fs");
 var htmlparser = require("./lib/htmlparser");
 
-var testFolder = "./tests";
-var chunkSize = 5;
+var testUtils = require('./tests/testutils');
+var htmlTests = require('./tests/html');
+var rssTests = require('./tests/rss');
+var parserTests = require('./tests/parser');
 
-var testFiles = fs.readdirSync(testFolder);
-var testCount = 0;
-var failedCount = 0;
-for (var i in testFiles) {
-	testCount++;
-	var fileParts = testFiles[i].split(".");
-	fileParts.pop();
-	var moduleName = fileParts.join(".");
-	var test = require(testFolder + "/" + moduleName);
-	var handlerCallback = function handlerCallback (error) {
-		if (error)
-			sys.puts("Handler error: " + error);
-	}
-	var handler = (test.type == "rss") ?
-		new htmlparser.RssHandler(handlerCallback, test.options.handler)
-		:
-		new htmlparser.DefaultHandler(handlerCallback, test.options.handler)
-		;
-	var parser = new htmlparser.Parser(handler, test.options.parser);
-	parser.parseComplete(test.html);
-	var resultComplete = handler.dom;
-	var chunkPos = 0;
-	parser.reset();
-	while (chunkPos < test.html.length) {
-		parser.parseChunk(test.html.substring(chunkPos, chunkPos + chunkSize));
-		chunkPos += chunkSize;
-	}
-	parser.done();
-	var resultChunk = handler.dom;
-	var testResult =
-		sys.inspect(resultComplete, false, null) === sys.inspect(test.expected, false, null)
-		&&
-		sys.inspect(resultChunk, false, null) === sys.inspect(test.expected, false, null)
-		;
-	sys.puts("[" + test.name + "\]: " + (testResult ? "passed" : "FAILED"));
-	if (!testResult) {
-		failedCount++;
-		sys.puts("== Complete ==");
-		sys.puts(sys.inspect(resultComplete, false, null));
-		sys.puts("== Chunked ==");
-		sys.puts(sys.inspect(resultChunk, false, null));
-		sys.puts("== Expected ==");
-		sys.puts(sys.inspect(test.expected, false, null));
-	}
+var testResults = {};
+
+testUtils.runBuilderTests(
+      htmlTests
+    , htmlparser.Parser
+    , htmlparser.HtmlBuilder
+    , null
+    , function (testName, testResult, actual, expected) {
+        console.log("[" + testName + "]: " + (testResult ? "passed" : "FAILED"));
+    }, function (elapsed, passed, failed) {
+        testResults['HTML builder'] = {
+              elapsed: elapsed
+            , passed: passed
+            , failed: failed
+            };
+    });
+testUtils.runBuilderTests(
+      htmlTests
+    , htmlparser.Parser
+    , htmlparser.HtmlBuilder
+    , function (test) {
+        var newTest = {};
+        for (var key in test) {
+            if (!test.hasOwnProperty(key)) {
+                continue;
+            }
+            newTest[key] = (key === 'data') ?
+                test.data.join('').split('')
+                :
+                test[key]
+                ;
+        }
+        return newTest;
+    }
+    , function (testName, testResult, actual, expected) {
+        console.log("[" + testName + "]: " + (testResult ? "passed" : "FAILED"));
+    }, function (elapsed, passed, failed) {
+        testResults['HTML builder (streamed)'] = {
+              elapsed: elapsed
+            , passed: passed
+            , failed: failed
+            };
+    });
+
+testUtils.runBuilderTests(
+      rssTests
+    , htmlparser.Parser
+    , htmlparser.RssBuilder
+    , null
+    , function (testName, testResult, actual, expected) {
+        console.log("[" + testName + "]: " + (testResult ? "passed" : "FAILED"));
+    }, function (elapsed, passed, failed) {
+        testResults['RSS builder'] = {
+              elapsed: elapsed
+            , passed: passed
+            , failed: failed
+            };
+    });
+testUtils.runBuilderTests(
+      rssTests
+    , htmlparser.Parser
+    , htmlparser.RssBuilder
+    , function (test) {
+        var newTest = {};
+        for (var key in test) {
+            if (!test.hasOwnProperty(key)) {
+                continue;
+            }
+            newTest[key] = (key === 'data') ?
+                test.data.join('').split('')
+                :
+                test[key]
+                ;
+        }
+        return newTest;
+    }
+    , function (testName, testResult, actual, expected) {
+        console.log("[" + testName + "]: " + (testResult ? "passed" : "FAILED"));
+    }, function (elapsed, passed, failed) {
+        testResults['RSS builder (streamed)'] = {
+              elapsed: elapsed
+            , passed: passed
+            , failed: failed
+            };
+    });
+
+testUtils.runParserTests(
+      parserTests
+    , htmlparser.Parser
+    , null
+    , function (testName, testResult, actual, expected) {
+        console.log("[" + testName + "]: " + (testResult ? "passed" : "FAILED"));
+    }, function (elapsed, passed, failed) {
+        testResults['Parser'] = {
+              elapsed: elapsed
+            , passed: passed
+            , failed: failed
+            };
+    });
+testUtils.runParserTests(
+      parserTests
+    , htmlparser.Parser
+    , function (test) {
+        var newTest = {};
+        for (var key in test) {
+            if (!test.hasOwnProperty(key)) {
+                continue;
+            }
+            newTest[key] = (key === 'data') ?
+                test.data.join('').split('')
+                :
+                test[key]
+                ;
+        }
+        return newTest;
+    }
+    , function (testName, testResult, actual, expected) {
+        console.log("[" + testName + "]: " + (testResult ? "passed" : "FAILED"));
+    }, function (elapsed, passed, failed) {
+        testResults['Parser (streamed)'] = {
+              elapsed: elapsed
+            , passed: passed
+            , failed: failed
+            };
+    });
+
+console.log('');
+console.log('Test Results');
+console.log('------------------');
+var passedTotal = 0;
+var failedTotal = 0;
+var elapsedTotal = 0;
+for (var testName in testResults) {
+    if (!testResults.hasOwnProperty(testName)) {
+        continue;
+    }
+    var test = testResults[testName];
+    passedTotal += test.passed;
+    failedTotal += test.failed;
+    elapsedTotal += test.elapsed;
+    console.log(testName + ': ' + test.passed + '/' + (test.passed + test.failed) + ' (' + Math.round(test.passed / (test.passed + test.failed) * 100) + '%) [' + test.elapsed + 'ms]');
 }
-sys.puts("Total tests: " + testCount);
-sys.puts("Failed tests: " + failedCount);
+console.log('------------------');
+console.log('Total: ' + passedTotal + '/' + (passedTotal + failedTotal) + ' (' + Math.round(passedTotal / (passedTotal + failedTotal) * 100) + '%) [' + elapsedTotal + 'ms]');

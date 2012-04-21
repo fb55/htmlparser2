@@ -1,7 +1,7 @@
 {
 	  "name": "htmlparser"
 	, "description": "Forgiving HTML/XML/RSS Parser in JS for *both* Node and Browsers"
-	, "version": "1.7.6"
+	, "version": "2.0.0"
 	, "author": "Chris Winberry <chris@winberry.net>"
 	, "contributors": []
 	, "repository": {
@@ -25,7 +25,7 @@
 	}
 	, "directories": { "lib": "./lib/" }
 	, "main": "./lib/htmlparser"
-	, "engines": { "node": ">=0.1.33" }
+	, "engines": { "node": ">=0.5.0" }
 	, "licenses": [{
 		  "type": "MIT"
 		, "url": "http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE"
