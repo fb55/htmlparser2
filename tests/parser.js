@@ -1,38 +1,45 @@
+/***********************************************
+Copyright 2010 - 2012, Chris Winberry <chris@winberry.net>. All rights reserved.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+***********************************************/
+
 (function () {
 
-function RunningInNode () {
-    return(
-        (typeof require) == "function"
-        &&
-        (typeof exports) == "object"
-        &&
-        (typeof module) == "object"
-        &&
-        (typeof __filename) == "string"
-        &&
-        (typeof __dirname) == "string"
-        );
-}
-
-exports = exports || {};
-
-if (!RunningInNode()) {
-    if (!this.Tautologistics)
+var exports;
+if (typeof(module) !== 'undefined' && typeof(module.exports) !== 'undefined') {
+    exports = module.exports;
+} else {
+    exports = {};
+    if (!this.Tautologistics) {
         this.Tautologistics = {};
-    if (!this.Tautologistics.NodeHtmlParser)
+    }
+    if (!this.Tautologistics.NodeHtmlParser) {
         this.Tautologistics.NodeHtmlParser = {};
-    if (!this.Tautologistics.NodeHtmlParser.Tests)
+    }
+    if (!this.Tautologistics.NodeHtmlParser.Tests) {
         this.Tautologistics.NodeHtmlParser.Tests = [];
+    }
     this.Tautologistics.NodeHtmlParser.Tests.Parser = exports;
 }
 
 exports['plain text'] = {
     data: ['This is the text']
-    , expected: [{ type: 'text', data: 'This is the text' }]
-};
-
-exports['split text'] = {
-    data: ['This is', ' the text']
     , expected: [{ type: 'text', data: 'This is the text' }]
 };
 
@@ -49,21 +56,6 @@ exports['simple comment'] = {
 exports['simple cdata'] = {
     data: ['<![CDATA[ content ]]>']
     , expected: [{ type: 'cdata', data: ' content ' }]
-};
-
-exports['split simple tag #1'] = {
-    data: ['<', 'div>']
-    , expected: [{ type: 'tag', name: 'div', raw: 'div' }]
-};
-
-exports['split simple tag #2'] = {
-    data: ['<d', 'iv>']
-    , expected: [{ type: 'tag', name: 'div', raw: 'div' }]
-};
-
-exports['split simple tag #3'] = {
-    data: ['<div', '>']
-    , expected: [{ type: 'tag', name: 'div', raw: 'div' }]
 };
 
 exports['text before tag'] = {
@@ -291,22 +283,6 @@ exports['self closing tag with attribute, trailing text'] = {
         ]
 };
 
-exports['self closing tag split #1'] = {
-    data: ['<div/', '>']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div/' },
-        { type: 'tag', name: '/div', raw: null }
-        ]
-};
-
-exports['self closing tag split #2'] = {
-    data: ['<div', '/>']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div/' },
-        { type: 'tag', name: '/div', raw: null }
-        ]
-};
-
 exports['attribute missing close quote'] = {
     data: ['<div a="1><span id="foo">xxx']
     , expected: [
@@ -314,70 +290,6 @@ exports['attribute missing close quote'] = {
         { type: 'attr', name:'a', data: '1><span id='},
         { type: 'attr', name:'foo', data: null},
         { type: 'text', data: 'xxx'}
-        ]
-};
-
-exports['split attribute #1'] = {
-    data: ['<div x', 'xx="yyy">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['split attribute #2'] = {
-    data: ['<div xxx', '="yyy">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['split attribute #3'] = {
-    data: ['<div xxx=', '"yyy">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['split attribute #4'] = {
-    data: ['<div xxx="', 'yyy">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['split attribute #5'] = {
-    data: ['<div xxx="yy', 'y">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['split attribute #6'] = {
-    data: ['<div xxx="yyy', '">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['attribute split from tag #1'] = {
-    data: ['<div ', 'xxx="yyy">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
-        ]
-};
-
-exports['attribute split from tag #2'] = {
-    data: ['<div', ' xxx="yyy">']
-    , expected: [
-        { type: 'tag', name: 'div', raw: 'div xxx="yyy"' },
-        { type: 'attr', name:'xxx', data: 'yyy'}
         ]
 };
 
@@ -482,135 +394,6 @@ exports['brackets in attribute'] = {
         { type: 'tag', name: 'div', raw: 'div xxx="</div>"'},
         { type: 'attr', name: 'xxx', data: '</div>' }
         ]
-};
-
-exports['split comment #1'] = {
-    data: ['<','!-- comment text -->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #2'] = {
-    data: ['<!','-- comment text -->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #3'] = {
-    data: ['<!-','- comment text -->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #4'] = {
-    data: ['<!--',' comment text -->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #5'] = {
-    data: ['<!-- comment',' text -->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #6'] = {
-    data: ['<!-- comment text ','-->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #7'] = {
-    data: ['<!-- comment text -','->xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split comment #8'] = {
-    data: ['<!-- comment text --','>xxx']
-    , expected: [
-        { type: 'comment', data: ' comment text '},
-        { type: 'text', data: 'xxx' }
-        ]
-};
-
-exports['split cdata #1'] = {
-    data: ['<','![CDATA[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #2'] = {
-    data: ['<!','[CDATA[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #3'] = {
-    data: ['<![','CDATA[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #4'] = {
-    data: ['<![C','DATA[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #5'] = {
-    data: ['<![CD','ATA[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #6'] = {
-    data: ['<![CDA','TA[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #7'] = {
-    data: ['<![CDAT','A[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #8'] = {
-    data: ['<![CDATA','[ CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #9'] = {
-    data: ['<![CDATA[',' CData content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #10'] = {
-    data: ['<![CDATA[ CData ','content ]]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #11'] = {
-    data: ['<![CDATA[ CData content ',']]>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #12'] = {
-    data: ['<![CDATA[ CData content ]',']>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
-};
-
-exports['split cdata #13'] = {
-    data: ['<![CDATA[ CData content ]]','>']
-    , expected: [{ type: 'cdata', data: ' CData content '}]
 };
 
 exports['unfinished simple tag #1'] = {
