@@ -11,8 +11,8 @@
       "name": "script",
       "children": [
         {
-          "data": "var foo = 1;",
-          "type": "comment"
+          "data": "<!--var foo = 1;-->",
+          "type": "text"
         }
       ]
     }
