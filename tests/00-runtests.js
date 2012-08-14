@@ -33,14 +33,12 @@ function runTests(test){
 		});
 	});
 	console.log("->", test.dir.slice(1, -1), "started");
-};
+}
 
 //run all tests
 [
- "./01-dom.js",
  "./02-feed.js",
  "./03-events.js",
- "./04-dom_utils.js",
  "./05-stream.js"
 ].map(require).forEach(runTests);
 
@@ -48,4 +46,4 @@ function runTests(test){
 (function check(){
 	if(runCount !== 0) return process.nextTick(check);
 	console.log("Total tests:", testCount);
-})();
+}());

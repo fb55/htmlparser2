@@ -14,13 +14,15 @@
 		"url": "http://github.com/fb55/node-htmlparser/issues"
 	},
 	"directories": {
-		"lib": "./lib/"
+		"lib": "lib/"
 	},
 	"main": "./lib/",
 	"scripts": {
 		"test": "node tests/00-runtests.js"
 	},
-	"engines": "node >= 0.3.0",
+	"dependencies": {
+		"domhandler": "1.0.x"
+	},
 	"licenses": [{
 		"type": "MIT",
 		"url": "http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE"
