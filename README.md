@@ -42,7 +42,7 @@ Read more about the parser in the [wiki](https://github.com/FB55/node-htmlparser
 ##Get a DOM
 The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that can be manipulated using the `DomUtils` helper.
 
-Read more about the DomHandler in the [wiki](https://github.com/FB55/node-htmlparser/wiki/DomHandler).
+The `DomHandler`, while still bundled with this module, was recently moved to it's [own module](https://github.com/FB55/domhandler). Have a look at it for further information.
 
 ##Parsing RSS/RDF/Atom Feeds
 
