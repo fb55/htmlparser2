@@ -39,13 +39,7 @@ function runTests(test) {
 }
 
 //run all tests
-[
-    "./01-dom.js",
-    "./02-feed.js",
-    "./03-events.js",
-    "./04-dom_utils.js",
-    "./05-stream.js"
-]
+["./02-feed.js", "./03-events.js", "./05-stream.js"]
     .map(require)
     .forEach(runTests);
 
