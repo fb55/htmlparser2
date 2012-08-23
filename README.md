@@ -1,4 +1,4 @@
-#htmlparser2 [![Build Status](https://secure.travis-ci.org/FB55/node-htmlparser.png)](http://travis-ci.org/FB55/node-htmlparser)
+#htmlparser2 [![Build Status](https://secure.travis-ci.org/fb55/node-htmlparser.png)](http://travis-ci.org/fb55/node-htmlparser)
 
 A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
