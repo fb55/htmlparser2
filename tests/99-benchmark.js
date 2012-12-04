@@ -10,8 +10,9 @@ var multiply = function(text) {
         xml: multiply(
             "<!directive><tag attr='value'> text <!--Comment<>--></tag>"
         )
-    };
-(empty = function() {}), (cbs = {});
+    },
+    empty = function() {},
+    cbs = {};
 
 require("./test-helper.js").EVENTS.forEach(function(name) {
     cbs["on" + name] = empty;
