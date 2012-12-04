@@ -8,7 +8,7 @@ var multiply = function(text){
 		directive: multiply("<?foo bar?>"),
 		special: multiply("<script> THIS IS <SPECIAL> </script>"),
 		xml: multiply("<!directive><tag attr='value'> text <!--Comment<>--></tag>")
-	}
+	},
 	empty = function(){},
 	cbs = {};
 
