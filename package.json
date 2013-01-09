@@ -23,7 +23,7 @@
 	"dependencies": {
 		"domhandler": "2.0",
 		"domutils": "1.0",
-		"domelementtype": "1.0"
+		"domelementtype": "1"
 	},
 	"licenses": [{
 		"type": "MIT",
