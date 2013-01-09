@@ -1,7 +1,7 @@
 {
 	"name": "htmlparser2",
 	"description": "Performance-optimized forgiving HTML/XML/RSS parser",
-	"version": "2.5.0",
+	"version": "2.5.1",
 	"author": "Felix Boehm <me@feedic.com>",
 	"keywords": ["html", "parser", "streams", "xml", "dom", "rss", "feed", "atom"],
 	"contributors": ["Chris Winberry <chris@winberry.net>"],
