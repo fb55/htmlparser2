@@ -1,7 +1,7 @@
 {
     "name": "htmlparser2",
     "description": "Performance-optimized forgiving HTML/XML/RSS parser",
-    "version": "2.5.0",
+    "version": "2.5.1",
     "author": "Felix Boehm <me@feedic.com>",
     "keywords": [
         "html",
@@ -34,7 +34,7 @@
     "dependencies": {
         "domhandler": "2.0",
         "domutils": "1.0",
-        "domelementtype": "1.0"
+        "domelementtype": "1"
     },
     "licenses": [
         {
