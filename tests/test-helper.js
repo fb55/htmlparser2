@@ -11,7 +11,7 @@ exports.writeToParser = function(handler, options, data){
 	parser.done();
 	//then parse everything
 	parser.parseComplete(data);
-}
+};
 
 var EVENTS = Object.keys(htmlparser.EVENTS);
 

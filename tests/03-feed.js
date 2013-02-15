@@ -7,7 +7,7 @@ var helper = require("./test-helper.js"),
 		xmlMode: true
 	};
 
-exports.dir = "/Feeds/";
+exports.dir = "Feeds";
 
 exports.test = function(test, cb){
 	var handler = new FeedHandler(function(err, dom){
