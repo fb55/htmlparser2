@@ -3,7 +3,7 @@ var helper = require("./test-helper.js"),
 	sliceArr = Array.prototype.slice,
 	fs = require("fs");
 
-exports.dir = "/Stream/";
+exports.dir = "Stream";
 
 exports.test = function(test, cb){
 	var tokens = [],
