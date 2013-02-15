@@ -3,7 +3,7 @@ var helper = require("./test-helper.js"),
     sliceArr = Array.prototype.slice,
     fs = require("fs");
 
-exports.dir = "/Stream/";
+exports.dir = "Stream";
 
 exports.test = function(test, cb) {
     var tokens = [],
@@ -49,12 +49,12 @@ exports.test = function(test, cb) {
             }
         };
         helper.EVENTS.forEach(function(name) {
-            stream._events[name] = function() {
+            stream.on(name, function() {
                 tokens.push({
                     event: name,
                     data: sliceArr.apply(arguments)
                 });
-            };
+            });
         });
     }
     fs.createReadStream(__dirname + test.file).pipe(stream);

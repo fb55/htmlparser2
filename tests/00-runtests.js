@@ -1,50 +1,48 @@
 var fs = require("fs"),
+    path = require("path"),
     assert = require("assert");
 
 var runCount = 0,
-    testCount = 0;
+    testCount = 0,
+    done = false;
 
-function runTests(test) {
-    //read files, load them, run them
-    fs.readdirSync(__dirname + test.dir)
-        .map(function(file) {
-            if (file[0] === ".") return false;
-            if (file.substr(-5) === ".json")
-                return JSON.parse(fs.readFileSync(__dirname + test.dir + file));
-            return require(__dirname + test.dir + file);
-        })
-        .forEach(function(file) {
-            if (!file) return;
-            var second = false;
-
-            runCount++;
-
-            console.log("Testing:", file.name);
-
-            test.test(file, function(err, dom) {
-                assert.ifError(err);
-                assert.deepEqual(
-                    file.expected,
-                    dom,
-                    "didn't get expected output"
-                );
-
-                if (second) {
-                    runCount--;
-                    testCount++;
-                } else second = true;
-            });
-        });
-    console.log("->", test.dir.slice(1, -1), "started");
-}
-
-//run all tests
-["./02-feed.js", "./03-events.js", "./05-stream.js"]
+["./01-events.js", "./02-stream.js", "./03-feed.js"]
     .map(require)
-    .forEach(runTests);
+    .forEach(function(test) {
+        console.log("\nStarting", test.dir, "\n----");
 
-//log the results
-(function check() {
-    if (runCount !== 0) return process.nextTick(check);
-    console.log("Total tests:", testCount);
-})();
+        var dir = path.resolve(__dirname, test.dir);
+
+        //read files, load them, run them
+        var f = fs
+            .readdirSync(dir)
+            .filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
+            .map(function(name) {
+                return path.resolve(dir, name);
+            })
+            .map(require)
+            .forEach(function(file) {
+                runCount++;
+
+                console.log("Testing:", file.name);
+
+                var second = false; //every test runs twice
+                test.test(file, function(err, dom) {
+                    assert.ifError(err);
+                    assert.deepEqual(
+                        file.expected,
+                        dom,
+                        "didn't get expected output"
+                    );
+
+                    if (second) {
+                        testCount++;
+                        if (!--runCount && done) {
+                            console.log("Total tests:", testCount);
+                        }
+                    } else second = true;
+                });
+            });
+    });
+
+var done = true; //started all tests
