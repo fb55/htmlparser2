@@ -26,7 +26,7 @@ exports.test = function(test, cb){
 					event: name,
 					data: sliceArr.apply(arguments)
 				});
-			}
+			};
 		}});
 	}
 	else {
@@ -41,12 +41,12 @@ exports.test = function(test, cb){
 			}
 		};
 		helper.EVENTS.forEach(function(name){
-			stream._events[name] = function(){
+			stream.on(name, function(){
 				tokens.push({
 					event: name,
 					data: sliceArr.apply(arguments)
 				});
-			}
+			});
 		});
 	}
 	fs.createReadStream(__dirname + test.file).pipe(stream);
