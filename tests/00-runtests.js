@@ -3,7 +3,8 @@ var fs = require("fs"),
     assert = require("assert");
 
 var runCount = 0,
-	testCount = 0;
+	testCount = 0,
+	done = false;
 
 [
  "./01-events.js",
@@ -12,6 +13,8 @@ var runCount = 0,
 ]
 .map(require)
 .forEach(function (test){
+	console.log("\nStarting", test.dir, "\n----");
+
 	var dir = path.resolve(__dirname, test.dir);
 
 	//read files, load them, run them
@@ -33,17 +36,14 @@ var runCount = 0,
 			assert.deepEqual(file.expected, dom, "didn't get expected output");
 						
 			if(second){
-				runCount--;
 				testCount++;
+				if(!--runCount && done){
+					console.log("Total tests:", testCount);
+				}
 			}
 			else second = true;
 		});
 	});
-	console.log("->", test.dir, "started");
 });
 
-//log the results
-(function check(){
-	if(runCount !== 0) return process.nextTick(check);
-	console.log("Total tests:", testCount);
-}());
+var done = true; //started all tests
