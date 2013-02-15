@@ -5,7 +5,7 @@ var fs = require("fs"),
 var runCount = 0,
     testCount = 0;
 
-["./02-feed.js", "./03-events.js", "./05-stream.js"]
+["./01-events.js", "./02-stream.js", "./03-feed.js"]
     .map(require)
     .forEach(function(test) {
         var dir = path.resolve(__dirname, test.dir);
