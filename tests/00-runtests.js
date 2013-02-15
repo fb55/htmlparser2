@@ -1,47 +1,45 @@
 var fs = require("fs"),
+    path = require("path"),
     assert = require("assert");
 
 var runCount = 0,
     testCount = 0;
 
-function runTests(test) {
-    //read files, load them, run them
-    fs.readdirSync(__dirname + test.dir)
-        .map(function(file) {
-            if (file[0] === ".") return false;
-            if (file.substr(-5) === ".json")
-                return JSON.parse(fs.readFileSync(__dirname + test.dir + file));
-            return require(__dirname + test.dir + file);
-        })
-        .forEach(function(file) {
-            if (!file) return;
-            var second = false;
-
-            runCount++;
-
-            console.log("Testing:", file.name);
-
-            test.test(file, function(err, dom) {
-                assert.ifError(err);
-                assert.deepEqual(
-                    file.expected,
-                    dom,
-                    "didn't get expected output"
-                );
-
-                if (second) {
-                    runCount--;
-                    testCount++;
-                } else second = true;
-            });
-        });
-    console.log("->", test.dir.slice(1, -1), "started");
-}
-
-//run all tests
 ["./02-feed.js", "./03-events.js", "./05-stream.js"]
     .map(require)
-    .forEach(runTests);
+    .forEach(function(test) {
+        var dir = path.resolve(__dirname, test.dir);
+
+        //read files, load them, run them
+        var f = fs
+            .readdirSync(dir)
+            .filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
+            .map(function(name) {
+                return path.resolve(dir, name);
+            })
+            .map(require)
+            .forEach(function(file) {
+                runCount++;
+
+                console.log("Testing:", file.name);
+
+                var second = false; //every test runs twice
+                test.test(file, function(err, dom) {
+                    assert.ifError(err);
+                    assert.deepEqual(
+                        file.expected,
+                        dom,
+                        "didn't get expected output"
+                    );
+
+                    if (second) {
+                        runCount--;
+                        testCount++;
+                    } else second = true;
+                });
+            });
+        console.log("->", test.dir, "started");
+    });
 
 //log the results
 (function check() {
