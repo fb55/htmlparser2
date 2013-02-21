@@ -1,5 +1,5 @@
 {
-  "name": "CDATA",
+  "name": "CDATA (inside special)",
   "options": {
     "handler": {},
     "parser": {}
@@ -26,43 +26,9 @@
       ]
     },
     {
-      "event": "cdatastart",
-      "data": []
-    },
-    {
       "event": "text",
       "data": [
-        "*/ asdf >"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "<"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "asdf>"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "<"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "/adsf>"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "<"
+        "<![CDATA[*/ asdf "
       ]
     },
     {
@@ -74,17 +40,43 @@
     {
       "event": "text",
       "data": [
-        " fo/*"
+        "<asdf"
       ]
-    },
-    {
-      "event": "cdataend",
-      "data": []
     },
     {
       "event": "text",
       "data": [
-        "*/"
+        ">"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "</adsf"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        ">"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "<"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "> fo/*]]"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        ">*/"
       ]
     },
     {
