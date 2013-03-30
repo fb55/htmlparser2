@@ -9,13 +9,7 @@
     {
       "event": "text",
       "data": [
-        ">"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "a>"
+        ">a>"
       ]
     }
   ]
