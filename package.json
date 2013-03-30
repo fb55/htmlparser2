@@ -23,7 +23,8 @@
 	"dependencies": {
 		"domhandler": "2.0",
 		"domutils": "1.0",
-		"domelementtype": "1"
+		"domelementtype": "1",
+		"readable-stream": "1.0"
 	},
 	"licenses": [{
 		"type": "MIT",
