@@ -26,13 +26,14 @@ exports.test = function(test, cb) {
                         }
                     };
                 }
-                if (helper.EVENTS.indexOf(name) !== -1)
+                if (helper.EVENTS.indexOf(name) !== -1) {
                     return function() {
                         tokens.push({
                             event: name,
-                            data: sliceArr.apply(arguments)
+                            data: sliceArr.call(arguments, 0)
                         });
                     };
+                }
             }
         });
     } else {
