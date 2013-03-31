@@ -22,61 +22,7 @@
     {
       "event": "text",
       "data": [
-        "/*"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "<![CDATA[*/ asdf "
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        ">"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "<asdf"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        ">"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "</adsf"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        ">"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "<"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "> fo/*]]"
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        ">*/"
+        "/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/"
       ]
     },
     {
