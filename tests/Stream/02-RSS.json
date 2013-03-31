@@ -30,6 +30,10 @@
             "data": ["rss"]
         },
         {
+            "event": "attribute",
+            "data": ["version", "2.0"]
+        },
+        {
             "event": "opentag",
             "data": [
                 "rss",
@@ -37,10 +41,6 @@
                     "version": "2.0"
                 }
             ]
-        },
-        {
-            "event": "attribute",
-            "data": ["version", "2.0"]
         },
         {
             "event": "text",
