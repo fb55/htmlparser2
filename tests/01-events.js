@@ -10,7 +10,7 @@ exports.test = function(test, cb){
 			if(name === "onend"){
 				return function(){
 					cb(null, tokens.splice(0));
-				}
+				};
 			}
 			if(name === "onreset") return function(){};
 			return function(){
@@ -18,7 +18,7 @@ exports.test = function(test, cb){
 					event: name.substr(2),
 					data: sliceArr.apply(arguments)
 				});
-			}
+			};
 		}});
 	}
 	else{
@@ -30,11 +30,15 @@ exports.test = function(test, cb){
 		};
 		helper.EVENTS.forEach(function(name){
 			cbs["on" + name] = function(){
+				if(name === "text" && tokens.length && tokens[tokens.length-1].event === "text"){
+					tokens[tokens.length-1].data[0] += arguments[0];
+					return;
+				}
 				tokens.push({
 					event: name,
 					data: sliceArr.apply(arguments)
 				});
-			}
+			};
 		});
 	}
 	helper.writeToParser(cbs, test.options.parser, test.html);
