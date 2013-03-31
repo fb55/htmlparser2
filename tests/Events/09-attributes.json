@@ -11,18 +11,6 @@
             "data": ["button"]
         },
         {
-            "event": "opentag",
-            "data": [
-                "button",
-                {
-                    "class": "test0",
-                    "title": "test1",
-                    "disabled": "",
-                    "value": "test2"
-                }
-            ]
-        },
-        {
             "event": "attribute",
             "data": ["class", "test0"]
         },
@@ -37,6 +25,18 @@
         {
             "event": "attribute",
             "data": ["value", "test2"]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "button",
+                {
+                    "class": "test0",
+                    "title": "test1",
+                    "disabled": "",
+                    "value": "test2"
+                }
+            ]
         },
         {
             "event": "text",

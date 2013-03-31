@@ -13,6 +13,10 @@
             "data": ["h1"]
         },
         {
+            "event": "attribute",
+            "data": ["class", "test"]
+        },
+        {
             "event": "opentag",
             "data": [
                 "h1",
@@ -20,10 +24,6 @@
                     "class": "test"
                 }
             ]
-        },
-        {
-            "event": "attribute",
-            "data": ["class", "test"]
         },
         {
             "event": "text",

@@ -11,6 +11,10 @@
             "data": ["a"]
         },
         {
+            "event": "attribute",
+            "data": ["href", "http://test.com/"]
+        },
+        {
             "event": "opentag",
             "data": [
                 "a",
@@ -18,10 +22,6 @@
                     "href": "http://test.com/"
                 }
             ]
-        },
-        {
-            "event": "attribute",
-            "data": ["href", "http://test.com/"]
         },
         {
             "event": "text",
