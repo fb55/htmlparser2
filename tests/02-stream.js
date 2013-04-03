@@ -1,55 +1,19 @@
 var helper = require("./test-helper.js"),
-	Stream = require("..").Stream,
-	sliceArr = Array.prototype.slice,
+	Stream = require("..").WritableStream,
 	fs = require("fs");
 
 exports.dir = "Stream";
 
 exports.test = function(test, cb){
-	var tokens = [],
-		stream = new Stream(test.options),
-		second = false;
-	
-	if(typeof Proxy !== "undefined"){
-		stream._events = Proxy.create({ get: function(a, name){
-			if(name === "end"){
-				return function(){
-					cb(null, tokens.splice(0));
-					if(!second){
-						second = true;
-						stream.parseComplete(fs.readFileSync(__dirname + test.file).toString());
-					}
-				};
+	var stream = new Stream(test.options),
+	    second = false,
+	    handler = helper.getEventCollector(function(err, events){
+			cb(err, events);
+			if(!second){
+				second = true;
+				stream.parseComplete(fs.readFileSync(__dirname + test.file));
 			}
-			if(helper.EVENTS.indexOf(name) !== -1){
-				return function(){
-					tokens.push({
-						event: name,
-						data: sliceArr.call(arguments, 0)
-					});
-				};
-			}
-		}});
-	}
-	else {
-		stream._events = {
-			error: cb,
-			end: function(){
-				cb(null, tokens.splice(0));
-				if(!second){
-					second = true;
-					stream.parseComplete(fs.readFileSync(__dirname + test.file).toString());
-				}
-			}
-		};
-		helper.EVENTS.forEach(function(name){
-			stream.on(name, function(){
-				tokens.push({
-					event: name,
-					data: sliceArr.apply(arguments)
-				});
-			});
 		});
-	}
+	
 	fs.createReadStream(__dirname + test.file).pipe(stream);
 };
