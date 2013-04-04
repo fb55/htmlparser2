@@ -18,7 +18,7 @@ var runCount = 0,
 	var dir = path.resolve(__dirname, test.dir);
 
 	//read files, load them, run them
-	var f = fs
+	fs
 	.readdirSync(dir)
 	.filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
 	.map(function(name){
