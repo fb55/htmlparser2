@@ -24,7 +24,7 @@ var parser = new htmlparser.Parser({
 		}
 	}
 });
-parser.write("Xyz <script language= javascript>var foo = '<<bar>>';< /  script>");
+parser.write("Xyz <script type="text/javascript">var foo = '<<bar>>';< /  script>");
 parser.done();
 ```
 
@@ -53,14 +53,20 @@ new htmlparser.FeedHandler(function(<error> error, <object> feed){
 ```
 
 ##Performance
-Using a slightly modified version of [node-expat](https://github.com/astro/node-expat)s `bench.js`, I received the following results (on a MacBook (late 2010)):
+Using a modified version of [node-expat](https://github.com/astro/node-expat)s `bench.js`, I received the following results (on OSX):
 
-* [htmlparser](https://github.com/tautologistics/node-htmlparser): 51779 el/s
-* [sax.js](https://github.com/isaacs/sax-js): 53169 el/s
-* [node-expat](https://github.com/astro/node-expat): 103388 el/s
-* [htmlparser2](https://github.com/fb55/node-htmlparser): 118614 el/s
+```
+node-xml:     28.03 ms/el
+libxmljs:     11.11 ms/el
+sax:          26.92 ms/el
+node-expat:   07.32 ms/el
+htmlparser:   16.40 ms/el
+htmlparser2:  06.32 ms/el
 
-The test may be found in `tests/bench.js`.
+Winner: htmlparser2
+```
+
+The test can be found in [`tests/bench.js`](tests/bench.js).
 
 ##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 This is a fork of the project above. The main difference is that this is intended to be used only with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)). Besides, the code is much better structured, has less duplications and is remarkably faster than the original. 
