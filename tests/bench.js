@@ -1,100 +1,109 @@
-/*
-var node_xml = require("node-xml");
+//dependencies have to be installed manually
 
-function NodeXmlParser() {
-	var parser = new node_xml.SaxParser(function(cb) { });
-	this.parse = function(s) {
-	parser.parseString(s);
-	};
-}
+var ben = require("ben");
 
-var p = new NodeXmlParser();
-*//*
-var libxml = require("libxmljs");
+var parsers = [];
 
-function LibXmlJsParser() {
-	var parser = new libxml.SaxPushParser(function(cb) { });
-	this.parse = function(s) {
-	parser.push(s, false);
-	};
-}
+(function(){
+	try{
+		var node_xml = require("node-xml");
 
-var p = new LibXmlJsParser();
-*//*
-var sax = require('sax');
+		function NodeXmlParser() {
+			var parser = new node_xml.SaxParser(function(cb) { });
+			this.parse = function(s) {
+				parser.parseString(s);
+			};
+		}
+		parsers.push([NodeXmlParser, "node-xml"]);
+	} catch(e){}
+}());
 
-function SaxParser() {
-	var parser = sax.parser();
-	this.parse = function(s) {
-	parser.write(s);
-	}
-}
+(function(){
+	try{
+		var libxml = require("libxmljs");
 
-var p = new SaxParser();
-*//*
-var expat = require('node-expat');
+		function LibXmlJsParser() {
+			var parser = new libxml.SaxPushParser(function(cb) { });
+			this.parse = function(s) {
+				parser.push(s, false);
+			};
+		}
 
-function ExpatParser() {
-	var parser = new expat.Parser();
-	this.parse = function(s) {
-	parser.parse(s, false);
-	};
-}
+		parsers.push([LibXmlJsParser, "libxmljs"]);
+	} catch(e){}
+}());
 
-var p = new ExpatParser();
-*//*
-var htmlparser = require('htmlparser');
+(function(){
+	try{
+		var sax = require('sax');
 
-function HtmlParser() {
-	var handler = new htmlparser.DefaultHandler();
-	var parser = new htmlparser.Parser(handler);
-	this.parse = function(s) {
-	parser.parseComplete(s);
-	};
-}
+		function SaxParser() {
+			var parser = sax.parser();
+			this.parse = function(s) {
+				parser.write(s);
+			};
+		}
 
-var p = new HtmlParser();
-*/
-var htmlparser2 = require('../lib/Parser.js');
+		parsers.push([SaxParser, "sax"]);
+	} catch(e){}
+}());
 
-// provide callbacks
-// otherwise, parsing would be optimized
-var emptyCBs = {
-	onopentagname: function(){},
-	onattribute: function(){},
-	ontext: function(){},
-	onclosetag: function(){}
-};
+(function(){
+	try{
+		var expat = require('node-expat');
 
-function HtmlParser2() {
-	var parser = new htmlparser2(emptyCBs);
-	this.parse = function(s) {
-		parser.write(s);
-	};
-}
+		function ExpatParser() {
+			var parser = new expat.Parser();
+			this.parse = function(s) {
+				parser.parse(s, false);
+			};
+		}
 
-var p = new HtmlParser2();
+		parsers.push([ExpatParser, "node-expat"]);
+	} catch(e){}
+}());
 
+(function(){
+	try{
+		var htmlparser = require('htmlparser');
 
-p.parse("<r>");
-var nEl = 0;
-(function d() {
-	p.parse("<foo bar='baz'>quux</foo>");
-	nEl++;
-	setImmediate(d);
-})();
+		function HtmlParser() {
+			var handler = new htmlparser.DefaultHandler();
+			var parser = new htmlparser.Parser(handler);
+			this.parse = function(s) {
+				parser.parseComplete(s);
+			};
+		}
 
-var its =[];
-setInterval(function() {
-	console.log(nEl + " el/s");
-	its.push(nEl);
-	nEl = 0;
-}, 1e3);
+		parsers.push([HtmlParser, "htmlparser"]);
+	} catch(e){}
+}());
 
-process.on('SIGINT', function () {
-	var average = its.reduce(function(average, v){
-		return average+v;
-	}) / its.length;
-	console.log("Average:", average, "el/s");
-	process.exit(0);
+(function(){
+	try{
+		var htmlparser2 = require('../lib/Parser.js');
+
+		function HtmlParser2() {
+			var parser = new htmlparser2();
+			this.parse = function(s) {
+				parser.write(s);
+			};
+		}
+
+		parsers.push([HtmlParser2, "htmlparser2"]);
+	} catch(e){}
+}());
+
+parsers.forEach(function(arr){
+	var p = new arr[0]();
+	var name = arr[1];
+
+	process.stdout.write(name + ":" + Array(14-name.length).join(" "));
+
+	p.parse("<r>");
+	var num = ben(1e6, function(){
+		p.parse("<foo bar='baz'>quux</foo>");
+	});
+
+	console.log((num * 1e3).toFixed(2), "ms/el");
 });
