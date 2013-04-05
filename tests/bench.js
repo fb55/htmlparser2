@@ -4,97 +4,85 @@ var ben = require("ben");
 
 var parsers = [];
 
-(function() {
-    try {
-        var node_xml = require("node-xml");
+try {
+    var node_xml = require("node-xml");
 
-        function NodeXmlParser() {
-            var parser = new node_xml.SaxParser(function(cb) {});
-            this.parse = function(s) {
-                parser.parseString(s);
-            };
-        }
-        parsers.push([NodeXmlParser, "node-xml"]);
-    } catch (e) {}
-})();
+    function NodeXmlParser() {
+        var parser = new node_xml.SaxParser(function(cb) {});
+        this.parse = function(s) {
+            parser.parseString(s);
+        };
+    }
+    parsers.push([NodeXmlParser, "node-xml"]);
+} catch (e) {}
 
-(function() {
-    try {
-        var libxml = require("libxmljs");
+try {
+    var libxml = require("libxmljs");
 
-        function LibXmlJsParser() {
-            var parser = new libxml.SaxPushParser(function(cb) {});
-            this.parse = function(s) {
-                parser.push(s, false);
-            };
-        }
+    function LibXmlJsParser() {
+        var parser = new libxml.SaxPushParser(function(cb) {});
+        this.parse = function(s) {
+            parser.push(s, false);
+        };
+    }
 
-        parsers.push([LibXmlJsParser, "libxmljs"]);
-    } catch (e) {}
-})();
+    parsers.push([LibXmlJsParser, "libxmljs"]);
+} catch (e) {}
 
-(function() {
-    try {
-        var sax = require("sax");
+try {
+    var sax = require("sax");
 
-        function SaxParser() {
-            var parser = sax.parser();
-            this.parse = function(s) {
-                parser.write(s);
-            };
-        }
+    function SaxParser() {
+        var parser = sax.parser();
+        this.parse = function(s) {
+            parser.write(s);
+        };
+    }
 
-        parsers.push([SaxParser, "sax"]);
-    } catch (e) {}
-})();
+    parsers.push([SaxParser, "sax"]);
+} catch (e) {}
 
-(function() {
-    try {
-        var expat = require("node-expat");
+try {
+    var expat = require("node-expat");
 
-        function ExpatParser() {
-            var parser = new expat.Parser();
-            this.parse = function(s) {
-                parser.parse(s, false);
-            };
-        }
+    function ExpatParser() {
+        var parser = new expat.Parser();
+        this.parse = function(s) {
+            parser.parse(s, false);
+        };
+    }
 
-        parsers.push([ExpatParser, "node-expat"]);
-    } catch (e) {}
-})();
+    parsers.push([ExpatParser, "node-expat"]);
+} catch (e) {}
 
-(function() {
-    try {
-        var htmlparser = require("htmlparser");
+try {
+    var htmlparser = require("htmlparser");
 
-        function HtmlParser() {
-            var handler = new htmlparser.DefaultHandler();
-            var parser = new htmlparser.Parser(handler);
-            this.parse = function(s) {
-                parser.parseComplete(s);
-            };
-        }
+    function HtmlParser() {
+        var handler = new htmlparser.DefaultHandler();
+        var parser = new htmlparser.Parser(handler);
+        this.parse = function(s) {
+            parser.parseComplete(s);
+        };
+    }
 
-        parsers.push([HtmlParser, "htmlparser"]);
-    } catch (e) {}
-})();
+    parsers.push([HtmlParser, "htmlparser"]);
+} catch (e) {}
 
-(function() {
-    try {
-        var htmlparser2 = require("../lib/Parser.js");
+try {
+    var htmlparser2 = require("../lib/Parser.js");
 
-        function HtmlParser2() {
-            var parser = new htmlparser2();
-            this.parse = function(s) {
-                parser.write(s);
-            };
-        }
+    function HtmlParser2() {
+        var parser = new htmlparser2();
+        this.parse = function(s) {
+            parser.write(s);
+        };
+    }
 
-        parsers.push([HtmlParser2, "htmlparser2"]);
-    } catch (e) {}
-})();
+    parsers.push([HtmlParser2, "htmlparser2"]);
+} catch (e) {}
 
-parsers.forEach(function(arr) {
+var results = parsers.map(function(arr) {
     var p = new arr[0]();
     var name = arr[1];
 
@@ -105,5 +93,14 @@ parsers.forEach(function(arr) {
         p.parse("<foo bar='baz'>quux</foo>");
     });
 
-    console.log((num * 1e3).toFixed(2), "ms/el");
+    console.log((num > 0.01 ? "" : "0") + (num * 1e3).toFixed(2), "ms/el");
+
+    return [name, num];
 });
+
+console.log(
+    "\nWinner:",
+    results.sort(function(a, b) {
+        return a[1] - b[1];
+    })[0][0]
+);
