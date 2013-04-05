@@ -24,8 +24,8 @@ var parser = new htmlparser.Parser({
 		}
 	}
 });
-parser.write("Xyz <script type="text/javascript">var foo = '<<bar>>';< /  script>");
-parser.done();
+parser.write("Xyz <script type='text/javascript'>var foo = '<<bar>>';< /  script>");
+parser.end();
 ```
 
 Output (simplified):
