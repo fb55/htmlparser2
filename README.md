@@ -1,4 +1,4 @@
-#htmlparser2 [![Build Status](https://secure.travis-ci.org/fb55/node-htmlparser.png)](http://travis-ci.org/fb55/node-htmlparser)
+#htmlparser2 [![Build Status](https://secure.travis-ci.org/fb55/htmlparser2.png)](http://travis-ci.org/fb55/htmlparser2)
 
 A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
@@ -37,12 +37,12 @@ JS! Hooray!
 That's it?!
 ```
 
-Read more about the parser in the [wiki](https://github.com/FB55/node-htmlparser/wiki/Parser-options).
+Read more about the parser in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ##Get a DOM
 The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that can be manipulated using the `DomUtils` helper.
 
-The `DomHandler`, while still bundled with this module, was recently moved to it's [own module](https://github.com/FB55/domhandler). Have a look at it for further information.
+The `DomHandler`, while still bundled with this module, was recently moved to it's [own module](https://github.com/fb55/domhandler). Have a look at it for further information.
 
 ##Parsing RSS/RDF/Atom Feeds
 
@@ -53,7 +53,7 @@ new htmlparser.FeedHandler(function(<error> error, <object> feed){
 ```
 
 ##Performance
-Using a modified version of [node-expat](https://github.com/astro/node-expat)s `bench.js`, I received the following results (on OSX):
+Using a modified version of [node-expat](https://github.com/astro/node-expat)'s `bench.js`, I received the following results (on OSX):
 
 ```
 node-xml:     28.03 ms/el

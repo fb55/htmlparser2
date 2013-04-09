@@ -1,17 +1,17 @@
 {
 	"name": "htmlparser2",
 	"description": "Performance-optimized forgiving HTML/XML/RSS parser",
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"author": "Felix Boehm <me@feedic.com>",
 	"keywords": ["html", "parser", "streams", "xml", "dom", "rss", "feed", "atom"],
 	"contributors": ["Chris Winberry <chris@winberry.net>"],
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/fb55/node-htmlparser.git"
+		"url": "git://github.com/fb55/htmlparser2.git"
 	},
 	"bugs": {
 		"mail": "me@feedic.com",
-		"url": "http://github.com/fb55/node-htmlparser/issues"
+		"url": "http://github.com/fb55/htmlparser2/issues"
 	},
 	"directories": {
 		"lib": "lib/"
@@ -28,6 +28,6 @@
 	},
 	"licenses": [{
 		"type": "MIT",
-		"url": "http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE"
+		"url": "http://github.com/fb55/htmlparser2/raw/master/LICENSE"
 	}]
 }
