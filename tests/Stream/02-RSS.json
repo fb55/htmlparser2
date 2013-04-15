@@ -1,6 +1,6 @@
 {
     "name": "RSS feed",
-    "options": {},
+    "options": { "xmlMode": true },
     "file": "/Documents/RSS_Example.xml",
     "expected": [
         {
@@ -87,12 +87,12 @@
             "data": ["link", {}]
         },
         {
-            "event": "closetag",
-            "data": ["link"]
-        },
-        {
             "event": "text",
             "data": ["http://liftoff.msfc.nasa.gov/"]
+        },
+        {
+            "event": "closetag",
+            "data": ["link"]
         },
         {
             "event": "text",
@@ -299,12 +299,12 @@
             "data": ["link", {}]
         },
         {
-            "event": "closetag",
-            "data": ["link"]
-        },
-        {
             "event": "text",
             "data": ["http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp"]
+        },
+        {
+            "event": "closetag",
+            "data": ["link"]
         },
         {
             "event": "text",
@@ -503,12 +503,12 @@
             "data": ["link", {}]
         },
         {
-            "event": "closetag",
-            "data": ["link"]
-        },
-        {
             "event": "text",
             "data": ["http://liftoff.msfc.nasa.gov/news/2003/news-VASIMR.asp"]
+        },
+        {
+            "event": "closetag",
+            "data": ["link"]
         },
         {
             "event": "text",
@@ -625,12 +625,12 @@
             "data": ["link", {}]
         },
         {
-            "event": "closetag",
-            "data": ["link"]
-        },
-        {
             "event": "text",
             "data": ["http://liftoff.msfc.nasa.gov/news/2003/news-laundry.asp"]
+        },
+        {
+            "event": "closetag",
+            "data": ["link"]
         },
         {
             "event": "text",
