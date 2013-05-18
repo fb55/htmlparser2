@@ -5,7 +5,7 @@
     "expected": [
         {
             "event": "processinginstruction",
-            "data": ["!DOCTYPE", "!DOCTYPE html"]
+            "data": ["!doctype", "!DOCTYPE html"]
         },
         {
             "event": "opentagname",

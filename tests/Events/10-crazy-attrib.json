@@ -16,7 +16,7 @@
         },
         {
             "event": "attribute",
-            "data": ["FAIL", ""]
+            "data": ["fail", ""]
         },
         {
             "event": "opentag",
@@ -24,7 +24,7 @@
                 "p",
                 {
                     "<": "",
-                    "FAIL": ""
+                    "fail": ""
                 }
             ]
         },
