@@ -22,7 +22,7 @@
     {
       "event": "attribute",
       "data": [
-        "FAIL",
+        "fail",
         ""
       ]
     },
@@ -32,7 +32,7 @@
         "p",
         {
           "<": "",
-          "FAIL": ""
+          "fail": ""
         }
       ]
     },

@@ -6,7 +6,7 @@
     {
       "event": "processinginstruction",
       "data": [
-        "!DOCTYPE",
+        "!doctype",
         "!DOCTYPE html"
       ]
     },
