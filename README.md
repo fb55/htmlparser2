@@ -1,4 +1,4 @@
-#htmlparser2 [![Build Status](https://secure.travis-ci.org/fb55/htmlparser2.png)](http://travis-ci.org/fb55/htmlparser2) [![NPM version](https://badge.fury.io/js/htmlparser2.png)](https://npmjs.org/package/htmlparser2)
+#htmlparser2 [![NPM version](https://badge.fury.io/js/htmlparser2.png)](https://npmjs.org/package/htmlparser2) [![Build Status](https://secure.travis-ci.org/fb55/htmlparser2.png)](http://travis-ci.org/fb55/htmlparser2) [![Dependency Status](https://david-dm.org/fb55/htmlparser2.png)](https://david-dm.org/fb55/htmlparser2)
 
 A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle streams (chunked data) and supports custom handlers for writing custom DOMs/output.
 
