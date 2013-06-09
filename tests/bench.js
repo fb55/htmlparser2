@@ -70,6 +70,33 @@ try {
 } catch (e) {}
 
 try {
+    var hubbub = require("hubbub");
+
+    function Hubbub() {
+        var handler = new hubbub.DefaultHandler();
+        var parser = new hubbub.Parser(handler);
+        this.parse = function(s) {
+            parser.parseComplete(s);
+        };
+    }
+
+    parsers.push([Hubbub, "hubbub"]);
+} catch (e) {}
+
+try {
+    var htmlParser = require("html-parser");
+
+    function HTMLParser() {
+        var cbs = {};
+        this.parse = function(s) {
+            htmlParser.parse(s, cbs);
+        };
+    }
+
+    parsers.push([HTMLParser, "html-parser"]);
+} catch (e) {}
+
+try {
     var htmlparser2 = require("../lib/Parser.js");
 
     function HtmlParser2() {
