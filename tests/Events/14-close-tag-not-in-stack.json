@@ -1,0 +1,18 @@
+{
+  "name": "Close tags there are not in stack",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "<div>Hallo</p>World</div>",
+  "expected": [
+  	{ "event": "opentagname", "data": [ "div" ] },
+  	{ "event": "opentag",     "data": [ "div", {} ] },
+  	{ "event": "text",        "data": [ "Hallo" ] },
+  	{ "event": "opentagname", "data": [ "p" ] },
+  	{ "event": "opentag",     "data": [ "p", {} ] },
+  	{ "event": "closetag",    "data": [ "p" ] },
+  	{ "event": "text",        "data": [ "World" ] },
+  	{ "event": "closetag",    "data": [ "div" ] }
+  ]
+}
