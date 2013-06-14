@@ -11,12 +11,7 @@ var multiply = function(text) {
             "<!directive><tag attr='value'> text <!--Comment<>--></tag>"
         )
     },
-    empty = function() {},
     cbs = {};
-
-require("./test-helper.js").EVENTS.forEach(function(name) {
-    cbs["on" + name] = empty;
-});
 
 var parser = new (require("../lib/Parser.js"))(cbs),
     ben = require("ben");
