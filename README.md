@@ -5,7 +5,7 @@ A forgiving HTML/XML/RSS parser written in JS for NodeJS. The parser can handle 
 ##Installing
 	npm install htmlparser2
 	
-A live demo of htmlparser2 is available at http://htmlparser.forbeslindesay.co.uk/
+A live demo of htmlparser2 is available at http://demos.forbeslindesay.co.uk/htmlparser2/
 
 ##Usage
 
