@@ -4,12 +4,12 @@
     "handler": {},
     "parser": {"decodeEntities": true}
   },
-  "html": "&#x61;&#x62&#99;&#100!",
+  "html": "&#x61;&#x62&#99;&#100",
   "expected": [
     {
       "event": "text",
       "data": [
-        "abcd!"
+        "abcd"
       ]
     }
   ]
