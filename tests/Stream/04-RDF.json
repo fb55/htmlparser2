@@ -1,7 +1,7 @@
 {
   "name": "RDF feed",
   "options": {"xmlMode": true},
-  "file": "/Documents/RDF_Example.xml",
+  "file": "RDF_Example.xml",
   "expected": [
     {
       "event": "processinginstruction",

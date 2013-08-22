@@ -1,7 +1,7 @@
 {
   "name": "Attributes",
   "options": {},
-  "file": "/Documents/Attributes.html",
+  "file": "Attributes.html",
   "expected": [
     {
       "event": "processinginstruction",

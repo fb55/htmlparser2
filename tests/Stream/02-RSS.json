@@ -1,7 +1,7 @@
 {
   "name": "RSS feed",
   "options": {"xmlMode": true},
-  "file": "/Documents/RSS_Example.xml",
+  "file": "RSS_Example.xml",
   "expected": [
     {
       "event": "processinginstruction",

@@ -1,7 +1,7 @@
 {
   "name": "Basic html",
   "options": {},
-  "file": "/Documents/Basic.html",
+  "file": "Basic.html",
   "expected": [
     {
       "event": "processinginstruction",

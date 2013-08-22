@@ -1,6 +1,9 @@
-var htmlparser = require(".."),
-	Parser = htmlparser.Parser,
-	CollectingHandler = htmlparser.CollectingHandler,
+var htmlparser2 = require(".."),
+    fs = require("fs"),
+    path = require("path"),
+    assert = require("assert"),
+	Parser = htmlparser2.Parser,
+	CollectingHandler = htmlparser2.CollectingHandler,
 	chunkSize = 5;
 
 exports.writeToParser = function(handler, options, data){
@@ -24,7 +27,7 @@ exports.getEventCollector = function(cb){
 					events[events.length-1].data[0] += arr[1];
 				} else {
 					events.push({
-						event: arr[0].slice(2),
+						event: arr[0].substr(2),
 						data: arr.slice(1)
 					});
 				}
@@ -35,4 +38,26 @@ exports.getEventCollector = function(cb){
 	}});
 
 	return handler;
+};
+
+exports.readFiles = function(root, folder){
+	var dir = path.join(root, folder);
+
+	return fs
+			.readdirSync(dir)
+			.filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
+			.map(function(name){
+				return path.join(dir, name);
+			})
+			.map(require);
+};
+
+exports.deepEqual = function(expected, actual, message){
+	try {
+		assert.deepEqual(expected, actual, message);
+	} catch(e){
+		e.expected = JSON.stringify(expected, null, 2);
+		e.actual = JSON.stringify(actual, null, 2);
+		throw e;
+	}
 };

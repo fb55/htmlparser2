@@ -1,11 +1,11 @@
 var helper = require("./test-helper.js"),
 	Stream = require("..").WritableStream,
-	fs = require("fs");
+	fs = require("fs"),
+	path = require("path");
 
-exports.dir = "Stream";
-
-exports.test = function(test, cb){
-	fs.createReadStream(__dirname + test.file).pipe(
+module.exports = function streams(test, cb){
+	var filePath = path.join(__dirname, "Documents", test.file);
+	fs.createReadStream(filePath).pipe(
 		new Stream(
 			helper.getEventCollector(function(err, events){
 				cb(err, events);
@@ -13,8 +13,13 @@ exports.test = function(test, cb){
 				var handler = helper.getEventCollector(cb),
 				    stream = new Stream(handler, test.options);
 
-				stream.end(fs.readFileSync(__dirname + test.file));
+				fs.readFile(filePath, function(err, data){
+					if(err) throw err;
+					else stream.end(data);
+				});
 			}
 		), test.options)
-	);
+	).on("error", cb);
 };
+
+module.exports.files = helper.readFiles(__dirname, "Stream");

@@ -1,5 +1,4 @@
-var fs = require("fs"),
-    path = require("path"),
+var helper = require("./test-helper.js"),
     assert = require("assert");
 
 var runCount = 0,
@@ -13,27 +12,18 @@ var runCount = 0,
 ]
 .map(require)
 .forEach(function (test){
-	console.log("\nStarting", test.dir, "\n----");
+	console.log("\nStarting", test.name, "\n----");
 
-	var dir = path.resolve(__dirname, test.dir);
-
-	//read files, load them, run them
-	fs
-	.readdirSync(dir)
-	.filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
-	.map(function(name){
-		return path.resolve(dir, name);
-	})
-	.map(require)
+	test.files
 	.forEach(function(file){
 		runCount++;
 		
 		console.log("Testing:", file.name);
 		
 		var second = false; //every test runs twice
-		test.test(file, function(err, dom){
+		test(file, function(err, dom){
 			assert.ifError(err);
-			assert.deepEqual(file.expected, dom, "didn't get expected output");
+			helper.deepEqual(file.expected, dom, "didn't get expected output");
 						
 			if(second){
 				testCount++;

@@ -1,7 +1,7 @@
 {
   "name": "Atom feed",
   "options": {"xmlMode": true},
-  "file": "/Documents/Atom_Example.xml",
+  "file": "Atom_Example.xml",
   "expected": [
     {
       "event": "processinginstruction",
