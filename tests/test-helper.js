@@ -52,7 +52,7 @@ exports.readFiles = function(root, folder){
 			.map(require);
 };
 
-exports.deepEqual = function(expected, actual, message){
+function deepEqual(expected, actual, message){
 	try {
 		assert.deepEqual(expected, actual, message);
 	} catch(e){
@@ -60,4 +60,18 @@ exports.deepEqual = function(expected, actual, message){
 		e.actual = JSON.stringify(actual, null, 2);
 		throw e;
 	}
+}
+
+exports.deepEqual = deepEqual;
+
+exports.getCallback = function(expected, done){
+	var repeated = false;
+
+	return function(err, dom){
+		assert.ifError(err);
+		deepEqual(expected, dom, "didn't get expected output");
+
+		if(repeated) done();
+		else repeated = true;
+	};
 };
