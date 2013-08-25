@@ -3,7 +3,7 @@ var helper = require("./test-helper.js"),
     fs = require("fs"),
     path = require("path");
 
-module.exports = function streams(test, cb) {
+helper.mochaTest("Stream", __dirname, function(test, cb) {
     var filePath = path.join(__dirname, "Documents", test.file);
     fs.createReadStream(filePath)
         .pipe(
@@ -23,6 +23,4 @@ module.exports = function streams(test, cb) {
             )
         )
         .on("error", cb);
-};
-
-module.exports.files = helper.readFiles(__dirname, "Stream");
+});
