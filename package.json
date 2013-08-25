@@ -18,13 +18,16 @@
 	},
 	"main": "lib/index.js",
 	"scripts": {
-		"test": "node tests/00-runtests.js"
+		"test": "mocha -R spec"
 	},
 	"dependencies": {
 		"domhandler": "2.0",
 		"domutils": "1.1",
 		"domelementtype": "1",
 		"readable-stream": "1.0"
+	},
+	"devDependencies": {
+		"mocha": "1"
 	},
 	"licenses": [{
 		"type": "MIT",
