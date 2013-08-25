@@ -3,18 +3,20 @@
 var helper = require("./test-helper.js"),
 	FeedHandler = require("../lib/FeedHandler.js"),
 	fs = require("fs"),
-	files = helper.readFiles(__dirname, "Feeds"),
+	path = require("path"),
 	parserOpts = {
 		xmlMode: true
 	};
 
-module.exports = function feeds(test, cb){
-	var handler = new FeedHandler(function(err, dom){
-		if(err) cb(err, 0); //return the error
-		else cb(null, dom);
-	});
-	var file = fs.readFileSync(__dirname + "/Documents/" + test.file).toString();
-	helper.writeToParser(handler, parserOpts, file);
-};
-
-module.exports.files = files;
+helper.mochaTest("Feeds", __dirname, function(test, cb){
+	var file = fs.readFile(
+		path.join(__dirname, "Documents", test.file),
+		function(err, file){
+			helper.writeToParser(
+				new FeedHandler(cb),
+				parserOpts,
+				file.toString()
+			);
+		}
+	);
+});

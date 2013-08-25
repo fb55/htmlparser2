@@ -40,38 +40,43 @@ exports.getEventCollector = function(cb){
 	return handler;
 };
 
-exports.readFiles = function(root, folder){
-	var dir = path.join(root, folder);
-
-	return fs
-			.readdirSync(dir)
-			.filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
-			.map(function(name){
-				return path.join(dir, name);
-			})
-			.map(require);
-};
-
-function deepEqual(expected, actual, message){
-	try {
-		assert.deepEqual(expected, actual, message);
-	} catch(e){
-		e.expected = JSON.stringify(expected, null, 2);
-		e.actual = JSON.stringify(actual, null, 2);
-		throw e;
-	}
-}
-
-exports.deepEqual = deepEqual;
-
-exports.getCallback = function(expected, done){
+function getCallback(expected, done){
 	var repeated = false;
 
-	return function(err, dom){
+	return function(err, actual){
 		assert.ifError(err);
-		deepEqual(expected, dom, "didn't get expected output");
+		try {
+			assert.deepEqual(expected, actual, "didn't get expected output");
+		} catch(e){
+			e.expected = JSON.stringify(expected, null, 2);
+			e.actual = JSON.stringify(actual, null, 2);
+			throw e;
+		}
 
 		if(repeated) done();
 		else repeated = true;
 	};
+}
+
+exports.mochaTest = function(name, root, test){
+	describe(name, readDir);
+
+	function readDir(cb){
+		var dir = path.join(root, name);
+
+		fs
+		.readdirSync(dir)
+		.filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
+		.map(function(name){
+			return path.join(dir, name);
+		})
+		.map(require)
+		.forEach(runTest);
+	}
+
+	function runTest(file){
+		it(file.name, function(done){
+			test(file, getCallback(file.expected, done));
+		});
+	}
 };
