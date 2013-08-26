@@ -20,25 +20,25 @@ exports.writeToParser = function(handler, options, data){
 //returns a tree structure
 exports.getEventCollector = function(cb){
 	var handler = new CollectingHandler({onerror: cb, onend: function(){
-		cb(null, handler.events
-			.reduce(function(events, arr){
-				if(arr[0] === "onerror" || arr[0] === "onend");
-				else if(arr[0] === "ontext" && events.length && events[events.length-1].event === "text"){
-					events[events.length-1].data[0] += arr[1];
-				} else {
-					events.push({
-						event: arr[0].substr(2),
-						data: arr.slice(1)
-					});
-				}
-
-				return events;
-			}, [])
-		);
+		cb(null, handler.events.reduce(eventReducer, []));
 	}});
 
 	return handler;
 };
+
+function eventReducer(events, arr){
+	if(arr[0] === "onerror" || arr[0] === "onend");
+	else if(arr[0] === "ontext" && events.length && events[events.length-1].event === "text"){
+		events[events.length-1].data[0] += arr[1];
+	} else {
+		events.push({
+			event: arr[0].substr(2),
+			data: arr.slice(1)
+		});
+	}
+
+	return events;
+}
 
 function getCallback(expected, done){
 	var repeated = false;
