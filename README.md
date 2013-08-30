@@ -58,17 +58,19 @@ new htmlparser.FeedHandler(function(<error> error, <object> feed){
 
 After having some artificial benchmarks for some time, __@AndreasMadsen__ published his [`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on real-world websites.
 
-At the time of writing, the latest versions of all supported parsers show the following performance characteristics on my MacBook:
+At the time of writing, the latest versions of all supported parsers show the following performance characteristics on [Travis CI](https://travis-ci.org/AndreasMadsen/htmlparser-benchmark/builds/10805007) (please note that Travis doesn't guarantee equal conditions for all tests):
 
 ```
-gumbo-parser   : 28.9543 ms/file ± 15.9772
-html-parser    : 19.0935 ms/file ± 13.4118
-htmlparser     : 48.9674 ms/file ± 293.747
-hubbub         : 30.1816 ms/file ± 16.1811
-libxmljs       : 13.0610 ms/file ± 18.6695
-sax            : 44.5736 ms/file ± 22.6353
-htmlparser2-dom: 5.27927 ms/file ± 4.80156
-htmlparser2    : 3.56451 ms/file ± 2.51882
+gumbo-parser   : 34.9208 ms/file ± 21.4238
+html-parser    : 24.8224 ms/file ± 15.8703
+html5          : 419.597 ms/file ± 264.265
+htmlparser     : 60.0722 ms/file ± 384.844
+htmlparser2-dom: 12.0749 ms/file ± 6.49474
+htmlparser2    : 7.49130 ms/file ± 5.74368
+hubbub         : 30.4980 ms/file ± 16.4682
+libxmljs       : 14.1338 ms/file ± 18.6541
+parse5         : 22.0439 ms/file ± 15.3743
+sax            : 49.6513 ms/file ± 26.6032
 ```
 
 ##How is this different from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
