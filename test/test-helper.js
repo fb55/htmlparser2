@@ -3,14 +3,13 @@ var htmlparser2 = require(".."),
     path = require("path"),
     assert = require("assert"),
     Parser = htmlparser2.Parser,
-    CollectingHandler = htmlparser2.CollectingHandler,
-    chunkSize = 5;
+    CollectingHandler = htmlparser2.CollectingHandler;
 
 exports.writeToParser = function(handler, options, data) {
     var parser = new Parser(handler, options);
     //first, try to run the test via chunks
-    for (var i = 0; i < data.length; i += chunkSize) {
-        parser.write(data.substr(i, chunkSize));
+    for (var i = 0; i < data.length; i++) {
+        parser.write(data.charAt(i));
     }
     parser.end();
     //then parse everything
