@@ -29,8 +29,5 @@
 	"devDependencies": {
 		"mocha": "1"
 	},
-	"licenses": [{
-		"type": "MIT",
-		"url": "http://github.com/fb55/htmlparser2/raw/master/LICENSE"
-	}]
+	"license": "MIT"
 }
