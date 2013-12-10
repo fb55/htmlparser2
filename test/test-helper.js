@@ -60,7 +60,7 @@ function getCallback(expected, done){
 exports.mochaTest = function(name, root, test){
 	describe(name, readDir);
 
-	function readDir(cb){
+	function readDir(){
 		var dir = path.join(root, name);
 
 		fs
