@@ -1,7 +1,7 @@
 {
     "name": "htmlparser2",
     "description": "Fast & forgiving HTML/XML/RSS parser",
-    "version": "3.4.0",
+    "version": "3.4.1",
     "author": "Felix Boehm <me@feedic.com>",
     "keywords": [
         "html",
@@ -12,9 +12,6 @@
         "rss",
         "feed",
         "atom"
-    ],
-    "contributors": [
-        "Chris Winberry <chris@winberry.net>"
     ],
     "repository": {
         "type": "git",
