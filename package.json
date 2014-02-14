@@ -1,10 +1,9 @@
 {
 	"name": "htmlparser2",
 	"description": "Fast & forgiving HTML/XML/RSS parser",
-	"version": "3.4.0",
+	"version": "3.4.1",
 	"author": "Felix Boehm <me@feedic.com>",
 	"keywords": ["html", "parser", "streams", "xml", "dom", "rss", "feed", "atom"],
-	"contributors": ["Chris Winberry <chris@winberry.net>"],
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/fb55/htmlparser2.git"
