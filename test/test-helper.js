@@ -18,11 +18,13 @@ exports.writeToParser = function(handler, options, data){
 
 //returns a tree structure
 exports.getEventCollector = function(cb){
-	var handler = new CollectingHandler({onerror: cb, onend: function(){
-		cb(null, handler.events.reduce(eventReducer, []));
-	}});
+	var handler = new CollectingHandler({onerror: cb, onend: onend});
 
 	return handler;
+
+	function onend(){
+		cb(null, handler.events.reduce(eventReducer, []));
+	}
 };
 
 function eventReducer(events, arr){
