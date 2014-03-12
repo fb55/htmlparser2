@@ -26,7 +26,8 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha && npm run lint",
+    "lint": "jshint {lib,test}/*.js test/*/*.js"
   },
   "dependencies": {
     "domhandler": "2.2",
@@ -35,7 +36,27 @@
     "readable-stream": "1.1"
   },
   "devDependencies": {
-    "mocha": "1"
+    "mocha": "1",
+    "jshint": "2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "jshintConfig": {
+    "eqeqeq": true,
+    "freeze": true,
+    "latedef": "nofunc",
+    "noarg": true,
+    "nonbsp": true,
+    "quotmark": "double",
+    "undef": true,
+    "unused": true,
+    "trailing": true,
+    "eqnull": true,
+    "proto": true,
+    "smarttabs": true,
+    "node": true,
+    "globals": {
+      "describe": true,
+      "it": true
+    }
+  }
 }
