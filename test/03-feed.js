@@ -1,7 +1,7 @@
 //Runs tests for feeds
 
 var helper = require("./test-helper.js"),
-	FeedHandler = require("../lib/FeedHandler.js"),
+	FeedHandler = require("..").RssHandler,
 	fs = require("fs"),
 	path = require("path");
 
