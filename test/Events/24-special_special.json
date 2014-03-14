@@ -1,0 +1,45 @@
+{
+  "name": "Special special tags",
+  "options": {},
+  "html": "<scRiPT></script><scIPT>",
+  "expected": [
+    {
+      "event": "opentagname",
+      "data": [
+        "script"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "script",
+        {}
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "script"
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "scipt"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "scipt",
+        {}
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "scipt"
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@
 
             }
     },
-    "html": "<a href=http://test.com/>Foo</a><hr />",
+    "html": "<a href=http://test.com/>Foo</a><hr / >",
     "expected": [
 		{
 			"event": "opentagname",
