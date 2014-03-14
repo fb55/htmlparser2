@@ -4,7 +4,7 @@
     "handler": {},
     "parser": {"decodeEntities": true}
   },
-  "html": "<a href='http://example.com/p&#x61;ge?param=value&param2=&lt;val&; & &'>",
+  "html": "<a href='http://example.com/p&#x61;ge?param=value&param2&param3=&lt;val&; & &'>",
   "expected": [
     {
       "event": "opentagname",
@@ -16,7 +16,7 @@
       "event": "attribute",
       "data": [
         "href",
-        "http://example.com/page?param=value&param2=<val&; & &"
+        "http://example.com/page?param=value&param2&param3=<val&; & &"
       ]
     },
     {
@@ -24,7 +24,7 @@
       "data": [
         "a",
         {
-          "href": "http://example.com/page?param=value&param2=<val&; & &"
+          "href": "http://example.com/page?param=value&param2&param3=<val&; & &"
         }
       ]
     },
