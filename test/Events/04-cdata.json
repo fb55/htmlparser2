@@ -4,7 +4,7 @@
         "handler": {},
         "parser": { "xmlMode": true }
     },
-    "html": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag>",
+    "html": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag><![CD>",
     "expected": [
         {
             "event": "opentagname",
@@ -29,6 +29,10 @@
         {
             "event": "closetag",
             "data": ["tag"]
+        },
+        {
+            "event": "processinginstruction",
+            "data": ["![CD", "![CD"]
         }
     ]
 }
