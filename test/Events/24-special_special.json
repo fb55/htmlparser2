@@ -1,7 +1,7 @@
 {
   "name": "Special special tags",
   "options": {},
-  "html": "<scRiPT></script><scIPT>",
+  "html": "<sCriPT></scripter</sCript><STyLE></styler</STylE><sCiPt><stylee><soo>",
   "expected": [
     {
       "event": "opentagname",
@@ -17,9 +17,40 @@
       ]
     },
     {
+      "event": "text",
+      "data": [
+        "</scripter"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "script"
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "style"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "style",
+        {}
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "</styler"
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "style"
       ]
     },
     {
@@ -33,6 +64,44 @@
       "data": [
         "scipt",
         {}
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "stylee"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "stylee",
+        {}
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "soo"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "soo",
+        {}
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "soo"
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "stylee"
       ]
     },
     {

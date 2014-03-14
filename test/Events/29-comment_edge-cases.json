@@ -1,0 +1,16 @@
+{
+  "name": "Comment edge-cases",
+  "options": {},
+  "html": "<!-foo><!-- --- -->",
+  "expected": [
+    {
+      "event": "processinginstruction",
+      "data": [
+        "!-foo",
+        "!-foo"
+      ]
+    },
+    { "event": "comment",     "data": [ " --- " ] },
+    { "event": "commentend",  "data": [] }
+  ]
+}
