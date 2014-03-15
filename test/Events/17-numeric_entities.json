@@ -4,11 +4,11 @@
         "handler": {},
         "parser": { "decodeEntities": true }
     },
-    "html": "&#x61;&#x62&#99;&#100",
+    "html": "&#x61;&#x62&#99;&#100&#x66g&#x;&#x68",
     "expected": [
         {
             "event": "text",
-            "data": ["abcd"]
+            "data": ["abcdfg&#x;h"]
         }
     ]
 }

@@ -4,11 +4,11 @@
         "handler": {},
         "parser": { "decodeEntities": true }
     },
-    "html": "&amp;el&lt;er&CounterClockwiseContourIntegral;foo",
+    "html": "&amp;el&lt;er&CounterClockwiseContourIntegral;foo&bar",
     "expected": [
         {
             "event": "text",
-            "data": ["&el<er\u2233foo"]
+            "data": ["&el<er\u2233foo&bar"]
         }
     ]
 }
