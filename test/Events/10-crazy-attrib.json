@@ -4,7 +4,7 @@
     "handler": {},
     "parser": {}
   },
-  "html": "<p <='' FAIL>stuff</p>",
+  "html": "<p < = '' FAIL>stuff</p><a",
   "expected": [
     {
       "event": "opentagname",

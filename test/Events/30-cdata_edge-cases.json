@@ -3,7 +3,7 @@
   "options": {
     "parser": {"recognizeCDATA": true}
   },
-  "html": "<![CDATA><![CDATA[[]]sdaf]]>",
+  "html": "<![CDATA><![CDATA[[]]sdaf]]><![CDATA[foo",
   "expected": [
     {
       "event": "processinginstruction",
@@ -12,11 +12,11 @@
         "![CDATA"
       ]
     },
-    {
-      "event": "cdatastart",
-      "data": []
-    },
+    { "event": "cdatastart", "data": [] },
     { "event": "text",     "data": [ "[]]sdaf" ] },
+    { "event": "cdataend",  "data": [] },
+    { "event": "cdatastart", "data": [] },
+    { "event": "text",     "data": [ "foo" ] },
     { "event": "cdataend",  "data": [] }
   ]
 }

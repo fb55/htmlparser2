@@ -20,9 +20,13 @@ describe("API", function(){
 		p.write("foo");
 
 		//check for an error
+		p.end();
 		var err = false;
 		p._cbs.onerror = function(){ err = true; };
-		p.done();
+		p.write("foo");
+		assert(err);
+		err = false;
+		p.end();
 		assert(err);
 
 		p.reset();
