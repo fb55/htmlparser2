@@ -52,5 +52,23 @@ describe("API", function() {
         p.write("<a foo");
         p._cbs.onopentag = null;
         p.write(">");
+
+        //pause/resume
+        var processed = false;
+        p._cbs.ontext = function(t) {
+            assert.equal(t, "foo");
+            processed = true;
+        };
+        p.pause();
+        p.write("foo");
+        assert(!processed);
+        p.resume();
+        assert(processed);
+        processed = false;
+        p.pause();
+        p.end("foo");
+        assert(!processed);
+        p.resume();
+        assert(processed);
     });
 });
