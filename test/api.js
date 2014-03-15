@@ -66,6 +66,10 @@ describe("API", function() {
         assert(processed);
         processed = false;
         p.pause();
+        assert(!processed);
+        p.resume();
+        assert(!processed);
+        p.pause();
         p.end("foo");
         assert(!processed);
         p.resume();
