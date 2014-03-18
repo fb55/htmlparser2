@@ -4,11 +4,8 @@
   "file": "Basic.html",
   "expected": [
     {
-      "event": "processinginstruction",
-      "data": [
-        "!doctype",
-        "!DOCTYPE html"
-      ]
+      "event": "doctype",
+      "data": [ "html", "" ]
     },
     {
       "event": "opentagname",

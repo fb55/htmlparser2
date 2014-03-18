@@ -3,11 +3,8 @@
   "options": {},
   "html": "< ></ >",
   "expected": [
-    {
-      "event": "text",
-      "data": [
-        "< ></ >"
-      ]
-    }
+    { "event": "text", "data": [ "< >" ] },
+    { "event": "comment", "data": [ " " ] },
+    { "event": "commentend",  "data": [] }
   ]
 }

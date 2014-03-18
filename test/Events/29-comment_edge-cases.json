@@ -3,13 +3,8 @@
   "options": {},
   "html": "<!-foo><!-- --- --><!--foo",
   "expected": [
-    {
-      "event": "processinginstruction",
-      "data": [
-        "!-foo",
-        "!-foo"
-      ]
-    },
+    { "event": "comment", "data": [ "-foo" ] },
+    { "event": "commentend",  "data": [] },
     { "event": "comment",     "data": [ " --- " ] },
     { "event": "commentend",  "data": [] },
     { "event": "comment",     "data": [ "foo" ] },

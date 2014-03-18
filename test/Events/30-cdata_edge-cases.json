@@ -1,7 +1,7 @@
 {
   "name": "CDATA edge-cases",
   "options": {
-    "parser": {"recognizeCDATA": true}
+    "parser": {"xmlMode": true, "lowerCaseTags": true}
   },
   "html": "<![CDATA><![CDATA[[]]sdaf]]><![CDATA[foo",
   "expected": [

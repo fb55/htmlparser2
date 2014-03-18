@@ -4,10 +4,9 @@
   "file": "Attributes.html",
   "expected": [
     {
-      "event": "processinginstruction",
+      "event": "doctype",
       "data": [
-        "!doctype",
-        "!doctype html"
+        "html", ""
       ]
     },
     {
