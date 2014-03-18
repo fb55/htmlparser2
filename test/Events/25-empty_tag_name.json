@@ -1,7 +1,7 @@
 {
   "name": "Empty tag name",
   "options": {},
-  "html": "< ></ >",
+  "html": "< ></></ >",
   "expected": [
     { "event": "text", "data": [ "< >" ] },
     { "event": "comment", "data": [ " " ] },
