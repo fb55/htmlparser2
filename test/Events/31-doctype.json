@@ -1,0 +1,13 @@
+{
+  "name": "doctype",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "<!doctype html PUBLIC 'FOO' 'BAR'><!doctype fooBAR SYSTEM \"fdsa\"><!doctype n SYSTEM 'boo'",
+  "expected": [
+    { "event": "doctype", "data": [ "html", "FOO", "BAR", false ] },
+    { "event": "doctype", "data": [ "fooBAR", "", "fdsa", false ] },
+    { "event": "doctype", "data": [ "n", "", "boo", true ] }
+  ]
+}
