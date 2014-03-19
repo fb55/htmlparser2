@@ -5,7 +5,7 @@
   "expected": [
     {
       "event": "doctype",
-      "data": [ "html", "" ]
+      "data": [ "html", "", "", false ]
     },
     {
       "event": "opentagname",

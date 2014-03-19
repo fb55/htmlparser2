@@ -6,7 +6,7 @@
     {
       "event": "doctype",
       "data": [
-        "html", ""
+        "html", "", "", false
       ]
     },
     {
