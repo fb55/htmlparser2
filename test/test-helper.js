@@ -46,6 +46,12 @@ function getCallback(expected, done){
 
 	return function(err, actual){
 		assert.ifError(err);
+		for (var i = 0; i < actual.length; i++) {
+			for (var j = 0; j < actual[i].data.length; j++) {
+				if (actual[i].data[j] instanceof Buffer)
+					actual[i].data[j] = actual[i].data[j].toString();
+			}
+		}
 		try {
 			assert.deepEqual(expected, actual, "didn't get expected output");
 		} catch(e){
