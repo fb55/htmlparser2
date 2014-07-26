@@ -29,7 +29,7 @@
         "lcov": "istanbul cover _mocha --report lcovonly -- -R spec",
         "coveralls": "npm run lint && npm run lcov && (cat coverage/lcov.info | coveralls || exit 0)",
         "test": "mocha && npm run lint",
-        "lint": "jshint {lib,test}/*.js test/*/*.js"
+        "lint": "jshint lib test && jscs lib test"
     },
     "dependencies": {
         "domhandler": "2.2",
