@@ -43,6 +43,7 @@
     "mocha-lcov-reporter": "*",
     "coveralls": "*",
     "istanbul": "*",
+    "jscs": "1.5.8",
     "jshint": "2"
   },
   "license": "MIT",
