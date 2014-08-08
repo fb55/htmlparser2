@@ -46,6 +46,9 @@
         "jscs": "1.5.8",
         "jshint": "2"
     },
+    "browser": {
+        "readable-stream": false
+    },
     "license": "MIT",
     "jshintConfig": {
         "eqeqeq": true,
