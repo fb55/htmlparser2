@@ -60,4 +60,15 @@ describe("API", function(){
 		assert(processed);
 
 	});
+	it("should pause at the correct index", function() {
+                var p = new htmlparser2.Parser(null, {xmlMode: true, lowerCaseAttributeNames: true});
+                var count = 0;
+                p._cbs.onopentag = function(name){
+                        if (name === "title") count++;
+                        p.pause();
+                        if (count <= 1) p.resume();
+                };
+                p.end("<title>TITLE</title><body></body>");
+                assert.equal(count, 1);
+        });	
 });
