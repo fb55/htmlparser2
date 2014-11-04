@@ -32,7 +32,7 @@
         "lint": "jshint lib test && jscs lib test"
     },
     "dependencies": {
-        "domhandler": "2.2",
+        "domhandler": "2.3",
         "domutils": "1.5",
         "domelementtype": "1",
         "readable-stream": "1.1",
