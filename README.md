@@ -44,7 +44,7 @@ JS! Hooray!
 That's it?!
 ```
 
-Read more about the parser and it's options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
+Read more about the parser and its options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ## Get a DOM
 The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
