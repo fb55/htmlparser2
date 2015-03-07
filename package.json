@@ -32,6 +32,7 @@
     "lint": "jshint lib test && jscs lib test"
   },
   "dependencies": {
+    "high5": "1",
     "domhandler": "2.3",
     "domutils": "1.5",
     "domelementtype": "1",
@@ -39,7 +40,7 @@
     "entities": "1.0"
   },
   "devDependencies": {
-    "mocha": "1",
+    "mocha": "2",
     "mocha-lcov-reporter": "*",
     "coveralls": "*",
     "istanbul": "*",

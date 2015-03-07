@@ -6,7 +6,13 @@
     {
       "event": "text",
       "data": [
-        "< ></ >"
+        "< >"
+      ]
+    },
+    {
+      "event": "comment",
+      "data": [
+        " "
       ]
     }
   ]
