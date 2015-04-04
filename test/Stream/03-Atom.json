@@ -33,6 +33,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\n"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "feed"
@@ -61,6 +67,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "title"
@@ -80,6 +92,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Example Feed"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "title"
@@ -87,6 +105,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t"
       ]
@@ -111,6 +135,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "A subtitle."
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "subtitle"
@@ -118,6 +148,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t"
       ]
@@ -165,6 +201,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "link"
@@ -199,6 +241,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "id"
@@ -218,6 +266,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "id"
@@ -225,6 +279,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t"
       ]
@@ -249,6 +309,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2003-12-13T18:30:02Z"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "updated"
@@ -256,6 +322,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t"
       ]
@@ -280,6 +352,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "name"
@@ -299,6 +377,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "John Doe"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "name"
@@ -306,6 +390,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -330,6 +420,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "johndoe@example.com"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "email"
@@ -342,6 +438,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "author"
@@ -349,6 +451,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\n\t"
       ]
@@ -373,6 +481,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "title"
@@ -392,6 +506,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Atom-Powered Robots Run Amok"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "title"
@@ -399,6 +519,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -433,6 +559,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -488,6 +620,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "link"
@@ -530,6 +668,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "id"
@@ -549,6 +693,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "id"
@@ -556,6 +706,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -580,6 +736,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2003-12-13T18:30:02Z"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "updated"
@@ -592,7 +754,13 @@
       ]
     },
     {
-    "event": "opentagname",
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "opentagname",
       "data": [
         "content"
       ]
@@ -633,6 +801,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Some content."
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "p"
@@ -651,6 +825,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "entry"
@@ -663,6 +843,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "feed"
@@ -670,6 +856,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n"
       ]

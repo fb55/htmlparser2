@@ -13,6 +13,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "<"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "princess-purpose"
@@ -27,6 +33,12 @@
     },
     {
       "event": "text",
+      "data": [
+        ">testing"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         ">testing"
       ]

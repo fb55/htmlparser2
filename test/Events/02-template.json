@@ -48,6 +48,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "<h1>Heading1</h1>"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "script"

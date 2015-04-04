@@ -11,6 +11,12 @@
       "data": [
         "abcdfg&#x;h"
       ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "abcdfg&#x;h"
+      ]
     }
   ]
 }

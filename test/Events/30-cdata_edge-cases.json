@@ -14,9 +14,11 @@
     },
     { "event": "cdatastart", "data": [] },
     { "event": "text",     "data": [ "[]]sdaf" ] },
+    { "event": "content",  "data": [ "[]]sdaf" ] },
     { "event": "cdataend",  "data": [] },
     { "event": "cdatastart", "data": [] },
     { "event": "text",     "data": [ "foo" ] },
+    { "event": "content",  "data": [ "foo" ] },
     { "event": "cdataend",  "data": [] }
   ]
 }

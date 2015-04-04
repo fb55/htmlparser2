@@ -37,6 +37,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "adsf"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "h1"

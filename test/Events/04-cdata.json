@@ -30,6 +30,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        " asdf ><asdf></adsf><> fo"
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },

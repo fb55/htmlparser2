@@ -11,6 +11,12 @@
       "data": [
         "a < b"
       ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "a < b"
+      ]
     }
   ]
 }

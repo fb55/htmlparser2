@@ -17,6 +17,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "html"
@@ -31,6 +37,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n"
       ]
@@ -55,6 +67,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "title"
@@ -74,6 +92,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Attributes test"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "title"
@@ -86,6 +110,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "head"
@@ -93,6 +123,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n"
       ]
@@ -130,6 +166,12 @@
       "event": "text",
       "data": [
         "\n\t"
+      ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "\n\t\n\t"
       ]
     },
     {
@@ -177,6 +219,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "class=\"value0\" title=\"value1\""
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "button"
@@ -202,6 +250,12 @@
       "event": "text",
       "data": [
         "\n\t"
+      ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "\n\n\t\n\t"
       ]
     },
     {
@@ -249,6 +303,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "class=value2 disabled"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "button"
@@ -274,6 +334,12 @@
       "event": "text",
       "data": [
         "\n\t"
+      ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "\n\n\t\n\t"
       ]
     },
     {
@@ -321,6 +387,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "class=\"value4\"title=\"value5\""
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "button"
@@ -333,6 +405,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "body"
@@ -340,6 +418,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n"
       ]

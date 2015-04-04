@@ -59,6 +59,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "adsf"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "button"
