@@ -43,6 +43,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "The Title"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "title"
@@ -63,6 +69,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "Hello world"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "Hello world"
       ]

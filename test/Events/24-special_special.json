@@ -23,6 +23,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "</scripter</soo"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "script"
@@ -43,6 +49,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "</styler"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "</styler"
       ]

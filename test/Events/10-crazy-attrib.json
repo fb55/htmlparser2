@@ -43,6 +43,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "stuff"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "p"

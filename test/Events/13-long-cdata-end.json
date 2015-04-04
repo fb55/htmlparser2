@@ -13,6 +13,7 @@
   { "event": "opentag",     "data": [ "tag", {} ] },
   { "event": "cdatastart",  "data": [] },
   { "event": "text",        "data": [ " text ]" ] },
+  { "event": "content",     "data": [ " text ]" ] },
   { "event": "cdataend",    "data": [] },
   { "event": "closetag",    "data": [ "tag" ] },
   { "event": "opentagname", "data": [ "after" ] },

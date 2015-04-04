@@ -11,6 +11,12 @@
       "data": [
         "&el<er\u2233foo&bar"
       ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "&el<er\u2233foo&bar"
+      ]
     }
   ]
 }

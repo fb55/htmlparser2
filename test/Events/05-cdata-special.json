@@ -26,6 +26,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "script"

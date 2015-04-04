@@ -17,6 +17,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "rdf:RDF"
@@ -109,6 +115,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "channel"
@@ -137,6 +149,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "title"
@@ -156,6 +174,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "craigslist | all community in SF bay area"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "title"
@@ -163,6 +187,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -187,6 +217,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "http://sfbay.craigslist.org/ccc/"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "link"
@@ -194,6 +230,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -224,6 +266,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "dc:language"
@@ -243,6 +291,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "en-us"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:language"
@@ -250,6 +304,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -274,6 +334,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Copyright 2011 craigslist, inc."
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:rights"
@@ -281,6 +347,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -305,6 +377,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "webmaster@craigslist.org"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:publisher"
@@ -312,6 +390,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -336,6 +420,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "webmaster@craigslist.org"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:creator"
@@ -343,6 +433,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -367,6 +463,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "http://sfbay.craigslist.org/ccc//"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:source"
@@ -374,6 +476,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -398,6 +506,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "craigslist | all community in SF bay area"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:title"
@@ -405,6 +519,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -429,6 +549,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Collection"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:type"
@@ -436,6 +562,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -460,6 +592,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2011-11-04T09:39:10-07:00"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "syn:updateBase"
@@ -467,6 +605,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -491,6 +635,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "4"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "syn:updateFrequency"
@@ -498,6 +648,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -522,6 +678,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "hourly"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "syn:updatePeriod"
@@ -529,6 +691,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -553,6 +721,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "rdf:Seq"
@@ -567,6 +741,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t\t\t"
       ]
@@ -606,6 +786,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t\t"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "rdf:Seq"
@@ -613,6 +799,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -630,6 +822,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "channel"
@@ -637,6 +835,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t"
       ]
@@ -670,6 +874,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "title"
@@ -693,6 +903,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        " Music Equipment Repair and Consignment "
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },
@@ -704,6 +920,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -728,6 +950,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nhttp://sfbay.craigslist.org/sby/muc/2681301534.html\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "link"
@@ -735,6 +963,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -763,6 +997,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nSan Jose Rock Shop offers musical instrument repair and consignment! (408) 215-2065<br> <br> We are pleased to announce our NEW LOCATION: 1199 N 5th st. San Jose, ca 95112. Please call ahead, by appointment only.<br> <br> Recently featured by Metro Newspaper in their 2011 Best of the Silicon Valley edition see it online here:<br> <a href=\"http://www.metroactive.com/best-of-silicon-valley/2011/music-nightlife/editor-picks.html\" rel=\"nofollow\">http://www.metroactive.com/best-of-silicon-valley/2011/music-nightlife/editor-picks.html</a><br> <br> Guitar Set up (acoustic and electronic) $40!<!-- END CLTAGS -->\n"
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },
@@ -774,6 +1014,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -798,6 +1044,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2011-11-04T09:35:17-07:00"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:date"
@@ -805,6 +1057,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -829,6 +1087,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "en-us"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:language"
@@ -836,6 +1100,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -860,6 +1130,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Copyright 2011 craigslist, inc."
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:rights"
@@ -867,6 +1143,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -891,6 +1173,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nhttp://sfbay.craigslist.org/sby/muc/2681301534.html\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:source"
@@ -898,6 +1186,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -926,6 +1220,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        " Music Equipment Repair and Consignment "
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },
@@ -937,6 +1237,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -961,6 +1267,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "text"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:type"
@@ -968,6 +1280,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -992,6 +1310,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2011-11-04T09:35:17-07:00"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dcterms:issued"
@@ -1004,6 +1328,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "item"
@@ -1011,6 +1341,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t"
       ]
@@ -1044,6 +1380,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
       "event": "opentagname",
       "data": [
         "title"
@@ -1067,6 +1409,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nRide Offered - Oakland/BART to LA/SFV - TODAY 3PM 11/04 (oakland north / temescal)\n"
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },
@@ -1078,6 +1426,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1102,6 +1456,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nhttp://sfbay.craigslist.org/eby/rid/2685010755.html\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "link"
@@ -1109,6 +1469,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1137,6 +1503,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nIm offering a lift for up to two people from Oakland (or near any BART station in the East Bay/580/880 Corridor, or San Jose/Morgan Hill, Gilroy) to the San Fernando Valley / Los Angeles area. Specifically, Im leaving from Oakland between 2:30 and 3:00pm (this is flexible, but if I leave too late my girlfriend will kill me), and heading to Woodland Hills via the 580, I-5, 405, and 101.<!-- END CLTAGS -->\n"
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },
@@ -1148,6 +1520,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1172,6 +1550,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2011-11-04T09:34:54-07:00"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:date"
@@ -1179,6 +1563,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1203,6 +1593,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "en-us"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:language"
@@ -1210,6 +1606,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1234,6 +1636,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "Copyright 2011 craigslist, inc."
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:rights"
@@ -1241,6 +1649,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1265,6 +1679,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nhttp://sfbay.craigslist.org/eby/rid/2685010755.html\n"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:source"
@@ -1272,6 +1692,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1300,6 +1726,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\nRide Offered - Oakland/BART to LA/SFV - TODAY 3PM 11/04 (oakland north / temescal)\n"
+      ]
+    },
+    {
       "event": "cdataend",
       "data": []
     },
@@ -1311,6 +1743,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1335,6 +1773,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "text"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dc:type"
@@ -1342,6 +1786,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n\t\t"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n\t\t"
       ]
@@ -1366,6 +1816,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "2011-11-04T09:34:54-07:00"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "dcterms:issued"
@@ -1378,6 +1834,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "\n\t"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "item"
@@ -1385,6 +1847,12 @@
     },
     {
       "event": "text",
+      "data": [
+        "\n"
+      ]
+    },
+    {
+      "event": "content",
       "data": [
         "\n"
       ]

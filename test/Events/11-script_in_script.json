@@ -39,6 +39,12 @@
       ]
     },
     {
+      "event": "content",
+      "data": [
+        "var str = '<script></'+'script>';"
+      ]
+    },
+    {
       "event": "closetag",
       "data": [
         "script"

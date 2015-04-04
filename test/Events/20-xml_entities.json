@@ -11,6 +11,12 @@
       "data": [
         "&>&amp<&uuml;a&#x62c&#100&#101"
       ]
+    },
+    {
+      "event": "content",
+      "data": [
+        "&>&amp<&uuml;a&#x62c&#100&#101"
+      ]
     }
   ]
 }
