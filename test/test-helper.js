@@ -6,43 +6,64 @@ var htmlparser2 = require(".."),
 	CollectingHandler = htmlparser2.CollectingHandler;
 
 exports.writeToParser = function(handler, options, data){
-	var parser = new Parser(handler, options);
+	options = options || {};
+	var i, parser = new Parser(handler, options);
+
 	//first, try to run the test via chunks
-	for(var i = 0; i < data.length; i++){
+	for(i = 0; i < data.length; i++){
 		parser.write(data.charAt(i));
 	}
 	parser.end();
+
 	//then parse everything
 	parser.parseComplete(data);
+	parser.reset();
+
+	//and once again using the `'eagerTextCapture'` option
+	options.eagerTextCapture = true;
+	parser = new Parser(handler, options);
+	for(i = 0; i < data.length; i++){
+		parser.write(data.charAt(i));
+	}
+	parser.end();
 };
 
 //returns a tree structure
 exports.getEventCollector = function(cb){
-	var handler = new CollectingHandler({onerror: cb, onend: onend});
+	var handler = new CollectingHandler({onparserinit: init, onerror: cb, onend: onend});
 
 	return handler;
 
+	function init(parser, parserOptions){
+		this._parser = parser;
+		this._parserOptions = parserOptions;
+	}
+
 	function onend(){
-		cb(null, handler.events.reduce(eventReducer, []));
+		cb(null, eventReducer(handler.events, this._parserOptions.eagerTextCapture), false);
 	}
 };
 
-function eventReducer(events, arr){
-	if(arr[0] === "onerror" || arr[0] === "onend");
-	else if(arr[0] === "ontext" && events.length && events[events.length - 1].event === "text"){
-		events[events.length - 1].data[0] += arr[1];
-	} else {
-		events.push({
-			event: arr[0].substr(2),
-			data: arr.slice(1)
-		});
-	}
+function eventReducer(toReduce, arr, eagerTextCapture){
+	var events = [];
 
+	toReduce.forEach(function(arr){
+		if(arr[0] === "onparserinit" || arr[0] === "onerror" || arr[0] === "onend"){
+			return;
+		} else if(!eagerTextCapture && arr[0] === "ontext" && events.length && events[events.length - 1].event === "text"){
+			events[events.length - 1].data[0] += arr[1];
+		} else {
+			events.push({
+				event: arr[0].substr(2),
+				data: arr.slice(1)
+			});
+		}
+	});
 	return events;
 }
 
 function getCallback(expected, done){
-	var repeated = false;
+	var repeated = 0;
 
 	return function(err, actual){
 		assert.ifError(err);
@@ -51,11 +72,12 @@ function getCallback(expected, done){
 		} catch(e){
 			e.expected = JSON.stringify(expected, null, 2);
 			e.actual = JSON.stringify(actual, null, 2);
+			console.log(e.actual);
 			throw e;
 		}
 
-		if(repeated) done();
-		else repeated = true;
+		if(repeated === 2) done();
+		else repeated++;
 	};
 }
 
