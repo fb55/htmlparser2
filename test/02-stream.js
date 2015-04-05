@@ -9,6 +9,7 @@ helper.mochaTest("Stream", __dirname, function(test, cb){
 		new Stream(
 			helper.getEventCollector(function(err, events){
 				cb(err, events);
+				cb(err, events);
 
 				var handler = helper.getEventCollector(cb),
 				    stream = new Stream(handler, test.options);
