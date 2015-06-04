@@ -44,6 +44,8 @@ JS! Hooray!
 That's it?!
 ```
 
+## Documentation
+
 Read more about the parser and its options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ## Get a DOM
