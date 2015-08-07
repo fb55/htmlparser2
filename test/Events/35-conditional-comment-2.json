@@ -1,0 +1,21 @@
+{
+  "name": "Nested Conditional Comment",
+  "options": {},
+  "html": "<!--[if gt IE 8]><!-->  <link rel=\"stylesheet\" media=\"screen, projection\" type=\"text/css\" href=\"http://www.website.com/_ui/desktop/assets/css/common.css\" /> <!--<![endif]-->",
+  "expected":[ 
+ { "event": "openconditionalcomment", "data": [ "[if gt IE 8]" ] },
+  { "event": "text", "data": [ "<!-->  " ] },
+  { "event": "opentagname", "data": [ "link" ] },
+  { "event": "attribute", "data": [ "rel", "stylesheet" ] },
+  { "event": "attribute", "data": [ "media", "screen, projection" ] },
+  { "event": "attribute", "data": [ "type", "text/css" ] },
+  { "event": "attribute", "data": [ "href", "http://www.website.com/_ui/desktop/assets/css/common.css" ] },
+  { "event": "opentag", "data": [ "link", {
+      "rel": "stylesheet",
+      "media": "screen, projection",
+      "type": "text/css",
+      "href": "http://www.website.com/_ui/desktop/assets/css/common.css" } ] },
+  { "event": "closetag", "data": [ "link" ] },
+  { "event": "text", "data": [ " " ] },
+  { "event": "closeconditionalcomment", "data": [ "--<![endif]" ] } ]
+}
