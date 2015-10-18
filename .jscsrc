@@ -13,7 +13,6 @@
 
     "disallowEmptyBlocks": true,
 
-    "disallowSpaceAfterPrefixUnaryOperators": ["!"],
     "disallowSpaceBeforeBinaryOperators": [","],
     "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
     "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
