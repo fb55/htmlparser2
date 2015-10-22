@@ -84,14 +84,14 @@
         },
         {
             "event": "attribute",
-            "data": ["rdf:about", "http://sfbay.craigslist.org/ccc/"]
+            "data": ["rdf:about", "https://github.com/fb55/htmlparser2/"]
         },
         {
             "event": "opentag",
             "data": [
                 "channel",
                 {
-                    "rdf:about": "http://sfbay.craigslist.org/ccc/"
+                    "rdf:about": "https://github.com/fb55/htmlparser2/"
                 }
             ]
         },
@@ -109,7 +109,7 @@
         },
         {
             "event": "text",
-            "data": ["craigslist | all community in SF bay area"]
+            "data": ["A title to parse and remember"]
         },
         {
             "event": "closetag",
@@ -129,7 +129,7 @@
         },
         {
             "event": "text",
-            "data": ["http://sfbay.craigslist.org/ccc/"]
+            "data": ["https://github.com/fb55/htmlparser2/"]
         },
         {
             "event": "closetag",
@@ -185,7 +185,7 @@
         },
         {
             "event": "text",
-            "data": ["Copyright 2011 craigslist, inc."]
+            "data": ["Copyright 2015 the authors"]
         },
         {
             "event": "closetag",
@@ -205,7 +205,7 @@
         },
         {
             "event": "text",
-            "data": ["webmaster@craigslist.org"]
+            "data": ["webmaster@thisisafakedoma.in"]
         },
         {
             "event": "closetag",
@@ -225,7 +225,7 @@
         },
         {
             "event": "text",
-            "data": ["webmaster@craigslist.org"]
+            "data": ["webmaster@thisisafakedoma.in"]
         },
         {
             "event": "closetag",
@@ -245,7 +245,7 @@
         },
         {
             "event": "text",
-            "data": ["http://sfbay.craigslist.org/ccc//"]
+            "data": ["https://github.com/fb55/htmlparser2/"]
         },
         {
             "event": "closetag",
@@ -265,7 +265,7 @@
         },
         {
             "event": "text",
-            "data": ["craigslist | all community in SF bay area"]
+            "data": ["A title to parse and remember"]
         },
         {
             "event": "closetag",
@@ -387,7 +387,7 @@
             "event": "attribute",
             "data": [
                 "rdf:resource",
-                "http://sfbay.craigslist.org/sby/muc/2681301534.html"
+                "http://somefakesite/path/to/something.html"
             ]
         },
         {
@@ -395,7 +395,7 @@
             "data": [
                 "rdf:li",
                 {
-                    "rdf:resource": "http://sfbay.craigslist.org/sby/muc/2681301534.html"
+                    "rdf:resource": "http://somefakesite/path/to/something.html"
                 }
             ]
         },
@@ -437,17 +437,14 @@
         },
         {
             "event": "attribute",
-            "data": [
-                "rdf:about",
-                "http://sfbay.craigslist.org/sby/muc/2681301534.html"
-            ]
+            "data": ["rdf:about", "http://somefakesite/path/to/something.html"]
         },
         {
             "event": "opentag",
             "data": [
                 "item",
                 {
-                    "rdf:about": "http://sfbay.craigslist.org/sby/muc/2681301534.html"
+                    "rdf:about": "http://somefakesite/path/to/something.html"
                 }
             ]
         },
@@ -469,7 +466,7 @@
         },
         {
             "event": "text",
-            "data": [" Music Equipment Repair and Consignment "]
+            "data": [" Fast HTML Parsing "]
         },
         {
             "event": "cdataend",
@@ -493,7 +490,7 @@
         },
         {
             "event": "text",
-            "data": ["\nhttp://sfbay.craigslist.org/sby/muc/2681301534.html\n"]
+            "data": ["\nhttp://somefakesite/path/to/something.html\n"]
         },
         {
             "event": "closetag",
@@ -518,7 +515,7 @@
         {
             "event": "text",
             "data": [
-                "\nSan Jose Rock Shop offers musical instrument repair and consignment! (408) 215-2065<br> <br> We are pleased to announce our NEW LOCATION: 1199 N 5th st. San Jose, ca 95112. Please call ahead, by appointment only.<br> <br> Recently featured by Metro Newspaper in their 2011 Best of the Silicon Valley edition see it online here:<br> <a href=\"http://www.metroactive.com/best-of-silicon-valley/2011/music-nightlife/editor-picks.html\" rel=\"nofollow\">http://www.metroactive.com/best-of-silicon-valley/2011/music-nightlife/editor-picks.html</a><br> <br> Guitar Set up (acoustic and electronic) $40!<!-- END CLTAGS -->\n"
+                "\nGreat test content<br>A link: <a href=\"http://github.com\">Github</a>\n"
             ]
         },
         {
@@ -583,7 +580,7 @@
         },
         {
             "event": "text",
-            "data": ["Copyright 2011 craigslist, inc."]
+            "data": ["Copyright 2015 the authors"]
         },
         {
             "event": "closetag",
@@ -603,7 +600,7 @@
         },
         {
             "event": "text",
-            "data": ["\nhttp://sfbay.craigslist.org/sby/muc/2681301534.html\n"]
+            "data": ["\nhttp://somefakesite/path/to/something.html\n"]
         },
         {
             "event": "closetag",
@@ -627,7 +624,7 @@
         },
         {
             "event": "text",
-            "data": [" Music Equipment Repair and Consignment "]
+            "data": [" Fast HTML Parsing "]
         },
         {
             "event": "cdataend",
@@ -697,7 +694,7 @@
             "event": "attribute",
             "data": [
                 "rdf:about",
-                "http://sfbay.craigslist.org/eby/rid/2685010755.html"
+                "http://somefakesite/path/to/something-else.html"
             ]
         },
         {
@@ -705,7 +702,7 @@
             "data": [
                 "item",
                 {
-                    "rdf:about": "http://sfbay.craigslist.org/eby/rid/2685010755.html"
+                    "rdf:about": "http://somefakesite/path/to/something-else.html"
                 }
             ]
         },
@@ -727,9 +724,7 @@
         },
         {
             "event": "text",
-            "data": [
-                "\nRide Offered - Oakland/BART to LA/SFV - TODAY 3PM 11/04 (oakland north / temescal)\n"
-            ]
+            "data": ["\nThis space intentionally left blank\n"]
         },
         {
             "event": "cdataend",
@@ -753,7 +748,7 @@
         },
         {
             "event": "text",
-            "data": ["\nhttp://sfbay.craigslist.org/eby/rid/2685010755.html\n"]
+            "data": ["\nhttp://somefakesite/path/to/something-else.html\n"]
         },
         {
             "event": "closetag",
@@ -777,9 +772,7 @@
         },
         {
             "event": "text",
-            "data": [
-                "\nIm offering a lift for up to two people from Oakland (or near any BART station in the East Bay/580/880 Corridor, or San Jose/Morgan Hill, Gilroy) to the San Fernando Valley / Los Angeles area. Specifically, Im leaving from Oakland between 2:30 and 3:00pm (this is flexible, but if I leave too late my girlfriend will kill me), and heading to Woodland Hills via the 580, I-5, 405, and 101.<!-- END CLTAGS -->\n"
-            ]
+            "data": ["\nThe early bird gets the worm\n"]
         },
         {
             "event": "cdataend",
@@ -843,7 +836,7 @@
         },
         {
             "event": "text",
-            "data": ["Copyright 2011 craigslist, inc."]
+            "data": ["Copyright 2015 the authors"]
         },
         {
             "event": "closetag",
@@ -863,7 +856,7 @@
         },
         {
             "event": "text",
-            "data": ["\nhttp://sfbay.craigslist.org/eby/rid/2685010755.html\n"]
+            "data": ["\nhttp://somefakesite/path/to/something-else.html\n"]
         },
         {
             "event": "closetag",
@@ -887,9 +880,7 @@
         },
         {
             "event": "text",
-            "data": [
-                "\nRide Offered - Oakland/BART to LA/SFV - TODAY 3PM 11/04 (oakland north / temescal)\n"
-            ]
+            "data": ["\nThis space intentionally left blank\n"]
         },
         {
             "event": "cdataend",
