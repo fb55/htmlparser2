@@ -100,13 +100,12 @@ describe("API", function() {
 
         var p = new htmlparser2.Parser(
             {
-                onparserinit(parser) {
+                onparserinit: function(parser) {
                     assert(parser._tokenizer instanceof CustomTokenizer);
                 }
             },
             { Tokenizer: CustomTokenizer }
         );
-        p.write("");
         p.done();
     });
 });
