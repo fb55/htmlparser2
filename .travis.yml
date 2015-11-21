@@ -1,8 +1,16 @@
 language: node_js
 node_js:
-  - 0.10
-  - 0.11
+  - stable
+  - unstable
+  - 5.1
+  - 4.2
+  - 0.12
 
 sudo: false
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: unstable
 
 script: npm run coveralls
