@@ -87,4 +87,25 @@ describe("API", function() {
 
         assert.equal(p.startIndex, 3);
     });
+
+    it("should support custom tokenizer", function() {
+        function CustomTokenizer(options, cbs) {
+            htmlparser2.Tokenizer.call(this, options, cbs);
+            return this;
+        }
+        CustomTokenizer.prototype = Object.create(
+            htmlparser2.Tokenizer.prototype
+        );
+        CustomTokenizer.prototype.constructor = CustomTokenizer;
+
+        var p = new htmlparser2.Parser(
+            {
+                onparserinit: function(parser) {
+                    assert(parser._tokenizer instanceof CustomTokenizer);
+                }
+            },
+            { Tokenizer: CustomTokenizer }
+        );
+        p.done();
+    });
 });
