@@ -9,7 +9,7 @@ A forgiving HTML/XML/RSS parser. The parser can handle streams and provides a ca
 
 ## Installation
 	npm install htmlparser2
-	
+
 A live demo of htmlparser2 is available [here](http://demos.forbeslindesay.co.uk/htmlparser2/).
 
 ## Usage
@@ -37,8 +37,8 @@ parser.end();
 
 Output (simplified):
 
-```javascript
---> Xyz 
+```
+--> Xyz
 JS! Hooray!
 --> var foo = '<<bar>>';
 That's it?!
