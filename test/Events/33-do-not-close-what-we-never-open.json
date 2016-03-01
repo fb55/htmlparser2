@@ -32,19 +32,6 @@
       ]
     },
     {
-      "event": "opentag",
-      "data": [
-        "a",
-        {}
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "a"
-      ]
-    },
-    {
       "event": "closetag",
       "data": [
         "p"
