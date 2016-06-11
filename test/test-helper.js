@@ -2,8 +2,8 @@ var htmlparser2 = require(".."),
     fs = require("fs"),
     path = require("path"),
     assert = require("assert"),
-	Parser = htmlparser2.Parser,
-	CollectingHandler = htmlparser2.CollectingHandler;
+    Parser = htmlparser2.Parser,
+    CollectingHandler = htmlparser2.CollectingHandler;
 
 exports.writeToParser = function(handler, options, data){
 	var parser = new Parser(handler, options);
