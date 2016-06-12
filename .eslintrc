@@ -1,0 +1,94 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "describe": true,
+    "it": true
+  },
+  "rules": {
+    "eqeqeq": 2,
+    "no-extend-native": 2,
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false,
+        "classes": false
+      }
+    ],
+    "no-caller": 2,
+    "no-irregular-whitespace": 2,
+    "quotes": [
+      2,
+      "double"
+    ],
+    "no-undef": 2,
+    "no-unused-vars": 2,
+    "no-eq-null": 2,
+    "no-proto": 2,
+    "curly": [
+      2,
+      "multi-line"
+    ],
+    "no-mixed-spaces-and-tabs": [
+      2,
+      "smart-tabs"
+    ],
+    "space-infix-ops": 2,
+    "keyword-spacing": [
+      2,
+      {
+        "overrides": {
+          "if": {
+            "after": false
+          },
+          "catch": {
+            "after": false
+          },
+          "for": {
+            "after": false
+          },
+          "while": {
+            "after": false
+          }
+        }
+      }
+    ],
+    "new-cap": 2,
+    "comma-style": [
+      2,
+      "last"
+    ],
+    "dot-notation": 2,
+    "wrap-iife": 2,
+    "no-empty": 2,
+    "space-unary-ops": [
+      2,
+      {
+        "words": false,
+        "nonwords": false
+      }
+    ],
+    "no-with": 2,
+    "no-multi-str": 2,
+    "no-trailing-spaces": 2,
+    "indent": [
+      2,
+      "tab",
+      {
+        "SwitchCase": 1,
+        "VariableDeclarator": 0
+      }
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "consistent-this": [
+      2,
+      "_this"
+    ],
+    "no-extra-semi": 0 // https://github.com/eslint/eslint/issues/6386
+  }
+}
