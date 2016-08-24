@@ -82,10 +82,22 @@ describe("API", function() {
         p.write("foo");
 
         assert.equal(p.startIndex, 0);
+        assert.equal(p.endIndex, 2);
 
         p.write("<bar>");
 
         assert.equal(p.startIndex, 3);
+        assert.equal(p.endIndex, 7);
+    });
+
+    it("should update the position when a single tag is spread across multiple chunks", function() {
+        var p = new htmlparser2.Parser(null);
+
+        p.write("<div ");
+        p.write("foo=bar>");
+
+        assert.equal(p.startIndex, 0);
+        assert.equal(p.endIndex, 12);
     });
 
     it("should support custom tokenizer", function() {
