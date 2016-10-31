@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - stable
   - unstable
-  - 5.1
-  - 4.2
+  - 6
+  - 4
   - 0.12
 
 sudo: false
