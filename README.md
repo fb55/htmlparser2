@@ -10,7 +10,7 @@ A forgiving HTML/XML/RSS parser. The parser can handle streams and provides a ca
 ## Installation
 	npm install htmlparser2
 
-A live demo of htmlparser2 is available [here](http://demos.forbeslindesay.co.uk/htmlparser2/).
+A live demo of htmlparser2 is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
 
 ## Usage
 
