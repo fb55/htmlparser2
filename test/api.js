@@ -1,5 +1,5 @@
 var htmlparser2 = require(".."),
-    assert = require("assert");
+		assert = require("assert");
 
 describe("API", function(){
 
@@ -99,5 +99,55 @@ describe("API", function(){
 			}
 		}, { Tokenizer: CustomTokenizer });
 		p.done();
+	});
+
+	describe("should not parse code blocks", function(){
+		it("with no attributes on code tag", function(){
+			var html = "<code><Span /><Div className=\"foo\">inner</Div></code><h1>header</h1><code><Component prop=\"5\"/></code><span>after</span>";
+			var output = "";
+
+			var p = new htmlparser2.Parser({
+				onopentagname: function(name){
+					output += "<" + name + ">";
+				},
+				onclosetag: function(name){
+					output += "</" + name + ">";
+				},
+				ontext: function(text){
+					output += text;
+				}
+			}, {
+				doNotParseCodeBlocks: true
+			});
+			p.write(html);
+
+			assert.equal(output, html);
+		});
+
+		it("with attributes on code block", function(){
+			var html = "<code lang=\"javascript\"><Span /><Div className=\"foo\">inner</Div></code><div>back to usual</div>";
+			var output = "";
+
+			var p = new htmlparser2.Parser({
+				onopentag: function(name, attribs){
+					output += "<" + name;
+					for(var key in attribs){
+						output += " " + key + "=\"" + attribs[key] + "\"";
+					}
+					output += ">";
+				},
+				onclosetag: function(name){
+					output += "</" + name + ">";
+				},
+				ontext: function(text){
+					output += text;
+				}
+			}, {
+				doNotParseCodeBlocks: true
+			});
+			p.write(html);
+
+			assert.equal(output, html);
+		});
 	});
 });
