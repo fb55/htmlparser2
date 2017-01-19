@@ -1,0 +1,41 @@
+{
+  "name": "Do not close what we never open",
+  "options": {
+    "handler": {},
+    "parser": {}
+  },
+  "html": "<p>Hey! Here is a broken link tag: <a href=\"http://www.example.com/lel...",
+  "expected": [
+    {
+      "event": "opentagname",
+      "data": [
+        "p"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "p",
+        {}
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "Hey! Here is a broken link tag: "
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "a"
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "p"
+      ]
+    }
+  ]
+}
