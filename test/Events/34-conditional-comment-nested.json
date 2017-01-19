@@ -1,0 +1,14 @@
+{
+  "name": "Nested Conditional Comment",
+  "options": {},
+  "html": "<!--[if true]><![if IE 7]><p>This nested comment is displayed in IE 7.</p><![endif]><![endif]-->",
+  "expected":[ 
+    { "event": "openconditionalcomment", "data": [ "[if true]" ] },
+    { "event": "processinginstruction", "data": [ "![if", "![if IE 7]" ] },
+    { "event": "opentagname", "data": [ "p" ] },
+    { "event": "opentag", "data": [ "p", {} ] },
+    { "event": "text", "data": [ "This nested comment is displayed in IE 7." ] },
+    { "event": "closetag", "data": [ "p" ] },
+    { "event": "processinginstruction", "data": [ "![endif]", "![endif]" ] },
+    { "event": "closeconditionalcomment", "data": [ "[endif]" ] } ]
+}
