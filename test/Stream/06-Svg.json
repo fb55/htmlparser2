@@ -1,6 +1,6 @@
 {
   "name": "SVG",
-  "options": {},
+  "options": {"xmlMode": "auto"},
   "file": "Svg.html",
   "expected": [
     {
@@ -162,18 +162,18 @@
     },
     {
       "event": "opentagname",
-      "data": ["polygon"]
+      "data": ["animate"]
     },
     {
       "event": "opentag",
       "data": [
-        "polygon",
+        "animate",
         {}
       ]
     },
     {
       "event": "closetag",
-      "data": ["polygon"]
+      "data": ["animate"]
     },
     {
       "event": "text",
@@ -193,6 +193,48 @@
     {
       "event": "closetag",
       "data": ["polygon"]
+    },
+    {
+      "event": "text",
+      "data": ["\n\t\t"]
+    },
+    {
+      "event": "opentagname",
+      "data": ["g"]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "g",
+        {}
+      ]
+    },
+    {
+      "event": "text",
+      "data": ["\n\t\t\t"]
+    },
+    {
+      "event": "opentagname",
+      "data": ["path"]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "path",
+        {}
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": ["path"]
+    },
+    {
+      "event": "text",
+      "data": ["\n\t\t"]
+    },
+    {
+      "event": "closetag",
+      "data": ["g"]
     },
     {
       "event": "text",
