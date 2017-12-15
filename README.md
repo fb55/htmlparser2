@@ -1,16 +1,18 @@
 # htmlparser2
 
-[![NPM version](http://img.shields.io/npm/v/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
+[![NPM version](https://img.shields.io/npm/v/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
 [![Downloads](https://img.shields.io/npm/dm/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
-[![Build Status](http://img.shields.io/travis/fb55/htmlparser2/master.svg?style=flat)](http://travis-ci.org/fb55/htmlparser2)
-[![Coverage](http://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
+[![Build Status](https://img.shields.io/travis/fb55/htmlparser2/master.svg?style=flat)](https://travis-ci.org/fb55/htmlparser2)
+[![Coverage](https://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
+[![NPM Dependencies](https://david-dm.org/fb55/htmlparser2.svg)](https://david-dm.org/fb55/htmlparser2)
+[![NPM DevDependencies](https://david-dm.org/fb55/htmlparser2/dev-status.svg)](https://david-dm.org/fb55/htmlparser2?type=dev)
 
 A forgiving HTML/XML/RSS parser. The parser can handle streams and provides a callback interface.
 
 ## Installation
 	npm install htmlparser2
 
-A live demo of htmlparser2 is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
+A live demo of htmlparser2 is [available here](https://astexplorer.net/#/2AmVrGuGVJ).
 
 ## Usage
 
