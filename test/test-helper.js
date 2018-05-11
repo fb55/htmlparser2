@@ -1,9 +1,9 @@
-var htmlparser2 = require(".."),
-    fs = require("fs"),
-    path = require("path"),
-    assert = require("assert"),
-    Parser = htmlparser2.Parser,
-    CollectingHandler = htmlparser2.CollectingHandler;
+var htmlparser2 = require("..");
+var fs = require("fs");
+var path = require("path");
+var assert = require("assert");
+var Parser = htmlparser2.Parser;
+var CollectingHandler = htmlparser2.CollectingHandler;
 
 exports.writeToParser = function(handler, options, data) {
     var parser = new Parser(handler, options);
@@ -70,7 +70,7 @@ exports.mochaTest = function(name, root, test) {
         var dir = path.join(root, name);
 
         fs.readdirSync(dir)
-            .filter(RegExp.prototype.test, /^[^\._]/) //ignore all files with a leading dot or underscore
+            .filter(RegExp.prototype.test, /^[^._]/) //ignore all files with a leading dot or underscore
             .map(function(name) {
                 return path.join(dir, name);
             })

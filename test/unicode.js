@@ -1,5 +1,5 @@
-var htmlparser2 = require(".."),
-    assert = require("assert");
+var htmlparser2 = require("..");
+var assert = require("assert");
 
 describe("WritableStream", function() {
     it("should decode fragmented unicode characters", function() {

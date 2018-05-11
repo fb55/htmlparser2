@@ -1,5 +1,5 @@
-var htmlparser2 = require(".."),
-    assert = require("assert");
+var htmlparser2 = require("..");
+var assert = require("assert");
 
 describe("API", function() {
     it("should load all modules", function() {
