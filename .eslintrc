@@ -77,8 +77,7 @@
       2,
       "tab",
       {
-        "SwitchCase": 1,
-        "VariableDeclarator": 0
+        "SwitchCase": 1
       }
     ],
     "linebreak-style": [
