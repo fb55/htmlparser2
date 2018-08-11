@@ -12,8 +12,8 @@ describe("WritableStream", function(){
 			}
 		});
 
-		stream.write(new Buffer([0xE2, 0x82]));
-		stream.write(new Buffer([0xAC]));
+		stream.write(Buffer.from([0xE2, 0x82]));
+		stream.write(Buffer.from([0xAC]));
 		stream.end();
 
 		assert(processed);
