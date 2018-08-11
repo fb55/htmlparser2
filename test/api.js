@@ -100,4 +100,26 @@ describe("API", function(){
 		}, { Tokenizer: CustomTokenizer });
 		p.done();
 	});
+
+	it("should indicate line in each callback", function(){
+		var p = new htmlparser2.Parser({
+			onopentag: function(name, attr, line){
+				assert.equal(line, 1);
+			}
+		},{
+			position: true,
+		});
+
+		p.write("<div></div>");
+
+		p._cbs.onopentag = function(name, attr, line){
+			assert.equal(line, 2);
+		};
+
+		p._cbs.onclosetag = function(name, line){
+			assert.equal(line, 5);
+		};
+
+		p.write("\n<div>\n  Hello\n  World\n  Foobar</div>");
+	});
 });
