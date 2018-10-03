@@ -40,7 +40,7 @@
         "domutils": "^1.5.1",
         "entities": "^1.1.1",
         "inherits": "^2.0.1",
-        "readable-stream": "^2.0.2"
+        "readable-stream": "^3.0.6"
     },
     "devDependencies": {
         "coveralls": "^3.0.1",
