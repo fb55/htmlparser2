@@ -225,6 +225,62 @@
       ]
     },
     {
+      "event": "text",
+      "data": [
+        "\n\t\t\t\t"
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "title"
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "title",
+        {}
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "x"
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "title"
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "\n\t\t\t\t"
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": ["animate"]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "animate",
+        {}
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": ["animate"]
+    },
+    {
+      "event": "text",
+      "data": ["\n\t\t\t"]
+    },
+    {
       "event": "closetag",
       "data": ["path"]
     },
