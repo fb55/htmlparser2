@@ -1,6 +1,5 @@
 {
     "name": "SVG",
-    "options": { "xmlMode": "auto" },
     "file": "Svg.html",
     "expected": [
         {
@@ -101,6 +100,26 @@
                     "xmlns:xlink": "http://www.w3.org/1999/xlink"
                 }
             ]
+        },
+        {
+            "event": "text",
+            "data": ["\n\t\t"]
+        },
+        {
+            "event": "opentagname",
+            "data": ["title"]
+        },
+        {
+            "event": "opentag",
+            "data": ["title", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Test"]
+        },
+        {
+            "event": "closetag",
+            "data": ["title"]
         },
         {
             "event": "text",
