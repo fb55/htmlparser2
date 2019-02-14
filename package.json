@@ -40,11 +40,11 @@
         "domutils": "^1.5.1",
         "entities": "^1.1.1",
         "inherits": "^2.0.1",
-        "readable-stream": "^3.0.6"
+        "readable-stream": "^3.1.1"
     },
     "devDependencies": {
         "coveralls": "^3.0.1",
-        "eslint": "^5.7.0",
+        "eslint": "^5.13.0",
         "istanbul": "^0.4.3",
         "mocha": "^5.2.0",
         "mocha-lcov-reporter": "^1.2.0"
