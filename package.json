@@ -44,7 +44,7 @@
     },
     "devDependencies": {
         "coveralls": "^3.0.1",
-        "eslint": "^5.13.0",
+        "eslint": "^6.0.0",
         "istanbul": "^0.4.3",
         "mocha": "^6.1.4",
         "mocha-lcov-reporter": "^1.2.0"
