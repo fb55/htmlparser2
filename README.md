@@ -89,3 +89,10 @@ This is a fork of the `htmlparser` module. The main difference is that this is i
 The parser now provides a callback interface close to [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)). As a result, old handlers won't work anymore.
 
 The `DefaultHandler` and the `RssHandler` were renamed to clarify their purpose (to `DomHandler` and `FeedHandler`). The old names are still available when requiring `htmlparser2`, your code should work as expected.
+
+## Security contact information
+
+To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
+Tidelift will coordinate the fix and disclosure.
+
+[Get supported htmlparser2 with the Tidelift Subscription](https://tidelift.com/subscription/pkg/npm-htmlparser2?utm_source=npm-htmlparser2&utm_medium=referral&utm_campaign=readme)
