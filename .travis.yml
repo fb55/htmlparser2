@@ -1,10 +1,4 @@
 language: node_js
 node_js:
-  - lts/*
-
-sudo: false
-
-matrix:
-  fast_finish: true
-
-script: npm run coveralls
+    - lts/*
+after_success: npm run coverage
