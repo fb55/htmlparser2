@@ -1,9 +1,9 @@
-var helper = require("./test-helper.js");
+import * as helper from "../__fixtures__/test-helper";
 
-helper.mochaTest("Events", __dirname, function(test, cb) {
+helper.createSuite("Events", (test, cb) =>
     helper.writeToParser(
         helper.getEventCollector(cb),
         test.options.parser,
         test.html
-    );
-});
+    )
+);

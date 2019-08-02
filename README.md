@@ -5,33 +5,40 @@
 [![Build Status](http://img.shields.io/travis/fb55/htmlparser2/master.svg?style=flat)](http://travis-ci.org/fb55/htmlparser2)
 [![Coverage](http://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
 
-A forgiving HTML/XML/RSS parser. The parser can handle streams and provides a callback interface.
+A forgiving HTML/XML/RSS parser.
+The parser can handle streams and provides a callback interface.
 
 ## Installation
-	npm install htmlparser2
+
+    npm install htmlparser2
 
 A live demo of htmlparser2 is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
 
 ## Usage
 
 ```javascript
-var htmlparser = require("htmlparser2");
-var parser = new htmlparser.Parser({
-	onopentag: function(name, attribs){
-		if(name === "script" && attribs.type === "text/javascript"){
-			console.log("JS! Hooray!");
-		}
-	},
-	ontext: function(text){
-		console.log("-->", text);
-	},
-	onclosetag: function(tagname){
-		if(tagname === "script"){
-			console.log("That's it?!");
-		}
-	}
-}, {decodeEntities: true});
-parser.write("Xyz <script type='text/javascript'>var foo = '<<bar>>';</ script>");
+const htmlparser2 = require("htmlparser2");
+const parser = new htmlparser2.Parser(
+    {
+        onopentag(name, attribs) {
+            if (name === "script" && attribs.type === "text/javascript") {
+                console.log("JS! Hooray!");
+            }
+        },
+        ontext(text) {
+            console.log("-->", text);
+        },
+        onclosetag(tagname) {
+            if (tagname === "script") {
+                console.log("That's it?!");
+            }
+        }
+    },
+    { decodeEntities: true }
+);
+parser.write(
+    "Xyz <script type='text/javascript'>var foo = '<<bar>>';</ script>"
+);
 parser.end();
 ```
 
@@ -49,6 +56,7 @@ That's it?!
 Read more about the parser and its options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ## Get a DOM
+
 The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
 
 The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler). Have a look at it for further information.
@@ -56,16 +64,14 @@ The `DomHandler`, while still bundled with this module, was moved to its [own mo
 ## Parsing RSS/RDF/Atom Feeds
 
 ```javascript
-new htmlparser.FeedHandler(function(<error> error, <object> feed){
-    ...
-});
+const feed = htmlparser2.parseFeed(content, options);
 ```
 
-Note: While the provided feed handler works for most feeds, you might want to use  [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
+Note: While the provided feed handler works for most feeds, you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
 
 ## Performance
 
-After having some artificial benchmarks for some time, __@AndreasMadsen__ published his [`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on real-world websites.
+After having some artificial benchmarks for some time, **@AndreasMadsen** published his [`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on real-world websites.
 
 At the time of writing, the latest versions of all supported parsers show the following performance characteristics on [Travis CI](https://travis-ci.org/AndreasMadsen/htmlparser-benchmark/builds/10805007) (please note that Travis doesn't guarantee equal conditions for all tests):
 
@@ -84,9 +90,12 @@ sax            : 49.6513 ms/file ± 26.6032
 
 ## How does this module differ from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 
-This is a fork of the `htmlparser` module. The main difference is that this is intended to be used only with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)). `htmlparser2` was rewritten multiple times and, while it maintains an API that's compatible with `htmlparser` in most cases, the projects don't share any code anymore.
+This module started as a fork of the `htmlparser` module.
+The main difference is that `htmlparser2` is intended to be used only with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)).
+`htmlparser2` was rewritten multiple times and, while it maintains an API that's compatible with `htmlparser` in most cases, the projects don't share any code anymore.
 
-The parser now provides a callback interface close to [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)). As a result, old handlers won't work anymore.
+The parser now provides a callback interface inspired by [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)).
+As a result, old handlers won't work anymore.
 
 The `DefaultHandler` and the `RssHandler` were renamed to clarify their purpose (to `DomHandler` and `FeedHandler`). The old names are still available when requiring `htmlparser2`, your code should work as expected.
 
