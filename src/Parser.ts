@@ -235,7 +235,10 @@ export class Parser extends EventEmitter {
             name = name.toLowerCase();
         }
         this._tagname = name;
-        if (!this._options.xmlMode && name in openImpliesClose) {
+        if (
+            !this._options.xmlMode &&
+            Object.prototype.hasOwnProperty.call(openImpliesClose, name)
+        ) {
             for (
                 let el;
                 // @ts-ignore
