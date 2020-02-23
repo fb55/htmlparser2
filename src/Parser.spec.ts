@@ -51,6 +51,33 @@ describe("API", () => {
         expect(processed).toBeTruthy();
     });
 
+    test("should back out of numeric entities (#125)", () => {
+        let finished = false;
+        let text = "";
+        const p = new Parser({
+            ontext(data) {
+                text += data;
+            },
+            onend() {
+                finished = true;
+            }
+        });
+
+        p.end("id=770&#anchor");
+
+        expect(finished).toBeTruthy();
+        expect(text).toBe("id=770&#anchor");
+
+        p.reset();
+        text = "";
+        finished = false;
+
+        p.end("0&#xn");
+
+        expect(finished).toBeTruthy();
+        expect(text).toBe("0&#xn");
+    });
+
     test("should update the position", () => {
         const p = new Parser(null);
 
@@ -75,10 +102,10 @@ describe("API", () => {
         expect(p.endIndex).toBe(12);
     });
 
-    test("should parse <__proto__>", () => {
+    test("should parse <__proto__> (#387)", () => {
         const p = new Parser(null);
 
-        // Should not throw (see #387)
+        // Should not throw
         p.write("<__proto__>");
     });
 
