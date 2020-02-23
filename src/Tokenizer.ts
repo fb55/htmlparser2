@@ -297,7 +297,7 @@ export default class Tokenizer {
             this._index--;
         }
     }
-    _stateBeforeCloseingTagName(c: string) {
+    _stateBeforeClosingTagName(c: string) {
         if (whitespace(c)) {
             // ignore
         } else if (c === ">") {
@@ -314,14 +314,14 @@ export default class Tokenizer {
             this._sectionStart = this._index;
         }
     }
-    _stateInCloseingTagName(c: string) {
+    _stateInClosingTagName(c: string) {
         if (c === ">" || whitespace(c)) {
             this._emitToken("onclosetag");
             this._state = State.AfterClosingTagName;
             this._index--;
         }
     }
-    _stateAfterCloseingTagName(c: string) {
+    _stateAfterClosingTagName(c: string) {
         //skip everything until ">"
         if (c === ">") {
             this._state = State.Text;
@@ -709,7 +709,7 @@ export default class Tokenizer {
             } else if (this._state === State.InTagName) {
                 this._stateInTagName(c);
             } else if (this._state === State.InClosingTagName) {
-                this._stateInCloseingTagName(c);
+                this._stateInClosingTagName(c);
             } else if (this._state === State.BeforeTagName) {
                 this._stateBeforeTagName(c);
             } else if (this._state === State.AfterAttributeName) {
@@ -719,9 +719,9 @@ export default class Tokenizer {
             } else if (this._state === State.BeforeAttributeValue) {
                 this._stateBeforeAttributeValue(c);
             } else if (this._state === State.BeforeClosingTagName) {
-                this._stateBeforeCloseingTagName(c);
+                this._stateBeforeClosingTagName(c);
             } else if (this._state === State.AfterClosingTagName) {
-                this._stateAfterCloseingTagName(c);
+                this._stateAfterClosingTagName(c);
             } else if (this._state === State.BeforeSpecial) {
                 this._stateBeforeSpecial(c);
             } else if (this._state === State.AfterComment1) {
