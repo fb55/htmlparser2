@@ -51,6 +51,24 @@ JS! Hooray!
 That's it?!
 ```
 
+### Usage with streams
+While the `Parser` interface closely resembles Node.js streams, it's not a 100% match. Use the `WritableStream` interface to process a streaming input:
+
+```javascript
+const htmlparser2 = require("htmlparser2");
+const parserStream = new htmlparser2.WritableStream(
+    {
+        ontext(text) {
+            console.log("Streaming:", text);
+        }
+    },
+    { decodeEntities: true }
+);
+
+const htmlStream = getHtmlStreamFromSomewhere();
+htmlStream.pipe(parserStream).on('finish', () => console.log('done'));
+```
+
 ## Documentation
 
 Read more about the parser and its options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
