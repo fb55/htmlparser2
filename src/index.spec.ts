@@ -4,13 +4,13 @@ import { Element } from "domhandler";
 // Add an `attributes` prop to the Element for now, to make it possible for Jest to render DOM nodes.
 Object.defineProperty(Element.prototype, "attributes", {
     get() {
-        return Object.keys(this.attribs).map(name => ({
+        return Object.keys(this.attribs).map((name) => ({
             name,
-            value: this.attribs[name]
+            value: this.attribs[name],
         }));
     },
     configurable: true,
-    enumerable: false
+    enumerable: false,
 });
 
 describe("Index", () => {
@@ -19,7 +19,7 @@ describe("Index", () => {
         expect(dom).toMatchSnapshot();
     });
 
-    test("createDomStream", done => {
+    test("createDomStream", (done) => {
         const domStream = createDomStream((err, dom) => {
             expect(err).toBeNull();
             expect(dom).toMatchSnapshot();

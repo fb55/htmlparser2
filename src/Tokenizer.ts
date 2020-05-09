@@ -74,13 +74,13 @@ const enum State {
     BeforeNumericEntity, //#
     InNamedEntity,
     InNumericEntity,
-    InHexEntity //X
+    InHexEntity, //X
 }
 
 const enum Special {
     None = 1,
     Script,
-    Style
+    Style,
 }
 
 function whitespace(c: string): boolean {
@@ -561,9 +561,10 @@ export default class Tokenizer {
                     this._sectionStart + 1,
                     this._index
                 ),
-                map = this._xmlMode ? xmlMap : entityMap;
+                map: Record<string, string> = this._xmlMode
+                    ? xmlMap
+                    : entityMap;
             if (Object.prototype.hasOwnProperty.call(map, entity)) {
-                // @ts-ignore
                 this._emitPartial(map[entity]);
                 this._sectionStart = this._index + 1;
             }
@@ -578,8 +579,9 @@ export default class Tokenizer {
             // The min length of legacy entities is 2
             const entity = this._buffer.substr(start, limit);
             if (Object.prototype.hasOwnProperty.call(legacyMap, entity)) {
-                // @ts-ignore
-                this._emitPartial(legacyMap[entity]);
+                this._emitPartial(
+                    (legacyMap as Record<string, string>)[entity]
+                );
                 this._sectionStart += limit + 1;
                 return;
             } else {

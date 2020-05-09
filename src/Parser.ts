@@ -8,12 +8,12 @@ const formTags = new Set([
     "select",
     "button",
     "datalist",
-    "textarea"
+    "textarea",
 ]);
 
 const pTag = new Set(["p"]);
 
-const openImpliesClose = {
+const openImpliesClose: Record<string, Set<string>> = {
     tr: new Set(["tr", "th", "td"]),
     th: new Set(["th"]),
     td: new Set(["thead", "th", "td"]),
@@ -60,7 +60,7 @@ const openImpliesClose = {
     rt: new Set(["rt", "rp"]),
     rp: new Set(["rt", "rp"]),
     tbody: new Set(["thead", "tbody"]),
-    tfoot: new Set(["thead", "tbody"])
+    tfoot: new Set(["thead", "tbody"]),
 };
 
 const voidElements = new Set([
@@ -82,7 +82,7 @@ const voidElements = new Set([
     "param",
     "source",
     "track",
-    "wbr"
+    "wbr",
 ]);
 
 const foreignContextElements = new Set(["math", "svg"]);
@@ -96,7 +96,7 @@ const htmlIntegrationElements = new Set([
     "annotation-xml",
     "foreignObject",
     "desc",
-    "title"
+    "title",
 ]);
 
 export interface ParserOptions {
@@ -204,11 +204,11 @@ export class Parser extends EventEmitter {
             "lowerCaseAttributeNames" in this._options
                 ? !!this._options.lowerCaseAttributeNames
                 : !this._options.xmlMode;
-        this._tokenizer = new (this._options.Tokenizer || Tokenizer)(
+        this._tokenizer = new (this._options.Tokenizer ?? Tokenizer)(
             this._options,
             this
         );
-        if (this._cbs.onparserinit) this._cbs.onparserinit(this);
+        this._cbs.onparserinit?.(this);
     }
 
     _updatePosition(initialOffset: number) {
@@ -225,9 +225,10 @@ export class Parser extends EventEmitter {
     //Tokenizer event handlers
     ontext(data: string) {
         this._updatePosition(1);
-        // @ts-ignore
-        this.endIndex--;
-        if (this._cbs.ontext) this._cbs.ontext(data);
+        if (this.endIndex !== null) {
+            this.endIndex--;
+        }
+        this._cbs.ontext?.(data);
     }
 
     onopentagname(name: string) {
@@ -241,8 +242,7 @@ export class Parser extends EventEmitter {
         ) {
             for (
                 let el;
-                // @ts-ignore
-                openImpliesClose[name].has(
+                openImpliesClose[name]?.has(
                     (el = this._stack[this._stack.length - 1])
                 );
                 this.onclosetag(el)
@@ -256,16 +256,14 @@ export class Parser extends EventEmitter {
                 this._foreignContext.push(false);
             }
         }
-        if (this._cbs.onopentagname) this._cbs.onopentagname(name);
+        this._cbs.onopentagname?.(name);
         if (this._cbs.onopentag) this._attribs = {};
     }
 
     onopentagend() {
         this._updatePosition(1);
         if (this._attribs) {
-            if (this._cbs.onopentag) {
-                this._cbs.onopentag(this._tagname, this._attribs);
-            }
+            this._cbs.onopentag?.(this._tagname, this._attribs);
             this._attribs = null;
         }
         if (
@@ -297,8 +295,10 @@ export class Parser extends EventEmitter {
             if (pos !== -1) {
                 if (this._cbs.onclosetag) {
                     pos = this._stack.length - pos;
-                    // @ts-ignore
-                    while (pos--) this._cbs.onclosetag(this._stack.pop());
+                    while (pos--) {
+                        // We know the stack has sufficient elements.
+                        this._cbs.onclosetag(this._stack.pop() as string);
+                    }
                 } else this._stack.length = pos;
             } else if (name === "p" && !this._options.xmlMode) {
                 this.onopentagname(name);
@@ -328,9 +328,7 @@ export class Parser extends EventEmitter {
         //self-closing tags will be on the top of the stack
         //(cheaper check than in onclosetag)
         if (this._stack[this._stack.length - 1] === name) {
-            if (this._cbs.onclosetag) {
-                this._cbs.onclosetag(name);
-            }
+            this._cbs.onclosetag?.(name);
             this._stack.pop();
         }
     }
@@ -347,8 +345,7 @@ export class Parser extends EventEmitter {
     }
 
     onattribend() {
-        if (this._cbs.onattribute)
-            this._cbs.onattribute(this._attribname, this._attribvalue);
+        this._cbs.onattribute?.(this._attribname, this._attribvalue);
         if (
             this._attribs &&
             !Object.prototype.hasOwnProperty.call(
@@ -389,23 +386,23 @@ export class Parser extends EventEmitter {
 
     oncomment(value: string) {
         this._updatePosition(4);
-        if (this._cbs.oncomment) this._cbs.oncomment(value);
-        if (this._cbs.oncommentend) this._cbs.oncommentend();
+        this._cbs.oncomment?.(value);
+        this._cbs.oncommentend?.();
     }
 
     oncdata(value: string) {
         this._updatePosition(1);
         if (this._options.xmlMode || this._options.recognizeCDATA) {
-            if (this._cbs.oncdatastart) this._cbs.oncdatastart();
-            if (this._cbs.ontext) this._cbs.ontext(value);
-            if (this._cbs.oncdataend) this._cbs.oncdataend();
+            this._cbs.oncdatastart?.();
+            this._cbs.ontext?.(value);
+            this._cbs.oncdataend?.();
         } else {
             this.oncomment(`[CDATA[${value}]]`);
         }
     }
 
     onerror(err: Error) {
-        if (this._cbs.onerror) this._cbs.onerror(err);
+        this._cbs.onerror?.(err);
     }
 
     onend() {
@@ -416,18 +413,18 @@ export class Parser extends EventEmitter {
                 this._cbs.onclosetag(this._stack[--i])
             );
         }
-        if (this._cbs.onend) this._cbs.onend();
+        this._cbs.onend?.();
     }
 
     //Resets the parser to a blank state, ready to parse a new HTML document
     reset() {
-        if (this._cbs.onreset) this._cbs.onreset();
+        this._cbs.onreset?.();
         this._tokenizer.reset();
         this._tagname = "";
         this._attribname = "";
         this._attribs = null;
         this._stack = [];
-        if (this._cbs.onparserinit) this._cbs.onparserinit(this);
+        this._cbs.onparserinit?.(this);
     }
 
     //Parses a complete HTML document and pushes it to the handler

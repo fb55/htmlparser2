@@ -66,7 +66,7 @@ export class FeedHandler extends DomHandler {
                 }
 
                 addConditionally(feed, "author", "email", childs, true);
-                feed.items = getElements("entry", childs).map(item => {
+                feed.items = getElements("entry", childs).map((item) => {
                     const entry: FeedItem = {};
                     const { children } = item;
 
@@ -179,8 +179,7 @@ function addConditionally<T>(
     recurse = false
 ) {
     const tmp = fetch(what, where, recurse);
-    // @ts-ignore
-    if (tmp) obj[prop] = tmp;
+    if (tmp) obj[prop] = tmp as any;
 }
 
 function isValidFeed(value: string) {

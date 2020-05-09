@@ -57,7 +57,7 @@ export const EVENTS = {
     opentag: 2,
     opentagname: 1,
     error: 1,
-    end: 0
+    end: 0,
 };
 
 /*

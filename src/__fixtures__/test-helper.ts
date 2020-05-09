@@ -32,7 +32,7 @@ export function getEventCollector(
         onerror: cb,
         onend() {
             cb(null, handler.events.reduce(eventReducer, []));
-        }
+        },
     });
 
     return handler;
@@ -51,12 +51,11 @@ function eventReducer(events: Event[], arr: [string, ...unknown[]]): Event[] {
         events[events.length - 1].event === "text"
     ) {
         // Combine text nodes
-        // @ts-ignore
-        events[events.length - 1].data[0] += arr[1];
+        (events[events.length - 1].data[0] as string) += arr[1];
     } else {
         events.push({
             event: arr[0].substr(2),
-            data: arr.slice(1)
+            data: arr.slice(1),
         });
     }
 
@@ -104,13 +103,13 @@ export function createSuite(
         const dir = path.join(__dirname, name);
 
         fs.readdirSync(dir)
-            .filter(file => !file.startsWith(".") && !file.startsWith("_"))
-            .map(name => path.join(dir, name))
+            .filter((file) => !file.startsWith(".") && !file.startsWith("_"))
+            .map((name) => path.join(dir, name))
             .map(require)
             .forEach(runTest);
     }
 
     function runTest(file: TestFile) {
-        test(file.name, done => getResult(file, getCallback(file, done)));
+        test(file.name, (done) => getResult(file, getCallback(file, done)));
     }
 }

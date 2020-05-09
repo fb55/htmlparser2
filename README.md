@@ -32,7 +32,7 @@ const parser = new htmlparser2.Parser(
             if (tagname === "script") {
                 console.log("That's it?!");
             }
-        }
+        },
     },
     { decodeEntities: true }
 );
@@ -52,6 +52,7 @@ That's it?!
 ```
 
 ### Usage with streams
+
 While the `Parser` interface closely resembles Node.js streams, it's not a 100% match. Use the `WritableStream` interface to process a streaming input:
 
 ```javascript
@@ -60,13 +61,13 @@ const parserStream = new htmlparser2.WritableStream(
     {
         ontext(text) {
             console.log("Streaming:", text);
-        }
+        },
     },
     { decodeEntities: true }
 );
 
 const htmlStream = getHtmlStreamFromSomewhere();
-htmlStream.pipe(parserStream).on('finish', () => console.log('done'));
+htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
 ```
 
 ## Documentation

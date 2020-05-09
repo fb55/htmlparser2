@@ -4,7 +4,7 @@ describe("API", () => {
     test("should work without callbacks", () => {
         const p = new Parser(null, {
             xmlMode: true,
-            lowerCaseAttributeNames: true
+            lowerCaseAttributeNames: true,
         });
 
         p.end("<a foo><bar></a><!-- --><![CDATA[]]]><?foo?><!bar><boo/>boohay");
@@ -23,14 +23,16 @@ describe("API", () => {
         p.reset();
 
         //remove method
-        p._cbs.onopentag = () => {};
+        p._cbs.onopentag = () => {
+            /* Ignore */
+        };
         p.write("<a foo");
         delete p._cbs.onopentag;
         p.write(">");
 
         //pause/resume
         let processed = false;
-        p._cbs.ontext = t => {
+        p._cbs.ontext = (t) => {
             expect(t).toBe("foo");
             processed = true;
         };
@@ -60,7 +62,7 @@ describe("API", () => {
             },
             onend() {
                 finished = true;
-            }
+            },
         });
 
         p.end("id=770&#anchor");
@@ -116,7 +118,7 @@ describe("API", () => {
             {
                 onparserinit(parser: Parser) {
                     expect(parser._tokenizer).toBeInstanceOf(CustomTokenizer);
-                }
+                },
             },
             { Tokenizer: CustomTokenizer }
         );

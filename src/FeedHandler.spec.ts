@@ -9,7 +9,9 @@ const documents = path.join(__dirname, "__fixtures__", "Documents");
 
 helper.createSuite("Feeds", (test, cb) => {
     const file = fs.readFileSync(path.join(documents, test.file), "utf8");
-    const handler: FeedHandler = new FeedHandler(err => cb(err, handler.feed));
+    const handler: FeedHandler = new FeedHandler((err) =>
+        cb(err, handler.feed)
+    );
 
     helper.writeToParser(handler, { xmlMode: true }, file);
 });
