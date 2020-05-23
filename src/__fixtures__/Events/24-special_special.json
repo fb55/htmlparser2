@@ -1,8 +1,72 @@
 {
     "name": "Special special tags",
     "options": {},
-    "html": "<sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
+    "html": "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
     "expected": [
+        {
+            "event": "opentagname",
+            "data": ["title"]
+        },
+        {
+            "event": "opentag",
+            "data": ["title", {}]
+        },
+        {
+            "event": "text",
+            "data": ["<b>foo</b><title>"]
+        },
+        {
+            "event": "closetag",
+            "data": ["title"]
+        },
+        {
+            "event": "opentagname",
+            "data": ["sitle"]
+        },
+        {
+            "event": "opentag",
+            "data": ["sitle", {}]
+        },
+        {
+            "event": "opentagname",
+            "data": ["b"]
+        },
+        {
+            "event": "opentag",
+            "data": ["b", {}]
+        },
+        {
+            "event": "closetag",
+            "data": ["b"]
+        },
+        {
+            "event": "closetag",
+            "data": ["sitle"]
+        },
+        {
+            "event": "opentagname",
+            "data": ["ttyle"]
+        },
+        {
+            "event": "opentag",
+            "data": ["ttyle", {}]
+        },
+        {
+            "event": "opentagname",
+            "data": ["b"]
+        },
+        {
+            "event": "opentag",
+            "data": ["b", {}]
+        },
+        {
+            "event": "closetag",
+            "data": ["b"]
+        },
+        {
+            "event": "closetag",
+            "data": ["ttyle"]
+        },
         {
             "event": "opentagname",
             "data": ["script"]

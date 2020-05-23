@@ -101,7 +101,7 @@ const htmlIntegrationElements = new Set([
 
 export interface ParserOptions {
     /***
-     * Indicates whether special tags (<script> and <style>) should get special treatment
+     * Indicates whether special tags (<script>, <style>, and <title>) should get special treatment
      * and if "empty" tags (eg. <br>) can have children.  If `false`, the content of special tags
      * will be text only. For feeds and other XML content (documents that don't consist of HTML),
      * set this to `true`. Default: `false`.
