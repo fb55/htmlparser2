@@ -3,6 +3,7 @@
     "description": "Fast & forgiving HTML/XML/RSS parser",
     "version": "4.1.0",
     "author": "Felix Boehm <me@feedic.com>",
+    "sideEffects": false,
     "keywords": [
         "html",
         "parser",
