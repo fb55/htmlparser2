@@ -222,6 +222,10 @@ export class Parser extends EventEmitter {
         this.endIndex = this._tokenizer.getAbsoluteIndex();
     }
 
+    _isForeignTag() {
+        return this._foreignContext[this._foreignContext.length - 1];
+    }
+
     //Tokenizer event handlers
     ontext(data: string) {
         this._updatePosition(1);
@@ -314,7 +318,7 @@ export class Parser extends EventEmitter {
         if (
             this._options.xmlMode ||
             this._options.recognizeSelfClosing ||
-            this._foreignContext[this._foreignContext.length - 1]
+            this._isForeignTag()
         ) {
             this._closeCurrentTag();
         } else {
@@ -334,7 +338,7 @@ export class Parser extends EventEmitter {
     }
 
     onattribname(name: string) {
-        if (this._lowerCaseAttributeNames) {
+        if (this._lowerCaseAttributeNames && !this._isForeignTag()) {
             name = name.toLowerCase();
         }
         this._attribname = name;

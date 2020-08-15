@@ -1,0 +1,40 @@
+{
+    "name": "svg attributes should not be lower cased",
+    "options": {
+        "handler": {},
+        "parser": {
+            "lowerCaseAttributes": true
+        }
+    },
+    "html": "<svg viewBox=\"3 3 4 4\">",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": [
+                "svg"
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "viewBox",
+                "3 3 4 4"
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "svg",
+                {
+                    "viewBox": "3 3 4 4"
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "svg"
+            ]
+        }
+    ]
+}
