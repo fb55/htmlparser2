@@ -168,12 +168,24 @@ export interface Handler {
 
 const reNameEnd = /\s|\//;
 
+class Tag {
+   static Empty = new Tag();
+
+    name: string;
+    lowerName: string;
+
+    constructor(forceLowerCase = false, name = "") {
+        this.lowerName = name.toLowerCase();
+        this.name = forceLowerCase ? this.lowerName : name;
+    }
+}
+
 export class Parser extends EventEmitter {
-    _tagname = "";
+    _tag: Tag;
     _attribname = "";
     _attribvalue = "";
     _attribs: null | { [key: string]: string } = null;
-    _stack: string[] = [];
+    _stack: Tag[] = [];
     _foreignContext: boolean[] = [];
     startIndex = 0;
     endIndex: number | null = null;
@@ -188,7 +200,7 @@ export class Parser extends EventEmitter {
 
         this._options = options || {};
         this._cbs = cbs || {};
-        this._tagname = "";
+        this._tag = Tag.Empty;
         this._attribname = "";
         this._attribvalue = "";
         this._attribs = null;
@@ -223,7 +235,7 @@ export class Parser extends EventEmitter {
     }
 
     _isForeignTag() {
-        return this._foreignContext[this._foreignContext.length - 1];
+        return this._foreignContext.length > 0 && this._foreignContext[this._foreignContext.length - 1];
     }
 
     //Tokenizer event handlers
@@ -236,79 +248,84 @@ export class Parser extends EventEmitter {
     }
 
     onopentagname(name: string) {
-        if (this._lowerCaseTagNames) {
-            name = name.toLowerCase();
-        }
-        this._tagname = name;
+        const tag = new Tag(this._lowerCaseTagNames, name);
+        this._tag = tag;
+
         if (
             !this._options.xmlMode &&
-            Object.prototype.hasOwnProperty.call(openImpliesClose, name)
+            Object.prototype.hasOwnProperty.call(openImpliesClose, tag.lowerName)
         ) {
             for (
                 let el;
-                openImpliesClose[name]?.has(
-                    (el = this._stack[this._stack.length - 1])
+                openImpliesClose[tag.lowerName]?.has(
+                    (el = (this._stack[this._stack.length - 1])?.name)
                 );
                 this.onclosetag(el)
             );
         }
-        if (this._options.xmlMode || !voidElements.has(name)) {
-            this._stack.push(name);
-            if (foreignContextElements.has(name)) {
+        if (this._options.xmlMode || !voidElements.has(tag.lowerName)) {
+            this._stack.push(tag);
+            if (foreignContextElements.has(tag.lowerName)) {
                 this._foreignContext.push(true);
-            } else if (htmlIntegrationElements.has(name)) {
+            } else if (htmlIntegrationElements.has(tag.lowerName)) {
                 this._foreignContext.push(false);
             }
         }
-        this._cbs.onopentagname?.(name);
+        this._cbs.onopentagname?.(tag.name);
         if (this._cbs.onopentag) this._attribs = {};
     }
 
     onopentagend() {
         this._updatePosition(1);
         if (this._attribs) {
-            this._cbs.onopentag?.(this._tagname, this._attribs);
+            this._cbs.onopentag?.(this._tag.name, this._attribs);
             this._attribs = null;
         }
         if (
             !this._options.xmlMode &&
             this._cbs.onclosetag &&
-            voidElements.has(this._tagname)
+            voidElements.has(this._tag.lowerName)
         ) {
-            this._cbs.onclosetag(this._tagname);
+            this._cbs.onclosetag(this._tag.name);
         }
-        this._tagname = "";
+        this._tag = Tag.Empty;
     }
 
     onclosetag(name: string) {
         this._updatePosition(1);
-        if (this._lowerCaseTagNames) {
-            name = name.toLowerCase();
-        }
+
+        const lowerName = name.toLowerCase();
+
         if (
-            foreignContextElements.has(name) ||
-            htmlIntegrationElements.has(name)
+            foreignContextElements.has(lowerName) ||
+            htmlIntegrationElements.has(lowerName)
         ) {
             this._foreignContext.pop();
         }
         if (
             this._stack.length &&
-            (this._options.xmlMode || !voidElements.has(name))
+            (this._options.xmlMode || !voidElements.has(lowerName))
         ) {
-            let pos = this._stack.lastIndexOf(name);
+            let pos = -1;
+            for(let p = this._stack.length - 1; p >= 0; --p) {
+                if (this._stack[p].lowerName === lowerName) {
+                    pos = p;
+                    break;
+                }
+            }
             if (pos !== -1) {
                 if (this._cbs.onclosetag) {
                     pos = this._stack.length - pos;
                     while (pos--) {
                         // We know the stack has sufficient elements.
-                        this._cbs.onclosetag(this._stack.pop() as string);
+                        this._cbs.onclosetag((this._stack.pop() as Tag).name);
                     }
                 } else this._stack.length = pos;
-            } else if (name === "p" && !this._options.xmlMode) {
+            } else if (lowerName === "p" && !this._options.xmlMode) {
                 this.onopentagname(name);
                 this._closeCurrentTag();
             }
-        } else if (!this._options.xmlMode && (name === "br" || name === "p")) {
+        } else if (!this._options.xmlMode && (lowerName === "br" || lowerName === "p")) {
             this.onopentagname(name);
             this._closeCurrentTag();
         }
@@ -327,12 +344,12 @@ export class Parser extends EventEmitter {
     }
 
     _closeCurrentTag() {
-        const name = this._tagname;
+        const tag = this._tag;
         this.onopentagend();
         //self-closing tags will be on the top of the stack
         //(cheaper check than in onclosetag)
-        if (this._stack[this._stack.length - 1] === name) {
-            this._cbs.onclosetag?.(name);
+        if (this._stack[this._stack.length - 1]?.lowerName === tag.lowerName) {
+            this._cbs.onclosetag?.(tag.name);
             this._stack.pop();
         }
     }
@@ -414,7 +431,7 @@ export class Parser extends EventEmitter {
             for (
                 let i = this._stack.length;
                 i > 0;
-                this._cbs.onclosetag(this._stack[--i])
+                this._cbs.onclosetag(this._stack[--i]?.name)
             );
         }
         this._cbs.onend?.();
@@ -424,7 +441,7 @@ export class Parser extends EventEmitter {
     reset() {
         this._cbs.onreset?.();
         this._tokenizer.reset();
-        this._tagname = "";
+        this._tag = Tag.Empty;
         this._attribname = "";
         this._attribs = null;
         this._stack = [];

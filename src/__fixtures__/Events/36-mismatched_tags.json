@@ -1,0 +1,64 @@
+{
+    "name": "Mismatched opening and closing tags are made consistent with opening",
+    "options": {
+        "handler": {},
+        "parser": {
+            "lowerCaseTags": false
+        }
+    },
+    "html": "<H1 class=test>adsf</h1><h1 class=test>adsf</H1>",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": ["H1"]
+        },
+        {
+            "event": "attribute",
+            "data": ["class", "test"]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "H1",
+                {
+                    "class": "test"
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": ["adsf"]
+        },
+        {
+            "event": "closetag",
+            "data": ["H1"]
+        },
+
+
+        {
+            "event": "opentagname",
+            "data": ["h1"]
+        },
+        {
+            "event": "attribute",
+            "data": ["class", "test"]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "h1",
+                {
+                    "class": "test"
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": ["adsf"]
+        },
+        {
+            "event": "closetag",
+            "data": ["h1"]
+        }
+    ]
+}
