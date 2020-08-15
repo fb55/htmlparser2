@@ -1,0 +1,108 @@
+{
+    "name": "tags inside an SVG element should not be lower cased",
+    "options": {
+        "handler": {},
+        "parser": {
+            "lowerCaseTags": true,
+            "lowerCaseAttributes": true
+        }
+    },
+    "html": "<SVG><defs><radialGradient></radialGradient><filter><feGaussianBlur/></filter></defs></SVG>",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": [
+                "svg"
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "svg",
+                {}
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "defs"
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "defs",
+                {}
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "radialGradient"
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "radialGradient",
+                {}
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "radialGradient"
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "filter"
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "filter",
+                {}
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "feGaussianBlur"
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "feGaussianBlur",
+                {}
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "feGaussianBlur"
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "filter"
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "defs"
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "svg"
+            ]
+        }
+    ]
+}

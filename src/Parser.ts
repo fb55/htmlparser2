@@ -248,7 +248,8 @@ export class Parser extends EventEmitter {
     }
 
     onopentagname(name: string) {
-        const tag = new Tag(this._lowerCaseTagNames, name);
+        const forceTagToLowerCase = this._lowerCaseTagNames && !this._isForeignTag();
+        const tag = new Tag(forceTagToLowerCase, name);
         this._tag = tag;
 
         if (
