@@ -225,9 +225,7 @@ export class Parser extends EventEmitter {
     //Tokenizer event handlers
     ontext(data: string) {
         this._updatePosition(1);
-        if (this.endIndex !== null) {
-            this.endIndex--;
-        }
+        (this.endIndex as number)--;
         this._cbs.ontext?.(data);
     }
 
