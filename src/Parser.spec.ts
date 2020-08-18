@@ -53,6 +53,15 @@ describe("API", () => {
         expect(processed).toBeTruthy();
     });
 
+    test("should work with open-implies-close case of (non-br) void close tag in non-XML mode", () => {
+        const p = new Parser(null, {
+            lowerCaseAttributeNames: true
+        });
+
+        p.write("<select><input></select>");
+        p.done();
+    });
+
     test("should back out of numeric entities (#125)", () => {
         let finished = false;
         let text = "";
