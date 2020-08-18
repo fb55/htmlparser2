@@ -242,7 +242,7 @@ export class Parser extends EventEmitter {
         ) {
             for (
                 let el;
-                openImpliesClose[name]?.has(
+                openImpliesClose[name].has(
                     (el = this._stack[this._stack.length - 1])
                 );
                 this.onclosetag(el)
