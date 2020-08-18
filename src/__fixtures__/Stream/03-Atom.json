@@ -447,6 +447,29 @@
             "data": ["entry"]
         },
         {
+            "data": ["\n\n\t"],
+            "event": "text"
+        },
+        {
+            "data": [
+                "entry"
+            ],
+            "event": "opentagname"
+        },
+        {
+            "data": [
+                "entry",
+                {}
+            ],
+            "event": "opentag"
+        },
+        {
+            "data": [
+                "entry"
+            ],
+            "event": "closetag"
+        },
+        {
             "event": "text",
             "data": ["\n\n"]
         },
