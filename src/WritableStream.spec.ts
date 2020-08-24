@@ -7,7 +7,7 @@ describe("WritableStream", () => {
 
         stream.write(Buffer.from([0xe2, 0x82]));
         stream.write(Buffer.from([0xac]));
-        stream.write('');
+        stream.write("");
         stream.end();
 
         expect(ontext).toBeCalledWith("€");

@@ -1,5 +1,9 @@
 import {
-    parseDOM, createDomStream, DomHandler, DefaultHandler, RssHandler
+    parseDOM,
+    createDomStream,
+    DomHandler,
+    DefaultHandler,
+    RssHandler,
 } from ".";
 import { FeedHandler } from "./FeedHandler";
 import { Element } from "domhandler";

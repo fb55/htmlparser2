@@ -451,22 +451,15 @@
             "event": "text"
         },
         {
-            "data": [
-                "entry"
-            ],
+            "data": ["entry"],
             "event": "opentagname"
         },
         {
-            "data": [
-                "entry",
-                {}
-            ],
+            "data": ["entry", {}],
             "event": "opentag"
         },
         {
-            "data": [
-                "entry"
-            ],
+            "data": ["entry"],
             "event": "closetag"
         },
         {

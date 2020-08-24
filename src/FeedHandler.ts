@@ -179,7 +179,7 @@ function addConditionally<T>(
     recurse = false
 ) {
     const tmp = fetch(what, where, recurse);
-    if (tmp) obj[prop] = tmp as unknown as T[keyof T];
+    if (tmp) obj[prop] = (tmp as unknown) as T[keyof T];
 }
 
 function isValidFeed(value: string) {

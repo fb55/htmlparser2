@@ -93,7 +93,7 @@ const enum Special {
     None = 1,
     Script,
     Style,
-    Title
+    Title,
 }
 
 function whitespace(c: string): boolean {
@@ -101,7 +101,7 @@ function whitespace(c: string): boolean {
 }
 
 function isASCIIAlpha(c: string): boolean {
-    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+    return (c >= "a" && c <= "z") || (c >= "A" && c <= "Z");
 }
 
 interface Callbacks {
@@ -207,11 +207,10 @@ const stateBeforeTitle1 = consumeSpecialNameChar("T", State.BeforeTitle2);
 const stateBeforeTitle2 = consumeSpecialNameChar("L", State.BeforeTitle3);
 const stateBeforeTitle3 = consumeSpecialNameChar("E", State.BeforeTitle4);
 
-const stateAfterSpecialTEnd =  ifElseState("I", State.AfterTitle1, State.Text);
+const stateAfterSpecialTEnd = ifElseState("I", State.AfterTitle1, State.Text);
 const stateAfterTitle1 = ifElseState("T", State.AfterTitle2, State.Text);
 const stateAfterTitle2 = ifElseState("L", State.AfterTitle3, State.Text);
 const stateAfterTitle3 = ifElseState("E", State.AfterTitle4, State.Text);
-
 
 const stateBeforeEntity = ifElseState(
     "#",
@@ -590,12 +589,12 @@ export default class Tokenizer {
         //offset = 1
         if (this._sectionStart + 1 < this._index) {
             const entity = this._buffer.substring(
-                    this._sectionStart + 1,
-                    this._index
-                );
-                const map: Record<string, string> = this._xmlMode
-                    ? xmlMap
-                    : entityMap;
+                this._sectionStart + 1,
+                this._index
+            );
+            const map: Record<string, string> = this._xmlMode
+                ? xmlMap
+                : entityMap;
             if (Object.prototype.hasOwnProperty.call(map, entity)) {
                 this._emitPartial(map[entity]);
                 this._sectionStart = this._index + 1;
