@@ -1,27 +1,43 @@
 {
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "prettier/@typescript-eslint"
-    ],
+    "extends": ["eslint:recommended", "prettier"],
     "env": {
         "node": true,
         "es6": true
     },
     "rules": {
-        "eqeqeq": 2,
+        "eqeqeq": [2, "smart"],
         "no-caller": 2,
         "dot-notation": 2,
         "no-var": 2,
         "prefer-const": 2,
-        "prefer-arrow-callback": 2,
+        "prefer-arrow-callback": [2, { "allowNamedFunctions": true }],
         "arrow-body-style": [2, "as-needed"],
         "object-shorthand": 2,
-
-        "@typescript-eslint/explicit-function-return-type": 0,
-        "@typescript-eslint/explicit-member-accessibility": 0,
-        "@typescript-eslint/no-use-before-define": [2, { "functions": false }]
-    }
+        "prefer-template": 2,
+        "one-var": [2, "never"],
+        "prefer-destructuring": [2, { "object": true }]
+    },
+    "overrides": [
+        {
+            "files": "*.ts",
+            "extends": [
+                "plugin:@typescript-eslint/eslint-recommended",
+                "plugin:@typescript-eslint/recommended",
+                "prettier/@typescript-eslint"
+            ],
+            "parserOptions": {
+                "sourceType": "module"
+            },
+            "rules": {
+                "@typescript-eslint/prefer-for-of": 0,
+                "@typescript-eslint/member-ordering": 0,
+                "@typescript-eslint/explicit-function-return-type": 0,
+                "@typescript-eslint/no-unused-vars": 0,
+                "@typescript-eslint/no-use-before-define": [
+                    2,
+                    { "functions": false }
+                ]
+            }
+        }
+    ]
 }
