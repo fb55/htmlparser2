@@ -1,5 +1,4 @@
 import Tokenizer from "./Tokenizer";
-import { EventEmitter } from "events";
 
 const formTags = new Set([
     "input",
@@ -168,7 +167,7 @@ export interface Handler {
 
 const reNameEnd = /\s|\//;
 
-export class Parser extends EventEmitter {
+export class Parser {
     _tagname = "";
     _attribname = "";
     _attribvalue = "";
@@ -184,8 +183,6 @@ export class Parser extends EventEmitter {
     _tokenizer: Tokenizer;
 
     constructor(cbs: Partial<Handler> | null, options?: ParserOptions) {
-        super();
-
         this._options = options || {};
         this._cbs = cbs || {};
         this._tagname = "";
