@@ -241,9 +241,7 @@ export class Parser extends EventEmitter {
     //Tokenizer event handlers
     ontext(data: string) {
         this._updatePosition(1);
-        if (this.endIndex !== null) {
-            this.endIndex--;
-        }
+        (this.endIndex as number)--;
         this._cbs.ontext?.(data);
     }
 
@@ -258,7 +256,7 @@ export class Parser extends EventEmitter {
         ) {
             for (
                 let el;
-                openImpliesClose[tag.lowerName]?.has(
+                openImpliesClose[name].has(
                     (el = (this._stack[this._stack.length - 1])?.name)
                 );
                 this.onclosetag(el)
