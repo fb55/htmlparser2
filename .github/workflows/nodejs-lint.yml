@@ -11,6 +11,6 @@ jobs:
               with:
                   node-version: 14.x
             - run: npm ci
-            - run: npm lint
+            - run: npm run lint
               env:
                   CI: true
