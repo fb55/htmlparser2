@@ -572,8 +572,8 @@ export default class Tokenizer {
             const entity = this._buffer.substring(
                     this._sectionStart + 1,
                     this._index
-                ),
-                map: Record<string, string> = this._xmlMode
+                );
+                const map: Record<string, string> = this._xmlMode
                     ? xmlMap
                     : entityMap;
             if (Object.prototype.hasOwnProperty.call(map, entity)) {
