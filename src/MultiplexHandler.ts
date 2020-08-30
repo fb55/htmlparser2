@@ -12,7 +12,6 @@ export default class MultiplexHandler implements Handler {
         this._func = func;
     }
 
-    /* Format: eventname: number of arguments */
     onattribute(name: string, value: string) {
         this._func("onattribute", name, value);
     }

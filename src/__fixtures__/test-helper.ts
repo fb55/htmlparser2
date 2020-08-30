@@ -44,7 +44,7 @@ function eventReducer(events: Event[], arr: [string, ...unknown[]]): Event[] {
         arr[0] === "onend" ||
         arr[0] === "onparserinit"
     ) {
-        // ignore
+        // Ignore
     } else if (
         arr[0] === "ontext" &&
         events.length &&

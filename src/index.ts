@@ -40,37 +40,13 @@ export { default as Tokenizer } from "./Tokenizer";
 import * as ElementType from "domelementtype";
 export { ElementType };
 
-/**
- * List of all events that the parser emits.
- *
- * Format: eventname: number of arguments.
- */
-export const EVENTS = {
-    attribute: 2,
-    cdatastart: 0,
-    cdataend: 0,
-    text: 1,
-    processinginstruction: 2,
-    comment: 1,
-    commentend: 0,
-    closetag: 1,
-    opentag: 2,
-    opentagname: 1,
-    error: 1,
-    end: 0,
-};
-
 /*
-    All of the following exports exist for backwards-compatibility.
-    They should probably be removed eventually.
-*/
+ * All of the following exports exist for backwards-compatibility.
+ * They should probably be removed eventually.
+ */
 
 export * from "./FeedHandler";
-export * from "./WritableStream";
-export * from "./CollectingHandler";
-
-import * as DomUtils from "domutils";
-export { DomUtils };
+export * as DomUtils from "domutils";
 
 // Old names for Dom- & FeedHandler
 export { DomHandler as DefaultHandler };

@@ -10,7 +10,7 @@ The parser can handle streams and provides a callback interface.
 
 ## Installation
 
-    npm install htmlparser2
+    npm install --save htmlparser2
 
 A live demo of htmlparser2 is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
 
@@ -53,11 +53,12 @@ That's it?!
 
 ### Usage with streams
 
-While the `Parser` interface closely resembles Node.js streams, it's not a 100% match. Use the `WritableStream` interface to process a streaming input:
+While the `Parser` interface closely resembles Node.js streams, it's not a 100% match.
+Use the `WritableStream` interface to process a streaming input:
 
 ```javascript
-const htmlparser2 = require("htmlparser2");
-const parserStream = new htmlparser2.WritableStream(
+const WritableStream = require("htmlparser2/lib/WritableStream");
+const parserStream = new WritableStream(
     {
         ontext(text) {
             console.log("Streaming:", text);
@@ -66,7 +67,7 @@ const parserStream = new htmlparser2.WritableStream(
     { decodeEntities: true }
 );
 
-const htmlStream = getHtmlStreamFromSomewhere();
+const htmlStream = fs.createReadStream("./my-file.html");
 htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
 ```
 
@@ -76,9 +77,10 @@ Read more about the parser and its options in the [wiki](https://github.com/fb55
 
 ## Get a DOM
 
-The `DomHandler` (known as `DefaultHandler` in the original `htmlparser` module) produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
+The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
 
-The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler). Have a look at it for further information.
+The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler).
+Have a look at that for further information.
 
 ## Parsing RSS/RDF/Atom Feeds
 
@@ -86,7 +88,8 @@ The `DomHandler`, while still bundled with this module, was moved to its [own mo
 const feed = htmlparser2.parseFeed(content, options);
 ```
 
-Note: While the provided feed handler works for most feeds, you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
+Note: While the provided feed handler works for most feeds,
+you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
 
 ## Performance
 

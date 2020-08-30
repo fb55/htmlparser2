@@ -1,4 +1,4 @@
-//Runs tests for feeds
+// Runs tests for feeds
 
 import * as helper from "./__fixtures__/test-helper";
 import { FeedHandler, parseFeed } from "./FeedHandler";

@@ -21,7 +21,7 @@ interface Feed {
     items?: FeedItem[];
 }
 
-//TODO: Consume data as it is coming in
+// TODO: Consume data as it is coming in
 export class FeedHandler extends DomHandler {
     feed?: Feed;
 
@@ -96,8 +96,8 @@ export class FeedHandler extends DomHandler {
                     return entry;
                 });
             } else {
-                const childs = getOneElement("channel", feedRoot.children)
-                    .children;
+                const childs =
+                    getOneElement("channel", feedRoot.children)?.children ?? [];
                 feed.type = feedRoot.name.substr(0, 3);
                 feed.id = "";
 
@@ -147,18 +147,18 @@ export class FeedHandler extends DomHandler {
     }
 }
 
-function getElements(what: string, where: Node | Node[]) {
-    return DomUtils.getElementsByTagName(what, where, true);
+function getElements(tagName: string, where: Node | Node[]) {
+    return DomUtils.getElementsByTagName(tagName, where, true);
 }
 function getOneElement(
-    what: string | ((name: string) => boolean),
-    where: Node | Node[]
-) {
-    return DomUtils.getElementsByTagName(what, where, true, 1)[0];
+    tagName: string | ((name: string) => boolean),
+    node: Node | Node[]
+): Element | null {
+    return DomUtils.getElementsByTagName(tagName, node, true, 1)[0];
 }
-function fetch(what: string, where: Node | Node[], recurse = false): string {
+function fetch(tagName: string, where: Node | Node[], recurse = false): string {
     return DomUtils.getText(
-        DomUtils.getElementsByTagName(what, where, recurse, 1)
+        DomUtils.getElementsByTagName(tagName, where, recurse, 1)
     ).trim();
 }
 

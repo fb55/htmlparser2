@@ -2,7 +2,8 @@ import { Parser, Tokenizer } from ".";
 
 describe("API", () => {
     test("should work without callbacks", () => {
-        const p = new Parser(null, {
+        const cbs: Record<string, (t?: string) => void> = {};
+        const p = new Parser(cbs, {
             xmlMode: true,
             lowerCaseAttributeNames: true,
         });
@@ -10,10 +11,10 @@ describe("API", () => {
         p.end("<a foo><bar></a><!-- --><![CDATA[]]]><?foo?><!bar><boo/>boohay");
         p.write("foo");
 
-        //check for an error
+        // Check for an error
         p.end();
         let err = false;
-        p._cbs.onerror = () => (err = true);
+        cbs.onerror = () => (err = true);
         p.write("foo");
         expect(err).toBeTruthy();
         err = false;
@@ -22,17 +23,17 @@ describe("API", () => {
 
         p.reset();
 
-        //remove method
-        p._cbs.onopentag = () => {
+        // Remove method
+        cbs.onopentag = () => {
             /* Ignore */
         };
         p.write("<a foo");
-        delete p._cbs.onopentag;
+        delete cbs.onopentag;
         p.write(">");
 
-        //pause/resume
+        // Pause/resume
         let processed = false;
-        p._cbs.ontext = (t) => {
+        cbs.ontext = (t) => {
             expect(t).toBe("foo");
             processed = true;
         };
@@ -117,7 +118,8 @@ describe("API", () => {
         const p = new Parser(
             {
                 onparserinit(parser: Parser) {
-                    expect(parser._tokenizer).toBeInstanceOf(CustomTokenizer);
+                    // @ts-expect-error
+                    expect(parser.tokenizer).toBeInstanceOf(CustomTokenizer);
                 },
             },
             { Tokenizer: CustomTokenizer }

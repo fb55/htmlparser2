@@ -13,8 +13,8 @@ function isBuffer(_chunk: string | Buffer, encoding: string): _chunk is Buffer {
  * @see Parser
  */
 export class WritableStream extends Writable {
-    _parser: Parser;
-    _decoder = new StringDecoder();
+    private readonly _parser: Parser;
+    private readonly _decoder = new StringDecoder();
 
     constructor(cbs: Partial<Handler>, options?: ParserOptions) {
         super({ decodeStrings: false });
@@ -22,8 +22,9 @@ export class WritableStream extends Writable {
     }
 
     _write(chunk: string | Buffer, encoding: string, cb: () => void) {
-        if (isBuffer(chunk, encoding)) chunk = this._decoder.write(chunk);
-        this._parser.write(chunk);
+        this._parser.write(
+            isBuffer(chunk, encoding) ? this._decoder.write(chunk) : chunk
+        );
         cb();
     }
 
