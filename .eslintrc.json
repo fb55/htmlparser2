@@ -20,7 +20,8 @@
         "multiline-comment-style": [2, "starred-block"],
         "spaced-comment": 2,
         "yoda": [2, "never"],
-        "curly": [2, "multi-line"]
+        "curly": [2, "multi-line"],
+        "no-else-return": 2
     },
     "overrides": [
         {

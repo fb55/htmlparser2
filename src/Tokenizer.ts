@@ -133,16 +133,15 @@ function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
                 t._index--;
             }
         };
-    } else {
-        return (t: Tokenizer, c: string) => {
-            if (c === lower || c === upper) {
-                t._state = SUCCESS;
-            } else {
-                t._state = FAILURE;
-                t._index--;
-            }
-        };
     }
+    return (t: Tokenizer, c: string) => {
+        if (c === lower || c === upper) {
+            t._state = SUCCESS;
+        } else {
+            t._state = FAILURE;
+            t._index--;
+        }
+    };
 }
 
 function consumeSpecialNameChar(upper: string, NEXT_STATE: State) {
@@ -643,9 +642,8 @@ export default class Tokenizer {
                 this.emitPartial((legacyMap as Record<string, string>)[entity]);
                 this.sectionStart += limit + 1;
                 return;
-            } else {
-                limit--;
             }
+            limit--;
         }
     }
     private stateInNamedEntity(c: string) {
