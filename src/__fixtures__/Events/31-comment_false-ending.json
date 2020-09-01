@@ -1,6 +1,5 @@
 {
     "name": "Comment false ending",
-    "options": {},
     "html": "<!-- a-b-> -->",
     "expected": [
         { "event": "comment", "data": [" a-b-> "] },

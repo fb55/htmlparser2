@@ -1,6 +1,5 @@
 {
     "name": "Empty tag name",
-    "options": {},
     "html": "< ></ >",
     "expected": [
         {

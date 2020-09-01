@@ -1,6 +1,5 @@
 {
     "name": "Special special tags",
-    "options": {},
     "html": "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
     "expected": [
         {

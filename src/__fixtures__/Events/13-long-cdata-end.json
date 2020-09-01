@@ -1,7 +1,6 @@
 {
     "name": "Long CDATA ending",
     "options": {
-        "handler": {},
         "parser": { "xmlMode": true }
     },
     "html": "<before /><tag><![CDATA[ text ]]]></tag><after />",

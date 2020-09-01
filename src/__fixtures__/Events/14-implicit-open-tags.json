@@ -1,9 +1,5 @@
 {
     "name": "Implicit open p and br tags",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<div>Hallo</p>World</br></ignore></div></p></br>",
     "expected": [
         { "event": "opentagname", "data": ["div"] },

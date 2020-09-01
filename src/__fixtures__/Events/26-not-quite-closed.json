@@ -1,6 +1,5 @@
 {
     "name": "Not quite closed",
-    "options": {},
     "html": "<foo /bar></foo bar>",
     "expected": [
         {

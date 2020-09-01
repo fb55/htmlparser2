@@ -1,9 +1,5 @@
 {
     "name": "double brackets",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<<princess-purpose>>testing</princess-purpose>",
     "expected": [
         {

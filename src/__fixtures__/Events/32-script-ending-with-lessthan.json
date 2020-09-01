@@ -1,9 +1,5 @@
 {
     "name": "Scripts ending with <",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<script><</script>",
     "expected": [
         {

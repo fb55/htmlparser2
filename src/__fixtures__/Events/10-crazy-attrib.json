@@ -1,9 +1,5 @@
 {
     "name": "crazy attribute",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<p < = '' FAIL>stuff</p><a",
     "expected": [
         {

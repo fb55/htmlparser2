@@ -1,9 +1,5 @@
 {
     "name": "named entities",
-    "options": {
-        "handler": {},
-        "parser": { "decodeEntities": true }
-    },
     "html": "&amp;el&lt;er&CounterClockwiseContourIntegral;foo&bar",
     "expected": [
         {

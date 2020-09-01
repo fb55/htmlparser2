@@ -1,9 +1,5 @@
 {
     "name": "Self-closing tags",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<a href=http://test.com/>Foo</a><hr / >",
     "expected": [
         {

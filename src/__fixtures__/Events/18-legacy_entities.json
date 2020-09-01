@@ -1,9 +1,5 @@
 {
     "name": "legacy entities",
-    "options": {
-        "handler": {},
-        "parser": { "decodeEntities": true }
-    },
     "html": "&AMPel&iacutee&ampeer;s&lter",
     "expected": [
         {

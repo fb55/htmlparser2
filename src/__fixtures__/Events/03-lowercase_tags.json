@@ -1,7 +1,6 @@
 {
     "name": "Lowercase tags",
     "options": {
-        "handler": {},
         "parser": {
             "lowerCaseTags": true
         }

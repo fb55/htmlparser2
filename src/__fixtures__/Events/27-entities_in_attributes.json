@@ -1,9 +1,5 @@
 {
     "name": "Entities in attributes",
-    "options": {
-        "handler": {},
-        "parser": { "decodeEntities": true }
-    },
     "html": "<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>",
     "expected": [
         {

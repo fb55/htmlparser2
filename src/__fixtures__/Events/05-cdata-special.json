@@ -1,9 +1,5 @@
 {
     "name": "CDATA (inside special)",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
     "expected": [
         {

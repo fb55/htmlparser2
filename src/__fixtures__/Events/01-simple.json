@@ -1,9 +1,5 @@
 {
     "name": "simple",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<h1 class=test>adsf</h1>",
     "expected": [
         {

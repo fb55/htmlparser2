@@ -1,9 +1,5 @@
 {
     "name": "Template script tags",
-    "options": {
-        "handler": {},
-        "parser": {}
-    },
     "html": "<p><script type=\"text/template\"><h1>Heading1</h1></script></p>",
     "expected": [
         {

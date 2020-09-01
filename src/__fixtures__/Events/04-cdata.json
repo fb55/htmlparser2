@@ -1,7 +1,6 @@
 {
     "name": "CDATA",
     "options": {
-        "handler": {},
         "parser": { "xmlMode": true }
     },
     "html": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag><![CD>",

@@ -1,9 +1,5 @@
 {
     "name": "entity in attribute",
-    "options": {
-        "handler": {},
-        "parser": { "decodeEntities": true }
-    },
     "html": "<a href='http://example.com/p&#x61;ge?param=value&param2&param3=&lt;val&; & &'>",
     "expected": [
         {
