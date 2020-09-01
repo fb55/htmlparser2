@@ -38,24 +38,28 @@ export function getEventCollector(
     return handler;
 }
 
-function eventReducer(events: Event[], arr: [string, ...unknown[]]): Event[] {
-    if (
-        arr[0] === "onerror" ||
-        arr[0] === "onend" ||
-        arr[0] === "onparserinit"
-    ) {
+function eventReducer(
+    events: Event[],
+    [event, ...data]: [string, ...unknown[]]
+): Event[] {
+    if (event === "onerror" || event === "onend" || event === "onparserinit") {
         // Ignore
     } else if (
-        arr[0] === "ontext" &&
+        event === "ontext" &&
         events.length &&
         events[events.length - 1].event === "text"
     ) {
         // Combine text nodes
-        (events[events.length - 1].data[0] as string) += arr[1];
+        (events[events.length - 1].data[0] as string) += data[0];
     } else {
+        // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
+        if (event === "onattribute" && data[2] === undefined) {
+            data.pop();
+        }
+
         events.push({
-            event: arr[0].substr(2),
-            data: arr.slice(1),
+            event: event.substr(2),
+            data,
         });
     }
 
@@ -70,7 +74,7 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
         if (file.useSnapshot) {
             expect(actual).toMatchSnapshot();
         } else {
-            expect(actual).toEqual(file.expected);
+            expect(actual).toStrictEqual(file.expected);
         }
 
         if (repeated) done();

@@ -92,15 +92,15 @@
         },
         {
             "event": "attribute",
-            "data": ["id", "test0"]
+            "data": ["id", "test0", "\""]
         },
         {
             "event": "attribute",
-            "data": ["class", "value0"]
+            "data": ["class", "value0", "\""]
         },
         {
             "event": "attribute",
-            "data": ["title", "value1"]
+            "data": ["title", "value1", "\""]
         },
         {
             "event": "opentag",
@@ -143,11 +143,11 @@
         },
         {
             "event": "attribute",
-            "data": ["id", "test1"]
+            "data": ["id", "test1", "\""]
         },
         {
             "event": "attribute",
-            "data": ["class", "value2"]
+            "data": ["class", "value2", null]
         },
         {
             "event": "attribute",
@@ -196,15 +196,15 @@
         },
         {
             "event": "attribute",
-            "data": ["id", "test2"]
+            "data": ["id", "test2", "\""]
         },
         {
             "event": "attribute",
-            "data": ["class", "value4"]
+            "data": ["class", "value4", "\""]
         },
         {
             "event": "attribute",
-            "data": ["title", "value5"]
+            "data": ["title", "value5", "\""]
         },
         {
             "event": "opentag",

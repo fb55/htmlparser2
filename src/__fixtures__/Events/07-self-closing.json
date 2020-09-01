@@ -8,7 +8,7 @@
         },
         {
             "event": "attribute",
-            "data": ["href", "http://test.com/"]
+            "data": ["href", "http://test.com/", null]
         },
         {
             "event": "opentag",

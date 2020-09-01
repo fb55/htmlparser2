@@ -8,7 +8,7 @@
         },
         {
             "event": "attribute",
-            "data": ["src", "?&image_uri=1&ℑ=2&image=3"]
+            "data": ["src", "?&image_uri=1&ℑ=2&image=3", "\""]
         },
         {
             "event": "opentag",

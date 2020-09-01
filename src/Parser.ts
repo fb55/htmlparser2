@@ -155,7 +155,17 @@ export interface Handler {
     onerror(error: Error): void;
     onclosetag(name: string): void;
     onopentagname(name: string): void;
-    onattribute(name: string, value: string): void;
+    /**
+     *
+     * @param name Name of the attribute
+     * @param value Value of the attribute.
+     * @param quote Quotes used around the attribute. `null` if the attribute has no quotes around the value, `undefined` if the attribute has no value.
+     */
+    onattribute(
+        name: string,
+        value: string,
+        quote?: string | undefined | null
+    ): void;
     onopentag(name: string, attribs: { [s: string]: string }): void;
     ontext(data: string): void;
     oncomment(data: string): void;
@@ -335,8 +345,8 @@ export class Parser {
         this.attribvalue += value;
     }
 
-    onattribend() {
-        this.cbs.onattribute?.(this.attribname, this.attribvalue);
+    onattribend(quote: string | undefined | null) {
+        this.cbs.onattribute?.(this.attribname, this.attribvalue, quote);
         if (
             this.attribs &&
             !Object.prototype.hasOwnProperty.call(this.attribs, this.attribname)

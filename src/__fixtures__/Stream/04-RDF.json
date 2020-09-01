@@ -17,45 +17,55 @@
         },
         {
             "event": "attribute",
-            "data": ["xmlns:rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"]
+            "data": [
+                "xmlns:rdf",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                "\""
+            ]
         },
         {
             "event": "attribute",
-            "data": ["xmlns", "http://purl.org/rss/1.0/"]
+            "data": ["xmlns", "http://purl.org/rss/1.0/", "\""]
         },
         {
             "event": "attribute",
-            "data": ["xmlns:ev", "http://purl.org/rss/1.0/modules/event/"]
+            "data": ["xmlns:ev", "http://purl.org/rss/1.0/modules/event/", "\""]
         },
         {
             "event": "attribute",
             "data": [
                 "xmlns:content",
-                "http://purl.org/rss/1.0/modules/content/"
+                "http://purl.org/rss/1.0/modules/content/",
+                "\""
             ]
         },
         {
             "event": "attribute",
-            "data": ["xmlns:taxo", "http://purl.org/rss/1.0/modules/taxonomy/"]
+            "data": [
+                "xmlns:taxo",
+                "http://purl.org/rss/1.0/modules/taxonomy/",
+                "\""
+            ]
         },
         {
             "event": "attribute",
-            "data": ["xmlns:dc", "http://purl.org/dc/elements/1.1/"]
+            "data": ["xmlns:dc", "http://purl.org/dc/elements/1.1/", "\""]
         },
         {
             "event": "attribute",
             "data": [
                 "xmlns:syn",
-                "http://purl.org/rss/1.0/modules/syndication/"
+                "http://purl.org/rss/1.0/modules/syndication/",
+                "\""
             ]
         },
         {
             "event": "attribute",
-            "data": ["xmlns:dcterms", "http://purl.org/dc/terms/"]
+            "data": ["xmlns:dcterms", "http://purl.org/dc/terms/", "\""]
         },
         {
             "event": "attribute",
-            "data": ["xmlns:admin", "http://webns.net/mvcb/"]
+            "data": ["xmlns:admin", "http://webns.net/mvcb/", "\""]
         },
         {
             "event": "opentag",
@@ -84,7 +94,7 @@
         },
         {
             "event": "attribute",
-            "data": ["rdf:about", "https://github.com/fb55/htmlparser2/"]
+            "data": ["rdf:about", "https://github.com/fb55/htmlparser2/", "\""]
         },
         {
             "event": "opentag",
@@ -387,7 +397,8 @@
             "event": "attribute",
             "data": [
                 "rdf:resource",
-                "http://somefakesite/path/to/something.html"
+                "http://somefakesite/path/to/something.html",
+                "\""
             ]
         },
         {
@@ -437,7 +448,11 @@
         },
         {
             "event": "attribute",
-            "data": ["rdf:about", "http://somefakesite/path/to/something.html"]
+            "data": [
+                "rdf:about",
+                "http://somefakesite/path/to/something.html",
+                "\""
+            ]
         },
         {
             "event": "opentag",
@@ -694,7 +709,8 @@
             "event": "attribute",
             "data": [
                 "rdf:about",
-                "http://somefakesite/path/to/something-else.html"
+                "http://somefakesite/path/to/something-else.html",
+                "\""
             ]
         },
         {

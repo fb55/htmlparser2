@@ -10,7 +10,8 @@
             "event": "attribute",
             "data": [
                 "href",
-                "http://example.com/page?param=value&param2&param3=<val&; & &"
+                "http://example.com/page?param=value&param2&param3=<val&; & &",
+                "'"
             ]
         },
         {

@@ -12,8 +12,8 @@ export default class MultiplexHandler implements Handler {
         this._func = func;
     }
 
-    onattribute(name: string, value: string) {
-        this._func("onattribute", name, value);
+    onattribute(name: string, value: string, quote: string | null | undefined) {
+        this._func("onattribute", name, value, quote);
     }
     oncdatastart() {
         this._func("oncdatastart");

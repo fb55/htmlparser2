@@ -106,7 +106,7 @@ function isASCIIAlpha(c: string): boolean {
 
 interface Callbacks {
     onattribdata(value: string): void;
-    onattribend(): void;
+    onattribend(quote: string | undefined | null): void;
     onattribname(name: string): void;
     oncdata(data: string): void;
     onclosetag(name: string): void;
@@ -432,11 +432,11 @@ export default class Tokenizer {
         if (c === "=") {
             this._state = State.BeforeAttributeValue;
         } else if (c === "/" || c === ">") {
-            this.cbs.onattribend();
+            this.cbs.onattribend(undefined);
             this._state = State.BeforeAttributeName;
             this._index--;
         } else if (!whitespace(c)) {
-            this.cbs.onattribend();
+            this.cbs.onattribend(undefined);
             this._state = State.InAttributeName;
             this.sectionStart = this._index;
         }
@@ -454,10 +454,10 @@ export default class Tokenizer {
             this._index--; // Reconsume token
         }
     }
-    private stateInAttributeValueDoubleQuotes(c: string) {
-        if (c === '"') {
+    private handleInAttributeValue(c: string, quote: string) {
+        if (c === quote) {
             this.emitToken("onattribdata");
-            this.cbs.onattribend();
+            this.cbs.onattribend(quote);
             this._state = State.BeforeAttributeName;
         } else if (this.decodeEntities && c === "&") {
             this.emitToken("onattribdata");
@@ -466,22 +466,16 @@ export default class Tokenizer {
             this.sectionStart = this._index;
         }
     }
+    private stateInAttributeValueDoubleQuotes(c: string) {
+        this.handleInAttributeValue(c, '"');
+    }
     private stateInAttributeValueSingleQuotes(c: string) {
-        if (c === "'") {
-            this.emitToken("onattribdata");
-            this.cbs.onattribend();
-            this._state = State.BeforeAttributeName;
-        } else if (this.decodeEntities && c === "&") {
-            this.emitToken("onattribdata");
-            this.baseState = this._state;
-            this._state = State.BeforeEntity;
-            this.sectionStart = this._index;
-        }
+        this.handleInAttributeValue(c, "'");
     }
     private stateInAttributeValueNoQuotes(c: string) {
         if (whitespace(c) || c === ">") {
             this.emitToken("onattribdata");
-            this.cbs.onattribend();
+            this.cbs.onattribend(null);
             this._state = State.BeforeAttributeName;
             this._index--;
         } else if (this.decodeEntities && c === "&") {

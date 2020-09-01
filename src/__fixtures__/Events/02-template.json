@@ -16,7 +16,7 @@
         },
         {
             "event": "attribute",
-            "data": ["type", "text/template"]
+            "data": ["type", "text/template", "\""]
         },
         {
             "event": "opentag",

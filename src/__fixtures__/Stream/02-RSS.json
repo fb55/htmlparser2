@@ -31,7 +31,7 @@
         },
         {
             "event": "attribute",
-            "data": ["version", "2.0"]
+            "data": ["version", "2.0", "\""]
         },
         {
             "event": "opentag",

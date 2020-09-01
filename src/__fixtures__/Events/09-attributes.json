@@ -8,11 +8,11 @@
         },
         {
             "event": "attribute",
-            "data": ["class", "test0"]
+            "data": ["class", "test0", "\""]
         },
         {
             "event": "attribute",
-            "data": ["title", "test1"]
+            "data": ["title", "test1", "\""]
         },
         {
             "event": "attribute",
@@ -20,7 +20,7 @@
         },
         {
             "event": "attribute",
-            "data": ["value", "test2"]
+            "data": ["value", "test2", null]
         },
         {
             "event": "opentag",

@@ -29,7 +29,7 @@
         },
         {
             "event": "attribute",
-            "data": ["xmlns", "http://www.w3.org/2005/Atom"]
+            "data": ["xmlns", "http://www.w3.org/2005/Atom", "\""]
         },
         {
             "event": "opentag",
@@ -90,11 +90,11 @@
         },
         {
             "event": "attribute",
-            "data": ["href", "http://example.org/feed/"]
+            "data": ["href", "http://example.org/feed/", "\""]
         },
         {
             "event": "attribute",
-            "data": ["rel", "self"]
+            "data": ["rel", "self", "\""]
         },
         {
             "event": "opentag",
@@ -120,7 +120,7 @@
         },
         {
             "event": "attribute",
-            "data": ["href", "http://example.org/"]
+            "data": ["href", "http://example.org/", "\""]
         },
         {
             "event": "opentag",
@@ -277,7 +277,7 @@
         },
         {
             "event": "attribute",
-            "data": ["href", "http://example.org/2003/12/13/atom03"]
+            "data": ["href", "http://example.org/2003/12/13/atom03", "\""]
         },
         {
             "event": "opentag",
@@ -302,15 +302,15 @@
         },
         {
             "event": "attribute",
-            "data": ["rel", "alternate"]
+            "data": ["rel", "alternate", "\""]
         },
         {
             "event": "attribute",
-            "data": ["type", "text/html"]
+            "data": ["type", "text/html", "\""]
         },
         {
             "event": "attribute",
-            "data": ["href", "http://example.org/2003/12/13/atom03.html"]
+            "data": ["href", "http://example.org/2003/12/13/atom03.html", "\""]
         },
         {
             "event": "opentag",
@@ -337,11 +337,11 @@
         },
         {
             "event": "attribute",
-            "data": ["rel", "edit"]
+            "data": ["rel", "edit", "\""]
         },
         {
             "event": "attribute",
-            "data": ["href", "http://example.org/2003/12/13/atom03/edit"]
+            "data": ["href", "http://example.org/2003/12/13/atom03/edit", "\""]
         },
         {
             "event": "opentag",
@@ -407,7 +407,7 @@
         },
         {
             "event": "attribute",
-            "data": ["type", "html"]
+            "data": ["type", "html", "\""]
         },
         {
             "event": "opentag",

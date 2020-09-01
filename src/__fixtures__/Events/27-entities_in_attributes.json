@@ -8,19 +8,19 @@
         },
         {
             "event": "attribute",
-            "data": ["bar", "&"]
+            "data": ["bar", "&", null]
         },
         {
             "event": "attribute",
-            "data": ["baz", "&"]
+            "data": ["baz", "&", "\""]
         },
         {
             "event": "attribute",
-            "data": ["boo", "&"]
+            "data": ["boo", "&", "'"]
         },
         {
             "event": "attribute",
-            "data": ["noo", ""]
+            "data": ["noo", "", null]
         },
         {
             "event": "opentag",

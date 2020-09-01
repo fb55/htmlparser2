@@ -80,15 +80,15 @@
         },
         {
             "event": "attribute",
-            "data": ["version", "1.1"]
+            "data": ["version", "1.1", "\""]
         },
         {
             "event": "attribute",
-            "data": ["xmlns", "http://www.w3.org/2000/svg"]
+            "data": ["xmlns", "http://www.w3.org/2000/svg", "\""]
         },
         {
             "event": "attribute",
-            "data": ["xmlns:xlink", "http://www.w3.org/1999/xlink"]
+            "data": ["xmlns:xlink", "http://www.w3.org/1999/xlink", "\""]
         },
         {
             "event": "opentag",

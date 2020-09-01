@@ -13,7 +13,7 @@
         },
         {
             "event": "attribute",
-            "data": ["class", "test"]
+            "data": ["class", "test", null]
         },
         {
             "event": "opentag",

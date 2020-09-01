@@ -8,11 +8,11 @@
         },
         {
             "event": "attribute",
-            "data": ["class", "test"]
+            "data": ["class", "test", null]
         },
         {
             "event": "attribute",
-            "data": ["class", "boo"]
+            "data": ["class", "boo", null]
         },
         {
             "event": "opentag",
