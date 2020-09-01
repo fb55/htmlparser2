@@ -1,0 +1,26 @@
+{
+    "name": "entity in attribute (#276)",
+    "html": "<img src=\"?&image_uri=1&&image;=2&image=3\"/>?&image_uri=1&&image;=2&image=3",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": ["img"]
+        },
+        {
+            "event": "attribute",
+            "data": ["src", "?&image_uri=1&ℑ=2&image=3"]
+        },
+        {
+            "event": "opentag",
+            "data": ["img", { "src": "?&image_uri=1&ℑ=2&image=3" }]
+        },
+        {
+            "event": "closetag",
+            "data": ["img"]
+        },
+        {
+            "event": "text",
+            "data": ["?&image_uri=1&ℑ=2&image=3"]
+        }
+    ]
+}

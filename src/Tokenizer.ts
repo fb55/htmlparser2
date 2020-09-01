@@ -616,16 +616,15 @@ export default class Tokenizer {
         } else this._state = State.Text;
     }
     // For entities terminated with a semicolon
-    _parseNamedEntityStrict() {
+    private parseFixedEntity(
+        map: Record<string, string> = this.xmlMode ? xmlMap : entityMap
+    ) {
         // Offset = 1
         if (this.sectionStart + 1 < this._index) {
             const entity = this.buffer.substring(
                 this.sectionStart + 1,
                 this._index
             );
-            const map: Record<string, string> = this.xmlMode
-                ? xmlMap
-                : entityMap;
             if (Object.prototype.hasOwnProperty.call(map, entity)) {
                 this.emitPartial(map[entity]);
                 this.sectionStart = this._index + 1;
@@ -633,10 +632,10 @@ export default class Tokenizer {
         }
     }
     // Parses legacy entities (without trailing semicolon)
-    _parseLegacyEntity() {
+    private parseLegacyEntity() {
         const start = this.sectionStart + 1;
-        let limit = this._index - start;
-        if (limit > 6) limit = 6; // The max length of legacy entities is 6
+        // The max length of legacy entities is 6
+        let limit = Math.min(this._index - start, 6);
         while (limit >= 2) {
             // The min length of legacy entities is 2
             const entity = this.buffer.substr(start, limit);
@@ -651,49 +650,48 @@ export default class Tokenizer {
     }
     private stateInNamedEntity(c: string) {
         if (c === ";") {
-            this._parseNamedEntityStrict();
-            if (this.sectionStart + 1 < this._index && !this.xmlMode) {
-                this._parseLegacyEntity();
+            this.parseFixedEntity();
+            // Retry as legacy entity if entity wasn't parsed
+            if (
+                this.baseState === State.Text &&
+                this.sectionStart + 1 < this._index &&
+                !this.xmlMode
+            ) {
+                this.parseLegacyEntity();
             }
             this._state = this.baseState;
-        } else if (
-            (c < "a" || c > "z") &&
-            (c < "A" || c > "Z") &&
-            (c < "0" || c > "9")
-        ) {
+        } else if ((c < "0" || c > "9") && !isASCIIAlpha(c)) {
             if (this.xmlMode || this.sectionStart + 1 === this._index) {
                 // Ignore
             } else if (this.baseState !== State.Text) {
                 if (c !== "=") {
-                    this._parseNamedEntityStrict();
+                    // Parse as legacy entity, without allowing additional characters.
+                    this.parseFixedEntity(legacyMap);
                 }
             } else {
-                this._parseLegacyEntity();
+                this.parseLegacyEntity();
             }
             this._state = this.baseState;
             this._index--;
         }
     }
-    private decodeNumericEntity(offset: number, base: number) {
+    private decodeNumericEntity(offset: number, base: number, strict: boolean) {
         const sectionStart = this.sectionStart + offset;
         if (sectionStart !== this._index) {
             // Parse entity
             const entity = this.buffer.substring(sectionStart, this._index);
             const parsed = parseInt(entity, base);
             this.emitPartial(decodeCodePoint(parsed));
-            this.sectionStart = this._index;
-        } else {
-            this.sectionStart--;
+            this.sectionStart = strict ? this._index + 1 : this._index;
         }
         this._state = this.baseState;
     }
     private stateInNumericEntity(c: string) {
         if (c === ";") {
-            this.decodeNumericEntity(2, 10);
-            this.sectionStart++;
+            this.decodeNumericEntity(2, 10, true);
         } else if (c < "0" || c > "9") {
             if (!this.xmlMode) {
-                this.decodeNumericEntity(2, 10);
+                this.decodeNumericEntity(2, 10, false);
             } else {
                 this._state = this.baseState;
             }
@@ -702,15 +700,14 @@ export default class Tokenizer {
     }
     private stateInHexEntity(c: string) {
         if (c === ";") {
-            this.decodeNumericEntity(3, 16);
-            this.sectionStart++;
+            this.decodeNumericEntity(3, 16, true);
         } else if (
             (c < "a" || c > "f") &&
             (c < "A" || c > "F") &&
             (c < "0" || c > "9")
         ) {
             if (!this.xmlMode) {
-                this.decodeNumericEntity(3, 16);
+                this.decodeNumericEntity(3, 16, false);
             } else {
                 this._state = this.baseState;
             }
@@ -918,19 +915,19 @@ export default class Tokenizer {
         ) {
             this.cbs.oncomment(data);
         } else if (this._state === State.InNamedEntity && !this.xmlMode) {
-            this._parseLegacyEntity();
+            this.parseLegacyEntity();
             if (this.sectionStart < this._index) {
                 this._state = this.baseState;
                 this.handleTrailingData();
             }
         } else if (this._state === State.InNumericEntity && !this.xmlMode) {
-            this.decodeNumericEntity(2, 10);
+            this.decodeNumericEntity(2, 10, false);
             if (this.sectionStart < this._index) {
                 this._state = this.baseState;
                 this.handleTrailingData();
             }
         } else if (this._state === State.InHexEntity && !this.xmlMode) {
-            this.decodeNumericEntity(3, 16);
+            this.decodeNumericEntity(3, 16, false);
             if (this.sectionStart < this._index) {
                 this._state = this.baseState;
                 this.handleTrailingData();
