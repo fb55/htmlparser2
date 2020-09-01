@@ -256,7 +256,7 @@ export default class Tokenizer {
     ) {
         this.cbs = cbs;
         this.xmlMode = !!options?.xmlMode;
-        this.decodeEntities = !!options?.decodeEntities;
+        this.decodeEntities = options?.decodeEntities ?? true;
     }
 
     public reset() {

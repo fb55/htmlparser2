@@ -3,7 +3,7 @@
 exports[`Index createDomStream 1`] = `
 Array [
   DataNode {
-    "data": "&amp;This is text",
+    "data": "&This is text",
     "endIndex": null,
     "next": DataNode {
       "data": " and comments ",
@@ -25,7 +25,7 @@ Array [
     "next": <tags />,
     "parent": null,
     "prev": DataNode {
-      "data": "&amp;This is text",
+      "data": "&This is text",
       "endIndex": null,
       "next": [Circular],
       "parent": null,
