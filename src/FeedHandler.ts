@@ -2,12 +2,44 @@ import DomHandler, { DomHandlerOptions, Node, Element } from "domhandler";
 import * as DomUtils from "domutils";
 import { Parser, ParserOptions } from "./Parser";
 
+enum FeedItemMediaMedium {
+    image,
+    audio,
+    video,
+    document,
+    executable,
+}
+
+enum FeedItemMediaExpression {
+    sample,
+    full,
+    nonstop,
+}
+
+interface FeedItemMedia {
+    url?: string;
+    fileSize?: number;
+    type?: string;
+    medium: FeedItemMediaMedium;
+    isDefault?: boolean;
+    expression?: FeedItemMediaExpression;
+    bitrate?: number;
+    framerate?: number;
+    samplingrate?: number;
+    channels?: number;
+    duration?: number;
+    height?: number;
+    width?: number;
+    lang?: string;
+}
+
 interface FeedItem {
     id?: string;
     title?: string;
     link?: string;
     description?: string;
     pubDate?: Date;
+    media?: FeedItemMedia[];
 }
 
 interface Feed {
@@ -93,6 +125,8 @@ export class FeedHandler extends DomHandler {
                         entry.pubDate = new Date(pubDate);
                     }
 
+                    entry.media = getMediaElements(children);
+
                     return entry;
                 });
             } else {
@@ -133,6 +167,7 @@ export class FeedHandler extends DomHandler {
                         );
                         const pubDate = fetch("pubDate", children);
                         if (pubDate) entry.pubDate = new Date(pubDate);
+                        entry.media = getMediaElements(children);
                         return entry;
                     }
                 );
@@ -147,15 +182,37 @@ export class FeedHandler extends DomHandler {
     }
 }
 
+function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
+    return getElements("media:content", where).map((media) => ({
+        url: media.attribs.url,
+        fileSize: parseInt(media.attribs.fileSize),
+        type: media.attribs.type,
+        medium: (media.attribs.medium as unknown) as FeedItemMediaMedium,
+        isDefault: Boolean(media.attribs.isDefault),
+        expression: (media.attribs
+            .expression as unknown) as FeedItemMediaExpression,
+        bitrate: parseInt(media.attribs.bitrate),
+        framerate: parseInt(media.attribs.framerate),
+        samplingrate: parseInt(media.attribs.samplingrate),
+        channels: parseInt(media.attribs.channels),
+        duration: parseInt(media.attribs.duration),
+        height: parseInt(media.attribs.height),
+        width: parseInt(media.attribs.width),
+        lang: media.attribs.lang,
+    }));
+}
+
 function getElements(tagName: string, where: Node | Node[]) {
     return DomUtils.getElementsByTagName(tagName, where, true);
 }
+
 function getOneElement(
     tagName: string | ((name: string) => boolean),
     node: Node | Node[]
 ): Element | null {
     return DomUtils.getElementsByTagName(tagName, node, true, 1)[0];
 }
+
 function fetch(tagName: string, where: Node | Node[], recurse = false): string {
     return DomUtils.getText(
         DomUtils.getElementsByTagName(tagName, where, recurse, 1)
