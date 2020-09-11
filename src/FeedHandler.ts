@@ -205,14 +205,12 @@ function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
 function getElements(tagName: string, where: Node | Node[]) {
     return DomUtils.getElementsByTagName(tagName, where, true);
 }
-
 function getOneElement(
     tagName: string | ((name: string) => boolean),
     node: Node | Node[]
 ): Element | null {
     return DomUtils.getElementsByTagName(tagName, node, true, 1)[0];
 }
-
 function fetch(tagName: string, where: Node | Node[], recurse = false): string {
     return DomUtils.getText(
         DomUtils.getElementsByTagName(tagName, where, recurse, 1)
