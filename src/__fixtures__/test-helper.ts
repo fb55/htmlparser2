@@ -1,6 +1,5 @@
 import { Parser, Handler, ParserOptions } from "../Parser";
 import { CollectingHandler } from "../CollectingHandler";
-import { DomHandlerOptions } from "..";
 import fs from "fs";
 import path from "path";
 
