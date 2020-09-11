@@ -118,7 +118,7 @@ describe("API", () => {
         const p = new Parser(
             {
                 onparserinit(parser: Parser) {
-                    // @ts-expect-error
+                    // @ts-expect-error Accessing private tokenizer here
                     expect(parser.tokenizer).toBeInstanceOf(CustomTokenizer);
                 },
             },

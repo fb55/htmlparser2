@@ -34,14 +34,14 @@ export class FeedHandler extends DomHandler {
         callback?: ((error: Error | null) => void) | DomHandlerOptions,
         options?: DomHandlerOptions
     ) {
-        if (typeof callback === "object" && callback !== null) {
+        if (typeof callback === "object") {
             callback = undefined;
             options = callback;
         }
         super(callback, options);
     }
 
-    onend() {
+    onend(): void {
         const feed: Feed = {};
         const feedRoot = getOneElement(isValidFeed, this.dom);
 

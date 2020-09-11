@@ -222,13 +222,13 @@ export class Parser {
     }
 
     // Tokenizer event handlers
-    ontext(data: string) {
+    ontext(data: string): void {
         this.updatePosition(1);
         (this.endIndex as number)--;
         this.cbs.ontext?.(data);
     }
 
-    onopentagname(name: string) {
+    onopentagname(name: string): void {
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
@@ -259,7 +259,7 @@ export class Parser {
         if (this.cbs.onopentag) this.attribs = {};
     }
 
-    onopentagend() {
+    onopentagend(): void {
         this.updatePosition(1);
         if (this.attribs) {
             this.cbs.onopentag?.(this.tagname, this.attribs);
@@ -275,7 +275,7 @@ export class Parser {
         this.tagname = "";
     }
 
-    onclosetag(name: string) {
+    onclosetag(name: string): void {
         this.updatePosition(1);
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -309,7 +309,7 @@ export class Parser {
         }
     }
 
-    onselfclosingtag() {
+    onselfclosingtag(): void {
         if (
             this.options.xmlMode ||
             this.options.recognizeSelfClosing ||
@@ -334,18 +334,18 @@ export class Parser {
         }
     }
 
-    onattribname(name: string) {
+    onattribname(name: string): void {
         if (this.lowerCaseAttributeNames) {
             name = name.toLowerCase();
         }
         this.attribname = name;
     }
 
-    onattribdata(value: string) {
+    onattribdata(value: string): void {
         this.attribvalue += value;
     }
 
-    onattribend(quote: string | undefined | null) {
+    onattribend(quote: string | undefined | null): void {
         this.cbs.onattribute?.(this.attribname, this.attribvalue, quote);
         if (
             this.attribs &&
@@ -368,27 +368,27 @@ export class Parser {
         return name;
     }
 
-    ondeclaration(value: string) {
+    ondeclaration(value: string): void {
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
             this.cbs.onprocessinginstruction(`!${name}`, `!${value}`);
         }
     }
 
-    onprocessinginstruction(value: string) {
+    onprocessinginstruction(value: string): void {
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
             this.cbs.onprocessinginstruction(`?${name}`, `?${value}`);
         }
     }
 
-    oncomment(value: string) {
+    oncomment(value: string): void {
         this.updatePosition(4);
         this.cbs.oncomment?.(value);
         this.cbs.oncommentend?.();
     }
 
-    oncdata(value: string) {
+    oncdata(value: string): void {
         this.updatePosition(1);
         if (this.options.xmlMode || this.options.recognizeCDATA) {
             this.cbs.oncdatastart?.();
@@ -399,11 +399,11 @@ export class Parser {
         }
     }
 
-    onerror(err: Error) {
+    onerror(err: Error): void {
         this.cbs.onerror?.(err);
     }
 
-    onend() {
+    onend(): void {
         if (this.cbs.onclosetag) {
             for (
                 let i = this.stack.length;
@@ -417,7 +417,7 @@ export class Parser {
     /**
      * Resets the parser to a blank state, ready to parse a new HTML document
      */
-    public reset() {
+    public reset(): void {
         this.cbs.onreset?.();
         this.tokenizer.reset();
         this.tagname = "";
@@ -432,7 +432,7 @@ export class Parser {
      *
      * @param data Document to parse.
      */
-    public parseComplete(data: string) {
+    public parseComplete(data: string): void {
         this.reset();
         this.end(data);
     }
@@ -442,7 +442,7 @@ export class Parser {
      *
      * @param chunk Chunk to parse.
      */
-    public write(chunk: string) {
+    public write(chunk: string): void {
         this.tokenizer.write(chunk);
     }
 
@@ -451,21 +451,21 @@ export class Parser {
      *
      * @param chunk Optional final chunk to parse.
      */
-    public end(chunk?: string) {
+    public end(chunk?: string): void {
         this.tokenizer.end(chunk);
     }
 
     /**
      * Pauses parsing. The parser won't emit events until `resume` is called.
      */
-    public pause() {
+    public pause(): void {
         this.tokenizer.pause();
     }
 
     /**
      * Resumes parsing after `pause` was called.
      */
-    public resume() {
+    public resume(): void {
         this.tokenizer.resume();
     }
 
@@ -475,7 +475,7 @@ export class Parser {
      * @param chunk Chunk to parse.
      * @deprecated
      */
-    public parseChunk(chunk: string) {
+    public parseChunk(chunk: string): void {
         this.write(chunk);
     }
     /**
@@ -484,7 +484,7 @@ export class Parser {
      * @param chunk Optional final chunk to parse.
      * @deprecated
      */
-    public done(chunk?: string) {
+    public done(chunk?: string): void {
         this.end(chunk);
     }
 }

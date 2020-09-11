@@ -8,7 +8,7 @@ export function writeToParser(
     handler: Partial<Handler>,
     options: ParserOptions | undefined,
     data: string
-) {
+): void {
     const parser = new Parser(handler, options);
     // First, try to run the test via chunks
     for (let i = 0; i < data.length; i++) {
@@ -27,7 +27,7 @@ interface Event {
 // Returns a tree structure
 export function getEventCollector(
     cb: (error: Error | null, events?: Event[]) => void
-) {
+): CollectingHandler {
     const handler = new CollectingHandler({
         onerror: cb,
         onend() {
@@ -69,7 +69,7 @@ function eventReducer(
 function getCallback(file: TestFile, done: (err?: Error | null) => void) {
     let repeated = false;
 
-    return (err: null | Error, actual?: {} | {}[]) => {
+    return (err: null | Error, actual?: unknown | unknown[]) => {
         expect(err).toBeNull();
         if (file.useSnapshot) {
             expect(actual).toMatchSnapshot();
@@ -84,23 +84,22 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
 
 interface TestFile {
     name: string;
-    options: {
+    options?: {
         parser?: ParserOptions;
-        handler?: DomHandlerOptions;
     } & Partial<ParserOptions>;
     html: string;
     file: string;
     useSnapshot?: boolean;
-    expected?: {} | {}[];
+    expected?: unknown | unknown[];
 }
 
 export function createSuite(
     name: string,
     getResult: (
         file: TestFile,
-        done: (error: Error | null, actual?: {} | {}[]) => void
+        done: (error: Error | null, actual?: unknown | unknown[]) => void
     ) => void
-) {
+): void {
     describe(name, readDir);
 
     function readDir() {

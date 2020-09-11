@@ -258,7 +258,7 @@ export default class Tokenizer {
         this.decodeEntities = options?.decodeEntities ?? true;
     }
 
-    public reset() {
+    public reset(): void {
         this._state = State.Text;
         this.buffer = "";
         this.sectionStart = 0;
@@ -270,24 +270,24 @@ export default class Tokenizer {
         this.ended = false;
     }
 
-    public write(chunk: string) {
+    public write(chunk: string): void {
         if (this.ended) this.cbs.onerror(Error(".write() after done!"));
         this.buffer += chunk;
         this.parse();
     }
 
-    public end(chunk?: string) {
+    public end(chunk?: string): void {
         if (this.ended) this.cbs.onerror(Error(".end() after done!"));
         if (chunk) this.write(chunk);
         this.ended = true;
         if (this.running) this.finish();
     }
 
-    public pause() {
+    public pause(): void {
         this.running = false;
     }
 
-    public resume() {
+    public resume(): void {
         this.running = true;
         if (this._index < this.buffer.length) {
             this.parse();

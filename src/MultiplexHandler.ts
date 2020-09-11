@@ -1,4 +1,4 @@
-import { Handler } from "./Parser";
+import type { Parser, Handler } from "./Parser";
 
 /**
  * Calls a specific handler function for all events that are encountered.
@@ -12,46 +12,50 @@ export default class MultiplexHandler implements Handler {
         this._func = func;
     }
 
-    onattribute(name: string, value: string, quote: string | null | undefined) {
+    onattribute(
+        name: string,
+        value: string,
+        quote: string | null | undefined
+    ): void {
         this._func("onattribute", name, value, quote);
     }
-    oncdatastart() {
+    oncdatastart(): void {
         this._func("oncdatastart");
     }
-    oncdataend() {
+    oncdataend(): void {
         this._func("oncdataend");
     }
-    ontext(text: string) {
+    ontext(text: string): void {
         this._func("ontext", text);
     }
-    onprocessinginstruction(name: string, value: string) {
+    onprocessinginstruction(name: string, value: string): void {
         this._func("onprocessinginstruction", name, value);
     }
-    oncomment(comment: string) {
+    oncomment(comment: string): void {
         this._func("oncomment", comment);
     }
-    oncommentend() {
+    oncommentend(): void {
         this._func("oncommentend");
     }
-    onclosetag(name: string) {
+    onclosetag(name: string): void {
         this._func("onclosetag", name);
     }
-    onopentag(name: string, attribs: { [key: string]: string }) {
+    onopentag(name: string, attribs: { [key: string]: string }): void {
         this._func("onopentag", name, attribs);
     }
-    onopentagname(name: string) {
+    onopentagname(name: string): void {
         this._func("onopentagname", name);
     }
-    onerror(error: Error) {
+    onerror(error: Error): void {
         this._func("onerror", error);
     }
-    onend() {
+    onend(): void {
         this._func("onend");
     }
-    onparserinit(parser: {}) {
+    onparserinit(parser: Parser): void {
         this._func("onparserinit", parser);
     }
-    onreset() {
+    onreset(): void {
         this._func("onreset");
     }
 }

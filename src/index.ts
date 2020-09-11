@@ -31,7 +31,7 @@ export function createDomStream(
     cb: (error: Error | null, dom: Node[]) => void,
     options?: Options,
     elementCb?: (element: Element) => void
-) {
+): Parser {
     const handler = new DomHandler(cb, options, elementCb);
     return new Parser(handler, options);
 }
