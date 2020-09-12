@@ -185,19 +185,19 @@ export class FeedHandler extends DomHandler {
 function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
     return getElements("media:content", where).map((media) => ({
         url: media.attribs.url,
-        fileSize: parseInt(media.attribs.fileSize),
+        fileSize: parseInt(media.attribs.fileSize, 10),
         type: media.attribs.type,
         medium: (media.attribs.medium as unknown) as FeedItemMediaMedium,
         isDefault: Boolean(media.attribs.isDefault),
         expression: (media.attribs
             .expression as unknown) as FeedItemMediaExpression,
-        bitrate: parseInt(media.attribs.bitrate),
-        framerate: parseInt(media.attribs.framerate),
-        samplingrate: parseInt(media.attribs.samplingrate),
-        channels: parseInt(media.attribs.channels),
-        duration: parseInt(media.attribs.duration),
-        height: parseInt(media.attribs.height),
-        width: parseInt(media.attribs.width),
+        bitrate: parseInt(media.attribs.bitrate, 10),
+        framerate: parseInt(media.attribs.framerate, 10),
+        samplingrate: parseInt(media.attribs.samplingrate, 10),
+        channels: parseInt(media.attribs.channels, 10),
+        duration: parseInt(media.attribs.duration, 10),
+        height: parseInt(media.attribs.height, 10),
+        width: parseInt(media.attribs.width, 10),
         lang: media.attribs.lang,
     }));
 }
