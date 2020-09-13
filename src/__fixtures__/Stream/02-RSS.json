@@ -696,7 +696,47 @@
         },
         {
             "event": "text",
-            "data": ["\n\n      "]
+            "data": ["\n\n         "]
+        },
+        {
+            "event": "opentagname",
+            "data": ["media:content"]
+        },
+        {
+            "event": "attribute",
+            "data": ["height", "200", "\""]
+        },
+        {
+            "event": "attribute",
+            "data": ["medium", "image", "\""]
+        },
+        {
+            "event": "attribute",
+            "data": ["url", "https://picsum.photos/200", "\""]
+        },
+        {
+            "event": "attribute",
+            "data": ["width", "200", "\""]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "media:content",
+                {
+                    "height": "200",
+                    "medium": "image",
+                    "url": "https://picsum.photos/200",
+                    "width": "200"
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": ["media:content"]
+        },
+        {
+            "event": "text",
+            "data": ["\n      "]
         },
         {
             "event": "closetag",

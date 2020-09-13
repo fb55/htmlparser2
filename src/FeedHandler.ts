@@ -2,12 +2,44 @@ import DomHandler, { DomHandlerOptions, Node, Element } from "domhandler";
 import * as DomUtils from "domutils";
 import { Parser, ParserOptions } from "./Parser";
 
+enum FeedItemMediaMedium {
+    image,
+    audio,
+    video,
+    document,
+    executable,
+}
+
+enum FeedItemMediaExpression {
+    sample,
+    full,
+    nonstop,
+}
+
+interface FeedItemMedia {
+    url?: string;
+    fileSize?: number;
+    type?: string;
+    medium: FeedItemMediaMedium;
+    isDefault?: boolean;
+    expression?: FeedItemMediaExpression;
+    bitrate?: number;
+    framerate?: number;
+    samplingrate?: number;
+    channels?: number;
+    duration?: number;
+    height?: number;
+    width?: number;
+    lang?: string;
+}
+
 interface FeedItem {
     id?: string;
     title?: string;
     link?: string;
     description?: string;
     pubDate?: Date;
+    media?: FeedItemMedia[];
 }
 
 interface Feed {
@@ -93,6 +125,8 @@ export class FeedHandler extends DomHandler {
                         entry.pubDate = new Date(pubDate);
                     }
 
+                    entry.media = getMediaElements(children);
+
                     return entry;
                 });
             } else {
@@ -133,6 +167,7 @@ export class FeedHandler extends DomHandler {
                         );
                         const pubDate = fetch("pubDate", children);
                         if (pubDate) entry.pubDate = new Date(pubDate);
+                        entry.media = getMediaElements(children);
                         return entry;
                     }
                 );
@@ -145,6 +180,26 @@ export class FeedHandler extends DomHandler {
             feedRoot ? null : Error("couldn't find root of feed")
         );
     }
+}
+
+function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
+    return getElements("media:content", where).map((media) => ({
+        url: media.attribs.url,
+        fileSize: parseInt(media.attribs.fileSize, 10),
+        type: media.attribs.type,
+        medium: (media.attribs.medium as unknown) as FeedItemMediaMedium,
+        isDefault: Boolean(media.attribs.isDefault),
+        expression: (media.attribs
+            .expression as unknown) as FeedItemMediaExpression,
+        bitrate: parseInt(media.attribs.bitrate, 10),
+        framerate: parseInt(media.attribs.framerate, 10),
+        samplingrate: parseInt(media.attribs.samplingrate, 10),
+        channels: parseInt(media.attribs.channels, 10),
+        duration: parseInt(media.attribs.duration, 10),
+        height: parseInt(media.attribs.height, 10),
+        width: parseInt(media.attribs.width, 10),
+        lang: media.attribs.lang,
+    }));
 }
 
 function getElements(tagName: string, where: Node | Node[]) {
