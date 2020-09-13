@@ -30,7 +30,7 @@
         "./lib/WritableStream.js": false
     },
     "scripts": {
-        "test": "jest --coverage -u",
+        "test": "jest --coverage",
         "lint": "npm run lint:es && npm run lint:prettier",
         "lint:es": "eslint src",
         "lint:prettier": "npm run format:prettier:raw -- --check",

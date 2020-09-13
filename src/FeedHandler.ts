@@ -20,8 +20,8 @@ interface FeedItemMedia {
     url?: string;
     fileSize?: number;
     type?: string;
-    medium: FeedItemMediaMedium;
-    isDefault?: boolean;
+    medium: FeedItemMediaMedium | undefined;
+    isDefault: boolean;
     expression?: FeedItemMediaExpression;
     bitrate?: number;
     framerate?: number;
@@ -183,23 +183,54 @@ export class FeedHandler extends DomHandler {
 }
 
 function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
-    return getElements("media:content", where).map((media) => ({
-        url: media.attribs.url,
-        fileSize: parseInt(media.attribs.fileSize, 10),
-        type: media.attribs.type,
-        medium: (media.attribs.medium as unknown) as FeedItemMediaMedium,
-        isDefault: Boolean(media.attribs.isDefault),
-        expression: (media.attribs
-            .expression as unknown) as FeedItemMediaExpression,
-        bitrate: parseInt(media.attribs.bitrate, 10),
-        framerate: parseInt(media.attribs.framerate, 10),
-        samplingrate: parseInt(media.attribs.samplingrate, 10),
-        channels: parseInt(media.attribs.channels, 10),
-        duration: parseInt(media.attribs.duration, 10),
-        height: parseInt(media.attribs.height, 10),
-        width: parseInt(media.attribs.width, 10),
-        lang: media.attribs.lang,
-    }));
+    return getElements("media:content", where).map((elem) => {
+        const media: FeedItemMedia = {
+            medium: (elem.attribs.medium as unknown) as
+                | FeedItemMediaMedium
+                | undefined,
+            isDefault: !!elem.attribs.isDefault,
+        };
+        
+        if (elem.attribs.url) {
+            media.url = elem.attribs.url;
+        }
+        if (elem.attribs.fileSize) {
+            media.fileSize = parseInt(elem.attribs.fileSize, 10);
+        }
+        if (elem.attribs.type) {
+            media.type = elem.attribs.type;
+        }
+        if (elem.attribs.expression) {
+            media.expression = (elem.attribs
+                .expression as unknown) as FeedItemMediaExpression;
+        }
+        if (elem.attribs.bitrate) {
+            media.bitrate = parseInt(elem.attribs.bitrate, 10);
+        }
+        if (elem.attribs.framerate) {
+            media.framerate = parseInt(elem.attribs.framerate, 10);
+        }
+        if (elem.attribs.samplingrate) {
+            media.samplingrate = parseInt(elem.attribs.samplingrate, 10);
+        }
+        if (elem.attribs.channels) {
+            media.channels = parseInt(elem.attribs.channels, 10);
+        }
+        if (elem.attribs.duration) {
+            media.duration = parseInt(elem.attribs.duration, 10);
+        }
+        if (elem.attribs.height) {
+            media.height = parseInt(elem.attribs.height, 10);
+        }
+        if (elem.attribs.width) {
+            media.width = parseInt(elem.attribs.width, 10);
+        }
+        if (elem.attribs.lang) {
+            media.lang = elem.attribs.lang;
+        }
+
+        return media;
+    });
 }
 
 function getElements(tagName: string, where: Node | Node[]) {
