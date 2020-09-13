@@ -28,9 +28,6 @@
     "files": [
         "lib/**/*"
     ],
-    "browser": {
-        "./lib/WritableStream.js": false
-    },
     "scripts": {
         "test": "jest --coverage",
         "lint": "npm run lint:es && npm run lint:prettier",

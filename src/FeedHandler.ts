@@ -190,7 +190,7 @@ function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
                 | undefined,
             isDefault: !!elem.attribs.isDefault,
         };
-        
+
         if (elem.attribs.url) {
             media.url = elem.attribs.url;
         }
