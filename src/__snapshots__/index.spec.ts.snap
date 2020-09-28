@@ -2,40 +2,8 @@
 
 exports[`Index createDomStream 1`] = `
 Array [
-  DataNode {
-    "data": "&This is text",
-    "endIndex": null,
-    "next": DataNode {
-      "data": " and comments ",
-      "endIndex": null,
-      "next": <tags />,
-      "parent": null,
-      "prev": [Circular],
-      "startIndex": null,
-      "type": "comment",
-    },
-    "parent": null,
-    "prev": null,
-    "startIndex": null,
-    "type": "text",
-  },
-  DataNode {
-    "data": " and comments ",
-    "endIndex": null,
-    "next": <tags />,
-    "parent": null,
-    "prev": DataNode {
-      "data": "&This is text",
-      "endIndex": null,
-      "next": [Circular],
-      "parent": null,
-      "prev": null,
-      "startIndex": null,
-      "type": "text",
-    },
-    "startIndex": null,
-    "type": "comment",
-  },
+  &This is text,
+  <!-- and comments -->,
   <tags />,
 ]
 `;
@@ -51,73 +19,16 @@ Array [
           "data": "?foo",
           "endIndex": null,
           "name": "?foo",
-          "next": DataNode {
-            "data": "Yay!",
-            "endIndex": null,
-            "next": null,
-            "parent": <c>
-              [Circular]
-              [Circular]
-            </c>,
-            "prev": [Circular],
-            "startIndex": null,
-            "type": "text",
-          },
+          "next": Yay!,
           "parent": <c>
             [Circular]
-            DataNode {
-              "data": "Yay!",
-              "endIndex": null,
-              "next": null,
-              "parent": <c>
-                [Circular]
-                [Circular]
-              </c>,
-              "prev": [Circular],
-              "startIndex": null,
-              "type": "text",
-            }
+            Yay!
           </c>,
           "prev": null,
           "startIndex": null,
           "type": "directive",
         }
-        DataNode {
-          "data": "Yay!",
-          "endIndex": null,
-          "next": null,
-          "parent": <c>
-            ProcessingInstruction {
-              "data": "?foo",
-              "endIndex": null,
-              "name": "?foo",
-              "next": [Circular],
-              "parent": <c>
-                [Circular]
-                [Circular]
-              </c>,
-              "prev": null,
-              "startIndex": null,
-              "type": "directive",
-            }
-            [Circular]
-          </c>,
-          "prev": ProcessingInstruction {
-            "data": "?foo",
-            "endIndex": null,
-            "name": "?foo",
-            "next": [Circular],
-            "parent": <c>
-              [Circular]
-              [Circular]
-            </c>,
-            "prev": null,
-            "startIndex": null,
-            "type": "directive",
-          },
-          "startIndex": null,
-          "type": "text",
-        }
+        Yay!
       </c>
     </b>
   </a>,
