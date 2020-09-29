@@ -54,7 +54,7 @@ While the `Parser` interface closely resembles Node.js streams, it's not a 100% 
 Use the `WritableStream` interface to process a streaming input:
 
 ```javascript
-const WritableStream = require("htmlparser2/lib/WritableStream");
+const { WritableStream } = require("htmlparser2/lib/WritableStream");
 const parserStream = new WritableStream({
     ontext(text) {
         console.log("Streaming:", text);
