@@ -1,0 +1,22 @@
+{
+    "name": "entity in title (#592)",
+    "html": "<title>the &quot;title&quot;",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": ["title"]
+        },
+        {
+            "event": "opentag",
+            "data": ["title", {}]
+        },
+        {
+            "event": "text",
+            "data": ["the \"title\""]
+        },
+        {
+            "event": "closetag",
+            "data": ["title"]
+        }
+    ]
+}
