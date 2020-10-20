@@ -1,0 +1,27 @@
+{
+    "name": "entity in title - decodeEntities=false (#592)",
+    "options": {
+        "parser": {
+            "decodeEntities": false
+        }
+    },
+    "html": "<title>the &quot;title&quot;",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": ["title"]
+        },
+        {
+            "event": "opentag",
+            "data": ["title", {}]
+        },
+        {
+            "event": "text",
+            "data": ["the &quot;title&quot;"]
+        },
+        {
+            "event": "closetag",
+            "data": ["title"]
+        }
+    ]
+}
