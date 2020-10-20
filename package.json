@@ -46,9 +46,6 @@
         "domutils": "^2.4.2",
         "entities": "^2.0.0"
     },
-    "peerDependencies": {
-        "@types/node": "^14.0.5"
-    },
     "devDependencies": {
         "@types/jest": "^26.0.0",
         "@types/node": "^14.0.5",
