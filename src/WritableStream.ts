@@ -1,4 +1,8 @@
 import { Parser, Handler, ParserOptions } from "./Parser";
+/*
+ * NOTE: If either of these two imports produces a type error,
+ * please update your @types/node dependency!
+ */
 import { Writable } from "stream";
 import { StringDecoder } from "string_decoder";
 
