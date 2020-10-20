@@ -313,8 +313,8 @@ export default class Tokenizer {
             this.sectionStart = this._index;
         } else if (
             this.decodeEntities &&
-            this.special === Special.None &&
-            c === "&"
+            c === "&" &&
+            (this.special === Special.None || this.special === Special.Title)
         ) {
             if (this._index > this.sectionStart) {
                 this.cbs.ontext(this.getSection());
