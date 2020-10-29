@@ -74,111 +74,102 @@ export class FeedHandler extends DomHandler {
     }
 
     onend(): void {
-        const feed: Feed = {};
         const feedRoot = getOneElement(isValidFeed, this.dom);
 
-        if (feedRoot) {
-            if (feedRoot.name === "feed") {
-                const childs = feedRoot.children;
-                feed.type = "atom";
-                addConditionally(feed, "id", "id", childs);
-                addConditionally(feed, "title", "title", childs);
+        if (!feedRoot) {
+            this.handleCallback(new Error("couldn't find root of feed"));
+            return;
+        }
+
+        const feed: Feed = {};
+
+        if (feedRoot.name === "feed") {
+            const childs = feedRoot.children;
+            feed.type = "atom";
+            addConditionally(feed, "id", "id", childs);
+            addConditionally(feed, "title", "title", childs);
+            const href = getAttribute("href", getOneElement("link", childs));
+            if (href) {
+                feed.link = href;
+            }
+            addConditionally(feed, "description", "subtitle", childs);
+
+            const updated = fetch("updated", childs);
+            if (updated) {
+                feed.updated = new Date(updated);
+            }
+
+            addConditionally(feed, "author", "email", childs, true);
+            feed.items = getElements("entry", childs).map((item) => {
+                const entry: FeedItem = {};
+                const { children } = item;
+
+                addConditionally(entry, "id", "id", children);
+                addConditionally(entry, "title", "title", children);
+
                 const href = getAttribute(
                     "href",
-                    getOneElement("link", childs)
+                    getOneElement("link", children)
                 );
                 if (href) {
-                    feed.link = href;
-                }
-                addConditionally(feed, "description", "subtitle", childs);
-
-                const updated = fetch("updated", childs);
-                if (updated) {
-                    feed.updated = new Date(updated);
+                    entry.link = href;
                 }
 
-                addConditionally(feed, "author", "email", childs, true);
-                feed.items = getElements("entry", childs).map((item) => {
+                const description =
+                    fetch("summary", children) || fetch("content", children);
+                if (description) {
+                    entry.description = description;
+                }
+
+                const pubDate = fetch("updated", children);
+                if (pubDate) {
+                    entry.pubDate = new Date(pubDate);
+                }
+
+                entry.media = getMediaElements(children);
+
+                return entry;
+            });
+        } else {
+            const childs =
+                getOneElement("channel", feedRoot.children)?.children ?? [];
+            feed.type = feedRoot.name.substr(0, 3);
+            feed.id = "";
+
+            addConditionally(feed, "title", "title", childs);
+            addConditionally(feed, "link", "link", childs);
+            addConditionally(feed, "description", "description", childs);
+
+            const updated = fetch("lastBuildDate", childs);
+            if (updated) {
+                feed.updated = new Date(updated);
+            }
+
+            addConditionally(feed, "author", "managingEditor", childs, true);
+
+            feed.items = getElements("item", feedRoot.children).map(
+                (item: Element) => {
                     const entry: FeedItem = {};
                     const { children } = item;
-
-                    addConditionally(entry, "id", "id", children);
+                    addConditionally(entry, "id", "guid", children);
                     addConditionally(entry, "title", "title", children);
-
-                    const href = getAttribute(
-                        "href",
-                        getOneElement("link", children)
+                    addConditionally(entry, "link", "link", children);
+                    addConditionally(
+                        entry,
+                        "description",
+                        "description",
+                        children
                     );
-                    if (href) {
-                        entry.link = href;
-                    }
-
-                    const description =
-                        fetch("summary", children) ||
-                        fetch("content", children);
-                    if (description) {
-                        entry.description = description;
-                    }
-
-                    const pubDate = fetch("updated", children);
-                    if (pubDate) {
-                        entry.pubDate = new Date(pubDate);
-                    }
-
+                    const pubDate = fetch("pubDate", children);
+                    if (pubDate) entry.pubDate = new Date(pubDate);
                     entry.media = getMediaElements(children);
-
                     return entry;
-                });
-            } else {
-                const childs =
-                    getOneElement("channel", feedRoot.children)?.children ?? [];
-                feed.type = feedRoot.name.substr(0, 3);
-                feed.id = "";
-
-                addConditionally(feed, "title", "title", childs);
-                addConditionally(feed, "link", "link", childs);
-                addConditionally(feed, "description", "description", childs);
-
-                const updated = fetch("lastBuildDate", childs);
-                if (updated) {
-                    feed.updated = new Date(updated);
                 }
-
-                addConditionally(
-                    feed,
-                    "author",
-                    "managingEditor",
-                    childs,
-                    true
-                );
-
-                feed.items = getElements("item", feedRoot.children).map(
-                    (item: Element) => {
-                        const entry: FeedItem = {};
-                        const { children } = item;
-                        addConditionally(entry, "id", "guid", children);
-                        addConditionally(entry, "title", "title", children);
-                        addConditionally(entry, "link", "link", children);
-                        addConditionally(
-                            entry,
-                            "description",
-                            "description",
-                            children
-                        );
-                        const pubDate = fetch("pubDate", children);
-                        if (pubDate) entry.pubDate = new Date(pubDate);
-                        entry.media = getMediaElements(children);
-                        return entry;
-                    }
-                );
-            }
+            );
         }
 
         this.feed = feed;
-
-        this.handleCallback(
-            feedRoot ? null : Error("couldn't find root of feed")
-        );
+        this.handleCallback(null);
     }
 }
 
@@ -272,8 +263,6 @@ function isValidFeed(value: string) {
     return value === "rss" || value === "feed" || value === "rdf:RDF";
 }
 
-const defaultOptions = { xmlMode: true };
-
 /**
  * Parse a feed.
  *
@@ -282,7 +271,7 @@ const defaultOptions = { xmlMode: true };
  */
 export function parseFeed(
     feed: string,
-    options: ParserOptions & DomHandlerOptions = defaultOptions
+    options: ParserOptions & DomHandlerOptions = { xmlMode: true }
 ): Feed | undefined {
     const handler = new FeedHandler(options);
     new Parser(handler, options).end(feed);
