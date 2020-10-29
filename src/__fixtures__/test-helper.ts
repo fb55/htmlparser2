@@ -3,6 +3,15 @@ import { CollectingHandler } from "../CollectingHandler";
 import fs from "fs";
 import path from "path";
 
+/**
+ * Write to the parser twice, once a bytes, once as
+ * a single blob.
+ *
+ * @internal
+ * @param handler Handler to execute.
+ * @param options Parsing options.
+ * @param data Data to write.
+ */
 export function writeToParser(
     handler: Partial<Handler>,
     options: ParserOptions | undefined,
@@ -23,7 +32,13 @@ interface Event {
     data: unknown[];
 }
 
-// Returns a tree structure
+/**
+ * Creates a `CollectingHandler` that calls the supplied
+ * callback with simplified events on completion.
+ *
+ * @internal
+ * @param cb Function to call with all events.
+ */
 export function getEventCollector(
     cb: (error: Error | null, events?: Event[]) => void
 ): CollectingHandler {
@@ -65,6 +80,12 @@ function eventReducer(
     return events;
 }
 
+/**
+ * Runs a test suite twice, ensuring input data matches expectations.
+ *
+ * @param file Test file to execute.
+ * @param done Function to call on completion.
+ */
 function getCallback(file: TestFile, done: (err?: Error | null) => void) {
     let repeated = false;
 
@@ -92,6 +113,14 @@ interface TestFile {
     expected?: unknown | unknown[];
 }
 
+/**
+ * Creates a test suite for a particular directory, with
+ * a specified test function.
+ *
+ * @internal
+ * @param name Name of the test directory.
+ * @param getResult Function to be called with the actual results.
+ */
 export function createSuite(
     name: string,
     getResult: (

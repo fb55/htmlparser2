@@ -278,7 +278,7 @@ const defaultOptions = { xmlMode: true };
  * Parse a feed.
  *
  * @param feed The feed that should be parsed, as a string.
- * @param options Optionally, options for parsing. When using this option, you probably want to set `xmlMode` to `true`.
+ * @param options Optionally, options for parsing. When using this option, you should set `xmlMode` to `true`.
  */
 export function parseFeed(
     feed: string,
