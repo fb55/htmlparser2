@@ -5,48 +5,83 @@
 [![Build Status](https://img.shields.io/github/workflow/status/fb55/htmlparser2/Node.js%20Test?label=tests&style=flat)](https://github.com/fb55/htmlparser2/actions?query=workflow%3A%22Node.js+Test%22)
 [![Coverage](http://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
 
-A forgiving HTML/XML/RSS parser.
-The parser can handle streams and provides a callback interface.
+The fast & forgiving HTML/XML parser.
 
 ## Installation
 
-    npm install --save htmlparser2
+    npm install htmlparser2
 
-A live demo of htmlparser2 is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
+A live demo of `htmlparser2` is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
+
+## Ecosystem
+
+| Name                                                          | Description                                             |
+| ------------------------------------------------------------- | ------------------------------------------------------- |
+| [htmlparser2](https://github.com/fb55/htmlparser2)            | Fast & forgiving HTML/XML parser                        |
+| [domhandler](https://github.com/fb55/domhandler)              | Handler for htmlparser2 that turns documents into a DOM |
+| [domutils](https://github.com/fb55/domutils)                  | Utilities for working with domhandler's DOM             |
+| [css-select](https://github.com/fb55/css-select)              | CSS selector engine, compatible with domhandler's DOM   |
+| [cheerio](https://github.com/cheeriojs/cheerio)               | The jQuery API for domhandler's DOM                     |
+| [dom-serializer](https://github.com/cheeriojs/dom-serializer) | Serializer for domhandler's DOM                         |
 
 ## Usage
+
+`htmlparser2` itself provides a callback interface that allows consumption of documents with minimal allocations.
+For a more ergonomic experience, read [Getting a DOM](#getting-a-dom) below.
 
 ```javascript
 const htmlparser2 = require("htmlparser2");
 const parser = new htmlparser2.Parser({
-    onopentag(name, attribs) {
-        if (name === "script" && attribs.type === "text/javascript") {
+    onopentag(name, attributes) {
+        /*
+         * This fires when a new tag is opened.
+         *
+         * If you don't need an aggregated `attributes` object,
+         * have a look at the `onopentagname` and `onattribute` events.
+         */
+        if (name === "script" && attributes.type === "text/javascript") {
             console.log("JS! Hooray!");
         }
     },
     ontext(text) {
+        /*
+         * Fires whenever a section of text was processed.
+         *
+         * Note that this can fire at any point within text and you might
+         * have to stich together multiple pieces.
+         */
         console.log("-->", text);
     },
     onclosetag(tagname) {
+        /*
+         * Fires when a tag is closed.
+         *
+         * You can rely on this event only firing when you have received an
+         * equivalent opening tag before. Closing tags without corresponding
+         * opening tags will be ignored.
+         */
         if (tagname === "script") {
             console.log("That's it?!");
         }
     },
 });
 parser.write(
-    "Xyz <script type='text/javascript'>var foo = '<<bar>>';</ script>"
+    "Xyz <script type='text/javascript'>const foo = '<<bar>>';</ script>"
 );
 parser.end();
 ```
 
-Output (simplified):
+Output (with multiple text events combined):
 
 ```
 --> Xyz
 JS! Hooray!
---> var foo = '<<bar>>';
+--> const foo = '<<bar>>';
 That's it?!
 ```
+
+This example only shows three of the possible events.
+Read more about the parser, its events and options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ### Usage with streams
 
@@ -65,13 +100,15 @@ const htmlStream = fs.createReadStream("./my-file.html");
 htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
 ```
 
-## Documentation
-
-Read more about the parser and its options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
-
-## Get a DOM
+## Getting a DOM
 
 The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
+
+```js
+const htmlparser2 = require("htmlparser2");
+
+const dom = htmlparser2.parseDocument();
+```
 
 The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler).
 Have a look at that for further information.
