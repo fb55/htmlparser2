@@ -42,7 +42,7 @@
     },
     "dependencies": {
         "domelementtype": "^2.0.1",
-        "domhandler": "^3.3.0",
+        "domhandler": "^4.0.0",
         "domutils": "^2.4.2",
         "entities": "^2.0.0"
     },
