@@ -42,8 +42,8 @@
     },
     "dependencies": {
         "domelementtype": "^2.0.1",
-        "domhandler": "^3.3.0",
-        "domutils": "^2.4.2",
+        "domhandler": "^4.0.0",
+        "domutils": "^2.4.3",
         "entities": "^2.0.0"
     },
     "devDependencies": {
