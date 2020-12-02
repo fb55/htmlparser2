@@ -34,3 +34,38 @@ Array [
   </a>,
 ]
 `;
+
+exports[`Index parseDocument 1`] = `
+Document {
+  "children": Array [
+    <a
+      foo=""
+    >
+      <b>
+        <c>
+          ProcessingInstruction {
+            "data": "?foo",
+            "endIndex": null,
+            "name": "?foo",
+            "next": Yay!,
+            "parent": <c>
+              [Circular]
+              Yay!
+            </c>,
+            "prev": null,
+            "startIndex": null,
+            "type": "directive",
+          }
+          Yay!
+        </c>
+      </b>
+    </a>,
+  ],
+  "endIndex": null,
+  "next": null,
+  "parent": null,
+  "prev": null,
+  "startIndex": null,
+  "type": "root",
+}
+`;

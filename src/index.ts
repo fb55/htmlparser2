@@ -1,7 +1,13 @@
 import { Parser, ParserOptions } from "./Parser";
 export { Parser, ParserOptions };
 
-import { DomHandler, DomHandlerOptions, Node, Element } from "domhandler";
+import {
+    DomHandler,
+    DomHandlerOptions,
+    Node,
+    Element,
+    Document,
+} from "domhandler";
 
 export { DomHandler, DomHandlerOptions };
 
@@ -10,15 +16,28 @@ type Options = ParserOptions & DomHandlerOptions;
 // Helper methods
 
 /**
- * Parses data, returns the resulting DOM.
+ * Parses the data, returns the resulting document.
  *
  * @param data The data that should be parsed.
  * @param options Optional options for the parser and DOM builder.
  */
-export function parseDOM(data: string, options?: Options): Node[] {
-    const handler = new DomHandler(void 0, options);
+export function parseDocument(data: string, options?: Options): Document {
+    const handler = new DomHandler(undefined, options);
     new Parser(handler, options).end(data);
-    return handler.dom;
+    return handler.root;
+}
+/**
+ * Parses data, returns an array of the root nodes.
+ *
+ * Note that the root nodes still have a `Document` node as their parent.
+ * Use `parseDocument` to get the `Document` node instead.
+ *
+ * @param data The data that should be parsed.
+ * @param options Optional options for the parser and DOM builder.
+ * @deprecated Use `parseDocument` instead.
+ */
+export function parseDOM(data: string, options?: Options): Node[] {
+    return parseDocument(data, options).children;
 }
 /**
  * Creates a parser instance, with an attached DOM handler.

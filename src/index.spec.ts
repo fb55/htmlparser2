@@ -1,4 +1,5 @@
 import {
+    parseDocument,
     parseDOM,
     createDomStream,
     DomHandler,
@@ -21,6 +22,11 @@ Object.defineProperty(Element.prototype, "attributes", {
 });
 
 describe("Index", () => {
+    test("parseDocument", () => {
+        const dom = parseDocument("<a foo><b><c><?foo>Yay!");
+        expect(dom).toMatchSnapshot();
+    });
+
     test("parseDOM", () => {
         const dom = parseDOM("<a foo><b><c><?foo>Yay!");
         expect(dom).toMatchSnapshot();
