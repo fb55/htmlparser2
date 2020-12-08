@@ -3,7 +3,7 @@ name: Node.js Test
 on: [push, pull_request]
 
 jobs:
-     lint:
+    lint:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
