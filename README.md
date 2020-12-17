@@ -4,6 +4,7 @@
 [![Downloads](https://img.shields.io/npm/dm/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
 [![Build Status](https://img.shields.io/github/workflow/status/fb55/htmlparser2/Node.js%20Test?label=tests&style=flat)](https://github.com/fb55/htmlparser2/actions?query=workflow%3A%22Node.js+Test%22)
 [![Coverage](http://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffb55%2Fhtmlparser2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffb55%2Fhtmlparser2?ref=badge_shield)
 
 The fast & forgiving HTML/XML parser.
 
@@ -162,3 +163,7 @@ Tidelift will coordinate the fix and disclosure.
 Available as part of the Tidelift Subscription
 
 The maintainers of `htmlparser2` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-htmlparser2?utm_source=npm-htmlparser2&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffb55%2Fhtmlparser2.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffb55%2Fhtmlparser2?ref=badge_large)
