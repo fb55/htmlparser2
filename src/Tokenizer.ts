@@ -367,9 +367,12 @@ export default class Tokenizer {
         } else if (c === ">") {
             this._state = State.Text;
         } else if (this.special !== Special.None) {
-            if (c === "s" || c === "S") {
+            if (this.special !== Special.Title && (c === "s" || c === "S")) {
                 this._state = State.BeforeSpecialSEnd;
-            } else if (c === "t" || c === "T") {
+            } else if (
+                this.special === Special.Title &&
+                (c === "t" || c === "T")
+            ) {
                 this._state = State.BeforeSpecialTEnd;
             } else {
                 this._state = State.Text;
