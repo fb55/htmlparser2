@@ -1,0 +1,22 @@
+{
+    "name": "</title> in <script> (#745)",
+    "html": "<script>'</title>'</script>",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": ["script"]
+        },
+        {
+            "event": "opentag",
+            "data": ["script", {}]
+        },
+        {
+            "event": "text",
+            "data": ["'</title>'"]
+        },
+        {
+            "event": "closetag",
+            "data": ["script"]
+        }
+    ]
+}
