@@ -104,7 +104,7 @@ function isASCIIAlpha(c: string): boolean {
     return (c >= "a" && c <= "z") || (c >= "A" && c <= "Z");
 }
 
-interface Callbacks {
+export interface Callbacks {
     onattribdata(value: string): void;
     onattribend(quote: string | undefined | null): void;
     onattribname(name: string): void;
