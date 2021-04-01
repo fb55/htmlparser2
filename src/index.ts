@@ -55,7 +55,10 @@ export function createDomStream(
     return new Parser(handler, options);
 }
 
-export { default as Tokenizer } from "./Tokenizer";
+export {
+    default as Tokenizer,
+    Callbacks as TokenizerCallbacks,
+} from "./Tokenizer";
 import * as ElementType from "domelementtype";
 export { ElementType };
 
