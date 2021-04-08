@@ -324,6 +324,18 @@ export default class Tokenizer {
             this.sectionStart = this._index;
         }
     }
+    /**
+     * HTML only allows ASCII alpha characters (a-z and A-Z) at the beginning of a tag name.
+     *
+     * XML allows a lot more characters here (@see https://www.w3.org/TR/REC-xml/#NT-NameStartChar).
+     * We allow anything that wouldn't end the tag.
+     */
+    private isTagStartChar(c: string) {
+        return (
+            isASCIIAlpha(c) ||
+            (this.xmlMode && !whitespace(c) && c !== "/" && c !== ">")
+        );
+    }
     private stateBeforeTagName(c: string) {
         if (c === "/") {
             this._state = State.BeforeClosingTagName;
@@ -342,7 +354,7 @@ export default class Tokenizer {
         } else if (c === "?") {
             this._state = State.InProcessingInstruction;
             this.sectionStart = this._index + 1;
-        } else if (!isASCIIAlpha(c)) {
+        } else if (!this.isTagStartChar(c)) {
             this._state = State.Text;
         } else {
             this._state =
@@ -378,7 +390,7 @@ export default class Tokenizer {
                 this._state = State.Text;
                 this._index--;
             }
-        } else if (!isASCIIAlpha(c)) {
+        } else if (!this.isTagStartChar(c)) {
             this._state = State.InSpecialComment;
             this.sectionStart = this._index;
         } else {
