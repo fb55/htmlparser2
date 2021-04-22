@@ -240,6 +240,10 @@ export class Parser {
         this.cbs.ontext?.(data);
     }
 
+    isVoidElement(name: string): boolean {
+        return !this.options.xmlMode && voidElements.has(name);
+    }
+
     onopentagname(name: string): void {
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -259,7 +263,7 @@ export class Parser {
                 this.onclosetag(el);
             }
         }
-        if (this.options.xmlMode || !voidElements.has(name)) {
+        if (!this.isVoidElement(name)) {
             this.stack.push(name);
             if (foreignContextElements.has(name)) {
                 this.foreignContext.push(true);
@@ -277,11 +281,7 @@ export class Parser {
             this.cbs.onopentag?.(this.tagname, this.attribs);
             this.attribs = null;
         }
-        if (
-            !this.options.xmlMode &&
-            this.cbs.onclosetag &&
-            voidElements.has(this.tagname)
-        ) {
+        if (this.cbs.onclosetag && this.isVoidElement(this.tagname)) {
             this.cbs.onclosetag(this.tagname);
         }
         this.tagname = "";
@@ -298,10 +298,7 @@ export class Parser {
         ) {
             this.foreignContext.pop();
         }
-        if (
-            this.stack.length &&
-            (this.options.xmlMode || !voidElements.has(name))
-        ) {
+        if (this.stack.length && !this.isVoidElement(name)) {
             let pos = this.stack.lastIndexOf(name);
             if (pos !== -1) {
                 if (this.cbs.onclosetag) {
