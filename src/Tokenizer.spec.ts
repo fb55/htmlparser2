@@ -105,6 +105,22 @@ describe("Tokenizer", () => {
         expect(logger.log).toEqual(selfClosingTitleOutput);
         tokenizer.reset();
         logger.log = [];
+
+        const selfClosingTemplateInput = "<template /><div></div>";
+        const selfClosingTemplateOutput = [
+            "onopentagname: 'template'",
+            "onselfclosingtag",
+            "onopentagname: 'div'",
+            "onopentagend",
+            "onclosetag: 'div'",
+            "onend",
+        ];
+
+        tokenizer.write(selfClosingTemplateInput);
+        tokenizer.end();
+        expect(logger.log).toEqual(selfClosingTemplateOutput);
+        tokenizer.reset();
+        logger.log = [];
     });
 
     test("should support standard special tags", () => {
@@ -117,10 +133,12 @@ describe("Tokenizer", () => {
             logger
         );
 
-        const normalScriptInput = "<script></script><div></div>";
+        const normalScriptInput = "<script><b></b></script><div></div>";
         const normalScriptOutput = [
             "onopentagname: 'script'",
             "onopentagend",
+            "ontext: '<b>'",
+            "ontext: '</b>'",
             "onclosetag: 'script'",
             "onopentagname: 'div'",
             "onopentagend",
@@ -134,10 +152,12 @@ describe("Tokenizer", () => {
         tokenizer.reset();
         logger.log = [];
 
-        const normalStyleInput = "<style></style><div></div>";
+        const normalStyleInput = "<style><b></b></style><div></div>";
         const normalStyleOutput = [
             "onopentagname: 'style'",
             "onopentagend",
+            "ontext: '<b>'",
+            "ontext: '</b>'",
             "onclosetag: 'style'",
             "onopentagname: 'div'",
             "onopentagend",
@@ -151,10 +171,12 @@ describe("Tokenizer", () => {
         tokenizer.reset();
         logger.log = [];
 
-        const normalTitleInput = "<title></title><div></div>";
+        const normalTitleInput = "<title><b></b></title><div></div>";
         const normalTitleOutput = [
             "onopentagname: 'title'",
             "onopentagend",
+            "ontext: '<b>'",
+            "ontext: '</b>'",
             "onclosetag: 'title'",
             "onopentagname: 'div'",
             "onopentagend",
@@ -165,6 +187,25 @@ describe("Tokenizer", () => {
         tokenizer.write(normalTitleInput);
         tokenizer.end();
         expect(logger.log).toEqual(normalTitleOutput);
+        tokenizer.reset();
+        logger.log = [];
+
+        const normalTemplateInput = "<template><b></b></template><div></div>";
+        const normalTemplateOutput = [
+            "onopentagname: 'template'",
+            "onopentagend",
+            "ontext: '<b>'",
+            "ontext: '</b>'",
+            "onclosetag: 'template'",
+            "onopentagname: 'div'",
+            "onopentagend",
+            "onclosetag: 'div'",
+            "onend",
+        ];
+
+        tokenizer.write(normalTemplateInput);
+        tokenizer.end();
+        expect(logger.log).toEqual(normalTemplateOutput);
         tokenizer.reset();
         logger.log = [];
     });

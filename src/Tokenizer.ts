@@ -87,6 +87,21 @@ const enum State {
     InNamedEntity,
     InNumericEntity,
     InHexEntity, // X
+
+    BeforeTemplate1, // E
+    BeforeTemplate2, // M
+    BeforeTemplate3, // P
+    BeforeTemplate4, // L
+    BeforeTemplate5, // A
+    BeforeTemplate6, // T
+    BeforeTemplate7, // E
+    AfterTemplate1, // E
+    AfterTemplate2, // M
+    AfterTemplate3, // P
+    AfterTemplate4, // L
+    AfterTemplate5, // A
+    AfterTemplate6, // T
+    AfterTemplate7, // E
 }
 
 const enum Special {
@@ -94,6 +109,7 @@ const enum Special {
     Script,
     Style,
     Title,
+    Template,
 }
 
 function whitespace(c: string): boolean {
@@ -201,15 +217,28 @@ const stateAfterStyle1 = ifElseState("Y", State.AfterStyle2, State.Text);
 const stateAfterStyle2 = ifElseState("L", State.AfterStyle3, State.Text);
 const stateAfterStyle3 = ifElseState("E", State.AfterStyle4, State.Text);
 
-const stateBeforeSpecialT = consumeSpecialNameChar("I", State.BeforeTitle1);
 const stateBeforeTitle1 = consumeSpecialNameChar("T", State.BeforeTitle2);
 const stateBeforeTitle2 = consumeSpecialNameChar("L", State.BeforeTitle3);
 const stateBeforeTitle3 = consumeSpecialNameChar("E", State.BeforeTitle4);
 
-const stateAfterSpecialTEnd = ifElseState("I", State.AfterTitle1, State.Text);
 const stateAfterTitle1 = ifElseState("T", State.AfterTitle2, State.Text);
 const stateAfterTitle2 = ifElseState("L", State.AfterTitle3, State.Text);
 const stateAfterTitle3 = ifElseState("E", State.AfterTitle4, State.Text);
+
+const stateBeforeTemplate1 = consumeSpecialNameChar("M", State.BeforeTemplate2);
+const stateBeforeTemplate2 = consumeSpecialNameChar("P", State.BeforeTemplate3);
+const stateBeforeTemplate3 = consumeSpecialNameChar("L", State.BeforeTemplate4);
+const stateBeforeTemplate4 = consumeSpecialNameChar("A", State.BeforeTemplate5);
+const stateBeforeTemplate5 = consumeSpecialNameChar("T", State.BeforeTemplate6);
+const stateBeforeTemplate6 = consumeSpecialNameChar("E", State.BeforeTemplate7);
+
+const stateAfterTemplate1 = ifElseState("M", State.AfterTemplate2, State.Text);
+const stateAfterTemplate2 = ifElseState("P", State.AfterTemplate3, State.Text);
+const stateAfterTemplate3 = ifElseState("L", State.AfterTemplate4, State.Text);
+const stateAfterTemplate4 = ifElseState("A", State.AfterTemplate5, State.Text);
+const stateAfterTemplate5 = ifElseState("T", State.AfterTemplate6, State.Text);
+const stateAfterTemplate6 = ifElseState("E", State.AfterTemplate7, State.Text);
+
 
 const stateBeforeEntity = ifElseState(
     "#",
@@ -379,10 +408,10 @@ export default class Tokenizer {
         } else if (c === ">") {
             this._state = State.Text;
         } else if (this.special !== Special.None) {
-            if (this.special !== Special.Title && (c === "s" || c === "S")) {
+            if (this.special !== Special.Title && this.special !== Special.Template && (c === "s" || c === "S")) {
                 this._state = State.BeforeSpecialSEnd;
             } else if (
-                this.special === Special.Title &&
+                (this.special === Special.Title || this.special === Special.Template) &&
                 (c === "t" || c === "T")
             ) {
                 this._state = State.BeforeSpecialTEnd;
@@ -608,6 +637,23 @@ export default class Tokenizer {
             this._state = State.AfterStyle1;
         } else this._state = State.Text;
     }
+    private stateBeforeSpecialT(c: string) {
+        if (c === "i" || c === "I") {
+            this._state = State.BeforeTitle1;
+        } else if (c === "e" || c === "E") {
+            this._state = State.BeforeTemplate1;
+        } else {
+            this._state = State.InTagName;
+            this._index--; // Consume the token again
+        }
+    }
+    private stateBeforeSpecialTEnd(c: string) {
+        if (this.special === Special.Title && (c === "i" || c === "I")) {
+            this._state = State.AfterTitle1;
+        } else if (this.special === Special.Template && (c === "e" || c === "E")) {
+            this._state = State.AfterTemplate1;
+        } else this._state = State.Text;
+    }
     private stateBeforeSpecialLast(c: string, special: Special) {
         if (c === "/" || c === ">" || whitespace(c)) {
             this.special = special;
@@ -805,7 +851,7 @@ export default class Tokenizer {
             } else if (this._state === State.BeforeSpecialSEnd) {
                 this.stateBeforeSpecialSEnd(c);
             } else if (this._state === State.BeforeSpecialTEnd) {
-                stateAfterSpecialTEnd(this, c);
+                this.stateBeforeSpecialTEnd(c);
             } else if (this._state === State.AfterScript1) {
                 stateAfterScript1(this, c);
             } else if (this._state === State.AfterScript2) {
@@ -845,7 +891,7 @@ export default class Tokenizer {
             } else if (this._state === State.AfterStyle4) {
                 this.stateAfterSpecialLast(c, 5);
             } else if (this._state === State.BeforeSpecialT) {
-                stateBeforeSpecialT(this, c);
+                this.stateBeforeSpecialT(c);
             } else if (this._state === State.BeforeTitle1) {
                 stateBeforeTitle1(this, c);
             } else if (this._state === State.BeforeTitle2) {
@@ -862,6 +908,34 @@ export default class Tokenizer {
                 stateAfterTitle3(this, c);
             } else if (this._state === State.AfterTitle4) {
                 this.stateAfterSpecialLast(c, 5);
+            } else if (this._state === State.BeforeTemplate1) {
+                stateBeforeTemplate1(this, c);
+            } else if (this._state === State.BeforeTemplate2) {
+                stateBeforeTemplate2(this, c);
+            } else if (this._state === State.BeforeTemplate3) {
+                stateBeforeTemplate3(this, c);
+            } else if (this._state === State.BeforeTemplate4) {
+                stateBeforeTemplate4(this, c);
+            } else if (this._state === State.BeforeTemplate5) {
+                stateBeforeTemplate5(this, c);
+            } else if (this._state === State.BeforeTemplate6) {
+                stateBeforeTemplate6(this, c);
+            } else if (this._state === State.BeforeTemplate7) {
+                this.stateBeforeSpecialLast(c, Special.Template);
+            } else if (this._state === State.AfterTemplate1) {
+                stateAfterTemplate1(this, c);
+            } else if (this._state === State.AfterTemplate2) {
+                stateAfterTemplate2(this, c);
+            } else if (this._state === State.AfterTemplate3) {
+                stateAfterTemplate3(this, c);
+            } else if (this._state === State.AfterTemplate4) {
+                stateAfterTemplate4(this, c);
+            } else if (this._state === State.AfterTemplate5) {
+                stateAfterTemplate5(this, c);
+            } else if (this._state === State.AfterTemplate6) {
+                stateAfterTemplate6(this, c);
+            } else if (this._state === State.AfterTemplate7) {
+                this.stateAfterSpecialLast(c, 8);
             } else if (this._state === State.InProcessingInstruction) {
                 this.stateInProcessingInstruction(c);
             } else if (this._state === State.InNamedEntity) {
