@@ -176,7 +176,7 @@ export class FeedHandler extends DomHandler {
 function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
     return getElements("media:content", where).map((elem) => {
         const media: FeedItemMedia = {
-            medium: (elem.attribs.medium as unknown) as
+            medium: elem.attribs.medium as unknown as
                 | FeedItemMediaMedium
                 | undefined,
             isDefault: !!elem.attribs.isDefault,
@@ -192,8 +192,8 @@ function getMediaElements(where: Node | Node[]): FeedItemMedia[] {
             media.type = elem.attribs.type;
         }
         if (elem.attribs.expression) {
-            media.expression = (elem.attribs
-                .expression as unknown) as FeedItemMediaExpression;
+            media.expression = elem.attribs
+                .expression as unknown as FeedItemMediaExpression;
         }
         if (elem.attribs.bitrate) {
             media.bitrate = parseInt(elem.attribs.bitrate, 10);
@@ -256,7 +256,7 @@ function addConditionally<T>(
     recurse = false
 ) {
     const tmp = fetch(what, where, recurse);
-    if (tmp) obj[prop] = (tmp as unknown) as T[keyof T];
+    if (tmp) obj[prop] = tmp as unknown as T[keyof T];
 }
 
 function isValidFeed(value: string) {
