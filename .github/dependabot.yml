@@ -1,0 +1,32 @@
+version: 2
+updates:
+    - package-ecosystem: npm
+      directory: "/"
+      schedule:
+          interval: daily
+          time: "13:00"
+          timezone: America/Los_Angeles
+      open-pull-requests-limit: 10
+      ignore:
+          - dependency-name: domutils
+            versions:
+                - 2.5.2
+          - dependency-name: "@types/jest"
+            versions:
+                - 26.0.21
+          - dependency-name: "@typescript-eslint/eslint-plugin"
+            versions:
+                - 4.18.0
+          - dependency-name: eslint-config-prettier
+            versions:
+                - 8.0.0
+          - dependency-name: "@types/node"
+            versions:
+                - 14.14.29
+    - package-ecosystem: github-actions
+      directory: "/"
+      schedule:
+          interval: daily
+          time: "13:00"
+          timezone: America/Los_Angeles
+      open-pull-requests-limit: 10
