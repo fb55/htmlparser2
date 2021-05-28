@@ -59,7 +59,7 @@
         "@typescript-eslint/parser": "^4.9.1",
         "eslint": "^7.15.0",
         "eslint-config-prettier": "^8.1.0",
-        "jest": "^26.0.1",
+        "jest": "^27.0.1",
         "prettier": "^2.1.1",
         "ts-jest": "^26.0.0",
         "typescript": "^4.0.2"
