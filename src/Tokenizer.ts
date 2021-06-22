@@ -89,7 +89,6 @@ const enum State {
     InHexEntity, // X
 
     BeforeErbPercent, // %
-    InErb,
     AfterErbPercent, // %
 }
 
@@ -320,6 +319,16 @@ export default class Tokenizer {
             this._state = State.BeforeTagName;
             this.sectionStart = this._index;
         } else if (
+            c === "%" &&
+            (this.special === Special.ErbScriptlet || this.special === Special.ErbExpression)
+        ) {
+            if (this._index > this.sectionStart) {
+                this.cbs.ontext(this.getSection());
+            }
+            this.baseState = State.Text;
+            this._state = State.AfterErbPercent;
+            this.sectionStart = this._index;
+        } else if (
             this.decodeEntities &&
             c === "&" &&
             (this.special === Special.None || this.special === Special.Title)
@@ -378,11 +387,11 @@ export default class Tokenizer {
     }
     private stateBeforeErbPercent(c: string) {
         if (c === "=") {
-            this._state = State.InErb;
+            this._state = State.Text;
             this.special = Special.ErbExpression;
             this.sectionStart = this._index;
         } else {
-            this._state = State.InErb;
+            this._state = State.Text;
             this.special = Special.ErbScriptlet;
             this.sectionStart = this._index;
         }
@@ -402,8 +411,8 @@ export default class Tokenizer {
             this.emitToken(this.special === Special.ErbExpression ? "onerbexpression" : "onerbscriptlet");
             this.special = Special.None;
         } else {
-            // False alarm - re-read as ERB
-            this._state = State.InErb;
+            // False alarm
+            this._state = State.Text;
             this._index--;
         }
     }
@@ -819,8 +828,6 @@ export default class Tokenizer {
                 this.stateBeforeTagName(c);
             } else if (this._state === State.BeforeErbPercent) {
                 this.stateBeforeErbPercent(c);
-            } else if (this._state === State.InErb) {
-                this.stateInErb(c);
             } else if (this._state === State.AfterErbPercent) {
                 this.stateAfterErbPercent(c);
             } else if (this._state === State.AfterAttributeName) {
