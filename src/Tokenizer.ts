@@ -87,6 +87,10 @@ const enum State {
     InNamedEntity,
     InNumericEntity,
     InHexEntity, // X
+
+    BeforeErbPercent, // %
+    InErb,
+    AfterErbPercent, // %
 }
 
 const enum Special {
@@ -94,6 +98,8 @@ const enum Special {
     Script,
     Style,
     Title,
+    ErbExpression,
+    ErbScriptlet,
 }
 
 function whitespace(c: string): boolean {
@@ -119,6 +125,8 @@ export interface Callbacks {
     onprocessinginstruction(instruction: string): void;
     onselfclosingtag(): void;
     ontext(value: string): void;
+    onerbexpression(value: string): void;
+    onerbscriptlet(value: string): void;
 }
 
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
@@ -342,6 +350,8 @@ export default class Tokenizer {
         } else if (c === "<") {
             this.cbs.ontext(this.getSection());
             this.sectionStart = this._index;
+        } else if (c === "%") {
+            this._state = State.BeforeErbPercent;
         } else if (
             c === ">" ||
             this.special !== Special.None ||
@@ -364,6 +374,37 @@ export default class Tokenizer {
                     ? State.BeforeSpecialT
                     : State.InTagName;
             this.sectionStart = this._index;
+        }
+    }
+    private stateBeforeErbPercent(c: string) {
+        if (c === "=") {
+            this._state = State.InErb;
+            this.special = Special.ErbExpression;
+            this.sectionStart = this._index;
+        } else {
+            this._state = State.InErb;
+            this.special = Special.ErbScriptlet;
+            this.sectionStart = this._index;
+        }
+    }
+    private stateInErb(c: string) {
+        if (c === "%") {
+            // If %> occurs in the middle of a "string", this will
+            // be parsed as the end of the ERB even though it isn't.
+            // A fairly unlikely edge case, but should probably sort
+            // out it sooner or later...
+            this._state = State.AfterErbPercent;
+        }
+    }
+    private stateAfterErbPercent(c: string) {
+        if (c === ">") {
+            this._state = State.Text;
+            this.emitToken(this.special === Special.ErbExpression ? "onerbexpression" : "onerbscriptlet");
+            this.special = Special.None;
+        } else {
+            // False alarm - re-read as ERB
+            this._state = State.InErb;
+            this._index--;
         }
     }
     private stateInTagName(c: string) {
@@ -776,6 +817,12 @@ export default class Tokenizer {
                 this.stateInClosingTagName(c);
             } else if (this._state === State.BeforeTagName) {
                 this.stateBeforeTagName(c);
+            } else if (this._state === State.BeforeErbPercent) {
+                this.stateBeforeErbPercent(c);
+            } else if (this._state === State.InErb) {
+                this.stateInErb(c);
+            } else if (this._state === State.AfterErbPercent) {
+                this.stateAfterErbPercent(c);
             } else if (this._state === State.AfterAttributeName) {
                 this.stateAfterAttributeName(c);
             } else if (this._state === State.InAttributeValueSq) {
@@ -961,7 +1008,7 @@ export default class Tokenizer {
     private getSection(): string {
         return this.buffer.substring(this.sectionStart, this._index);
     }
-    private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata") {
+    private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata" | "onerbexpression" | "onerbscriptlet") {
         this.cbs[name](this.getSection());
         this.sectionStart = -1;
     }
