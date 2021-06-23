@@ -89,7 +89,10 @@ const enum State {
     InHexEntity, // X
 
     BeforeErbPercent, // %
-    AfterErbPercent, // %
+    InErbExpression,
+    InErbScriptlet,
+    AfterErbExpressionPercent, // %
+    AfterErbScriptletPercent, // %
 }
 
 const enum Special {
@@ -97,8 +100,6 @@ const enum Special {
     Script,
     Style,
     Title,
-    ErbExpression,
-    ErbScriptlet,
 }
 
 function whitespace(c: string): boolean {
@@ -124,8 +125,8 @@ export interface Callbacks {
     onprocessinginstruction(instruction: string): void;
     onselfclosingtag(): void;
     ontext(value: string): void;
-    onerbexpression(): void;
-    onerbscriptlet(): void;
+    onerbexpression(value: string): void;
+    onerbscriptlet(value: string): void;
 }
 
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
@@ -319,16 +320,6 @@ export default class Tokenizer {
             this._state = State.BeforeTagName;
             this.sectionStart = this._index;
         } else if (
-            c === "%" &&
-            (this.special === Special.ErbScriptlet || this.special === Special.ErbExpression)
-        ) {
-            if (this._index > this.sectionStart) {
-                this.cbs.ontext(this.getSection());
-            }
-            this.baseState = State.Text;
-            this._state = State.AfterErbPercent;
-            this.sectionStart = this._index;
-        } else if (
             this.decodeEntities &&
             c === "&" &&
             (this.special === Special.None || this.special === Special.Title)
@@ -387,33 +378,49 @@ export default class Tokenizer {
     }
     private stateBeforeErbPercent(c: string) {
         if (c === "=") {
-            this.cbs.onerbexpression();
-            this._state = State.Text;
-            this.special = Special.ErbExpression;
+            this._state = State.InErbExpression;
             this.sectionStart = this._index;
         } else {
-            this.cbs.onerbscriptlet();
-            this._state = State.Text;
-            this.special = Special.ErbScriptlet;
+            this._state = State.InErbScriptlet;
+            this._index--;
             this.sectionStart = this._index;
         }
     }
-    private stateInErb(c: string) {
+    private stateInErbExpression(c: string) {
         if (c === "%") {
             // If %> occurs in the middle of a "string", this will
             // be parsed as the end of the ERB even though it isn't.
             // A fairly unlikely edge case, but should probably sort
             // out it sooner or later...
-            this._state = State.AfterErbPercent;
+            this._state = State.AfterErbExpressionPercent;
         }
     }
-    private stateAfterErbPercent(c: string) {
+    private stateInErbScriptlet(c: string) {
+        if (c === "%") {
+            // If %> occurs in the middle of a "string", this will
+            // be parsed as the end of the ERB even though it isn't.
+            // A fairly unlikely edge case, but should probably sort
+            // out it sooner or later...
+            this._state = State.AfterErbScriptletPercent;
+        }
+    }
+    private stateAfterErbExpressionPercent(c: string) {
         if (c === ">") {
             this._state = State.Text;
-            this.special = Special.None;
+            this.cbs.onerbexpression(this.getSection());
         } else {
-            // False alarm
+            // False alarm - re-read as ERB
+            this._state = State.InErbExpression;
+            this._index--;
+        }
+    }
+    private stateAfterErbScriptletPercent(c: string) {
+        if (c === ">") {
             this._state = State.Text;
+            this.cbs.onerbscriptlet(this.getSection());
+        } else {
+            // False alarm - re-read as ERB
+            this._state = State.InErbScriptlet;
             this._index--;
         }
     }
@@ -829,8 +836,14 @@ export default class Tokenizer {
                 this.stateBeforeTagName(c);
             } else if (this._state === State.BeforeErbPercent) {
                 this.stateBeforeErbPercent(c);
-            } else if (this._state === State.AfterErbPercent) {
-                this.stateAfterErbPercent(c);
+            } else if (this._state === State.InErbExpression) {
+                this.stateInErbExpression(c);
+            } else if (this._state === State.InErbScriptlet) {
+                this.stateInErbScriptlet(c);
+            } else if (this._state === State.AfterErbExpressionPercent) {
+                this.stateAfterErbExpressionPercent(c);
+            } else if (this._state === State.AfterErbScriptletPercent) {
+                this.stateAfterErbScriptletPercent(c);
             } else if (this._state === State.AfterAttributeName) {
                 this.stateAfterAttributeName(c);
             } else if (this._state === State.InAttributeValueSq) {
