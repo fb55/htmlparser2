@@ -185,6 +185,8 @@ export interface Handler {
     oncdataend(): void;
     oncommentend(): void;
     onprocessinginstruction(name: string, data: string): void;
+    onerbexpression(data: string): void;
+    onerbscriptlet(data: string): void;
 }
 
 const reNameEnd = /\s|\//;
@@ -421,6 +423,16 @@ export class Parser {
             );
         }
         this.cbs.onend?.();
+    }
+
+    onerbexpression(data: string): void {
+        this.updatePosition(3);
+        this.cbs.onerbexpression?.(data);
+    }
+
+    onerbscriptlet(data: string): void {
+        this.updatePosition(2);
+        this.cbs.onerbscriptlet?.(data);
     }
 
     /**
