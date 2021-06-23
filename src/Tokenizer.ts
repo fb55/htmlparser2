@@ -398,15 +398,6 @@ export default class Tokenizer {
             this.sectionStart = this._index;
         }
     }
-    private stateInErb(c: string) {
-        if (c === "%") {
-            // If %> occurs in the middle of a "string", this will
-            // be parsed as the end of the ERB even though it isn't.
-            // A fairly unlikely edge case, but should probably sort
-            // out it sooner or later...
-            this._state = State.AfterErbPercent;
-        }
-    }
     private stateAfterErbPercent(c: string) {
         if (c === ">") {
             this._state = State.Text;
