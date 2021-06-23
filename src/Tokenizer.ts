@@ -124,8 +124,8 @@ export interface Callbacks {
     onprocessinginstruction(instruction: string): void;
     onselfclosingtag(): void;
     ontext(value: string): void;
-    onerbexpression(value: string): void;
-    onerbscriptlet(value: string): void;
+    onerbexpression(): void;
+    onerbscriptlet(): void;
 }
 
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
@@ -387,10 +387,12 @@ export default class Tokenizer {
     }
     private stateBeforeErbPercent(c: string) {
         if (c === "=") {
+            this.cbs.onerbexpression();
             this._state = State.Text;
             this.special = Special.ErbExpression;
             this.sectionStart = this._index;
         } else {
+            this.cbs.onerbscriptlet();
             this._state = State.Text;
             this.special = Special.ErbScriptlet;
             this.sectionStart = this._index;
@@ -408,7 +410,6 @@ export default class Tokenizer {
     private stateAfterErbPercent(c: string) {
         if (c === ">") {
             this._state = State.Text;
-            this.emitToken(this.special === Special.ErbExpression ? "onerbexpression" : "onerbscriptlet");
             this.special = Special.None;
         } else {
             // False alarm
@@ -1015,7 +1016,7 @@ export default class Tokenizer {
     private getSection(): string {
         return this.buffer.substring(this.sectionStart, this._index);
     }
-    private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata" | "onerbexpression" | "onerbscriptlet") {
+    private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata") {
         this.cbs[name](this.getSection());
         this.sectionStart = -1;
     }
