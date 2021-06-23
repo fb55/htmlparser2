@@ -48,6 +48,12 @@ export default class MultiplexHandler implements Handler {
     onopentagname(name: string): void {
         this.func("onopentagname", name);
     }
+    onerbexpression(data: string): void {
+        this.func("onerbexpression", data);
+    }
+    onerbscriptlet(data: string): void {
+        this.func("onerbscriptlet", data);
+    }
     onerror(error: Error): void {
         this.func("onerror", error);
     }
