@@ -8,7 +8,7 @@ HTML/ERB parser, based on htmlparse2: the fast & forgiving HTML/XML parser.
 
 # htmlparser2
 
-The remainder of this README, with the exception of the (ERB)[#ERB] section, is copy-and-pasted from [htmlparser2](https://github.com/fb55/htmlparser2).
+The remainder of this README, with the exception of the [Parsing ERB](#parsing-erb) section, is copy-and-pasted from [htmlparser2](https://github.com/fb55/htmlparser2).
 
 A live demo of `htmlparser2` is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
 
@@ -121,7 +121,7 @@ const feed = htmlparser2.parseFeed(content, options);
 Note: While the provided feed handler works for most feeds,
 you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
 
-## ERB
+## Parsing ERB
 
 ```javascript
 const htmlparser2 = require("htmlparser2");
