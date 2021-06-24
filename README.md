@@ -1,15 +1,14 @@
-# htmlparser2
+# erbparser
 
-[![NPM version](http://img.shields.io/npm/v/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
-[![Downloads](https://img.shields.io/npm/dm/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
-[![Build Status](https://img.shields.io/github/workflow/status/fb55/htmlparser2/Node.js%20Test?label=tests&style=flat)](https://github.com/fb55/htmlparser2/actions?query=workflow%3A%22Node.js+Test%22)
-[![Coverage](http://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
-
-The fast & forgiving HTML/XML parser.
+HTML/ERB parser, based on htmlparse2: the fast & forgiving HTML/XML parser.
 
 ## Installation
 
-    npm install htmlparser2
+    npm install @joecarstairs-fa/erbparser
+
+# htmlparser2
+
+The remainder of this README, with the exception of the (ERB)[#ERB] section, is copy-and-pasted from [htmlparser2](https://github.com/fb55/htmlparser2).
 
 A live demo of `htmlparser2` is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
 
@@ -122,7 +121,7 @@ const feed = htmlparser2.parseFeed(content, options);
 Note: While the provided feed handler works for most feeds,
 you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
 
-## Parsing ERB
+## ERB
 
 ```javascript
 const htmlparser2 = require("htmlparser2");
