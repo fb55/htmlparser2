@@ -87,6 +87,12 @@ const enum State {
     InNamedEntity,
     InNumericEntity,
     InHexEntity, // X
+
+    BeforeErbPercent, // %
+    InErbExpression,
+    InErbScriptlet,
+    AfterErbExpressionPercent, // %
+    AfterErbScriptletPercent, // %
 }
 
 const enum Special {
@@ -119,6 +125,8 @@ export interface Callbacks {
     onprocessinginstruction(instruction: string): void;
     onselfclosingtag(): void;
     ontext(value: string): void;
+    onerbexpression(value: string): void;
+    onerbscriptlet(value: string): void;
 }
 
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
@@ -342,6 +350,8 @@ export default class Tokenizer {
         } else if (c === "<") {
             this.cbs.ontext(this.getSection());
             this.sectionStart = this._index;
+        } else if (c === "%") {
+            this._state = State.BeforeErbPercent;
         } else if (
             c === ">" ||
             this.special !== Special.None ||
@@ -364,6 +374,54 @@ export default class Tokenizer {
                     ? State.BeforeSpecialT
                     : State.InTagName;
             this.sectionStart = this._index;
+        }
+    }
+    private stateBeforeErbPercent(c: string) {
+        if (c === "=") {
+            this._state = State.InErbExpression;
+            this.sectionStart = this._index;
+        } else {
+            this._state = State.InErbScriptlet;
+            this._index--;
+            this.sectionStart = this._index;
+        }
+    }
+    private stateInErbExpression(c: string) {
+        if (c === "%") {
+            // If %> occurs in the middle of a "string", this will
+            // be parsed as the end of the ERB even though it isn't.
+            // A fairly unlikely edge case, but should probably sort
+            // out it sooner or later...
+            this._state = State.AfterErbExpressionPercent;
+        }
+    }
+    private stateInErbScriptlet(c: string) {
+        if (c === "%") {
+            // If %> occurs in the middle of a "string", this will
+            // be parsed as the end of the ERB even though it isn't.
+            // A fairly unlikely edge case, but should probably sort
+            // out it sooner or later...
+            this._state = State.AfterErbScriptletPercent;
+        }
+    }
+    private stateAfterErbExpressionPercent(c: string) {
+        if (c === ">") {
+            this._state = State.Text;
+            this.cbs.onerbexpression(this.getSection().substring(1, this.getSection().length - 1));
+        } else {
+            // False alarm - re-read as ERB
+            this._state = State.InErbExpression;
+            this._index--;
+        }
+    }
+    private stateAfterErbScriptletPercent(c: string) {
+        if (c === ">") {
+            this._state = State.Text;
+            this.cbs.onerbscriptlet(this.getSection().substring(1, this.getSection().length - 1));
+        } else {
+            // False alarm - re-read as ERB
+            this._state = State.InErbScriptlet;
+            this._index--;
         }
     }
     private stateInTagName(c: string) {
@@ -776,6 +834,16 @@ export default class Tokenizer {
                 this.stateInClosingTagName(c);
             } else if (this._state === State.BeforeTagName) {
                 this.stateBeforeTagName(c);
+            } else if (this._state === State.BeforeErbPercent) {
+                this.stateBeforeErbPercent(c);
+            } else if (this._state === State.InErbExpression) {
+                this.stateInErbExpression(c);
+            } else if (this._state === State.InErbScriptlet) {
+                this.stateInErbScriptlet(c);
+            } else if (this._state === State.AfterErbExpressionPercent) {
+                this.stateAfterErbExpressionPercent(c);
+            } else if (this._state === State.AfterErbScriptletPercent) {
+                this.stateAfterErbScriptletPercent(c);
             } else if (this._state === State.AfterAttributeName) {
                 this.stateAfterAttributeName(c);
             } else if (this._state === State.InAttributeValueSq) {
