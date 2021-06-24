@@ -122,6 +122,42 @@ const feed = htmlparser2.parseFeed(content, options);
 Note: While the provided feed handler works for most feeds,
 you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
 
+## Parsing ERB
+
+```javascript
+const htmlparser2 = require("htmlparser2");
+const parser = new htmlparser2.Parser({
+    onerbscriptlet(data) {
+        /*
+         * This fires when an ERB scriptlet ends.
+         *
+         */
+        console.log("Scriptlet:", data);
+    },
+    onerbexpression(data) {
+        /*
+         * This fires when an ERB expression ends.
+         *
+         */
+        console.log("Expression:", data);
+    },
+});
+parser.write(
+    "<% arr.each do |elem| %>\n"
+    "   <%= elem %>\n"
+    "<% end %>"
+);
+parser.end();
+```
+
+Output:
+
+```
+Scriptlet: arr.each do |elem|
+Expression: elem
+Scriptlet: end
+```
+
 ## Performance
 
 After having some artificial benchmarks for some time, **@AndreasMadsen** published his [`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on real-world websites.
