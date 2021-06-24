@@ -407,7 +407,7 @@ export default class Tokenizer {
     private stateAfterErbExpressionPercent(c: string) {
         if (c === ">") {
             this._state = State.Text;
-            this.cbs.onerbexpression(this.getSection());
+            this.cbs.onerbexpression(this.getSection().substring(1, this.getSection().length - 1));
         } else {
             // False alarm - re-read as ERB
             this._state = State.InErbExpression;
@@ -417,7 +417,7 @@ export default class Tokenizer {
     private stateAfterErbScriptletPercent(c: string) {
         if (c === ">") {
             this._state = State.Text;
-            this.cbs.onerbscriptlet(this.getSection());
+            this.cbs.onerbscriptlet(this.getSection().substring(1, this.getSection().length - 1));
         } else {
             // False alarm - re-read as ERB
             this._state = State.InErbScriptlet;
