@@ -1,4 +1,5 @@
 import type { Parser, Handler } from "./Parser";
+import { ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
 
 /**
  * Calls a specific handler function for all events that are encountered.
@@ -53,6 +54,12 @@ export default class MultiplexHandler implements Handler {
     }
     onerbscriptlet(data: string): void {
         this.func("onerbscriptlet", data);
+    }
+    onerbbeginblock(beginBlock: ErbBeginBlock): void {
+        this.func("onerbbeginblock", beginBlock);
+    }
+    onerbendblock(endBlock: ErbEndBlock): void {
+        this.func("onerbendblock", endBlock);
     }
     onerror(error: Error): void {
         this.func("onerror", error);

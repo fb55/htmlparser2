@@ -127,6 +127,26 @@ export interface Callbacks {
     ontext(value: string): void;
     onerbexpression(value: string): void;
     onerbscriptlet(value: string): void;
+    onerbbeginblock(beginBlock: ErbBeginBlock): void;
+    onerbendblock(endBlock: ErbEndBlock): void;
+}
+
+export type ErbBlockKeyword = "if" | "unless" | "while" | "until" | "for" | "begin";
+
+export class ErbBeginBlock {
+    public readonly keyword: ErbBlockKeyword;
+    public readonly expression: string | undefined;
+    constructor(keyword: ErbBlockKeyword, expression?: string) {
+        this.keyword = keyword;
+        this.expression = expression;
+    }
+};
+
+export class ErbEndBlock {
+    public readonly expression: string | undefined;
+    constructor(expression?: string) {
+        this.expression = expression;
+    }
 }
 
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
@@ -404,25 +424,63 @@ export default class Tokenizer {
             this._state = State.AfterErbScriptletPercent;
         }
     }
-    private stateAfterErbExpressionPercent(c: string) {
-        if (c === ">") {
-            this._state = State.Text;
-            this.cbs.onerbexpression(this.getSection().substring(1, this.getSection().length - 1));
-        } else {
-            // False alarm - re-read as ERB
-            this._state = State.InErbExpression;
-            this._index--;
+    private getErbBeginBlock(body: string): ErbBeginBlock | null {
+
+        let regexpResult;
+
+        // if [condition] then
+        regexpResult = /^\s*if (.*) then\s*$/m.exec(body);
+        // if [condition]
+        if (!regexpResult) regexpResult = /^\s*if (.*)$/.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("if", regexpResult[1]);
         }
+
+        // method call block e.g. "list.each do |elem|"" or "render(...) do"
+
+        // unless
+
+        // for
+        
+        // elsif
+
+        // until
+
+        // begin
+
+        // while
+
+        return null;
+
     }
-    private stateAfterErbScriptletPercent(c: string) {
+    private getErbEndBlock(body: string): ErbEndBlock | null {
+        let regexpResult = /^\s*end (.*)$/.exec(body);
+        if (!regexpResult) return null;
+        return new ErbEndBlock(regexpResult[1]);
+    }
+    private stateAfterErbPercentAgnostic(c: string, erbType: "expression" | "scriptlet") {
         if (c === ">") {
             this._state = State.Text;
-            this.cbs.onerbscriptlet(this.getSection().substring(1, this.getSection().length - 1));
+            let body = this.getSection().substring(1, this.getSection().length - 1);
+            let beginBlock = this.getErbBeginBlock(body), endBlock;
+            if (beginBlock)
+                this.cbs.onerbbeginblock(beginBlock);
+            else if (endBlock = this.getErbEndBlock(body)) {
+                this.cbs.onerbendblock(endBlock);
+            }
+            else
+                this.cbs[erbType === "expression" ? "onerbexpression" : "onerbscriptlet"](body);
         } else {
             // False alarm - re-read as ERB
             this._state = State.InErbScriptlet;
             this._index--;
         }
+    }
+    private stateAfterErbExpressionPercent(c: string) {
+        this.stateAfterErbPercentAgnostic(c, "expression");
+    }
+    private stateAfterErbScriptletPercent(c: string) {
+        this.stateAfterErbPercentAgnostic(c, "scriptlet");
     }
     private stateInTagName(c: string) {
         if (c === "/" || c === ">" || whitespace(c)) {

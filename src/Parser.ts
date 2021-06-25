@@ -1,4 +1,4 @@
-import Tokenizer from "./Tokenizer";
+import Tokenizer, { ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
 
 const formTags = new Set([
     "input",
@@ -187,6 +187,8 @@ export interface Handler {
     onprocessinginstruction(name: string, data: string): void;
     onerbexpression(data: string): void;
     onerbscriptlet(data: string): void;
+    onerbbeginblock(beginBlock: ErbBeginBlock): void;
+    onerbendblock(endBlock: ErbEndBlock): void;
 }
 
 const reNameEnd = /\s|\//;
@@ -426,13 +428,19 @@ export class Parser {
     }
 
     onerbexpression(data: string): void {
-        this.updatePosition(3);
         this.cbs.onerbexpression?.(data);
     }
 
     onerbscriptlet(data: string): void {
-        this.updatePosition(2);
         this.cbs.onerbscriptlet?.(data);
+    }
+
+    onerbbeginblock(beginBlock: ErbBeginBlock): void {
+        this.cbs.onerbbeginblock?.(beginBlock);
+    }
+
+    onerbendblock(endBlock: ErbEndBlock): void {
+        this.cbs.onerbendblock?.(endBlock);
     }
 
     /**
