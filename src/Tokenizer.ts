@@ -408,19 +408,19 @@ export default class Tokenizer {
     }
     private stateInErbExpression(c: string) {
         if (c === "%") {
-            // If %> occurs in the middle of a "string", this will
-            // be parsed as the end of the ERB even though it isn't.
-            // A fairly unlikely edge case, but should probably sort
-            // out it sooner or later...
+            /* If %> occurs in the middle of a "string", this will
+             * be parsed as the end of the ERB even though it isn't.
+             * A fairly unlikely edge case, but should probably sort
+             * out it sooner or later... */
             this._state = State.AfterErbExpressionPercent;
         }
     }
     private stateInErbScriptlet(c: string) {
         if (c === "%") {
-            // If %> occurs in the middle of a "string", this will
-            // be parsed as the end of the ERB even though it isn't.
-            // A fairly unlikely edge case, but should probably sort
-            // out it sooner or later...
+            /* If %> occurs in the middle of a "string", this will
+             * be parsed as the end of the ERB even though it isn't.
+             * A fairly unlikely edge case, but should probably sort
+             * out it sooner or later... */
             this._state = State.AfterErbScriptletPercent;
         }
     }
