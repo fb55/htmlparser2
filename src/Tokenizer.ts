@@ -461,12 +461,12 @@ export default class Tokenizer {
         if (c === ">") {
             this._state = State.Text;
             const body = this.getSection().substring(1, this.getSection().length - 1);
-            const beginBlock = this.getErbBeginBlock(body), endBlock;
+            const beginBlock = this.getErbBeginBlock(body);
+			const endBlock = this.getErbEndBlock(body);
             if (beginBlock)
                 this.cbs.onerbbeginblock(beginBlock);
-            else if (endBlock = this.getErbEndBlock(body)) {
+            else if (endBlock)
                 this.cbs.onerbendblock(endBlock);
-            }
             else
                 this.cbs[erbType === "expression" ? "onerbexpression" : "onerbscriptlet"](body);
         } else {
