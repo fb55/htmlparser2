@@ -445,7 +445,10 @@ export default class Tokenizer {
 		regexpResult = /^\s*([^\s]+) do \|(.*)\|\s*$/m.exec(body);
 		if (!regexpResult) regexpResult = /^\s*([^\s]+) do\s*$/m.exec(body);
 		if (regexpResult) {
-			return new ErbBeginBlock("do", { func: regexpResult[1], params: regexpResult[2] ? regexpResult[2].split(", ") : [], } );
+			return new ErbBeginBlock("do", {
+				func: regexpResult[1],
+				params: regexpResult[2] ? regexpResult[2].split(",").map(str => str.trim()) : [],
+			});
 		}
 
         // TODO: Conditional (unless)
