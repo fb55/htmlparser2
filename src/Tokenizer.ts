@@ -131,14 +131,20 @@ export interface Callbacks {
     onerbendblock(endBlock: ErbEndBlock): void;
 }
 
-export type ErbBlockKeyword = "if" | "unless" | "while" | "until" | "for" | "begin";
+export type ErbBlockKeyword = "if" | "unless" | "while" | "until" | "for" | "begin" | "do";
+export type ErbConditionalBlockData = Required<{ condition: string, }>;
+export type ErbForBlockData = Required<{ variable: string, iterable: string, }>;
+export type ErbDoBlockData = Required<{ func: string, params: string[], }>;
+export type ErbEmptyBlockData = null;
+export type ErbBlockData = ErbConditionalBlockData | ErbForBlockData | ErbDoBlockData | ErbEmptyBlockData;
 
 export class ErbBeginBlock {
     public readonly keyword: ErbBlockKeyword;
-    public readonly expression: string | undefined;
-    constructor(keyword: ErbBlockKeyword, expression?: string) {
+    public readonly data: ErbBlockData;
+    constructor(keyword: ErbBlockKeyword, data: ErbBlockData) {
         this.keyword = keyword;
-        this.expression = expression;
+        this.data = data;
+		// TODO: check data is a suitable type given the keyword supplied.
     }
 };
 
