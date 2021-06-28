@@ -428,27 +428,26 @@ export default class Tokenizer {
 
         let regexpResult;
 
-        // if [condition] then
+        // Conditional (if)
         regexpResult = /^\s*if (.*) then\s*$/m.exec(body);
-        // if [condition]
         if (!regexpResult) regexpResult = /^\s*if (.*)$/.exec(body);
         if (regexpResult) {
             return new ErbBeginBlock("if", regexpResult[1]);
         }
 
-        // method call block e.g. "list.each do |elem|"" or "render(...) do"
+        // TODO: Method call block e.g. "list.each do |elem|"" or "render(...) do"
 
-        // unless
+        // TODO: Conditional (unless)
 
-        // for
+        // TODO: Loop (for)
         
-        // elsif
+        // TODO: Conditional (elsif)
 
-        // until
+        // TODO: Loop (until)
 
-        // begin
+        // TODO: Begin
 
-        // while
+        // TODO: Loop (while)
 
         return null;
 
