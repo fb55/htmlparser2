@@ -436,12 +436,17 @@ export default class Tokenizer {
 
         // Conditional (if)
         regexpResult = /^\s*if (.*) then\s*$/m.exec(body);
-        if (!regexpResult) regexpResult = /^\s*if (.*)$/.exec(body);
+        if (!regexpResult) regexpResult = /^\s*if (.*)$/m.exec(body);
         if (regexpResult) {
-            return new ErbBeginBlock("if", regexpResult[1]);
+            return new ErbBeginBlock("if", { condition: regexpResult[1] });
         }
 
-        // TODO: Method call block e.g. "list.each do |elem|"" or "render(...) do"
+        // Method call block e.g. "list.each do |elem|"" or "render(...) do"
+		regexpResult = /^\s*([^\s]+) do \|(.*)\|\s*$/m.exec(body);
+		if (!regexpResult) regexpResult = /^\s*([^\s]+) do\s*$/m.exec(body);
+		if (regexpResult) {
+			return new ErbBeginBlock("do", { func: regexpResult[1], params: regexpResult[2] ? regexpResult[2].split(", ") : [], } );
+		}
 
         // TODO: Conditional (unless)
 
