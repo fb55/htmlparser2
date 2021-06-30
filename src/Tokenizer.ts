@@ -127,6 +127,34 @@ export interface Callbacks {
     ontext(value: string): void;
     onerbexpression(value: string): void;
     onerbscriptlet(value: string): void;
+    onerbbeginblock(beginBlock: ErbBeginBlock): void;
+    onerbendblock(endBlock: ErbEndBlock): void;
+}
+
+export type ErbBlockKeyword = "if" | "unless" | "else" | "elsif" | "case" | "when" | "while" | "until" | "for" | "begin" | "do";
+export type ErbConditionalBlockData = Required<{ condition: string, }>;
+export type ErbForBlockData = Required<{ variable: string, iterable: string, }>;
+export type ErbDoBlockData = Required<{ func: string, params: string[], }>;
+export type ErbCaseBlockData = Required<{ expression: string }>;
+export type ErbWhenBlockData = Required<{ matches: string[] }>;
+export type ErbEmptyBlockData = null;
+export type ErbBlockData = ErbConditionalBlockData | ErbForBlockData | ErbDoBlockData | ErbCaseBlockData | ErbWhenBlockData | ErbEmptyBlockData;
+
+export class ErbBeginBlock {
+    public readonly keyword: ErbBlockKeyword;
+    public readonly data: ErbBlockData;
+    constructor(keyword: ErbBlockKeyword, data: ErbBlockData) {
+        this.keyword = keyword;
+        this.data = data;
+		// TODO: check data is a suitable type given the keyword supplied.
+    }
+};
+
+export class ErbEndBlock {
+    public readonly expression: string | undefined;
+    constructor(expression?: string) {
+        this.expression = expression;
+    }
 }
 
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
@@ -388,41 +416,142 @@ export default class Tokenizer {
     }
     private stateInErbExpression(c: string) {
         if (c === "%") {
-            // If %> occurs in the middle of a "string", this will
-            // be parsed as the end of the ERB even though it isn't.
-            // A fairly unlikely edge case, but should probably sort
-            // out it sooner or later...
+            /**
+             * If %> occurs in the middle of a "string", this will
+             * be parsed as the end of the ERB even though it isn't.
+             * A fairly unlikely edge case, but should probably sort
+             * out it sooner or later...
+             */
             this._state = State.AfterErbExpressionPercent;
         }
     }
     private stateInErbScriptlet(c: string) {
         if (c === "%") {
-            // If %> occurs in the middle of a "string", this will
-            // be parsed as the end of the ERB even though it isn't.
-            // A fairly unlikely edge case, but should probably sort
-            // out it sooner or later...
+            /**
+             * If %> occurs in the middle of a "string", this will
+             * be parsed as the end of the ERB even though it isn't.
+             * A fairly unlikely edge case, but should probably sort
+             * out it sooner or later...
+             */
             this._state = State.AfterErbScriptletPercent;
         }
     }
-    private stateAfterErbExpressionPercent(c: string) {
+    private getErbBeginBlock(body: string): ErbBeginBlock | null {
+
+        let regexpResult;
+
+        // Conditional (if)
+        regexpResult = /^\s*if (.*) then\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*if (.*)$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("if", { condition: regexpResult[1] });
+        }
+
+        // Method call block e.g. "list.each do |elem|"" or "render(...) do"
+		regexpResult = /^\s*([^\s]+) do \|(.*)\|\s*$/m.exec(body);
+		if (!regexpResult) regexpResult = /^\s*([^\s]+) do\s*$/m.exec(body);
+		if (regexpResult) {
+			return new ErbBeginBlock("do", {
+				func: regexpResult[1],
+				params: regexpResult[2] ? regexpResult[2].split(",").map(str => str.trim()) : [],
+			});
+		}
+
+        // Conditional (unless)
+        regexpResult = /^\s*unless (.*) then\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*unless (.*)$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("unless", { condition: regexpResult[1].trim() });
+        }
+
+        // Loop (for)
+        regexpResult = /^\s*for (.*) in (.*) do\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*for (.*) in (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("for", { variable: regexpResult[1].trim(), iterable: regexpResult[2].trim() });
+        }
+        
+        // Conditional (else)
+        regexpResult = /^\s*else\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("else", null);
+        }
+
+        // Conditional (elsif)
+        regexpResult = /^\s*elsif (.*) then\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*elsif (.*)$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("elsif", { condition: regexpResult[1].trim() });
+        }
+
+        // Loop (until)
+        regexpResult = /^\s*until (.*) do\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*until (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("until", { condition: regexpResult[1].trim() });
+        }
+
+        // Begin
+        regexpResult = /^\s*begin\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("begin", null);
+        }
+
+        // Case [expression]
+        regexpResult = /^\s*case (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("case", { expression: regexpResult[1].trim() });
+        }
+
+        // Case
+        regexpResult = /^\s*case\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("case", null);
+        }
+
+        // When
+        regexpResult = /^\s*when (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("when", { matches: regexpResult[1].split(",").map(str => str.trim()) });
+        }
+
+        // Loop (while)
+        regexpResult = /^\s*while (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("while", { condition: regexpResult[1].trim() });
+        }
+
+        return null;
+
+    }
+    private getErbEndBlock(body: string): ErbEndBlock | null {
+        let regexpResult = /^\s*end (.*)$/.exec(body);
+        if (!regexpResult) return null;
+        return new ErbEndBlock(regexpResult[1]);
+    }
+    private stateAfterErbPercentAgnostic(c: string, erbType: "expression" | "scriptlet") {
         if (c === ">") {
             this._state = State.Text;
-            this.cbs.onerbexpression(this.getSection().substring(1, this.getSection().length - 1));
+            const body = this.getSection().substring(1, this.getSection().length - 1).trim();
+            const beginBlock = this.getErbBeginBlock(body);
+			const endBlock = this.getErbEndBlock(body);
+            if (beginBlock)
+                this.cbs.onerbbeginblock(beginBlock);
+            else if (endBlock)
+                this.cbs.onerbendblock(endBlock);
+            else
+                this.cbs[erbType === "expression" ? "onerbexpression" : "onerbscriptlet"](body);
         } else {
             // False alarm - re-read as ERB
-            this._state = State.InErbExpression;
+            this._state = erbType === "expression" ? State.InErbExpression : State.InErbScriptlet;
             this._index--;
         }
     }
+    private stateAfterErbExpressionPercent(c: string) {
+        this.stateAfterErbPercentAgnostic(c, "expression");
+    }
     private stateAfterErbScriptletPercent(c: string) {
-        if (c === ">") {
-            this._state = State.Text;
-            this.cbs.onerbscriptlet(this.getSection().substring(1, this.getSection().length - 1));
-        } else {
-            // False alarm - re-read as ERB
-            this._state = State.InErbScriptlet;
-            this._index--;
-        }
+        this.stateAfterErbPercentAgnostic(c, "scriptlet");
     }
     private stateInTagName(c: string) {
         if (c === "/" || c === ">" || whitespace(c)) {
