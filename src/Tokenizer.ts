@@ -459,14 +459,14 @@ export default class Tokenizer {
         regexpResult = /^\s*unless (.*) then\s*$/m.exec(body);
         if (!regexpResult) regexpResult = /^\s*unless (.*)$/m.exec(body);
         if (regexpResult) {
-            return new ErbBeginBlock("unless", { condition: regexpResult[1] });
+            return new ErbBeginBlock("unless", { condition: regexpResult[1].trim() });
         }
 
         // Loop (for)
         regexpResult = /^\s*for (.*) in (.*) do\s*$/m.exec(body);
         if (!regexpResult) regexpResult = /^\s*for (.*) in (.*)\s*$/m.exec(body);
         if (regexpResult) {
-            return new ErbBeginBlock("for", { variable: regexpResult[1], iterable: regexpResult[2] });
+            return new ErbBeginBlock("for", { variable: regexpResult[1].trim(), iterable: regexpResult[2].trim() });
         }
         
         // Conditional (else)
@@ -479,14 +479,14 @@ export default class Tokenizer {
         regexpResult = /^\s*elsif (.*) then\s*$/m.exec(body);
         if (!regexpResult) regexpResult = /^\s*elsif (.*)$/m.exec(body);
         if (regexpResult) {
-            return new ErbBeginBlock("elsif", { condition: regexpResult[1] });
+            return new ErbBeginBlock("elsif", { condition: regexpResult[1].trim() });
         }
 
         // Loop (until)
         regexpResult = /^\s*until (.*) do\s*$/m.exec(body);
         if (!regexpResult) regexpResult = /^\s*until (.*)\s*$/m.exec(body);
         if (regexpResult) {
-            return new ErbBeginBlock("until", { condition: regexpResult[1] });
+            return new ErbBeginBlock("until", { condition: regexpResult[1].trim() });
         }
 
         // Begin
