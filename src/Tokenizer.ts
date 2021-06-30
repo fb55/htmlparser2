@@ -490,7 +490,7 @@ export default class Tokenizer {
     private stateAfterErbPercentAgnostic(c: string, erbType: "expression" | "scriptlet") {
         if (c === ">") {
             this._state = State.Text;
-            const body = this.getSection().substring(1, this.getSection().length - 1);
+            const body = this.getSection().substring(1, this.getSection().length - 1).trim();
             const beginBlock = this.getErbBeginBlock(body);
 			const endBlock = this.getErbEndBlock(body);
             if (beginBlock)
