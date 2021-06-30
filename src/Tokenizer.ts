@@ -489,7 +489,11 @@ export default class Tokenizer {
             return new ErbBeginBlock("until", { condition: regexpResult[1] });
         }
 
-        // TODO: Begin
+        // Begin
+        regexpResult = /^\s*begin\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("begin", null);
+        }
 
         // TODO: Case
 
