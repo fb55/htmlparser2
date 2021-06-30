@@ -1,6 +1,7 @@
 # erbparser
 
 HTML/ERB parser, based on htmlparse2: the fast & forgiving HTML/XML parser.
+__Beware!!!__ This package is still in active development and is liable to change frequently. If I had had a better grasp of semantic versioning I would probably have tagged this 0.*, but it seems a bit late now.
 
 ## Installation
 
@@ -127,19 +128,35 @@ you might want to use [danmactough/node-feedparser](https://github.com/danmactou
 const htmlparser2 = require("htmlparser2");
 const parser = new htmlparser2.Parser({
     onerbscriptlet(data) {
-        /*
+        /**
          * This fires when an ERB scriptlet ends.
          *
          */
         console.log("Scriptlet:", data);
     },
     onerbexpression(data) {
-        /*
+        /**
          * This fires when an ERB expression ends.
          *
          */
         console.log("Expression:", data);
     },
+    onerbbeginblock(beginBlock) {
+        /**
+         * This fires at the start of a "block" of code,
+         * such as a for loop or a conditional. Beware -
+         * this is *not* "block" in the specific sense it
+         * has in Ruby syntax, which would only refer
+         * to do...end blocks. My sense is more general.
+         */
+        console.log("Block keyword:", beginBlock.keyword);
+    },
+    onerbendblock(endBlock) {
+        /**
+         * This fires at the end of a "block" (see above).
+         */
+        console.log("End block");
+    }
 });
 parser.write(
     "<% arr.each do |elem| %>\n"
