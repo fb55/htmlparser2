@@ -131,7 +131,7 @@ export interface Callbacks {
     onerbendblock(endBlock: ErbEndBlock): void;
 }
 
-export type ErbBlockKeyword = "if" | "unless" | "while" | "until" | "for" | "begin" | "do";
+export type ErbBlockKeyword = "if" | "unless" | "else" | "elsif" | "case" | "when" | "while" | "until" | "for" | "begin" | "do";
 export type ErbConditionalBlockData = Required<{ condition: string, }>;
 export type ErbForBlockData = Required<{ variable: string, iterable: string, }>;
 export type ErbDoBlockData = Required<{ func: string, params: string[], }>;
