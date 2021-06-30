@@ -515,7 +515,11 @@ export default class Tokenizer {
             return new ErbBeginBlock("when", { matches: regexpResult[1].split(",").map(str => str.trim()) });
         }
 
-        // TODO: Loop (while)
+        // Loop (while)
+        regexpResult = /^\s*while (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("while", { condition: regexpResult[1].trim() });
+        }
 
         return null;
 
