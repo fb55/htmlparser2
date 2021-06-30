@@ -455,7 +455,12 @@ export default class Tokenizer {
 			});
 		}
 
-        // TODO: Conditional (unless)
+        // Conditional (unless)
+        regexpResult = /^\s*unless (.*) then\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*unless (.*)$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("unless", { condition: regexpResult[1] });
+        }
 
         // TODO: Loop (for)
         
