@@ -482,7 +482,12 @@ export default class Tokenizer {
             return new ErbBeginBlock("elsif", { condition: regexpResult[1] });
         }
 
-        // TODO: Loop (until)
+        // Loop (until)
+        regexpResult = /^\s*until (.*) do\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*until (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("until", { condition: regexpResult[1] });
+        }
 
         // TODO: Begin
 
