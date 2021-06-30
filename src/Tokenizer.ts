@@ -135,8 +135,10 @@ export type ErbBlockKeyword = "if" | "unless" | "else" | "elsif" | "case" | "whe
 export type ErbConditionalBlockData = Required<{ condition: string, }>;
 export type ErbForBlockData = Required<{ variable: string, iterable: string, }>;
 export type ErbDoBlockData = Required<{ func: string, params: string[], }>;
+export type ErbCaseBlockData = Required<{ expression: string }>;
+export type ErbWhenBlockData = Required<{ matches: string[] }>;
 export type ErbEmptyBlockData = null;
-export type ErbBlockData = ErbConditionalBlockData | ErbForBlockData | ErbDoBlockData | ErbEmptyBlockData;
+export type ErbBlockData = ErbConditionalBlockData | ErbForBlockData | ErbDoBlockData | ErbCaseBlockData | ErbWhenBlockData | ErbEmptyBlockData;
 
 export class ErbBeginBlock {
     public readonly keyword: ErbBlockKeyword;
@@ -495,7 +497,23 @@ export default class Tokenizer {
             return new ErbBeginBlock("begin", null);
         }
 
-        // TODO: Case
+        // Case [expression]
+        regexpResult = /^\s*case (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("case", { expression: regexpResult[1].trim() });
+        }
+
+        // Case
+        regexpResult = /^\s*case\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("case", null);
+        }
+
+        // When
+        regexpResult = /^\s*when (.*)\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("when", { matches: regexpResult[1].split(",").map(str => str.trim()) });
+        }
 
         // TODO: Loop (while)
 
