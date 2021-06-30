@@ -469,7 +469,18 @@ export default class Tokenizer {
             return new ErbBeginBlock("for", { variable: regexpResult[1], iterable: regexpResult[2] });
         }
         
-        // TODO: Conditional (elsif)
+        // Conditional (else)
+        regexpResult = /^\s*else\s*$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("else", null);
+        }
+
+        // Conditional (elsif)
+        regexpResult = /^\s*elsif (.*) then\s*$/m.exec(body);
+        if (!regexpResult) regexpResult = /^\s*elsif (.*)$/m.exec(body);
+        if (regexpResult) {
+            return new ErbBeginBlock("elsif", { condition: regexpResult[1] });
+        }
 
         // TODO: Loop (until)
 
