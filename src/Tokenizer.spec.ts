@@ -1,4 +1,5 @@
 import { Tokenizer } from ".";
+import { ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
 
 class CallbackLogger {
     log: string[] = [];
@@ -44,6 +45,18 @@ class CallbackLogger {
     }
     ontext(value: string) {
         this.log.push(`ontext: '${value}'`);
+    }
+    onerbexpression(value: string) {
+        this.log.push(`onerbexpression: '${value}'`)
+    }
+    onerbscriptlet(value: string) {
+        this.log.push(`onerbscriptlet: '${value}'`)
+    }
+    onerbbeginblock(beginBlock: ErbBeginBlock) {
+        this.log.push(`onerbbeginblock: '${beginBlock}'`)
+    }
+    onerbendblock(endBlock: ErbEndBlock) {
+        this.log.push(`onerbendblock: '${endBlock}'`)
     }
 }
 
