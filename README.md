@@ -1,7 +1,7 @@
 # erbparser
 
 HTML/ERB parser, based on htmlparse2: the fast & forgiving HTML/XML parser.
-__Beware!!!__ This package is still in active development and is liable to change frequently. If I had had a better grasp of semantic versioning I would probably have tagged this 0.*, but it seems a bit late now.
+__Beware!!!__ This package is still in active development and is liable to change frequently.
 
 ## Installation
 
@@ -132,14 +132,14 @@ const parser = new htmlparser2.Parser({
          * This fires when an ERB scriptlet ends.
          *
          */
-        console.log("Scriptlet:", data);
+        console.log(`Scriptlet: '${data}'.`);
     },
     onerbexpression(data) {
         /**
          * This fires when an ERB expression ends.
          *
          */
-        console.log("Expression:", data);
+        console.log(`Expression: '${data}'.`);
     },
     onerbbeginblock(beginBlock) {
         /**
@@ -149,19 +149,20 @@ const parser = new htmlparser2.Parser({
          * has in Ruby syntax, which would only refer
          * to do...end blocks. My sense is more general.
          */
-        console.log("Block keyword:", beginBlock.keyword);
+        console.log(`Block keyword: '${beginBlock.keyword}'.`);
     },
     onerbendblock(endBlock) {
         /**
          * This fires at the end of a "block" (see above).
          */
-        console.log("End block");
+        console.log(`End block.`);
     }
 });
 parser.write(
-    "<% arr.each do |elem| %>\n"
-    "   <%= elem %>\n"
-    "<% end %>"
+    `<% arr.each do |elem| %>\n`
+    `   <% @var = elem + 1 %>\n`
+    `   <%= @var %>\n`
+    `<% end %>`
 );
 parser.end();
 ```
@@ -169,9 +170,10 @@ parser.end();
 Output:
 
 ```
-Scriptlet: arr.each do |elem|
-Expression: elem
-Scriptlet: end
+Block keyword: 'do'.
+Scriptlet: '@var = elem + 1'.
+Expression: 'var'.
+End block.
 ```
 
 ## Performance
