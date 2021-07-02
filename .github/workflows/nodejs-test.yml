@@ -54,4 +54,4 @@ jobs:
               uses: coverallsapp/github-action@master
               if: matrix.node == env.NODE_COV
               with:
-              github-token: "${{ secrets.GITHUB_TOKEN }}"
+                  github-token: "${{ secrets.GITHUB_TOKEN }}"
