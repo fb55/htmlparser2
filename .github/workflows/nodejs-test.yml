@@ -47,7 +47,7 @@ jobs:
               if: matrix.node != env.NODE_COV
 
             - name: Run Jest with coverage
-              run: npm run test:jest:cov
+              run: npm run test:jest -- --coverage
               if: matrix.node == env.NODE_COV
 
             - name: Run Coveralls

@@ -35,7 +35,8 @@
         "lib/**/*"
     ],
     "scripts": {
-        "test": "jest --coverage",
+        "test": "npm run test:jest && npm run lint",
+        "test:jest": "jest",
         "lint": "npm run lint:es && npm run lint:prettier",
         "lint:es": "eslint src",
         "lint:prettier": "npm run format:prettier:raw -- --check",
