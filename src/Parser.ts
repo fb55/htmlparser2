@@ -1,4 +1,4 @@
-import Tokenizer, { ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
+import Tokenizer, { FileLocation, ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
 
 const formTags = new Set([
     "input",
@@ -164,9 +164,9 @@ export interface Handler {
      * Signals the handler that parsing is done
      */
     onend(): void;
-    onerror(error: Error): void;
-    onclosetag(name: string): void;
-    onopentagname(name: string): void;
+    onerror(error: Error, where: FileLocation): void;
+    onclosetag(name: string, where: FileLocation): void;
+    onopentagname(name: string, where: FileLocation): void;
     /**
      *
      * @param name Name of the attribute
@@ -176,19 +176,20 @@ export interface Handler {
     onattribute(
         name: string,
         value: string,
+        where: FileLocation,
         quote?: string | undefined | null
     ): void;
-    onopentag(name: string, attribs: { [s: string]: string }): void;
-    ontext(data: string): void;
-    oncomment(data: string): void;
+    onopentag(name: string, attribs: { [s: string]: string }, where: FileLocation): void;
+    ontext(data: string, where: FileLocation): void;
+    oncomment(data: string, where: FileLocation): void;
     oncdatastart(): void;
-    oncdataend(): void;
-    oncommentend(): void;
-    onprocessinginstruction(name: string, data: string): void;
-    onerbexpression(data: string): void;
-    onerbscriptlet(data: string): void;
-    onerbbeginblock(beginBlock: ErbBeginBlock): void;
-    onerbendblock(endBlock: ErbEndBlock): void;
+    oncdataend(where: FileLocation): void;
+    oncommentend(where: FileLocation): void;
+    onprocessinginstruction(name: string, data: string, where: FileLocation): void;
+    onerbexpression(data: string, where: FileLocation): void;
+    onerbscriptlet(data: string, where: FileLocation): void;
+    onerbbeginblock(beginBlock: ErbBeginBlock, where: FileLocation): void;
+    onerbendblock(endBlock: ErbEndBlock, where: FileLocation): void;
 }
 
 const reNameEnd = /\s|\//;
@@ -238,17 +239,17 @@ export class Parser {
     }
 
     // Tokenizer event handlers
-    ontext(data: string): void {
+    ontext(data: string, where: FileLocation): void {
         this.updatePosition(1);
         (this.endIndex as number)--;
-        this.cbs.ontext?.(data);
+        this.cbs.ontext?.(data, where);
     }
 
     isVoidElement(name: string): boolean {
         return !this.options.xmlMode && voidElements.has(name);
     }
 
-    onopentagname(name: string): void {
+    onopentagname(name: string, where: FileLocation): void {
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
@@ -264,7 +265,7 @@ export class Parser {
                     (el = this.stack[this.stack.length - 1])
                 )
             ) {
-                this.onclosetag(el);
+                this.onclosetag(el, where);
             }
         }
         if (!this.isVoidElement(name)) {
@@ -275,23 +276,23 @@ export class Parser {
                 this.foreignContext.push(false);
             }
         }
-        this.cbs.onopentagname?.(name);
+        this.cbs.onopentagname?.(name, where);
         if (this.cbs.onopentag) this.attribs = {};
     }
 
-    onopentagend(): void {
+    onopentagend(where: FileLocation): void {
         this.updatePosition(1);
         if (this.attribs) {
-            this.cbs.onopentag?.(this.tagname, this.attribs);
+            this.cbs.onopentag?.(this.tagname, this.attribs, where);
             this.attribs = null;
         }
         if (this.cbs.onclosetag && this.isVoidElement(this.tagname)) {
-            this.cbs.onclosetag(this.tagname);
+            this.cbs.onclosetag(this.tagname, where);
         }
         this.tagname = "";
     }
 
-    onclosetag(name: string): void {
+    onclosetag(name: string, where: FileLocation): void {
         this.updatePosition(1);
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -309,40 +310,40 @@ export class Parser {
                     pos = this.stack.length - pos;
                     while (pos--) {
                         // We know the stack has sufficient elements.
-                        this.cbs.onclosetag(this.stack.pop() as string);
+                        this.cbs.onclosetag(this.stack.pop() as string, where);
                     }
                 } else this.stack.length = pos;
             } else if (name === "p" && !this.options.xmlMode) {
-                this.onopentagname(name);
-                this.closeCurrentTag();
+                this.onopentagname(name, where);
+                this.closeCurrentTag(where);
             }
         } else if (!this.options.xmlMode && (name === "br" || name === "p")) {
-            this.onopentagname(name);
-            this.closeCurrentTag();
+            this.onopentagname(name, where);
+            this.closeCurrentTag(where);
         }
     }
 
-    onselfclosingtag(): void {
+    onselfclosingtag(where: FileLocation): void {
         if (
             this.options.xmlMode ||
             this.options.recognizeSelfClosing ||
             this.foreignContext[this.foreignContext.length - 1]
         ) {
-            this.closeCurrentTag();
+            this.closeCurrentTag(where);
         } else {
-            this.onopentagend();
+            this.onopentagend(where);
         }
     }
 
-    private closeCurrentTag() {
+    private closeCurrentTag(where: FileLocation) {
         const name = this.tagname;
-        this.onopentagend();
+        this.onopentagend(where);
         /*
          * Self-closing tags will be on the top of the stack
          * (cheaper check than in onclosetag)
          */
         if (this.stack[this.stack.length - 1] === name) {
-            this.cbs.onclosetag?.(name);
+            this.cbs.onclosetag?.(name, where);
             this.stack.pop();
         }
     }
@@ -358,8 +359,8 @@ export class Parser {
         this.attribvalue += value;
     }
 
-    onattribend(quote: string | undefined | null): void {
-        this.cbs.onattribute?.(this.attribname, this.attribvalue, quote);
+    onattribend(quote: string | undefined | null, where: FileLocation): void {
+        this.cbs.onattribute?.(this.attribname, this.attribvalue, where, quote);
         if (
             this.attribs &&
             !Object.prototype.hasOwnProperty.call(this.attribs, this.attribname)
@@ -381,66 +382,66 @@ export class Parser {
         return name;
     }
 
-    ondeclaration(value: string): void {
+    ondeclaration(value: string, where: FileLocation): void {
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
-            this.cbs.onprocessinginstruction(`!${name}`, `!${value}`);
+            this.cbs.onprocessinginstruction(`!${name}`, `!${value}`, where);
         }
     }
 
-    onprocessinginstruction(value: string): void {
+    onprocessinginstruction(value: string, where: FileLocation): void {
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
-            this.cbs.onprocessinginstruction(`?${name}`, `?${value}`);
+            this.cbs.onprocessinginstruction(`?${name}`, `?${value}`, where);
         }
     }
 
-    oncomment(value: string): void {
+    oncomment(value: string, where: FileLocation): void {
         this.updatePosition(4);
-        this.cbs.oncomment?.(value);
-        this.cbs.oncommentend?.();
+        this.cbs.oncomment?.(value, where);
+        this.cbs.oncommentend?.(where);
     }
 
-    oncdata(value: string): void {
+    oncdata(value: string, where: FileLocation): void {
         this.updatePosition(1);
         if (this.options.xmlMode || this.options.recognizeCDATA) {
             this.cbs.oncdatastart?.();
-            this.cbs.ontext?.(value);
-            this.cbs.oncdataend?.();
+            this.cbs.ontext?.(value, where);
+            this.cbs.oncdataend?.(where);
         } else {
-            this.oncomment(`[CDATA[${value}]]`);
+            this.oncomment(`[CDATA[${value}]]`, where);
         }
     }
 
-    onerror(err: Error): void {
-        this.cbs.onerror?.(err);
+    onerror(err: Error, where: FileLocation): void {
+        this.cbs.onerror?.(err, where);
     }
 
-    onend(): void {
+    onend(where: FileLocation): void {
         if (this.cbs.onclosetag) {
             for (
                 let i = this.stack.length;
                 i > 0;
-                this.cbs.onclosetag(this.stack[--i])
+                this.cbs.onclosetag(this.stack[--i], where)
             );
         }
         this.cbs.onend?.();
     }
 
-    onerbexpression(data: string): void {
-        this.cbs.onerbexpression?.(data);
+    onerbexpression(data: string, where: FileLocation): void {
+        this.cbs.onerbexpression?.(data, where);
     }
 
-    onerbscriptlet(data: string): void {
-        this.cbs.onerbscriptlet?.(data);
+    onerbscriptlet(data: string, where: FileLocation): void {
+        this.cbs.onerbscriptlet?.(data, where);
     }
 
-    onerbbeginblock(beginBlock: ErbBeginBlock): void {
-        this.cbs.onerbbeginblock?.(beginBlock);
+    onerbbeginblock(beginBlock: ErbBeginBlock, where: FileLocation): void {
+        this.cbs.onerbbeginblock?.(beginBlock, where);
     }
 
-    onerbendblock(endBlock: ErbEndBlock): void {
-        this.cbs.onerbendblock?.(endBlock);
+    onerbendblock(endBlock: ErbEndBlock, where: FileLocation): void {
+        this.cbs.onerbendblock?.(endBlock, where);
     }
 
     /**
