@@ -527,7 +527,7 @@ export default class Tokenizer {
 
     }
     private getErbEndBlock(body: string): ErbEndBlock | null {
-        let regexpResult = /^\s*end (.*)$/.exec(body);
+        const regexpResult = /^\s*end (.*)$/.exec(body);
         if (!regexpResult) return null;
         return new ErbEndBlock(regexpResult[1]);
     }
