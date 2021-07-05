@@ -111,9 +111,9 @@ function isASCIIAlpha(c: string): boolean {
 }
 
 export interface Callbacks {
-    onattribdata(value: string, where: FileLocation): void;
+    onattribdata(value: string): void;
     onattribend(quote: string | undefined | null, where: FileLocation): void;
-    onattribname(name: string, where: FileLocation): void;
+    onattribname(name: string): void;
     oncdata(data: string, where: FileLocation): void;
     onclosetag(name: string, where: FileLocation): void;
     oncomment(data: string, where: FileLocation): void;
