@@ -626,7 +626,7 @@ export default class Tokenizer {
     }
     private stateInAttributeName(c: string) {
         if (c === "=" || c === "/" || c === ">" || whitespace(c)) {
-            this.cbs.onattribname(this.getSection(), this._fileLocation);
+            this.cbs.onattribname(this.getSection());
             this.sectionStart = -1;
             this._state = State.AfterAttributeName;
             this._index--;
@@ -1175,7 +1175,7 @@ export default class Tokenizer {
     }
     private emitPartial(value: string) {
         if (this.baseState !== State.Text) {
-            this.cbs.onattribdata(value, this._fileLocation); // TODO implement the new event
+            this.cbs.onattribdata(value); // TODO implement the new event
         } else {
             this.cbs.ontext(value, this._fileLocation);
         }
