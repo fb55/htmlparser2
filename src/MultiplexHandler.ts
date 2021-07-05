@@ -1,5 +1,5 @@
 import type { Parser, Handler } from "./Parser";
-import { ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
+import { ErbBeginBlock, ErbEndBlock, FileLocation } from "./Tokenizer";
 
 /**
  * Calls a specific handler function for all events that are encountered.
@@ -18,51 +18,52 @@ export default class MultiplexHandler implements Handler {
     onattribute(
         name: string,
         value: string,
+        where: FileLocation,
         quote: string | null | undefined
     ): void {
-        this.func("onattribute", name, value, quote);
+        this.func("onattribute", name, value, where, quote);
     }
     oncdatastart(): void {
         this.func("oncdatastart");
     }
-    oncdataend(): void {
-        this.func("oncdataend");
+    oncdataend(where: FileLocation): void {
+        this.func("oncdataend", where);
     }
-    ontext(text: string): void {
-        this.func("ontext", text);
+    ontext(text: string, where: FileLocation): void {
+        this.func("ontext", text, where);
     }
-    onprocessinginstruction(name: string, value: string): void {
-        this.func("onprocessinginstruction", name, value);
+    onprocessinginstruction(name: string, value: string, where: FileLocation): void {
+        this.func("onprocessinginstruction", name, value, where);
     }
-    oncomment(comment: string): void {
-        this.func("oncomment", comment);
+    oncomment(comment: string, where: FileLocation): void {
+        this.func("oncomment", comment, where);
     }
-    oncommentend(): void {
-        this.func("oncommentend");
+    oncommentend(where: FileLocation): void {
+        this.func("oncommentend", where);
     }
-    onclosetag(name: string): void {
-        this.func("onclosetag", name);
+    onclosetag(name: string, where: FileLocation): void {
+        this.func("onclosetag", name, where);
     }
-    onopentag(name: string, attribs: { [key: string]: string }): void {
-        this.func("onopentag", name, attribs);
+    onopentag(name: string, attribs: { [key: string]: string }, where: FileLocation): void {
+        this.func("onopentag", name, attribs, where);
     }
-    onopentagname(name: string): void {
-        this.func("onopentagname", name);
+    onopentagname(name: string, where: FileLocation): void {
+        this.func("onopentagname", name, where);
     }
-    onerbexpression(data: string): void {
-        this.func("onerbexpression", data);
+    onerbexpression(data: string, where: FileLocation): void {
+        this.func("onerbexpression", data, where);
     }
-    onerbscriptlet(data: string): void {
-        this.func("onerbscriptlet", data);
+    onerbscriptlet(data: string, where: FileLocation): void {
+        this.func("onerbscriptlet", data, where);
     }
-    onerbbeginblock(beginBlock: ErbBeginBlock): void {
-        this.func("onerbbeginblock", beginBlock);
+    onerbbeginblock(beginBlock: ErbBeginBlock, where: FileLocation): void {
+        this.func("onerbbeginblock", beginBlock, where);
     }
-    onerbendblock(endBlock: ErbEndBlock): void {
-        this.func("onerbendblock", endBlock);
+    onerbendblock(endBlock: ErbEndBlock, where: FileLocation): void {
+        this.func("onerbendblock", endBlock, where);
     }
-    onerror(error: Error): void {
-        this.func("onerror", error);
+    onerror(error: Error, where: FileLocation): void {
+        this.func("onerror", error, where);
     }
     onend(): void {
         this.func("onend");
