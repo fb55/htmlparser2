@@ -2,6 +2,7 @@ import { Parser, Handler, ParserOptions } from "../Parser";
 import { CollectingHandler } from "../CollectingHandler";
 import fs from "fs";
 import path from "path";
+import { FileLocation } from "../Tokenizer";
 
 /**
  * Write to the parser twice, once a bytes, once as
@@ -40,12 +41,12 @@ interface Event {
  * @param cb Function to call with all events.
  */
 export function getEventCollector(
-    cb: (error: Error | null, events?: Event[]) => void
+    cb: (error: Error | null, where: FileLocation | null, events?: Event[]) => void
 ): CollectingHandler {
     const handler = new CollectingHandler({
         onerror: cb,
         onend() {
-            cb(null, handler.events.reduce(eventReducer, []));
+            cb(null, null, handler.events.reduce(eventReducer, []));
         },
     });
 
