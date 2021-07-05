@@ -269,6 +269,8 @@ export default class Tokenizer {
     public sectionStart = 0;
     /** The index within the buffer that we are currently looking at. */
     _index = 0;
+    /** The file location of the character within the buffer that we are currently looking at. */
+    private _fileLocation: FileLocation = { lineIndex: 0, colIndex: 0 };
     /**
      * Data that has already been processed will be removed from the buffer occasionally.
      * `_bufferOffset` keeps track of how many characters have been removed, to make sure position information is accurate.
@@ -1094,6 +1096,12 @@ export default class Tokenizer {
                 this.cbs.onerror(Error("unknown _state"), this._state);
             }
             this._index++;
+            if (c === '\n') {
+                this._fileLocation.lineIndex++;
+                this._fileLocation.colIndex = 0;
+            } else {
+                this._fileLocation.colIndex++;
+            }
         }
         this.cleanup();
     }
