@@ -157,6 +157,8 @@ export class ErbEndBlock {
     }
 }
 
+export type FileLocation = Required<{ lineIndex: number, colIndex: number }>;
+
 function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
     const lower = upper.toLowerCase();
 
