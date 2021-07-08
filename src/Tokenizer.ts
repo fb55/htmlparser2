@@ -289,19 +289,15 @@ export default class Tokenizer {
 
     private stateText(c: string) {
         if (c === "<") {
-            if (this._index > this.sectionStart) {
+            if (this.sectionStart < this._index) {
                 this.cbs.ontext(this.getSection());
             }
             this._state = State.BeforeTagName;
             this.sectionStart = this._index;
         } else if (
-            this.decodeEntities &&
             c === "&" &&
             (this.special === Special.None || this.special === Special.Title)
         ) {
-            if (this._index > this.sectionStart) {
-                this.cbs.ontext(this.getSection());
-            }
             this.startEntity();
         }
     }
@@ -455,8 +451,7 @@ export default class Tokenizer {
             this.emitToken("onattribdata");
             this.cbs.onattribend(quote);
             this._state = State.BeforeAttributeName;
-        } else if (this.decodeEntities && c === "&") {
-            this.emitToken("onattribdata");
+        } else if (c === "&") {
             this.startEntity();
         }
     }
@@ -472,8 +467,7 @@ export default class Tokenizer {
             this.cbs.onattribend(null);
             this._state = State.BeforeAttributeName;
             this._index--;
-        } else if (this.decodeEntities && c === "&") {
-            this.emitToken("onattribdata");
+        } else if (c === "&") {
             this.startEntity();
         }
     }
@@ -600,9 +594,16 @@ export default class Tokenizer {
     }
     private entityTrie!: TrieNode;
     private startEntity() {
+        if (!this.decodeEntities) return;
+
         this.entityTrie = { next: this.xmlMode ? xmlTrie : htmlTrie };
         this.baseState = this._state;
         this._state = State.InEntity;
+
+        if (this.sectionStart < this._index) {
+            this.emitPartial(this.getSection());
+        }
+
         this.sectionStart = this._index;
     }
     private emitEntity(trie: TrieNode, isTerminated: boolean) {
@@ -879,7 +880,7 @@ export default class Tokenizer {
 
     private emitPartial(value: string) {
         if (this.baseState !== State.Text) {
-            this.cbs.onattribdata(value); // TODO implement the new event
+            this.cbs.onattribdata(value);
         } else {
             this.cbs.ontext(value);
         }
