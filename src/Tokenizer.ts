@@ -345,7 +345,8 @@ export default class Tokenizer {
     }
     private stateInTagName(c: string) {
         if (c === "/" || c === ">" || whitespace(c)) {
-            this.emitToken("onopentagname");
+            this.cbs.onopentagname(this.getSection());
+            this.sectionStart = -1;
             this._state = State.BeforeAttributeName;
             this._index--;
         }
@@ -377,7 +378,8 @@ export default class Tokenizer {
     }
     private stateInClosingTagName(c: string) {
         if (c === ">" || whitespace(c)) {
-            this.emitToken("onclosetag");
+            this.cbs.onclosetag(this.getSection());
+            this.sectionStart = -1;
             this._state = State.AfterClosingTagName;
             this._index--;
         }
@@ -448,7 +450,8 @@ export default class Tokenizer {
     }
     private handleInAttributeValue(c: string, quote: string) {
         if (c === quote) {
-            this.emitToken("onattribdata");
+            this.cbs.onattribdata(this.getSection());
+            this.sectionStart = -1;
             this.cbs.onattribend(quote);
             this._state = State.BeforeAttributeName;
         } else if (c === "&") {
@@ -463,7 +466,8 @@ export default class Tokenizer {
     }
     private stateInAttributeValueNoQuotes(c: string) {
         if (whitespace(c) || c === ">") {
-            this.emitToken("onattribdata");
+            this.cbs.onattribdata(this.getSection());
+            this.sectionStart = -1;
             this.cbs.onattribend(null);
             this._state = State.BeforeAttributeName;
             this._index--;
@@ -621,10 +625,11 @@ export default class Tokenizer {
             return;
         }
 
-        this.sectionStart =
-            trie.legacy && !isTerminated
-                ? this.legacyTrieIndex + 1
-                : this._index + Number(isTerminated);
+        this.sectionStart = isTerminated
+            ? this._index + 1
+            : trie.legacy
+            ? this.legacyTrieIndex + 1
+            : this._index;
         this._state = this.baseState;
         this.legacyTrie = null;
     }
@@ -872,10 +877,6 @@ export default class Tokenizer {
 
     private getSection(): string {
         return this.buffer.substring(this.sectionStart, this._index);
-    }
-    private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata") {
-        this.cbs[name](this.getSection());
-        this.sectionStart = -1;
     }
 
     private emitPartial(value: string) {
