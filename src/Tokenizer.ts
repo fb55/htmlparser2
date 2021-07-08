@@ -605,29 +605,27 @@ export default class Tokenizer {
         this._state = State.InEntity;
         this.sectionStart = this._index;
     }
-    private decodeNumericEntity(base: number) {
-        if (this.sectionStart + 2 < this._index) {
-            // Parse entity
-            const entity = this.buffer.substring(
-                this.sectionStart + (base === 16 ? 3 : 2),
-                this._index
-            );
-            const parsed = parseInt(entity, base);
-            this.emitEntityValue(decodeCodePoint(parsed));
-        }
-    }
     private emitEntity(trie: TrieNode, isTerminated: boolean) {
         if (trie.value && (isTerminated || trie.legacy)) {
-            this.emitEntityValue(trie.value);
-            this.sectionStart = this._index + Number(isTerminated);
-
-            if (!isTerminated && trie.legacy) {
-                this.sectionStart = this.legacyTrieIndex + 1;
-            }
+            this.emitPartial(trie.value);
         } else if (trie.base) {
-            this.decodeNumericEntity(trie.base);
-            this.sectionStart = this._index + Number(isTerminated);
+            const entity = this.buffer.substring(
+                // Hex entities have an offset of 3
+                this.sectionStart + (trie.base === 16 ? 3 : 2),
+                this._index
+            );
+            const parsed = parseInt(entity, trie.base);
+            this.emitPartial(decodeCodePoint(parsed));
+        } else {
+            return;
         }
+
+        this.sectionStart =
+            trie.legacy && !isTerminated
+                ? this.legacyTrieIndex + 1
+                : this._index + Number(isTerminated);
+        this._state = this.baseState;
+        this.legacyTrie = null;
     }
     private legacyTrie: TrieNode | null = null;
     private legacyTrieIndex = 0;
@@ -652,16 +650,6 @@ export default class Tokenizer {
                 this._state = this.baseState;
             }
         }
-    }
-
-    private emitEntityValue(value: string) {
-        if (this.baseState !== State.Text) {
-            this.cbs.onattribdata(value); // TODO implement the new event
-        } else {
-            this.cbs.ontext(value);
-        }
-        this._state = this.baseState;
-        this.legacyTrie = null;
     }
 
     private cleanup() {
@@ -860,7 +848,7 @@ export default class Tokenizer {
             this.emitEntity(this.legacyTrie ?? this.entityTrie, false);
             // If there are any characters left in the buffer, emit them
             if (this.sectionStart < this._index) {
-                this.emitEntityValue(this.buffer.substr(this.sectionStart));
+                this.emitPartial(this.buffer.substr(this.sectionStart));
             }
         } else if (
             this._state !== State.InTagName &&
@@ -887,5 +875,13 @@ export default class Tokenizer {
     private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata") {
         this.cbs[name](this.getSection());
         this.sectionStart = -1;
+    }
+
+    private emitPartial(value: string) {
+        if (this.baseState !== State.Text) {
+            this.cbs.onattribdata(value); // TODO implement the new event
+        } else {
+            this.cbs.ontext(value);
+        }
     }
 }
