@@ -600,7 +600,7 @@ export default class Tokenizer {
     private startEntity() {
         if (!this.decodeEntities) return;
 
-        this.entityTrie = { next: this.xmlMode ? xmlTrie : htmlTrie };
+        this.entityTrie = this.xmlMode ? xmlTrie : htmlTrie;
         this.baseState = this._state;
         this._state = State.InEntity;
 
