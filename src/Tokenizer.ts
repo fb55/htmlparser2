@@ -615,8 +615,8 @@ export default class Tokenizer {
             this.emitPartial(trie.value);
         } else if (trie.base) {
             const entity = this.buffer.substring(
-                // Hex entities have an offset of 3
-                this.sectionStart + (trie.base === 16 ? 3 : 2),
+                // Skip the leading "&#". For hex entities, also skip the leading "x".
+                this.sectionStart + 2 + (trie.base >>> 4),
                 this._index
             );
             const parsed = parseInt(entity, trie.base);
