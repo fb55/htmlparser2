@@ -88,6 +88,12 @@ const enum State {
     InNamedEntity,
     InNumericEntity,
     InHexEntity, // X
+
+    BeforeErbPercent, // %
+    InErbExpression,
+    InErbScriptlet,
+    AfterErbExpressionPercent, // %
+    AfterErbScriptletPercent, // %
 }
 
 const enum Special {
@@ -106,9 +112,9 @@ function isASCIIAlpha(c: string): boolean {
 }
 
 export interface Callbacks {
-    onattribdata(value: string, where: FileLocation): void;
+    onattribdata(value: string): void;
     onattribend(quote: string | undefined | null, where: FileLocation): void;
-    onattribname(name: string, where: FileLocation): void;
+    onattribname(name: string): void;
     oncdata(data: string, where: FileLocation): void;
     onclosetag(name: string, where: FileLocation): void;
     oncomment(data: string, where: FileLocation): void;
@@ -531,7 +537,7 @@ export default class Tokenizer {
 
     }
     private getErbEndBlock(body: string): ErbEndBlock | null {
-        let regexpResult = /^\s*end (.*)$/.exec(body);
+        const regexpResult = /^\s*end (.*)$/.exec(body);
         if (!regexpResult) return null;
         return new ErbEndBlock(regexpResult[1]);
     }
@@ -630,7 +636,7 @@ export default class Tokenizer {
     }
     private stateInAttributeName(c: string) {
         if (c === "=" || c === "/" || c === ">" || whitespace(c)) {
-            this.cbs.onattribname(this.getSection(), this.where());
+            this.cbs.onattribname(this.getSection());
             this.sectionStart = -1;
             this._state = State.AfterAttributeName;
             this._index--;
@@ -972,6 +978,16 @@ export default class Tokenizer {
                 this.stateInClosingTagName(c);
             } else if (this._state === State.BeforeTagName) {
                 this.stateBeforeTagName(c);
+            } else if (this._state === State.BeforeErbPercent) {
+                this.stateBeforeErbPercent(c);
+            } else if (this._state === State.InErbExpression) {
+                this.stateInErbExpression(c);
+            } else if (this._state === State.InErbScriptlet) {
+                this.stateInErbScriptlet(c);
+            } else if (this._state === State.AfterErbExpressionPercent) {
+                this.stateAfterErbExpressionPercent(c);
+            } else if (this._state === State.AfterErbScriptletPercent) {
+                this.stateAfterErbScriptletPercent(c);
             } else if (this._state === State.AfterAttributeName) {
                 this.stateAfterAttributeName(c);
             } else if (this._state === State.InAttributeValueSq) {
@@ -1164,12 +1180,12 @@ export default class Tokenizer {
         return this.buffer.substring(this.sectionStart, this._index);
     }
     private emitToken(name: "onopentagname" | "onclosetag" | "onattribdata") {
-        this.cbs[name](this.getSection());
+        this.cbs[name](this.getSection(), this.where());
         this.sectionStart = -1;
     }
     private emitPartial(value: string) {
         if (this.baseState !== State.Text) {
-            this.cbs.onattribdata(value, this.where()); // TODO implement the new event
+            this.cbs.onattribdata(value); // TODO implement the new event
         } else {
             this.cbs.ontext(value, this.where());
         }

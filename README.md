@@ -1,15 +1,15 @@
-# htmlparser2
+# erbparser
 
-[![NPM version](http://img.shields.io/npm/v/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
-[![Downloads](https://img.shields.io/npm/dm/htmlparser2.svg?style=flat)](https://npmjs.org/package/htmlparser2)
-[![Build Status](https://img.shields.io/github/workflow/status/fb55/htmlparser2/Node.js%20Test?label=tests&style=flat)](https://github.com/fb55/htmlparser2/actions?query=workflow%3A%22Node.js+Test%22)
-[![Coverage](http://img.shields.io/coveralls/fb55/htmlparser2.svg?style=flat)](https://coveralls.io/r/fb55/htmlparser2)
-
-The fast & forgiving HTML/XML parser.
+HTML/ERB parser, based on htmlparse2: the fast & forgiving HTML/XML parser.
+__Beware!!!__ This package is still in active development and is liable to change frequently.
 
 ## Installation
 
-    npm install htmlparser2
+    npm install @joecarstairs-fa/erbparser
+
+# htmlparser2
+
+The remainder of this README, with the exception of the [Parsing ERB](#parsing-erb) section, is copy-and-pasted from [htmlparser2](https://github.com/fb55/htmlparser2).
 
 A live demo of `htmlparser2` is available [here](https://astexplorer.net/#/2AmVrGuGVJ).
 
@@ -121,6 +121,60 @@ const feed = htmlparser2.parseFeed(content, options);
 
 Note: While the provided feed handler works for most feeds,
 you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
+
+## Parsing ERB
+
+```javascript
+const htmlparser2 = require("htmlparser2");
+const parser = new htmlparser2.Parser({
+    onerbscriptlet(data) {
+        /**
+         * This fires when an ERB scriptlet ends.
+         *
+         */
+        console.log(`Scriptlet: '${data}'.`);
+    },
+    onerbexpression(data) {
+        /**
+         * This fires when an ERB expression ends.
+         *
+         */
+        console.log(`Expression: '${data}'.`);
+    },
+    onerbbeginblock(beginBlock) {
+        /**
+         * This fires at the start of a "block" of code,
+         * such as a for loop or a conditional. Beware -
+         * this is *not* "block" in the specific sense it
+         * has in Ruby syntax, which would only refer
+         * to do...end blocks. My sense is more general.
+         */
+        console.log(`Block keyword: '${beginBlock.keyword}'.`);
+    },
+    onerbendblock(endBlock) {
+        /**
+         * This fires at the end of a "block" (see above).
+         */
+        console.log(`End block.`);
+    }
+});
+parser.write(
+    `<% arr.each do |elem| %>\n`
+    `   <% @var = elem + 1 %>\n`
+    `   <%= @var %>\n`
+    `<% end %>`
+);
+parser.end();
+```
+
+Output:
+
+```
+Block keyword: 'do'.
+Scriptlet: '@var = elem + 1'.
+Expression: 'var'.
+End block.
+```
 
 ## Performance
 
