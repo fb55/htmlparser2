@@ -7,11 +7,23 @@
     "expected": [
         {
             "event": "opentagname",
-            "data": ["tag"]
+            "data": [
+                "tag",
+                {
+                    "colIndex": 4,
+                    "lineIndex": 0
+                }
+            ]
         },
         {
             "event": "opentag",
-            "data": ["tag", {}]
+            "data": [
+                "tag",
+                {},
+                {
+                    "colIndex": 4,
+                    "lineIndex": 0
+                }]
         },
         {
             "event": "cdatastart",
@@ -19,19 +31,42 @@
         },
         {
             "event": "text",
-            "data": [" asdf ><asdf></adsf><> fo"]
+            "data": [
+                " asdf ><asdf></adsf><> fo",
+                {
+                    "colIndex": 41,
+                    "lineIndex": 0
+                }
+            ]
         },
         {
             "event": "cdataend",
-            "data": []
+            "data": [
+                {
+                    "colIndex": 41,
+                    "lineIndex": 0
+                }
+            ]
         },
         {
             "event": "closetag",
-            "data": ["tag"]
+            "data": [
+                "tag",
+                {
+                    "colIndex": 47,
+                    "lineIndex": 0
+                }
+            ]
         },
         {
             "event": "processinginstruction",
-            "data": ["![CD", "![CD"]
+            "data": [
+                "![CD",
+                "![CD",
+                {
+                    "colIndex": 53,
+                    "lineIndex": 0
+                }]
         }
     ]
 }

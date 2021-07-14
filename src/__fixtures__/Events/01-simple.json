@@ -4,11 +4,25 @@
     "expected": [
         {
             "event": "opentagname",
-            "data": ["h1"]
+            "data": [
+                "h1",
+                {
+                    "colIndex": 3,
+                    "lineIndex": 0
+                }
+            ]
         },
         {
             "event": "attribute",
-            "data": ["class", "test", null]
+            "data": [
+                "class",
+                "test",
+                {
+                    "colIndex": 14,
+                    "lineIndex": 0
+                },
+                null
+            ]
         },
         {
             "event": "opentag",
@@ -16,16 +30,32 @@
                 "h1",
                 {
                     "class": "test"
+                },
+                {
+                    "colIndex": 14,
+                    "lineIndex": 0
                 }
             ]
         },
         {
             "event": "text",
-            "data": ["adsf"]
+            "data": [
+                "adsf",
+                {
+                    "colIndex": 19,
+                    "lineIndex": 0
+                }
+            ]
         },
         {
             "event": "closetag",
-            "data": ["h1"]
+            "data": [
+                "h1",
+                {
+                    "colIndex": 23,
+                    "lineIndex": 0
+                }
+            ]
         }
     ]
 }

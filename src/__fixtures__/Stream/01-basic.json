@@ -3,52 +3,128 @@
     "file": "Basic.html",
     "expected": [
         {
-            "event": "processinginstruction",
-            "data": ["!doctype", "!DOCTYPE html"]
+          "event": "processinginstruction",
+          "data": [
+            "!doctype",
+            "!DOCTYPE html",
+            {
+              "lineIndex": 0,
+              "colIndex": 14
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["html"]
+          "event": "opentagname",
+          "data": [
+            "html",
+            {
+              "lineIndex": 0,
+              "colIndex": 20
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["html", {}]
+          "event": "opentag",
+          "data": [
+            "html",
+            {},
+            {
+              "lineIndex": 0,
+              "colIndex": 20
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["title"]
+          "event": "opentagname",
+          "data": [
+            "title",
+            {
+              "lineIndex": 0,
+              "colIndex": 27
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["title", {}]
+          "event": "opentag",
+          "data": [
+            "title",
+            {},
+            {
+              "lineIndex": 0,
+              "colIndex": 27
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["The Title"]
+          "event": "text",
+          "data": [
+            "The Title",
+            {
+              "lineIndex": 0,
+              "colIndex": 37
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["title"]
+          "event": "closetag",
+          "data": [
+            "title",
+            {
+              "lineIndex": 0,
+              "colIndex": 44
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["body"]
+          "event": "opentagname",
+          "data": [
+            "body",
+            {
+              "lineIndex": 0,
+              "colIndex": 50
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["body", {}]
+          "event": "opentag",
+          "data": [
+            "body",
+            {},
+            {
+              "lineIndex": 0,
+              "colIndex": 50
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["Hello world"]
+          "event": "text",
+          "data": [
+            "Hello world",
+            {
+              "lineIndex": 0,
+              "colIndex": 62
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["body"]
+          "event": "closetag",
+          "data": [
+            "body",
+            {
+              "lineIndex": 0,
+              "colIndex": 68
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["html"]
+          "event": "closetag",
+          "data": [
+            "html",
+            {
+              "lineIndex": 0,
+              "colIndex": 75
+            }
+          ]
         }
-    ]
+      ]
 }

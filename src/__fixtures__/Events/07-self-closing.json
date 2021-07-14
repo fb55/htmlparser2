@@ -1,43 +1,88 @@
-{
-    "name": "Self-closing tags",
-    "html": "<a href=http://test.com/>Foo</a><hr / >",
-    "expected": [
+[
+    {
+      "event": "opentagname",
+      "data": [
+        "a",
         {
-            "event": "opentagname",
-            "data": ["a"]
-        },
-        {
-            "event": "attribute",
-            "data": ["href", "http://test.com/", null]
-        },
-        {
-            "event": "opentag",
-            "data": [
-                "a",
-                {
-                    "href": "http://test.com/"
-                }
-            ]
-        },
-        {
-            "event": "text",
-            "data": ["Foo"]
-        },
-        {
-            "event": "closetag",
-            "data": ["a"]
-        },
-        {
-            "event": "opentagname",
-            "data": ["hr"]
-        },
-        {
-            "event": "opentag",
-            "data": ["hr", {}]
-        },
-        {
-            "event": "closetag",
-            "data": ["hr"]
+          "lineIndex": 0,
+          "colIndex": 2
         }
-    ]
-}
+      ]
+    },
+    {
+      "event": "attribute",
+      "data": [
+        "href",
+        "http://test.com/",
+        {
+          "lineIndex": 0,
+          "colIndex": 24
+        },
+        null
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "a",
+        {
+          "href": "http://test.com/"
+        },
+        {
+          "lineIndex": 0,
+          "colIndex": 24
+        }
+      ]
+    },
+    {
+      "event": "text",
+      "data": [
+        "Foo",
+        {
+          "lineIndex": 0,
+          "colIndex": 28
+        }
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "a",
+        {
+          "lineIndex": 0,
+          "colIndex": 31
+        }
+      ]
+    },
+    {
+      "event": "opentagname",
+      "data": [
+        "hr",
+        {
+          "lineIndex": 0,
+          "colIndex": 35
+        }
+      ]
+    },
+    {
+      "event": "opentag",
+      "data": [
+        "hr",
+        {},
+        {
+          "lineIndex": 0,
+          "colIndex": 38
+        }
+      ]
+    },
+    {
+      "event": "closetag",
+      "data": [
+        "hr",
+        {
+          "lineIndex": 0,
+          "colIndex": 38
+        }
+      ]
+    }
+  ]
