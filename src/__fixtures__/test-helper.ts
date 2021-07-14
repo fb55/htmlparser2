@@ -41,12 +41,14 @@ interface Event {
  * @param cb Function to call with all events.
  */
 export function getEventCollector(
-    cb: (error: Error | null, where: FileLocation | null, events?: Event[]) => void
+    cb: (error: Error | null, events?: Event[]) => void
 ): CollectingHandler {
     const handler = new CollectingHandler({
-        onerror: cb,
+        onerror(err: Error) {
+            cb(err, []);
+        },
         onend() {
-            cb(null, null, handler.events.reduce(eventReducer, []));
+            cb(null, handler.events.reduce(eventReducer, []));
         },
     });
 
@@ -64,11 +66,15 @@ function eventReducer(
         events.length &&
         events[events.length - 1].event === "text"
     ) {
-        // Combine text nodes
+        // Combine text nodes, taking the latest file location
         (events[events.length - 1].data[0] as string) += data[0];
+        (events[events.length - 1].data[1] as FileLocation) =
+            (events[events.length - 1].data[1] as FileLocation).lineIndex < (data[1] as FileLocation).lineIndex ?
+            (events[events.length - 1].data[1] as FileLocation) :
+            (data[1] as FileLocation);
     } else {
         // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
-        if (event === "onattribute" && data[2] === undefined) {
+        if (event === "onattribute" && data[3] === undefined) {
             data.pop();
         }
 
@@ -92,6 +98,8 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
 
     return (err: null | Error, actual?: unknown | unknown[]) => {
         expect(err).toBeNull();
+        const fileName = file.name.concat('.json');
+        fs.writeFileSync(path.join(__dirname, 'actual', fileName), JSON.stringify(actual, null, 2));
         if (file.useSnapshot) {
             expect(actual).toMatchSnapshot();
         } else {
@@ -134,11 +142,15 @@ export function createSuite(
     function readDir() {
         const dir = path.join(__dirname, name);
 
-        fs.readdirSync(dir)
+        const longNames = fs.readdirSync(dir)
             .filter((file) => !file.startsWith(".") && !file.startsWith("_"))
-            .map((name) => path.join(dir, name))
-            .map(require)
-            .forEach(runTest);
+            .map((name) => path.join(dir, name));
+        if (!("map" in longNames)) {
+            console.error(`Long names error. Long names: '${longNames}'.`);
+            return;
+        }
+        const testFiles = longNames.map(require);
+        testFiles.forEach(runTest);
     }
 
     function runTest(file: TestFile) {
