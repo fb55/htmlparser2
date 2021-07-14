@@ -2,7 +2,6 @@ import decodeCodePoint from "entities/lib/decode_codepoint";
 import entityMap from "entities/lib/maps/entities.json";
 import legacyMap from "entities/lib/maps/legacy.json";
 import xmlMap from "entities/lib/maps/xml.json";
-import internal from "stream";
 
 /** All the states the tokenizer can be in. */
 const enum State {
@@ -313,6 +312,8 @@ export default class Tokenizer {
         this.buffer = "";
         this.sectionStart = 0;
         this._index = 0;
+        this._colIndex = 0;
+        this._lineIndex = 0;
         this.bufferOffset = 0;
         this.baseState = State.Text;
         this.special = Special.None;
@@ -960,6 +961,7 @@ export default class Tokenizer {
     private parse() {
         while (this._index < this.buffer.length && this.running) {
             const c = this.buffer.charAt(this._index);
+            const nextIndex = this._index + 1;
             if (this._state === State.Text) {
                 this.stateText(c);
             } else if (this._state === State.InAttributeValueDq) {
@@ -1107,11 +1109,13 @@ export default class Tokenizer {
                 this.cbs.onerror(Error("unknown _state"), this.where(), this._state);
             }
             this._index++;
-            if (c === '\n') {
-                this._lineIndex++;
-                this._colIndex = 0;
-            } else {
-                this._colIndex++;
+            if (this._index === nextIndex) {
+                if (c === '\n') {
+                    this._lineIndex++;
+                    this._colIndex = 0;
+                } else {
+                    this._colIndex++;
+                }
             }
         }
         this.cleanup();
