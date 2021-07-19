@@ -270,9 +270,9 @@ export default class Tokenizer {
     /** The index within the buffer that we are currently looking at. */
     _index = 0;
     /** The line index of the character within the buffer that we are currently looking at. */
-    private _lineIndex = 0;
+    private _lineIndex = 1;
     /** The column index of the character within the buffer that we are currently looking at. */
-    private _colIndex = 0;
+    private _colIndex = 1;
     /**
      * Data that has already been processed will be removed from the buffer occasionally.
      * `_bufferOffset` keeps track of how many characters have been removed, to make sure position information is accurate.
@@ -312,8 +312,8 @@ export default class Tokenizer {
         this.buffer = "";
         this.sectionStart = 0;
         this._index = 0;
-        this._colIndex = 0;
-        this._lineIndex = 0;
+        this._colIndex = 1;
+        this._lineIndex = 1;
         this.bufferOffset = 0;
         this.baseState = State.Text;
         this.special = Special.None;
@@ -1112,7 +1112,7 @@ export default class Tokenizer {
             if (this._index === nextIndex) {
                 if (c === '\n') {
                     this._lineIndex++;
-                    this._colIndex = 0;
+                    this._colIndex = 1;
                 } else {
                     this._colIndex++;
                 }
