@@ -1,7 +1,7 @@
 {
     "name": "@joecarstairs-fa/erbparser",
     "description": "A simple HTML/ERB parser based on [htmlparser2](https://github.com/fb55/htmlparser2.git), which in turn is based on [node-htmlparser](https://github.com/tautologistics/node-htmlparser.git).",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Joe Carstairs <joe.carstairs@freeagent.com>",
     "license": "MIT",
     "sideEffects": false,
