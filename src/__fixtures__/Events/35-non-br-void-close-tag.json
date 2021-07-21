@@ -6,28 +6,66 @@
     "html": "<select><input></select>",
     "expected": [
         {
-            "event": "opentagname",
-            "data": ["select"]
+          "event": "opentagname",
+          "data": [
+            "select",
+            {
+              "lineIndex": 1,
+              "colIndex": 8
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["select", {}]
+          "event": "opentag",
+          "data": [
+            "select",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 8
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["select"]
+          "event": "closetag",
+          "data": [
+            "select",
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["input"]
+          "event": "opentagname",
+          "data": [
+            "input",
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["input", {}]
+          "event": "opentag",
+          "data": [
+            "input",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["input"]
+          "event": "closetag",
+          "data": [
+            "input",
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            }
+          ]
         }
-    ]
+      ]
 }

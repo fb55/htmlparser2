@@ -3,148 +3,375 @@
     "html": "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
     "expected": [
         {
-            "event": "opentagname",
-            "data": ["title"]
+          "event": "opentagname",
+          "data": [
+            "title",
+            {
+              "lineIndex": 1,
+              "colIndex": 7
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["title", {}]
+          "event": "opentag",
+          "data": [
+            "title",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 7
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["<b>foo</b><title>"]
+          "event": "text",
+          "data": [
+            "<b>foo</b><title>",
+            {
+              "lineIndex": 1,
+              "colIndex": 25
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["title"]
+          "event": "closetag",
+          "data": [
+            "title",
+            {
+              "lineIndex": 1,
+              "colIndex": 32
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["sitle"]
+          "event": "opentagname",
+          "data": [
+            "sitle",
+            {
+              "lineIndex": 1,
+              "colIndex": 39
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["sitle", {}]
+          "event": "opentag",
+          "data": [
+            "sitle",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 39
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["b"]
+          "event": "opentagname",
+          "data": [
+            "b",
+            {
+              "lineIndex": 1,
+              "colIndex": 42
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["b", {}]
+          "event": "opentag",
+          "data": [
+            "b",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 42
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["b"]
+          "event": "closetag",
+          "data": [
+            "b",
+            {
+              "lineIndex": 1,
+              "colIndex": 46
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["sitle"]
+          "event": "closetag",
+          "data": [
+            "sitle",
+            {
+              "lineIndex": 1,
+              "colIndex": 54
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["ttyle"]
+          "event": "opentagname",
+          "data": [
+            "ttyle",
+            {
+              "lineIndex": 1,
+              "colIndex": 61
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["ttyle", {}]
+          "event": "opentag",
+          "data": [
+            "ttyle",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 61
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["b"]
+          "event": "opentagname",
+          "data": [
+            "b",
+            {
+              "lineIndex": 1,
+              "colIndex": 64
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["b", {}]
+          "event": "opentag",
+          "data": [
+            "b",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 64
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["b"]
+          "event": "closetag",
+          "data": [
+            "b",
+            {
+              "lineIndex": 1,
+              "colIndex": 68
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["ttyle"]
+          "event": "closetag",
+          "data": [
+            "ttyle",
+            {
+              "lineIndex": 1,
+              "colIndex": 76
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["script"]
+          "event": "opentagname",
+          "data": [
+            "script",
+            {
+              "lineIndex": 1,
+              "colIndex": 84
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["script", {}]
+          "event": "opentag",
+          "data": [
+            "script",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 84
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["</scripter</soo"]
+          "event": "text",
+          "data": [
+            "</scripter</soo",
+            {
+              "lineIndex": 1,
+              "colIndex": 100
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["script"]
+          "event": "closetag",
+          "data": [
+            "script",
+            {
+              "lineIndex": 1,
+              "colIndex": 108
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["style"]
+          "event": "opentagname",
+          "data": [
+            "style",
+            {
+              "lineIndex": 1,
+              "colIndex": 115
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["style", {}]
+          "event": "opentag",
+          "data": [
+            "style",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 115
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["</styler"]
+          "event": "text",
+          "data": [
+            "</styler",
+            {
+              "lineIndex": 1,
+              "colIndex": 124
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["style"]
+          "event": "closetag",
+          "data": [
+            "style",
+            {
+              "lineIndex": 1,
+              "colIndex": 131
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["scipt"]
+          "event": "opentagname",
+          "data": [
+            "scipt",
+            {
+              "lineIndex": 1,
+              "colIndex": 138
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["scipt", {}]
+          "event": "opentag",
+          "data": [
+            "scipt",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 138
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["stylee"]
+          "event": "opentagname",
+          "data": [
+            "stylee",
+            {
+              "lineIndex": 1,
+              "colIndex": 146
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["stylee", {}]
+          "event": "opentag",
+          "data": [
+            "stylee",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 146
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["scriptee"]
+          "event": "opentagname",
+          "data": [
+            "scriptee",
+            {
+              "lineIndex": 1,
+              "colIndex": 156
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["scriptee", {}]
+          "event": "opentag",
+          "data": [
+            "scriptee",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 156
+            }
+          ]
         },
         {
-            "event": "opentagname",
-            "data": ["soo"]
+          "event": "opentagname",
+          "data": [
+            "soo",
+            {
+              "lineIndex": 1,
+              "colIndex": 161
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["soo", {}]
+          "event": "opentag",
+          "data": [
+            "soo",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 161
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["soo"]
+          "event": "closetag",
+          "data": [
+            "soo",
+            {
+              "lineIndex": 1,
+              "colIndex": 162
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["scriptee"]
+          "event": "closetag",
+          "data": [
+            "scriptee",
+            {
+              "lineIndex": 1,
+              "colIndex": 162
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["stylee"]
+          "event": "closetag",
+          "data": [
+            "stylee",
+            {
+              "lineIndex": 1,
+              "colIndex": 162
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["scipt"]
+          "event": "closetag",
+          "data": [
+            "scipt",
+            {
+              "lineIndex": 1,
+              "colIndex": 162
+            }
+          ]
         }
-    ]
+      ]
 }

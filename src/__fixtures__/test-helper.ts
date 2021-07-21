@@ -98,8 +98,6 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
 
     return (err: null | Error, actual?: unknown | unknown[]) => {
         expect(err).toBeNull();
-        const fileName = file.name.concat('.json');
-        fs.writeFileSync(path.join(__dirname, 'actual', fileName), JSON.stringify(actual, null, 2));
         if (file.useSnapshot) {
             expect(actual).toMatchSnapshot();
         } else {
@@ -142,18 +140,18 @@ export function createSuite(
     function readDir() {
         const dir = path.join(__dirname, name);
 
-        const longNames = fs.readdirSync(dir)
+        fs.readdirSync(dir)
             .filter((file) => !file.startsWith(".") && !file.startsWith("_"))
-            .map((name) => path.join(dir, name));
-        if (!("map" in longNames)) {
-            console.error(`Long names error. Long names: '${longNames}'.`);
-            return;
-        }
-        const testFiles = longNames.map(require);
-        testFiles.forEach(runTest);
+            .map((name) => path.join(dir, name))
+            .map(require)
+            .forEach(runTest);
     }
 
     function runTest(file: TestFile) {
-        test(file.name, (done) => getResult(file, getCallback(file, done)));
+        if (file.name) {
+            test(file.name, (done) => getResult(file, getCallback(file, done)));
+        } else {
+            expect(file).toBe("something valid");
+        }
     }
 }

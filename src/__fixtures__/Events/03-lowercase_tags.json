@@ -7,60 +7,60 @@
     },
     "html": "<H1 class=test>adsf</H1>",
     "expected": [
-        {
-            "event": "opentagname",
-            "data": [
-                "h1",
-                {
-                    "colIndex": 3,
-                    "lineIndex": 0
-                }
-            ]
-        },
-        {
-            "event": "attribute",
-            "data": [
-                "class",
-                "test",
-                {
-                    "colIndex": 14,
-                    "lineIndex": 0
-                },
-                null
-            ]
-        },
-        {
-            "event": "opentag",
-            "data": [
-                "h1",
-                {
-                    "class": "test"
-                },
-                {
-                    "colIndex": 14,
-                    "lineIndex": 0
-                }
-            ]
-        },
-        {
-            "event": "text",
-            "data": [
-                "adsf",
-                {
-                    "colIndex": 19,
-                    "lineIndex": 0
-                }
-            ]
-        },
-        {
-            "event": "closetag",
-            "data": [
-                "h1",
-                {
-                    "colIndex": 23,
-                    "lineIndex": 0
-                }
-            ]
-        }
+      {
+        "event": "opentagname",
+        "data": [
+          "h1",
+          {
+            "lineIndex": 1,
+            "colIndex": 4
+          }
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "class",
+          "test",
+          {
+            "lineIndex": 1,
+            "colIndex": 15
+          },
+          null
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "h1",
+          {
+            "class": "test"
+          },
+          {
+            "lineIndex": 1,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "adsf",
+          {
+            "lineIndex": 1,
+            "colIndex": 20
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "h1",
+          {
+            "lineIndex": 1,
+            "colIndex": 24
+          }
+        ]
+      }
     ]
 }

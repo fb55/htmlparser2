@@ -2,8 +2,34 @@
     "name": "tag names are not ASCII alpha",
     "html": "<12>text</12>",
     "expected": [
-        { "event": "text", "data": ["<12>text"] },
-        { "event": "comment", "data": ["12"] },
-        { "event": "commentend", "data": [] }
-    ]
+        {
+          "event": "text",
+          "data": [
+            "<12>text",
+            {
+              "lineIndex": 1,
+              "colIndex": 9
+            }
+          ]
+        },
+        {
+          "event": "comment",
+          "data": [
+            "12",
+            {
+              "lineIndex": 1,
+              "colIndex": 13
+            }
+          ]
+        },
+        {
+          "event": "commentend",
+          "data": [
+            {
+              "lineIndex": 1,
+              "colIndex": 13
+            }
+          ]
+        }
+      ]
 }

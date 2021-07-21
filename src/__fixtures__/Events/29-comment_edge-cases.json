@@ -3,12 +3,53 @@
     "html": "<!-foo><!-- --- --><!--foo",
     "expected": [
         {
-            "event": "processinginstruction",
-            "data": ["!-foo", "!-foo"]
+          "event": "processinginstruction",
+          "data": [
+            "!-foo",
+            "!-foo",
+            {
+              "lineIndex": 1,
+              "colIndex": 7
+            }
+          ]
         },
-        { "event": "comment", "data": [" --- "] },
-        { "event": "commentend", "data": [] },
-        { "event": "comment", "data": ["foo"] },
-        { "event": "commentend", "data": [] }
-    ]
+        {
+          "event": "comment",
+          "data": [
+            " --- ",
+            {
+              "lineIndex": 1,
+              "colIndex": 19
+            }
+          ]
+        },
+        {
+          "event": "commentend",
+          "data": [
+            {
+              "lineIndex": 1,
+              "colIndex": 19
+            }
+          ]
+        },
+        {
+          "event": "comment",
+          "data": [
+            "foo",
+            {
+              "lineIndex": 1,
+              "colIndex": 27
+            }
+          ]
+        },
+        {
+          "event": "commentend",
+          "data": [
+            {
+              "lineIndex": 1,
+              "colIndex": 27
+            }
+          ]
+        }
+      ]
 }

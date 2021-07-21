@@ -10,6 +10,6 @@ describe("WritableStream", () => {
         stream.write("");
         stream.end();
 
-        expect(ontext).toBeCalledWith("€", { lineIndex: 0, colIndex: 1 });
+        expect(ontext).toBeCalledWith("€", { colIndex: 2, lineIndex: 1 });
     });
 });

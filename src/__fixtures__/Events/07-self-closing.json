@@ -1,11 +1,14 @@
-[
+{
+  "name": "Self-closing tags",
+  "html": "<a href=http://test.com/>Foo</a><hr / >",
+  "expected": [
     {
       "event": "opentagname",
       "data": [
         "a",
         {
-          "lineIndex": 0,
-          "colIndex": 2
+          "lineIndex": 1,
+          "colIndex": 3
         }
       ]
     },
@@ -15,8 +18,8 @@
         "href",
         "http://test.com/",
         {
-          "lineIndex": 0,
-          "colIndex": 24
+          "lineIndex": 1,
+          "colIndex": 25
         },
         null
       ]
@@ -29,8 +32,8 @@
           "href": "http://test.com/"
         },
         {
-          "lineIndex": 0,
-          "colIndex": 24
+          "lineIndex": 1,
+          "colIndex": 25
         }
       ]
     },
@@ -39,8 +42,8 @@
       "data": [
         "Foo",
         {
-          "lineIndex": 0,
-          "colIndex": 28
+          "lineIndex": 1,
+          "colIndex": 29
         }
       ]
     },
@@ -49,8 +52,8 @@
       "data": [
         "a",
         {
-          "lineIndex": 0,
-          "colIndex": 31
+          "lineIndex": 1,
+          "colIndex": 32
         }
       ]
     },
@@ -59,8 +62,8 @@
       "data": [
         "hr",
         {
-          "lineIndex": 0,
-          "colIndex": 35
+          "lineIndex": 1,
+          "colIndex": 36
         }
       ]
     },
@@ -70,8 +73,8 @@
         "hr",
         {},
         {
-          "lineIndex": 0,
-          "colIndex": 38
+          "lineIndex": 1,
+          "colIndex": 39
         }
       ]
     },
@@ -80,9 +83,10 @@
       "data": [
         "hr",
         {
-          "lineIndex": 0,
-          "colIndex": 38
+          "lineIndex": 1,
+          "colIndex": 39
         }
       ]
     }
   ]
+}

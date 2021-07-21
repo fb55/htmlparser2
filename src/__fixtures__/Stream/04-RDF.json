@@ -3,2288 +3,2288 @@
     "options": { "xmlMode": true },
     "file": "RDF_Example.xml",
     "expected": [
-        {
-          "event": "processinginstruction",
-          "data": [
-            "?xml",
-            "?xml version=\"1.0\" encoding=\"UTF-8\"?",
-            {
-              "lineIndex": 0,
-              "colIndex": 37
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n",
-            {
-              "lineIndex": 1,
-              "colIndex": 0
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "rdf:RDF",
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:rdf",
-            "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-            {
-              "lineIndex": 1,
-              "colIndex": 63
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns",
-            "http://purl.org/rss/1.0/",
-            {
-              "lineIndex": 1,
-              "colIndex": 96
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:ev",
-            "http://purl.org/rss/1.0/modules/event/",
-            {
-              "lineIndex": 1,
-              "colIndex": 146
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:content",
-            "http://purl.org/rss/1.0/modules/content/",
-            {
-              "lineIndex": 1,
-              "colIndex": 203
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:taxo",
-            "http://purl.org/rss/1.0/modules/taxonomy/",
-            {
-              "lineIndex": 1,
-              "colIndex": 258
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:dc",
-            "http://purl.org/dc/elements/1.1/",
-            {
-              "lineIndex": 1,
-              "colIndex": 302
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:syn",
-            "http://purl.org/rss/1.0/modules/syndication/",
-            {
-              "lineIndex": 1,
-              "colIndex": 359
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:dcterms",
-            "http://purl.org/dc/terms/",
-            {
-              "lineIndex": 1,
-              "colIndex": 401
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "xmlns:admin",
-            "http://webns.net/mvcb/",
-            {
-              "lineIndex": 1,
-              "colIndex": 438
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "rdf:RDF",
-            {
-              "xmlns:rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-              "xmlns": "http://purl.org/rss/1.0/",
-              "xmlns:ev": "http://purl.org/rss/1.0/modules/event/",
-              "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
-              "xmlns:taxo": "http://purl.org/rss/1.0/modules/taxonomy/",
-              "xmlns:dc": "http://purl.org/dc/elements/1.1/",
-              "xmlns:syn": "http://purl.org/rss/1.0/modules/syndication/",
-              "xmlns:dcterms": "http://purl.org/dc/terms/",
-              "xmlns:admin": "http://webns.net/mvcb/"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 439
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t",
-            {
-              "lineIndex": 2,
-              "colIndex": 1
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "channel",
-            {
-              "lineIndex": 2,
-              "colIndex": 9
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "rdf:about",
-            "https://github.com/fb55/htmlparser2/",
-            {
-              "lineIndex": 2,
-              "colIndex": 57
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "channel",
-            {
-              "rdf:about": "https://github.com/fb55/htmlparser2/"
-            },
-            {
-              "lineIndex": 2,
-              "colIndex": 58
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 3,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "title",
-            {
-              "lineIndex": 3,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "title",
-            {},
-            {
-              "lineIndex": 3,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "A title to parse and remember",
-            {
-              "lineIndex": 3,
-              "colIndex": 38
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "title",
-            {
-              "lineIndex": 3,
-              "colIndex": 45
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 4,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "link",
-            {
-              "lineIndex": 4,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "link",
-            {},
-            {
-              "lineIndex": 4,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "https://github.com/fb55/htmlparser2/",
-            {
-              "lineIndex": 4,
-              "colIndex": 44
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "link",
-            {
-              "lineIndex": 4,
-              "colIndex": 50
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 5,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "description",
-            {
-              "lineIndex": 5,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "description",
-            {},
-            {
-              "lineIndex": 5,
-              "colIndex": 15
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "description",
-            {
-              "lineIndex": 5,
-              "colIndex": 15
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 6,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:language",
-            {
-              "lineIndex": 6,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:language",
-            {},
-            {
-              "lineIndex": 6,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "en-us",
-            {
-              "lineIndex": 6,
-              "colIndex": 20
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:language",
-            {
-              "lineIndex": 6,
-              "colIndex": 33
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 7,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:rights",
-            {
-              "lineIndex": 7,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:rights",
-            {},
-            {
-              "lineIndex": 7,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Copyright 2015 the authors",
-            {
-              "lineIndex": 7,
-              "colIndex": 39
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:rights",
-            {
-              "lineIndex": 7,
-              "colIndex": 50
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 8,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:publisher",
-            {
-              "lineIndex": 8,
-              "colIndex": 15
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:publisher",
-            {},
-            {
-              "lineIndex": 8,
-              "colIndex": 15
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "webmaster@thisisafakedoma.in",
-            {
-              "lineIndex": 8,
-              "colIndex": 44
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:publisher",
-            {
-              "lineIndex": 8,
-              "colIndex": 58
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 9,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:creator",
-            {
-              "lineIndex": 9,
-              "colIndex": 13
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:creator",
-            {},
-            {
-              "lineIndex": 9,
-              "colIndex": 13
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "webmaster@thisisafakedoma.in",
-            {
-              "lineIndex": 9,
-              "colIndex": 42
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:creator",
-            {
-              "lineIndex": 9,
-              "colIndex": 54
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 10,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:source",
-            {
-              "lineIndex": 10,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:source",
-            {},
-            {
-              "lineIndex": 10,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "https://github.com/fb55/htmlparser2/",
-            {
-              "lineIndex": 10,
-              "colIndex": 49
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:source",
-            {
-              "lineIndex": 10,
-              "colIndex": 60
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 11,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:title",
-            {
-              "lineIndex": 11,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:title",
-            {},
-            {
-              "lineIndex": 11,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "A title to parse and remember",
-            {
-              "lineIndex": 11,
-              "colIndex": 41
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:title",
-            {
-              "lineIndex": 11,
-              "colIndex": 51
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 12,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:type",
-            {
-              "lineIndex": 12,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:type",
-            {},
-            {
-              "lineIndex": 12,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Collection",
-            {
-              "lineIndex": 12,
-              "colIndex": 21
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:type",
-            {
-              "lineIndex": 12,
-              "colIndex": 30
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 13,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "syn:updateBase",
-            {
-              "lineIndex": 13,
-              "colIndex": 17
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "syn:updateBase",
-            {},
-            {
-              "lineIndex": 13,
-              "colIndex": 17
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "2011-11-04T09:39:10-07:00",
-            {
-              "lineIndex": 13,
-              "colIndex": 43
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "syn:updateBase",
-            {
-              "lineIndex": 13,
-              "colIndex": 59
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 14,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "syn:updateFrequency",
-            {
-              "lineIndex": 14,
-              "colIndex": 22
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "syn:updateFrequency",
-            {},
-            {
-              "lineIndex": 14,
-              "colIndex": 22
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "4",
-            {
-              "lineIndex": 14,
-              "colIndex": 24
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "syn:updateFrequency",
-            {
-              "lineIndex": 14,
-              "colIndex": 45
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 15,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "syn:updatePeriod",
-            {
-              "lineIndex": 15,
-              "colIndex": 19
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "syn:updatePeriod",
-            {},
-            {
-              "lineIndex": 15,
-              "colIndex": 19
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "hourly",
-            {
-              "lineIndex": 15,
-              "colIndex": 26
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "syn:updatePeriod",
-            {
-              "lineIndex": 15,
-              "colIndex": 44
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 16,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "items",
-            {
-              "lineIndex": 16,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "items",
-            {},
-            {
-              "lineIndex": 16,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t\t",
-            {
-              "lineIndex": 17,
-              "colIndex": 3
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "rdf:Seq",
-            {
-              "lineIndex": 17,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "rdf:Seq",
-            {},
-            {
-              "lineIndex": 17,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t\t\t",
-            {
-              "lineIndex": 18,
-              "colIndex": 4
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "rdf:li",
-            {
-              "lineIndex": 18,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "rdf:resource",
-            "http://somefakesite/path/to/something.html",
-            {
-              "lineIndex": 18,
-              "colIndex": 68
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "rdf:li",
-            {
-              "rdf:resource": "http://somefakesite/path/to/something.html"
-            },
-            {
-              "lineIndex": 18,
-              "colIndex": 70
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "rdf:li",
-            {
-              "lineIndex": 18,
-              "colIndex": 70
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t\t",
-            {
-              "lineIndex": 19,
-              "colIndex": 3
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "rdf:Seq",
-            {
-              "lineIndex": 19,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 20,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "items",
-            {
-              "lineIndex": 20,
-              "colIndex": 9
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t",
-            {
-              "lineIndex": 21,
-              "colIndex": 1
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "channel",
-            {
-              "lineIndex": 21,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t",
-            {
-              "lineIndex": 22,
-              "colIndex": 1
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "item",
-            {
-              "lineIndex": 22,
-              "colIndex": 6
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "rdf:about",
-            "http://somefakesite/path/to/something.html",
-            {
-              "lineIndex": 22,
-              "colIndex": 60
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "item",
-            {
-              "rdf:about": "http://somefakesite/path/to/something.html"
-            },
-            {
-              "lineIndex": 22,
-              "colIndex": 61
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 23,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "title",
-            {
-              "lineIndex": 23,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "title",
-            {},
-            {
-              "lineIndex": 23,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "cdatastart",
-          "data": []
-        },
-        {
-          "event": "text",
-          "data": [
-            " Fast HTML Parsing ",
-            {
-              "lineIndex": 23,
-              "colIndex": 39
-            }
-          ]
-        },
-        {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 23,
-              "colIndex": 39
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "title",
-            {
-              "lineIndex": 23,
-              "colIndex": 47
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 24,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "link",
-            {
-              "lineIndex": 24,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "link",
-            {},
-            {
-              "lineIndex": 24,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nhttp://somefakesite/path/to/something.html\n",
-            {
-              "lineIndex": 26,
-              "colIndex": 0
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "link",
-            {
-              "lineIndex": 26,
-              "colIndex": 6
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 27,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "description",
-            {
-              "lineIndex": 27,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "description",
-            {},
-            {
-              "lineIndex": 27,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "cdatastart",
-          "data": []
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nGreat test content<br>A link: <a href=\"http://github.com\">Github</a>\n",
-            {
-              "lineIndex": 29,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 29,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "description",
-            {
-              "lineIndex": 29,
-              "colIndex": 16
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 30,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:date",
-            {
-              "lineIndex": 30,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:date",
-            {},
-            {
-              "lineIndex": 30,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "2011-11-04T09:35:17-07:00",
-            {
-              "lineIndex": 30,
-              "colIndex": 36
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:date",
-            {
-              "lineIndex": 30,
-              "colIndex": 45
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 31,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:language",
-            {
-              "lineIndex": 31,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:language",
-            {},
-            {
-              "lineIndex": 31,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "en-us",
-            {
-              "lineIndex": 31,
-              "colIndex": 20
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:language",
-            {
-              "lineIndex": 31,
-              "colIndex": 33
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 32,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:rights",
-            {
-              "lineIndex": 32,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:rights",
-            {},
-            {
-              "lineIndex": 32,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Copyright 2015 the authors",
-            {
-              "lineIndex": 32,
-              "colIndex": 39
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:rights",
-            {
-              "lineIndex": 32,
-              "colIndex": 50
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 33,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:source",
-            {
-              "lineIndex": 33,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:source",
-            {},
-            {
-              "lineIndex": 33,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nhttp://somefakesite/path/to/something.html\n",
-            {
-              "lineIndex": 35,
-              "colIndex": 0
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:source",
-            {
-              "lineIndex": 35,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 36,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:title",
-            {
-              "lineIndex": 36,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:title",
-            {},
-            {
-              "lineIndex": 36,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "cdatastart",
-          "data": []
-        },
-        {
-          "event": "text",
-          "data": [
-            " Fast HTML Parsing ",
-            {
-              "lineIndex": 36,
-              "colIndex": 42
-            }
-          ]
-        },
-        {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 36,
-              "colIndex": 42
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:title",
-            {
-              "lineIndex": 36,
-              "colIndex": 53
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 37,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:type",
-            {
-              "lineIndex": 37,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:type",
-            {},
-            {
-              "lineIndex": 37,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "text",
-            {
-              "lineIndex": 37,
-              "colIndex": 15
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:type",
-            {
-              "lineIndex": 37,
-              "colIndex": 24
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 38,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dcterms:issued",
-            {
-              "lineIndex": 38,
-              "colIndex": 17
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dcterms:issued",
-            {},
-            {
-              "lineIndex": 38,
-              "colIndex": 17
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "2011-11-04T09:35:17-07:00",
-            {
-              "lineIndex": 38,
-              "colIndex": 43
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dcterms:issued",
-            {
-              "lineIndex": 38,
-              "colIndex": 59
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t",
-            {
-              "lineIndex": 39,
-              "colIndex": 1
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "item",
-            {
-              "lineIndex": 39,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t",
-            {
-              "lineIndex": 40,
-              "colIndex": 1
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "item",
-            {
-              "lineIndex": 40,
-              "colIndex": 6
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "rdf:about",
-            "http://somefakesite/path/to/something-else.html",
-            {
-              "lineIndex": 40,
-              "colIndex": 65
-            },
-            "\""
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "item",
-            {
-              "rdf:about": "http://somefakesite/path/to/something-else.html"
-            },
-            {
-              "lineIndex": 40,
-              "colIndex": 66
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 41,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "title",
-            {
-              "lineIndex": 41,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "title",
-            {},
-            {
-              "lineIndex": 41,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "cdatastart",
-          "data": []
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nThis space intentionally left blank\n",
-            {
-              "lineIndex": 43,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 43,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "title",
-            {
-              "lineIndex": 43,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 44,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "link",
-            {
-              "lineIndex": 44,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "link",
-            {},
-            {
-              "lineIndex": 44,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nhttp://somefakesite/path/to/something-else.html\n",
-            {
-              "lineIndex": 46,
-              "colIndex": 0
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "link",
-            {
-              "lineIndex": 46,
-              "colIndex": 6
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 47,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "description",
-            {
-              "lineIndex": 47,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "description",
-            {},
-            {
-              "lineIndex": 47,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "cdatastart",
-          "data": []
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nThe early bird gets the worm\n",
-            {
-              "lineIndex": 49,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 49,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "description",
-            {
-              "lineIndex": 49,
-              "colIndex": 16
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 50,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:date",
-            {
-              "lineIndex": 50,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:date",
-            {},
-            {
-              "lineIndex": 50,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "2011-11-04T09:34:54-07:00",
-            {
-              "lineIndex": 50,
-              "colIndex": 36
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:date",
-            {
-              "lineIndex": 50,
-              "colIndex": 45
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 51,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:language",
-            {
-              "lineIndex": 51,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:language",
-            {},
-            {
-              "lineIndex": 51,
-              "colIndex": 14
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "en-us",
-            {
-              "lineIndex": 51,
-              "colIndex": 20
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:language",
-            {
-              "lineIndex": 51,
-              "colIndex": 33
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 52,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:rights",
-            {
-              "lineIndex": 52,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:rights",
-            {},
-            {
-              "lineIndex": 52,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Copyright 2015 the authors",
-            {
-              "lineIndex": 52,
-              "colIndex": 39
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:rights",
-            {
-              "lineIndex": 52,
-              "colIndex": 50
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 53,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:source",
-            {
-              "lineIndex": 53,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:source",
-            {},
-            {
-              "lineIndex": 53,
-              "colIndex": 12
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nhttp://somefakesite/path/to/something-else.html\n",
-            {
-              "lineIndex": 55,
-              "colIndex": 0
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:source",
-            {
-              "lineIndex": 55,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 56,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:title",
-            {
-              "lineIndex": 56,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:title",
-            {},
-            {
-              "lineIndex": 56,
-              "colIndex": 11
-            }
-          ]
-        },
-        {
-          "event": "cdatastart",
-          "data": []
-        },
-        {
-          "event": "text",
-          "data": [
-            "\nThis space intentionally left blank\n",
-            {
-              "lineIndex": 58,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 58,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:title",
-            {
-              "lineIndex": 58,
-              "colIndex": 13
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 59,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dc:type",
-            {
-              "lineIndex": 59,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dc:type",
-            {},
-            {
-              "lineIndex": 59,
-              "colIndex": 10
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "text",
-            {
-              "lineIndex": 59,
-              "colIndex": 15
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dc:type",
-            {
-              "lineIndex": 59,
-              "colIndex": 24
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t\t",
-            {
-              "lineIndex": 60,
-              "colIndex": 2
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "dcterms:issued",
-            {
-              "lineIndex": 60,
-              "colIndex": 17
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "dcterms:issued",
-            {},
-            {
-              "lineIndex": 60,
-              "colIndex": 17
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "2011-11-04T09:34:54-07:00",
-            {
-              "lineIndex": 60,
-              "colIndex": 43
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "dcterms:issued",
-            {
-              "lineIndex": 60,
-              "colIndex": 59
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n\t",
-            {
-              "lineIndex": 61,
-              "colIndex": 1
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "item",
-            {
-              "lineIndex": 61,
-              "colIndex": 7
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "\n",
-            {
-              "lineIndex": 62,
-              "colIndex": 0
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "rdf:RDF",
-            {
-              "lineIndex": 62,
-              "colIndex": 9
-            }
-          ]
-        }
-      ]
+      {
+        "event": "processinginstruction",
+        "data": [
+          "?xml",
+          "?xml version=\"1.0\" encoding=\"UTF-8\"?",
+          {
+            "lineIndex": 1,
+            "colIndex": 38
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n",
+          {
+            "lineIndex": 2,
+            "colIndex": 1
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "rdf:RDF",
+          {
+            "lineIndex": 2,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:rdf",
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+          {
+            "lineIndex": 2,
+            "colIndex": 64
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns",
+          "http://purl.org/rss/1.0/",
+          {
+            "lineIndex": 2,
+            "colIndex": 97
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:ev",
+          "http://purl.org/rss/1.0/modules/event/",
+          {
+            "lineIndex": 2,
+            "colIndex": 147
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:content",
+          "http://purl.org/rss/1.0/modules/content/",
+          {
+            "lineIndex": 2,
+            "colIndex": 204
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:taxo",
+          "http://purl.org/rss/1.0/modules/taxonomy/",
+          {
+            "lineIndex": 2,
+            "colIndex": 259
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:dc",
+          "http://purl.org/dc/elements/1.1/",
+          {
+            "lineIndex": 2,
+            "colIndex": 303
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:syn",
+          "http://purl.org/rss/1.0/modules/syndication/",
+          {
+            "lineIndex": 2,
+            "colIndex": 360
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:dcterms",
+          "http://purl.org/dc/terms/",
+          {
+            "lineIndex": 2,
+            "colIndex": 402
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "xmlns:admin",
+          "http://webns.net/mvcb/",
+          {
+            "lineIndex": 2,
+            "colIndex": 439
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "rdf:RDF",
+          {
+            "xmlns:rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "xmlns": "http://purl.org/rss/1.0/",
+            "xmlns:ev": "http://purl.org/rss/1.0/modules/event/",
+            "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+            "xmlns:taxo": "http://purl.org/rss/1.0/modules/taxonomy/",
+            "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+            "xmlns:syn": "http://purl.org/rss/1.0/modules/syndication/",
+            "xmlns:dcterms": "http://purl.org/dc/terms/",
+            "xmlns:admin": "http://webns.net/mvcb/"
+          },
+          {
+            "lineIndex": 2,
+            "colIndex": 440
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t",
+          {
+            "lineIndex": 3,
+            "colIndex": 2
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "channel",
+          {
+            "lineIndex": 3,
+            "colIndex": 10
+          }
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "rdf:about",
+          "https://github.com/fb55/htmlparser2/",
+          {
+            "lineIndex": 3,
+            "colIndex": 58
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "channel",
+          {
+            "rdf:about": "https://github.com/fb55/htmlparser2/"
+          },
+          {
+            "lineIndex": 3,
+            "colIndex": 59
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 4,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "title",
+          {
+            "lineIndex": 4,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "title",
+          {},
+          {
+            "lineIndex": 4,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "A title to parse and remember",
+          {
+            "lineIndex": 4,
+            "colIndex": 39
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "title",
+          {
+            "lineIndex": 4,
+            "colIndex": 46
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 5,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "link",
+          {
+            "lineIndex": 5,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "link",
+          {},
+          {
+            "lineIndex": 5,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "https://github.com/fb55/htmlparser2/",
+          {
+            "lineIndex": 5,
+            "colIndex": 45
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "link",
+          {
+            "lineIndex": 5,
+            "colIndex": 51
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 6,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "description",
+          {
+            "lineIndex": 6,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "description",
+          {},
+          {
+            "lineIndex": 6,
+            "colIndex": 16
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "description",
+          {
+            "lineIndex": 6,
+            "colIndex": 16
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 7,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:language",
+          {
+            "lineIndex": 7,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:language",
+          {},
+          {
+            "lineIndex": 7,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "en-us",
+          {
+            "lineIndex": 7,
+            "colIndex": 21
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:language",
+          {
+            "lineIndex": 7,
+            "colIndex": 34
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 8,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:rights",
+          {
+            "lineIndex": 8,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:rights",
+          {},
+          {
+            "lineIndex": 8,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "Copyright 2015 the authors",
+          {
+            "lineIndex": 8,
+            "colIndex": 40
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:rights",
+          {
+            "lineIndex": 8,
+            "colIndex": 51
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 9,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:publisher",
+          {
+            "lineIndex": 9,
+            "colIndex": 16
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:publisher",
+          {},
+          {
+            "lineIndex": 9,
+            "colIndex": 16
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "webmaster@thisisafakedoma.in",
+          {
+            "lineIndex": 9,
+            "colIndex": 45
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:publisher",
+          {
+            "lineIndex": 9,
+            "colIndex": 59
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 10,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:creator",
+          {
+            "lineIndex": 10,
+            "colIndex": 14
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:creator",
+          {},
+          {
+            "lineIndex": 10,
+            "colIndex": 14
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "webmaster@thisisafakedoma.in",
+          {
+            "lineIndex": 10,
+            "colIndex": 43
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:creator",
+          {
+            "lineIndex": 10,
+            "colIndex": 55
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 11,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:source",
+          {
+            "lineIndex": 11,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:source",
+          {},
+          {
+            "lineIndex": 11,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "https://github.com/fb55/htmlparser2/",
+          {
+            "lineIndex": 11,
+            "colIndex": 50
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:source",
+          {
+            "lineIndex": 11,
+            "colIndex": 61
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 12,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:title",
+          {
+            "lineIndex": 12,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:title",
+          {},
+          {
+            "lineIndex": 12,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "A title to parse and remember",
+          {
+            "lineIndex": 12,
+            "colIndex": 42
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:title",
+          {
+            "lineIndex": 12,
+            "colIndex": 52
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 13,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:type",
+          {
+            "lineIndex": 13,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:type",
+          {},
+          {
+            "lineIndex": 13,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "Collection",
+          {
+            "lineIndex": 13,
+            "colIndex": 22
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:type",
+          {
+            "lineIndex": 13,
+            "colIndex": 31
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 14,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "syn:updateBase",
+          {
+            "lineIndex": 14,
+            "colIndex": 18
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "syn:updateBase",
+          {},
+          {
+            "lineIndex": 14,
+            "colIndex": 18
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "2011-11-04T09:39:10-07:00",
+          {
+            "lineIndex": 14,
+            "colIndex": 44
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "syn:updateBase",
+          {
+            "lineIndex": 14,
+            "colIndex": 60
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 15,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "syn:updateFrequency",
+          {
+            "lineIndex": 15,
+            "colIndex": 23
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "syn:updateFrequency",
+          {},
+          {
+            "lineIndex": 15,
+            "colIndex": 23
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "4",
+          {
+            "lineIndex": 15,
+            "colIndex": 25
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "syn:updateFrequency",
+          {
+            "lineIndex": 15,
+            "colIndex": 46
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 16,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "syn:updatePeriod",
+          {
+            "lineIndex": 16,
+            "colIndex": 20
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "syn:updatePeriod",
+          {},
+          {
+            "lineIndex": 16,
+            "colIndex": 20
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "hourly",
+          {
+            "lineIndex": 16,
+            "colIndex": 27
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "syn:updatePeriod",
+          {
+            "lineIndex": 16,
+            "colIndex": 45
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 17,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "items",
+          {
+            "lineIndex": 17,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "items",
+          {},
+          {
+            "lineIndex": 17,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t\t",
+          {
+            "lineIndex": 18,
+            "colIndex": 4
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "rdf:Seq",
+          {
+            "lineIndex": 18,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "rdf:Seq",
+          {},
+          {
+            "lineIndex": 18,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t\t\t",
+          {
+            "lineIndex": 19,
+            "colIndex": 5
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "rdf:li",
+          {
+            "lineIndex": 19,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "rdf:resource",
+          "http://somefakesite/path/to/something.html",
+          {
+            "lineIndex": 19,
+            "colIndex": 69
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "rdf:li",
+          {
+            "rdf:resource": "http://somefakesite/path/to/something.html"
+          },
+          {
+            "lineIndex": 19,
+            "colIndex": 71
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "rdf:li",
+          {
+            "lineIndex": 19,
+            "colIndex": 71
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t\t",
+          {
+            "lineIndex": 20,
+            "colIndex": 4
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "rdf:Seq",
+          {
+            "lineIndex": 20,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 21,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "items",
+          {
+            "lineIndex": 21,
+            "colIndex": 10
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t",
+          {
+            "lineIndex": 22,
+            "colIndex": 2
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "channel",
+          {
+            "lineIndex": 22,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t",
+          {
+            "lineIndex": 23,
+            "colIndex": 2
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "item",
+          {
+            "lineIndex": 23,
+            "colIndex": 7
+          }
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "rdf:about",
+          "http://somefakesite/path/to/something.html",
+          {
+            "lineIndex": 23,
+            "colIndex": 61
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "item",
+          {
+            "rdf:about": "http://somefakesite/path/to/something.html"
+          },
+          {
+            "lineIndex": 23,
+            "colIndex": 62
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 24,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "title",
+          {
+            "lineIndex": 24,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "title",
+          {},
+          {
+            "lineIndex": 24,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "cdatastart",
+        "data": []
+      },
+      {
+        "event": "text",
+        "data": [
+          " Fast HTML Parsing ",
+          {
+            "lineIndex": 24,
+            "colIndex": 40
+          }
+        ]
+      },
+      {
+        "event": "cdataend",
+        "data": [
+          {
+            "lineIndex": 24,
+            "colIndex": 40
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "title",
+          {
+            "lineIndex": 24,
+            "colIndex": 48
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 25,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "link",
+          {
+            "lineIndex": 25,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "link",
+          {},
+          {
+            "lineIndex": 25,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nhttp://somefakesite/path/to/something.html\n",
+          {
+            "lineIndex": 27,
+            "colIndex": 1
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "link",
+          {
+            "lineIndex": 27,
+            "colIndex": 7
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 28,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "description",
+          {
+            "lineIndex": 28,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "description",
+          {},
+          {
+            "lineIndex": 28,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "cdatastart",
+        "data": []
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nGreat test content<br>A link: <a href=\"http://github.com\">Github</a>\n",
+          {
+            "lineIndex": 30,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "cdataend",
+        "data": [
+          {
+            "lineIndex": 30,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "description",
+          {
+            "lineIndex": 30,
+            "colIndex": 17
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 31,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:date",
+          {
+            "lineIndex": 31,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:date",
+          {},
+          {
+            "lineIndex": 31,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "2011-11-04T09:35:17-07:00",
+          {
+            "lineIndex": 31,
+            "colIndex": 37
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:date",
+          {
+            "lineIndex": 31,
+            "colIndex": 46
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 32,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:language",
+          {
+            "lineIndex": 32,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:language",
+          {},
+          {
+            "lineIndex": 32,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "en-us",
+          {
+            "lineIndex": 32,
+            "colIndex": 21
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:language",
+          {
+            "lineIndex": 32,
+            "colIndex": 34
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 33,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:rights",
+          {
+            "lineIndex": 33,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:rights",
+          {},
+          {
+            "lineIndex": 33,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "Copyright 2015 the authors",
+          {
+            "lineIndex": 33,
+            "colIndex": 40
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:rights",
+          {
+            "lineIndex": 33,
+            "colIndex": 51
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 34,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:source",
+          {
+            "lineIndex": 34,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:source",
+          {},
+          {
+            "lineIndex": 34,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nhttp://somefakesite/path/to/something.html\n",
+          {
+            "lineIndex": 36,
+            "colIndex": 1
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:source",
+          {
+            "lineIndex": 36,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 37,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:title",
+          {
+            "lineIndex": 37,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:title",
+          {},
+          {
+            "lineIndex": 37,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "cdatastart",
+        "data": []
+      },
+      {
+        "event": "text",
+        "data": [
+          " Fast HTML Parsing ",
+          {
+            "lineIndex": 37,
+            "colIndex": 43
+          }
+        ]
+      },
+      {
+        "event": "cdataend",
+        "data": [
+          {
+            "lineIndex": 37,
+            "colIndex": 43
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:title",
+          {
+            "lineIndex": 37,
+            "colIndex": 54
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 38,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:type",
+          {
+            "lineIndex": 38,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:type",
+          {},
+          {
+            "lineIndex": 38,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "text",
+          {
+            "lineIndex": 38,
+            "colIndex": 16
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:type",
+          {
+            "lineIndex": 38,
+            "colIndex": 25
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 39,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dcterms:issued",
+          {
+            "lineIndex": 39,
+            "colIndex": 18
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dcterms:issued",
+          {},
+          {
+            "lineIndex": 39,
+            "colIndex": 18
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "2011-11-04T09:35:17-07:00",
+          {
+            "lineIndex": 39,
+            "colIndex": 44
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dcterms:issued",
+          {
+            "lineIndex": 39,
+            "colIndex": 60
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t",
+          {
+            "lineIndex": 40,
+            "colIndex": 2
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "item",
+          {
+            "lineIndex": 40,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t",
+          {
+            "lineIndex": 41,
+            "colIndex": 2
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "item",
+          {
+            "lineIndex": 41,
+            "colIndex": 7
+          }
+        ]
+      },
+      {
+        "event": "attribute",
+        "data": [
+          "rdf:about",
+          "http://somefakesite/path/to/something-else.html",
+          {
+            "lineIndex": 41,
+            "colIndex": 66
+          },
+          "\""
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "item",
+          {
+            "rdf:about": "http://somefakesite/path/to/something-else.html"
+          },
+          {
+            "lineIndex": 41,
+            "colIndex": 67
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 42,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "title",
+          {
+            "lineIndex": 42,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "title",
+          {},
+          {
+            "lineIndex": 42,
+            "colIndex": 9
+          }
+        ]
+      },
+      {
+        "event": "cdatastart",
+        "data": []
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nThis space intentionally left blank\n",
+          {
+            "lineIndex": 44,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "cdataend",
+        "data": [
+          {
+            "lineIndex": 44,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "title",
+          {
+            "lineIndex": 44,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 45,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "link",
+          {
+            "lineIndex": 45,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "link",
+          {},
+          {
+            "lineIndex": 45,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nhttp://somefakesite/path/to/something-else.html\n",
+          {
+            "lineIndex": 47,
+            "colIndex": 1
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "link",
+          {
+            "lineIndex": 47,
+            "colIndex": 7
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 48,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "description",
+          {
+            "lineIndex": 48,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "description",
+          {},
+          {
+            "lineIndex": 48,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "cdatastart",
+        "data": []
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nThe early bird gets the worm\n",
+          {
+            "lineIndex": 50,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "cdataend",
+        "data": [
+          {
+            "lineIndex": 50,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "description",
+          {
+            "lineIndex": 50,
+            "colIndex": 17
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 51,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:date",
+          {
+            "lineIndex": 51,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:date",
+          {},
+          {
+            "lineIndex": 51,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "2011-11-04T09:34:54-07:00",
+          {
+            "lineIndex": 51,
+            "colIndex": 37
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:date",
+          {
+            "lineIndex": 51,
+            "colIndex": 46
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 52,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:language",
+          {
+            "lineIndex": 52,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:language",
+          {},
+          {
+            "lineIndex": 52,
+            "colIndex": 15
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "en-us",
+          {
+            "lineIndex": 52,
+            "colIndex": 21
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:language",
+          {
+            "lineIndex": 52,
+            "colIndex": 34
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 53,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:rights",
+          {
+            "lineIndex": 53,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:rights",
+          {},
+          {
+            "lineIndex": 53,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "Copyright 2015 the authors",
+          {
+            "lineIndex": 53,
+            "colIndex": 40
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:rights",
+          {
+            "lineIndex": 53,
+            "colIndex": 51
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 54,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:source",
+          {
+            "lineIndex": 54,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:source",
+          {},
+          {
+            "lineIndex": 54,
+            "colIndex": 13
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nhttp://somefakesite/path/to/something-else.html\n",
+          {
+            "lineIndex": 56,
+            "colIndex": 1
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:source",
+          {
+            "lineIndex": 56,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 57,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:title",
+          {
+            "lineIndex": 57,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:title",
+          {},
+          {
+            "lineIndex": 57,
+            "colIndex": 12
+          }
+        ]
+      },
+      {
+        "event": "cdatastart",
+        "data": []
+      },
+      {
+        "event": "text",
+        "data": [
+          "\nThis space intentionally left blank\n",
+          {
+            "lineIndex": 59,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "cdataend",
+        "data": [
+          {
+            "lineIndex": 59,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:title",
+          {
+            "lineIndex": 59,
+            "colIndex": 14
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 60,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dc:type",
+          {
+            "lineIndex": 60,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dc:type",
+          {},
+          {
+            "lineIndex": 60,
+            "colIndex": 11
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "text",
+          {
+            "lineIndex": 60,
+            "colIndex": 16
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dc:type",
+          {
+            "lineIndex": 60,
+            "colIndex": 25
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t\t",
+          {
+            "lineIndex": 61,
+            "colIndex": 3
+          }
+        ]
+      },
+      {
+        "event": "opentagname",
+        "data": [
+          "dcterms:issued",
+          {
+            "lineIndex": 61,
+            "colIndex": 18
+          }
+        ]
+      },
+      {
+        "event": "opentag",
+        "data": [
+          "dcterms:issued",
+          {},
+          {
+            "lineIndex": 61,
+            "colIndex": 18
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "2011-11-04T09:34:54-07:00",
+          {
+            "lineIndex": 61,
+            "colIndex": 44
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "dcterms:issued",
+          {
+            "lineIndex": 61,
+            "colIndex": 60
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n\t",
+          {
+            "lineIndex": 62,
+            "colIndex": 2
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "item",
+          {
+            "lineIndex": 62,
+            "colIndex": 8
+          }
+        ]
+      },
+      {
+        "event": "text",
+        "data": [
+          "\n",
+          {
+            "lineIndex": 63,
+            "colIndex": 1
+          }
+        ]
+      },
+      {
+        "event": "closetag",
+        "data": [
+          "rdf:RDF",
+          {
+            "lineIndex": 63,
+            "colIndex": 10
+          }
+        ]
+      }
+    ]
 }

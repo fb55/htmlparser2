@@ -3,25 +3,48 @@
     "html": "<foo /bar></foo bar>",
     "expected": [
         {
-            "event": "opentagname",
-            "data": ["foo"]
+          "event": "opentagname",
+          "data": [
+            "foo",
+            {
+              "lineIndex": 1,
+              "colIndex": 5
+            }
+          ]
         },
         {
-            "event": "attribute",
-            "data": ["bar", ""]
+          "event": "attribute",
+          "data": [
+            "bar",
+            "",
+            {
+              "lineIndex": 1,
+              "colIndex": 10
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": [
-                "foo",
-                {
-                    "bar": ""
-                }
-            ]
+          "event": "opentag",
+          "data": [
+            "foo",
+            {
+              "bar": ""
+            },
+            {
+              "lineIndex": 1,
+              "colIndex": 10
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["foo"]
+          "event": "closetag",
+          "data": [
+            "foo",
+            {
+              "lineIndex": 1,
+              "colIndex": 16
+            }
+          ]
         }
-    ]
+      ]
 }

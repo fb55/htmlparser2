@@ -3,29 +3,61 @@
     "html": "<h1 class=test class=boo></h1>",
     "expected": [
         {
-            "event": "opentagname",
-            "data": ["h1"]
+          "event": "opentagname",
+          "data": [
+            "h1",
+            {
+              "lineIndex": 1,
+              "colIndex": 4
+            }
+          ]
         },
         {
-            "event": "attribute",
-            "data": ["class", "test", null]
+          "event": "attribute",
+          "data": [
+            "class",
+            "test",
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            },
+            null
+          ]
         },
         {
-            "event": "attribute",
-            "data": ["class", "boo", null]
+          "event": "attribute",
+          "data": [
+            "class",
+            "boo",
+            {
+              "lineIndex": 1,
+              "colIndex": 25
+            },
+            null
+          ]
         },
         {
-            "event": "opentag",
-            "data": [
-                "h1",
-                {
-                    "class": "test"
-                }
-            ]
+          "event": "opentag",
+          "data": [
+            "h1",
+            {
+              "class": "test"
+            },
+            {
+              "lineIndex": 1,
+              "colIndex": 25
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["h1"]
+          "event": "closetag",
+          "data": [
+            "h1",
+            {
+              "lineIndex": 1,
+              "colIndex": 30
+            }
+          ]
         }
-    ]
+      ]
 }

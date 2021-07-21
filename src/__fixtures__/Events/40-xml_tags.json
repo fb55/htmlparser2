@@ -6,28 +6,66 @@
     "html": "<:foo><_bar>",
     "expected": [
         {
-            "data": [":foo"],
-            "event": "opentagname"
+          "event": "opentagname",
+          "data": [
+            ":foo",
+            {
+              "lineIndex": 1,
+              "colIndex": 6
+            }
+          ]
         },
         {
-            "data": [":foo", {}],
-            "event": "opentag"
+          "event": "opentag",
+          "data": [
+            ":foo",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 6
+            }
+          ]
         },
         {
-            "data": ["_bar"],
-            "event": "opentagname"
+          "event": "opentagname",
+          "data": [
+            "_bar",
+            {
+              "lineIndex": 1,
+              "colIndex": 12
+            }
+          ]
         },
         {
-            "data": ["_bar", {}],
-            "event": "opentag"
+          "event": "opentag",
+          "data": [
+            "_bar",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 12
+            }
+          ]
         },
         {
-            "data": ["_bar"],
-            "event": "closetag"
+          "event": "closetag",
+          "data": [
+            "_bar",
+            {
+              "lineIndex": 1,
+              "colIndex": 13
+            }
+          ]
         },
         {
-            "data": [":foo"],
-            "event": "closetag"
+          "event": "closetag",
+          "data": [
+            ":foo",
+            {
+              "lineIndex": 1,
+              "colIndex": 13
+            }
+          ]
         }
-    ]
+      ]
 }

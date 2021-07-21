@@ -2,15 +2,114 @@
     "name": "Long comment ending",
     "html": "<meta id='before'><!-- text ---><meta id='after'>",
     "expected": [
-        { "event": "opentagname", "data": ["meta"] },
-        { "event": "attribute", "data": ["id", "before", "'"] },
-        { "event": "opentag", "data": ["meta", { "id": "before" }] },
-        { "event": "closetag", "data": ["meta"] },
-        { "event": "comment", "data": [" text -"] },
-        { "event": "commentend", "data": [] },
-        { "event": "opentagname", "data": ["meta"] },
-        { "event": "attribute", "data": ["id", "after", "'"] },
-        { "event": "opentag", "data": ["meta", { "id": "after" }] },
-        { "event": "closetag", "data": ["meta"] }
-    ]
+        {
+          "event": "opentagname",
+          "data": [
+            "meta",
+            {
+              "lineIndex": 1,
+              "colIndex": 6
+            }
+          ]
+        },
+        {
+          "event": "attribute",
+          "data": [
+            "id",
+            "before",
+            {
+              "lineIndex": 1,
+              "colIndex": 17
+            },
+            "'"
+          ]
+        },
+        {
+          "event": "opentag",
+          "data": [
+            "meta",
+            {
+              "id": "before"
+            },
+            {
+              "lineIndex": 1,
+              "colIndex": 18
+            }
+          ]
+        },
+        {
+          "event": "closetag",
+          "data": [
+            "meta",
+            {
+              "lineIndex": 1,
+              "colIndex": 18
+            }
+          ]
+        },
+        {
+          "event": "comment",
+          "data": [
+            " text -",
+            {
+              "lineIndex": 1,
+              "colIndex": 32
+            }
+          ]
+        },
+        {
+          "event": "commentend",
+          "data": [
+            {
+              "lineIndex": 1,
+              "colIndex": 32
+            }
+          ]
+        },
+        {
+          "event": "opentagname",
+          "data": [
+            "meta",
+            {
+              "lineIndex": 1,
+              "colIndex": 38
+            }
+          ]
+        },
+        {
+          "event": "attribute",
+          "data": [
+            "id",
+            "after",
+            {
+              "lineIndex": 1,
+              "colIndex": 48
+            },
+            "'"
+          ]
+        },
+        {
+          "event": "opentag",
+          "data": [
+            "meta",
+            {
+              "id": "after"
+            },
+            {
+              "lineIndex": 1,
+              "colIndex": 49
+            }
+          ]
+        },
+        {
+          "event": "closetag",
+          "data": [
+            "meta",
+            {
+              "lineIndex": 1,
+              "colIndex": 49
+            }
+          ]
+        }
+      ]
 }

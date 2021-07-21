@@ -2,7 +2,24 @@
     "name": "CDATA in HTML",
     "html": "<![CDATA[ foo ]]>",
     "expected": [
-        { "event": "comment", "data": ["[CDATA[ foo ]]"] },
-        { "event": "commentend", "data": [] }
-    ]
+        {
+          "event": "comment",
+          "data": [
+            "[CDATA[ foo ]]",
+            {
+              "lineIndex": 1,
+              "colIndex": 17
+            }
+          ]
+        },
+        {
+          "event": "commentend",
+          "data": [
+            {
+              "lineIndex": 1,
+              "colIndex": 17
+            }
+          ]
+        }
+      ]
 }

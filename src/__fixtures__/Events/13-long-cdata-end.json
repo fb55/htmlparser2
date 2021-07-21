@@ -5,17 +5,121 @@
     },
     "html": "<before /><tag><![CDATA[ text ]]]></tag><after />",
     "expected": [
-        { "event": "opentagname", "data": ["before"] },
-        { "event": "opentag", "data": ["before", {}] },
-        { "event": "closetag", "data": ["before"] },
-        { "event": "opentagname", "data": ["tag"] },
-        { "event": "opentag", "data": ["tag", {}] },
-        { "event": "cdatastart", "data": [] },
-        { "event": "text", "data": [" text ]"] },
-        { "event": "cdataend", "data": [] },
-        { "event": "closetag", "data": ["tag"] },
-        { "event": "opentagname", "data": ["after"] },
-        { "event": "opentag", "data": ["after", {}] },
-        { "event": "closetag", "data": ["after"] }
-    ]
+        {
+          "event": "opentagname",
+          "data": [
+            "before",
+            {
+              "lineIndex": 1,
+              "colIndex": 8
+            }
+          ]
+        },
+        {
+          "event": "opentag",
+          "data": [
+            "before",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 10
+            }
+          ]
+        },
+        {
+          "event": "closetag",
+          "data": [
+            "before",
+            {
+              "lineIndex": 1,
+              "colIndex": 10
+            }
+          ]
+        },
+        {
+          "event": "opentagname",
+          "data": [
+            "tag",
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            }
+          ]
+        },
+        {
+          "event": "opentag",
+          "data": [
+            "tag",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 15
+            }
+          ]
+        },
+        {
+          "event": "cdatastart",
+          "data": []
+        },
+        {
+          "event": "text",
+          "data": [
+            " text ]",
+            {
+              "lineIndex": 1,
+              "colIndex": 34
+            }
+          ]
+        },
+        {
+          "event": "cdataend",
+          "data": [
+            {
+              "lineIndex": 1,
+              "colIndex": 34
+            }
+          ]
+        },
+        {
+          "event": "closetag",
+          "data": [
+            "tag",
+            {
+              "lineIndex": 1,
+              "colIndex": 40
+            }
+          ]
+        },
+        {
+          "event": "opentagname",
+          "data": [
+            "after",
+            {
+              "lineIndex": 1,
+              "colIndex": 47
+            }
+          ]
+        },
+        {
+          "event": "opentag",
+          "data": [
+            "after",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 49
+            }
+          ]
+        },
+        {
+          "event": "closetag",
+          "data": [
+            "after",
+            {
+              "lineIndex": 1,
+              "colIndex": 49
+            }
+          ]
+        }
+      ]
 }

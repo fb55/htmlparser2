@@ -8,20 +8,45 @@
     "html": "<title>the &quot;title&quot;",
     "expected": [
         {
-            "event": "opentagname",
-            "data": ["title"]
+          "event": "opentagname",
+          "data": [
+            "title",
+            {
+              "lineIndex": 1,
+              "colIndex": 7
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["title", {}]
+          "event": "opentag",
+          "data": [
+            "title",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 7
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["the &quot;title&quot;"]
+          "event": "text",
+          "data": [
+            "the &quot;title&quot;",
+            {
+              "lineIndex": 1,
+              "colIndex": 29
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["title"]
+          "event": "closetag",
+          "data": [
+            "title",
+            {
+              "lineIndex": 1,
+              "colIndex": 29
+            }
+          ]
         }
-    ]
+      ]
 }

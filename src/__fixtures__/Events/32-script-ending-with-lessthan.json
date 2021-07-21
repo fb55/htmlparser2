@@ -3,20 +3,45 @@
     "html": "<script><</script>",
     "expected": [
         {
-            "event": "opentagname",
-            "data": ["script"]
+          "event": "opentagname",
+          "data": [
+            "script",
+            {
+              "lineIndex": 1,
+              "colIndex": 8
+            }
+          ]
         },
         {
-            "event": "opentag",
-            "data": ["script", {}]
+          "event": "opentag",
+          "data": [
+            "script",
+            {},
+            {
+              "lineIndex": 1,
+              "colIndex": 8
+            }
+          ]
         },
         {
-            "event": "text",
-            "data": ["<"]
+          "event": "text",
+          "data": [
+            "<",
+            {
+              "lineIndex": 1,
+              "colIndex": 10
+            }
+          ]
         },
         {
-            "event": "closetag",
-            "data": ["script"]
+          "event": "closetag",
+          "data": [
+            "script",
+            {
+              "lineIndex": 1,
+              "colIndex": 18
+            }
+          ]
         }
-    ]
+      ]
 }
