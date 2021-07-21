@@ -556,6 +556,7 @@ export default class Tokenizer {
                 this.cbs.onerbendblock(endBlock, this.where());
             else
                 this.cbs[erbType === "expression" ? "onerbexpression" : "onerbscriptlet"](body, this.where());
+            this.sectionStart = this._index + 1;
         } else {
             // False alarm - re-read as ERB
             this._state = erbType === "expression" ? State.InErbExpression : State.InErbScriptlet;
