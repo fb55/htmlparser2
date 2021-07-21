@@ -393,7 +393,9 @@ export default class Tokenizer {
         } else if (c === "<") {
             this.cbs.ontext(this.getSection(), this.where());
             this.sectionStart = this._index;
-        } else if (
+        } else if (c === "%") {
+            this._state = State.BeforeErbPercent;
+        }else if (
             c === ">" ||
             this.special !== Special.None ||
             whitespace(c)
