@@ -3,88 +3,88 @@
     "html": "<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "foo",
-            {
-              "lineIndex": 1,
-              "colIndex": 5
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "foo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 5
+                }
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "bar",
-            "&",
-            {
-              "lineIndex": 1,
-              "colIndex": 15
-            },
-            null
-          ]
+            "event": "attribute",
+            "data": [
+                "bar",
+                "&",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                },
+                null
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "baz",
-            "&",
-            {
-              "lineIndex": 1,
-              "colIndex": 26
-            },
-            "\""
-          ]
+            "event": "attribute",
+            "data": [
+                "baz",
+                "&",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 26
+                },
+                "\""
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "boo",
-            "&",
-            {
-              "lineIndex": 1,
-              "colIndex": 38
-            },
-            "'"
-          ]
+            "event": "attribute",
+            "data": [
+                "boo",
+                "&",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 38
+                },
+                "'"
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "noo",
-            "",
-            {
-              "lineIndex": 1,
-              "colIndex": 44
-            },
-            null
-          ]
+            "event": "attribute",
+            "data": [
+                "noo",
+                "",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 44
+                },
+                null
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "foo",
-            {
-              "bar": "&",
-              "baz": "&",
-              "boo": "&",
-              "noo": ""
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 44
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "foo",
+                {
+                    "bar": "&",
+                    "baz": "&",
+                    "boo": "&",
+                    "noo": ""
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 44
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "foo",
-            {
-              "lineIndex": 1,
-              "colIndex": 45
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "foo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 45
+                }
+            ]
         }
-      ]
+    ]
 }

@@ -3,179 +3,179 @@
     "html": "<div>Hallo</p>World</br></ignore></div></p></br>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 5
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 5
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "div",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 5
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "div",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 5
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "Hallo",
-            {
-              "lineIndex": 1,
-              "colIndex": 11
-            }
-          ]
+            "event": "text",
+            "data": [
+                "Hallo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 11
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 14
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 14
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "p",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 14
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "p",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 14
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 14
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 14
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "World",
-            {
-              "lineIndex": 1,
-              "colIndex": 20
-            }
-          ]
+            "event": "text",
+            "data": [
+                "World",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 20
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "br",
-            {
-              "lineIndex": 1,
-              "colIndex": 24
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "br",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 24
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "br",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 24
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "br",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 24
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "br",
-            {
-              "lineIndex": 1,
-              "colIndex": 24
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "br",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 24
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 39
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 39
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 43
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 43
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "p",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 43
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "p",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 43
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 43
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 43
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "br",
-            {
-              "lineIndex": 1,
-              "colIndex": 48
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "br",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 48
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "br",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 48
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "br",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 48
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "br",
-            {
-              "lineIndex": 1,
-              "colIndex": 48
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "br",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 48
+                }
+            ]
         }
-      ]
+    ]
 }

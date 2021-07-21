@@ -3,71 +3,71 @@
     "html": "<p < = '' FAIL>stuff</p><a",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 3
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "<",
-            "",
-            {
-              "lineIndex": 1,
-              "colIndex": 9
-            },
-            "'"
-          ]
+            "event": "attribute",
+            "data": [
+                "<",
+                "",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 9
+                },
+                "'"
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "fail",
-            "",
-            {
-              "lineIndex": 1,
-              "colIndex": 15
-            }
-          ]
+            "event": "attribute",
+            "data": [
+                "fail",
+                "",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "p",
-            {
-              "<": "",
-              "fail": ""
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 15
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "p",
+                {
+                    "<": "",
+                    "fail": ""
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "stuff",
-            {
-              "lineIndex": 1,
-              "colIndex": 21
-            }
-          ]
+            "event": "text",
+            "data": [
+                "stuff",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 21
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 24
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 24
+                }
+            ]
         }
-      ]
+    ]
 }

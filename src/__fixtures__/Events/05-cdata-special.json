@@ -3,45 +3,45 @@
     "html": "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "script",
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 8
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "script",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "script",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 8
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/",
-            {
-              "lineIndex": 1,
-              "colIndex": 54
-            }
-          ]
+            "event": "text",
+            "data": [
+                "/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 54
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "script",
-            {
-              "lineIndex": 1,
-              "colIndex": 62
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 62
+                }
+            ]
         }
-      ]
+    ]
 }

@@ -3,818 +3,818 @@
     "html": "<ol><li class=test><div><table style=width:100%><tr><th>TH<td colspan=2><h3>Heading</h3><tr><td><div>Div</div><td><div>Div2</div></table></div><li><div><h3>Heading 2</h3></div></li></ol><p>Para<h4>Heading 4</h4><p><ul><li>Hi<li>bye</ul>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "ol",
-            {
-              "lineIndex": 1,
-              "colIndex": 4
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "ol",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 4
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "class",
-            "test",
-            {
-              "lineIndex": 1,
-              "colIndex": 19
-            },
-            null
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "li",
-            {
-              "class": "test"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 19
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 24
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "div",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 24
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "table",
-            {
-              "lineIndex": 1,
-              "colIndex": 31
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "style",
-            "width:100%",
-            {
-              "lineIndex": 1,
-              "colIndex": 48
-            },
-            null
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "table",
-            {
-              "style": "width:100%"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 48
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "tr",
-            {
-              "lineIndex": 1,
-              "colIndex": 52
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "tr",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 52
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "th",
-            {
-              "lineIndex": 1,
-              "colIndex": 56
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "th",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 56
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "TH",
-            {
-              "lineIndex": 1,
-              "colIndex": 59
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "th",
-            {
-              "lineIndex": 1,
-              "colIndex": 62
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "td",
-            {
-              "lineIndex": 1,
-              "colIndex": 62
-            }
-          ]
-        },
-        {
-          "event": "attribute",
-          "data": [
-            "colspan",
-            "2",
-            {
-              "lineIndex": 1,
-              "colIndex": 72
-            },
-            null
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "td",
-            {
-              "colspan": "2"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 72
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "h3",
-            {
-              "lineIndex": 1,
-              "colIndex": 76
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "h3",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 76
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Heading",
-            {
-              "lineIndex": 1,
-              "colIndex": 84
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "h3",
-            {
-              "lineIndex": 1,
-              "colIndex": 88
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "td",
-            {
-              "lineIndex": 1,
-              "colIndex": 92
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "tr",
-            {
-              "lineIndex": 1,
-              "colIndex": 92
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "tr",
-            {
-              "lineIndex": 1,
-              "colIndex": 92
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "tr",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 92
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "td",
-            {
-              "lineIndex": 1,
-              "colIndex": 96
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "td",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 96
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 101
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "div",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 101
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Div",
-            {
-              "lineIndex": 1,
-              "colIndex": 105
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 110
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "td",
-            {
-              "lineIndex": 1,
-              "colIndex": 114
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "td",
-            {
-              "lineIndex": 1,
-              "colIndex": 114
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "td",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 114
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 119
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "div",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 119
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Div2",
-            {
-              "lineIndex": 1,
-              "colIndex": 124
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 129
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "td",
-            {
-              "lineIndex": 1,
-              "colIndex": 137
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "tr",
-            {
-              "lineIndex": 1,
-              "colIndex": 137
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "table",
-            {
-              "lineIndex": 1,
-              "colIndex": 137
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 143
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 147
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 147
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "li",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 147
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 152
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "div",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 152
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "h3",
-            {
-              "lineIndex": 1,
-              "colIndex": 156
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "h3",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 156
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Heading 2",
-            {
-              "lineIndex": 1,
-              "colIndex": 166
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "h3",
-            {
-              "lineIndex": 1,
-              "colIndex": 170
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "div",
-            {
-              "lineIndex": 1,
-              "colIndex": 176
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 181
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "ol",
-            {
-              "lineIndex": 1,
-              "colIndex": 186
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 189
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "p",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 189
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Para",
-            {
-              "lineIndex": 1,
-              "colIndex": 194
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 197
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "h4",
-            {
-              "lineIndex": 1,
-              "colIndex": 197
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "h4",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 197
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Heading 4",
-            {
-              "lineIndex": 1,
-              "colIndex": 207
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "h4",
-            {
-              "lineIndex": 1,
-              "colIndex": 211
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 214
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "p",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 214
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 218
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "ul",
-            {
-              "lineIndex": 1,
-              "colIndex": 218
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "ul",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 218
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 222
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "li",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 222
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "Hi",
-            {
-              "lineIndex": 1,
-              "colIndex": 225
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 228
-            }
-          ]
-        },
-        {
-          "event": "opentagname",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 228
-            }
-          ]
-        },
-        {
-          "event": "opentag",
-          "data": [
-            "li",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 228
-            }
-          ]
-        },
-        {
-          "event": "text",
-          "data": [
-            "bye",
-            {
-              "lineIndex": 1,
-              "colIndex": 232
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "li",
-            {
-              "lineIndex": 1,
-              "colIndex": 236
-            }
-          ]
-        },
-        {
-          "event": "closetag",
-          "data": [
-            "ul",
-            {
-              "lineIndex": 1,
-              "colIndex": 236
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "ol",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 4
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "ol",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 4
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "class",
+                "test",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 19
+                },
+                null
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "li",
+                {
+                    "class": "test"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 19
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 24
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "div",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 24
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "table",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 31
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "style",
+                "width:100%",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 48
+                },
+                null
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "table",
+                {
+                    "style": "width:100%"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 48
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "tr",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 52
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "tr",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 52
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "th",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 56
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "th",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 56
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "TH",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 59
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "th",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 62
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "td",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 62
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "colspan",
+                "2",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 72
+                },
+                null
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "td",
+                {
+                    "colspan": "2"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 72
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "h3",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 76
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "h3",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 76
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Heading",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 84
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "h3",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 88
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "td",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 92
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "tr",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 92
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "tr",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 92
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "tr",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 92
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "td",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 96
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "td",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 96
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 101
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "div",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 101
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 105
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 110
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "td",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 114
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "td",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 114
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "td",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 114
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 119
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "div",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 119
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Div2",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 124
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 129
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "td",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 137
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "tr",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 137
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "table",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 137
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 143
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 147
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 147
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "li",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 147
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 152
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "div",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 152
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "h3",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 156
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "h3",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 156
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Heading 2",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 166
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "h3",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 170
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "div",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 176
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 181
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "ol",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 186
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 189
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "p",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 189
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Para",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 194
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 197
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "h4",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 197
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "h4",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 197
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Heading 4",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 207
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "h4",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 211
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 214
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "p",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 214
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 218
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "ul",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 218
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "ul",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 218
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 222
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "li",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 222
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Hi",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 225
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 228
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 228
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "li",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 228
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "bye",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 232
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "li",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 236
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "ul",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 236
+                }
+            ]
         }
-      ]
+    ]
 }

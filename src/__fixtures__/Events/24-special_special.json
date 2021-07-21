@@ -3,375 +3,375 @@
     "html": "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "title",
-            {
-              "lineIndex": 1,
-              "colIndex": 7
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 7
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "title",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 7
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 7
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "<b>foo</b><title>",
-            {
-              "lineIndex": 1,
-              "colIndex": 25
-            }
-          ]
+            "event": "text",
+            "data": [
+                "<b>foo</b><title>",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 25
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "title",
-            {
-              "lineIndex": 1,
-              "colIndex": 32
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 32
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "sitle",
-            {
-              "lineIndex": 1,
-              "colIndex": 39
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "sitle",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 39
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "sitle",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 39
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "sitle",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 39
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "b",
-            {
-              "lineIndex": 1,
-              "colIndex": 42
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "b",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 42
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "b",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 42
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "b",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 42
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "b",
-            {
-              "lineIndex": 1,
-              "colIndex": 46
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "b",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 46
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "sitle",
-            {
-              "lineIndex": 1,
-              "colIndex": 54
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "sitle",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 54
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "ttyle",
-            {
-              "lineIndex": 1,
-              "colIndex": 61
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "ttyle",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 61
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "ttyle",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 61
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "ttyle",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 61
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "b",
-            {
-              "lineIndex": 1,
-              "colIndex": 64
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "b",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 64
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "b",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 64
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "b",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 64
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "b",
-            {
-              "lineIndex": 1,
-              "colIndex": 68
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "b",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 68
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "ttyle",
-            {
-              "lineIndex": 1,
-              "colIndex": 76
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "ttyle",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 76
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "script",
-            {
-              "lineIndex": 1,
-              "colIndex": 84
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 84
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "script",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 84
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "script",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 84
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "</scripter</soo",
-            {
-              "lineIndex": 1,
-              "colIndex": 100
-            }
-          ]
+            "event": "text",
+            "data": [
+                "</scripter</soo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 100
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "script",
-            {
-              "lineIndex": 1,
-              "colIndex": 108
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 108
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "style",
-            {
-              "lineIndex": 1,
-              "colIndex": 115
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "style",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 115
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "style",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 115
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "style",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 115
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "</styler",
-            {
-              "lineIndex": 1,
-              "colIndex": 124
-            }
-          ]
+            "event": "text",
+            "data": [
+                "</styler",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 124
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "style",
-            {
-              "lineIndex": 1,
-              "colIndex": 131
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "style",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 131
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "scipt",
-            {
-              "lineIndex": 1,
-              "colIndex": 138
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "scipt",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 138
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "scipt",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 138
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "scipt",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 138
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "stylee",
-            {
-              "lineIndex": 1,
-              "colIndex": 146
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "stylee",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 146
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "stylee",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 146
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "stylee",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 146
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "scriptee",
-            {
-              "lineIndex": 1,
-              "colIndex": 156
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "scriptee",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 156
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "scriptee",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 156
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "scriptee",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 156
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "soo",
-            {
-              "lineIndex": 1,
-              "colIndex": 161
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "soo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 161
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "soo",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 161
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "soo",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 161
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "soo",
-            {
-              "lineIndex": 1,
-              "colIndex": 162
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "soo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 162
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "scriptee",
-            {
-              "lineIndex": 1,
-              "colIndex": 162
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "scriptee",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 162
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "stylee",
-            {
-              "lineIndex": 1,
-              "colIndex": 162
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "stylee",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 162
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "scipt",
-            {
-              "lineIndex": 1,
-              "colIndex": 162
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "scipt",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 162
+                }
+            ]
         }
-      ]
+    ]
 }

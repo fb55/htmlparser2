@@ -6,66 +6,66 @@
     "html": "<:foo><_bar>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            ":foo",
-            {
-              "lineIndex": 1,
-              "colIndex": 6
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                ":foo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 6
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            ":foo",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 6
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                ":foo",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 6
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "_bar",
-            {
-              "lineIndex": 1,
-              "colIndex": 12
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "_bar",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 12
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "_bar",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 12
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "_bar",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 12
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "_bar",
-            {
-              "lineIndex": 1,
-              "colIndex": 13
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "_bar",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 13
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            ":foo",
-            {
-              "lineIndex": 1,
-              "colIndex": 13
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                ":foo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 13
+                }
+            ]
         }
-      ]
+    ]
 }

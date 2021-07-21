@@ -3,55 +3,55 @@
     "html": "<<princess-purpose>>testing</princess-purpose>",
     "expected": [
         {
-          "event": "text",
-          "data": [
-            "<",
-            {
-              "lineIndex": 1,
-              "colIndex": 2
-            }
-          ]
+            "event": "text",
+            "data": [
+                "<",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 2
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "princess-purpose",
-            {
-              "lineIndex": 1,
-              "colIndex": 19
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "princess-purpose",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 19
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "princess-purpose",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 19
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "princess-purpose",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 19
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            ">testing",
-            {
-              "lineIndex": 1,
-              "colIndex": 28
-            }
-          ]
+            "event": "text",
+            "data": [
+                ">testing",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 28
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "princess-purpose",
-            {
-              "lineIndex": 1,
-              "colIndex": 46
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "princess-purpose",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 46
+                }
+            ]
         }
-      ]
+    ]
 }

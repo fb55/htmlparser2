@@ -1,649 +1,649 @@
 {
-  "name": "SVG",
-  "file": "Svg.html",
-  "expected": [
-    {
-      "event": "processinginstruction",
-      "data": [
-        "!doctype",
-        "!doctype html",
+    "name": "SVG",
+    "file": "Svg.html",
+    "expected": [
         {
-          "lineIndex": 1,
-          "colIndex": 15
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
-        {
-          "lineIndex": 2,
-          "colIndex": 1
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "html",
-        {
-          "lineIndex": 2,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "html",
-        {},
-        {
-          "lineIndex": 2,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
-        {
-          "lineIndex": 3,
-          "colIndex": 1
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "head",
-        {
-          "lineIndex": 3,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "head",
-        {},
-        {
-          "lineIndex": 3,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t",
-        {
-          "lineIndex": 4,
-          "colIndex": 2
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "title",
-        {
-          "lineIndex": 4,
-          "colIndex": 8
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "title",
-        {},
-        {
-          "lineIndex": 4,
-          "colIndex": 8
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "SVG test",
-        {
-          "lineIndex": 4,
-          "colIndex": 17
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "title",
-        {
-          "lineIndex": 4,
-          "colIndex": 24
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
-        {
-          "lineIndex": 5,
-          "colIndex": 1
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "head",
-        {
-          "lineIndex": 5,
-          "colIndex": 7
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
-        {
-          "lineIndex": 6,
-          "colIndex": 1
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "body",
-        {
-          "lineIndex": 6,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "body",
-        {},
-        {
-          "lineIndex": 6,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t",
-        {
-          "lineIndex": 7,
-          "colIndex": 2
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "svg",
-        {
-          "lineIndex": 7,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "attribute",
-      "data": [
-        "version",
-        "1.1",
-        {
-          "lineIndex": 7,
-          "colIndex": 19
-        },
-        "\""
-      ]
-    },
-    {
-      "event": "attribute",
-      "data": [
-        "xmlns",
-        "http://www.w3.org/2000/svg",
-        {
-          "lineIndex": 7,
-          "colIndex": 54
-        },
-        "\""
-      ]
-    },
-    {
-      "event": "attribute",
-      "data": [
-        "xmlns:xlink",
-        "http://www.w3.org/1999/xlink",
-        {
-          "lineIndex": 7,
-          "colIndex": 97
-        },
-        "\""
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "svg",
-        {
-          "version": "1.1",
-          "xmlns": "http://www.w3.org/2000/svg",
-          "xmlns:xlink": "http://www.w3.org/1999/xlink"
+            "event": "processinginstruction",
+            "data": [
+                "!doctype",
+                "!doctype html",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
         },
         {
-          "lineIndex": 7,
-          "colIndex": 98
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t",
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 2,
+                    "colIndex": 1
+                }
+            ]
+        },
         {
-          "lineIndex": 8,
-          "colIndex": 3
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "title",
+            "event": "opentagname",
+            "data": [
+                "html",
+                {
+                    "lineIndex": 2,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 8,
-          "colIndex": 9
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "title",
-        {},
+            "event": "opentag",
+            "data": [
+                "html",
+                {},
+                {
+                    "lineIndex": 2,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 8,
-          "colIndex": 9
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "Test",
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 1
+                }
+            ]
+        },
         {
-          "lineIndex": 8,
-          "colIndex": 14
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "title",
+            "event": "opentagname",
+            "data": [
+                "head",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 8,
-          "colIndex": 21
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t",
+            "event": "opentag",
+            "data": [
+                "head",
+                {},
+                {
+                    "lineIndex": 3,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 9,
-          "colIndex": 3
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "animate",
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 2
+                }
+            ]
+        },
         {
-          "lineIndex": 9,
-          "colIndex": 11
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "animate",
-        {},
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 8
+                }
+            ]
+        },
         {
-          "lineIndex": 9,
-          "colIndex": 13
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "animate",
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 4,
+                    "colIndex": 8
+                }
+            ]
+        },
         {
-          "lineIndex": 9,
-          "colIndex": 13
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t",
+            "event": "text",
+            "data": [
+                "SVG test",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 17
+                }
+            ]
+        },
         {
-          "lineIndex": 10,
-          "colIndex": 3
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "polygon",
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 24
+                }
+            ]
+        },
         {
-          "lineIndex": 10,
-          "colIndex": 11
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "polygon",
-        {},
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 1
+                }
+            ]
+        },
         {
-          "lineIndex": 10,
-          "colIndex": 13
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "polygon",
+            "event": "closetag",
+            "data": [
+                "head",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 7
+                }
+            ]
+        },
         {
-          "lineIndex": 10,
-          "colIndex": 13
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t",
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 1
+                }
+            ]
+        },
         {
-          "lineIndex": 11,
-          "colIndex": 3
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "g",
+            "event": "opentagname",
+            "data": [
+                "body",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 11,
-          "colIndex": 5
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "g",
-        {},
+            "event": "opentag",
+            "data": [
+                "body",
+                {},
+                {
+                    "lineIndex": 6,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 11,
-          "colIndex": 5
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t\t",
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 2
+                }
+            ]
+        },
         {
-          "lineIndex": 12,
-          "colIndex": 4
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "path",
+            "event": "opentagname",
+            "data": [
+                "svg",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 6
+                }
+            ]
+        },
         {
-          "lineIndex": 12,
-          "colIndex": 9
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "path",
-        {},
+            "event": "attribute",
+            "data": [
+                "version",
+                "1.1",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 19
+                },
+                "\""
+            ]
+        },
         {
-          "lineIndex": 12,
-          "colIndex": 9
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t\t\t",
+            "event": "attribute",
+            "data": [
+                "xmlns",
+                "http://www.w3.org/2000/svg",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 54
+                },
+                "\""
+            ]
+        },
         {
-          "lineIndex": 13,
-          "colIndex": 5
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "title",
+            "event": "attribute",
+            "data": [
+                "xmlns:xlink",
+                "http://www.w3.org/1999/xlink",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 97
+                },
+                "\""
+            ]
+        },
         {
-          "lineIndex": 13,
-          "colIndex": 11
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "title",
-        {},
+            "event": "opentag",
+            "data": [
+                "svg",
+                {
+                    "version": "1.1",
+                    "xmlns": "http://www.w3.org/2000/svg",
+                    "xmlns:xlink": "http://www.w3.org/1999/xlink"
+                },
+                {
+                    "lineIndex": 7,
+                    "colIndex": 98
+                }
+            ]
+        },
         {
-          "lineIndex": 13,
-          "colIndex": 11
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "x",
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 3
+                }
+            ]
+        },
         {
-          "lineIndex": 13,
-          "colIndex": 13
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "title",
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 9
+                }
+            ]
+        },
         {
-          "lineIndex": 13,
-          "colIndex": 20
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t\t\t",
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 8,
+                    "colIndex": 9
+                }
+            ]
+        },
         {
-          "lineIndex": 14,
-          "colIndex": 5
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "animate",
+            "event": "text",
+            "data": [
+                "Test",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 14
+                }
+            ]
+        },
         {
-          "lineIndex": 14,
-          "colIndex": 13
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "animate",
-        {},
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 21
+                }
+            ]
+        },
         {
-          "lineIndex": 14,
-          "colIndex": 15
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "animate",
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 3
+                }
+            ]
+        },
         {
-          "lineIndex": 14,
-          "colIndex": 15
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t\t",
+            "event": "opentagname",
+            "data": [
+                "animate",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 11
+                }
+            ]
+        },
         {
-          "lineIndex": 15,
-          "colIndex": 4
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "path",
+            "event": "opentag",
+            "data": [
+                "animate",
+                {},
+                {
+                    "lineIndex": 9,
+                    "colIndex": 13
+                }
+            ]
+        },
         {
-          "lineIndex": 15,
-          "colIndex": 10
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t\t",
+            "event": "closetag",
+            "data": [
+                "animate",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 13
+                }
+            ]
+        },
         {
-          "lineIndex": 16,
-          "colIndex": 3
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "g",
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 3
+                }
+            ]
+        },
         {
-          "lineIndex": 16,
-          "colIndex": 6
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n\t",
+            "event": "opentagname",
+            "data": [
+                "polygon",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 11
+                }
+            ]
+        },
         {
-          "lineIndex": 17,
-          "colIndex": 2
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "svg",
+            "event": "opentag",
+            "data": [
+                "polygon",
+                {},
+                {
+                    "lineIndex": 10,
+                    "colIndex": 13
+                }
+            ]
+        },
         {
-          "lineIndex": 17,
-          "colIndex": 7
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
+            "event": "closetag",
+            "data": [
+                "polygon",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 13
+                }
+            ]
+        },
         {
-          "lineIndex": 18,
-          "colIndex": 1
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "body",
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 3
+                }
+            ]
+        },
         {
-          "lineIndex": 18,
-          "colIndex": 7
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
+            "event": "opentagname",
+            "data": [
+                "g",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 5
+                }
+            ]
+        },
         {
-          "lineIndex": 19,
-          "colIndex": 1
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "html",
+            "event": "opentag",
+            "data": [
+                "g",
+                {},
+                {
+                    "lineIndex": 11,
+                    "colIndex": 5
+                }
+            ]
+        },
         {
-          "lineIndex": 19,
-          "colIndex": 7
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "\n",
+            "event": "text",
+            "data": [
+                "\n\t\t\t",
+                {
+                    "lineIndex": 12,
+                    "colIndex": 4
+                }
+            ]
+        },
         {
-          "lineIndex": 20,
-          "colIndex": 1
+            "event": "opentagname",
+            "data": [
+                "path",
+                {
+                    "lineIndex": 12,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "path",
+                {},
+                {
+                    "lineIndex": 12,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t\t\t",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 5
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 13,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "x",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 13
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 20
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t\t\t",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 5
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "animate",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 13
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "animate",
+                {},
+                {
+                    "lineIndex": 14,
+                    "colIndex": 15
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "animate",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 15
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t\t",
+                {
+                    "lineIndex": 15,
+                    "colIndex": 4
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "path",
+                {
+                    "lineIndex": 15,
+                    "colIndex": 10
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "g",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 17,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "svg",
+                {
+                    "lineIndex": 17,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "body",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "html",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 20,
+                    "colIndex": 1
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

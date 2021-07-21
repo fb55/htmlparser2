@@ -3,59 +3,59 @@
     "html": "<img src=\"?&image_uri=1&&image;=2&image=3\"/>?&image_uri=1&&image;=2&image=3",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "img",
-            {
-              "lineIndex": 1,
-              "colIndex": 5
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "img",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 5
+                }
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "src",
-            "?&image_uri=1&ℑ=2&image=3",
-            {
-              "lineIndex": 1,
-              "colIndex": 42
-            },
-            "\""
-          ]
+            "event": "attribute",
+            "data": [
+                "src",
+                "?&image_uri=1&ℑ=2&image=3",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 42
+                },
+                "\""
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "img",
-            {
-              "src": "?&image_uri=1&ℑ=2&image=3"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 44
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "img",
+                {
+                    "src": "?&image_uri=1&ℑ=2&image=3"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 44
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "img",
-            {
-              "lineIndex": 1,
-              "colIndex": 44
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "img",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 44
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "?&image_uri=1&ℑ=2&image=3",
-            {
-              "lineIndex": 1,
-              "colIndex": 76
-            }
-          ]
+            "event": "text",
+            "data": [
+                "?&image_uri=1&ℑ=2&image=3",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 76
+                }
+            ]
         }
-      ]
+    ]
 }

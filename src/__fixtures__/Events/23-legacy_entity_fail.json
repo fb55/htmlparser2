@@ -3,14 +3,14 @@
     "html": "M&M",
     "expected": [
         {
-          "event": "text",
-          "data": [
-            "M&M",
-            {
-              "lineIndex": 1,
-              "colIndex": 4
-            }
-          ]
+            "event": "text",
+            "data": [
+                "M&M",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 4
+                }
+            ]
         }
-      ]
+    ]
 }

@@ -2,15 +2,15 @@
     "name": "ERB Expression",
     "html": "<%= some_value %>",
     "expected": [
-      {
-        "event": "erbexpression",
-        "data": [
-          "some_value",
-          {
-            "lineIndex": 1,
-            "colIndex": 17
-          }
-        ]
-      }
+        {
+            "event": "erbexpression",
+            "data": [
+                "some_value",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 17
+                }
+            ]
+        }
     ]
 }

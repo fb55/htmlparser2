@@ -3,76 +3,76 @@
     "html": "<p><script>var str = '<script></'+'script>';</script></p>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 3
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "p",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 3
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "p",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "script",
-            {
-              "lineIndex": 1,
-              "colIndex": 11
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 11
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "script",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 11
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "script",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 11
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "var str = '<script></'+'script>';",
-            {
-              "lineIndex": 1,
-              "colIndex": 45
-            }
-          ]
+            "event": "text",
+            "data": [
+                "var str = '<script></'+'script>';",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 45
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "script",
-            {
-              "lineIndex": 1,
-              "colIndex": 53
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 53
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "p",
-            {
-              "lineIndex": 1,
-              "colIndex": 57
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 57
+                }
+            ]
         }
-      ]
+    ]
 }

@@ -3,14 +3,14 @@
     "html": "&amp;el&lt;er&CounterClockwiseContourIntegral;foo&bar",
     "expected": [
         {
-          "event": "text",
-          "data": [
-            "&el<er∳foo&bar",
-            {
-              "lineIndex": 1,
-              "colIndex": 54
-            }
-          ]
+            "event": "text",
+            "data": [
+                "&el<er∳foo&bar",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 54
+                }
+            ]
         }
-      ]
+    ]
 }

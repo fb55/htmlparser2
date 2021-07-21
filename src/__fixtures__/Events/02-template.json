@@ -5,87 +5,87 @@
         {
             "event": "opentagname",
             "data": [
-            "p",
-            {
-                "lineIndex": 1,
-                "colIndex": 3
-            }
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
             ]
         },
         {
             "event": "opentag",
             "data": [
-            "p",
-            {},
-            {
-                "lineIndex": 1,
-                "colIndex": 3
-            }
+                "p",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
             ]
         },
         {
             "event": "opentagname",
             "data": [
-            "script",
-            {
-                "lineIndex": 1,
-                "colIndex": 11
-            }
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 11
+                }
             ]
         },
         {
             "event": "attribute",
             "data": [
-            "type",
-            "text/template",
-            {
-                "lineIndex": 1,
-                "colIndex": 31
-            },
-            "\""
+                "type",
+                "text/template",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 31
+                },
+                "\""
             ]
         },
         {
             "event": "opentag",
             "data": [
-            "script",
-            {
-                "type": "text/template"
-            },
-            {
-                "lineIndex": 1,
-                "colIndex": 32
-            }
+                "script",
+                {
+                    "type": "text/template"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 32
+                }
             ]
         },
         {
             "event": "text",
             "data": [
-            "<h1>Heading1</h1>",
-            {
-                "lineIndex": 1,
-                "colIndex": 50
-            }
+                "<h1>Heading1</h1>",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 50
+                }
             ]
         },
         {
             "event": "closetag",
             "data": [
-            "script",
-            {
-                "lineIndex": 1,
-                "colIndex": 58
-            }
+                "script",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 58
+                }
             ]
         },
         {
             "event": "closetag",
             "data": [
-            "p",
-            {
-                "lineIndex": 1,
-                "colIndex": 62
-            }
+                "p",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 62
+                }
             ]
         }
     ]

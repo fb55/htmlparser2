@@ -3,14 +3,14 @@
     "html": "&AMPel&iacutee&ampeer;s&lter",
     "expected": [
         {
-          "event": "text",
-          "data": [
-            "&elíe&eer;s<er",
-            {
-              "lineIndex": 1,
-              "colIndex": 29
-            }
-          ]
+            "event": "text",
+            "data": [
+                "&elíe&eer;s<er",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 29
+                }
+            ]
         }
-      ]
+    ]
 }

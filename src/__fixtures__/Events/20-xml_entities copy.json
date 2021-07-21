@@ -6,14 +6,14 @@
     "html": "&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101",
     "expected": [
         {
-          "event": "text",
-          "data": [
-            "&>&amp<&uuml;a&#x62c&#100&#101",
-            {
-              "lineIndex": 1,
-              "colIndex": 50
-            }
-          ]
+            "event": "text",
+            "data": [
+                "&>&amp<&uuml;a&#x62c&#100&#101",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 50
+                }
+            ]
         }
-      ]
+    ]
 }

@@ -2,129 +2,129 @@
     "name": "Basic html",
     "file": "Basic.html",
     "expected": [
-      {
-        "event": "processinginstruction",
-        "data": [
-          "!doctype",
-          "!DOCTYPE html",
-          {
-            "lineIndex": 1,
-            "colIndex": 15
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "html",
-          {
-            "lineIndex": 1,
-            "colIndex": 21
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "html",
-          {},
-          {
-            "lineIndex": 1,
-            "colIndex": 21
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "title",
-          {
-            "lineIndex": 1,
-            "colIndex": 28
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "title",
-          {},
-          {
-            "lineIndex": 1,
-            "colIndex": 28
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "The Title",
-          {
-            "lineIndex": 1,
-            "colIndex": 38
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "title",
-          {
-            "lineIndex": 1,
-            "colIndex": 45
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "body",
-          {
-            "lineIndex": 1,
-            "colIndex": 51
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "body",
-          {},
-          {
-            "lineIndex": 1,
-            "colIndex": 51
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "Hello world",
-          {
-            "lineIndex": 1,
-            "colIndex": 63
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "body",
-          {
-            "lineIndex": 1,
-            "colIndex": 69
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "html",
-          {
-            "lineIndex": 1,
-            "colIndex": 76
-          }
-        ]
-      }
+        {
+            "event": "processinginstruction",
+            "data": [
+                "!doctype",
+                "!DOCTYPE html",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "html",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 21
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "html",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 21
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 28
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 28
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "The Title",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 38
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 45
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "body",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 51
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "body",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 51
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Hello world",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 63
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "body",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 69
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "html",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 76
+                }
+            ]
+        }
     ]
 }

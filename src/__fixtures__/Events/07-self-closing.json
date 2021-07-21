@@ -1,92 +1,92 @@
 {
-  "name": "Self-closing tags",
-  "html": "<a href=http://test.com/>Foo</a><hr / >",
-  "expected": [
-    {
-      "event": "opentagname",
-      "data": [
-        "a",
+    "name": "Self-closing tags",
+    "html": "<a href=http://test.com/>Foo</a><hr / >",
+    "expected": [
         {
-          "lineIndex": 1,
-          "colIndex": 3
-        }
-      ]
-    },
-    {
-      "event": "attribute",
-      "data": [
-        "href",
-        "http://test.com/",
-        {
-          "lineIndex": 1,
-          "colIndex": 25
-        },
-        null
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "a",
-        {
-          "href": "http://test.com/"
+            "event": "opentagname",
+            "data": [
+                "a",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
+            ]
         },
         {
-          "lineIndex": 1,
-          "colIndex": 25
-        }
-      ]
-    },
-    {
-      "event": "text",
-      "data": [
-        "Foo",
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://test.com/",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 25
+                },
+                null
+            ]
+        },
         {
-          "lineIndex": 1,
-          "colIndex": 29
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "a",
+            "event": "opentag",
+            "data": [
+                "a",
+                {
+                    "href": "http://test.com/"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 25
+                }
+            ]
+        },
         {
-          "lineIndex": 1,
-          "colIndex": 32
-        }
-      ]
-    },
-    {
-      "event": "opentagname",
-      "data": [
-        "hr",
+            "event": "text",
+            "data": [
+                "Foo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 29
+                }
+            ]
+        },
         {
-          "lineIndex": 1,
-          "colIndex": 36
-        }
-      ]
-    },
-    {
-      "event": "opentag",
-      "data": [
-        "hr",
-        {},
+            "event": "closetag",
+            "data": [
+                "a",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 32
+                }
+            ]
+        },
         {
-          "lineIndex": 1,
-          "colIndex": 39
-        }
-      ]
-    },
-    {
-      "event": "closetag",
-      "data": [
-        "hr",
+            "event": "opentagname",
+            "data": [
+                "hr",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 36
+                }
+            ]
+        },
         {
-          "lineIndex": 1,
-          "colIndex": 39
+            "event": "opentag",
+            "data": [
+                "hr",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 39
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "hr",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 39
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

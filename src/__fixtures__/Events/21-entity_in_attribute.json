@@ -3,49 +3,49 @@
     "html": "<a href='http://example.com/p&#x61;ge?param=value&param2&param3=&lt;val&; & &'>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "a",
-            {
-              "lineIndex": 1,
-              "colIndex": 3
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "a",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 3
+                }
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "href",
-            "http://example.com/page?param=value&param2&param3=<val&; & &",
-            {
-              "lineIndex": 1,
-              "colIndex": 78
-            },
-            "'"
-          ]
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://example.com/page?param=value&param2&param3=<val&; & &",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 78
+                },
+                "'"
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "a",
-            {
-              "href": "http://example.com/page?param=value&param2&param3=<val&; & &"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 79
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "a",
+                {
+                    "href": "http://example.com/page?param=value&param2&param3=<val&; & &"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 79
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "a",
-            {
-              "lineIndex": 1,
-              "colIndex": 80
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "a",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 80
+                }
+            ]
         }
-      ]
+    ]
 }

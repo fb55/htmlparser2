@@ -3,1145 +3,1145 @@
     "options": { "xmlMode": true },
     "file": "Atom_Example.xml",
     "expected": [
-      {
-        "event": "processinginstruction",
-        "data": [
-          "?xml",
-          "?xml version=\"1.0\" encoding=\"utf-8\"?",
-          {
-            "lineIndex": 1,
-            "colIndex": 38
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 2,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "comment",
-        "data": [
-          " http://en.wikipedia.org/wiki/Atom_%28standard%29 ",
-          {
-            "lineIndex": 2,
-            "colIndex": 57
-          }
-        ]
-      },
-      {
-        "event": "commentend",
-        "data": [
-          {
-            "lineIndex": 2,
-            "colIndex": 57
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 3,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "feed",
-          {
-            "lineIndex": 3,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "xmlns",
-          "http://www.w3.org/2005/Atom",
-          {
-            "lineIndex": 3,
-            "colIndex": 41
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "feed",
-          {
-            "xmlns": "http://www.w3.org/2005/Atom"
-          },
-          {
-            "lineIndex": 3,
-            "colIndex": 42
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 4,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "title",
-          {
-            "lineIndex": 4,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "title",
-          {},
-          {
-            "lineIndex": 4,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "Example Feed",
-          {
-            "lineIndex": 4,
-            "colIndex": 21
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "title",
-          {
-            "lineIndex": 4,
-            "colIndex": 28
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 5,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "subtitle",
-          {
-            "lineIndex": 5,
-            "colIndex": 11
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "subtitle",
-          {},
-          {
-            "lineIndex": 5,
-            "colIndex": 11
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "A subtitle.",
-          {
-            "lineIndex": 5,
-            "colIndex": 23
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "subtitle",
-          {
-            "lineIndex": 5,
-            "colIndex": 33
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 6,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "link",
-          {
-            "lineIndex": 6,
-            "colIndex": 7
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "href",
-          "http://example.org/feed/",
-          {
-            "lineIndex": 6,
-            "colIndex": 38
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "rel",
-          "self",
-          {
-            "lineIndex": 6,
-            "colIndex": 49
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "link",
-          {
-            "href": "http://example.org/feed/",
-            "rel": "self"
-          },
-          {
-            "lineIndex": 6,
-            "colIndex": 52
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "link",
-          {
-            "lineIndex": 6,
-            "colIndex": 52
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 7,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "link",
-          {
-            "lineIndex": 7,
-            "colIndex": 7
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "href",
-          "http://example.org/",
-          {
-            "lineIndex": 7,
-            "colIndex": 33
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "link",
-          {
-            "href": "http://example.org/"
-          },
-          {
-            "lineIndex": 7,
-            "colIndex": 36
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "link",
-          {
-            "lineIndex": 7,
-            "colIndex": 36
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 8,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "id",
-          {
-            "lineIndex": 8,
-            "colIndex": 5
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "id",
-          {},
-          {
-            "lineIndex": 8,
-            "colIndex": 5
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",
-          {
-            "lineIndex": 8,
-            "colIndex": 51
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "id",
-          {
-            "lineIndex": 8,
-            "colIndex": 55
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 9,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "updated",
-          {
-            "lineIndex": 9,
-            "colIndex": 10
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "updated",
-          {},
-          {
-            "lineIndex": 9,
-            "colIndex": 10
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "2003-12-13T18:30:02Z",
-          {
-            "lineIndex": 9,
-            "colIndex": 31
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "updated",
-          {
-            "lineIndex": 9,
-            "colIndex": 40
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 10,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "author",
-          {
-            "lineIndex": 10,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "author",
-          {},
-          {
-            "lineIndex": 10,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 11,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "name",
-          {
-            "lineIndex": 11,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "name",
-          {},
-          {
-            "lineIndex": 11,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "John Doe",
-          {
-            "lineIndex": 11,
-            "colIndex": 17
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "name",
-          {
-            "lineIndex": 11,
-            "colIndex": 23
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 12,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "email",
-          {
-            "lineIndex": 12,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "email",
-          {},
-          {
-            "lineIndex": 12,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "johndoe@example.com",
-          {
-            "lineIndex": 12,
-            "colIndex": 29
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "email",
-          {
-            "lineIndex": 12,
-            "colIndex": 36
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 13,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "author",
-          {
-            "lineIndex": 13,
-            "colIndex": 10
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\n\t",
-          {
-            "lineIndex": 15,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "entry",
-          {
-            "lineIndex": 15,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "entry",
-          {},
-          {
-            "lineIndex": 15,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 16,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "title",
-          {
-            "lineIndex": 16,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "title",
-          {},
-          {
-            "lineIndex": 16,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "Atom-Powered Robots Run Amok",
-          {
-            "lineIndex": 16,
-            "colIndex": 38
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "title",
-          {
-            "lineIndex": 16,
-            "colIndex": 45
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 17,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "link",
-          {
-            "lineIndex": 17,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "href",
-          "http://example.org/2003/12/13/atom03",
-          {
-            "lineIndex": 17,
-            "colIndex": 51
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "link",
-          {
-            "href": "http://example.org/2003/12/13/atom03"
-          },
-          {
-            "lineIndex": 17,
-            "colIndex": 54
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "link",
-          {
-            "lineIndex": 17,
-            "colIndex": 54
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 18,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "link",
-          {
-            "lineIndex": 18,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "rel",
-          "alternate",
-          {
-            "lineIndex": 18,
-            "colIndex": 23
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "type",
-          "text/html",
-          {
-            "lineIndex": 18,
-            "colIndex": 40
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "href",
-          "http://example.org/2003/12/13/atom03.html",
-          {
-            "lineIndex": 18,
-            "colIndex": 89
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "link",
-          {
-            "rel": "alternate",
-            "type": "text/html",
-            "href": "http://example.org/2003/12/13/atom03.html"
-          },
-          {
-            "lineIndex": 18,
-            "colIndex": 91
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "link",
-          {
-            "lineIndex": 18,
-            "colIndex": 91
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 19,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "link",
-          {
-            "lineIndex": 19,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "rel",
-          "edit",
-          {
-            "lineIndex": 19,
-            "colIndex": 18
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "href",
-          "http://example.org/2003/12/13/atom03/edit",
-          {
-            "lineIndex": 19,
-            "colIndex": 67
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "link",
-          {
-            "rel": "edit",
-            "href": "http://example.org/2003/12/13/atom03/edit"
-          },
-          {
-            "lineIndex": 19,
-            "colIndex": 69
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "link",
-          {
-            "lineIndex": 19,
-            "colIndex": 69
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 20,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "id",
-          {
-            "lineIndex": 20,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "id",
-          {},
-          {
-            "lineIndex": 20,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
-          {
-            "lineIndex": 20,
-            "colIndex": 52
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "id",
-          {
-            "lineIndex": 20,
-            "colIndex": 56
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 21,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "updated",
-          {
-            "lineIndex": 21,
-            "colIndex": 11
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "updated",
-          {},
-          {
-            "lineIndex": 21,
-            "colIndex": 11
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "2003-12-13T18:30:02Z",
-          {
-            "lineIndex": 21,
-            "colIndex": 32
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "updated",
-          {
-            "lineIndex": 21,
-            "colIndex": 41
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t\t",
-          {
-            "lineIndex": 22,
-            "colIndex": 3
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "content",
-          {
-            "lineIndex": 22,
-            "colIndex": 11
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "type",
-          "html",
-          {
-            "lineIndex": 22,
-            "colIndex": 22
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "content",
-          {
-            "type": "html"
-          },
-          {
-            "lineIndex": 22,
-            "colIndex": 23
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "p",
-          {
-            "lineIndex": 22,
-            "colIndex": 26
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "p",
-          {},
-          {
-            "lineIndex": 22,
-            "colIndex": 26
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "Some content.",
-          {
-            "lineIndex": 22,
-            "colIndex": 40
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "p",
-          {
-            "lineIndex": 22,
-            "colIndex": 43
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "content",
-          {
-            "lineIndex": 22,
-            "colIndex": 53
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 23,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "entry",
-          {
-            "lineIndex": 23,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\n\t",
-          {
-            "lineIndex": 25,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "entry",
-          {
-            "lineIndex": 25,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "entry",
-          {},
-          {
-            "lineIndex": 25,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "entry",
-          {
-            "lineIndex": 25,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\n",
-          {
-            "lineIndex": 27,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "feed",
-          {
-            "lineIndex": 27,
-            "colIndex": 7
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 28,
-            "colIndex": 1
-          }
-        ]
-      }
+        {
+            "event": "processinginstruction",
+            "data": [
+                "?xml",
+                "?xml version=\"1.0\" encoding=\"utf-8\"?",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 38
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 2,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "comment",
+            "data": [
+                " http://en.wikipedia.org/wiki/Atom_%28standard%29 ",
+                {
+                    "lineIndex": 2,
+                    "colIndex": 57
+                }
+            ]
+        },
+        {
+            "event": "commentend",
+            "data": [
+                {
+                    "lineIndex": 2,
+                    "colIndex": 57
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "feed",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "xmlns",
+                "http://www.w3.org/2005/Atom",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 41
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "feed",
+                {
+                    "xmlns": "http://www.w3.org/2005/Atom"
+                },
+                {
+                    "lineIndex": 3,
+                    "colIndex": 42
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 4,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Example Feed",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 21
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 28
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "subtitle",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "subtitle",
+                {},
+                {
+                    "lineIndex": 5,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "A subtitle.",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 23
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "subtitle",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 33
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://example.org/feed/",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 38
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "rel",
+                "self",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 49
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "link",
+                {
+                    "href": "http://example.org/feed/",
+                    "rel": "self"
+                },
+                {
+                    "lineIndex": 6,
+                    "colIndex": 52
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 52
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://example.org/",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 33
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "link",
+                {
+                    "href": "http://example.org/"
+                },
+                {
+                    "lineIndex": 7,
+                    "colIndex": 36
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 36
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "id",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 5
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "id",
+                {},
+                {
+                    "lineIndex": 8,
+                    "colIndex": 5
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 51
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "id",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 55
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "updated",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 10
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "updated",
+                {},
+                {
+                    "lineIndex": 9,
+                    "colIndex": 10
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "2003-12-13T18:30:02Z",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 31
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "updated",
+                {
+                    "lineIndex": 9,
+                    "colIndex": 40
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "author",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "author",
+                {},
+                {
+                    "lineIndex": 10,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "name",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "name",
+                {},
+                {
+                    "lineIndex": 11,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "John Doe",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 17
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "name",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 23
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 12,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "email",
+                {
+                    "lineIndex": 12,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "email",
+                {},
+                {
+                    "lineIndex": 12,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "johndoe@example.com",
+                {
+                    "lineIndex": 12,
+                    "colIndex": 29
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "email",
+                {
+                    "lineIndex": 12,
+                    "colIndex": 36
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "author",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 10
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\n\t",
+                {
+                    "lineIndex": 15,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "entry",
+                {
+                    "lineIndex": 15,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "entry",
+                {},
+                {
+                    "lineIndex": 15,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 16,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Atom-Powered Robots Run Amok",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 38
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 45
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 17,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 17,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://example.org/2003/12/13/atom03",
+                {
+                    "lineIndex": 17,
+                    "colIndex": 51
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "link",
+                {
+                    "href": "http://example.org/2003/12/13/atom03"
+                },
+                {
+                    "lineIndex": 17,
+                    "colIndex": 54
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 17,
+                    "colIndex": 54
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "rel",
+                "alternate",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 23
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "type",
+                "text/html",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 40
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://example.org/2003/12/13/atom03.html",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 89
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "link",
+                {
+                    "rel": "alternate",
+                    "type": "text/html",
+                    "href": "http://example.org/2003/12/13/atom03.html"
+                },
+                {
+                    "lineIndex": 18,
+                    "colIndex": 91
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 18,
+                    "colIndex": 91
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "rel",
+                "edit",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 18
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "href",
+                "http://example.org/2003/12/13/atom03/edit",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 67
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "link",
+                {
+                    "rel": "edit",
+                    "href": "http://example.org/2003/12/13/atom03/edit"
+                },
+                {
+                    "lineIndex": 19,
+                    "colIndex": 69
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "link",
+                {
+                    "lineIndex": 19,
+                    "colIndex": 69
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 20,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "id",
+                {
+                    "lineIndex": 20,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "id",
+                {},
+                {
+                    "lineIndex": 20,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
+                {
+                    "lineIndex": 20,
+                    "colIndex": 52
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "id",
+                {
+                    "lineIndex": 20,
+                    "colIndex": 56
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 21,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "updated",
+                {
+                    "lineIndex": 21,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "updated",
+                {},
+                {
+                    "lineIndex": 21,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "2003-12-13T18:30:02Z",
+                {
+                    "lineIndex": 21,
+                    "colIndex": 32
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "updated",
+                {
+                    "lineIndex": 21,
+                    "colIndex": 41
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t\t",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 3
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "content",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 11
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "type",
+                "html",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 22
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "content",
+                {
+                    "type": "html"
+                },
+                {
+                    "lineIndex": 22,
+                    "colIndex": 23
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 26
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "p",
+                {},
+                {
+                    "lineIndex": 22,
+                    "colIndex": 26
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Some content.",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 40
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "p",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 43
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "content",
+                {
+                    "lineIndex": 22,
+                    "colIndex": 53
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 23,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "entry",
+                {
+                    "lineIndex": 23,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\n\t",
+                {
+                    "lineIndex": 25,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "entry",
+                {
+                    "lineIndex": 25,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "entry",
+                {},
+                {
+                    "lineIndex": 25,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "entry",
+                {
+                    "lineIndex": 25,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\n",
+                {
+                    "lineIndex": 27,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "feed",
+                {
+                    "lineIndex": 27,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 28,
+                    "colIndex": 1
+                }
+            ]
+        }
     ]
 }

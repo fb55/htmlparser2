@@ -3,97 +3,97 @@
     "html": "<button class=\"test0\"title=\"test1\" disabled value=test2>adsf</button>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "button",
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 8
+                }
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "class",
-            "test0",
-            {
-              "lineIndex": 1,
-              "colIndex": 21
-            },
-            "\""
-          ]
+            "event": "attribute",
+            "data": [
+                "class",
+                "test0",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 21
+                },
+                "\""
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "title",
-            "test1",
-            {
-              "lineIndex": 1,
-              "colIndex": 34
-            },
-            "\""
-          ]
+            "event": "attribute",
+            "data": [
+                "title",
+                "test1",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 34
+                },
+                "\""
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "disabled",
-            "",
-            {
-              "lineIndex": 1,
-              "colIndex": 45
-            }
-          ]
+            "event": "attribute",
+            "data": [
+                "disabled",
+                "",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 45
+                }
+            ]
         },
         {
-          "event": "attribute",
-          "data": [
-            "value",
-            "test2",
-            {
-              "lineIndex": 1,
-              "colIndex": 56
-            },
-            null
-          ]
+            "event": "attribute",
+            "data": [
+                "value",
+                "test2",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 56
+                },
+                null
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "button",
-            {
-              "class": "test0",
-              "title": "test1",
-              "disabled": "",
-              "value": "test2"
-            },
-            {
-              "lineIndex": 1,
-              "colIndex": 56
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "button",
+                {
+                    "class": "test0",
+                    "title": "test1",
+                    "disabled": "",
+                    "value": "test2"
+                },
+                {
+                    "lineIndex": 1,
+                    "colIndex": 56
+                }
+            ]
         },
         {
-          "event": "text",
-          "data": [
-            "adsf",
-            {
-              "lineIndex": 1,
-              "colIndex": 61
-            }
-          ]
+            "event": "text",
+            "data": [
+                "adsf",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 61
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "button",
-            {
-              "lineIndex": 1,
-              "colIndex": 69
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 69
+                }
+            ]
         }
-      ]
+    ]
 }

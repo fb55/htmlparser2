@@ -2,579 +2,579 @@
     "name": "Attributes",
     "file": "Attributes.html",
     "expected": [
-      {
-        "event": "processinginstruction",
-        "data": [
-          "!doctype",
-          "!doctype html",
-          {
-            "lineIndex": 1,
-            "colIndex": 15
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 2,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "html",
-          {
-            "lineIndex": 2,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "html",
-          {},
-          {
-            "lineIndex": 2,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 3,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "head",
-          {
-            "lineIndex": 3,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "head",
-          {},
-          {
-            "lineIndex": 3,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 4,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "title",
-          {
-            "lineIndex": 4,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "title",
-          {},
-          {
-            "lineIndex": 4,
-            "colIndex": 8
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "Attributes test",
-          {
-            "lineIndex": 4,
-            "colIndex": 24
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "title",
-          {
-            "lineIndex": 4,
-            "colIndex": 31
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 5,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "head",
-          {
-            "lineIndex": 5,
-            "colIndex": 7
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 6,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "body",
-          {
-            "lineIndex": 6,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "body",
-          {},
-          {
-            "lineIndex": 6,
-            "colIndex": 6
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 7,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "comment",
-        "data": [
-          " Normal attributes ",
-          {
-            "lineIndex": 7,
-            "colIndex": 27
-          }
-        ]
-      },
-      {
-        "event": "commentend",
-        "data": [
-          {
-            "lineIndex": 7,
-            "colIndex": 27
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 8,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "button",
-          {
-            "lineIndex": 8,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "id",
-          "test0",
-          {
-            "lineIndex": 8,
-            "colIndex": 19
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "class",
-          "value0",
-          {
-            "lineIndex": 8,
-            "colIndex": 34
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "title",
-          "value1",
-          {
-            "lineIndex": 8,
-            "colIndex": 49
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "button",
-          {
-            "id": "test0",
-            "class": "value0",
-            "title": "value1"
-          },
-          {
-            "lineIndex": 8,
-            "colIndex": 50
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "class=\"value0\" title=\"value1\"",
-          {
-            "lineIndex": 8,
-            "colIndex": 80
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "button",
-          {
-            "lineIndex": 8,
-            "colIndex": 88
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\n\t",
-          {
-            "lineIndex": 10,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "comment",
-        "data": [
-          " Attributes with no quotes or value ",
-          {
-            "lineIndex": 10,
-            "colIndex": 44
-          }
-        ]
-      },
-      {
-        "event": "commentend",
-        "data": [
-          {
-            "lineIndex": 10,
-            "colIndex": 44
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 11,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "button",
-          {
-            "lineIndex": 11,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "id",
-          "test1",
-          {
-            "lineIndex": 11,
-            "colIndex": 19
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "class",
-          "value2",
-          {
-            "lineIndex": 11,
-            "colIndex": 33
-          },
-          null
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "disabled",
-          "",
-          {
-            "lineIndex": 11,
-            "colIndex": 42
-          }
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "button",
-          {
-            "id": "test1",
-            "class": "value2",
-            "disabled": ""
-          },
-          {
-            "lineIndex": 11,
-            "colIndex": 42
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "class=value2 disabled",
-          {
-            "lineIndex": 11,
-            "colIndex": 64
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "button",
-          {
-            "lineIndex": 11,
-            "colIndex": 72
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\n\t",
-          {
-            "lineIndex": 13,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "comment",
-        "data": [
-          " Attributes with no space between them. No valid, but accepted by the browser ",
-          {
-            "lineIndex": 13,
-            "colIndex": 86
-          }
-        ]
-      },
-      {
-        "event": "commentend",
-        "data": [
-          {
-            "lineIndex": 13,
-            "colIndex": 86
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n\t",
-          {
-            "lineIndex": 14,
-            "colIndex": 2
-          }
-        ]
-      },
-      {
-        "event": "opentagname",
-        "data": [
-          "button",
-          {
-            "lineIndex": 14,
-            "colIndex": 9
-          }
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "id",
-          "test2",
-          {
-            "lineIndex": 14,
-            "colIndex": 19
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "class",
-          "value4",
-          {
-            "lineIndex": 14,
-            "colIndex": 34
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "attribute",
-        "data": [
-          "title",
-          "value5",
-          {
-            "lineIndex": 14,
-            "colIndex": 48
-          },
-          "\""
-        ]
-      },
-      {
-        "event": "opentag",
-        "data": [
-          "button",
-          {
-            "id": "test2",
-            "class": "value4",
-            "title": "value5"
-          },
-          {
-            "lineIndex": 14,
-            "colIndex": 49
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "class=\"value4\"title=\"value5\"",
-          {
-            "lineIndex": 14,
-            "colIndex": 78
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "button",
-          {
-            "lineIndex": 14,
-            "colIndex": 86
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 15,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "body",
-          {
-            "lineIndex": 15,
-            "colIndex": 7
-          }
-        ]
-      },
-      {
-        "event": "text",
-        "data": [
-          "\n",
-          {
-            "lineIndex": 16,
-            "colIndex": 1
-          }
-        ]
-      },
-      {
-        "event": "closetag",
-        "data": [
-          "html",
-          {
-            "lineIndex": 16,
-            "colIndex": 7
-          }
-        ]
-      }
+        {
+            "event": "processinginstruction",
+            "data": [
+                "!doctype",
+                "!doctype html",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 2,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "html",
+                {
+                    "lineIndex": 2,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "html",
+                {},
+                {
+                    "lineIndex": 2,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "head",
+                {
+                    "lineIndex": 3,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "head",
+                {},
+                {
+                    "lineIndex": 3,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "title",
+                {},
+                {
+                    "lineIndex": 4,
+                    "colIndex": 8
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "Attributes test",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 24
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "title",
+                {
+                    "lineIndex": 4,
+                    "colIndex": 31
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "head",
+                {
+                    "lineIndex": 5,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "body",
+                {
+                    "lineIndex": 6,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "body",
+                {},
+                {
+                    "lineIndex": 6,
+                    "colIndex": 6
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "comment",
+            "data": [
+                " Normal attributes ",
+                {
+                    "lineIndex": 7,
+                    "colIndex": 27
+                }
+            ]
+        },
+        {
+            "event": "commentend",
+            "data": [
+                {
+                    "lineIndex": 7,
+                    "colIndex": 27
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "id",
+                "test0",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 19
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "class",
+                "value0",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 34
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "title",
+                "value1",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 49
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "button",
+                {
+                    "id": "test0",
+                    "class": "value0",
+                    "title": "value1"
+                },
+                {
+                    "lineIndex": 8,
+                    "colIndex": 50
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "class=\"value0\" title=\"value1\"",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 80
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 8,
+                    "colIndex": 88
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\n\t",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "comment",
+            "data": [
+                " Attributes with no quotes or value ",
+                {
+                    "lineIndex": 10,
+                    "colIndex": 44
+                }
+            ]
+        },
+        {
+            "event": "commentend",
+            "data": [
+                {
+                    "lineIndex": 10,
+                    "colIndex": 44
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "id",
+                "test1",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 19
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "class",
+                "value2",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 33
+                },
+                null
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "disabled",
+                "",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 42
+                }
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "button",
+                {
+                    "id": "test1",
+                    "class": "value2",
+                    "disabled": ""
+                },
+                {
+                    "lineIndex": 11,
+                    "colIndex": 42
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "class=value2 disabled",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 64
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 11,
+                    "colIndex": 72
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\n\t",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "comment",
+            "data": [
+                " Attributes with no space between them. No valid, but accepted by the browser ",
+                {
+                    "lineIndex": 13,
+                    "colIndex": 86
+                }
+            ]
+        },
+        {
+            "event": "commentend",
+            "data": [
+                {
+                    "lineIndex": 13,
+                    "colIndex": 86
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n\t",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 2
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 9
+                }
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "id",
+                "test2",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 19
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "class",
+                "value4",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 34
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "attribute",
+            "data": [
+                "title",
+                "value5",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 48
+                },
+                "\""
+            ]
+        },
+        {
+            "event": "opentag",
+            "data": [
+                "button",
+                {
+                    "id": "test2",
+                    "class": "value4",
+                    "title": "value5"
+                },
+                {
+                    "lineIndex": 14,
+                    "colIndex": 49
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "class=\"value4\"title=\"value5\"",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 78
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "button",
+                {
+                    "lineIndex": 14,
+                    "colIndex": 86
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 15,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "body",
+                {
+                    "lineIndex": 15,
+                    "colIndex": 7
+                }
+            ]
+        },
+        {
+            "event": "text",
+            "data": [
+                "\n",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 1
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "data": [
+                "html",
+                {
+                    "lineIndex": 16,
+                    "colIndex": 7
+                }
+            ]
+        }
     ]
 }

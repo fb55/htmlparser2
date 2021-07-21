@@ -2,15 +2,15 @@
     "name": "ERB Scriptlet",
     "html": "<% do_something %>",
     "expected": [
-      {
-        "event": "erbscriptlet",
-        "data": [
-          "do_something",
-          {
-            "lineIndex": 1,
-            "colIndex": 18
-          }
-        ]
-      }
+        {
+            "event": "erbscriptlet",
+            "data": [
+                "do_something",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 18
+                }
+            ]
+        }
     ]
 }

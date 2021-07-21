@@ -6,120 +6,120 @@
     "html": "<before /><tag><![CDATA[ text ]]]></tag><after />",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "before",
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "before",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 8
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "before",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 10
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "before",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 10
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "before",
-            {
-              "lineIndex": 1,
-              "colIndex": 10
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "before",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 10
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "tag",
-            {
-              "lineIndex": 1,
-              "colIndex": 15
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "tag",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "tag",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 15
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "tag",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 15
+                }
+            ]
         },
         {
-          "event": "cdatastart",
-          "data": []
+            "event": "cdatastart",
+            "data": []
         },
         {
-          "event": "text",
-          "data": [
-            " text ]",
-            {
-              "lineIndex": 1,
-              "colIndex": 34
-            }
-          ]
+            "event": "text",
+            "data": [
+                " text ]",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 34
+                }
+            ]
         },
         {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 1,
-              "colIndex": 34
-            }
-          ]
+            "event": "cdataend",
+            "data": [
+                {
+                    "lineIndex": 1,
+                    "colIndex": 34
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "tag",
-            {
-              "lineIndex": 1,
-              "colIndex": 40
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "tag",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 40
+                }
+            ]
         },
         {
-          "event": "opentagname",
-          "data": [
-            "after",
-            {
-              "lineIndex": 1,
-              "colIndex": 47
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "after",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 47
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "after",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 49
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "after",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 49
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "after",
-            {
-              "lineIndex": 1,
-              "colIndex": 49
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "after",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 49
+                }
+            ]
         }
-      ]
+    ]
 }

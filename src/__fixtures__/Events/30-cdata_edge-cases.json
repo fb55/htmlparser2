@@ -6,61 +6,61 @@
     "html": "<![CDATA><![CDATA[[]]sdaf]]><![CDATA[foo",
     "expected": [
         {
-          "event": "processinginstruction",
-          "data": [
-            "![cdata",
-            "![CDATA",
-            {
-              "lineIndex": 1,
-              "colIndex": 9
-            }
-          ]
+            "event": "processinginstruction",
+            "data": [
+                "![cdata",
+                "![CDATA",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 9
+                }
+            ]
         },
         {
-          "event": "cdatastart",
-          "data": []
+            "event": "cdatastart",
+            "data": []
         },
         {
-          "event": "text",
-          "data": [
-            "[]]sdaf",
-            {
-              "lineIndex": 1,
-              "colIndex": 28
-            }
-          ]
+            "event": "text",
+            "data": [
+                "[]]sdaf",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 28
+                }
+            ]
         },
         {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 1,
-              "colIndex": 28
-            }
-          ]
+            "event": "cdataend",
+            "data": [
+                {
+                    "lineIndex": 1,
+                    "colIndex": 28
+                }
+            ]
         },
         {
-          "event": "cdatastart",
-          "data": []
+            "event": "cdatastart",
+            "data": []
         },
         {
-          "event": "text",
-          "data": [
-            "foo",
-            {
-              "lineIndex": 1,
-              "colIndex": 41
-            }
-          ]
+            "event": "text",
+            "data": [
+                "foo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 41
+                }
+            ]
         },
         {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 1,
-              "colIndex": 41
-            }
-          ]
+            "event": "cdataend",
+            "data": [
+                {
+                    "lineIndex": 1,
+                    "colIndex": 41
+                }
+            ]
         }
-      ]
+    ]
 }

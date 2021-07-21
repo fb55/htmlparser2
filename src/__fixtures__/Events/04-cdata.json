@@ -6,69 +6,69 @@
     "html": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag><![CD>",
     "expected": [
         {
-          "event": "opentagname",
-          "data": [
-            "tag",
-            {
-              "lineIndex": 1,
-              "colIndex": 5
-            }
-          ]
+            "event": "opentagname",
+            "data": [
+                "tag",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 5
+                }
+            ]
         },
         {
-          "event": "opentag",
-          "data": [
-            "tag",
-            {},
-            {
-              "lineIndex": 1,
-              "colIndex": 5
-            }
-          ]
+            "event": "opentag",
+            "data": [
+                "tag",
+                {},
+                {
+                    "lineIndex": 1,
+                    "colIndex": 5
+                }
+            ]
         },
         {
-          "event": "cdatastart",
-          "data": []
+            "event": "cdatastart",
+            "data": []
         },
         {
-          "event": "text",
-          "data": [
-            " asdf ><asdf></adsf><> fo",
-            {
-              "lineIndex": 1,
-              "colIndex": 42
-            }
-          ]
+            "event": "text",
+            "data": [
+                " asdf ><asdf></adsf><> fo",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 42
+                }
+            ]
         },
         {
-          "event": "cdataend",
-          "data": [
-            {
-              "lineIndex": 1,
-              "colIndex": 42
-            }
-          ]
+            "event": "cdataend",
+            "data": [
+                {
+                    "lineIndex": 1,
+                    "colIndex": 42
+                }
+            ]
         },
         {
-          "event": "closetag",
-          "data": [
-            "tag",
-            {
-              "lineIndex": 1,
-              "colIndex": 48
-            }
-          ]
+            "event": "closetag",
+            "data": [
+                "tag",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 48
+                }
+            ]
         },
         {
-          "event": "processinginstruction",
-          "data": [
-            "![CD",
-            "![CD",
-            {
-              "lineIndex": 1,
-              "colIndex": 54
-            }
-          ]
+            "event": "processinginstruction",
+            "data": [
+                "![CD",
+                "![CD",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 54
+                }
+            ]
         }
-      ]
+    ]
 }

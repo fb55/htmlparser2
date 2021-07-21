@@ -3,14 +3,14 @@
     "html": "< ></ >",
     "expected": [
         {
-          "event": "text",
-          "data": [
-            "< ></ >",
-            {
-              "lineIndex": 1,
-              "colIndex": 8
-            }
-          ]
+            "event": "text",
+            "data": [
+                "< ></ >",
+                {
+                    "lineIndex": 1,
+                    "colIndex": 8
+                }
+            ]
         }
-      ]
+    ]
 }
