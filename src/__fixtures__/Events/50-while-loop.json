@@ -1,0 +1,5 @@
+{
+    "name": "ERB While Loop",
+    "html": "<% while some_condition %><% do_something %><% end %>",
+    "useSnapshot": true
+}

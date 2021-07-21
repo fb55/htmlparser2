@@ -1,0 +1,5 @@
+{
+    "name": "ERB Until Loop",
+    "html": "<% until some_condition do %><% do_something %><% end %>",
+    "useSnapshot": true
+}

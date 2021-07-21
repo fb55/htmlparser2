@@ -1,0 +1,5 @@
+{
+    "name": "ERB Case Block",
+    "html": "<% case some_value %><% when Option1 %><%= value_1 %><% when Option2 %><%= value_2% ><% else %><%= value_3 %><% end %>",
+    "useSnapshot": true
+}

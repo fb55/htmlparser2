@@ -1,0 +1,5 @@
+{
+    "name": "ERB If-Elsif-Else Block",
+    "html": "<% if some_condition then %><%= some_value if some_other_condition %><% elsif some_third_condition %><%= some_other_value %><% else %><%= some_third_value %><% end %>",
+    "useSnapshot": true
+}

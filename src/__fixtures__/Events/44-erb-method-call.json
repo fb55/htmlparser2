@@ -1,0 +1,5 @@
+{
+    "name": "ERB Method Call",
+    "html": "<%= myList.each do |elem| %><%= elem %><% end %>",
+    "useSnapshot": true
+}

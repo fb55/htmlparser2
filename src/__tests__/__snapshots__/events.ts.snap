@@ -1,0 +1,881 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Events ERB Begin 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": null,
+        "keyword": "begin",
+      },
+      Object {
+        "colIndex": 11,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "do_something",
+      Object {
+        "colIndex": 29,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbscriptlet",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 38,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Begin 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": null,
+        "keyword": "begin",
+      },
+      Object {
+        "colIndex": 11,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "do_something",
+      Object {
+        "colIndex": 29,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbscriptlet",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 38,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Case Block 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "expression": "some_value",
+        },
+        "keyword": "case",
+      },
+      Object {
+        "colIndex": 21,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "matches": Array [
+            "Option1",
+          ],
+        },
+        "keyword": "when",
+      },
+      Object {
+        "colIndex": 39,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "value_1",
+      Object {
+        "colIndex": 53,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "matches": Array [
+            "Option2",
+          ],
+        },
+        "keyword": "when",
+      },
+      Object {
+        "colIndex": 71,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "value_2% ><% else",
+      Object {
+        "colIndex": 95,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      "value_3",
+      Object {
+        "colIndex": 109,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 118,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Case Block 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "expression": "some_value",
+        },
+        "keyword": "case",
+      },
+      Object {
+        "colIndex": 21,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "matches": Array [
+            "Option1",
+          ],
+        },
+        "keyword": "when",
+      },
+      Object {
+        "colIndex": 39,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "value_1",
+      Object {
+        "colIndex": 53,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "matches": Array [
+            "Option2",
+          ],
+        },
+        "keyword": "when",
+      },
+      Object {
+        "colIndex": 71,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "value_2% ><% else",
+      Object {
+        "colIndex": 95,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      "value_3",
+      Object {
+        "colIndex": 109,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 118,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB For Loop 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "iterable": "myList",
+          "variable": "elem",
+        },
+        "keyword": "for",
+      },
+      Object {
+        "colIndex": 27,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "elem",
+      Object {
+        "colIndex": 38,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 47,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB For Loop 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "iterable": "myList",
+          "variable": "elem",
+        },
+        "keyword": "for",
+      },
+      Object {
+        "colIndex": 27,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "elem",
+      Object {
+        "colIndex": 38,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 47,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB If-Elsif-Else Block 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "if",
+      },
+      Object {
+        "colIndex": 28,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_value if some_other_condition",
+      Object {
+        "colIndex": 69,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_third_condition",
+        },
+        "keyword": "elsif",
+      },
+      Object {
+        "colIndex": 101,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_other_value",
+      Object {
+        "colIndex": 124,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": null,
+        "keyword": "else",
+      },
+      Object {
+        "colIndex": 134,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_third_value",
+      Object {
+        "colIndex": 157,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 166,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB If-Elsif-Else Block 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "if",
+      },
+      Object {
+        "colIndex": 28,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_value if some_other_condition",
+      Object {
+        "colIndex": 69,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_third_condition",
+        },
+        "keyword": "elsif",
+      },
+      Object {
+        "colIndex": 101,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_other_value",
+      Object {
+        "colIndex": 124,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": null,
+        "keyword": "else",
+      },
+      Object {
+        "colIndex": 134,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_third_value",
+      Object {
+        "colIndex": 157,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 166,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Method Call 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "func": "myList.each",
+          "params": Array [
+            "elem",
+          ],
+        },
+        "keyword": "do",
+      },
+      Object {
+        "colIndex": 28,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "elem",
+      Object {
+        "colIndex": 39,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 48,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Method Call 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "func": "myList.each",
+          "params": Array [
+            "elem",
+          ],
+        },
+        "keyword": "do",
+      },
+      Object {
+        "colIndex": 28,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "elem",
+      Object {
+        "colIndex": 39,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 48,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Unless 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "unless",
+      },
+      Object {
+        "colIndex": 27,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_value unless some_other_condition",
+      Object {
+        "colIndex": 72,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 81,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Unless 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "unless",
+      },
+      Object {
+        "colIndex": 27,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "some_value unless some_other_condition",
+      Object {
+        "colIndex": 72,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbexpression",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 81,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Until Loop 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "until",
+      },
+      Object {
+        "colIndex": 29,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "do_something",
+      Object {
+        "colIndex": 47,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbscriptlet",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 56,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB Until Loop 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "until",
+      },
+      Object {
+        "colIndex": 29,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "do_something",
+      Object {
+        "colIndex": 47,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbscriptlet",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 56,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB While Loop 1`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "while",
+      },
+      Object {
+        "colIndex": 26,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "do_something",
+      Object {
+        "colIndex": 44,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbscriptlet",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 53,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
+
+exports[`Events ERB While Loop 2`] = `
+Array [
+  Object {
+    "data": Array [
+      ErbBeginBlock {
+        "data": Object {
+          "condition": "some_condition",
+        },
+        "keyword": "while",
+      },
+      Object {
+        "colIndex": 26,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbbeginblock",
+  },
+  Object {
+    "data": Array [
+      "do_something",
+      Object {
+        "colIndex": 44,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbscriptlet",
+  },
+  Object {
+    "data": Array [
+      ErbEndBlock {
+        "expression": "",
+      },
+      Object {
+        "colIndex": 53,
+        "lineIndex": 1,
+      },
+    ],
+    "event": "erbendblock",
+  },
+]
+`;
