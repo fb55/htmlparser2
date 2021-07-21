@@ -1,7 +1,7 @@
 # erbparser
 
 HTML/ERB parser, based on htmlparse2: the fast & forgiving HTML/XML parser.
-__Beware!!!__ This package is still in active development and is liable to change frequently.
+**Beware!!!** This package is still in active development and is liable to change frequently.
 
 ## Installation
 
@@ -156,13 +156,10 @@ const parser = new htmlparser2.Parser({
          * This fires at the end of a "block" (see above).
          */
         console.log(`End block.`);
-    }
+    },
 });
 parser.write(
-    `<% arr.each do |elem| %>\n`
-    `   <% @var = elem + 1 %>\n`
-    `   <%= @var %>\n`
-    `<% end %>`
+    `<% arr.each do |elem| %>\n``   <% @var = elem + 1 %>\n``   <%= @var %>\n``<% end %>`
 );
 parser.end();
 ```
