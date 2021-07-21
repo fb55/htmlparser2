@@ -69,9 +69,10 @@ function eventReducer(
         // Combine text nodes, taking the latest file location
         (events[events.length - 1].data[0] as string) += data[0];
         (events[events.length - 1].data[1] as FileLocation) =
-            (events[events.length - 1].data[1] as FileLocation).lineIndex < (data[1] as FileLocation).lineIndex ?
-            (events[events.length - 1].data[1] as FileLocation) :
-            (data[1] as FileLocation);
+            (events[events.length - 1].data[1] as FileLocation).lineIndex <
+            (data[1] as FileLocation).lineIndex
+                ? (events[events.length - 1].data[1] as FileLocation)
+                : (data[1] as FileLocation);
     } else {
         // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
         if (event === "onattribute" && data[3] === undefined) {

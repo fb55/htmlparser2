@@ -47,16 +47,16 @@ class CallbackLogger {
         this.log.push(`ontext: '${value}'`);
     }
     onerbexpression(value: string) {
-        this.log.push(`onerbexpression: '${value}'`)
+        this.log.push(`onerbexpression: '${value}'`);
     }
     onerbscriptlet(value: string) {
-        this.log.push(`onerbscriptlet: '${value}'`)
+        this.log.push(`onerbscriptlet: '${value}'`);
     }
     onerbbeginblock(beginBlock: ErbBeginBlock) {
-        this.log.push(`onerbbeginblock: '${beginBlock}'`)
+        this.log.push(`onerbbeginblock: '${beginBlock}'`);
     }
     onerbendblock(endBlock: ErbEndBlock) {
-        this.log.push(`onerbendblock: '${endBlock}'`)
+        this.log.push(`onerbendblock: '${endBlock}'`);
     }
 }
 

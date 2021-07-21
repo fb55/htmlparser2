@@ -32,7 +32,11 @@ export default class MultiplexHandler implements Handler {
     ontext(text: string, where: FileLocation): void {
         this.func("ontext", text, where);
     }
-    onprocessinginstruction(name: string, value: string, where: FileLocation): void {
+    onprocessinginstruction(
+        name: string,
+        value: string,
+        where: FileLocation
+    ): void {
         this.func("onprocessinginstruction", name, value, where);
     }
     oncomment(comment: string, where: FileLocation): void {
@@ -44,7 +48,11 @@ export default class MultiplexHandler implements Handler {
     onclosetag(name: string, where: FileLocation): void {
         this.func("onclosetag", name, where);
     }
-    onopentag(name: string, attribs: { [key: string]: string }, where: FileLocation): void {
+    onopentag(
+        name: string,
+        attribs: { [key: string]: string },
+        where: FileLocation
+    ): void {
         this.func("onopentag", name, attribs, where);
     }
     onopentagname(name: string, where: FileLocation): void {

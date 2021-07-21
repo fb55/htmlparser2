@@ -1,4 +1,8 @@
-import Tokenizer, { FileLocation, ErbBeginBlock, ErbEndBlock } from "./Tokenizer";
+import Tokenizer, {
+    FileLocation,
+    ErbBeginBlock,
+    ErbEndBlock,
+} from "./Tokenizer";
 
 const formTags = new Set([
     "input",
@@ -179,13 +183,21 @@ export interface Handler {
         where: FileLocation,
         quote?: string | undefined | null
     ): void;
-    onopentag(name: string, attribs: { [s: string]: string }, where: FileLocation): void;
+    onopentag(
+        name: string,
+        attribs: { [s: string]: string },
+        where: FileLocation
+    ): void;
     ontext(data: string, where: FileLocation): void;
     oncomment(data: string, where: FileLocation): void;
     oncdatastart(): void;
     oncdataend(where: FileLocation): void;
     oncommentend(where: FileLocation): void;
-    onprocessinginstruction(name: string, data: string, where: FileLocation): void;
+    onprocessinginstruction(
+        name: string,
+        data: string,
+        where: FileLocation
+    ): void;
     onerbexpression(data: string, where: FileLocation): void;
     onerbscriptlet(data: string, where: FileLocation): void;
     onerbbeginblock(beginBlock: ErbBeginBlock, where: FileLocation): void;
