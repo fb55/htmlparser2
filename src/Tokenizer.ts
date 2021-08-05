@@ -1,5 +1,10 @@
 import decodeCodePoint from "entities/lib/decode_codepoint";
-import { xmlTrie, htmlTrie, TrieNode } from "../../entities/src/decode";
+import {
+    htmlDecodeTree,
+    xmlDecodeTree,
+    BinTrieFlags,
+    determineBranch,
+} from "../../entities/src/decode";
 
 const enum CharCodes {
     Tab = 0x9, // "\t"
@@ -275,17 +280,18 @@ export default class Tokenizer {
     /** Indicates whether the tokenizer has finished running / `.end` has been called. */
     private ended = false;
 
-    private readonly cbs: Callbacks;
     private readonly xmlMode: boolean;
     private readonly decodeEntities: boolean;
+    private readonly entityTrie: Uint16Array;
 
     constructor(
         options: { xmlMode?: boolean; decodeEntities?: boolean } | null,
-        cbs: Callbacks
+        private readonly cbs: Callbacks
     ) {
         this.cbs = cbs;
         this.xmlMode = !!options?.xmlMode;
         this.decodeEntities = options?.decodeEntities ?? true;
+        this.entityTrie = this.xmlMode ? xmlDecodeTree : htmlDecodeTree;
     }
 
     public reset(): void {
@@ -664,11 +670,15 @@ export default class Tokenizer {
             this._index--; // Reconsume the token
         } else this._state = State.Text;
     }
-    private entityTrie!: TrieNode;
+    private trieIndex = 0;
+    private trieResultIndex = -1;
+    private trieExcess = 0;
     private startEntity() {
         if (!this.decodeEntities) return;
 
-        this.entityTrie = this.xmlMode ? xmlTrie : htmlTrie;
+        this.trieIndex = 0;
+        this.trieResultIndex = -1;
+        this.trieExcess = 0;
         this.baseState = this._state;
         this._state = State.InEntity;
 
@@ -678,51 +688,76 @@ export default class Tokenizer {
 
         this.sectionStart = this._index;
     }
-    private emitEntity(trie: TrieNode, isTerminated: boolean) {
-        if (trie.value && (isTerminated || trie.legacy)) {
-            this.emitPartial(trie.value);
-        } else if (trie.base) {
+    private emitEntity() {
+        const resultIndex = this.trieResultIndex;
+        if (resultIndex < 0) return;
+
+        const result = this.entityTrie[resultIndex];
+
+        // If the result is a number, decode it
+        if (result & BinTrieFlags.IS_NUMBER) {
+            const isHex = Number(!!(result & BinTrieFlags.HEX_OR_MULTI_BYTE));
+            const start = this.sectionStart + 2 + isHex;
             const entity = this.buffer.substring(
-                // Skip the leading "&#". For hex entities, also skip the leading "x".
-                this.sectionStart + 2 + (trie.base >>> 4),
-                this._index
+                start,
+                this._index - (1 - isHex)
             );
-            const parsed = parseInt(entity, trie.base);
+            const parsed = parseInt(entity, isHex ? 16 : 10);
+
             this.emitPartial(decodeCodePoint(parsed));
-        } else {
+            this.sectionStart = this._index;
+
             return;
         }
 
-        this.sectionStart = isTerminated
-            ? this._index + 1
-            : trie.legacy
-            ? this.legacyTrieIndex + 1
-            : this._index;
-        this._state = this.baseState;
-        this.legacyTrie = null;
+        // If this is a surrogate pair, combine the higher bits from the node with the next byte
+        this.emitPartial(
+            result & BinTrieFlags.HEX_OR_MULTI_BYTE
+                ? String.fromCharCode(
+                      this.entityTrie[resultIndex + 1],
+                      this.entityTrie[resultIndex + 2]
+                  )
+                : String.fromCharCode(this.entityTrie[resultIndex + 1])
+        );
+
+        this.sectionStart = this._index - this.trieExcess + 1;
     }
-    private legacyTrie: TrieNode | null = null;
-    private legacyTrieIndex = 0;
     private stateInEntity(c: number) {
-        if (c === CharCodes.Semi) {
-            this.emitEntity(this.entityTrie, true);
+        const current = this.entityTrie[this.trieIndex];
+
+        // If we have a byte value, we have to skip some bytes.
+        const hasValue = Number(!!(current & BinTrieFlags.HAS_VALUE));
+        const byteOffset =
+            hasValue & (1 - Number(!!(current & BinTrieFlags.IS_NUMBER)));
+        const multibyteOffset =
+            byteOffset & Number(!!(current & BinTrieFlags.HEX_OR_MULTI_BYTE));
+
+        this.trieIndex = determineBranch(
+            this.entityTrie,
+            current,
+            this.trieIndex + 1 + byteOffset + multibyteOffset,
+            c
+        );
+
+        if (this.trieIndex < 0) {
+            this.emitEntity();
+            return;
+        }
+
+        const branch = this.entityTrie[this.trieIndex];
+        if (
+            branch & BinTrieFlags.HAS_VALUE &&
+            // If we have a legacy entity and we are not in HTML text mode, skip.
+            !(
+                !this.xmlMode &&
+                this.baseState === State.Text &&
+                branch & BinTrieFlags.LEGACY
+            )
+        ) {
+            this.trieResultIndex = this.trieIndex;
+            this.trieExcess = 1;
         } else {
-            const next = this.entityTrie.next?.get(c);
-            if (next) {
-                this.entityTrie = next;
-
-                if (next.legacy) {
-                    this.legacyTrie = next;
-                    this.legacyTrieIndex = this._index;
-                }
-            } else {
-                if (!this.xmlMode && this.baseState === State.Text) {
-                    this.emitEntity(this.legacyTrie ?? this.entityTrie, false);
-                }
-
-                this._index--;
-                this._state = this.baseState;
-            }
+            this.trieExcess += 1;
         }
     }
 
@@ -748,7 +783,6 @@ export default class Tokenizer {
                 // Remove everything unnecessary
                 this.buffer = this.buffer.substr(this.sectionStart);
                 this._index -= this.sectionStart;
-                this.legacyTrieIndex -= this.sectionStart;
                 this.bufferOffset += this.sectionStart;
             }
             this.sectionStart = 0;
@@ -919,7 +953,7 @@ export default class Tokenizer {
         ) {
             this.cbs.oncomment(data);
         } else if (!this.xmlMode && this._state === State.InEntity) {
-            this.emitEntity(this.legacyTrie ?? this.entityTrie, false);
+            this.emitEntity();
             // If there are any characters left in the buffer, emit them
             if (this.sectionStart < this._index) {
                 this.emitPartial(this.buffer.substr(this.sectionStart));
