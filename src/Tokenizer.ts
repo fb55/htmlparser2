@@ -173,17 +173,6 @@ function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
     const upperCode = upper.charCodeAt(0);
     const lowerCode = upper.toLowerCase().charCodeAt(0);
 
-    if (upperCode === lowerCode) {
-        return (t: Tokenizer, c: number) => {
-            if (c === upperCode) {
-                t._state = SUCCESS;
-            } else {
-                t._state = FAILURE;
-                t._index--;
-            }
-        };
-    }
-
     return (t: Tokenizer, c: number) => {
         if (c === lowerCode || c === upperCode) {
             t._state = SUCCESS;
