@@ -4,7 +4,7 @@ import {
     xmlDecodeTree,
     BinTrieFlags,
     determineBranch,
-} from "../../entities/src/decode";
+} from "entities/lib/decode";
 
 const enum CharCodes {
     Tab = 0x9, // "\t"
@@ -13,6 +13,7 @@ const enum CharCodes {
     CarriageReturn = 0xd, // "\r"
     Space = 0x20, // " "
     ExclamationMark = 0x21, // "!"
+    Num = 23, // "#"
     Amp = 0x26, // "&"
     SingleQuote = 0x27, // "'"
     DoubleQuote = 0x22, // '"'
@@ -120,7 +121,11 @@ const enum State {
     AfterTitle3, // L
     AfterTitle4, // E
 
-    InEntity, // &
+    BeforeEntity, // &
+    BeforeNumericEntity, // #
+    InNamedEntity,
+    InNumericEntity,
+    InHexEntity, // X
 }
 
 const enum Special {
@@ -257,6 +262,12 @@ const stateAfterTitle1 = ifElseState("T", State.AfterTitle2, State.Text);
 const stateAfterTitle2 = ifElseState("L", State.AfterTitle3, State.Text);
 const stateAfterTitle3 = ifElseState("E", State.AfterTitle4, State.Text);
 
+const stateBeforeNumericEntity = ifElseState(
+    "X",
+    State.InHexEntity,
+    State.InNumericEntity
+);
+
 export default class Tokenizer {
     /** The current state the tokenizer is in. */
     _state = State.Text;
@@ -342,16 +353,22 @@ export default class Tokenizer {
 
     private stateText(c: number) {
         if (c === CharCodes.Lt) {
-            if (this.sectionStart < this._index) {
+            if (this._index > this.sectionStart) {
                 this.cbs.ontext(this.getSection());
             }
             this._state = State.BeforeTagName;
             this.sectionStart = this._index;
         } else if (
+            this.decodeEntities &&
             c === CharCodes.Amp &&
             (this.special === Special.None || this.special === Special.Title)
         ) {
-            this.startEntity();
+            if (this._index > this.sectionStart) {
+                this.cbs.ontext(this.getSection());
+            }
+            this.baseState = State.Text;
+            this._state = State.BeforeEntity;
+            this.sectionStart = this._index;
         }
     }
     /**
@@ -520,8 +537,11 @@ export default class Tokenizer {
             this.sectionStart = -1;
             this.cbs.onattribend(String.fromCharCode(quote));
             this._state = State.BeforeAttributeName;
-        } else if (c === CharCodes.Amp) {
-            this.startEntity();
+        } else if (this.decodeEntities && c === CharCodes.Amp) {
+            this.cbs.onattribdata(this.getSection());
+            this.baseState = this._state;
+            this._state = State.BeforeEntity;
+            this.sectionStart = this._index;
         }
     }
     private stateInAttributeValueDoubleQuotes(c: number) {
@@ -537,8 +557,11 @@ export default class Tokenizer {
             this.cbs.onattribend(null);
             this._state = State.BeforeAttributeName;
             this._index--;
-        } else if (c === CharCodes.Amp) {
-            this.startEntity();
+        } else if (this.decodeEntities && c === CharCodes.Amp) {
+            this.cbs.onattribdata(this.getSection());
+            this.baseState = this._state;
+            this._state = State.BeforeEntity;
+            this.sectionStart = this._index;
         }
     }
     private stateBeforeDeclaration(c: number) {
@@ -576,7 +599,9 @@ export default class Tokenizer {
     }
     private stateInSpecialComment(c: number) {
         if (c === CharCodes.Gt) {
-            this.cbs.oncomment(this.getSection());
+            this.cbs.oncomment(
+                this.buffer.substring(this.sectionStart, this._index)
+            );
             this._state = State.Text;
             this.sectionStart = this._index + 1;
         }
@@ -670,94 +695,112 @@ export default class Tokenizer {
             this._index--; // Reconsume the token
         } else this._state = State.Text;
     }
+
     private trieIndex = 0;
-    private trieResultIndex = -1;
+    private trieCurrent = 0;
+    private trieResult: string | null = null;
     private trieExcess = 0;
-    private startEntity() {
-        if (!this.decodeEntities) return;
 
-        this.trieIndex = 0;
-        this.trieResultIndex = -1;
-        this.trieExcess = 0;
-        this.baseState = this._state;
-        this._state = State.InEntity;
-
-        if (this.sectionStart < this._index) {
-            this.emitPartial(this.getSection());
+    private stateBeforeEntity(c: number) {
+        if (c === CharCodes.Num) {
+            this._state = State.BeforeNumericEntity;
+        } else {
+            this._state = State.InNamedEntity;
+            this.trieIndex = 0;
+            this.trieCurrent = this.entityTrie[0];
+            this.trieResult = null;
+            // Start excess with 1 to include the '&'
+            this.trieExcess = 1;
+            this._index--;
         }
-
-        this.sectionStart = this._index;
     }
-    private emitEntity() {
-        const resultIndex = this.trieResultIndex;
-        if (resultIndex < 0) return;
 
-        const result = this.entityTrie[resultIndex];
-
-        // If the result is a number, decode it
-        if (result & BinTrieFlags.IS_NUMBER) {
-            const isHex = Number(!!(result & BinTrieFlags.HEX_OR_MULTI_BYTE));
-            const start = this.sectionStart + 2 + isHex;
-            const entity = this.buffer.substring(
-                start,
-                this._index - (1 - isHex)
-            );
-            const parsed = parseInt(entity, isHex ? 16 : 10);
-
-            this.emitPartial(decodeCodePoint(parsed));
-            this.sectionStart = this._index;
-
-            return;
-        }
-
-        // If this is a surrogate pair, combine the higher bits from the node with the next byte
-        this.emitPartial(
-            result & BinTrieFlags.HEX_OR_MULTI_BYTE
-                ? String.fromCharCode(
-                      this.entityTrie[resultIndex + 1],
-                      this.entityTrie[resultIndex + 2]
-                  )
-                : String.fromCharCode(this.entityTrie[resultIndex + 1])
-        );
-
-        this.sectionStart = this._index - this.trieExcess + 1;
-    }
-    private stateInEntity(c: number) {
-        const current = this.entityTrie[this.trieIndex];
-
-        // If we have a byte value, we have to skip some bytes.
-        const hasValue = Number(!!(current & BinTrieFlags.HAS_VALUE));
-        const byteOffset =
-            hasValue & (1 - Number(!!(current & BinTrieFlags.IS_NUMBER)));
-        const multibyteOffset =
-            byteOffset & Number(!!(current & BinTrieFlags.HEX_OR_MULTI_BYTE));
+    private stateInNamedEntity(c: number) {
+        this.trieExcess += 1;
 
         this.trieIndex = determineBranch(
             this.entityTrie,
-            current,
-            this.trieIndex + 1 + byteOffset + multibyteOffset,
+            this.trieCurrent,
+            this.trieIndex + 1,
             c
         );
 
         if (this.trieIndex < 0) {
-            this.emitEntity();
+            this.emitNamedEntity();
             return;
         }
 
-        const branch = this.entityTrie[this.trieIndex];
-        if (
-            branch & BinTrieFlags.HAS_VALUE &&
-            // If we have a legacy entity and we are not in HTML text mode, skip.
-            !(
-                !this.xmlMode &&
-                this.baseState === State.Text &&
-                branch & BinTrieFlags.LEGACY
-            )
+        this.trieCurrent = this.entityTrie[this.trieIndex];
+
+        // If the branch is a value, store it and continue
+        if (this.trieCurrent & BinTrieFlags.HAS_VALUE) {
+            // If we have a legacy entity while parsing strictly, just skip the number of bytes
+            if (this.xmlMode && c !== CharCodes.Semi) {
+                // No need to consider multi-byte values, as the legacy entity is always a single byte
+                this.trieIndex += 1;
+            } else {
+                // If this is a surrogate pair, combine the higher bits from the node with the next byte
+                this.trieResult =
+                    this.trieCurrent & BinTrieFlags.MULTI_BYTE
+                        ? String.fromCharCode(
+                              this.entityTrie[++this.trieIndex],
+                              this.entityTrie[++this.trieIndex]
+                          )
+                        : String.fromCharCode(
+                              this.entityTrie[++this.trieIndex]
+                          );
+                this.trieExcess = 0;
+            }
+        }
+    }
+
+    private emitNamedEntity() {
+        if (this.trieResult) {
+            this.emitPartial(this.trieResult);
+        }
+
+        // TODO figure out if this is correct
+        this.sectionStart = this._index - this.trieExcess + 1;
+        this._state = this.baseState;
+    }
+
+    private decodeNumericEntity(offset: number, base: number, strict: boolean) {
+        const sectionStart = this.sectionStart + offset;
+        if (sectionStart !== this._index) {
+            // Parse entity
+            const entity = this.buffer.substring(sectionStart, this._index);
+            const parsed = parseInt(entity, base);
+            this.emitPartial(decodeCodePoint(parsed));
+            this.sectionStart = strict ? this._index + 1 : this._index;
+        }
+        this._state = this.baseState;
+    }
+    private stateInNumericEntity(c: number) {
+        if (c === CharCodes.Semi) {
+            this.decodeNumericEntity(2, 10, true);
+        } else if (c < CharCodes.Zero || c > CharCodes.Nine) {
+            if (!this.xmlMode) {
+                this.decodeNumericEntity(2, 10, false);
+            } else {
+                this._state = this.baseState;
+            }
+            this._index--;
+        }
+    }
+    private stateInHexEntity(c: number) {
+        if (c === CharCodes.Semi) {
+            this.decodeNumericEntity(3, 16, true);
+        } else if (
+            (c < CharCodes.LowerA || c > CharCodes.LowerF) &&
+            (c < CharCodes.UpperA || c > CharCodes.UpperF) &&
+            (c < CharCodes.Zero || c > CharCodes.Nine)
         ) {
-            this.trieResultIndex = this.trieIndex;
-            this.trieExcess = 1;
-        } else {
-            this.trieExcess += 1;
+            if (!this.xmlMode) {
+                this.decodeNumericEntity(3, 16, false);
+            } else {
+                this._state = this.baseState;
+            }
+            this._index--;
         }
     }
 
@@ -903,10 +946,12 @@ export default class Tokenizer {
                 this.stateAfterSpecialLast(c, 5);
             } else if (this._state === State.InProcessingInstruction) {
                 this.stateInProcessingInstruction(c);
-            } else if (this._state === State.InEntity) {
-                this.stateInEntity(c);
+            } else if (this._state === State.InNamedEntity) {
+                this.stateInNamedEntity(c);
             } else if (this._state === State.BeforeCdata1) {
                 stateBeforeCdata1(this, c);
+            } else if (this._state === State.BeforeEntity) {
+                this.stateBeforeEntity(c);
             } else if (this._state === State.BeforeCdata2) {
                 stateBeforeCdata2(this, c);
             } else if (this._state === State.BeforeCdata3) {
@@ -919,9 +964,15 @@ export default class Tokenizer {
                 stateBeforeCdata4(this, c);
             } else if (this._state === State.BeforeCdata5) {
                 stateBeforeCdata5(this, c);
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             } else if (this._state === State.BeforeCdata6) {
                 this.stateBeforeCdata6(c);
+            } else if (this._state === State.InHexEntity) {
+                this.stateInHexEntity(c);
+            } else if (this._state === State.InNumericEntity) {
+                this.stateInNumericEntity(c);
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+            } else if (this._state === State.BeforeNumericEntity) {
+                stateBeforeNumericEntity(this, c);
             } else {
                 this.cbs.onerror(Error("unknown _state"), this._state);
             }
@@ -952,11 +1003,23 @@ export default class Tokenizer {
             this._state === State.AfterComment2
         ) {
             this.cbs.oncomment(data);
-        } else if (!this.xmlMode && this._state === State.InEntity) {
-            this.emitEntity();
-            // If there are any characters left in the buffer, emit them
+        } else if (this._state === State.InNamedEntity && !this.xmlMode) {
+            this.emitNamedEntity();
             if (this.sectionStart < this._index) {
-                this.emitPartial(this.buffer.substr(this.sectionStart));
+                this._state = this.baseState;
+                this.handleTrailingData();
+            }
+        } else if (this._state === State.InNumericEntity && !this.xmlMode) {
+            this.decodeNumericEntity(2, 10, false);
+            if (this.sectionStart < this._index) {
+                this._state = this.baseState;
+                this.handleTrailingData();
+            }
+        } else if (this._state === State.InHexEntity && !this.xmlMode) {
+            this.decodeNumericEntity(3, 16, false);
+            if (this.sectionStart < this._index) {
+                this._state = this.baseState;
+                this.handleTrailingData();
             }
         } else if (
             this._state !== State.InTagName &&
@@ -980,10 +1043,9 @@ export default class Tokenizer {
     private getSection(): string {
         return this.buffer.substring(this.sectionStart, this._index);
     }
-
     private emitPartial(value: string) {
         if (this.baseState !== State.Text) {
-            this.cbs.onattribdata(value);
+            this.cbs.onattribdata(value); // TODO implement the new event
         } else {
             this.cbs.ontext(value);
         }
