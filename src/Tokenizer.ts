@@ -13,7 +13,7 @@ const enum CharCodes {
     CarriageReturn = 0xd, // "\r"
     Space = 0x20, // " "
     ExclamationMark = 0x21, // "!"
-    Num = 23, // "#"
+    Num = 0x23, // "#"
     Amp = 0x26, // "&"
     SingleQuote = 0x27, // "'"
     DoubleQuote = 0x22, // '"'
@@ -704,6 +704,10 @@ export default class Tokenizer {
     private stateBeforeEntity(c: number) {
         if (c === CharCodes.Num) {
             this._state = State.BeforeNumericEntity;
+        } else if (c === CharCodes.Amp) {
+            // We have two `&` characters in a row. Emit the first one.
+            this.emitPartial(this.getSection());
+            this.sectionStart = this._index;
         } else {
             this._state = State.InNamedEntity;
             this.trieIndex = 0;
@@ -735,7 +739,10 @@ export default class Tokenizer {
         // If the branch is a value, store it and continue
         if (this.trieCurrent & BinTrieFlags.HAS_VALUE) {
             // If we have a legacy entity while parsing strictly, just skip the number of bytes
-            if (this.xmlMode && c !== CharCodes.Semi) {
+            if (
+                (this.xmlMode || this.baseState !== State.Text) &&
+                c !== CharCodes.Semi
+            ) {
                 // No need to consider multi-byte values, as the legacy entity is always a single byte
                 this.trieIndex += 1;
             } else {
@@ -762,6 +769,7 @@ export default class Tokenizer {
         // TODO figure out if this is correct
         this.sectionStart = this._index - this.trieExcess + 1;
         this._state = this.baseState;
+        this._index--;
     }
 
     private decodeNumericEntity(offset: number, base: number, strict: boolean) {
@@ -1004,6 +1012,8 @@ export default class Tokenizer {
         ) {
             this.cbs.oncomment(data);
         } else if (this._state === State.InNamedEntity && !this.xmlMode) {
+            // Increase excess for EOF
+            this.trieExcess++;
             this.emitNamedEntity();
             if (this.sectionStart < this._index) {
                 this._state = this.baseState;
