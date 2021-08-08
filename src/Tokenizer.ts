@@ -526,8 +526,8 @@ export default class Tokenizer {
             this._state = State.InAttributeValueSq;
             this.sectionStart = this._index + 1;
         } else if (!whitespace(c)) {
-            this._state = State.InAttributeValueNq;
             this.sectionStart = this._index;
+            this._state = State.InAttributeValueNq;
             this._index--; // Reconsume token
         }
     }
@@ -689,9 +689,9 @@ export default class Tokenizer {
     }
     private stateAfterSpecialLast(c: number, sectionStartOffset: number) {
         if (c === CharCodes.Gt || whitespace(c)) {
+            this.sectionStart = this._index - sectionStartOffset;
             this.special = Special.None;
             this._state = State.InClosingTagName;
-            this.sectionStart = this._index - sectionStartOffset;
             this._index--; // Reconsume the token
         } else this._state = State.Text;
     }
@@ -739,10 +739,7 @@ export default class Tokenizer {
         // If the branch is a value, store it and continue
         if (this.trieCurrent & BinTrieFlags.HAS_VALUE) {
             // If we have a legacy entity while parsing strictly, just skip the number of bytes
-            if (
-                (this.xmlMode || this.baseState !== State.Text) &&
-                c !== CharCodes.Semi
-            ) {
+            if (!this.allowLegacyEntity() && c !== CharCodes.Semi) {
                 // No need to consider multi-byte values, as the legacy entity is always a single byte
                 this.trieIndex += 1;
             } else {
@@ -787,7 +784,7 @@ export default class Tokenizer {
         if (c === CharCodes.Semi) {
             this.decodeNumericEntity(2, 10, true);
         } else if (c < CharCodes.Zero || c > CharCodes.Nine) {
-            if (!this.xmlMode) {
+            if (this.allowLegacyEntity()) {
                 this.decodeNumericEntity(2, 10, false);
             } else {
                 this._state = this.baseState;
@@ -803,13 +800,17 @@ export default class Tokenizer {
             (c < CharCodes.UpperA || c > CharCodes.UpperF) &&
             (c < CharCodes.Zero || c > CharCodes.Nine)
         ) {
-            if (!this.xmlMode) {
+            if (this.allowLegacyEntity()) {
                 this.decodeNumericEntity(3, 16, false);
             } else {
                 this._state = this.baseState;
             }
             this._index--;
         }
+    }
+
+    private allowLegacyEntity() {
+        return !this.xmlMode && this.baseState === State.Text;
     }
 
     private cleanup() {
