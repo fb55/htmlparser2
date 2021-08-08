@@ -184,17 +184,7 @@ function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
 }
 
 function consumeSpecialNameChar(upper: string, NEXT_STATE: State) {
-    const upperCode = upper.charCodeAt(0);
-    const lowerCode = upper.toLowerCase().charCodeAt(0);
-
-    return (t: Tokenizer, c: number) => {
-        if (c === lowerCode || c === upperCode) {
-            t._state = NEXT_STATE;
-        } else {
-            t._state = State.InTagName;
-            t._index--; // Consume the token again
-        }
-    };
+    return ifElseState(upper, NEXT_STATE, State.InTagName);
 }
 
 const stateBeforeCdata1 = ifElseState(
