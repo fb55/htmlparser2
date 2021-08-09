@@ -401,7 +401,8 @@ export default class Tokenizer {
         if (c === CharCodes.Slash || c === CharCodes.Gt || whitespace(c)) {
             this.cbs.onopentagname(this.getSection());
             this.sectionStart = -1;
-            this.stateBeforeAttributeName(c);
+            this._state = State.BeforeAttributeName;
+            this._index--;
         }
     }
     private stateBeforeClosingTagName(c: number) {
@@ -421,7 +422,8 @@ export default class Tokenizer {
             ) {
                 this._state = State.BeforeSpecialTEnd;
             } else {
-                this.stateText(c);
+                this._state = State.Text;
+                this._index--;
             }
         } else if (!this.isTagStartChar(c)) {
             this._state = State.InSpecialComment;
@@ -435,7 +437,8 @@ export default class Tokenizer {
         if (c === CharCodes.Gt || whitespace(c)) {
             this.cbs.onclosetag(this.getSection());
             this.sectionStart = -1;
-            this.stateAfterClosingTagName(c);
+            this._state = State.AfterClosingTagName;
+            this._index--;
         }
     }
     private stateAfterClosingTagName(c: number) {
@@ -464,7 +467,8 @@ export default class Tokenizer {
             this.sectionStart = this._index + 1;
             this.special = Special.None; // Reset special state, in case of self-closing special tags
         } else if (!whitespace(c)) {
-            this.stateBeforeAttributeName(c);
+            this._state = State.BeforeAttributeName;
+            this._index--;
         }
     }
     private stateInAttributeName(c: number) {
@@ -476,7 +480,8 @@ export default class Tokenizer {
         ) {
             this.cbs.onattribname(this.getSection());
             this.sectionStart = -1;
-            this.stateAfterAttributeName(c);
+            this._state = State.AfterAttributeName;
+            this._index--;
         }
     }
     private stateAfterAttributeName(c: number) {
@@ -484,7 +489,8 @@ export default class Tokenizer {
             this._state = State.BeforeAttributeValue;
         } else if (c === CharCodes.Slash || c === CharCodes.Gt) {
             this.cbs.onattribend(undefined);
-            this.stateBeforeAttributeName(c);
+            this._state = State.BeforeAttributeName;
+            this._index--;
         } else if (!whitespace(c)) {
             this.cbs.onattribend(undefined);
             this._state = State.InAttributeName;
@@ -500,7 +506,8 @@ export default class Tokenizer {
             this.sectionStart = this._index + 1;
         } else if (!whitespace(c)) {
             this.sectionStart = this._index;
-            this.stateInAttributeValueNoQuotes(c); // Reconsume token
+            this._state = State.InAttributeValueNq;
+            this._index--; // Reconsume token
         }
     }
     private handleInAttributeValue(c: number, quote: number) {
@@ -527,7 +534,8 @@ export default class Tokenizer {
             this.cbs.onattribdata(this.getSection());
             this.sectionStart = -1;
             this.cbs.onattribend(null);
-            this.stateBeforeAttributeName(c);
+            this._state = State.BeforeAttributeName;
+            this._index--;
         } else if (this.decodeEntities && c === CharCodes.Amp) {
             this.cbs.onattribdata(this.getSection());
             this.baseState = this._state;
@@ -602,7 +610,8 @@ export default class Tokenizer {
             this._state = State.InCdata;
             this.sectionStart = this._index + 1;
         } else {
-            this.stateInDeclaration(c);
+            this._state = State.InDeclaration;
+            this._index--;
         }
     }
     private stateInCdata(c: number) {
@@ -633,7 +642,8 @@ export default class Tokenizer {
         } else if (c === CharCodes.LowerT || c === CharCodes.UpperT) {
             this._state = State.BeforeStyle1;
         } else {
-            this.stateInTagName(c); // Consume the token again
+            this._state = State.InTagName;
+            this._index--; // Consume the token again
         }
     }
     private stateBeforeSpecialSEnd(c: number) {
@@ -653,13 +663,15 @@ export default class Tokenizer {
         if (c === CharCodes.Slash || c === CharCodes.Gt || whitespace(c)) {
             this.special = special;
         }
-        this.stateInTagName(c); // Consume the token again
+        this._state = State.InTagName;
+        this._index--; // Consume the token again
     }
     private stateAfterSpecialLast(c: number, sectionStartOffset: number) {
         if (c === CharCodes.Gt || whitespace(c)) {
             this.sectionStart = this._index - sectionStartOffset;
             this.special = Special.None;
-            this.stateInClosingTagName(c); // Reconsume the token
+            this._state = State.InClosingTagName;
+            this._index--; // Reconsume the token
         } else this._state = State.Text;
     }
 
