@@ -748,8 +748,8 @@ export default class Tokenizer {
         this._index--;
     }
 
-    private decodeNumericEntity(offset: number, base: number, strict: boolean) {
-        const sectionStart = this.sectionStart + offset;
+    private decodeNumericEntity(base: 10 | 16, strict: boolean) {
+        const sectionStart = this.sectionStart + 2 + (base >> 4);
         if (sectionStart !== this._index) {
             // Parse entity
             const entity = this.buffer.substring(sectionStart, this._index);
@@ -761,10 +761,10 @@ export default class Tokenizer {
     }
     private stateInNumericEntity(c: number) {
         if (c === CharCodes.Semi) {
-            this.decodeNumericEntity(2, 10, true);
+            this.decodeNumericEntity(10, true);
         } else if (c < CharCodes.Zero || c > CharCodes.Nine) {
             if (this.allowLegacyEntity()) {
-                this.decodeNumericEntity(2, 10, false);
+                this.decodeNumericEntity(10, false);
             } else {
                 this._state = this.baseState;
             }
@@ -773,14 +773,14 @@ export default class Tokenizer {
     }
     private stateInHexEntity(c: number) {
         if (c === CharCodes.Semi) {
-            this.decodeNumericEntity(3, 16, true);
+            this.decodeNumericEntity(16, true);
         } else if (
             (c < CharCodes.LowerA || c > CharCodes.LowerF) &&
             (c < CharCodes.UpperA || c > CharCodes.UpperF) &&
             (c < CharCodes.Zero || c > CharCodes.Nine)
         ) {
             if (this.allowLegacyEntity()) {
-                this.decodeNumericEntity(3, 16, false);
+                this.decodeNumericEntity(16, false);
             } else {
                 this._state = this.baseState;
             }
@@ -1000,13 +1000,13 @@ export default class Tokenizer {
                 this.handleTrailingData();
             }
         } else if (this._state === State.InNumericEntity && !this.xmlMode) {
-            this.decodeNumericEntity(2, 10, false);
+            this.decodeNumericEntity(10, false);
             if (this.sectionStart < this._index) {
                 this._state = this.baseState;
                 this.handleTrailingData();
             }
         } else if (this._state === State.InHexEntity && !this.xmlMode) {
-            this.decodeNumericEntity(3, 16, false);
+            this.decodeNumericEntity(16, false);
             if (this.sectionStart < this._index) {
                 this._state = this.baseState;
                 this.handleTrailingData();
