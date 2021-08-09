@@ -252,7 +252,7 @@ const stateBeforeTitle1 = ifElseState("T", State.BeforeTitle2, State.InTagName);
 const stateBeforeTitle2 = ifElseState("L", State.BeforeTitle3, State.InTagName);
 const stateBeforeTitle3 = ifElseState("E", State.BeforeTitle4, State.InTagName);
 
-const stateAfterSpecialTEnd = ifElseState("I", State.AfterTitle1, State.Text);
+const stateBeforeSpecialTEnd = ifElseState("I", State.AfterTitle1, State.Text);
 const stateAfterTitle1 = ifElseState("T", State.AfterTitle2, State.Text);
 const stateAfterTitle2 = ifElseState("L", State.AfterTitle3, State.Text);
 const stateAfterTitle3 = ifElseState("E", State.AfterTitle4, State.Text);
@@ -758,7 +758,6 @@ export default class Tokenizer {
             this.emitPartial(this.trieResult);
         }
 
-        // TODO figure out if this is correct
         this.sectionStart = this._index - this.trieExcess + 1;
         this._state = this.baseState;
         this._index--;
@@ -891,7 +890,7 @@ export default class Tokenizer {
             } else if (this._state === State.BeforeSpecialSEnd) {
                 this.stateBeforeSpecialSEnd(c);
             } else if (this._state === State.BeforeSpecialTEnd) {
-                stateAfterSpecialTEnd(this, c);
+                stateBeforeSpecialTEnd(this, c);
             } else if (this._state === State.AfterScript1) {
                 stateAfterScript1(this, c);
             } else if (this._state === State.AfterScript2) {
