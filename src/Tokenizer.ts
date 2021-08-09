@@ -183,10 +183,6 @@ function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
     };
 }
 
-function consumeSpecialNameChar(upper: string, NEXT_STATE: State) {
-    return ifElseState(upper, NEXT_STATE, State.InTagName);
-}
-
 const stateBeforeCdata1 = ifElseState(
     "C",
     State.BeforeCdata2,
@@ -213,28 +209,48 @@ const stateBeforeCdata5 = ifElseState(
     State.InDeclaration
 );
 
-const stateBeforeScript1 = consumeSpecialNameChar("R", State.BeforeScript2);
-const stateBeforeScript2 = consumeSpecialNameChar("I", State.BeforeScript3);
-const stateBeforeScript3 = consumeSpecialNameChar("P", State.BeforeScript4);
-const stateBeforeScript4 = consumeSpecialNameChar("T", State.BeforeScript5);
+const stateBeforeScript1 = ifElseState(
+    "R",
+    State.BeforeScript2,
+    State.InTagName
+);
+const stateBeforeScript2 = ifElseState(
+    "I",
+    State.BeforeScript3,
+    State.InTagName
+);
+const stateBeforeScript3 = ifElseState(
+    "P",
+    State.BeforeScript4,
+    State.InTagName
+);
+const stateBeforeScript4 = ifElseState(
+    "T",
+    State.BeforeScript5,
+    State.InTagName
+);
 
 const stateAfterScript1 = ifElseState("R", State.AfterScript2, State.Text);
 const stateAfterScript2 = ifElseState("I", State.AfterScript3, State.Text);
 const stateAfterScript3 = ifElseState("P", State.AfterScript4, State.Text);
 const stateAfterScript4 = ifElseState("T", State.AfterScript5, State.Text);
 
-const stateBeforeStyle1 = consumeSpecialNameChar("Y", State.BeforeStyle2);
-const stateBeforeStyle2 = consumeSpecialNameChar("L", State.BeforeStyle3);
-const stateBeforeStyle3 = consumeSpecialNameChar("E", State.BeforeStyle4);
+const stateBeforeStyle1 = ifElseState("Y", State.BeforeStyle2, State.InTagName);
+const stateBeforeStyle2 = ifElseState("L", State.BeforeStyle3, State.InTagName);
+const stateBeforeStyle3 = ifElseState("E", State.BeforeStyle4, State.InTagName);
 
 const stateAfterStyle1 = ifElseState("Y", State.AfterStyle2, State.Text);
 const stateAfterStyle2 = ifElseState("L", State.AfterStyle3, State.Text);
 const stateAfterStyle3 = ifElseState("E", State.AfterStyle4, State.Text);
 
-const stateBeforeSpecialT = consumeSpecialNameChar("I", State.BeforeTitle1);
-const stateBeforeTitle1 = consumeSpecialNameChar("T", State.BeforeTitle2);
-const stateBeforeTitle2 = consumeSpecialNameChar("L", State.BeforeTitle3);
-const stateBeforeTitle3 = consumeSpecialNameChar("E", State.BeforeTitle4);
+const stateBeforeSpecialT = ifElseState(
+    "I",
+    State.BeforeTitle1,
+    State.InTagName
+);
+const stateBeforeTitle1 = ifElseState("T", State.BeforeTitle2, State.InTagName);
+const stateBeforeTitle2 = ifElseState("L", State.BeforeTitle3, State.InTagName);
+const stateBeforeTitle3 = ifElseState("E", State.BeforeTitle4, State.InTagName);
 
 const stateAfterSpecialTEnd = ifElseState("I", State.AfterTitle1, State.Text);
 const stateAfterTitle1 = ifElseState("T", State.AfterTitle2, State.Text);
