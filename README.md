@@ -126,26 +126,28 @@ you might want to use [danmactough/node-feedparser](https://github.com/danmactou
 
 After having some artificial benchmarks for some time, **@AndreasMadsen** published his [`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on real-world websites.
 
-At the time of writing, the latest versions of all supported parsers show the following performance characteristics on [Travis CI](https://travis-ci.org/AndreasMadsen/htmlparser-benchmark/builds/10805007) (please note that Travis doesn't guarantee equal conditions for all tests):
+At the time of writing, the latest versions of all supported parsers show the following performance characteristics on GitHub Actions (sourced from [here](https://github.com/AndreasMadsen/htmlparser-benchmark/blob/e78cd8fc6c2adac08deedd4f274c33537451186b/stats.txt)):
 
 ```
-gumbo-parser   : 34.9208 ms/file ± 21.4238
-html-parser    : 24.8224 ms/file ± 15.8703
-html5          : 419.597 ms/file ± 264.265
-htmlparser     : 60.0722 ms/file ± 384.844
-htmlparser2-dom: 12.0749 ms/file ± 6.49474
-htmlparser2    : 7.49130 ms/file ± 5.74368
-hubbub         : 30.4980 ms/file ± 16.4682
-libxmljs       : 14.1338 ms/file ± 18.6541
-parse5         : 22.0439 ms/file ± 15.3743
-sax            : 49.6513 ms/file ± 26.6032
+htmlparser2        : 2.17215 ms/file ± 3.81587
+node-html-parser   : 2.35983 ms/file ± 1.54487
+html5parser        : 2.43468 ms/file ± 2.81501
+neutron-html5parser: 2.61356 ms/file ± 1.70324
+htmlparser2-dom    : 3.09034 ms/file ± 4.77033
+html-dom-parser    : 3.56804 ms/file ± 5.15621
+libxmljs           : 4.07490 ms/file ± 2.99869
+htmljs-parser      : 6.15812 ms/file ± 7.52497
+parse5             : 9.70406 ms/file ± 6.74872
+htmlparser         : 15.0596 ms/file ± 89.0826
+html-parser        : 28.6282 ms/file ± 22.6652
+saxes              : 45.7921 ms/file ± 128.691
+html5              : 120.844 ms/file ± 153.944
 ```
 
 ## How does this module differ from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 
-This module started as a fork of the `htmlparser` module.
-The main difference is that `htmlparser2` is intended to be used only with node (it runs on other platforms using [browserify](https://github.com/substack/node-browserify)).
-`htmlparser2` was rewritten multiple times and, while it maintains an API that's compatible with `htmlparser` in most cases, the projects don't share any code anymore.
+In 2011, this module started as a fork of the `htmlparser` module.
+`htmlparser2` was rewritten multiple times and, while it maintains an API that's mostly compatible with `htmlparser` in most cases, the projects don't share any code anymore.
 
 The parser now provides a callback interface inspired by [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)).
 As a result, old handlers won't work anymore.
