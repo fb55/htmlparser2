@@ -122,7 +122,7 @@ interface TestFile {
  * @param getResult Function to be called with the actual results.
  */
 export function createSuite(
-    name: string,
+    name: "Events" | "Feeds" | "Stream",
     getResult: (
         file: TestFile,
         done: (error: Error | null, actual?: unknown | unknown[]) => void
