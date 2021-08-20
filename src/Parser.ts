@@ -193,7 +193,7 @@ export class Parser {
     /** The start index of the last event. */
     public startIndex = 0;
     /** The end index of the last event. */
-    public endIndex: number | null = null;
+    public endIndex = 0;
 
     private tagname = "";
     private attribname = "";
@@ -202,12 +202,14 @@ export class Parser {
     private stack: string[] = [];
     private readonly foreignContext: boolean[] = [];
     private readonly cbs: Partial<Handler>;
-    private readonly options: ParserOptions;
     private readonly lowerCaseTagNames: boolean;
     private readonly lowerCaseAttributeNames: boolean;
     private readonly tokenizer: Tokenizer;
 
-    constructor(cbs: Partial<Handler> | null, options: ParserOptions = {}) {
+    constructor(
+        cbs?: Partial<Handler> | null,
+        private readonly options: ParserOptions = {}
+    ) {
         this.options = options;
         this.cbs = cbs ?? {};
         this.lowerCaseTagNames = options.lowerCaseTags ?? !options.xmlMode;
@@ -220,31 +222,25 @@ export class Parser {
         this.cbs.onparserinit?.(this);
     }
 
-    private updatePosition(initialOffset: number) {
-        if (this.endIndex === null) {
-            if (this.tokenizer.sectionStart <= initialOffset) {
-                this.startIndex = 0;
-            } else {
-                this.startIndex = this.tokenizer.sectionStart - initialOffset;
-            }
-        } else {
-            this.startIndex = this.endIndex + 1;
-        }
+    private updatePosition(offset: number) {
+        this.startIndex = this.tokenizer.getAbsoluteSectionStart() - offset;
         this.endIndex = this.tokenizer.getAbsoluteIndex();
     }
 
     // Tokenizer event handlers
     ontext(data: string): void {
-        this.updatePosition(1);
-        (this.endIndex as number)--;
+        this.startIndex = this.tokenizer.getAbsoluteSectionStart();
+        this.endIndex = this.tokenizer.getAbsoluteIndex() - 1;
         this.cbs.ontext?.(data);
     }
 
-    isVoidElement(name: string): boolean {
+    protected isVoidElement(name: string): boolean {
         return !this.options.xmlMode && voidElements.has(name);
     }
 
     onopentagname(name: string): void {
+        this.updatePosition(1);
+
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
@@ -253,14 +249,12 @@ export class Parser {
             !this.options.xmlMode &&
             Object.prototype.hasOwnProperty.call(openImpliesClose, name)
         ) {
-            let el;
             while (
                 this.stack.length > 0 &&
-                openImpliesClose[name].has(
-                    (el = this.stack[this.stack.length - 1])
-                )
+                openImpliesClose[name].has(this.stack[this.stack.length - 1])
             ) {
-                this.onclosetag(el);
+                const el = this.stack.pop()!;
+                this.cbs.onclosetag?.(el);
             }
         }
         if (!this.isVoidElement(name)) {
@@ -276,7 +270,8 @@ export class Parser {
     }
 
     onopentagend(): void {
-        this.updatePosition(1);
+        this.endIndex = this.tokenizer.getAbsoluteIndex();
+
         if (this.attribs) {
             this.cbs.onopentag?.(this.tagname, this.attribs);
             this.attribs = null;
@@ -379,6 +374,7 @@ export class Parser {
 
     ondeclaration(value: string): void {
         if (this.cbs.onprocessinginstruction) {
+            this.updatePosition(2);
             const name = this.getInstructionName(value);
             this.cbs.onprocessinginstruction(`!${name}`, `!${value}`);
         }
@@ -386,6 +382,7 @@ export class Parser {
 
     onprocessinginstruction(value: string): void {
         if (this.cbs.onprocessinginstruction) {
+            this.updatePosition(2);
             const name = this.getInstructionName(value);
             this.cbs.onprocessinginstruction(`?${name}`, `?${value}`);
         }
