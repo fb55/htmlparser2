@@ -82,7 +82,7 @@ describe("API", () => {
     });
 
     test("should update the position", () => {
-        const p = new Parser(null);
+        const p = new Parser();
 
         p.write("foo");
 
@@ -95,8 +95,38 @@ describe("API", () => {
         expect(p.endIndex).toBe(7);
     });
 
+    test("should not have the start index be greater than the end index", () => {
+        const onopentag = jest.fn();
+        const onclosetag = jest.fn();
+
+        const p = new Parser({
+            onopentag(tag) {
+                expect(p.startIndex).toBeLessThanOrEqual(p.endIndex);
+                onopentag(tag, p.startIndex, p.endIndex);
+            },
+            onclosetag(tag) {
+                expect(p.startIndex).toBeLessThanOrEqual(p.endIndex);
+                onclosetag(tag, p.endIndex);
+            },
+        });
+
+        p.write("<p>");
+
+        expect(onopentag).toHaveBeenLastCalledWith("p", 0, 2);
+        expect(onclosetag).not.toHaveBeenCalled();
+
+        p.write("Foo");
+
+        p.write("<hr>");
+
+        expect(onopentag).toHaveBeenLastCalledWith("hr", 6, 9);
+        expect(onclosetag).toBeCalledTimes(2);
+        expect(onclosetag).toHaveBeenNthCalledWith(1, "p", 9);
+        expect(onclosetag).toHaveBeenNthCalledWith(2, "hr", 9);
+    });
+
     test("should update the position when a single tag is spread across multiple chunks", () => {
-        const p = new Parser(null);
+        const p = new Parser();
 
         p.write("<div ");
         p.write("foo=bar>");

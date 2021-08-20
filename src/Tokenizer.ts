@@ -340,6 +340,13 @@ export default class Tokenizer {
     }
 
     /**
+     * The start of the current section.
+     */
+    public getAbsoluteSectionStart(): number {
+        return this.sectionStart + this.bufferOffset;
+    }
+
+    /**
      * The current index within all of the written data.
      */
     public getAbsoluteIndex(): number {
