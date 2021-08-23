@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tokenizer should support self-closing special tags for self-closing script tag 1`] = `
+Array [
+  Array [
+    "onopentagname",
+    "script",
+  ],
+  Array [
+    "onselfclosingtag",
+  ],
+  Array [
+    "onopentagname",
+    "div",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "div",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should support self-closing special tags for self-closing style tag 1`] = `
+Array [
+  Array [
+    "onopentagname",
+    "style",
+  ],
+  Array [
+    "onselfclosingtag",
+  ],
+  Array [
+    "onopentagname",
+    "div",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "div",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should support self-closing special tags for self-closing title tag 1`] = `
+Array [
+  Array [
+    "onopentagname",
+    "title",
+  ],
+  Array [
+    "onselfclosingtag",
+  ],
+  Array [
+    "onopentagname",
+    "div",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "div",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should support standard special tags for normal script tag 1`] = `
+Array [
+  Array [
+    "onopentagname",
+    "script",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "script",
+  ],
+  Array [
+    "onopentagname",
+    "div",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "div",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should support standard special tags for normal sitle tag 1`] = `
+Array [
+  Array [
+    "onopentagname",
+    "title",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "title",
+  ],
+  Array [
+    "onopentagname",
+    "div",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "div",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should support standard special tags for normal style tag 1`] = `
+Array [
+  Array [
+    "onopentagname",
+    "style",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "style",
+  ],
+  Array [
+    "onopentagname",
+    "div",
+  ],
+  Array [
+    "onopentagend",
+  ],
+  Array [
+    "onclosetag",
+    "div",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
