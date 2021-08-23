@@ -9,7 +9,12 @@ import {
     Document,
 } from "domhandler";
 
-export { DomHandler, DomHandlerOptions };
+export {
+    DomHandler,
+    DomHandlerOptions,
+    /** Old name for DomHandler for backwards-compatibility with node-htmlparser. */
+    DomHandler as DefaultHandler,
+};
 
 type Options = ParserOptions & DomHandlerOptions;
 
@@ -59,15 +64,4 @@ export {
     default as Tokenizer,
     Callbacks as TokenizerCallbacks,
 } from "./Tokenizer";
-import * as ElementType from "domelementtype";
-export { ElementType };
-
-/*
- * All of the following exports exist for backwards-compatibility.
- * They should probably be removed eventually.
- */
-
-export * as DomUtils from "domutils";
-
-// Old names for Dom- & FeedHandler
-export { DomHandler as DefaultHandler };
+export * as ElementType from "domelementtype";
