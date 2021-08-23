@@ -246,6 +246,11 @@ export class Parser {
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
+
+        this.emitOpenTag(name);
+    }
+
+    private emitOpenTag(name: string) {
         this.tagname = name;
 
         const impliesClose =
@@ -307,11 +312,11 @@ export class Parser {
                     }
                 } else this.stack.length = pos;
             } else if (name === "p" && !this.options.xmlMode) {
-                this.onopentagname(name);
+                this.emitOpenTag(name);
                 this.closeCurrentTag();
             }
         } else if (!this.options.xmlMode && (name === "br" || name === "p")) {
-            this.onopentagname(name);
+            this.emitOpenTag(name);
             this.closeCurrentTag();
         }
     }

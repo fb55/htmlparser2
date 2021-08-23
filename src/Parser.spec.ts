@@ -145,6 +145,15 @@ describe("API", () => {
         expect(p.endIndex).toBe(12);
     });
 
+    test("should have the correct position for implied opening tags", () => {
+        const p = new Parser();
+
+        p.write("</p>");
+
+        expect(p.startIndex).toBe(0);
+        expect(p.endIndex).toBe(3);
+    });
+
     test("should parse <__proto__> (#387)", () => {
         const p = new Parser(null);
 
