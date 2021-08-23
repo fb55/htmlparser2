@@ -67,9 +67,7 @@ export { ElementType };
  * They should probably be removed eventually.
  */
 
-export * from "./FeedHandler";
 export * as DomUtils from "domutils";
 
 // Old names for Dom- & FeedHandler
 export { DomHandler as DefaultHandler };
-export { FeedHandler as RssHandler } from "./FeedHandler";
