@@ -291,13 +291,15 @@ export default class Tokenizer {
     private readonly entityTrie: Uint16Array;
 
     constructor(
-        options: { xmlMode?: boolean; decodeEntities?: boolean } | null,
+        {
+            xmlMode = false,
+            decodeEntities = true,
+        }: { xmlMode?: boolean; decodeEntities?: boolean },
         private readonly cbs: Callbacks
     ) {
-        this.cbs = cbs;
-        this.xmlMode = !!options?.xmlMode;
-        this.decodeEntities = options?.decodeEntities ?? true;
-        this.entityTrie = this.xmlMode ? xmlDecodeTree : htmlDecodeTree;
+        this.xmlMode = xmlMode;
+        this.decodeEntities = decodeEntities;
+        this.entityTrie = xmlMode ? xmlDecodeTree : htmlDecodeTree;
     }
 
     public reset(): void {
@@ -314,7 +316,8 @@ export default class Tokenizer {
 
     public write(chunk: string): void {
         if (this.ended) this.cbs.onerror(Error(".write() after done!"));
-        this.buffer += chunk;
+        if (this.buffer.length) this.buffer += chunk;
+        else this.buffer = chunk;
         this.parse();
     }
 
@@ -777,7 +780,7 @@ export default class Tokenizer {
             const entity = this.buffer.substring(sectionStart, this._index);
             const parsed = parseInt(entity, base);
             this.emitPartial(decodeCodePoint(parsed));
-            this.sectionStart = strict ? this._index + 1 : this._index;
+            this.sectionStart = this._index + Number(strict);
         }
         this._state = this.baseState;
     }
@@ -980,11 +983,9 @@ export default class Tokenizer {
                 this.stateInHexEntity(c);
             } else if (this._state === State.InNumericEntity) {
                 this.stateInNumericEntity(c);
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            } else if (this._state === State.BeforeNumericEntity) {
-                stateBeforeNumericEntity(this, c);
             } else {
-                this.cbs.onerror(Error("unknown _state"), this._state);
+                // `this._state === State.BeforeNumericEntity`
+                stateBeforeNumericEntity(this, c);
             }
             this._index++;
         }
@@ -1023,16 +1024,10 @@ export default class Tokenizer {
             }
         } else if (this._state === State.InNumericEntity && !this.xmlMode) {
             this.decodeNumericEntity(10, false);
-            if (this.sectionStart < this._index) {
-                this._state = this.baseState;
-                this.handleTrailingData();
-            }
+            // All trailing data will have been consumed
         } else if (this._state === State.InHexEntity && !this.xmlMode) {
             this.decodeNumericEntity(16, false);
-            if (this.sectionStart < this._index) {
-                this._state = this.baseState;
-                this.handleTrailingData();
-            }
+            // All trailing data will have been consumed
         } else if (
             this._state !== State.InTagName &&
             this._state !== State.BeforeAttributeName &&
@@ -1047,7 +1042,6 @@ export default class Tokenizer {
             this.cbs.ontext(data);
         }
         /*
-         * Else, ignore remaining data
          * TODO add a way to remove current tag
          */
     }
@@ -1057,7 +1051,7 @@ export default class Tokenizer {
     }
     private emitPartial(value: string) {
         if (this.baseState !== State.Text) {
-            this.cbs.onattribdata(value); // TODO implement the new event
+            this.cbs.onattribdata(value);
         } else {
             this.cbs.ontext(value);
         }

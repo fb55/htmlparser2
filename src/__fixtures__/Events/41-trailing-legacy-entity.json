@@ -1,0 +1,10 @@
+{
+    "name": "Trailing legacy entity",
+    "html": "&timesbar;&timesbar",
+    "expected": [
+        {
+            "data": ["⨱×bar"],
+            "event": "text"
+        }
+    ]
+}

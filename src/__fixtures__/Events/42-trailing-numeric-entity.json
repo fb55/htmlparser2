@@ -1,0 +1,10 @@
+{
+    "name": "Trailing numeric entity",
+    "html": "&#53&#53",
+    "expected": [
+        {
+            "data": ["55"],
+            "event": "text"
+        }
+    ]
+}
