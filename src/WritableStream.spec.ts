@@ -20,7 +20,6 @@ describe("WritableStream", () => {
 helper.createSuite("Stream", (test, cb) => {
     const filePath = path.join(
         __dirname,
-        "..",
         "__fixtures__",
         "Documents",
         test.file
