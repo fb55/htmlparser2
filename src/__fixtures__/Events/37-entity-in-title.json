@@ -1,6 +1,6 @@
 {
     "name": "entity in title (#592)",
-    "html": "<title>the &quot;title&quot;",
+    "html": "<title>the &quot;title&quot",
     "expected": [
         {
             "event": "opentagname",
