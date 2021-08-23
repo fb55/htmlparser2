@@ -89,10 +89,20 @@ describe("API", () => {
         expect(p.startIndex).toBe(0);
         expect(p.endIndex).toBe(2);
 
-        p.write("<bar>");
+        p.write("<select>");
 
         expect(p.startIndex).toBe(3);
-        expect(p.endIndex).toBe(7);
+        expect(p.endIndex).toBe(10);
+
+        p.write("<select>");
+
+        expect(p.startIndex).toBe(11);
+        expect(p.endIndex).toBe(18);
+
+        p.parseChunk("</select>");
+
+        expect(p.startIndex).toBe(19);
+        expect(p.endIndex).toBe(27);
     });
 
     test("should not have the start index be greater than the end index", () => {

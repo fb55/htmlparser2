@@ -286,7 +286,7 @@ export class Parser {
     }
 
     onclosetag(name: string): void {
-        this.updatePosition(1);
+        this.updatePosition(2);
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
