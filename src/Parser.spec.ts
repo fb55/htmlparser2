@@ -1,5 +1,5 @@
 import { Parser, Tokenizer } from ".";
-import type { Handler } from "./parser";
+import type { Handler } from "./Parser";
 
 describe("API", () => {
     test("should work without callbacks", () => {
