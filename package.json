@@ -67,8 +67,7 @@
     },
     "jest": {
         "preset": "ts-jest",
-        "testEnvironment": "node",
-        "coverageProvider": "v8"
+        "testEnvironment": "node"
     },
     "prettier": {
         "tabWidth": 4
