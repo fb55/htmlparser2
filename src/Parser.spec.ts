@@ -1,8 +1,9 @@
 import { Parser, Tokenizer } from ".";
+import type { Handler } from "./Parser";
 
 describe("API", () => {
     test("should work without callbacks", () => {
-        const cbs: Record<string, (t?: string) => void> = {};
+        const cbs: Partial<Handler> = { onerror: jest.fn() };
         const p = new Parser(cbs, {
             xmlMode: true,
             lowerCaseAttributeNames: true,
@@ -13,71 +14,64 @@ describe("API", () => {
 
         // Check for an error
         p.end();
-        let err = false;
-        cbs.onerror = () => (err = true);
         p.write("foo");
-        expect(err).toBeTruthy();
-        err = false;
+        expect(cbs.onerror).toHaveBeenLastCalledWith(
+            new Error(".write() after done!")
+        );
         p.end();
-        expect(err).toBeTruthy();
+        expect(cbs.onerror).toHaveBeenLastCalledWith(
+            new Error(".end() after done!")
+        );
 
         p.reset();
 
         // Remove method
-        cbs.onopentag = () => {
-            /* Ignore */
-        };
+        cbs.onopentag = jest.fn();
         p.write("<a foo");
         delete cbs.onopentag;
         p.write(">");
 
         // Pause/resume
-        let processed = false;
-        cbs.ontext = (t) => {
-            expect(t).toBe("foo");
-            processed = true;
-        };
+        const onText = jest.fn();
+        cbs.ontext = onText;
         p.pause();
         p.write("foo");
-        expect(processed).toBeFalsy();
+        expect(onText).not.toHaveBeenCalled();
         p.resume();
-        expect(processed).toBeTruthy();
-        processed = false;
+        expect(onText).toHaveBeenLastCalledWith("foo");
         p.pause();
-        expect(processed).toBeFalsy();
+        expect(onText).toHaveBeenCalledTimes(1);
         p.resume();
-        expect(processed).toBeFalsy();
+        expect(onText).toHaveBeenCalledTimes(1);
         p.pause();
         p.end("foo");
-        expect(processed).toBeFalsy();
+        expect(onText).toHaveBeenCalledTimes(1);
         p.resume();
-        expect(processed).toBeTruthy();
+        expect(onText).toHaveBeenCalledTimes(2);
+        expect(onText).toHaveBeenLastCalledWith("foo");
     });
 
     test("should back out of numeric entities (#125)", () => {
-        let finished = false;
+        const onend = jest.fn();
         let text = "";
         const p = new Parser({
             ontext(data) {
                 text += data;
             },
-            onend() {
-                finished = true;
-            },
+            onend,
         });
 
         p.end("id=770&#anchor");
 
-        expect(finished).toBeTruthy();
+        expect(onend).toHaveBeenCalledTimes(1);
         expect(text).toBe("id=770&#anchor");
 
         p.reset();
         text = "";
-        finished = false;
 
         p.end("0&#xn");
 
-        expect(finished).toBeTruthy();
+        expect(onend).toHaveBeenCalledTimes(2);
         expect(text).toBe("0&#xn");
     });
 
