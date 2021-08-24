@@ -23,6 +23,10 @@ describe("API", () => {
             new Error(".end() after done!")
         );
 
+        // Should ignore the error if there is no callback
+        delete cbs.onerror;
+        p.write("foo");
+
         p.reset();
 
         // Remove method
