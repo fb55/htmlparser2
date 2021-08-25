@@ -1,171 +1,44 @@
 import { Tokenizer } from ".";
 
-class CallbackLogger {
-    log: string[] = [];
+function tokenize(str: string) {
+    const log: unknown[][] = [];
+    const tokenizer = new Tokenizer(
+        {},
+        new Proxy({} as any, {
+            get(_, prop) {
+                return (...args: unknown[]) => log.push([prop, ...args]);
+            },
+        })
+    );
 
-    onattribdata(value: string) {
-        this.log.push(`onattribdata: '${value}'`);
-    }
-    onattribend() {
-        this.log.push(`onattribend`);
-    }
-    onattribname(name: string) {
-        this.log.push(`onattribname: '${name}'`);
-    }
-    oncdata(data: string) {
-        this.log.push(`oncdata: '${data}'`);
-    }
-    onclosetag(name: string) {
-        this.log.push(`onclosetag: '${name}'`);
-    }
-    oncomment(data: string) {
-        this.log.push(`oncomment: '${data}'`);
-    }
-    ondeclaration(content: string) {
-        this.log.push(`ondeclaration: '${content}'`);
-    }
-    onend() {
-        this.log.push(`onend`);
-    }
-    onerror(error: Error, state?: unknown) {
-        this.log.push(`onerror: '${error}', '${state}'`);
-    }
-    onopentagend() {
-        this.log.push(`onopentagend`);
-    }
-    onopentagname(name: string) {
-        this.log.push(`onopentagname: '${name}'`);
-    }
-    onprocessinginstruction(instruction: string) {
-        this.log.push(`onprocessinginstruction: '${instruction}'`);
-    }
-    onselfclosingtag() {
-        this.log.push(`onselfclosingtag`);
-    }
-    ontext(value: string) {
-        this.log.push(`ontext: '${value}'`);
-    }
+    tokenizer.write(str);
+    tokenizer.end();
+
+    return log;
 }
 
 describe("Tokenizer", () => {
-    test("should support self-closing special tags", () => {
-        const logger = new CallbackLogger();
-        const tokenizer = new Tokenizer(
-            {
-                xmlMode: false,
-                decodeEntities: false,
-            },
-            logger
-        );
-
-        const selfClosingScriptInput = "<script /><div></div>";
-        const selfClosingScriptOutput = [
-            "onopentagname: 'script'",
-            "onselfclosingtag",
-            "onopentagname: 'div'",
-            "onopentagend",
-            "onclosetag: 'div'",
-            "onend",
-        ];
-
-        tokenizer.write(selfClosingScriptInput);
-        tokenizer.end();
-        expect(logger.log).toEqual(selfClosingScriptOutput);
-        tokenizer.reset();
-        logger.log = [];
-
-        const selfClosingStyleInput = "<style /><div></div>";
-        const selfClosingStyleOutput = [
-            "onopentagname: 'style'",
-            "onselfclosingtag",
-            "onopentagname: 'div'",
-            "onopentagend",
-            "onclosetag: 'div'",
-            "onend",
-        ];
-
-        tokenizer.write(selfClosingStyleInput);
-        tokenizer.end();
-        expect(logger.log).toEqual(selfClosingStyleOutput);
-        tokenizer.reset();
-        logger.log = [];
-
-        const selfClosingTitleInput = "<title /><div></div>";
-        const selfClosingTitleOutput = [
-            "onopentagname: 'title'",
-            "onselfclosingtag",
-            "onopentagname: 'div'",
-            "onopentagend",
-            "onclosetag: 'div'",
-            "onend",
-        ];
-
-        tokenizer.write(selfClosingTitleInput);
-        tokenizer.end();
-        expect(logger.log).toEqual(selfClosingTitleOutput);
-        tokenizer.reset();
-        logger.log = [];
+    describe("should support self-closing special tags", () => {
+        it("for self-closing script tag", () => {
+            expect(tokenize("<script /><div></div>")).toMatchSnapshot();
+        });
+        it("for self-closing style tag", () => {
+            expect(tokenize("<style /><div></div>")).toMatchSnapshot();
+        });
+        it("for self-closing title tag", () => {
+            expect(tokenize("<title /><div></div>")).toMatchSnapshot();
+        });
     });
 
-    test("should support standard special tags", () => {
-        const logger = new CallbackLogger();
-        const tokenizer = new Tokenizer(
-            {
-                xmlMode: false,
-                decodeEntities: false,
-            },
-            logger
-        );
-
-        const normalScriptInput = "<script></script><div></div>";
-        const normalScriptOutput = [
-            "onopentagname: 'script'",
-            "onopentagend",
-            "onclosetag: 'script'",
-            "onopentagname: 'div'",
-            "onopentagend",
-            "onclosetag: 'div'",
-            "onend",
-        ];
-
-        tokenizer.write(normalScriptInput);
-        tokenizer.end();
-        expect(logger.log).toEqual(normalScriptOutput);
-        tokenizer.reset();
-        logger.log = [];
-
-        const normalStyleInput = "<style></style><div></div>";
-        const normalStyleOutput = [
-            "onopentagname: 'style'",
-            "onopentagend",
-            "onclosetag: 'style'",
-            "onopentagname: 'div'",
-            "onopentagend",
-            "onclosetag: 'div'",
-            "onend",
-        ];
-
-        tokenizer.write(normalStyleInput);
-        tokenizer.end();
-        expect(logger.log).toEqual(normalStyleOutput);
-        tokenizer.reset();
-        logger.log = [];
-
-        const normalTitleInput = "<title></title><div></div>";
-        const normalTitleOutput = [
-            "onopentagname: 'title'",
-            "onopentagend",
-            "onclosetag: 'title'",
-            "onopentagname: 'div'",
-            "onopentagend",
-            "onclosetag: 'div'",
-            "onend",
-        ];
-
-        tokenizer.write(normalTitleInput);
-        tokenizer.end();
-        expect(logger.log).toEqual(normalTitleOutput);
-        tokenizer.reset();
-        logger.log = [];
+    describe("should support standard special tags", () => {
+        it("for normal script tag", () => {
+            expect(tokenize("<script></script><div></div>")).toMatchSnapshot();
+        });
+        it("for normal style tag", () => {
+            expect(tokenize("<style></style><div></div>")).toMatchSnapshot();
+        });
+        it("for normal sitle tag", () => {
+            expect(tokenize("<title></title><div></div>")).toMatchSnapshot();
+        });
     });
 });

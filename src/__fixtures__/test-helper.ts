@@ -1,5 +1,4 @@
 import { Parser, Handler, ParserOptions } from "../Parser";
-import { CollectingHandler } from "../CollectingHandler";
 import fs from "fs";
 import path from "path";
 
@@ -33,51 +32,49 @@ interface Event {
 }
 
 /**
- * Creates a `CollectingHandler` that calls the supplied
- * callback with simplified events on completion.
+ * Creates a handler that calls the supplied callback with simplified events on
+ * completion.
  *
  * @internal
  * @param cb Function to call with all events.
  */
 export function getEventCollector(
     cb: (error: Error | null, events?: Event[]) => void
-): CollectingHandler {
-    const handler = new CollectingHandler({
-        onerror: cb,
-        onend() {
-            cb(null, handler.events.reduce(eventReducer, []));
-        },
-    });
+): Partial<Handler> {
+    const events: Event[] = [];
 
-    return handler;
-}
+    function handle(event: string, ...data: unknown[]): void {
+        if (event === "onerror") {
+            cb(data[0] as Error);
+        } else if (event === "onend") {
+            cb(null, events);
+        } else if (event === "onreset") {
+            events.length = 0;
+        } else if (event === "onparserinit") {
+            // Ignore
+        } else if (
+            event === "ontext" &&
+            events[events.length - 1]?.event === "text"
+        ) {
+            // Combine text nodes
+            (events[events.length - 1].data[0] as string) += data[0];
+        } else {
+            // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
+            if (event === "onattribute" && data[2] === undefined) {
+                data.pop();
+            }
 
-function eventReducer(
-    events: Event[],
-    [event, ...data]: [string, ...unknown[]]
-): Event[] {
-    if (event === "onerror" || event === "onend" || event === "onparserinit") {
-        // Ignore
-    } else if (
-        event === "ontext" &&
-        events.length &&
-        events[events.length - 1].event === "text"
-    ) {
-        // Combine text nodes
-        (events[events.length - 1].data[0] as string) += data[0];
-    } else {
-        // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
-        if (event === "onattribute" && data[2] === undefined) {
-            data.pop();
+            events.push({
+                event: event.substr(2),
+                data,
+            });
         }
-
-        events.push({
-            event: event.substr(2),
-            data,
-        });
     }
 
-    return events;
+    return new Proxy(
+        {},
+        { get: (_, event) => handle.bind(null, event as string) }
+    );
 }
 
 /**

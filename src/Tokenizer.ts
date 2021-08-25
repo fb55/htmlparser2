@@ -315,14 +315,14 @@ export default class Tokenizer {
     }
 
     public write(chunk: string): void {
-        if (this.ended) this.cbs.onerror(Error(".write() after done!"));
+        if (this.ended) return this.cbs.onerror(Error(".write() after done!"));
         if (this.buffer.length) this.buffer += chunk;
         else this.buffer = chunk;
         this.parse();
     }
 
     public end(chunk?: string): void {
-        if (this.ended) this.cbs.onerror(Error(".end() after done!"));
+        if (this.ended) return this.cbs.onerror(Error(".end() after done!"));
         if (chunk) this.write(chunk);
         this.ended = true;
         if (this.running) this.finish();
