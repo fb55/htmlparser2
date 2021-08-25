@@ -1,8 +1,8 @@
 import { Parser } from "..";
 import * as helper from "../__fixtures__/test-helper";
 
-helper.createSuite("Events", ({ options, html }, cb) =>
-    helper.writeToParser(helper.getEventCollector(cb), options?.parser, html)
+helper.createSuite("Events", ({ options, input }, cb) =>
+    helper.writeToParser(helper.getEventCollector(cb), options?.parser, input)
 );
 
 describe("Helper", () => {

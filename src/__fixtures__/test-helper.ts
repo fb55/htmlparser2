@@ -29,6 +29,8 @@ export function writeToParser(
 interface Event {
     event: string;
     data: unknown[];
+    startIndex?: number;
+    endIndex?: number;
 }
 
 /**
@@ -42,6 +44,7 @@ export function getEventCollector(
     cb: (error: Error | null, events?: Event[]) => void
 ): Partial<Handler> {
     const events: Event[] = [];
+    let parser: Parser;
 
     function handle(event: string, ...data: unknown[]): void {
         if (event === "onerror") {
@@ -51,13 +54,16 @@ export function getEventCollector(
         } else if (event === "onreset") {
             events.length = 0;
         } else if (event === "onparserinit") {
-            // Ignore
+            parser = data[0] as Parser;
+            // Don't collect event
         } else if (
             event === "ontext" &&
             events[events.length - 1]?.event === "text"
         ) {
+            const last = events[events.length - 1];
             // Combine text nodes
-            (events[events.length - 1].data[0] as string) += data[0];
+            (last.data[0] as string) += data[0];
+            // `last.endIndex = parser.endIndex;
         } else {
             // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
             if (event === "onattribute" && data[2] === undefined) {
@@ -66,8 +72,13 @@ export function getEventCollector(
 
             events.push({
                 event: event.substr(2),
+                // `startIndex: parser.startIndex,
+
+                // `endIndex: parser.endIndex,
                 data,
             });
+
+            parser.endIndex;
         }
     }
 
@@ -104,7 +115,7 @@ interface TestFile {
     options?: {
         parser?: ParserOptions;
     } & Partial<ParserOptions>;
-    html: string;
+    input: string;
     file: string;
     useSnapshot?: boolean;
     expected?: unknown | unknown[];
