@@ -1,10 +1,10 @@
 {
     "name": "Multi-byte entity",
-    "html": "&NotGreaterFullEqual;",
+    "input": "&NotGreaterFullEqual;",
     "expected": [
         {
-            "data": ["≧̸"],
-            "event": "text"
+            "event": "text",
+            "data": ["≧̸"]
         }
     ]
 }

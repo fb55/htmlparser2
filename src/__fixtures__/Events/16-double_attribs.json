@@ -1,6 +1,6 @@
 {
     "name": "double attribute",
-    "html": "<h1 class=test class=boo></h1>",
+    "input": "<h1 class=test class=boo></h1>",
     "expected": [
         {
             "event": "opentagname",

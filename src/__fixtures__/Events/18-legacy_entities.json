@@ -1,10 +1,10 @@
 {
     "name": "legacy entities",
-    "html": "&AMPel&iacutee&ampeer;s&lter&sum",
+    "input": "&AMPel&iacutee&ampeer;s&lter&sum",
     "expected": [
         {
             "event": "text",
-            "data": ["&el\u00EDe&eer;s<er&sum"]
+            "data": ["&elíe&eer;s<er&sum"]
         }
     ]
 }

@@ -1,9 +1,11 @@
 {
     "name": "xml entities",
+    "input": "&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101",
     "options": {
-        "parser": { "xmlMode": true }
+        "parser": {
+            "xmlMode": true
+        }
     },
-    "html": "&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101",
     "expected": [
         {
             "event": "text",

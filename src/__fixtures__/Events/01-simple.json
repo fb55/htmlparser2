@@ -1,6 +1,6 @@
 {
     "name": "simple",
-    "html": "<h1 class=test>adsf</h1>",
+    "input": "<h1 class=test>adsf</h1>",
     "expected": [
         {
             "event": "opentagname",

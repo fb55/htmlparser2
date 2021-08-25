@@ -1,11 +1,11 @@
 {
     "name": "entity in title - decodeEntities=false (#592)",
+    "input": "<title>the &quot;title&quot;",
     "options": {
         "parser": {
             "decodeEntities": false
         }
     },
-    "html": "<title>the &quot;title&quot;",
     "expected": [
         {
             "event": "opentagname",

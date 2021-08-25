@@ -1,6 +1,6 @@
 {
     "name": "</title> in <script> (#745)",
-    "html": "<script>'</title>'</script>",
+    "input": "<script>'</title>'</script>",
     "expected": [
         {
             "event": "opentagname",

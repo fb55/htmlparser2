@@ -1,6 +1,6 @@
 {
     "name": "CDATA (inside special)",
-    "html": "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
+    "input": "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
     "expected": [
         {
             "event": "opentagname",

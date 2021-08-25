@@ -1,6 +1,6 @@
 {
     "name": "Entities in attributes",
-    "html": "<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>",
+    "input": "<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>",
     "expected": [
         {
             "event": "opentagname",

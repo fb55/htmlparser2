@@ -1,6 +1,6 @@
 {
     "name": "Not quite closed",
-    "html": "<foo /bar></foo bar>",
+    "input": "<foo /bar></foo bar>",
     "expected": [
         {
             "event": "opentagname",

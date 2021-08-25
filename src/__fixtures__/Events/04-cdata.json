@@ -1,9 +1,11 @@
 {
     "name": "CDATA",
+    "input": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag><![CD>",
     "options": {
-        "parser": { "xmlMode": true }
+        "parser": {
+            "xmlMode": true
+        }
     },
-    "html": "<tag><![CDATA[ asdf ><asdf></adsf><> fo]]></tag><![CD>",
     "expected": [
         {
             "event": "opentagname",

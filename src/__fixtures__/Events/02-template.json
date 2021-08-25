@@ -1,6 +1,6 @@
 {
     "name": "Template script tags",
-    "html": "<p><script type=\"text/template\"><h1>Heading1</h1></script></p>",
+    "input": "<p><script type=\"text/template\"><h1>Heading1</h1></script></p>",
     "expected": [
         {
             "event": "opentagname",

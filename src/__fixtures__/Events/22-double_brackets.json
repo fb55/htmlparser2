@@ -1,6 +1,6 @@
 {
     "name": "double brackets",
-    "html": "<<princess-purpose>>testing</princess-purpose>",
+    "input": "<<princess-purpose>>testing</princess-purpose>",
     "expected": [
         {
             "event": "text",

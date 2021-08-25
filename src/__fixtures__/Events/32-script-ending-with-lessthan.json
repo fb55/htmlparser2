@@ -1,6 +1,6 @@
 {
     "name": "Scripts ending with <",
-    "html": "<script><</script>",
+    "input": "<script><</script>",
     "expected": [
         {
             "event": "opentagname",

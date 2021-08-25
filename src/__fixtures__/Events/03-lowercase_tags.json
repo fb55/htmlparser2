@@ -1,11 +1,11 @@
 {
     "name": "Lowercase tags",
+    "input": "<H1 class=test>adsf</H1>",
     "options": {
         "parser": {
             "lowerCaseTags": true
         }
     },
-    "html": "<H1 class=test>adsf</H1>",
     "expected": [
         {
             "event": "opentagname",

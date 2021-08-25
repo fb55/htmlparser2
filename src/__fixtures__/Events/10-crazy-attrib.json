@@ -1,6 +1,6 @@
 {
     "name": "crazy attribute",
-    "html": "<p < = '' FAIL>stuff</p><a",
+    "input": "<p < = '' FAIL>stuff</p><a",
     "expected": [
         {
             "event": "opentagname",

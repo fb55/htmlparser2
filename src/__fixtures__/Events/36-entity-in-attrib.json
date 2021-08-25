@@ -1,6 +1,6 @@
 {
     "name": "entity in attribute (#276)",
-    "html": "<img src=\"?&image_uri=1&&image;=2&image=3\"/>?&image_uri=1&&image;=2&image=3",
+    "input": "<img src=\"?&image_uri=1&&image;=2&image=3\"/>?&image_uri=1&&image;=2&image=3",
     "expected": [
         {
             "event": "opentagname",
@@ -12,7 +12,12 @@
         },
         {
             "event": "opentag",
-            "data": ["img", { "src": "?&image_uri=1&ℑ=2&image=3" }]
+            "data": [
+                "img",
+                {
+                    "src": "?&image_uri=1&ℑ=2&image=3"
+                }
+            ]
         },
         {
             "event": "closetag",

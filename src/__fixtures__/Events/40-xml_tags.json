@@ -1,33 +1,35 @@
 {
     "name": "XML tags",
+    "input": "<:foo><_bar>",
     "options": {
-        "parser": { "xmlMode": true }
+        "parser": {
+            "xmlMode": true
+        }
     },
-    "html": "<:foo><_bar>",
     "expected": [
         {
-            "data": [":foo"],
-            "event": "opentagname"
+            "event": "opentagname",
+            "data": [":foo"]
         },
         {
-            "data": [":foo", {}],
-            "event": "opentag"
+            "event": "opentag",
+            "data": [":foo", {}]
         },
         {
-            "data": ["_bar"],
-            "event": "opentagname"
+            "event": "opentagname",
+            "data": ["_bar"]
         },
         {
-            "data": ["_bar", {}],
-            "event": "opentag"
+            "event": "opentag",
+            "data": ["_bar", {}]
         },
         {
-            "data": ["_bar"],
-            "event": "closetag"
+            "event": "closetag",
+            "data": ["_bar"]
         },
         {
-            "data": [":foo"],
-            "event": "closetag"
+            "event": "closetag",
+            "data": [":foo"]
         }
     ]
 }

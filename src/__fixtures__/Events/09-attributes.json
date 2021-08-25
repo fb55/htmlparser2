@@ -1,6 +1,6 @@
 {
     "name": "attributes (no white space, no value, no quotes)",
-    "html": "<button class=\"test0\"title=\"test1\" disabled value=test2>adsf</button>",
+    "input": "<button class=\"test0\"title=\"test1\" disabled value=test2>adsf</button>",
     "expected": [
         {
             "event": "opentagname",

@@ -1,6 +1,6 @@
 {
     "name": "Self-closing tags",
-    "html": "<a href=http://test.com/>Foo</a><hr / >",
+    "input": "<a href=http://test.com/>Foo</a><hr / >",
     "expected": [
         {
             "event": "opentagname",
