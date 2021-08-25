@@ -88,11 +88,7 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
 
     return (err: null | Error, actual?: unknown | unknown[]) => {
         expect(err).toBeNull();
-        if (file.useSnapshot) {
-            expect(actual).toMatchSnapshot();
-        } else {
-            expect(actual).toStrictEqual(file.expected);
-        }
+        expect(actual).toStrictEqual(file.expected);
 
         if (repeated) done();
         else repeated = true;
@@ -106,7 +102,6 @@ interface TestFile {
     } & Partial<ParserOptions>;
     html: string;
     file: string;
-    useSnapshot?: boolean;
     expected?: unknown | unknown[];
 }
 
