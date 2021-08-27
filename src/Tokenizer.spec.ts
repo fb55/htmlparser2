@@ -44,21 +44,22 @@ describe("Tokenizer", () => {
 
     it("should not lose data when pausing", () => {
         const log: unknown[][] = [];
-        let tokenizer: Tokenizer;
+        const tokenizer = new Tokenizer(
+            {},
+            new Proxy({} as any, {
+                get(_, prop) {
+                    return (...args: unknown[]) => {
+                        if (prop === "ontext") {
+                            tokenizer.pause();
+                        }
+                        log.push([prop, ...args]);
+                    };
+                },
+            })
+        );
 
-        const handler = new Proxy({} as any, {
-            get(_, prop) {
-                return (...args: unknown[]) => {
-                    if (prop === "ontext") {
-                        tokenizer.pause();
-                    }
-                    log.push([prop, ...args]);
-                };
-            },
-        });
-
-        tokenizer = new Tokenizer({}, handler);
         tokenizer.write("&amp; it up!");
+        tokenizer.resume();
         tokenizer.resume();
         tokenizer.end();
 
