@@ -9,10 +9,14 @@
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title", {}]
         },
         {
@@ -21,6 +25,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 28,
+            "endIndex": 28,
             "data": ["title"]
         }
     ]

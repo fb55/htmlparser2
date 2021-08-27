@@ -4,10 +4,14 @@
     "expected": [
         {
             "event": "comment",
+            "startIndex": 5,
+            "endIndex": 16,
             "data": ["[CDATA[ foo ]]"]
         },
         {
             "event": "commentend",
+            "startIndex": 5,
+            "endIndex": 16,
             "data": []
         }
     ]

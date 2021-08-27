@@ -9,14 +9,20 @@
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 4,
             "data": ["tag"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 4,
             "data": ["tag", {}]
         },
         {
             "event": "cdatastart",
+            "startIndex": 5,
+            "endIndex": 41,
             "data": []
         },
         {
@@ -25,14 +31,20 @@
         },
         {
             "event": "cdataend",
+            "startIndex": 5,
+            "endIndex": 41,
             "data": []
         },
         {
             "event": "closetag",
+            "startIndex": 42,
+            "endIndex": 47,
             "data": ["tag"]
         },
         {
             "event": "processinginstruction",
+            "startIndex": 48,
+            "endIndex": 53,
             "data": ["![CD", "![CD"]
         }
     ]

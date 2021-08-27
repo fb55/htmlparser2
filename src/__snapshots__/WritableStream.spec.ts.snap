@@ -1,0 +1,5047 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stream Atom feed 1`] = `
+Array [
+  Object {
+    "data": Array [
+      "?xml",
+      "?xml version=\\"1.0\\" encoding=\\"utf-8\\"?",
+    ],
+    "endIndex": 37,
+    "event": "processinginstruction",
+    "startIndex": 0,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      " http://en.wikipedia.org/wiki/Atom_%28standard%29 ",
+    ],
+    "endIndex": 95,
+    "event": "comment",
+    "startIndex": 39,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 95,
+    "event": "commentend",
+    "startIndex": 39,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "feed",
+    ],
+    "endIndex": 102,
+    "event": "opentagname",
+    "startIndex": 97,
+  },
+  Object {
+    "data": Array [
+      "xmlns",
+      "http://www.w3.org/2005/Atom",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "feed",
+      Object {
+        "xmlns": "http://www.w3.org/2005/Atom",
+      },
+    ],
+    "endIndex": 138,
+    "event": "opentag",
+    "startIndex": 97,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 147,
+    "event": "opentagname",
+    "startIndex": 141,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 147,
+    "event": "opentag",
+    "startIndex": 141,
+  },
+  Object {
+    "data": Array [
+      "Example Feed",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 167,
+    "event": "closetag",
+    "startIndex": 160,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "subtitle",
+    ],
+    "endIndex": 179,
+    "event": "opentagname",
+    "startIndex": 170,
+  },
+  Object {
+    "data": Array [
+      "subtitle",
+      Object {},
+    ],
+    "endIndex": 179,
+    "event": "opentag",
+    "startIndex": 170,
+  },
+  Object {
+    "data": Array [
+      "A subtitle.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "subtitle",
+    ],
+    "endIndex": 201,
+    "event": "closetag",
+    "startIndex": 191,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 209,
+    "event": "opentagname",
+    "startIndex": 204,
+  },
+  Object {
+    "data": Array [
+      "href",
+      "http://example.org/feed/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "rel",
+      "self",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {
+        "href": "http://example.org/feed/",
+        "rel": "self",
+      },
+    ],
+    "endIndex": 254,
+    "event": "opentag",
+    "startIndex": 204,
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 254,
+    "event": "closetag",
+    "startIndex": 204,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 262,
+    "event": "opentagname",
+    "startIndex": 257,
+  },
+  Object {
+    "data": Array [
+      "href",
+      "http://example.org/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {
+        "href": "http://example.org/",
+      },
+    ],
+    "endIndex": 291,
+    "event": "opentag",
+    "startIndex": 257,
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 291,
+    "event": "closetag",
+    "startIndex": 257,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "id",
+    ],
+    "endIndex": 297,
+    "event": "opentagname",
+    "startIndex": 294,
+  },
+  Object {
+    "data": Array [
+      "id",
+      Object {},
+    ],
+    "endIndex": 297,
+    "event": "opentag",
+    "startIndex": 294,
+  },
+  Object {
+    "data": Array [
+      "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "id",
+    ],
+    "endIndex": 347,
+    "event": "closetag",
+    "startIndex": 343,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "updated",
+    ],
+    "endIndex": 358,
+    "event": "opentagname",
+    "startIndex": 350,
+  },
+  Object {
+    "data": Array [
+      "updated",
+      Object {},
+    ],
+    "endIndex": 358,
+    "event": "opentag",
+    "startIndex": 350,
+  },
+  Object {
+    "data": Array [
+      "2003-12-13T18:30:02Z",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "updated",
+    ],
+    "endIndex": 388,
+    "event": "closetag",
+    "startIndex": 379,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "author",
+    ],
+    "endIndex": 398,
+    "event": "opentagname",
+    "startIndex": 391,
+  },
+  Object {
+    "data": Array [
+      "author",
+      Object {},
+    ],
+    "endIndex": 398,
+    "event": "opentag",
+    "startIndex": 391,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "name",
+    ],
+    "endIndex": 407,
+    "event": "opentagname",
+    "startIndex": 402,
+  },
+  Object {
+    "data": Array [
+      "name",
+      Object {},
+    ],
+    "endIndex": 407,
+    "event": "opentag",
+    "startIndex": 402,
+  },
+  Object {
+    "data": Array [
+      "John Doe",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "name",
+    ],
+    "endIndex": 422,
+    "event": "closetag",
+    "startIndex": 416,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "email",
+    ],
+    "endIndex": 432,
+    "event": "opentagname",
+    "startIndex": 426,
+  },
+  Object {
+    "data": Array [
+      "email",
+      Object {},
+    ],
+    "endIndex": 432,
+    "event": "opentag",
+    "startIndex": 426,
+  },
+  Object {
+    "data": Array [
+      "johndoe@example.com",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "email",
+    ],
+    "endIndex": 459,
+    "event": "closetag",
+    "startIndex": 452,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "author",
+    ],
+    "endIndex": 470,
+    "event": "closetag",
+    "startIndex": 462,
+  },
+  Object {
+    "data": Array [
+      "
+
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "entry",
+    ],
+    "endIndex": 480,
+    "event": "opentagname",
+    "startIndex": 474,
+  },
+  Object {
+    "data": Array [
+      "entry",
+      Object {},
+    ],
+    "endIndex": 480,
+    "event": "opentag",
+    "startIndex": 474,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 490,
+    "event": "opentagname",
+    "startIndex": 484,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 490,
+    "event": "opentag",
+    "startIndex": 484,
+  },
+  Object {
+    "data": Array [
+      "Atom-Powered Robots Run Amok",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 526,
+    "event": "closetag",
+    "startIndex": 519,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 535,
+    "event": "opentagname",
+    "startIndex": 530,
+  },
+  Object {
+    "data": Array [
+      "href",
+      "http://example.org/2003/12/13/atom03",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {
+        "href": "http://example.org/2003/12/13/atom03",
+      },
+    ],
+    "endIndex": 581,
+    "event": "opentag",
+    "startIndex": 530,
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 581,
+    "event": "closetag",
+    "startIndex": 530,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 590,
+    "event": "opentagname",
+    "startIndex": 585,
+  },
+  Object {
+    "data": Array [
+      "rel",
+      "alternate",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "type",
+      "text/html",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "href",
+      "http://example.org/2003/12/13/atom03.html",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {
+        "href": "http://example.org/2003/12/13/atom03.html",
+        "rel": "alternate",
+        "type": "text/html",
+      },
+    ],
+    "endIndex": 673,
+    "event": "opentag",
+    "startIndex": 585,
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 673,
+    "event": "closetag",
+    "startIndex": 585,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 682,
+    "event": "opentagname",
+    "startIndex": 677,
+  },
+  Object {
+    "data": Array [
+      "rel",
+      "edit",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "href",
+      "http://example.org/2003/12/13/atom03/edit",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {
+        "href": "http://example.org/2003/12/13/atom03/edit",
+        "rel": "edit",
+      },
+    ],
+    "endIndex": 743,
+    "event": "opentag",
+    "startIndex": 677,
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 743,
+    "event": "closetag",
+    "startIndex": 677,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "id",
+    ],
+    "endIndex": 750,
+    "event": "opentagname",
+    "startIndex": 747,
+  },
+  Object {
+    "data": Array [
+      "id",
+      Object {},
+    ],
+    "endIndex": 750,
+    "event": "opentag",
+    "startIndex": 747,
+  },
+  Object {
+    "data": Array [
+      "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "id",
+    ],
+    "endIndex": 800,
+    "event": "closetag",
+    "startIndex": 796,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "updated",
+    ],
+    "endIndex": 812,
+    "event": "opentagname",
+    "startIndex": 804,
+  },
+  Object {
+    "data": Array [
+      "updated",
+      Object {},
+    ],
+    "endIndex": 812,
+    "event": "opentag",
+    "startIndex": 804,
+  },
+  Object {
+    "data": Array [
+      "2003-12-13T18:30:02Z",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "updated",
+    ],
+    "endIndex": 842,
+    "event": "closetag",
+    "startIndex": 833,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "content",
+    ],
+    "endIndex": 854,
+    "event": "opentagname",
+    "startIndex": 846,
+  },
+  Object {
+    "data": Array [
+      "type",
+      "html",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "content",
+      Object {
+        "type": "html",
+      },
+    ],
+    "endIndex": 866,
+    "event": "opentag",
+    "startIndex": 846,
+  },
+  Object {
+    "data": Array [
+      "p",
+    ],
+    "endIndex": 869,
+    "event": "opentagname",
+    "startIndex": 867,
+  },
+  Object {
+    "data": Array [
+      "p",
+      Object {},
+    ],
+    "endIndex": 869,
+    "event": "opentag",
+    "startIndex": 867,
+  },
+  Object {
+    "data": Array [
+      "Some content.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "p",
+    ],
+    "endIndex": 886,
+    "event": "closetag",
+    "startIndex": 883,
+  },
+  Object {
+    "data": Array [
+      "content",
+    ],
+    "endIndex": 896,
+    "event": "closetag",
+    "startIndex": 887,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "entry",
+    ],
+    "endIndex": 906,
+    "event": "closetag",
+    "startIndex": 899,
+  },
+  Object {
+    "data": Array [
+      "
+
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "entry",
+    ],
+    "endIndex": 916,
+    "event": "opentagname",
+    "startIndex": 910,
+  },
+  Object {
+    "data": Array [
+      "entry",
+      Object {},
+    ],
+    "endIndex": 917,
+    "event": "opentag",
+    "startIndex": 910,
+  },
+  Object {
+    "data": Array [
+      "entry",
+    ],
+    "endIndex": 917,
+    "event": "closetag",
+    "startIndex": 910,
+  },
+  Object {
+    "data": Array [
+      "
+
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "feed",
+    ],
+    "endIndex": 926,
+    "event": "closetag",
+    "startIndex": 920,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+]
+`;
+
+exports[`Stream Attributes 1`] = `
+Array [
+  Object {
+    "data": Array [
+      "!doctype",
+      "!doctype html",
+    ],
+    "endIndex": 14,
+    "event": "processinginstruction",
+    "startIndex": 0,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "html",
+    ],
+    "endIndex": 21,
+    "event": "opentagname",
+    "startIndex": 16,
+  },
+  Object {
+    "data": Array [
+      "html",
+      Object {},
+    ],
+    "endIndex": 21,
+    "event": "opentag",
+    "startIndex": 16,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "head",
+    ],
+    "endIndex": 28,
+    "event": "opentagname",
+    "startIndex": 23,
+  },
+  Object {
+    "data": Array [
+      "head",
+      Object {},
+    ],
+    "endIndex": 28,
+    "event": "opentag",
+    "startIndex": 23,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 37,
+    "event": "opentagname",
+    "startIndex": 31,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 37,
+    "event": "opentag",
+    "startIndex": 31,
+  },
+  Object {
+    "data": Array [
+      "Attributes test",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 60,
+    "event": "closetag",
+    "startIndex": 53,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "head",
+    ],
+    "endIndex": 68,
+    "event": "closetag",
+    "startIndex": 62,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "body",
+    ],
+    "endIndex": 75,
+    "event": "opentagname",
+    "startIndex": 70,
+  },
+  Object {
+    "data": Array [
+      "body",
+      Object {},
+    ],
+    "endIndex": 75,
+    "event": "opentag",
+    "startIndex": 70,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      " Normal attributes ",
+    ],
+    "endIndex": 103,
+    "event": "comment",
+    "startIndex": 78,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 103,
+    "event": "commentend",
+    "startIndex": 78,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "button",
+    ],
+    "endIndex": 113,
+    "event": "opentagname",
+    "startIndex": 106,
+  },
+  Object {
+    "data": Array [
+      "id",
+      "test0",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "class",
+      "value0",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "title",
+      "value1",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "button",
+      Object {
+        "class": "value0",
+        "id": "test0",
+        "title": "value1",
+      },
+    ],
+    "endIndex": 154,
+    "event": "opentag",
+    "startIndex": 106,
+  },
+  Object {
+    "data": Array [
+      "class=\\"value0\\" title=\\"value1\\"",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "button",
+    ],
+    "endIndex": 192,
+    "event": "closetag",
+    "startIndex": 184,
+  },
+  Object {
+    "data": Array [
+      "
+
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      " Attributes with no quotes or value ",
+    ],
+    "endIndex": 238,
+    "event": "comment",
+    "startIndex": 196,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 238,
+    "event": "commentend",
+    "startIndex": 196,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "button",
+    ],
+    "endIndex": 248,
+    "event": "opentagname",
+    "startIndex": 241,
+  },
+  Object {
+    "data": Array [
+      "id",
+      "test1",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "class",
+      "value2",
+      null,
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "disabled",
+      "",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "button",
+      Object {
+        "class": "value2",
+        "disabled": "",
+        "id": "test1",
+      },
+    ],
+    "endIndex": 281,
+    "event": "opentag",
+    "startIndex": 241,
+  },
+  Object {
+    "data": Array [
+      "class=value2 disabled",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "button",
+    ],
+    "endIndex": 311,
+    "event": "closetag",
+    "startIndex": 303,
+  },
+  Object {
+    "data": Array [
+      "
+
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      " Attributes with no space between them. No valid, but accepted by the browser ",
+    ],
+    "endIndex": 399,
+    "event": "comment",
+    "startIndex": 315,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 399,
+    "event": "commentend",
+    "startIndex": 315,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "button",
+    ],
+    "endIndex": 409,
+    "event": "opentagname",
+    "startIndex": 402,
+  },
+  Object {
+    "data": Array [
+      "id",
+      "test2",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "class",
+      "value4",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "title",
+      "value5",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "button",
+      Object {
+        "class": "value4",
+        "id": "test2",
+        "title": "value5",
+      },
+    ],
+    "endIndex": 449,
+    "event": "opentag",
+    "startIndex": 402,
+  },
+  Object {
+    "data": Array [
+      "class=\\"value4\\"title=\\"value5\\"",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "button",
+    ],
+    "endIndex": 486,
+    "event": "closetag",
+    "startIndex": 478,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "body",
+    ],
+    "endIndex": 494,
+    "event": "closetag",
+    "startIndex": 488,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "html",
+    ],
+    "endIndex": 502,
+    "event": "closetag",
+    "startIndex": 496,
+  },
+]
+`;
+
+exports[`Stream Basic html 1`] = `
+Array [
+  Object {
+    "data": Array [
+      "!doctype",
+      "!DOCTYPE html",
+    ],
+    "endIndex": 14,
+    "event": "processinginstruction",
+    "startIndex": 0,
+  },
+  Object {
+    "data": Array [
+      "html",
+    ],
+    "endIndex": 20,
+    "event": "opentagname",
+    "startIndex": 15,
+  },
+  Object {
+    "data": Array [
+      "html",
+      Object {},
+    ],
+    "endIndex": 20,
+    "event": "opentag",
+    "startIndex": 15,
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 27,
+    "event": "opentagname",
+    "startIndex": 21,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 27,
+    "event": "opentag",
+    "startIndex": 21,
+  },
+  Object {
+    "data": Array [
+      "The Title",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 44,
+    "event": "closetag",
+    "startIndex": 37,
+  },
+  Object {
+    "data": Array [
+      "body",
+    ],
+    "endIndex": 50,
+    "event": "opentagname",
+    "startIndex": 45,
+  },
+  Object {
+    "data": Array [
+      "body",
+      Object {},
+    ],
+    "endIndex": 50,
+    "event": "opentag",
+    "startIndex": 45,
+  },
+  Object {
+    "data": Array [
+      "Hello world",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "body",
+    ],
+    "endIndex": 68,
+    "event": "closetag",
+    "startIndex": 62,
+  },
+  Object {
+    "data": Array [
+      "html",
+    ],
+    "endIndex": 75,
+    "event": "closetag",
+    "startIndex": 69,
+  },
+]
+`;
+
+exports[`Stream RDF feed 1`] = `
+Array [
+  Object {
+    "data": Array [
+      "?xml",
+      "?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?",
+    ],
+    "endIndex": 37,
+    "event": "processinginstruction",
+    "startIndex": 0,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rdf:RDF",
+    ],
+    "endIndex": 47,
+    "event": "opentagname",
+    "startIndex": 39,
+  },
+  Object {
+    "data": Array [
+      "xmlns:rdf",
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns",
+      "http://purl.org/rss/1.0/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:ev",
+      "http://purl.org/rss/1.0/modules/event/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:content",
+      "http://purl.org/rss/1.0/modules/content/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:taxo",
+      "http://purl.org/rss/1.0/modules/taxonomy/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:dc",
+      "http://purl.org/dc/elements/1.1/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:syn",
+      "http://purl.org/rss/1.0/modules/syndication/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:dcterms",
+      "http://purl.org/dc/terms/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:admin",
+      "http://webns.net/mvcb/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "rdf:RDF",
+      Object {
+        "xmlns": "http://purl.org/rss/1.0/",
+        "xmlns:admin": "http://webns.net/mvcb/",
+        "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
+        "xmlns:dc": "http://purl.org/dc/elements/1.1/",
+        "xmlns:dcterms": "http://purl.org/dc/terms/",
+        "xmlns:ev": "http://purl.org/rss/1.0/modules/event/",
+        "xmlns:rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xmlns:syn": "http://purl.org/rss/1.0/modules/syndication/",
+        "xmlns:taxo": "http://purl.org/rss/1.0/modules/taxonomy/",
+      },
+    ],
+    "endIndex": 478,
+    "event": "opentag",
+    "startIndex": 39,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "channel",
+    ],
+    "endIndex": 489,
+    "event": "opentagname",
+    "startIndex": 481,
+  },
+  Object {
+    "data": Array [
+      "rdf:about",
+      "https://github.com/fb55/htmlparser2/",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "channel",
+      Object {
+        "rdf:about": "https://github.com/fb55/htmlparser2/",
+      },
+    ],
+    "endIndex": 538,
+    "event": "opentag",
+    "startIndex": 481,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 548,
+    "event": "opentagname",
+    "startIndex": 542,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 548,
+    "event": "opentag",
+    "startIndex": 542,
+  },
+  Object {
+    "data": Array [
+      "A title to parse and remember",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 585,
+    "event": "closetag",
+    "startIndex": 578,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 594,
+    "event": "opentagname",
+    "startIndex": 589,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 594,
+    "event": "opentag",
+    "startIndex": 589,
+  },
+  Object {
+    "data": Array [
+      "https://github.com/fb55/htmlparser2/",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 637,
+    "event": "closetag",
+    "startIndex": 631,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 653,
+    "event": "opentagname",
+    "startIndex": 641,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 654,
+    "event": "opentag",
+    "startIndex": 641,
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 654,
+    "event": "closetag",
+    "startIndex": 641,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+    ],
+    "endIndex": 670,
+    "event": "opentagname",
+    "startIndex": 658,
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+      Object {},
+    ],
+    "endIndex": 670,
+    "event": "opentag",
+    "startIndex": 658,
+  },
+  Object {
+    "data": Array [
+      "en-us",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+    ],
+    "endIndex": 689,
+    "event": "closetag",
+    "startIndex": 676,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+    ],
+    "endIndex": 703,
+    "event": "opentagname",
+    "startIndex": 693,
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+      Object {},
+    ],
+    "endIndex": 703,
+    "event": "opentag",
+    "startIndex": 693,
+  },
+  Object {
+    "data": Array [
+      "Copyright 2015 the authors",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+    ],
+    "endIndex": 741,
+    "event": "closetag",
+    "startIndex": 730,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:publisher",
+    ],
+    "endIndex": 758,
+    "event": "opentagname",
+    "startIndex": 745,
+  },
+  Object {
+    "data": Array [
+      "dc:publisher",
+      Object {},
+    ],
+    "endIndex": 758,
+    "event": "opentag",
+    "startIndex": 745,
+  },
+  Object {
+    "data": Array [
+      "webmaster@thisisafakedoma.in",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:publisher",
+    ],
+    "endIndex": 801,
+    "event": "closetag",
+    "startIndex": 787,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:creator",
+    ],
+    "endIndex": 816,
+    "event": "opentagname",
+    "startIndex": 805,
+  },
+  Object {
+    "data": Array [
+      "dc:creator",
+      Object {},
+    ],
+    "endIndex": 816,
+    "event": "opentag",
+    "startIndex": 805,
+  },
+  Object {
+    "data": Array [
+      "webmaster@thisisafakedoma.in",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:creator",
+    ],
+    "endIndex": 857,
+    "event": "closetag",
+    "startIndex": 845,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+    ],
+    "endIndex": 871,
+    "event": "opentagname",
+    "startIndex": 861,
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+      Object {},
+    ],
+    "endIndex": 871,
+    "event": "opentag",
+    "startIndex": 861,
+  },
+  Object {
+    "data": Array [
+      "https://github.com/fb55/htmlparser2/",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+    ],
+    "endIndex": 919,
+    "event": "closetag",
+    "startIndex": 908,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+    ],
+    "endIndex": 932,
+    "event": "opentagname",
+    "startIndex": 923,
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+      Object {},
+    ],
+    "endIndex": 932,
+    "event": "opentag",
+    "startIndex": 923,
+  },
+  Object {
+    "data": Array [
+      "A title to parse and remember",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+    ],
+    "endIndex": 972,
+    "event": "closetag",
+    "startIndex": 962,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+    ],
+    "endIndex": 984,
+    "event": "opentagname",
+    "startIndex": 976,
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+      Object {},
+    ],
+    "endIndex": 984,
+    "event": "opentag",
+    "startIndex": 976,
+  },
+  Object {
+    "data": Array [
+      "Collection",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+    ],
+    "endIndex": 1004,
+    "event": "closetag",
+    "startIndex": 995,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "syn:updateBase",
+    ],
+    "endIndex": 1023,
+    "event": "opentagname",
+    "startIndex": 1008,
+  },
+  Object {
+    "data": Array [
+      "syn:updateBase",
+      Object {},
+    ],
+    "endIndex": 1023,
+    "event": "opentag",
+    "startIndex": 1008,
+  },
+  Object {
+    "data": Array [
+      "2011-11-04T09:39:10-07:00",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "syn:updateBase",
+    ],
+    "endIndex": 1065,
+    "event": "closetag",
+    "startIndex": 1049,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "syn:updateFrequency",
+    ],
+    "endIndex": 1089,
+    "event": "opentagname",
+    "startIndex": 1069,
+  },
+  Object {
+    "data": Array [
+      "syn:updateFrequency",
+      Object {},
+    ],
+    "endIndex": 1089,
+    "event": "opentag",
+    "startIndex": 1069,
+  },
+  Object {
+    "data": Array [
+      "4",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "syn:updateFrequency",
+    ],
+    "endIndex": 1112,
+    "event": "closetag",
+    "startIndex": 1091,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "syn:updatePeriod",
+    ],
+    "endIndex": 1133,
+    "event": "opentagname",
+    "startIndex": 1116,
+  },
+  Object {
+    "data": Array [
+      "syn:updatePeriod",
+      Object {},
+    ],
+    "endIndex": 1133,
+    "event": "opentag",
+    "startIndex": 1116,
+  },
+  Object {
+    "data": Array [
+      "hourly",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "syn:updatePeriod",
+    ],
+    "endIndex": 1158,
+    "event": "closetag",
+    "startIndex": 1140,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "items",
+    ],
+    "endIndex": 1168,
+    "event": "opentagname",
+    "startIndex": 1162,
+  },
+  Object {
+    "data": Array [
+      "items",
+      Object {},
+    ],
+    "endIndex": 1168,
+    "event": "opentag",
+    "startIndex": 1162,
+  },
+  Object {
+    "data": Array [
+      "
+			",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rdf:Seq",
+    ],
+    "endIndex": 1181,
+    "event": "opentagname",
+    "startIndex": 1173,
+  },
+  Object {
+    "data": Array [
+      "rdf:Seq",
+      Object {},
+    ],
+    "endIndex": 1181,
+    "event": "opentag",
+    "startIndex": 1173,
+  },
+  Object {
+    "data": Array [
+      "
+				",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rdf:li",
+    ],
+    "endIndex": 1194,
+    "event": "opentagname",
+    "startIndex": 1187,
+  },
+  Object {
+    "data": Array [
+      "rdf:resource",
+      "http://somefakesite/path/to/something.html",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "rdf:li",
+      Object {
+        "rdf:resource": "http://somefakesite/path/to/something.html",
+      },
+    ],
+    "endIndex": 1253,
+    "event": "opentag",
+    "startIndex": 1187,
+  },
+  Object {
+    "data": Array [
+      "rdf:li",
+    ],
+    "endIndex": 1253,
+    "event": "closetag",
+    "startIndex": 1187,
+  },
+  Object {
+    "data": Array [
+      "
+			",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rdf:Seq",
+    ],
+    "endIndex": 1267,
+    "event": "closetag",
+    "startIndex": 1258,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "items",
+    ],
+    "endIndex": 1278,
+    "event": "closetag",
+    "startIndex": 1271,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "channel",
+    ],
+    "endIndex": 1290,
+    "event": "closetag",
+    "startIndex": 1281,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1298,
+    "event": "opentagname",
+    "startIndex": 1293,
+  },
+  Object {
+    "data": Array [
+      "rdf:about",
+      "http://somefakesite/path/to/something.html",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "item",
+      Object {
+        "rdf:about": "http://somefakesite/path/to/something.html",
+      },
+    ],
+    "endIndex": 1353,
+    "event": "opentag",
+    "startIndex": 1293,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 1363,
+    "event": "opentagname",
+    "startIndex": 1357,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 1363,
+    "event": "opentag",
+    "startIndex": 1357,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 1394,
+    "event": "cdatastart",
+    "startIndex": 1364,
+  },
+  Object {
+    "data": Array [
+      " Fast HTML Parsing ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 1394,
+    "event": "cdataend",
+    "startIndex": 1364,
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 1402,
+    "event": "closetag",
+    "startIndex": 1395,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 1411,
+    "event": "opentagname",
+    "startIndex": 1406,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 1411,
+    "event": "opentag",
+    "startIndex": 1406,
+  },
+  Object {
+    "data": Array [
+      "
+http://somefakesite/path/to/something.html
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 1462,
+    "event": "closetag",
+    "startIndex": 1456,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1478,
+    "event": "opentagname",
+    "startIndex": 1466,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 1478,
+    "event": "opentag",
+    "startIndex": 1466,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 1560,
+    "event": "cdatastart",
+    "startIndex": 1479,
+  },
+  Object {
+    "data": Array [
+      "
+Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 1560,
+    "event": "cdataend",
+    "startIndex": 1479,
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1574,
+    "event": "closetag",
+    "startIndex": 1561,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:date",
+    ],
+    "endIndex": 1586,
+    "event": "opentagname",
+    "startIndex": 1578,
+  },
+  Object {
+    "data": Array [
+      "dc:date",
+      Object {},
+    ],
+    "endIndex": 1586,
+    "event": "opentag",
+    "startIndex": 1578,
+  },
+  Object {
+    "data": Array [
+      "2011-11-04T09:35:17-07:00",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:date",
+    ],
+    "endIndex": 1621,
+    "event": "closetag",
+    "startIndex": 1612,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+    ],
+    "endIndex": 1637,
+    "event": "opentagname",
+    "startIndex": 1625,
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+      Object {},
+    ],
+    "endIndex": 1637,
+    "event": "opentag",
+    "startIndex": 1625,
+  },
+  Object {
+    "data": Array [
+      "en-us",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+    ],
+    "endIndex": 1656,
+    "event": "closetag",
+    "startIndex": 1643,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+    ],
+    "endIndex": 1670,
+    "event": "opentagname",
+    "startIndex": 1660,
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+      Object {},
+    ],
+    "endIndex": 1670,
+    "event": "opentag",
+    "startIndex": 1660,
+  },
+  Object {
+    "data": Array [
+      "Copyright 2015 the authors",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+    ],
+    "endIndex": 1708,
+    "event": "closetag",
+    "startIndex": 1697,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+    ],
+    "endIndex": 1722,
+    "event": "opentagname",
+    "startIndex": 1712,
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+      Object {},
+    ],
+    "endIndex": 1722,
+    "event": "opentag",
+    "startIndex": 1712,
+  },
+  Object {
+    "data": Array [
+      "
+http://somefakesite/path/to/something.html
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+    ],
+    "endIndex": 1778,
+    "event": "closetag",
+    "startIndex": 1767,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+    ],
+    "endIndex": 1791,
+    "event": "opentagname",
+    "startIndex": 1782,
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+      Object {},
+    ],
+    "endIndex": 1791,
+    "event": "opentag",
+    "startIndex": 1782,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 1822,
+    "event": "cdatastart",
+    "startIndex": 1792,
+  },
+  Object {
+    "data": Array [
+      " Fast HTML Parsing ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 1822,
+    "event": "cdataend",
+    "startIndex": 1792,
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+    ],
+    "endIndex": 1833,
+    "event": "closetag",
+    "startIndex": 1823,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+    ],
+    "endIndex": 1845,
+    "event": "opentagname",
+    "startIndex": 1837,
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+      Object {},
+    ],
+    "endIndex": 1845,
+    "event": "opentag",
+    "startIndex": 1837,
+  },
+  Object {
+    "data": Array [
+      "text",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+    ],
+    "endIndex": 1859,
+    "event": "closetag",
+    "startIndex": 1850,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dcterms:issued",
+    ],
+    "endIndex": 1878,
+    "event": "opentagname",
+    "startIndex": 1863,
+  },
+  Object {
+    "data": Array [
+      "dcterms:issued",
+      Object {},
+    ],
+    "endIndex": 1878,
+    "event": "opentag",
+    "startIndex": 1863,
+  },
+  Object {
+    "data": Array [
+      "2011-11-04T09:35:17-07:00",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dcterms:issued",
+    ],
+    "endIndex": 1920,
+    "event": "closetag",
+    "startIndex": 1904,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1929,
+    "event": "closetag",
+    "startIndex": 1923,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1937,
+    "event": "opentagname",
+    "startIndex": 1932,
+  },
+  Object {
+    "data": Array [
+      "rdf:about",
+      "http://somefakesite/path/to/something-else.html",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "item",
+      Object {
+        "rdf:about": "http://somefakesite/path/to/something-else.html",
+      },
+    ],
+    "endIndex": 1997,
+    "event": "opentag",
+    "startIndex": 1932,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 2007,
+    "event": "opentagname",
+    "startIndex": 2001,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 2007,
+    "event": "opentag",
+    "startIndex": 2001,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 2056,
+    "event": "cdatastart",
+    "startIndex": 2008,
+  },
+  Object {
+    "data": Array [
+      "
+This space intentionally left blank
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 2056,
+    "event": "cdataend",
+    "startIndex": 2008,
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 2064,
+    "event": "closetag",
+    "startIndex": 2057,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 2073,
+    "event": "opentagname",
+    "startIndex": 2068,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 2073,
+    "event": "opentag",
+    "startIndex": 2068,
+  },
+  Object {
+    "data": Array [
+      "
+http://somefakesite/path/to/something-else.html
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 2129,
+    "event": "closetag",
+    "startIndex": 2123,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 2145,
+    "event": "opentagname",
+    "startIndex": 2133,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 2145,
+    "event": "opentag",
+    "startIndex": 2133,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 2187,
+    "event": "cdatastart",
+    "startIndex": 2146,
+  },
+  Object {
+    "data": Array [
+      "
+The early bird gets the worm
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 2187,
+    "event": "cdataend",
+    "startIndex": 2146,
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 2201,
+    "event": "closetag",
+    "startIndex": 2188,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:date",
+    ],
+    "endIndex": 2213,
+    "event": "opentagname",
+    "startIndex": 2205,
+  },
+  Object {
+    "data": Array [
+      "dc:date",
+      Object {},
+    ],
+    "endIndex": 2213,
+    "event": "opentag",
+    "startIndex": 2205,
+  },
+  Object {
+    "data": Array [
+      "2011-11-04T09:34:54-07:00",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:date",
+    ],
+    "endIndex": 2248,
+    "event": "closetag",
+    "startIndex": 2239,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+    ],
+    "endIndex": 2264,
+    "event": "opentagname",
+    "startIndex": 2252,
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+      Object {},
+    ],
+    "endIndex": 2264,
+    "event": "opentag",
+    "startIndex": 2252,
+  },
+  Object {
+    "data": Array [
+      "en-us",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:language",
+    ],
+    "endIndex": 2283,
+    "event": "closetag",
+    "startIndex": 2270,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+    ],
+    "endIndex": 2297,
+    "event": "opentagname",
+    "startIndex": 2287,
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+      Object {},
+    ],
+    "endIndex": 2297,
+    "event": "opentag",
+    "startIndex": 2287,
+  },
+  Object {
+    "data": Array [
+      "Copyright 2015 the authors",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:rights",
+    ],
+    "endIndex": 2335,
+    "event": "closetag",
+    "startIndex": 2324,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+    ],
+    "endIndex": 2349,
+    "event": "opentagname",
+    "startIndex": 2339,
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+      Object {},
+    ],
+    "endIndex": 2349,
+    "event": "opentag",
+    "startIndex": 2339,
+  },
+  Object {
+    "data": Array [
+      "
+http://somefakesite/path/to/something-else.html
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:source",
+    ],
+    "endIndex": 2410,
+    "event": "closetag",
+    "startIndex": 2399,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+    ],
+    "endIndex": 2423,
+    "event": "opentagname",
+    "startIndex": 2414,
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+      Object {},
+    ],
+    "endIndex": 2423,
+    "event": "opentag",
+    "startIndex": 2414,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 2472,
+    "event": "cdatastart",
+    "startIndex": 2424,
+  },
+  Object {
+    "data": Array [
+      "
+This space intentionally left blank
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 2472,
+    "event": "cdataend",
+    "startIndex": 2424,
+  },
+  Object {
+    "data": Array [
+      "dc:title",
+    ],
+    "endIndex": 2483,
+    "event": "closetag",
+    "startIndex": 2473,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+    ],
+    "endIndex": 2495,
+    "event": "opentagname",
+    "startIndex": 2487,
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+      Object {},
+    ],
+    "endIndex": 2495,
+    "event": "opentag",
+    "startIndex": 2487,
+  },
+  Object {
+    "data": Array [
+      "text",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dc:type",
+    ],
+    "endIndex": 2509,
+    "event": "closetag",
+    "startIndex": 2500,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dcterms:issued",
+    ],
+    "endIndex": 2528,
+    "event": "opentagname",
+    "startIndex": 2513,
+  },
+  Object {
+    "data": Array [
+      "dcterms:issued",
+      Object {},
+    ],
+    "endIndex": 2528,
+    "event": "opentag",
+    "startIndex": 2513,
+  },
+  Object {
+    "data": Array [
+      "2011-11-04T09:34:54-07:00",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "dcterms:issued",
+    ],
+    "endIndex": 2570,
+    "event": "closetag",
+    "startIndex": 2554,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 2579,
+    "event": "closetag",
+    "startIndex": 2573,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rdf:RDF",
+    ],
+    "endIndex": 2590,
+    "event": "closetag",
+    "startIndex": 2581,
+  },
+]
+`;
+
+exports[`Stream RSS feed 1`] = `
+Array [
+  Object {
+    "data": Array [
+      "?xml",
+      "?xml version=\\"1.0\\"?",
+    ],
+    "endIndex": 20,
+    "event": "processinginstruction",
+    "startIndex": 0,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      " http://cyber.law.harvard.edu/rss/examples/rss2sample.xml ",
+    ],
+    "endIndex": 86,
+    "event": "comment",
+    "startIndex": 22,
+  },
+  Object {
+    "data": Array [],
+    "endIndex": 86,
+    "event": "commentend",
+    "startIndex": 22,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rss",
+    ],
+    "endIndex": 92,
+    "event": "opentagname",
+    "startIndex": 88,
+  },
+  Object {
+    "data": Array [
+      "version",
+      "2.0",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "rss",
+      Object {
+        "version": "2.0",
+      },
+    ],
+    "endIndex": 106,
+    "event": "opentag",
+    "startIndex": 88,
+  },
+  Object {
+    "data": Array [
+      "
+   ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "channel",
+    ],
+    "endIndex": 119,
+    "event": "opentagname",
+    "startIndex": 111,
+  },
+  Object {
+    "data": Array [
+      "channel",
+      Object {},
+    ],
+    "endIndex": 119,
+    "event": "opentag",
+    "startIndex": 111,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 133,
+    "event": "opentagname",
+    "startIndex": 127,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 133,
+    "event": "opentag",
+    "startIndex": 127,
+  },
+  Object {
+    "data": Array [
+      "Liftoff News",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 153,
+    "event": "closetag",
+    "startIndex": 146,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 166,
+    "event": "opentagname",
+    "startIndex": 161,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 166,
+    "event": "opentag",
+    "startIndex": 161,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 202,
+    "event": "closetag",
+    "startIndex": 196,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 222,
+    "event": "opentagname",
+    "startIndex": 210,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 222,
+    "event": "opentag",
+    "startIndex": 210,
+  },
+  Object {
+    "data": Array [
+      "Liftoff to Space Exploration.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 265,
+    "event": "closetag",
+    "startIndex": 252,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "language",
+    ],
+    "endIndex": 282,
+    "event": "opentagname",
+    "startIndex": 273,
+  },
+  Object {
+    "data": Array [
+      "language",
+      Object {},
+    ],
+    "endIndex": 282,
+    "event": "opentag",
+    "startIndex": 273,
+  },
+  Object {
+    "data": Array [
+      "en-us",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "language",
+    ],
+    "endIndex": 298,
+    "event": "closetag",
+    "startIndex": 288,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 314,
+    "event": "opentagname",
+    "startIndex": 306,
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+      Object {},
+    ],
+    "endIndex": 314,
+    "event": "opentag",
+    "startIndex": 306,
+  },
+  Object {
+    "data": Array [
+      "Tue, 10 Jun 2003 04:00:00 GMT",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 353,
+    "event": "closetag",
+    "startIndex": 344,
+  },
+  Object {
+    "data": Array [
+      "
+
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "lastBuildDate",
+    ],
+    "endIndex": 376,
+    "event": "opentagname",
+    "startIndex": 362,
+  },
+  Object {
+    "data": Array [
+      "lastBuildDate",
+      Object {},
+    ],
+    "endIndex": 376,
+    "event": "opentag",
+    "startIndex": 362,
+  },
+  Object {
+    "data": Array [
+      "Tue, 10 Jun 2003 09:41:01 GMT",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "lastBuildDate",
+    ],
+    "endIndex": 421,
+    "event": "closetag",
+    "startIndex": 406,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "docs",
+    ],
+    "endIndex": 434,
+    "event": "opentagname",
+    "startIndex": 429,
+  },
+  Object {
+    "data": Array [
+      "docs",
+      Object {},
+    ],
+    "endIndex": 434,
+    "event": "opentag",
+    "startIndex": 429,
+  },
+  Object {
+    "data": Array [
+      "http://blogs.law.harvard.edu/tech/rss",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "docs",
+    ],
+    "endIndex": 478,
+    "event": "closetag",
+    "startIndex": 472,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "generator",
+    ],
+    "endIndex": 496,
+    "event": "opentagname",
+    "startIndex": 486,
+  },
+  Object {
+    "data": Array [
+      "generator",
+      Object {},
+    ],
+    "endIndex": 496,
+    "event": "opentag",
+    "startIndex": 486,
+  },
+  Object {
+    "data": Array [
+      "Weblog Editor 2.0",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "generator",
+    ],
+    "endIndex": 525,
+    "event": "closetag",
+    "startIndex": 514,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "managingEditor",
+    ],
+    "endIndex": 548,
+    "event": "opentagname",
+    "startIndex": 533,
+  },
+  Object {
+    "data": Array [
+      "managingEditor",
+      Object {},
+    ],
+    "endIndex": 548,
+    "event": "opentag",
+    "startIndex": 533,
+  },
+  Object {
+    "data": Array [
+      "editor@example.com",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "managingEditor",
+    ],
+    "endIndex": 583,
+    "event": "closetag",
+    "startIndex": 567,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "webMaster",
+    ],
+    "endIndex": 601,
+    "event": "opentagname",
+    "startIndex": 591,
+  },
+  Object {
+    "data": Array [
+      "webMaster",
+      Object {},
+    ],
+    "endIndex": 601,
+    "event": "opentag",
+    "startIndex": 591,
+  },
+  Object {
+    "data": Array [
+      "webmaster@example.com",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "webMaster",
+    ],
+    "endIndex": 634,
+    "event": "closetag",
+    "startIndex": 623,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 647,
+    "event": "opentagname",
+    "startIndex": 642,
+  },
+  Object {
+    "data": Array [
+      "item",
+      Object {},
+    ],
+    "endIndex": 647,
+    "event": "opentag",
+    "startIndex": 642,
+  },
+  Object {
+    "data": Array [
+      "
+
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 665,
+    "event": "opentagname",
+    "startIndex": 659,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 665,
+    "event": "opentag",
+    "startIndex": 659,
+  },
+  Object {
+    "data": Array [
+      "Star City",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 682,
+    "event": "closetag",
+    "startIndex": 675,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 698,
+    "event": "opentagname",
+    "startIndex": 693,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 698,
+    "event": "opentag",
+    "startIndex": 693,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 761,
+    "event": "closetag",
+    "startIndex": 755,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 784,
+    "event": "opentagname",
+    "startIndex": 772,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 784,
+    "event": "opentag",
+    "startIndex": 772,
+  },
+  Object {
+    "data": Array [
+      "How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia's <a href=\\"http://howe.iki.rssi.ru/GCTC/gctc_e.htm\\">Star City</a>.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1034,
+    "event": "closetag",
+    "startIndex": 1021,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 1053,
+    "event": "opentagname",
+    "startIndex": 1045,
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+      Object {},
+    ],
+    "endIndex": 1053,
+    "event": "opentag",
+    "startIndex": 1045,
+  },
+  Object {
+    "data": Array [
+      "Tue, 03 Jun 2003 09:39:21 GMT",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 1092,
+    "event": "closetag",
+    "startIndex": 1083,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 1108,
+    "event": "opentagname",
+    "startIndex": 1103,
+  },
+  Object {
+    "data": Array [
+      "guid",
+      Object {},
+    ],
+    "endIndex": 1108,
+    "event": "opentag",
+    "startIndex": 1103,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/2003/06/03.html#item573",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 1167,
+    "event": "closetag",
+    "startIndex": 1161,
+  },
+  Object {
+    "data": Array [
+      "
+
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1182,
+    "event": "closetag",
+    "startIndex": 1176,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1195,
+    "event": "opentagname",
+    "startIndex": 1190,
+  },
+  Object {
+    "data": Array [
+      "item",
+      Object {},
+    ],
+    "endIndex": 1195,
+    "event": "opentag",
+    "startIndex": 1190,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1218,
+    "event": "opentagname",
+    "startIndex": 1206,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 1218,
+    "event": "opentag",
+    "startIndex": 1206,
+  },
+  Object {
+    "data": Array [
+      "Sky watchers in Europe, Asia, and parts of Alaska and Canada will experience a <a href=\\"http://science.nasa.gov/headlines/y2003/30may_solareclipse.htm\\">partial eclipse of the Sun</a> on Saturday, May 31st.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1449,
+    "event": "closetag",
+    "startIndex": 1436,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 1468,
+    "event": "opentagname",
+    "startIndex": 1460,
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+      Object {},
+    ],
+    "endIndex": 1468,
+    "event": "opentag",
+    "startIndex": 1460,
+  },
+  Object {
+    "data": Array [
+      "Fri, 30 May 2003 11:06:42 GMT",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 1507,
+    "event": "closetag",
+    "startIndex": 1498,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 1523,
+    "event": "opentagname",
+    "startIndex": 1518,
+  },
+  Object {
+    "data": Array [
+      "guid",
+      Object {},
+    ],
+    "endIndex": 1523,
+    "event": "opentag",
+    "startIndex": 1518,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/2003/05/30.html#item572",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 1582,
+    "event": "closetag",
+    "startIndex": 1576,
+  },
+  Object {
+    "data": Array [
+      "
+
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1597,
+    "event": "closetag",
+    "startIndex": 1591,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 1610,
+    "event": "opentagname",
+    "startIndex": 1605,
+  },
+  Object {
+    "data": Array [
+      "item",
+      Object {},
+    ],
+    "endIndex": 1610,
+    "event": "opentag",
+    "startIndex": 1605,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 1627,
+    "event": "opentagname",
+    "startIndex": 1621,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 1627,
+    "event": "opentag",
+    "startIndex": 1621,
+  },
+  Object {
+    "data": Array [
+      "The Engine That Does More",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 1660,
+    "event": "closetag",
+    "startIndex": 1653,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 1676,
+    "event": "opentagname",
+    "startIndex": 1671,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 1676,
+    "event": "opentag",
+    "startIndex": 1671,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/news/2003/news-VASIMR.asp",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 1737,
+    "event": "closetag",
+    "startIndex": 1731,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1760,
+    "event": "opentagname",
+    "startIndex": 1748,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 1760,
+    "event": "opentag",
+    "startIndex": 1748,
+  },
+  Object {
+    "data": Array [
+      "Before man travels to Mars, NASA hopes to design new engines that will let us fly through the Solar System more quickly.  The proposed VASIMR engine would do that.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 1937,
+    "event": "closetag",
+    "startIndex": 1924,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 1956,
+    "event": "opentagname",
+    "startIndex": 1948,
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+      Object {},
+    ],
+    "endIndex": 1956,
+    "event": "opentag",
+    "startIndex": 1948,
+  },
+  Object {
+    "data": Array [
+      "Tue, 27 May 2003 08:37:32 GMT",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 1995,
+    "event": "closetag",
+    "startIndex": 1986,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 2011,
+    "event": "opentagname",
+    "startIndex": 2006,
+  },
+  Object {
+    "data": Array [
+      "guid",
+      Object {},
+    ],
+    "endIndex": 2011,
+    "event": "opentag",
+    "startIndex": 2006,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/2003/05/27.html#item571",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 2070,
+    "event": "closetag",
+    "startIndex": 2064,
+  },
+  Object {
+    "data": Array [
+      "
+
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 2085,
+    "event": "closetag",
+    "startIndex": 2079,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 2098,
+    "event": "opentagname",
+    "startIndex": 2093,
+  },
+  Object {
+    "data": Array [
+      "item",
+      Object {},
+    ],
+    "endIndex": 2098,
+    "event": "opentag",
+    "startIndex": 2093,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 2115,
+    "event": "opentagname",
+    "startIndex": 2109,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 2115,
+    "event": "opentag",
+    "startIndex": 2109,
+  },
+  Object {
+    "data": Array [
+      "Astronauts' Dirty Laundry",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 2148,
+    "event": "closetag",
+    "startIndex": 2141,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 2164,
+    "event": "opentagname",
+    "startIndex": 2159,
+  },
+  Object {
+    "data": Array [
+      "link",
+      Object {},
+    ],
+    "endIndex": 2164,
+    "event": "opentag",
+    "startIndex": 2159,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/news/2003/news-laundry.asp",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "link",
+    ],
+    "endIndex": 2226,
+    "event": "closetag",
+    "startIndex": 2220,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 2249,
+    "event": "opentagname",
+    "startIndex": 2237,
+  },
+  Object {
+    "data": Array [
+      "description",
+      Object {},
+    ],
+    "endIndex": 2249,
+    "event": "opentag",
+    "startIndex": 2237,
+  },
+  Object {
+    "data": Array [
+      "Compared to earlier spacecraft, the International Space Station has many luxuries, but laundry facilities are not one of them.  Instead, astronauts have other options.",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "description",
+    ],
+    "endIndex": 2430,
+    "event": "closetag",
+    "startIndex": 2417,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 2449,
+    "event": "opentagname",
+    "startIndex": 2441,
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+      Object {},
+    ],
+    "endIndex": 2449,
+    "event": "opentag",
+    "startIndex": 2441,
+  },
+  Object {
+    "data": Array [
+      "Tue, 20 May 2003 08:56:02 GMT",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "pubDate",
+    ],
+    "endIndex": 2488,
+    "event": "closetag",
+    "startIndex": 2479,
+  },
+  Object {
+    "data": Array [
+      "
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 2504,
+    "event": "opentagname",
+    "startIndex": 2499,
+  },
+  Object {
+    "data": Array [
+      "guid",
+      Object {},
+    ],
+    "endIndex": 2504,
+    "event": "opentag",
+    "startIndex": 2499,
+  },
+  Object {
+    "data": Array [
+      "http://liftoff.msfc.nasa.gov/2003/05/20.html#item570",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "guid",
+    ],
+    "endIndex": 2563,
+    "event": "closetag",
+    "startIndex": 2557,
+  },
+  Object {
+    "data": Array [
+      "
+
+         ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "media:content",
+    ],
+    "endIndex": 2589,
+    "event": "opentagname",
+    "startIndex": 2575,
+  },
+  Object {
+    "data": Array [
+      "height",
+      "200",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "medium",
+      "image",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "url",
+      "https://picsum.photos/200",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "width",
+      "200",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "media:content",
+      Object {
+        "height": "200",
+        "medium": "image",
+        "url": "https://picsum.photos/200",
+        "width": "200",
+      },
+    ],
+    "endIndex": 2662,
+    "event": "opentag",
+    "startIndex": 2575,
+  },
+  Object {
+    "data": Array [
+      "media:content",
+    ],
+    "endIndex": 2662,
+    "event": "closetag",
+    "startIndex": 2575,
+  },
+  Object {
+    "data": Array [
+      "
+      ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "item",
+    ],
+    "endIndex": 2676,
+    "event": "closetag",
+    "startIndex": 2670,
+  },
+  Object {
+    "data": Array [
+      "
+   ",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "channel",
+    ],
+    "endIndex": 2690,
+    "event": "closetag",
+    "startIndex": 2681,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "rss",
+    ],
+    "endIndex": 2697,
+    "event": "closetag",
+    "startIndex": 2692,
+  },
+]
+`;
+
+exports[`Stream SVG 1`] = `
+Array [
+  Object {
+    "data": Array [
+      "!doctype",
+      "!doctype html",
+    ],
+    "endIndex": 14,
+    "event": "processinginstruction",
+    "startIndex": 0,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "html",
+    ],
+    "endIndex": 21,
+    "event": "opentagname",
+    "startIndex": 16,
+  },
+  Object {
+    "data": Array [
+      "html",
+      Object {},
+    ],
+    "endIndex": 21,
+    "event": "opentag",
+    "startIndex": 16,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "head",
+    ],
+    "endIndex": 28,
+    "event": "opentagname",
+    "startIndex": 23,
+  },
+  Object {
+    "data": Array [
+      "head",
+      Object {},
+    ],
+    "endIndex": 28,
+    "event": "opentag",
+    "startIndex": 23,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 37,
+    "event": "opentagname",
+    "startIndex": 31,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 37,
+    "event": "opentag",
+    "startIndex": 31,
+  },
+  Object {
+    "data": Array [
+      "SVG test",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 53,
+    "event": "closetag",
+    "startIndex": 46,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "head",
+    ],
+    "endIndex": 61,
+    "event": "closetag",
+    "startIndex": 55,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "body",
+    ],
+    "endIndex": 68,
+    "event": "opentagname",
+    "startIndex": 63,
+  },
+  Object {
+    "data": Array [
+      "body",
+      Object {},
+    ],
+    "endIndex": 68,
+    "event": "opentag",
+    "startIndex": 63,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "svg",
+    ],
+    "endIndex": 75,
+    "event": "opentagname",
+    "startIndex": 71,
+  },
+  Object {
+    "data": Array [
+      "version",
+      "1.1",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns",
+      "http://www.w3.org/2000/svg",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "xmlns:xlink",
+      "http://www.w3.org/1999/xlink",
+      "\\"",
+    ],
+    "event": "attribute",
+  },
+  Object {
+    "data": Array [
+      "svg",
+      Object {
+        "version": "1.1",
+        "xmlns": "http://www.w3.org/2000/svg",
+        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+      },
+    ],
+    "endIndex": 167,
+    "event": "opentag",
+    "startIndex": 71,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 177,
+    "event": "opentagname",
+    "startIndex": 171,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 177,
+    "event": "opentag",
+    "startIndex": 171,
+  },
+  Object {
+    "data": Array [
+      "Test",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 189,
+    "event": "closetag",
+    "startIndex": 182,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "animate",
+    ],
+    "endIndex": 201,
+    "event": "opentagname",
+    "startIndex": 193,
+  },
+  Object {
+    "data": Array [
+      "animate",
+      Object {},
+    ],
+    "endIndex": 203,
+    "event": "opentag",
+    "startIndex": 193,
+  },
+  Object {
+    "data": Array [
+      "animate",
+    ],
+    "endIndex": 203,
+    "event": "closetag",
+    "startIndex": 193,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "polygon",
+    ],
+    "endIndex": 215,
+    "event": "opentagname",
+    "startIndex": 207,
+  },
+  Object {
+    "data": Array [
+      "polygon",
+      Object {},
+    ],
+    "endIndex": 217,
+    "event": "opentag",
+    "startIndex": 207,
+  },
+  Object {
+    "data": Array [
+      "polygon",
+    ],
+    "endIndex": 217,
+    "event": "closetag",
+    "startIndex": 207,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "g",
+    ],
+    "endIndex": 223,
+    "event": "opentagname",
+    "startIndex": 221,
+  },
+  Object {
+    "data": Array [
+      "g",
+      Object {},
+    ],
+    "endIndex": 223,
+    "event": "opentag",
+    "startIndex": 221,
+  },
+  Object {
+    "data": Array [
+      "
+			",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "path",
+    ],
+    "endIndex": 233,
+    "event": "opentagname",
+    "startIndex": 228,
+  },
+  Object {
+    "data": Array [
+      "path",
+      Object {},
+    ],
+    "endIndex": 233,
+    "event": "opentag",
+    "startIndex": 228,
+  },
+  Object {
+    "data": Array [
+      "
+				",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 245,
+    "event": "opentagname",
+    "startIndex": 239,
+  },
+  Object {
+    "data": Array [
+      "title",
+      Object {},
+    ],
+    "endIndex": 245,
+    "event": "opentag",
+    "startIndex": 239,
+  },
+  Object {
+    "data": Array [
+      "x",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "title",
+    ],
+    "endIndex": 254,
+    "event": "closetag",
+    "startIndex": 247,
+  },
+  Object {
+    "data": Array [
+      "
+				",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "animate",
+    ],
+    "endIndex": 268,
+    "event": "opentagname",
+    "startIndex": 260,
+  },
+  Object {
+    "data": Array [
+      "animate",
+      Object {},
+    ],
+    "endIndex": 270,
+    "event": "opentag",
+    "startIndex": 260,
+  },
+  Object {
+    "data": Array [
+      "animate",
+    ],
+    "endIndex": 270,
+    "event": "closetag",
+    "startIndex": 260,
+  },
+  Object {
+    "data": Array [
+      "
+			",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "path",
+    ],
+    "endIndex": 281,
+    "event": "closetag",
+    "startIndex": 275,
+  },
+  Object {
+    "data": Array [
+      "
+		",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "g",
+    ],
+    "endIndex": 288,
+    "event": "closetag",
+    "startIndex": 285,
+  },
+  Object {
+    "data": Array [
+      "
+	",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "svg",
+    ],
+    "endIndex": 296,
+    "event": "closetag",
+    "startIndex": 291,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "body",
+    ],
+    "endIndex": 304,
+    "event": "closetag",
+    "startIndex": 298,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+  Object {
+    "data": Array [
+      "html",
+    ],
+    "endIndex": 312,
+    "event": "closetag",
+    "startIndex": 306,
+  },
+  Object {
+    "data": Array [
+      "
+",
+    ],
+    "event": "text",
+  },
+]
+`;

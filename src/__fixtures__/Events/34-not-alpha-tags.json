@@ -8,10 +8,14 @@
         },
         {
             "event": "comment",
+            "startIndex": 6,
+            "endIndex": 12,
             "data": ["12"]
         },
         {
             "event": "commentend",
+            "startIndex": 6,
+            "endIndex": 12,
             "data": []
         }
     ]

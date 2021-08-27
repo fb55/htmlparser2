@@ -9,6 +9,8 @@
     "expected": [
         {
             "event": "cdatastart",
+            "startIndex": 0,
+            "endIndex": 23,
             "data": []
         },
         {
@@ -17,6 +19,8 @@
         },
         {
             "event": "cdataend",
+            "startIndex": 0,
+            "endIndex": 23,
             "data": []
         }
     ]

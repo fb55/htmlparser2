@@ -65,6 +65,15 @@ export function getEventCollector(
             (last.data[0] as string) += data[0];
             // `last.endIndex = parser.endIndex;
         } else {
+            const indices =
+                // Don't store indices for attributes or text
+                event === "onattribute" || event === "ontext"
+                    ? {}
+                    : {
+                          startIndex: parser.startIndex,
+                          endIndex: parser.endIndex,
+                      };
+
             // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
             if (event === "onattribute" && data[2] === undefined) {
                 data.pop();
@@ -72,9 +81,7 @@ export function getEventCollector(
 
             events.push({
                 event: event.substr(2),
-                // `startIndex: parser.startIndex,
-
-                // `endIndex: parser.endIndex,
+                ...indices,
                 data,
             });
 

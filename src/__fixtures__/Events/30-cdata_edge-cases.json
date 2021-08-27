@@ -9,10 +9,14 @@
     "expected": [
         {
             "event": "processinginstruction",
+            "startIndex": 0,
+            "endIndex": 8,
             "data": ["![cdata", "![CDATA"]
         },
         {
             "event": "cdatastart",
+            "startIndex": 9,
+            "endIndex": 27,
             "data": []
         },
         {
@@ -21,10 +25,14 @@
         },
         {
             "event": "cdataend",
+            "startIndex": 9,
+            "endIndex": 27,
             "data": []
         },
         {
             "event": "cdatastart",
+            "startIndex": 28,
+            "endIndex": 40,
             "data": []
         },
         {
@@ -33,6 +41,8 @@
         },
         {
             "event": "cdataend",
+            "startIndex": 28,
+            "endIndex": 40,
             "data": []
         }
     ]

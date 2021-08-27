@@ -4,10 +4,14 @@
     "expected": [
         {
             "event": "comment",
+            "startIndex": 0,
+            "endIndex": 13,
             "data": [" a-b-> "]
         },
         {
             "event": "commentend",
+            "startIndex": 0,
+            "endIndex": 13,
             "data": []
         }
     ]
