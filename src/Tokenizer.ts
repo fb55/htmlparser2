@@ -736,6 +736,7 @@ export default class Tokenizer {
 
         if (this.trieIndex < 0) {
             this.emitNamedEntity();
+            this._index--;
             return;
         }
 
@@ -770,7 +771,6 @@ export default class Tokenizer {
 
         this.sectionStart = this._index - this.trieExcess + 1;
         this._state = this.baseState;
-        this._index--;
     }
 
     private decodeNumericEntity(base: 10 | 16, strict: boolean) {
