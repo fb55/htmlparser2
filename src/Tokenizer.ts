@@ -833,7 +833,8 @@ export default class Tokenizer {
         }
 
         const start = this.sectionStart < 0 ? this._index : this.sectionStart;
-        this.buffer = this.buffer.substr(start);
+        this.buffer =
+            start === this.buffer.length ? "" : this.buffer.substr(start);
         this._index -= start;
         this.bufferOffset += start;
 
