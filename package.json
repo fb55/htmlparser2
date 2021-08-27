@@ -50,7 +50,7 @@
     "dependencies": {
         "domelementtype": "^2.0.1",
         "domhandler": "^4.0.0",
-        "domutils": "^2.5.2",
+        "domutils": "^2.8.0",
         "entities": "^3.0.1"
     },
     "devDependencies": {
