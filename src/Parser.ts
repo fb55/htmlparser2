@@ -418,6 +418,7 @@ export class Parser {
     }
 
     onend(): void {
+        this.updatePosition(0);
         if (this.cbs.onclosetag) {
             for (
                 let i = this.stack.length;
