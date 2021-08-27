@@ -10,18 +10,26 @@
         },
         {
             "event": "attribute",
+            "startIndex": 8,
+            "endIndex": 20,
             "data": ["class", "test0", "\""]
         },
         {
             "event": "attribute",
+            "startIndex": 21,
+            "endIndex": 33,
             "data": ["title", "test1", "\""]
         },
         {
             "event": "attribute",
+            "startIndex": 35,
+            "endIndex": 44,
             "data": ["disabled", ""]
         },
         {
             "event": "attribute",
+            "startIndex": 44,
+            "endIndex": 55,
             "data": ["value", "test2", null]
         },
         {
@@ -40,6 +48,8 @@
         },
         {
             "event": "text",
+            "startIndex": 56,
+            "endIndex": 60,
             "data": ["adsf"]
         },
         {

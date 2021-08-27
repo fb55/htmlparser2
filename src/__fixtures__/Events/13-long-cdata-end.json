@@ -27,13 +27,13 @@
         },
         {
             "event": "opentagname",
-            "startIndex": 10,
+            "startIndex": 0,
             "endIndex": 14,
             "data": ["tag"]
         },
         {
             "event": "opentag",
-            "startIndex": 10,
+            "startIndex": 0,
             "endIndex": 14,
             "data": ["tag", {}]
         },
@@ -45,6 +45,8 @@
         },
         {
             "event": "text",
+            "startIndex": 15,
+            "endIndex": 33,
             "data": [" text ]"]
         },
         {

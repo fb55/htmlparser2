@@ -4,17 +4,19 @@
     "expected": [
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 8,
             "data": ["<12>text"]
         },
         {
             "event": "comment",
-            "startIndex": 6,
+            "startIndex": 8,
             "endIndex": 12,
             "data": ["12"]
         },
         {
             "event": "commentend",
-            "startIndex": 6,
+            "startIndex": 8,
             "endIndex": 12,
             "data": []
         }

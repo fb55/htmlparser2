@@ -4,6 +4,8 @@
     "expected": [
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 53,
             "data": ["&el<er∳foo&bar"]
         }
     ]

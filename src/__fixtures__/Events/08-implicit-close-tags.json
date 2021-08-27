@@ -22,6 +22,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 8,
+            "endIndex": 18,
             "data": ["class", "test", null]
         },
         {
@@ -55,6 +57,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 31,
+            "endIndex": 47,
             "data": ["style", "width:100%", null]
         },
         {
@@ -94,6 +98,8 @@
         },
         {
             "event": "text",
+            "startIndex": 56,
+            "endIndex": 58,
             "data": ["TH"]
         },
         {
@@ -110,6 +116,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 62,
+            "endIndex": 71,
             "data": ["colspan", "2", null]
         },
         {
@@ -137,6 +145,8 @@
         },
         {
             "event": "text",
+            "startIndex": 76,
+            "endIndex": 83,
             "data": ["Heading"]
         },
         {
@@ -195,6 +205,8 @@
         },
         {
             "event": "text",
+            "startIndex": 101,
+            "endIndex": 104,
             "data": ["Div"]
         },
         {
@@ -235,6 +247,8 @@
         },
         {
             "event": "text",
+            "startIndex": 119,
+            "endIndex": 123,
             "data": ["Div2"]
         },
         {
@@ -311,6 +325,8 @@
         },
         {
             "event": "text",
+            "startIndex": 156,
+            "endIndex": 165,
             "data": ["Heading 2"]
         },
         {
@@ -351,6 +367,8 @@
         },
         {
             "event": "text",
+            "startIndex": 189,
+            "endIndex": 193,
             "data": ["Para"]
         },
         {
@@ -373,6 +391,8 @@
         },
         {
             "event": "text",
+            "startIndex": 197,
+            "endIndex": 206,
             "data": ["Heading 4"]
         },
         {
@@ -425,6 +445,8 @@
         },
         {
             "event": "text",
+            "startIndex": 222,
+            "endIndex": 224,
             "data": ["Hi"]
         },
         {
@@ -447,6 +469,8 @@
         },
         {
             "event": "text",
+            "startIndex": 228,
+            "endIndex": 231,
             "data": ["bye"]
         },
         {

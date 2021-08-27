@@ -10,6 +10,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 3,
+            "endIndex": 81,
             "data": [
                 "href",
                 "http://example.com/pa#x61ge?param=value&param2&param3=<val&; & &",

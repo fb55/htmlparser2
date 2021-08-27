@@ -10,10 +10,14 @@
         },
         {
             "event": "attribute",
+            "startIndex": 3,
+            "endIndex": 8,
             "data": ["<", "", "'"]
         },
         {
             "event": "attribute",
+            "startIndex": 10,
+            "endIndex": 14,
             "data": ["fail", ""]
         },
         {
@@ -30,6 +34,8 @@
         },
         {
             "event": "text",
+            "startIndex": 15,
+            "endIndex": 20,
             "data": ["stuff"]
         },
         {

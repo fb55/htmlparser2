@@ -10,10 +10,14 @@
         },
         {
             "event": "attribute",
+            "startIndex": 4,
+            "endIndex": 14,
             "data": ["class", "test", null]
         },
         {
             "event": "attribute",
+            "startIndex": 15,
+            "endIndex": 24,
             "data": ["class", "boo", null]
         },
         {

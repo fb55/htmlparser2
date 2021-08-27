@@ -10,6 +10,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 6,
+            "endIndex": 16,
             "data": ["id", "before", "'"]
         },
         {
@@ -49,6 +51,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 38,
+            "endIndex": 47,
             "data": ["id", "after", "'"]
         },
         {

@@ -4,6 +4,8 @@
     "expected": [
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 1,
             "data": ["<"]
         },
         {
@@ -20,6 +22,8 @@
         },
         {
             "event": "text",
+            "startIndex": 19,
+            "endIndex": 27,
             "data": [">testing"]
         },
         {

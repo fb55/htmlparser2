@@ -27,6 +27,8 @@
         },
         {
             "event": "text",
+            "startIndex": 5,
+            "endIndex": 41,
             "data": [" asdf ><asdf></adsf><> fo"]
         },
         {
