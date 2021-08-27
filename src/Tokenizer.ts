@@ -817,30 +817,27 @@ export default class Tokenizer {
         return !this.xmlMode && this.baseState === State.Text;
     }
 
+    /**
+     * Remove data that has already been consumed from the buffer.
+     */
     private cleanup() {
-        if (this.sectionStart < 0) {
-            this.buffer = "";
-            this.bufferOffset += this._index;
-            this._index = 0;
-        } else if (this.running) {
-            if (this._state === State.Text) {
-                if (this.sectionStart !== this._index) {
-                    this.cbs.ontext(this.buffer.substr(this.sectionStart));
-                }
-                this.buffer = "";
-                this.bufferOffset += this._index;
-                this._index = 0;
-            } else if (this.sectionStart === this._index) {
-                // The section just started
-                this.buffer = "";
-                this.bufferOffset += this._index;
-                this._index = 0;
-            } else {
-                // Remove everything unnecessary
-                this.buffer = this.buffer.substr(this.sectionStart);
-                this._index -= this.sectionStart;
-                this.bufferOffset += this.sectionStart;
-            }
+        // If we are inside of text, emit what we already have.
+        if (
+            this.running &&
+            this._state === State.Text &&
+            this.sectionStart !== this._index
+        ) {
+            // TODO: We could emit attribute data here as well.
+            this.cbs.ontext(this.buffer.substr(this.sectionStart));
+            this.sectionStart = this._index;
+        }
+
+        const start = this.sectionStart < 0 ? this._index : this.sectionStart;
+        this.buffer = this.buffer.substr(start);
+        this._index -= start;
+        this.bufferOffset += start;
+
+        if (this.sectionStart > 0) {
             this.sectionStart = 0;
         }
     }
@@ -1000,6 +997,7 @@ export default class Tokenizer {
         this.cbs.onend();
     }
 
+    /** Handle any trailing data. */
     private handleTrailingData() {
         const data = this.buffer.substr(this.sectionStart);
         if (
@@ -1029,21 +1027,23 @@ export default class Tokenizer {
             this.decodeNumericEntity(16, false);
             // All trailing data will have been consumed
         } else if (
-            this._state !== State.InTagName &&
-            this._state !== State.BeforeAttributeName &&
-            this._state !== State.BeforeAttributeValue &&
-            this._state !== State.AfterAttributeName &&
-            this._state !== State.InAttributeName &&
-            this._state !== State.InAttributeValueSq &&
-            this._state !== State.InAttributeValueDq &&
-            this._state !== State.InAttributeValueNq &&
-            this._state !== State.InClosingTagName
+            this._state === State.InTagName ||
+            this._state === State.BeforeAttributeName ||
+            this._state === State.BeforeAttributeValue ||
+            this._state === State.AfterAttributeName ||
+            this._state === State.InAttributeName ||
+            this._state === State.InAttributeValueSq ||
+            this._state === State.InAttributeValueDq ||
+            this._state === State.InAttributeValueNq ||
+            this._state === State.InClosingTagName
         ) {
+            /*
+             * If we are currently in an opening or closing tag, us not calling the
+             * respective callback signals that the tag should be ignored.
+             */
+        } else {
             this.cbs.ontext(data);
         }
-        /*
-         * TODO add a way to remove current tag
-         */
     }
 
     private getSection(): string {

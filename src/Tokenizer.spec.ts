@@ -41,4 +41,28 @@ describe("Tokenizer", () => {
             expect(tokenize("<title></title><div></div>")).toMatchSnapshot();
         });
     });
+
+    it("should not lose data when pausing", () => {
+        const log: unknown[][] = [];
+        const tokenizer = new Tokenizer(
+            {},
+            new Proxy({} as any, {
+                get(_, prop) {
+                    return (...args: unknown[]) => {
+                        if (prop === "ontext") {
+                            tokenizer.pause();
+                        }
+                        log.push([prop, ...args]);
+                    };
+                },
+            })
+        );
+
+        tokenizer.write("&amp; it up!");
+        tokenizer.resume();
+        tokenizer.resume();
+        tokenizer.end();
+
+        expect(log).toMatchSnapshot();
+    });
 });
