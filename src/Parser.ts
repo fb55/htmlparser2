@@ -95,7 +95,7 @@ const htmlIntegrationElements = new Set([
     "ms",
     "mtext",
     "annotation-xml",
-    "foreignObject",
+    "foreignobject",
     "desc",
     "title",
 ]);
