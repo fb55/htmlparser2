@@ -112,15 +112,17 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
                 expect(actual).toStrictEqual(firstResult);
                 done();
             } else {
-                firstResult = actual;
                 if (file.useSnapshot) {
                     expect(actual).toMatchSnapshot();
                 } else {
                     expect(actual).toStrictEqual(file.expected);
                 }
+
+                firstResult = actual;
             }
         } catch (err) {
-            done(err);
+            done(err as Error);
+            throw err;
         }
     };
 }
