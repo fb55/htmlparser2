@@ -10,6 +10,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 5,
+            "endIndex": 41,
             "data": ["src", "?&image_uri=1&ℑ=2&image=3", "\""]
         },
         {
@@ -31,6 +33,8 @@
         },
         {
             "event": "text",
+            "startIndex": 44,
+            "endIndex": 75,
             "data": ["?&image_uri=1&ℑ=2&image=3"]
         }
     ]

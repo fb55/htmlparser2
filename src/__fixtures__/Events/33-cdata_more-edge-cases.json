@@ -15,6 +15,8 @@
         },
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 23,
             "data": ["foo]bar]>baz"]
         },
         {

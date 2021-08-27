@@ -10,6 +10,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 6,
+            "endIndex": 9,
             "data": ["bar", ""]
         },
         {

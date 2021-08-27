@@ -21,6 +21,8 @@
         },
         {
             "event": "text",
+            "startIndex": 9,
+            "endIndex": 27,
             "data": ["[]]sdaf"]
         },
         {
@@ -37,6 +39,8 @@
         },
         {
             "event": "text",
+            "startIndex": 28,
+            "endIndex": 40,
             "data": ["foo"]
         },
         {

@@ -28,6 +28,8 @@
         },
         {
             "event": "text",
+            "startIndex": 11,
+            "endIndex": 44,
             "data": ["var str = '<script></'+'script>';"]
         },
         {

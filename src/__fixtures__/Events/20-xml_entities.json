@@ -9,6 +9,8 @@
     "expected": [
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 49,
             "data": ["&>&amp<&uuml;a&#x62c&#100&#101"]
         }
     ]

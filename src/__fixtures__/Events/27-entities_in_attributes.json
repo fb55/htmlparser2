@@ -10,18 +10,26 @@
         },
         {
             "event": "attribute",
+            "startIndex": 5,
+            "endIndex": 14,
             "data": ["bar", "&", null]
         },
         {
             "event": "attribute",
+            "startIndex": 15,
+            "endIndex": 25,
             "data": ["baz", "&", "\""]
         },
         {
             "event": "attribute",
+            "startIndex": 27,
+            "endIndex": 37,
             "data": ["boo", "&", "'"]
         },
         {
             "event": "attribute",
+            "startIndex": 39,
+            "endIndex": 43,
             "data": ["noo", "", null]
         },
         {

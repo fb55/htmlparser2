@@ -16,6 +16,8 @@
         },
         {
             "event": "text",
+            "startIndex": 7,
+            "endIndex": 27,
             "data": ["the \"title\""]
         },
         {

@@ -16,6 +16,8 @@
         },
         {
             "event": "text",
+            "startIndex": 7,
+            "endIndex": 24,
             "data": ["<b>foo</b><title>"]
         },
         {
@@ -110,6 +112,8 @@
         },
         {
             "event": "text",
+            "startIndex": 84,
+            "endIndex": 99,
             "data": ["</scripter</soo"]
         },
         {
@@ -132,6 +136,8 @@
         },
         {
             "event": "text",
+            "startIndex": 115,
+            "endIndex": 123,
             "data": ["</styler"]
         },
         {

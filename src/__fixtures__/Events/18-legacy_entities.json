@@ -4,6 +4,8 @@
     "expected": [
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 32,
             "data": ["&elíe&eer;s<er&sum"]
         }
     ]

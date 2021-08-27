@@ -4,6 +4,8 @@
     "expected": [
         {
             "event": "text",
+            "startIndex": 0,
+            "endIndex": 3,
             "data": ["M&M"]
         }
     ]

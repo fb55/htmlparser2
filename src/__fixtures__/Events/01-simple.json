@@ -10,6 +10,8 @@
         },
         {
             "event": "attribute",
+            "startIndex": 4,
+            "endIndex": 14,
             "data": ["class", "test", null]
         },
         {
@@ -25,6 +27,8 @@
         },
         {
             "event": "text",
+            "startIndex": 15,
+            "endIndex": 19,
             "data": ["adsf"]
         },
         {

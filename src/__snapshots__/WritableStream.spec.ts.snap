@@ -16,7 +16,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 39,
     "event": "text",
+    "startIndex": 38,
   },
   Object {
     "data": Array [
@@ -37,7 +39,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 97,
     "event": "text",
+    "startIndex": 96,
   },
   Object {
     "data": Array [
@@ -53,7 +57,9 @@ Array [
       "http://www.w3.org/2005/Atom",
       "\\"",
     ],
+    "endIndex": 137,
     "event": "attribute",
+    "startIndex": 103,
   },
   Object {
     "data": Array [
@@ -71,7 +77,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 141,
     "event": "text",
+    "startIndex": 139,
   },
   Object {
     "data": Array [
@@ -94,7 +102,9 @@ Array [
     "data": Array [
       "Example Feed",
     ],
+    "endIndex": 160,
     "event": "text",
+    "startIndex": 148,
   },
   Object {
     "data": Array [
@@ -109,7 +119,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 170,
     "event": "text",
+    "startIndex": 168,
   },
   Object {
     "data": Array [
@@ -132,7 +144,9 @@ Array [
     "data": Array [
       "A subtitle.",
     ],
+    "endIndex": 191,
     "event": "text",
+    "startIndex": 180,
   },
   Object {
     "data": Array [
@@ -147,7 +161,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 204,
     "event": "text",
+    "startIndex": 202,
   },
   Object {
     "data": Array [
@@ -163,7 +179,9 @@ Array [
       "http://example.org/feed/",
       "\\"",
     ],
+    "endIndex": 240,
     "event": "attribute",
+    "startIndex": 210,
   },
   Object {
     "data": Array [
@@ -171,7 +189,9 @@ Array [
       "self",
       "\\"",
     ],
+    "endIndex": 251,
     "event": "attribute",
+    "startIndex": 242,
   },
   Object {
     "data": Array [
@@ -198,7 +218,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 257,
     "event": "text",
+    "startIndex": 204,
   },
   Object {
     "data": Array [
@@ -214,7 +236,9 @@ Array [
       "http://example.org/",
       "\\"",
     ],
+    "endIndex": 288,
     "event": "attribute",
+    "startIndex": 263,
   },
   Object {
     "data": Array [
@@ -240,7 +264,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 294,
     "event": "text",
+    "startIndex": 257,
   },
   Object {
     "data": Array [
@@ -263,7 +289,9 @@ Array [
     "data": Array [
       "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",
     ],
+    "endIndex": 343,
     "event": "text",
+    "startIndex": 298,
   },
   Object {
     "data": Array [
@@ -278,7 +306,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 350,
     "event": "text",
+    "startIndex": 348,
   },
   Object {
     "data": Array [
@@ -301,7 +331,9 @@ Array [
     "data": Array [
       "2003-12-13T18:30:02Z",
     ],
+    "endIndex": 379,
     "event": "text",
+    "startIndex": 359,
   },
   Object {
     "data": Array [
@@ -316,7 +348,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 391,
     "event": "text",
+    "startIndex": 389,
   },
   Object {
     "data": Array [
@@ -340,7 +374,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 402,
     "event": "text",
+    "startIndex": 399,
   },
   Object {
     "data": Array [
@@ -363,7 +399,9 @@ Array [
     "data": Array [
       "John Doe",
     ],
+    "endIndex": 416,
     "event": "text",
+    "startIndex": 408,
   },
   Object {
     "data": Array [
@@ -378,7 +416,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 426,
     "event": "text",
+    "startIndex": 423,
   },
   Object {
     "data": Array [
@@ -401,7 +441,9 @@ Array [
     "data": Array [
       "johndoe@example.com",
     ],
+    "endIndex": 452,
     "event": "text",
+    "startIndex": 433,
   },
   Object {
     "data": Array [
@@ -416,7 +458,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 462,
     "event": "text",
+    "startIndex": 460,
   },
   Object {
     "data": Array [
@@ -432,7 +476,9 @@ Array [
 
 	",
     ],
+    "endIndex": 474,
     "event": "text",
+    "startIndex": 471,
   },
   Object {
     "data": Array [
@@ -456,7 +502,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 484,
     "event": "text",
+    "startIndex": 481,
   },
   Object {
     "data": Array [
@@ -479,7 +527,9 @@ Array [
     "data": Array [
       "Atom-Powered Robots Run Amok",
     ],
+    "endIndex": 519,
     "event": "text",
+    "startIndex": 491,
   },
   Object {
     "data": Array [
@@ -494,7 +544,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 530,
     "event": "text",
+    "startIndex": 527,
   },
   Object {
     "data": Array [
@@ -510,7 +562,9 @@ Array [
       "http://example.org/2003/12/13/atom03",
       "\\"",
     ],
+    "endIndex": 578,
     "event": "attribute",
+    "startIndex": 536,
   },
   Object {
     "data": Array [
@@ -536,7 +590,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 585,
     "event": "text",
+    "startIndex": 530,
   },
   Object {
     "data": Array [
@@ -552,7 +608,9 @@ Array [
       "alternate",
       "\\"",
     ],
+    "endIndex": 605,
     "event": "attribute",
+    "startIndex": 591,
   },
   Object {
     "data": Array [
@@ -560,7 +618,9 @@ Array [
       "text/html",
       "\\"",
     ],
+    "endIndex": 622,
     "event": "attribute",
+    "startIndex": 607,
   },
   Object {
     "data": Array [
@@ -568,7 +628,9 @@ Array [
       "http://example.org/2003/12/13/atom03.html",
       "\\"",
     ],
+    "endIndex": 671,
     "event": "attribute",
+    "startIndex": 624,
   },
   Object {
     "data": Array [
@@ -596,7 +658,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 677,
     "event": "text",
+    "startIndex": 585,
   },
   Object {
     "data": Array [
@@ -612,7 +676,9 @@ Array [
       "edit",
       "\\"",
     ],
+    "endIndex": 692,
     "event": "attribute",
+    "startIndex": 683,
   },
   Object {
     "data": Array [
@@ -620,7 +686,9 @@ Array [
       "http://example.org/2003/12/13/atom03/edit",
       "\\"",
     ],
+    "endIndex": 741,
     "event": "attribute",
+    "startIndex": 694,
   },
   Object {
     "data": Array [
@@ -647,7 +715,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 747,
     "event": "text",
+    "startIndex": 677,
   },
   Object {
     "data": Array [
@@ -670,7 +740,9 @@ Array [
     "data": Array [
       "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
     ],
+    "endIndex": 796,
     "event": "text",
+    "startIndex": 751,
   },
   Object {
     "data": Array [
@@ -685,7 +757,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 804,
     "event": "text",
+    "startIndex": 801,
   },
   Object {
     "data": Array [
@@ -708,7 +782,9 @@ Array [
     "data": Array [
       "2003-12-13T18:30:02Z",
     ],
+    "endIndex": 833,
     "event": "text",
+    "startIndex": 813,
   },
   Object {
     "data": Array [
@@ -723,7 +799,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 846,
     "event": "text",
+    "startIndex": 843,
   },
   Object {
     "data": Array [
@@ -739,7 +817,9 @@ Array [
       "html",
       "\\"",
     ],
+    "endIndex": 865,
     "event": "attribute",
+    "startIndex": 855,
   },
   Object {
     "data": Array [
@@ -773,7 +853,9 @@ Array [
     "data": Array [
       "Some content.",
     ],
+    "endIndex": 883,
     "event": "text",
+    "startIndex": 870,
   },
   Object {
     "data": Array [
@@ -796,7 +878,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 899,
     "event": "text",
+    "startIndex": 897,
   },
   Object {
     "data": Array [
@@ -812,7 +896,9 @@ Array [
 
 	",
     ],
+    "endIndex": 910,
     "event": "text",
+    "startIndex": 907,
   },
   Object {
     "data": Array [
@@ -845,7 +931,9 @@ Array [
 
 ",
     ],
+    "endIndex": 920,
     "event": "text",
+    "startIndex": 910,
   },
   Object {
     "data": Array [
@@ -860,7 +948,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 928,
     "event": "text",
+    "startIndex": 927,
   },
 ]
 `;
@@ -881,7 +971,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 16,
     "event": "text",
+    "startIndex": 15,
   },
   Object {
     "data": Array [
@@ -905,7 +997,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 23,
     "event": "text",
+    "startIndex": 22,
   },
   Object {
     "data": Array [
@@ -929,7 +1023,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 31,
     "event": "text",
+    "startIndex": 29,
   },
   Object {
     "data": Array [
@@ -952,7 +1048,9 @@ Array [
     "data": Array [
       "Attributes test",
     ],
+    "endIndex": 53,
     "event": "text",
+    "startIndex": 38,
   },
   Object {
     "data": Array [
@@ -967,7 +1065,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 62,
     "event": "text",
+    "startIndex": 61,
   },
   Object {
     "data": Array [
@@ -982,7 +1082,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 70,
     "event": "text",
+    "startIndex": 69,
   },
   Object {
     "data": Array [
@@ -1006,7 +1108,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 78,
     "event": "text",
+    "startIndex": 76,
   },
   Object {
     "data": Array [
@@ -1027,7 +1131,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 106,
     "event": "text",
+    "startIndex": 104,
   },
   Object {
     "data": Array [
@@ -1043,7 +1149,9 @@ Array [
       "test0",
       "\\"",
     ],
+    "endIndex": 123,
     "event": "attribute",
+    "startIndex": 114,
   },
   Object {
     "data": Array [
@@ -1051,7 +1159,9 @@ Array [
       "value0",
       "\\"",
     ],
+    "endIndex": 138,
     "event": "attribute",
+    "startIndex": 125,
   },
   Object {
     "data": Array [
@@ -1059,7 +1169,9 @@ Array [
       "value1",
       "\\"",
     ],
+    "endIndex": 153,
     "event": "attribute",
+    "startIndex": 140,
   },
   Object {
     "data": Array [
@@ -1078,7 +1190,9 @@ Array [
     "data": Array [
       "class=\\"value0\\" title=\\"value1\\"",
     ],
+    "endIndex": 184,
     "event": "text",
+    "startIndex": 155,
   },
   Object {
     "data": Array [
@@ -1094,7 +1208,9 @@ Array [
 
 	",
     ],
+    "endIndex": 196,
     "event": "text",
+    "startIndex": 193,
   },
   Object {
     "data": Array [
@@ -1115,7 +1231,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 241,
     "event": "text",
+    "startIndex": 239,
   },
   Object {
     "data": Array [
@@ -1131,7 +1249,9 @@ Array [
       "test1",
       "\\"",
     ],
+    "endIndex": 258,
     "event": "attribute",
+    "startIndex": 249,
   },
   Object {
     "data": Array [
@@ -1139,14 +1259,18 @@ Array [
       "value2",
       null,
     ],
+    "endIndex": 272,
     "event": "attribute",
+    "startIndex": 260,
   },
   Object {
     "data": Array [
       "disabled",
       "",
     ],
+    "endIndex": 281,
     "event": "attribute",
+    "startIndex": 273,
   },
   Object {
     "data": Array [
@@ -1165,7 +1289,9 @@ Array [
     "data": Array [
       "class=value2 disabled",
     ],
+    "endIndex": 303,
     "event": "text",
+    "startIndex": 282,
   },
   Object {
     "data": Array [
@@ -1181,7 +1307,9 @@ Array [
 
 	",
     ],
+    "endIndex": 315,
     "event": "text",
+    "startIndex": 312,
   },
   Object {
     "data": Array [
@@ -1202,7 +1330,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 402,
     "event": "text",
+    "startIndex": 400,
   },
   Object {
     "data": Array [
@@ -1218,7 +1348,9 @@ Array [
       "test2",
       "\\"",
     ],
+    "endIndex": 419,
     "event": "attribute",
+    "startIndex": 410,
   },
   Object {
     "data": Array [
@@ -1226,7 +1358,9 @@ Array [
       "value4",
       "\\"",
     ],
+    "endIndex": 434,
     "event": "attribute",
+    "startIndex": 421,
   },
   Object {
     "data": Array [
@@ -1234,7 +1368,9 @@ Array [
       "value5",
       "\\"",
     ],
+    "endIndex": 448,
     "event": "attribute",
+    "startIndex": 435,
   },
   Object {
     "data": Array [
@@ -1253,7 +1389,9 @@ Array [
     "data": Array [
       "class=\\"value4\\"title=\\"value5\\"",
     ],
+    "endIndex": 478,
     "event": "text",
+    "startIndex": 450,
   },
   Object {
     "data": Array [
@@ -1268,7 +1406,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 488,
     "event": "text",
+    "startIndex": 487,
   },
   Object {
     "data": Array [
@@ -1283,7 +1423,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 496,
     "event": "text",
+    "startIndex": 495,
   },
   Object {
     "data": Array [
@@ -1345,7 +1487,9 @@ Array [
     "data": Array [
       "The Title",
     ],
+    "endIndex": 37,
     "event": "text",
+    "startIndex": 28,
   },
   Object {
     "data": Array [
@@ -1376,7 +1520,9 @@ Array [
     "data": Array [
       "Hello world",
     ],
+    "endIndex": 62,
     "event": "text",
+    "startIndex": 51,
   },
   Object {
     "data": Array [
@@ -1413,7 +1559,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 39,
     "event": "text",
+    "startIndex": 38,
   },
   Object {
     "data": Array [
@@ -1429,7 +1577,9 @@ Array [
       "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
       "\\"",
     ],
+    "endIndex": 102,
     "event": "attribute",
+    "startIndex": 48,
   },
   Object {
     "data": Array [
@@ -1437,7 +1587,9 @@ Array [
       "http://purl.org/rss/1.0/",
       "\\"",
     ],
+    "endIndex": 135,
     "event": "attribute",
+    "startIndex": 104,
   },
   Object {
     "data": Array [
@@ -1445,7 +1597,9 @@ Array [
       "http://purl.org/rss/1.0/modules/event/",
       "\\"",
     ],
+    "endIndex": 185,
     "event": "attribute",
+    "startIndex": 137,
   },
   Object {
     "data": Array [
@@ -1453,7 +1607,9 @@ Array [
       "http://purl.org/rss/1.0/modules/content/",
       "\\"",
     ],
+    "endIndex": 242,
     "event": "attribute",
+    "startIndex": 187,
   },
   Object {
     "data": Array [
@@ -1461,7 +1617,9 @@ Array [
       "http://purl.org/rss/1.0/modules/taxonomy/",
       "\\"",
     ],
+    "endIndex": 297,
     "event": "attribute",
+    "startIndex": 244,
   },
   Object {
     "data": Array [
@@ -1469,7 +1627,9 @@ Array [
       "http://purl.org/dc/elements/1.1/",
       "\\"",
     ],
+    "endIndex": 341,
     "event": "attribute",
+    "startIndex": 299,
   },
   Object {
     "data": Array [
@@ -1477,7 +1637,9 @@ Array [
       "http://purl.org/rss/1.0/modules/syndication/",
       "\\"",
     ],
+    "endIndex": 398,
     "event": "attribute",
+    "startIndex": 343,
   },
   Object {
     "data": Array [
@@ -1485,7 +1647,9 @@ Array [
       "http://purl.org/dc/terms/",
       "\\"",
     ],
+    "endIndex": 440,
     "event": "attribute",
+    "startIndex": 400,
   },
   Object {
     "data": Array [
@@ -1493,7 +1657,9 @@ Array [
       "http://webns.net/mvcb/",
       "\\"",
     ],
+    "endIndex": 477,
     "event": "attribute",
+    "startIndex": 442,
   },
   Object {
     "data": Array [
@@ -1519,7 +1685,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 481,
     "event": "text",
+    "startIndex": 479,
   },
   Object {
     "data": Array [
@@ -1535,7 +1703,9 @@ Array [
       "https://github.com/fb55/htmlparser2/",
       "\\"",
     ],
+    "endIndex": 537,
     "event": "attribute",
+    "startIndex": 490,
   },
   Object {
     "data": Array [
@@ -1553,7 +1723,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 542,
     "event": "text",
+    "startIndex": 539,
   },
   Object {
     "data": Array [
@@ -1576,7 +1748,9 @@ Array [
     "data": Array [
       "A title to parse and remember",
     ],
+    "endIndex": 578,
     "event": "text",
+    "startIndex": 549,
   },
   Object {
     "data": Array [
@@ -1591,7 +1765,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 589,
     "event": "text",
+    "startIndex": 586,
   },
   Object {
     "data": Array [
@@ -1614,7 +1790,9 @@ Array [
     "data": Array [
       "https://github.com/fb55/htmlparser2/",
     ],
+    "endIndex": 631,
     "event": "text",
+    "startIndex": 595,
   },
   Object {
     "data": Array [
@@ -1629,7 +1807,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 641,
     "event": "text",
+    "startIndex": 638,
   },
   Object {
     "data": Array [
@@ -1661,7 +1841,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 658,
     "event": "text",
+    "startIndex": 641,
   },
   Object {
     "data": Array [
@@ -1684,7 +1866,9 @@ Array [
     "data": Array [
       "en-us",
     ],
+    "endIndex": 676,
     "event": "text",
+    "startIndex": 671,
   },
   Object {
     "data": Array [
@@ -1699,7 +1883,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 693,
     "event": "text",
+    "startIndex": 690,
   },
   Object {
     "data": Array [
@@ -1722,7 +1908,9 @@ Array [
     "data": Array [
       "Copyright 2015 the authors",
     ],
+    "endIndex": 730,
     "event": "text",
+    "startIndex": 704,
   },
   Object {
     "data": Array [
@@ -1737,7 +1925,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 745,
     "event": "text",
+    "startIndex": 742,
   },
   Object {
     "data": Array [
@@ -1760,7 +1950,9 @@ Array [
     "data": Array [
       "webmaster@thisisafakedoma.in",
     ],
+    "endIndex": 787,
     "event": "text",
+    "startIndex": 759,
   },
   Object {
     "data": Array [
@@ -1775,7 +1967,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 805,
     "event": "text",
+    "startIndex": 802,
   },
   Object {
     "data": Array [
@@ -1798,7 +1992,9 @@ Array [
     "data": Array [
       "webmaster@thisisafakedoma.in",
     ],
+    "endIndex": 845,
     "event": "text",
+    "startIndex": 817,
   },
   Object {
     "data": Array [
@@ -1813,7 +2009,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 861,
     "event": "text",
+    "startIndex": 858,
   },
   Object {
     "data": Array [
@@ -1836,7 +2034,9 @@ Array [
     "data": Array [
       "https://github.com/fb55/htmlparser2/",
     ],
+    "endIndex": 908,
     "event": "text",
+    "startIndex": 872,
   },
   Object {
     "data": Array [
@@ -1851,7 +2051,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 923,
     "event": "text",
+    "startIndex": 920,
   },
   Object {
     "data": Array [
@@ -1874,7 +2076,9 @@ Array [
     "data": Array [
       "A title to parse and remember",
     ],
+    "endIndex": 962,
     "event": "text",
+    "startIndex": 933,
   },
   Object {
     "data": Array [
@@ -1889,7 +2093,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 976,
     "event": "text",
+    "startIndex": 973,
   },
   Object {
     "data": Array [
@@ -1912,7 +2118,9 @@ Array [
     "data": Array [
       "Collection",
     ],
+    "endIndex": 995,
     "event": "text",
+    "startIndex": 985,
   },
   Object {
     "data": Array [
@@ -1927,7 +2135,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1008,
     "event": "text",
+    "startIndex": 1005,
   },
   Object {
     "data": Array [
@@ -1950,7 +2160,9 @@ Array [
     "data": Array [
       "2011-11-04T09:39:10-07:00",
     ],
+    "endIndex": 1049,
     "event": "text",
+    "startIndex": 1024,
   },
   Object {
     "data": Array [
@@ -1965,7 +2177,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1069,
     "event": "text",
+    "startIndex": 1066,
   },
   Object {
     "data": Array [
@@ -1988,7 +2202,9 @@ Array [
     "data": Array [
       "4",
     ],
+    "endIndex": 1091,
     "event": "text",
+    "startIndex": 1090,
   },
   Object {
     "data": Array [
@@ -2003,7 +2219,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1116,
     "event": "text",
+    "startIndex": 1113,
   },
   Object {
     "data": Array [
@@ -2026,7 +2244,9 @@ Array [
     "data": Array [
       "hourly",
     ],
+    "endIndex": 1140,
     "event": "text",
+    "startIndex": 1134,
   },
   Object {
     "data": Array [
@@ -2041,7 +2261,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1162,
     "event": "text",
+    "startIndex": 1159,
   },
   Object {
     "data": Array [
@@ -2065,7 +2287,9 @@ Array [
       "
 			",
     ],
+    "endIndex": 1173,
     "event": "text",
+    "startIndex": 1169,
   },
   Object {
     "data": Array [
@@ -2089,7 +2313,9 @@ Array [
       "
 				",
     ],
+    "endIndex": 1187,
     "event": "text",
+    "startIndex": 1182,
   },
   Object {
     "data": Array [
@@ -2105,7 +2331,9 @@ Array [
       "http://somefakesite/path/to/something.html",
       "\\"",
     ],
+    "endIndex": 1251,
     "event": "attribute",
+    "startIndex": 1195,
   },
   Object {
     "data": Array [
@@ -2131,7 +2359,9 @@ Array [
       "
 			",
     ],
+    "endIndex": 1258,
     "event": "text",
+    "startIndex": 1187,
   },
   Object {
     "data": Array [
@@ -2146,7 +2376,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1271,
     "event": "text",
+    "startIndex": 1268,
   },
   Object {
     "data": Array [
@@ -2161,7 +2393,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 1281,
     "event": "text",
+    "startIndex": 1279,
   },
   Object {
     "data": Array [
@@ -2176,7 +2410,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 1293,
     "event": "text",
+    "startIndex": 1291,
   },
   Object {
     "data": Array [
@@ -2192,7 +2428,9 @@ Array [
       "http://somefakesite/path/to/something.html",
       "\\"",
     ],
+    "endIndex": 1352,
     "event": "attribute",
+    "startIndex": 1299,
   },
   Object {
     "data": Array [
@@ -2210,7 +2448,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1357,
     "event": "text",
+    "startIndex": 1354,
   },
   Object {
     "data": Array [
@@ -2239,7 +2479,9 @@ Array [
     "data": Array [
       " Fast HTML Parsing ",
     ],
+    "endIndex": 1394,
     "event": "text",
+    "startIndex": 1364,
   },
   Object {
     "data": Array [],
@@ -2260,7 +2502,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 1406,
     "event": "text",
+    "startIndex": 1403,
   },
   Object {
     "data": Array [
@@ -2285,7 +2529,9 @@ Array [
 http://somefakesite/path/to/something.html
 ",
     ],
+    "endIndex": 1456,
     "event": "text",
+    "startIndex": 1412,
   },
   Object {
     "data": Array [
@@ -2300,7 +2546,9 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
+    "endIndex": 1466,
     "event": "text",
+    "startIndex": 1463,
   },
   Object {
     "data": Array [
@@ -2331,7 +2579,9 @@ http://somefakesite/path/to/something.html
 Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
 ",
     ],
+    "endIndex": 1560,
     "event": "text",
+    "startIndex": 1479,
   },
   Object {
     "data": Array [],
@@ -2352,7 +2602,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
+    "endIndex": 1578,
     "event": "text",
+    "startIndex": 1575,
   },
   Object {
     "data": Array [
@@ -2375,7 +2627,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "data": Array [
       "2011-11-04T09:35:17-07:00",
     ],
+    "endIndex": 1612,
     "event": "text",
+    "startIndex": 1587,
   },
   Object {
     "data": Array [
@@ -2390,7 +2644,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
+    "endIndex": 1625,
     "event": "text",
+    "startIndex": 1622,
   },
   Object {
     "data": Array [
@@ -2413,7 +2669,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "data": Array [
       "en-us",
     ],
+    "endIndex": 1643,
     "event": "text",
+    "startIndex": 1638,
   },
   Object {
     "data": Array [
@@ -2428,7 +2686,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
+    "endIndex": 1660,
     "event": "text",
+    "startIndex": 1657,
   },
   Object {
     "data": Array [
@@ -2451,7 +2711,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "data": Array [
       "Copyright 2015 the authors",
     ],
+    "endIndex": 1697,
     "event": "text",
+    "startIndex": 1671,
   },
   Object {
     "data": Array [
@@ -2466,7 +2728,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
+    "endIndex": 1712,
     "event": "text",
+    "startIndex": 1709,
   },
   Object {
     "data": Array [
@@ -2491,7 +2755,9 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
 http://somefakesite/path/to/something.html
 ",
     ],
+    "endIndex": 1767,
     "event": "text",
+    "startIndex": 1723,
   },
   Object {
     "data": Array [
@@ -2506,7 +2772,9 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
+    "endIndex": 1782,
     "event": "text",
+    "startIndex": 1779,
   },
   Object {
     "data": Array [
@@ -2535,7 +2803,9 @@ http://somefakesite/path/to/something.html
     "data": Array [
       " Fast HTML Parsing ",
     ],
+    "endIndex": 1822,
     "event": "text",
+    "startIndex": 1792,
   },
   Object {
     "data": Array [],
@@ -2556,7 +2826,9 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
+    "endIndex": 1837,
     "event": "text",
+    "startIndex": 1834,
   },
   Object {
     "data": Array [
@@ -2579,7 +2851,9 @@ http://somefakesite/path/to/something.html
     "data": Array [
       "text",
     ],
+    "endIndex": 1850,
     "event": "text",
+    "startIndex": 1846,
   },
   Object {
     "data": Array [
@@ -2594,7 +2868,9 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
+    "endIndex": 1863,
     "event": "text",
+    "startIndex": 1860,
   },
   Object {
     "data": Array [
@@ -2617,7 +2893,9 @@ http://somefakesite/path/to/something.html
     "data": Array [
       "2011-11-04T09:35:17-07:00",
     ],
+    "endIndex": 1904,
     "event": "text",
+    "startIndex": 1879,
   },
   Object {
     "data": Array [
@@ -2632,7 +2910,9 @@ http://somefakesite/path/to/something.html
       "
 	",
     ],
+    "endIndex": 1923,
     "event": "text",
+    "startIndex": 1921,
   },
   Object {
     "data": Array [
@@ -2647,7 +2927,9 @@ http://somefakesite/path/to/something.html
       "
 	",
     ],
+    "endIndex": 1932,
     "event": "text",
+    "startIndex": 1930,
   },
   Object {
     "data": Array [
@@ -2663,7 +2945,9 @@ http://somefakesite/path/to/something.html
       "http://somefakesite/path/to/something-else.html",
       "\\"",
     ],
+    "endIndex": 1996,
     "event": "attribute",
+    "startIndex": 1938,
   },
   Object {
     "data": Array [
@@ -2681,7 +2965,9 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
+    "endIndex": 2001,
     "event": "text",
+    "startIndex": 1998,
   },
   Object {
     "data": Array [
@@ -2712,7 +2998,9 @@ http://somefakesite/path/to/something.html
 This space intentionally left blank
 ",
     ],
+    "endIndex": 2056,
     "event": "text",
+    "startIndex": 2008,
   },
   Object {
     "data": Array [],
@@ -2733,7 +3021,9 @@ This space intentionally left blank
       "
 		",
     ],
+    "endIndex": 2068,
     "event": "text",
+    "startIndex": 2065,
   },
   Object {
     "data": Array [
@@ -2758,7 +3048,9 @@ This space intentionally left blank
 http://somefakesite/path/to/something-else.html
 ",
     ],
+    "endIndex": 2123,
     "event": "text",
+    "startIndex": 2074,
   },
   Object {
     "data": Array [
@@ -2773,7 +3065,9 @@ http://somefakesite/path/to/something-else.html
       "
 		",
     ],
+    "endIndex": 2133,
     "event": "text",
+    "startIndex": 2130,
   },
   Object {
     "data": Array [
@@ -2804,7 +3098,9 @@ http://somefakesite/path/to/something-else.html
 The early bird gets the worm
 ",
     ],
+    "endIndex": 2187,
     "event": "text",
+    "startIndex": 2146,
   },
   Object {
     "data": Array [],
@@ -2825,7 +3121,9 @@ The early bird gets the worm
       "
 		",
     ],
+    "endIndex": 2205,
     "event": "text",
+    "startIndex": 2202,
   },
   Object {
     "data": Array [
@@ -2848,7 +3146,9 @@ The early bird gets the worm
     "data": Array [
       "2011-11-04T09:34:54-07:00",
     ],
+    "endIndex": 2239,
     "event": "text",
+    "startIndex": 2214,
   },
   Object {
     "data": Array [
@@ -2863,7 +3163,9 @@ The early bird gets the worm
       "
 		",
     ],
+    "endIndex": 2252,
     "event": "text",
+    "startIndex": 2249,
   },
   Object {
     "data": Array [
@@ -2886,7 +3188,9 @@ The early bird gets the worm
     "data": Array [
       "en-us",
     ],
+    "endIndex": 2270,
     "event": "text",
+    "startIndex": 2265,
   },
   Object {
     "data": Array [
@@ -2901,7 +3205,9 @@ The early bird gets the worm
       "
 		",
     ],
+    "endIndex": 2287,
     "event": "text",
+    "startIndex": 2284,
   },
   Object {
     "data": Array [
@@ -2924,7 +3230,9 @@ The early bird gets the worm
     "data": Array [
       "Copyright 2015 the authors",
     ],
+    "endIndex": 2324,
     "event": "text",
+    "startIndex": 2298,
   },
   Object {
     "data": Array [
@@ -2939,7 +3247,9 @@ The early bird gets the worm
       "
 		",
     ],
+    "endIndex": 2339,
     "event": "text",
+    "startIndex": 2336,
   },
   Object {
     "data": Array [
@@ -2964,7 +3274,9 @@ The early bird gets the worm
 http://somefakesite/path/to/something-else.html
 ",
     ],
+    "endIndex": 2399,
     "event": "text",
+    "startIndex": 2350,
   },
   Object {
     "data": Array [
@@ -2979,7 +3291,9 @@ http://somefakesite/path/to/something-else.html
       "
 		",
     ],
+    "endIndex": 2414,
     "event": "text",
+    "startIndex": 2411,
   },
   Object {
     "data": Array [
@@ -3010,7 +3324,9 @@ http://somefakesite/path/to/something-else.html
 This space intentionally left blank
 ",
     ],
+    "endIndex": 2472,
     "event": "text",
+    "startIndex": 2424,
   },
   Object {
     "data": Array [],
@@ -3031,7 +3347,9 @@ This space intentionally left blank
       "
 		",
     ],
+    "endIndex": 2487,
     "event": "text",
+    "startIndex": 2484,
   },
   Object {
     "data": Array [
@@ -3054,7 +3372,9 @@ This space intentionally left blank
     "data": Array [
       "text",
     ],
+    "endIndex": 2500,
     "event": "text",
+    "startIndex": 2496,
   },
   Object {
     "data": Array [
@@ -3069,7 +3389,9 @@ This space intentionally left blank
       "
 		",
     ],
+    "endIndex": 2513,
     "event": "text",
+    "startIndex": 2510,
   },
   Object {
     "data": Array [
@@ -3092,7 +3414,9 @@ This space intentionally left blank
     "data": Array [
       "2011-11-04T09:34:54-07:00",
     ],
+    "endIndex": 2554,
     "event": "text",
+    "startIndex": 2529,
   },
   Object {
     "data": Array [
@@ -3107,7 +3431,9 @@ This space intentionally left blank
       "
 	",
     ],
+    "endIndex": 2573,
     "event": "text",
+    "startIndex": 2571,
   },
   Object {
     "data": Array [
@@ -3122,7 +3448,9 @@ This space intentionally left blank
       "
 ",
     ],
+    "endIndex": 2581,
     "event": "text",
+    "startIndex": 2580,
   },
   Object {
     "data": Array [
@@ -3151,7 +3479,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 22,
     "event": "text",
+    "startIndex": 21,
   },
   Object {
     "data": Array [
@@ -3172,7 +3502,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 88,
     "event": "text",
+    "startIndex": 87,
   },
   Object {
     "data": Array [
@@ -3188,7 +3520,9 @@ Array [
       "2.0",
       "\\"",
     ],
+    "endIndex": 105,
     "event": "attribute",
+    "startIndex": 93,
   },
   Object {
     "data": Array [
@@ -3206,7 +3540,9 @@ Array [
       "
    ",
     ],
+    "endIndex": 111,
     "event": "text",
+    "startIndex": 107,
   },
   Object {
     "data": Array [
@@ -3230,7 +3566,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 127,
     "event": "text",
+    "startIndex": 120,
   },
   Object {
     "data": Array [
@@ -3253,7 +3591,9 @@ Array [
     "data": Array [
       "Liftoff News",
     ],
+    "endIndex": 146,
     "event": "text",
+    "startIndex": 134,
   },
   Object {
     "data": Array [
@@ -3268,7 +3608,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 161,
     "event": "text",
+    "startIndex": 154,
   },
   Object {
     "data": Array [
@@ -3291,7 +3633,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/",
     ],
+    "endIndex": 196,
     "event": "text",
+    "startIndex": 167,
   },
   Object {
     "data": Array [
@@ -3306,7 +3650,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 210,
     "event": "text",
+    "startIndex": 203,
   },
   Object {
     "data": Array [
@@ -3329,7 +3675,9 @@ Array [
     "data": Array [
       "Liftoff to Space Exploration.",
     ],
+    "endIndex": 252,
     "event": "text",
+    "startIndex": 223,
   },
   Object {
     "data": Array [
@@ -3344,7 +3692,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 273,
     "event": "text",
+    "startIndex": 266,
   },
   Object {
     "data": Array [
@@ -3367,7 +3717,9 @@ Array [
     "data": Array [
       "en-us",
     ],
+    "endIndex": 288,
     "event": "text",
+    "startIndex": 283,
   },
   Object {
     "data": Array [
@@ -3382,7 +3734,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 306,
     "event": "text",
+    "startIndex": 299,
   },
   Object {
     "data": Array [
@@ -3405,7 +3759,9 @@ Array [
     "data": Array [
       "Tue, 10 Jun 2003 04:00:00 GMT",
     ],
+    "endIndex": 344,
     "event": "text",
+    "startIndex": 315,
   },
   Object {
     "data": Array [
@@ -3421,7 +3777,9 @@ Array [
 
       ",
     ],
+    "endIndex": 362,
     "event": "text",
+    "startIndex": 354,
   },
   Object {
     "data": Array [
@@ -3444,7 +3802,9 @@ Array [
     "data": Array [
       "Tue, 10 Jun 2003 09:41:01 GMT",
     ],
+    "endIndex": 406,
     "event": "text",
+    "startIndex": 377,
   },
   Object {
     "data": Array [
@@ -3459,7 +3819,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 429,
     "event": "text",
+    "startIndex": 422,
   },
   Object {
     "data": Array [
@@ -3482,7 +3844,9 @@ Array [
     "data": Array [
       "http://blogs.law.harvard.edu/tech/rss",
     ],
+    "endIndex": 472,
     "event": "text",
+    "startIndex": 435,
   },
   Object {
     "data": Array [
@@ -3497,7 +3861,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 486,
     "event": "text",
+    "startIndex": 479,
   },
   Object {
     "data": Array [
@@ -3520,7 +3886,9 @@ Array [
     "data": Array [
       "Weblog Editor 2.0",
     ],
+    "endIndex": 514,
     "event": "text",
+    "startIndex": 497,
   },
   Object {
     "data": Array [
@@ -3535,7 +3903,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 533,
     "event": "text",
+    "startIndex": 526,
   },
   Object {
     "data": Array [
@@ -3558,7 +3928,9 @@ Array [
     "data": Array [
       "editor@example.com",
     ],
+    "endIndex": 567,
     "event": "text",
+    "startIndex": 549,
   },
   Object {
     "data": Array [
@@ -3573,7 +3945,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 591,
     "event": "text",
+    "startIndex": 584,
   },
   Object {
     "data": Array [
@@ -3596,7 +3970,9 @@ Array [
     "data": Array [
       "webmaster@example.com",
     ],
+    "endIndex": 623,
     "event": "text",
+    "startIndex": 602,
   },
   Object {
     "data": Array [
@@ -3611,7 +3987,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 642,
     "event": "text",
+    "startIndex": 635,
   },
   Object {
     "data": Array [
@@ -3636,7 +4014,9 @@ Array [
 
          ",
     ],
+    "endIndex": 659,
     "event": "text",
+    "startIndex": 648,
   },
   Object {
     "data": Array [
@@ -3659,7 +4039,9 @@ Array [
     "data": Array [
       "Star City",
     ],
+    "endIndex": 675,
     "event": "text",
+    "startIndex": 666,
   },
   Object {
     "data": Array [
@@ -3674,7 +4056,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 693,
     "event": "text",
+    "startIndex": 683,
   },
   Object {
     "data": Array [
@@ -3697,7 +4081,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp",
     ],
+    "endIndex": 755,
     "event": "text",
+    "startIndex": 699,
   },
   Object {
     "data": Array [
@@ -3712,7 +4098,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 772,
     "event": "text",
+    "startIndex": 762,
   },
   Object {
     "data": Array [
@@ -3735,7 +4123,9 @@ Array [
     "data": Array [
       "How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia's <a href=\\"http://howe.iki.rssi.ru/GCTC/gctc_e.htm\\">Star City</a>.",
     ],
+    "endIndex": 1021,
     "event": "text",
+    "startIndex": 785,
   },
   Object {
     "data": Array [
@@ -3750,7 +4140,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1045,
     "event": "text",
+    "startIndex": 1035,
   },
   Object {
     "data": Array [
@@ -3773,7 +4165,9 @@ Array [
     "data": Array [
       "Tue, 03 Jun 2003 09:39:21 GMT",
     ],
+    "endIndex": 1083,
     "event": "text",
+    "startIndex": 1054,
   },
   Object {
     "data": Array [
@@ -3788,7 +4182,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1103,
     "event": "text",
+    "startIndex": 1093,
   },
   Object {
     "data": Array [
@@ -3811,7 +4207,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/06/03.html#item573",
     ],
+    "endIndex": 1161,
     "event": "text",
+    "startIndex": 1109,
   },
   Object {
     "data": Array [
@@ -3827,7 +4225,9 @@ Array [
 
       ",
     ],
+    "endIndex": 1176,
     "event": "text",
+    "startIndex": 1168,
   },
   Object {
     "data": Array [
@@ -3842,7 +4242,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 1190,
     "event": "text",
+    "startIndex": 1183,
   },
   Object {
     "data": Array [
@@ -3866,7 +4268,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1206,
     "event": "text",
+    "startIndex": 1196,
   },
   Object {
     "data": Array [
@@ -3889,7 +4293,9 @@ Array [
     "data": Array [
       "Sky watchers in Europe, Asia, and parts of Alaska and Canada will experience a <a href=\\"http://science.nasa.gov/headlines/y2003/30may_solareclipse.htm\\">partial eclipse of the Sun</a> on Saturday, May 31st.",
     ],
+    "endIndex": 1436,
     "event": "text",
+    "startIndex": 1219,
   },
   Object {
     "data": Array [
@@ -3904,7 +4310,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1460,
     "event": "text",
+    "startIndex": 1450,
   },
   Object {
     "data": Array [
@@ -3927,7 +4335,9 @@ Array [
     "data": Array [
       "Fri, 30 May 2003 11:06:42 GMT",
     ],
+    "endIndex": 1498,
     "event": "text",
+    "startIndex": 1469,
   },
   Object {
     "data": Array [
@@ -3942,7 +4352,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1518,
     "event": "text",
+    "startIndex": 1508,
   },
   Object {
     "data": Array [
@@ -3965,7 +4377,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/05/30.html#item572",
     ],
+    "endIndex": 1576,
     "event": "text",
+    "startIndex": 1524,
   },
   Object {
     "data": Array [
@@ -3981,7 +4395,9 @@ Array [
 
       ",
     ],
+    "endIndex": 1591,
     "event": "text",
+    "startIndex": 1583,
   },
   Object {
     "data": Array [
@@ -3996,7 +4412,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 1605,
     "event": "text",
+    "startIndex": 1598,
   },
   Object {
     "data": Array [
@@ -4020,7 +4438,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1621,
     "event": "text",
+    "startIndex": 1611,
   },
   Object {
     "data": Array [
@@ -4043,7 +4463,9 @@ Array [
     "data": Array [
       "The Engine That Does More",
     ],
+    "endIndex": 1653,
     "event": "text",
+    "startIndex": 1628,
   },
   Object {
     "data": Array [
@@ -4058,7 +4480,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1671,
     "event": "text",
+    "startIndex": 1661,
   },
   Object {
     "data": Array [
@@ -4081,7 +4505,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/news/2003/news-VASIMR.asp",
     ],
+    "endIndex": 1731,
     "event": "text",
+    "startIndex": 1677,
   },
   Object {
     "data": Array [
@@ -4096,7 +4522,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1748,
     "event": "text",
+    "startIndex": 1738,
   },
   Object {
     "data": Array [
@@ -4119,7 +4547,9 @@ Array [
     "data": Array [
       "Before man travels to Mars, NASA hopes to design new engines that will let us fly through the Solar System more quickly.  The proposed VASIMR engine would do that.",
     ],
+    "endIndex": 1924,
     "event": "text",
+    "startIndex": 1761,
   },
   Object {
     "data": Array [
@@ -4134,7 +4564,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 1948,
     "event": "text",
+    "startIndex": 1938,
   },
   Object {
     "data": Array [
@@ -4157,7 +4589,9 @@ Array [
     "data": Array [
       "Tue, 27 May 2003 08:37:32 GMT",
     ],
+    "endIndex": 1986,
     "event": "text",
+    "startIndex": 1957,
   },
   Object {
     "data": Array [
@@ -4172,7 +4606,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 2006,
     "event": "text",
+    "startIndex": 1996,
   },
   Object {
     "data": Array [
@@ -4195,7 +4631,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/05/27.html#item571",
     ],
+    "endIndex": 2064,
     "event": "text",
+    "startIndex": 2012,
   },
   Object {
     "data": Array [
@@ -4211,7 +4649,9 @@ Array [
 
       ",
     ],
+    "endIndex": 2079,
     "event": "text",
+    "startIndex": 2071,
   },
   Object {
     "data": Array [
@@ -4226,7 +4666,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 2093,
     "event": "text",
+    "startIndex": 2086,
   },
   Object {
     "data": Array [
@@ -4250,7 +4692,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 2109,
     "event": "text",
+    "startIndex": 2099,
   },
   Object {
     "data": Array [
@@ -4273,7 +4717,9 @@ Array [
     "data": Array [
       "Astronauts' Dirty Laundry",
     ],
+    "endIndex": 2141,
     "event": "text",
+    "startIndex": 2116,
   },
   Object {
     "data": Array [
@@ -4288,7 +4734,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 2159,
     "event": "text",
+    "startIndex": 2149,
   },
   Object {
     "data": Array [
@@ -4311,7 +4759,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/news/2003/news-laundry.asp",
     ],
+    "endIndex": 2220,
     "event": "text",
+    "startIndex": 2165,
   },
   Object {
     "data": Array [
@@ -4326,7 +4776,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 2237,
     "event": "text",
+    "startIndex": 2227,
   },
   Object {
     "data": Array [
@@ -4349,7 +4801,9 @@ Array [
     "data": Array [
       "Compared to earlier spacecraft, the International Space Station has many luxuries, but laundry facilities are not one of them.  Instead, astronauts have other options.",
     ],
+    "endIndex": 2417,
     "event": "text",
+    "startIndex": 2250,
   },
   Object {
     "data": Array [
@@ -4364,7 +4818,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 2441,
     "event": "text",
+    "startIndex": 2431,
   },
   Object {
     "data": Array [
@@ -4387,7 +4843,9 @@ Array [
     "data": Array [
       "Tue, 20 May 2003 08:56:02 GMT",
     ],
+    "endIndex": 2479,
     "event": "text",
+    "startIndex": 2450,
   },
   Object {
     "data": Array [
@@ -4402,7 +4860,9 @@ Array [
       "
          ",
     ],
+    "endIndex": 2499,
     "event": "text",
+    "startIndex": 2489,
   },
   Object {
     "data": Array [
@@ -4425,7 +4885,9 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/05/20.html#item570",
     ],
+    "endIndex": 2557,
     "event": "text",
+    "startIndex": 2505,
   },
   Object {
     "data": Array [
@@ -4441,7 +4903,9 @@ Array [
 
          ",
     ],
+    "endIndex": 2575,
     "event": "text",
+    "startIndex": 2564,
   },
   Object {
     "data": Array [
@@ -4457,7 +4921,9 @@ Array [
       "200",
       "\\"",
     ],
+    "endIndex": 2601,
     "event": "attribute",
+    "startIndex": 2590,
   },
   Object {
     "data": Array [
@@ -4465,7 +4931,9 @@ Array [
       "image",
       "\\"",
     ],
+    "endIndex": 2616,
     "event": "attribute",
+    "startIndex": 2603,
   },
   Object {
     "data": Array [
@@ -4473,7 +4941,9 @@ Array [
       "https://picsum.photos/200",
       "\\"",
     ],
+    "endIndex": 2648,
     "event": "attribute",
+    "startIndex": 2618,
   },
   Object {
     "data": Array [
@@ -4481,7 +4951,9 @@ Array [
       "200",
       "\\"",
     ],
+    "endIndex": 2660,
     "event": "attribute",
+    "startIndex": 2650,
   },
   Object {
     "data": Array [
@@ -4510,7 +4982,9 @@ Array [
       "
       ",
     ],
+    "endIndex": 2670,
     "event": "text",
+    "startIndex": 2575,
   },
   Object {
     "data": Array [
@@ -4525,7 +4999,9 @@ Array [
       "
    ",
     ],
+    "endIndex": 2681,
     "event": "text",
+    "startIndex": 2677,
   },
   Object {
     "data": Array [
@@ -4540,7 +5016,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 2692,
     "event": "text",
+    "startIndex": 2691,
   },
   Object {
     "data": Array [
@@ -4569,7 +5047,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 16,
     "event": "text",
+    "startIndex": 15,
   },
   Object {
     "data": Array [
@@ -4593,7 +5073,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 23,
     "event": "text",
+    "startIndex": 22,
   },
   Object {
     "data": Array [
@@ -4617,7 +5099,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 31,
     "event": "text",
+    "startIndex": 29,
   },
   Object {
     "data": Array [
@@ -4640,7 +5124,9 @@ Array [
     "data": Array [
       "SVG test",
     ],
+    "endIndex": 46,
     "event": "text",
+    "startIndex": 38,
   },
   Object {
     "data": Array [
@@ -4655,7 +5141,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 55,
     "event": "text",
+    "startIndex": 54,
   },
   Object {
     "data": Array [
@@ -4670,7 +5158,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 63,
     "event": "text",
+    "startIndex": 62,
   },
   Object {
     "data": Array [
@@ -4694,7 +5184,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 71,
     "event": "text",
+    "startIndex": 69,
   },
   Object {
     "data": Array [
@@ -4710,7 +5202,9 @@ Array [
       "1.1",
       "\\"",
     ],
+    "endIndex": 88,
     "event": "attribute",
+    "startIndex": 76,
   },
   Object {
     "data": Array [
@@ -4718,7 +5212,9 @@ Array [
       "http://www.w3.org/2000/svg",
       "\\"",
     ],
+    "endIndex": 123,
     "event": "attribute",
+    "startIndex": 90,
   },
   Object {
     "data": Array [
@@ -4726,7 +5222,9 @@ Array [
       "http://www.w3.org/1999/xlink",
       "\\"",
     ],
+    "endIndex": 166,
     "event": "attribute",
+    "startIndex": 125,
   },
   Object {
     "data": Array [
@@ -4746,7 +5244,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 171,
     "event": "text",
+    "startIndex": 168,
   },
   Object {
     "data": Array [
@@ -4769,7 +5269,9 @@ Array [
     "data": Array [
       "Test",
     ],
+    "endIndex": 182,
     "event": "text",
+    "startIndex": 178,
   },
   Object {
     "data": Array [
@@ -4784,7 +5286,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 193,
     "event": "text",
+    "startIndex": 190,
   },
   Object {
     "data": Array [
@@ -4816,7 +5320,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 207,
     "event": "text",
+    "startIndex": 193,
   },
   Object {
     "data": Array [
@@ -4848,7 +5354,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 221,
     "event": "text",
+    "startIndex": 207,
   },
   Object {
     "data": Array [
@@ -4872,7 +5380,9 @@ Array [
       "
 			",
     ],
+    "endIndex": 228,
     "event": "text",
+    "startIndex": 224,
   },
   Object {
     "data": Array [
@@ -4896,7 +5406,9 @@ Array [
       "
 				",
     ],
+    "endIndex": 239,
     "event": "text",
+    "startIndex": 234,
   },
   Object {
     "data": Array [
@@ -4919,7 +5431,9 @@ Array [
     "data": Array [
       "x",
     ],
+    "endIndex": 247,
     "event": "text",
+    "startIndex": 246,
   },
   Object {
     "data": Array [
@@ -4934,7 +5448,9 @@ Array [
       "
 				",
     ],
+    "endIndex": 260,
     "event": "text",
+    "startIndex": 255,
   },
   Object {
     "data": Array [
@@ -4966,7 +5482,9 @@ Array [
       "
 			",
     ],
+    "endIndex": 275,
     "event": "text",
+    "startIndex": 260,
   },
   Object {
     "data": Array [
@@ -4981,7 +5499,9 @@ Array [
       "
 		",
     ],
+    "endIndex": 285,
     "event": "text",
+    "startIndex": 282,
   },
   Object {
     "data": Array [
@@ -4996,7 +5516,9 @@ Array [
       "
 	",
     ],
+    "endIndex": 291,
     "event": "text",
+    "startIndex": 289,
   },
   Object {
     "data": Array [
@@ -5011,7 +5533,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 298,
     "event": "text",
+    "startIndex": 297,
   },
   Object {
     "data": Array [
@@ -5026,7 +5550,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 306,
     "event": "text",
+    "startIndex": 305,
   },
   Object {
     "data": Array [
@@ -5041,7 +5567,9 @@ Array [
       "
 ",
     ],
+    "endIndex": 314,
     "event": "text",
+    "startIndex": 313,
   },
 ]
 `;
