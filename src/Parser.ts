@@ -418,8 +418,9 @@ export class Parser {
     }
 
     onend(): void {
-        this.updatePosition(0);
         if (this.cbs.onclosetag) {
+            // Set start- and end indices for remaining tags
+            this.startIndex = this.endIndex = this.tokenizer.getAbsoluteIndex();
             for (
                 let i = this.stack.length;
                 i > 0;
