@@ -1,13 +1,17 @@
 {
     "name": "Special special tags",
-    "html": "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
+    "input": "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title", {}]
         },
         {
@@ -16,62 +20,92 @@
         },
         {
             "event": "closetag",
+            "startIndex": 24,
+            "endIndex": 31,
             "data": ["title"]
         },
         {
             "event": "opentagname",
+            "startIndex": 32,
+            "endIndex": 38,
             "data": ["sitle"]
         },
         {
             "event": "opentag",
+            "startIndex": 32,
+            "endIndex": 38,
             "data": ["sitle", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 39,
+            "endIndex": 41,
             "data": ["b"]
         },
         {
             "event": "opentag",
+            "startIndex": 39,
+            "endIndex": 41,
             "data": ["b", {}]
         },
         {
             "event": "closetag",
+            "startIndex": 42,
+            "endIndex": 45,
             "data": ["b"]
         },
         {
             "event": "closetag",
+            "startIndex": 46,
+            "endIndex": 53,
             "data": ["sitle"]
         },
         {
             "event": "opentagname",
+            "startIndex": 54,
+            "endIndex": 60,
             "data": ["ttyle"]
         },
         {
             "event": "opentag",
+            "startIndex": 54,
+            "endIndex": 60,
             "data": ["ttyle", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 61,
+            "endIndex": 63,
             "data": ["b"]
         },
         {
             "event": "opentag",
+            "startIndex": 61,
+            "endIndex": 63,
             "data": ["b", {}]
         },
         {
             "event": "closetag",
+            "startIndex": 64,
+            "endIndex": 67,
             "data": ["b"]
         },
         {
             "event": "closetag",
+            "startIndex": 68,
+            "endIndex": 75,
             "data": ["ttyle"]
         },
         {
             "event": "opentagname",
+            "startIndex": 76,
+            "endIndex": 83,
             "data": ["script"]
         },
         {
             "event": "opentag",
+            "startIndex": 76,
+            "endIndex": 83,
             "data": ["script", {}]
         },
         {
@@ -80,14 +114,20 @@
         },
         {
             "event": "closetag",
+            "startIndex": 99,
+            "endIndex": 107,
             "data": ["script"]
         },
         {
             "event": "opentagname",
+            "startIndex": 108,
+            "endIndex": 114,
             "data": ["style"]
         },
         {
             "event": "opentag",
+            "startIndex": 108,
+            "endIndex": 114,
             "data": ["style", {}]
         },
         {
@@ -96,54 +136,80 @@
         },
         {
             "event": "closetag",
+            "startIndex": 123,
+            "endIndex": 130,
             "data": ["style"]
         },
         {
             "event": "opentagname",
+            "startIndex": 131,
+            "endIndex": 137,
             "data": ["scipt"]
         },
         {
             "event": "opentag",
+            "startIndex": 131,
+            "endIndex": 137,
             "data": ["scipt", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 138,
+            "endIndex": 145,
             "data": ["stylee"]
         },
         {
             "event": "opentag",
+            "startIndex": 138,
+            "endIndex": 145,
             "data": ["stylee", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 146,
+            "endIndex": 155,
             "data": ["scriptee"]
         },
         {
             "event": "opentag",
+            "startIndex": 146,
+            "endIndex": 155,
             "data": ["scriptee", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 156,
+            "endIndex": 160,
             "data": ["soo"]
         },
         {
             "event": "opentag",
+            "startIndex": 156,
+            "endIndex": 160,
             "data": ["soo", {}]
         },
         {
             "event": "closetag",
+            "startIndex": 161,
+            "endIndex": 161,
             "data": ["soo"]
         },
         {
             "event": "closetag",
+            "startIndex": 161,
+            "endIndex": 161,
             "data": ["scriptee"]
         },
         {
             "event": "closetag",
+            "startIndex": 161,
+            "endIndex": 161,
             "data": ["stylee"]
         },
         {
             "event": "closetag",
+            "startIndex": 161,
+            "endIndex": 161,
             "data": ["scipt"]
         }
     ]

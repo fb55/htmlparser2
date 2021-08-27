@@ -1,21 +1,81 @@
 {
     "name": "Long CDATA ending",
+    "input": "<before /><tag><![CDATA[ text ]]]></tag><after />",
     "options": {
-        "parser": { "xmlMode": true }
+        "parser": {
+            "xmlMode": true
+        }
     },
-    "html": "<before /><tag><![CDATA[ text ]]]></tag><after />",
     "expected": [
-        { "event": "opentagname", "data": ["before"] },
-        { "event": "opentag", "data": ["before", {}] },
-        { "event": "closetag", "data": ["before"] },
-        { "event": "opentagname", "data": ["tag"] },
-        { "event": "opentag", "data": ["tag", {}] },
-        { "event": "cdatastart", "data": [] },
-        { "event": "text", "data": [" text ]"] },
-        { "event": "cdataend", "data": [] },
-        { "event": "closetag", "data": ["tag"] },
-        { "event": "opentagname", "data": ["after"] },
-        { "event": "opentag", "data": ["after", {}] },
-        { "event": "closetag", "data": ["after"] }
+        {
+            "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 7,
+            "data": ["before"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 9,
+            "data": ["before", {}]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 0,
+            "endIndex": 9,
+            "data": ["before"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 10,
+            "endIndex": 14,
+            "data": ["tag"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 10,
+            "endIndex": 14,
+            "data": ["tag", {}]
+        },
+        {
+            "event": "cdatastart",
+            "startIndex": 15,
+            "endIndex": 33,
+            "data": []
+        },
+        {
+            "event": "text",
+            "data": [" text ]"]
+        },
+        {
+            "event": "cdataend",
+            "startIndex": 15,
+            "endIndex": 33,
+            "data": []
+        },
+        {
+            "event": "closetag",
+            "startIndex": 34,
+            "endIndex": 39,
+            "data": ["tag"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 40,
+            "endIndex": 46,
+            "data": ["after"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 40,
+            "endIndex": 48,
+            "data": ["after", {}]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 40,
+            "endIndex": 48,
+            "data": ["after"]
+        }
     ]
 }

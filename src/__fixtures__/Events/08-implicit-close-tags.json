@@ -1,84 +1,465 @@
 {
     "name": "Implicit close tags",
-    "html": "<ol><li class=test><div><table style=width:100%><tr><th>TH<td colspan=2><h3>Heading</h3><tr><td><div>Div</div><td><div>Div2</div></table></div><li><div><h3>Heading 2</h3></div></li></ol><p>Para<h4>Heading 4</h4><p><ul><li>Hi<li>bye</ul>",
+    "input": "<ol><li class=test><div><table style=width:100%><tr><th>TH<td colspan=2><h3>Heading</h3><tr><td><div>Div</div><td><div>Div2</div></table></div><li><div><h3>Heading 2</h3></div></li></ol><p>Para<h4>Heading 4</h4><p><ul><li>Hi<li>bye</ul>",
     "expected": [
-        { "event": "opentagname", "data": ["ol"] },
-        { "event": "opentag", "data": ["ol", {}] },
-        { "event": "opentagname", "data": ["li"] },
-        { "event": "attribute", "data": ["class", "test", null] },
-        { "event": "opentag", "data": ["li", { "class": "test" }] },
-        { "event": "opentagname", "data": ["div"] },
-        { "event": "opentag", "data": ["div", {}] },
-        { "event": "opentagname", "data": ["table"] },
-        { "event": "attribute", "data": ["style", "width:100%", null] },
-        { "event": "opentag", "data": ["table", { "style": "width:100%" }] },
-        { "event": "opentagname", "data": ["tr"] },
-        { "event": "opentag", "data": ["tr", {}] },
-        { "event": "opentagname", "data": ["th"] },
-        { "event": "opentag", "data": ["th", {}] },
-        { "event": "text", "data": ["TH"] },
-        { "event": "closetag", "data": ["th"] },
-        { "event": "opentagname", "data": ["td"] },
-        { "event": "attribute", "data": ["colspan", "2", null] },
-        { "event": "opentag", "data": ["td", { "colspan": "2" }] },
-        { "event": "opentagname", "data": ["h3"] },
-        { "event": "opentag", "data": ["h3", {}] },
-        { "event": "text", "data": ["Heading"] },
-        { "event": "closetag", "data": ["h3"] },
-        { "event": "closetag", "data": ["td"] },
-        { "event": "closetag", "data": ["tr"] },
-        { "event": "opentagname", "data": ["tr"] },
-        { "event": "opentag", "data": ["tr", {}] },
-        { "event": "opentagname", "data": ["td"] },
-        { "event": "opentag", "data": ["td", {}] },
-        { "event": "opentagname", "data": ["div"] },
-        { "event": "opentag", "data": ["div", {}] },
-        { "event": "text", "data": ["Div"] },
-        { "event": "closetag", "data": ["div"] },
-        { "event": "closetag", "data": ["td"] },
-        { "event": "opentagname", "data": ["td"] },
-        { "event": "opentag", "data": ["td", {}] },
-        { "event": "opentagname", "data": ["div"] },
-        { "event": "opentag", "data": ["div", {}] },
-        { "event": "text", "data": ["Div2"] },
-        { "event": "closetag", "data": ["div"] },
-        { "event": "closetag", "data": ["td"] },
-        { "event": "closetag", "data": ["tr"] },
-        { "event": "closetag", "data": ["table"] },
-        { "event": "closetag", "data": ["div"] },
-        { "event": "closetag", "data": ["li"] },
-        { "event": "opentagname", "data": ["li"] },
-        { "event": "opentag", "data": ["li", {}] },
-        { "event": "opentagname", "data": ["div"] },
-        { "event": "opentag", "data": ["div", {}] },
-        { "event": "opentagname", "data": ["h3"] },
-        { "event": "opentag", "data": ["h3", {}] },
-        { "event": "text", "data": ["Heading 2"] },
-        { "event": "closetag", "data": ["h3"] },
-        { "event": "closetag", "data": ["div"] },
-        { "event": "closetag", "data": ["li"] },
-        { "event": "closetag", "data": ["ol"] },
-        { "event": "opentagname", "data": ["p"] },
-        { "event": "opentag", "data": ["p", {}] },
-        { "event": "text", "data": ["Para"] },
-        { "event": "closetag", "data": ["p"] },
-        { "event": "opentagname", "data": ["h4"] },
-        { "event": "opentag", "data": ["h4", {}] },
-        { "event": "text", "data": ["Heading 4"] },
-        { "event": "closetag", "data": ["h4"] },
-        { "event": "opentagname", "data": ["p"] },
-        { "event": "opentag", "data": ["p", {}] },
-        { "event": "closetag", "data": ["p"] },
-        { "event": "opentagname", "data": ["ul"] },
-        { "event": "opentag", "data": ["ul", {}] },
-        { "event": "opentagname", "data": ["li"] },
-        { "event": "opentag", "data": ["li", {}] },
-        { "event": "text", "data": ["Hi"] },
-        { "event": "closetag", "data": ["li"] },
-        { "event": "opentagname", "data": ["li"] },
-        { "event": "opentag", "data": ["li", {}] },
-        { "event": "text", "data": ["bye"] },
-        { "event": "closetag", "data": ["li"] },
-        { "event": "closetag", "data": ["ul"] }
+        {
+            "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 3,
+            "data": ["ol"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 3,
+            "data": ["ol", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 4,
+            "endIndex": 7,
+            "data": ["li"]
+        },
+        {
+            "event": "attribute",
+            "data": ["class", "test", null]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 4,
+            "endIndex": 18,
+            "data": [
+                "li",
+                {
+                    "class": "test"
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 19,
+            "endIndex": 23,
+            "data": ["div"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 19,
+            "endIndex": 23,
+            "data": ["div", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 24,
+            "endIndex": 30,
+            "data": ["table"]
+        },
+        {
+            "event": "attribute",
+            "data": ["style", "width:100%", null]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 24,
+            "endIndex": 47,
+            "data": [
+                "table",
+                {
+                    "style": "width:100%"
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 48,
+            "endIndex": 51,
+            "data": ["tr"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 48,
+            "endIndex": 51,
+            "data": ["tr", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 52,
+            "endIndex": 55,
+            "data": ["th"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 52,
+            "endIndex": 55,
+            "data": ["th", {}]
+        },
+        {
+            "event": "text",
+            "data": ["TH"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 58,
+            "endIndex": 61,
+            "data": ["th"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 58,
+            "endIndex": 61,
+            "data": ["td"]
+        },
+        {
+            "event": "attribute",
+            "data": ["colspan", "2", null]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 58,
+            "endIndex": 71,
+            "data": [
+                "td",
+                {
+                    "colspan": "2"
+                }
+            ]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 72,
+            "endIndex": 75,
+            "data": ["h3"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 72,
+            "endIndex": 75,
+            "data": ["h3", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Heading"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 83,
+            "endIndex": 87,
+            "data": ["h3"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 88,
+            "endIndex": 91,
+            "data": ["td"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 88,
+            "endIndex": 91,
+            "data": ["tr"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 88,
+            "endIndex": 91,
+            "data": ["tr"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 88,
+            "endIndex": 91,
+            "data": ["tr", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 92,
+            "endIndex": 95,
+            "data": ["td"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 92,
+            "endIndex": 95,
+            "data": ["td", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 96,
+            "endIndex": 100,
+            "data": ["div"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 96,
+            "endIndex": 100,
+            "data": ["div", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Div"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 104,
+            "endIndex": 109,
+            "data": ["div"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 110,
+            "endIndex": 113,
+            "data": ["td"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 110,
+            "endIndex": 113,
+            "data": ["td"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 110,
+            "endIndex": 113,
+            "data": ["td", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 114,
+            "endIndex": 118,
+            "data": ["div"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 114,
+            "endIndex": 118,
+            "data": ["div", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Div2"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 123,
+            "endIndex": 128,
+            "data": ["div"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 129,
+            "endIndex": 136,
+            "data": ["td"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 129,
+            "endIndex": 136,
+            "data": ["tr"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 129,
+            "endIndex": 136,
+            "data": ["table"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 137,
+            "endIndex": 142,
+            "data": ["div"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 143,
+            "endIndex": 146,
+            "data": ["li"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 143,
+            "endIndex": 146,
+            "data": ["li"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 143,
+            "endIndex": 146,
+            "data": ["li", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 147,
+            "endIndex": 151,
+            "data": ["div"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 147,
+            "endIndex": 151,
+            "data": ["div", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 152,
+            "endIndex": 155,
+            "data": ["h3"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 152,
+            "endIndex": 155,
+            "data": ["h3", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Heading 2"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 165,
+            "endIndex": 169,
+            "data": ["h3"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 170,
+            "endIndex": 175,
+            "data": ["div"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 176,
+            "endIndex": 180,
+            "data": ["li"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 181,
+            "endIndex": 185,
+            "data": ["ol"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 186,
+            "endIndex": 188,
+            "data": ["p"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 186,
+            "endIndex": 188,
+            "data": ["p", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Para"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 193,
+            "endIndex": 196,
+            "data": ["p"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 193,
+            "endIndex": 196,
+            "data": ["h4"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 193,
+            "endIndex": 196,
+            "data": ["h4", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Heading 4"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 206,
+            "endIndex": 210,
+            "data": ["h4"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 211,
+            "endIndex": 213,
+            "data": ["p"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 211,
+            "endIndex": 213,
+            "data": ["p", {}]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 214,
+            "endIndex": 217,
+            "data": ["p"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 214,
+            "endIndex": 217,
+            "data": ["ul"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 214,
+            "endIndex": 217,
+            "data": ["ul", {}]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 218,
+            "endIndex": 221,
+            "data": ["li"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 218,
+            "endIndex": 221,
+            "data": ["li", {}]
+        },
+        {
+            "event": "text",
+            "data": ["Hi"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 224,
+            "endIndex": 227,
+            "data": ["li"]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 224,
+            "endIndex": 227,
+            "data": ["li"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 224,
+            "endIndex": 227,
+            "data": ["li", {}]
+        },
+        {
+            "event": "text",
+            "data": ["bye"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 231,
+            "endIndex": 235,
+            "data": ["li"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 231,
+            "endIndex": 235,
+            "data": ["ul"]
+        }
     ]
 }

@@ -403,7 +403,7 @@ export class Parser {
     }
 
     oncdata(value: string): void {
-        this.updatePosition(1);
+        this.updatePosition(9);
         if (this.options.xmlMode || this.options.recognizeCDATA) {
             this.cbs.oncdatastart?.();
             this.cbs.ontext?.(value);
@@ -419,6 +419,8 @@ export class Parser {
 
     onend(): void {
         if (this.cbs.onclosetag) {
+            // Set start- and end indices for remaining tags
+            this.startIndex = this.endIndex = this.tokenizer.getAbsoluteIndex();
             for (
                 let i = this.stack.length;
                 i > 0;

@@ -1,17 +1,23 @@
 {
     "name": "Template script tags",
-    "html": "<p><script type=\"text/template\"><h1>Heading1</h1></script></p>",
+    "input": "<p><script type=\"text/template\"><h1>Heading1</h1></script></p>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 2,
             "data": ["p"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 2,
             "data": ["p", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 3,
+            "endIndex": 10,
             "data": ["script"]
         },
         {
@@ -20,6 +26,8 @@
         },
         {
             "event": "opentag",
+            "startIndex": 3,
+            "endIndex": 31,
             "data": [
                 "script",
                 {
@@ -33,10 +41,14 @@
         },
         {
             "event": "closetag",
+            "startIndex": 49,
+            "endIndex": 57,
             "data": ["script"]
         },
         {
             "event": "closetag",
+            "startIndex": 58,
+            "endIndex": 61,
             "data": ["p"]
         }
     ]

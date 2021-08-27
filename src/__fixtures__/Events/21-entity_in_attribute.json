@@ -1,9 +1,11 @@
 {
     "name": "entity in attribute",
-    "html": "<a href='http://example.com/p&#x61;#x61ge?param=value&param2&param3=&lt;val&; & &'>",
+    "input": "<a href='http://example.com/p&#x61;#x61ge?param=value&param2&param3=&lt;val&; & &'>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 2,
             "data": ["a"]
         },
         {
@@ -16,6 +18,8 @@
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 82,
             "data": [
                 "a",
                 {
@@ -25,6 +29,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 83,
+            "endIndex": 83,
             "data": ["a"]
         }
     ]

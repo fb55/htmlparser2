@@ -1,21 +1,29 @@
 {
     "name": "Scripts creating other scripts",
-    "html": "<p><script>var str = '<script></'+'script>';</script></p>",
+    "input": "<p><script>var str = '<script></'+'script>';</script></p>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 2,
             "data": ["p"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 2,
             "data": ["p", {}]
         },
         {
             "event": "opentagname",
+            "startIndex": 3,
+            "endIndex": 10,
             "data": ["script"]
         },
         {
             "event": "opentag",
+            "startIndex": 3,
+            "endIndex": 10,
             "data": ["script", {}]
         },
         {
@@ -24,10 +32,14 @@
         },
         {
             "event": "closetag",
+            "startIndex": 44,
+            "endIndex": 52,
             "data": ["script"]
         },
         {
             "event": "closetag",
+            "startIndex": 53,
+            "endIndex": 56,
             "data": ["p"]
         }
     ]

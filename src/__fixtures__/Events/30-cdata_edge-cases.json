@@ -1,19 +1,49 @@
 {
     "name": "CDATA edge-cases",
+    "input": "<![CDATA><![CDATA[[]]sdaf]]><![CDATA[foo",
     "options": {
-        "parser": { "recognizeCDATA": true }
+        "parser": {
+            "recognizeCDATA": true
+        }
     },
-    "html": "<![CDATA><![CDATA[[]]sdaf]]><![CDATA[foo",
     "expected": [
         {
             "event": "processinginstruction",
+            "startIndex": 0,
+            "endIndex": 8,
             "data": ["![cdata", "![CDATA"]
         },
-        { "event": "cdatastart", "data": [] },
-        { "event": "text", "data": ["[]]sdaf"] },
-        { "event": "cdataend", "data": [] },
-        { "event": "cdatastart", "data": [] },
-        { "event": "text", "data": ["foo"] },
-        { "event": "cdataend", "data": [] }
+        {
+            "event": "cdatastart",
+            "startIndex": 9,
+            "endIndex": 27,
+            "data": []
+        },
+        {
+            "event": "text",
+            "data": ["[]]sdaf"]
+        },
+        {
+            "event": "cdataend",
+            "startIndex": 9,
+            "endIndex": 27,
+            "data": []
+        },
+        {
+            "event": "cdatastart",
+            "startIndex": 28,
+            "endIndex": 40,
+            "data": []
+        },
+        {
+            "event": "text",
+            "data": ["foo"]
+        },
+        {
+            "event": "cdataend",
+            "startIndex": 28,
+            "endIndex": 40,
+            "data": []
+        }
     ]
 }

@@ -1,6 +1,6 @@
 {
     "name": "double brackets",
-    "html": "<<princess-purpose>>testing</princess-purpose>",
+    "input": "<<princess-purpose>>testing</princess-purpose>",
     "expected": [
         {
             "event": "text",
@@ -8,10 +8,14 @@
         },
         {
             "event": "opentagname",
+            "startIndex": 1,
+            "endIndex": 18,
             "data": ["princess-purpose"]
         },
         {
             "event": "opentag",
+            "startIndex": 1,
+            "endIndex": 18,
             "data": ["princess-purpose", {}]
         },
         {
@@ -20,6 +24,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 27,
+            "endIndex": 45,
             "data": ["princess-purpose"]
         }
     ]

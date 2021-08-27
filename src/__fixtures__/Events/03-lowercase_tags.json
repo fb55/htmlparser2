@@ -1,14 +1,16 @@
 {
     "name": "Lowercase tags",
+    "input": "<H1 class=test>adsf</H1>",
     "options": {
         "parser": {
             "lowerCaseTags": true
         }
     },
-    "html": "<H1 class=test>adsf</H1>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 3,
             "data": ["h1"]
         },
         {
@@ -17,6 +19,8 @@
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 14,
             "data": [
                 "h1",
                 {
@@ -30,6 +34,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 19,
+            "endIndex": 23,
             "data": ["h1"]
         }
     ]

@@ -1,16 +1,72 @@
 {
     "name": "Long comment ending",
-    "html": "<meta id='before'><!-- text ---><meta id='after'>",
+    "input": "<meta id='before'><!-- text ---><meta id='after'>",
     "expected": [
-        { "event": "opentagname", "data": ["meta"] },
-        { "event": "attribute", "data": ["id", "before", "'"] },
-        { "event": "opentag", "data": ["meta", { "id": "before" }] },
-        { "event": "closetag", "data": ["meta"] },
-        { "event": "comment", "data": [" text -"] },
-        { "event": "commentend", "data": [] },
-        { "event": "opentagname", "data": ["meta"] },
-        { "event": "attribute", "data": ["id", "after", "'"] },
-        { "event": "opentag", "data": ["meta", { "id": "after" }] },
-        { "event": "closetag", "data": ["meta"] }
+        {
+            "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 5,
+            "data": ["meta"]
+        },
+        {
+            "event": "attribute",
+            "data": ["id", "before", "'"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 17,
+            "data": [
+                "meta",
+                {
+                    "id": "before"
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 0,
+            "endIndex": 17,
+            "data": ["meta"]
+        },
+        {
+            "event": "comment",
+            "startIndex": 18,
+            "endIndex": 31,
+            "data": [" text -"]
+        },
+        {
+            "event": "commentend",
+            "startIndex": 18,
+            "endIndex": 31,
+            "data": []
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 32,
+            "endIndex": 37,
+            "data": ["meta"]
+        },
+        {
+            "event": "attribute",
+            "data": ["id", "after", "'"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 32,
+            "endIndex": 48,
+            "data": [
+                "meta",
+                {
+                    "id": "after"
+                }
+            ]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 32,
+            "endIndex": 48,
+            "data": ["meta"]
+        }
     ]
 }

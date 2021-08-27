@@ -1,18 +1,22 @@
 {
     "name": "entity in title - decodeEntities=false (#592)",
+    "input": "<title>the &quot;title&quot;",
     "options": {
         "parser": {
             "decodeEntities": false
         }
     },
-    "html": "<title>the &quot;title&quot;",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title", {}]
         },
         {
@@ -21,6 +25,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 28,
+            "endIndex": 28,
             "data": ["title"]
         }
     ]

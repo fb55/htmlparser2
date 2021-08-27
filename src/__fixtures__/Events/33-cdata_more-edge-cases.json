@@ -1,12 +1,27 @@
 {
     "name": "CDATA more edge-cases",
+    "input": "<![CDATA[foo]bar]>baz]]>",
     "options": {
-        "parser": { "recognizeCDATA": true }
+        "parser": {
+            "recognizeCDATA": true
+        }
     },
-    "html": "<![CDATA[foo]bar]>baz]]>",
     "expected": [
-        { "event": "cdatastart", "data": [] },
-        { "event": "text", "data": ["foo]bar]>baz"] },
-        { "event": "cdataend", "data": [] }
+        {
+            "event": "cdatastart",
+            "startIndex": 0,
+            "endIndex": 23,
+            "data": []
+        },
+        {
+            "event": "text",
+            "data": ["foo]bar]>baz"]
+        },
+        {
+            "event": "cdataend",
+            "startIndex": 0,
+            "endIndex": 23,
+            "data": []
+        }
     ]
 }

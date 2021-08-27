@@ -1,9 +1,11 @@
 {
     "name": "Entities in attributes",
-    "html": "<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>",
+    "input": "<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 4,
             "data": ["foo"]
         },
         {
@@ -24,6 +26,8 @@
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 43,
             "data": [
                 "foo",
                 {
@@ -36,6 +40,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 44,
+            "endIndex": 44,
             "data": ["foo"]
         }
     ]

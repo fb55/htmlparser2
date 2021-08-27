@@ -1,6 +1,6 @@
 {
     "name": "Empty tag name",
-    "html": "< ></ >",
+    "input": "< ></ >",
     "expected": [
         {
             "event": "text",

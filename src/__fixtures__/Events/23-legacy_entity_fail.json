@@ -1,6 +1,6 @@
 {
     "name": "legacy entities fail",
-    "html": "M&M",
+    "input": "M&M",
     "expected": [
         {
             "event": "text",

@@ -1,6 +1,6 @@
 {
     "name": "leading lt",
-    "html": ">a>",
+    "input": ">a>",
     "expected": [
         {
             "event": "text",

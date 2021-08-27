@@ -1,10 +1,10 @@
 {
     "name": "named entities",
-    "html": "&amp;el&lt;er&CounterClockwiseContourIntegral;foo&bar",
+    "input": "&amp;el&lt;er&CounterClockwiseContourIntegral;foo&bar",
     "expected": [
         {
             "event": "text",
-            "data": ["&el<er\u2233foo&bar"]
+            "data": ["&el<er∳foo&bar"]
         }
     ]
 }

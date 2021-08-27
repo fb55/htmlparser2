@@ -1,13 +1,17 @@
 {
     "name": "CDATA (inside special)",
-    "html": "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
+    "input": "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 7,
             "data": ["script"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 7,
             "data": ["script", {}]
         },
         {
@@ -16,6 +20,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 53,
+            "endIndex": 61,
             "data": ["script"]
         }
     ]

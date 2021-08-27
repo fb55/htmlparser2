@@ -1,6 +1,6 @@
 {
     "name": "lt followed by whitespace",
-    "html": "a < b",
+    "input": "a < b",
     "expected": [
         {
             "event": "text",

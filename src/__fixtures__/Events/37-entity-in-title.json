@@ -1,13 +1,17 @@
 {
     "name": "entity in title (#592)",
-    "html": "<title>the &quot;title&quot",
+    "input": "<title>the &quot;title&quot",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title"]
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 6,
             "data": ["title", {}]
         },
         {
@@ -16,6 +20,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 27,
+            "endIndex": 27,
             "data": ["title"]
         }
     ]

@@ -1,9 +1,11 @@
 {
     "name": "crazy attribute",
-    "html": "<p < = '' FAIL>stuff</p><a",
+    "input": "<p < = '' FAIL>stuff</p><a",
     "expected": [
         {
             "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 2,
             "data": ["p"]
         },
         {
@@ -16,6 +18,8 @@
         },
         {
             "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 14,
             "data": [
                 "p",
                 {
@@ -30,6 +34,8 @@
         },
         {
             "event": "closetag",
+            "startIndex": 20,
+            "endIndex": 23,
             "data": ["p"]
         }
     ]
