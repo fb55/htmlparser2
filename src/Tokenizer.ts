@@ -817,30 +817,16 @@ export default class Tokenizer {
         return !this.xmlMode && this.baseState === State.Text;
     }
 
+    /**
+     * Remove data that has already been consumed from the buffer.
+     */
     private cleanup() {
-        if (this.sectionStart < 0) {
-            this.buffer = "";
-            this.bufferOffset += this._index;
-            this._index = 0;
-        } else if (this.running) {
-            if (this._state === State.Text) {
-                if (this.sectionStart !== this._index) {
-                    this.cbs.ontext(this.buffer.substr(this.sectionStart));
-                }
-                this.buffer = "";
-                this.bufferOffset += this._index;
-                this._index = 0;
-            } else if (this.sectionStart === this._index) {
-                // The section just started
-                this.buffer = "";
-                this.bufferOffset += this._index;
-                this._index = 0;
-            } else {
-                // Remove everything unnecessary
-                this.buffer = this.buffer.substr(this.sectionStart);
-                this._index -= this.sectionStart;
-                this.bufferOffset += this.sectionStart;
-            }
+        const start = this.sectionStart < 0 ? this._index : this.sectionStart;
+        this.buffer = this.buffer.substr(start);
+        this._index -= start;
+        this.bufferOffset += start;
+
+        if (this.sectionStart > 0) {
             this.sectionStart = 0;
         }
     }

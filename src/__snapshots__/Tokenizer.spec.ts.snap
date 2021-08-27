@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tokenizer should not lose data when pausing 1`] = `
+Array [
+  Array [
+    "ontext",
+    "&",
+  ],
+  Array [
+    "ontext",
+    " it up!",
+  ],
+  Array [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer should support self-closing special tags for self-closing script tag 1`] = `
 Array [
   Array [
