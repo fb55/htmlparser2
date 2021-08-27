@@ -43,14 +43,15 @@
                     "baz": "&",
                     "boo": "&",
                     "noo": ""
-                }
+                },
+                false
             ]
         },
         {
             "event": "closetag",
             "startIndex": 44,
             "endIndex": 44,
-            "data": ["foo"]
+            "data": ["foo", true]
         }
     ]
 }

@@ -27,7 +27,8 @@
                 "h1",
                 {
                     "class": "test"
-                }
+                },
+                false
             ]
         },
         {
@@ -40,7 +41,7 @@
             "event": "closetag",
             "startIndex": 19,
             "endIndex": 23,
-            "data": ["h1"]
+            "data": ["h1", false]
         }
     ]
 }

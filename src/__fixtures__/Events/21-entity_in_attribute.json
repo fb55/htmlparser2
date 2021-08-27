@@ -26,14 +26,15 @@
                 "a",
                 {
                     "href": "http://example.com/pa#x61ge?param=value&param2&param3=<val&; & &"
-                }
+                },
+                false
             ]
         },
         {
             "event": "closetag",
             "startIndex": 83,
             "endIndex": 83,
-            "data": ["a"]
+            "data": ["a", true]
         }
     ]
 }

@@ -17,13 +17,13 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 7,
-            "data": ["select", {}]
+            "data": ["select", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 8,
             "endIndex": 14,
-            "data": ["select"]
+            "data": ["select", true]
         },
         {
             "event": "opentagname",
@@ -35,13 +35,13 @@
             "event": "opentag",
             "startIndex": 8,
             "endIndex": 14,
-            "data": ["input", {}]
+            "data": ["input", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 8,
             "endIndex": 14,
-            "data": ["input"]
+            "data": ["input", true]
         }
     ]
 }

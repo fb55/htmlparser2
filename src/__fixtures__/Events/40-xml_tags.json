@@ -17,7 +17,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 5,
-            "data": [":foo", {}]
+            "data": [":foo", {}, false]
         },
         {
             "event": "opentagname",
@@ -29,19 +29,19 @@
             "event": "opentag",
             "startIndex": 6,
             "endIndex": 11,
-            "data": ["_bar", {}]
+            "data": ["_bar", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 12,
             "endIndex": 12,
-            "data": ["_bar"]
+            "data": ["_bar", true]
         },
         {
             "event": "closetag",
             "startIndex": 12,
             "endIndex": 12,
-            "data": [":foo"]
+            "data": [":foo", true]
         }
     ]
 }

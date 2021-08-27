@@ -12,7 +12,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 3,
-            "data": ["ol", {}]
+            "data": ["ol", {}, false]
         },
         {
             "event": "opentagname",
@@ -34,7 +34,8 @@
                 "li",
                 {
                     "class": "test"
-                }
+                },
+                false
             ]
         },
         {
@@ -47,7 +48,7 @@
             "event": "opentag",
             "startIndex": 19,
             "endIndex": 23,
-            "data": ["div", {}]
+            "data": ["div", {}, false]
         },
         {
             "event": "opentagname",
@@ -69,7 +70,8 @@
                 "table",
                 {
                     "style": "width:100%"
-                }
+                },
+                false
             ]
         },
         {
@@ -82,7 +84,7 @@
             "event": "opentag",
             "startIndex": 48,
             "endIndex": 51,
-            "data": ["tr", {}]
+            "data": ["tr", {}, false]
         },
         {
             "event": "opentagname",
@@ -94,7 +96,7 @@
             "event": "opentag",
             "startIndex": 52,
             "endIndex": 55,
-            "data": ["th", {}]
+            "data": ["th", {}, false]
         },
         {
             "event": "text",
@@ -106,7 +108,7 @@
             "event": "closetag",
             "startIndex": 58,
             "endIndex": 61,
-            "data": ["th"]
+            "data": ["th", true]
         },
         {
             "event": "opentagname",
@@ -128,7 +130,8 @@
                 "td",
                 {
                     "colspan": "2"
-                }
+                },
+                false
             ]
         },
         {
@@ -141,7 +144,7 @@
             "event": "opentag",
             "startIndex": 72,
             "endIndex": 75,
-            "data": ["h3", {}]
+            "data": ["h3", {}, false]
         },
         {
             "event": "text",
@@ -153,19 +156,19 @@
             "event": "closetag",
             "startIndex": 83,
             "endIndex": 87,
-            "data": ["h3"]
+            "data": ["h3", true]
         },
         {
             "event": "closetag",
             "startIndex": 88,
             "endIndex": 91,
-            "data": ["td"]
+            "data": ["td", true]
         },
         {
             "event": "closetag",
             "startIndex": 88,
             "endIndex": 91,
-            "data": ["tr"]
+            "data": ["tr", true]
         },
         {
             "event": "opentagname",
@@ -177,7 +180,7 @@
             "event": "opentag",
             "startIndex": 88,
             "endIndex": 91,
-            "data": ["tr", {}]
+            "data": ["tr", {}, false]
         },
         {
             "event": "opentagname",
@@ -189,7 +192,7 @@
             "event": "opentag",
             "startIndex": 92,
             "endIndex": 95,
-            "data": ["td", {}]
+            "data": ["td", {}, false]
         },
         {
             "event": "opentagname",
@@ -201,7 +204,7 @@
             "event": "opentag",
             "startIndex": 96,
             "endIndex": 100,
-            "data": ["div", {}]
+            "data": ["div", {}, false]
         },
         {
             "event": "text",
@@ -213,13 +216,13 @@
             "event": "closetag",
             "startIndex": 104,
             "endIndex": 109,
-            "data": ["div"]
+            "data": ["div", true]
         },
         {
             "event": "closetag",
             "startIndex": 110,
             "endIndex": 113,
-            "data": ["td"]
+            "data": ["td", true]
         },
         {
             "event": "opentagname",
@@ -231,7 +234,7 @@
             "event": "opentag",
             "startIndex": 110,
             "endIndex": 113,
-            "data": ["td", {}]
+            "data": ["td", {}, false]
         },
         {
             "event": "opentagname",
@@ -243,7 +246,7 @@
             "event": "opentag",
             "startIndex": 114,
             "endIndex": 118,
-            "data": ["div", {}]
+            "data": ["div", {}, false]
         },
         {
             "event": "text",
@@ -255,37 +258,37 @@
             "event": "closetag",
             "startIndex": 123,
             "endIndex": 128,
-            "data": ["div"]
+            "data": ["div", true]
         },
         {
             "event": "closetag",
             "startIndex": 129,
             "endIndex": 136,
-            "data": ["td"]
+            "data": ["td", true]
         },
         {
             "event": "closetag",
             "startIndex": 129,
             "endIndex": 136,
-            "data": ["tr"]
+            "data": ["tr", true]
         },
         {
             "event": "closetag",
             "startIndex": 129,
             "endIndex": 136,
-            "data": ["table"]
+            "data": ["table", true]
         },
         {
             "event": "closetag",
             "startIndex": 137,
             "endIndex": 142,
-            "data": ["div"]
+            "data": ["div", true]
         },
         {
             "event": "closetag",
             "startIndex": 143,
             "endIndex": 146,
-            "data": ["li"]
+            "data": ["li", true]
         },
         {
             "event": "opentagname",
@@ -297,7 +300,7 @@
             "event": "opentag",
             "startIndex": 143,
             "endIndex": 146,
-            "data": ["li", {}]
+            "data": ["li", {}, false]
         },
         {
             "event": "opentagname",
@@ -309,7 +312,7 @@
             "event": "opentag",
             "startIndex": 147,
             "endIndex": 151,
-            "data": ["div", {}]
+            "data": ["div", {}, false]
         },
         {
             "event": "opentagname",
@@ -321,7 +324,7 @@
             "event": "opentag",
             "startIndex": 152,
             "endIndex": 155,
-            "data": ["h3", {}]
+            "data": ["h3", {}, false]
         },
         {
             "event": "text",
@@ -333,25 +336,25 @@
             "event": "closetag",
             "startIndex": 165,
             "endIndex": 169,
-            "data": ["h3"]
+            "data": ["h3", true]
         },
         {
             "event": "closetag",
             "startIndex": 170,
             "endIndex": 175,
-            "data": ["div"]
+            "data": ["div", true]
         },
         {
             "event": "closetag",
             "startIndex": 176,
             "endIndex": 180,
-            "data": ["li"]
+            "data": ["li", true]
         },
         {
             "event": "closetag",
             "startIndex": 181,
             "endIndex": 185,
-            "data": ["ol"]
+            "data": ["ol", false]
         },
         {
             "event": "opentagname",
@@ -363,7 +366,7 @@
             "event": "opentag",
             "startIndex": 186,
             "endIndex": 188,
-            "data": ["p", {}]
+            "data": ["p", {}, false]
         },
         {
             "event": "text",
@@ -375,7 +378,7 @@
             "event": "closetag",
             "startIndex": 193,
             "endIndex": 196,
-            "data": ["p"]
+            "data": ["p", true]
         },
         {
             "event": "opentagname",
@@ -387,7 +390,7 @@
             "event": "opentag",
             "startIndex": 193,
             "endIndex": 196,
-            "data": ["h4", {}]
+            "data": ["h4", {}, false]
         },
         {
             "event": "text",
@@ -399,7 +402,7 @@
             "event": "closetag",
             "startIndex": 206,
             "endIndex": 210,
-            "data": ["h4"]
+            "data": ["h4", false]
         },
         {
             "event": "opentagname",
@@ -411,13 +414,13 @@
             "event": "opentag",
             "startIndex": 211,
             "endIndex": 213,
-            "data": ["p", {}]
+            "data": ["p", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 214,
             "endIndex": 217,
-            "data": ["p"]
+            "data": ["p", true]
         },
         {
             "event": "opentagname",
@@ -429,7 +432,7 @@
             "event": "opentag",
             "startIndex": 214,
             "endIndex": 217,
-            "data": ["ul", {}]
+            "data": ["ul", {}, false]
         },
         {
             "event": "opentagname",
@@ -441,7 +444,7 @@
             "event": "opentag",
             "startIndex": 218,
             "endIndex": 221,
-            "data": ["li", {}]
+            "data": ["li", {}, false]
         },
         {
             "event": "text",
@@ -453,7 +456,7 @@
             "event": "closetag",
             "startIndex": 224,
             "endIndex": 227,
-            "data": ["li"]
+            "data": ["li", true]
         },
         {
             "event": "opentagname",
@@ -465,7 +468,7 @@
             "event": "opentag",
             "startIndex": 224,
             "endIndex": 227,
-            "data": ["li", {}]
+            "data": ["li", {}, false]
         },
         {
             "event": "text",
@@ -477,13 +480,13 @@
             "event": "closetag",
             "startIndex": 231,
             "endIndex": 235,
-            "data": ["li"]
+            "data": ["li", false]
         },
         {
             "event": "closetag",
             "startIndex": 231,
             "endIndex": 235,
-            "data": ["ul"]
+            "data": ["ul", false]
         }
     ]
 }

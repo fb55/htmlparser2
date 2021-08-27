@@ -12,7 +12,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 7,
-            "data": ["script", {}]
+            "data": ["script", {}, false]
         },
         {
             "event": "text",
@@ -24,7 +24,7 @@
             "event": "closetag",
             "startIndex": 18,
             "endIndex": 26,
-            "data": ["script"]
+            "data": ["script", false]
         }
     ]
 }

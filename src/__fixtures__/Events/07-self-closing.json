@@ -22,7 +22,8 @@
                 "a",
                 {
                     "href": "http://test.com/"
-                }
+                },
+                false
             ]
         },
         {
@@ -35,7 +36,7 @@
             "event": "closetag",
             "startIndex": 28,
             "endIndex": 31,
-            "data": ["a"]
+            "data": ["a", false]
         },
         {
             "event": "opentagname",
@@ -47,13 +48,13 @@
             "event": "opentag",
             "startIndex": 32,
             "endIndex": 38,
-            "data": ["hr", {}]
+            "data": ["hr", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 32,
             "endIndex": 38,
-            "data": ["hr"]
+            "data": ["hr", true]
         }
     ]
 }

@@ -18,7 +18,7 @@
             "event": "opentag",
             "startIndex": 1,
             "endIndex": 18,
-            "data": ["princess-purpose", {}]
+            "data": ["princess-purpose", {}, false]
         },
         {
             "event": "text",
@@ -30,7 +30,7 @@
             "event": "closetag",
             "startIndex": 27,
             "endIndex": 45,
-            "data": ["princess-purpose"]
+            "data": ["princess-purpose", false]
         }
     ]
 }

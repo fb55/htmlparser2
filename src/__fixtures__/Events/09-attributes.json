@@ -43,7 +43,8 @@
                     "title": "test1",
                     "disabled": "",
                     "value": "test2"
-                }
+                },
+                false
             ]
         },
         {
@@ -56,7 +57,7 @@
             "event": "closetag",
             "startIndex": 60,
             "endIndex": 68,
-            "data": ["button"]
+            "data": ["button", false]
         }
     ]
 }

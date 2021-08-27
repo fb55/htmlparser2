@@ -167,7 +167,7 @@ export interface Handler {
      */
     onend(): void;
     onerror(error: Error): void;
-    onclosetag(name: string): void;
+    onclosetag(name: string, isImplied: boolean): void;
     onopentagname(name: string): void;
     /**
      *
@@ -180,7 +180,11 @@ export interface Handler {
         value: string,
         quote?: string | undefined | null
     ): void;
-    onopentag(name: string, attribs: { [s: string]: string }): void;
+    onopentag(
+        name: string,
+        attribs: { [s: string]: string },
+        isImplied: boolean
+    ): void;
     ontext(data: string): void;
     oncomment(data: string): void;
     oncdatastart(): void;
@@ -266,7 +270,7 @@ export class Parser {
                 impliesClose.has(this.stack[this.stack.length - 1])
             ) {
                 const el = this.stack.pop()!;
-                this.cbs.onclosetag?.(el);
+                this.cbs.onclosetag?.(el, true);
             }
         }
         if (!this.isVoidElement(name)) {
@@ -281,20 +285,25 @@ export class Parser {
         if (this.cbs.onopentag) this.attribs = {};
     }
 
-    /** @internal */
-    onopentagend(): void {
+    private endOpenTag(isImplied: boolean) {
         this.startIndex = this.openTagStart;
         this.endIndex = this.tokenizer.getAbsoluteIndex();
 
         if (this.attribs) {
-            this.cbs.onopentag?.(this.tagname, this.attribs);
+            this.cbs.onopentag?.(this.tagname, this.attribs, isImplied);
             this.attribs = null;
         }
         if (this.cbs.onclosetag && this.isVoidElement(this.tagname)) {
-            this.cbs.onclosetag(this.tagname);
+            this.cbs.onclosetag(this.tagname, true);
         }
 
         this.tagname = "";
+    }
+
+    /** @internal */
+    onopentagend(): void {
+        this.endOpenTag(false);
+
         // Set `startIndex` for next node
         this.startIndex = this.endIndex + 1;
     }
@@ -306,29 +315,33 @@ export class Parser {
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
         }
+
         if (
             foreignContextElements.has(name) ||
             htmlIntegrationElements.has(name)
         ) {
             this.foreignContext.pop();
         }
-        if (this.stack.length && !this.isVoidElement(name)) {
-            let pos = this.stack.lastIndexOf(name);
+
+        if (!this.isVoidElement(name)) {
+            const pos = this.stack.lastIndexOf(name);
             if (pos !== -1) {
                 if (this.cbs.onclosetag) {
-                    pos = this.stack.length - pos;
-                    while (pos--) {
+                    let count = this.stack.length - pos;
+                    while (count--) {
                         // We know the stack has sufficient elements.
-                        this.cbs.onclosetag(this.stack.pop() as string);
+                        this.cbs.onclosetag(this.stack.pop()!, pos !== 0);
                     }
                 } else this.stack.length = pos;
-            } else if (name === "p" && !this.options.xmlMode) {
+            } else if (!this.options.xmlMode && name === "p") {
                 this.emitOpenTag(name);
-                this.closeCurrentTag();
+                this.closeCurrentTag(true);
             }
-        } else if (!this.options.xmlMode && (name === "br" || name === "p")) {
-            this.emitOpenTag(name);
-            this.closeCurrentTag();
+        } else if (!this.options.xmlMode && name === "br") {
+            // We can't go through `emitOpenTag` here, as `br` would be implicitly closed.
+            this.cbs.onopentagname?.(name);
+            this.cbs.onopentag?.(name, {}, true);
+            this.cbs.onclosetag?.(name, false);
         }
 
         // Set `startIndex` for next node
@@ -342,23 +355,21 @@ export class Parser {
             this.options.recognizeSelfClosing ||
             this.foreignContext[this.foreignContext.length - 1]
         ) {
-            this.closeCurrentTag();
+            this.closeCurrentTag(false);
         } else {
             // Ignore the fact that the tag is self-closing.
             this.onopentagend();
         }
     }
 
-    private closeCurrentTag() {
+    private closeCurrentTag(isOpenImplied: boolean) {
         const name = this.tagname;
-        this.onopentagend();
+        this.endOpenTag(isOpenImplied);
 
         // Self-closing tags will be on the top of the stack
         if (this.stack[this.stack.length - 1] === name) {
-            // Reset the start index
-            this.startIndex = this.openTagStart;
-
-            this.cbs.onclosetag?.(name);
+            // If the opening tag isn't implied, the closing tag has to be implied.
+            this.cbs.onclosetag?.(name, !isOpenImplied);
             this.stack.pop();
         }
     }
@@ -471,7 +482,7 @@ export class Parser {
             for (
                 let i = this.stack.length;
                 i > 0;
-                this.cbs.onclosetag(this.stack[--i])
+                this.cbs.onclosetag(this.stack[--i], true)
             );
         }
         this.cbs.onend?.();
