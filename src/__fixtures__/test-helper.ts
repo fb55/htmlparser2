@@ -105,24 +105,19 @@ function getCallback(file: TestFile, done: (err?: Error | null) => void) {
     let firstResult: unknown | undefined;
 
     return (err: null | Error, actual?: unknown | unknown[]) => {
-        try {
-            expect(err).toBeNull();
+        expect(err).toBeNull();
 
-            if (firstResult) {
-                expect(actual).toStrictEqual(firstResult);
-                done();
+        if (firstResult) {
+            expect(actual).toStrictEqual(firstResult);
+            done();
+        } else {
+            if (file.useSnapshot) {
+                expect(actual).toMatchSnapshot();
             } else {
-                if (file.useSnapshot) {
-                    expect(actual).toMatchSnapshot();
-                } else {
-                    expect(actual).toStrictEqual(file.expected);
-                }
-
-                firstResult = actual;
+                expect(actual).toStrictEqual(file.expected);
             }
-        } catch (err) {
-            done(err as Error);
-            throw err;
+
+            firstResult = actual;
         }
     };
 }
