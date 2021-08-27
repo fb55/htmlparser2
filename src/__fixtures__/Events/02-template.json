@@ -12,7 +12,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 2,
-            "data": ["p", {}]
+            "data": ["p", {}, false]
         },
         {
             "event": "opentagname",
@@ -34,7 +34,8 @@
                 "script",
                 {
                     "type": "text/template"
-                }
+                },
+                false
             ]
         },
         {
@@ -47,13 +48,13 @@
             "event": "closetag",
             "startIndex": 49,
             "endIndex": 57,
-            "data": ["script"]
+            "data": ["script", true]
         },
         {
             "event": "closetag",
             "startIndex": 58,
             "endIndex": 61,
-            "data": ["p"]
+            "data": ["p", false]
         }
     ]
 }

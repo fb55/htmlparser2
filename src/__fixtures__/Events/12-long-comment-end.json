@@ -22,14 +22,15 @@
                 "meta",
                 {
                     "id": "before"
-                }
+                },
+                false
             ]
         },
         {
             "event": "closetag",
             "startIndex": 0,
             "endIndex": 17,
-            "data": ["meta"]
+            "data": ["meta", true]
         },
         {
             "event": "comment",
@@ -63,14 +64,15 @@
                 "meta",
                 {
                     "id": "after"
-                }
+                },
+                false
             ]
         },
         {
             "event": "closetag",
             "startIndex": 32,
             "endIndex": 48,
-            "data": ["meta"]
+            "data": ["meta", true]
         }
     ]
 }

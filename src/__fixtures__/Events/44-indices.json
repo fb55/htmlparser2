@@ -24,7 +24,7 @@
             "event": "opentag",
             "startIndex": 16,
             "endIndex": 21,
-            "data": ["html", {}]
+            "data": ["html", {}, false]
         },
         {
             "event": "text",
@@ -42,7 +42,7 @@
             "event": "opentag",
             "startIndex": 23,
             "endIndex": 29,
-            "data": ["title", {}]
+            "data": ["title", {}, false]
         },
         {
             "event": "text",
@@ -54,7 +54,7 @@
             "event": "closetag",
             "startIndex": 39,
             "endIndex": 46,
-            "data": ["title"]
+            "data": ["title", true]
         },
         {
             "event": "text",
@@ -82,7 +82,8 @@
                 "body",
                 {
                     "class": "foo"
-                }
+                },
+                false
             ]
         },
         {
@@ -101,19 +102,19 @@
             "event": "opentag",
             "startIndex": 78,
             "endIndex": 80,
-            "data": ["p", {}]
+            "data": ["p", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 81,
             "endIndex": 84,
-            "data": ["p"]
+            "data": ["p", true]
         },
         {
             "event": "closetag",
             "startIndex": 85,
             "endIndex": 91,
-            "data": ["body"]
+            "data": ["body", true]
         },
         {
             "event": "text",
@@ -143,7 +144,7 @@
             "event": "closetag",
             "startIndex": 114,
             "endIndex": 120,
-            "data": ["html"]
+            "data": ["html", false]
         },
         {
             "event": "text",

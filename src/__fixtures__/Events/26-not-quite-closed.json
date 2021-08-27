@@ -22,14 +22,15 @@
                 "foo",
                 {
                     "bar": ""
-                }
+                },
+                false
             ]
         },
         {
             "event": "closetag",
             "startIndex": 10,
             "endIndex": 15,
-            "data": ["foo"]
+            "data": ["foo", false]
         }
     ]
 }

@@ -29,7 +29,8 @@
                 {
                     "<": "",
                     "fail": ""
-                }
+                },
+                false
             ]
         },
         {
@@ -42,7 +43,7 @@
             "event": "closetag",
             "startIndex": 20,
             "endIndex": 23,
-            "data": ["p"]
+            "data": ["p", false]
         }
     ]
 }

@@ -17,13 +17,13 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 9,
-            "data": ["before", {}]
+            "data": ["before", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 0,
             "endIndex": 9,
-            "data": ["before"]
+            "data": ["before", true]
         },
         {
             "event": "opentagname",
@@ -35,7 +35,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 14,
-            "data": ["tag", {}]
+            "data": ["tag", {}, false]
         },
         {
             "event": "cdatastart",
@@ -59,7 +59,7 @@
             "event": "closetag",
             "startIndex": 34,
             "endIndex": 39,
-            "data": ["tag"]
+            "data": ["tag", false]
         },
         {
             "event": "opentagname",
@@ -71,13 +71,13 @@
             "event": "opentag",
             "startIndex": 40,
             "endIndex": 48,
-            "data": ["after", {}]
+            "data": ["after", {}, false]
         },
         {
             "event": "closetag",
             "startIndex": 40,
             "endIndex": 48,
-            "data": ["after"]
+            "data": ["after", true]
         }
     ]
 }

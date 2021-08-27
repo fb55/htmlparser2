@@ -28,14 +28,15 @@
                 "h1",
                 {
                     "class": "test"
-                }
+                },
+                false
             ]
         },
         {
             "event": "closetag",
             "startIndex": 25,
             "endIndex": 29,
-            "data": ["h1"]
+            "data": ["h1", false]
         }
     ]
 }

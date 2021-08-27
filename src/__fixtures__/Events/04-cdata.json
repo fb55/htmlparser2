@@ -17,7 +17,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 4,
-            "data": ["tag", {}]
+            "data": ["tag", {}, false]
         },
         {
             "event": "cdatastart",
@@ -41,7 +41,7 @@
             "event": "closetag",
             "startIndex": 42,
             "endIndex": 47,
-            "data": ["tag"]
+            "data": ["tag", false]
         },
         {
             "event": "processinginstruction",
