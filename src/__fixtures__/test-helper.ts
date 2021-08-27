@@ -95,18 +95,26 @@ export function getEventCollector(
  * @param done Function to call on completion.
  */
 function getCallback(file: TestFile, done: (err?: Error | null) => void) {
-    let repeated = false;
+    let firstResult: unknown | undefined;
 
     return (err: null | Error, actual?: unknown | unknown[]) => {
-        expect(err).toBeNull();
-        if (file.useSnapshot) {
-            expect(actual).toMatchSnapshot();
-        } else {
-            expect(actual).toStrictEqual(file.expected);
-        }
+        try {
+            expect(err).toBeNull();
 
-        if (repeated) done();
-        else repeated = true;
+            if (firstResult) {
+                expect(actual).toStrictEqual(firstResult);
+                done();
+            } else {
+                firstResult = actual;
+                if (file.useSnapshot) {
+                    expect(actual).toMatchSnapshot();
+                } else {
+                    expect(actual).toStrictEqual(file.expected);
+                }
+            }
+        } catch (err) {
+            done(err);
+        }
     };
 }
 

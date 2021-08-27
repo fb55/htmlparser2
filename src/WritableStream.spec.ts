@@ -34,10 +34,9 @@ helper.createSuite("Stream", (test, cb) => {
                     const handler = helper.getEventCollector(cb);
                     const stream = new WritableStream(handler, test.options);
 
-                    fs.readFile(filePath, (err, data) => {
-                        if (err) throw err;
-                        stream.end(data);
-                    });
+                    fs.readFile(filePath, (err, data) =>
+                        err ? cb(err) : stream.end(data)
+                    );
                 }),
                 test.options
             )
