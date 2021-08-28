@@ -101,7 +101,7 @@
         {
             "event": "text",
             "startIndex": 56,
-            "endIndex": 58,
+            "endIndex": 57,
             "data": ["TH"]
         },
         {
@@ -149,7 +149,7 @@
         {
             "event": "text",
             "startIndex": 76,
-            "endIndex": 83,
+            "endIndex": 82,
             "data": ["Heading"]
         },
         {
@@ -209,7 +209,7 @@
         {
             "event": "text",
             "startIndex": 101,
-            "endIndex": 104,
+            "endIndex": 103,
             "data": ["Div"]
         },
         {
@@ -251,7 +251,7 @@
         {
             "event": "text",
             "startIndex": 119,
-            "endIndex": 123,
+            "endIndex": 122,
             "data": ["Div2"]
         },
         {
@@ -329,7 +329,7 @@
         {
             "event": "text",
             "startIndex": 156,
-            "endIndex": 165,
+            "endIndex": 164,
             "data": ["Heading 2"]
         },
         {
@@ -371,7 +371,7 @@
         {
             "event": "text",
             "startIndex": 189,
-            "endIndex": 193,
+            "endIndex": 192,
             "data": ["Para"]
         },
         {
@@ -395,7 +395,7 @@
         {
             "event": "text",
             "startIndex": 197,
-            "endIndex": 206,
+            "endIndex": 205,
             "data": ["Heading 4"]
         },
         {
@@ -449,7 +449,7 @@
         {
             "event": "text",
             "startIndex": 222,
-            "endIndex": 224,
+            "endIndex": 223,
             "data": ["Hi"]
         },
         {
@@ -473,7 +473,7 @@
         {
             "event": "text",
             "startIndex": 228,
-            "endIndex": 231,
+            "endIndex": 230,
             "data": ["bye"]
         },
         {

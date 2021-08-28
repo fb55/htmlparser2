@@ -17,7 +17,7 @@
         {
             "event": "text",
             "startIndex": 8,
-            "endIndex": 53,
+            "endIndex": 52,
             "data": ["/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/"]
         },
         {

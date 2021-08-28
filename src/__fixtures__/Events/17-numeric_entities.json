@@ -5,7 +5,7 @@
         {
             "event": "text",
             "startIndex": 0,
-            "endIndex": 36,
+            "endIndex": 35,
             "data": ["abcdfg&#x;h"]
         }
     ]
