@@ -17,7 +17,7 @@
         {
             "event": "text",
             "startIndex": 5,
-            "endIndex": 10,
+            "endIndex": 9,
             "data": ["Hallo"]
         },
         {
@@ -41,7 +41,7 @@
         {
             "event": "text",
             "startIndex": 14,
-            "endIndex": 19,
+            "endIndex": 18,
             "data": ["World"]
         },
         {

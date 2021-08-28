@@ -5,7 +5,7 @@
         {
             "event": "text",
             "startIndex": 0,
-            "endIndex": 8,
+            "endIndex": 7,
             "data": ["<12>text"]
         },
         {

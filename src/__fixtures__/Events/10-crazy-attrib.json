@@ -36,7 +36,7 @@
         {
             "event": "text",
             "startIndex": 15,
-            "endIndex": 20,
+            "endIndex": 19,
             "data": ["stuff"]
         },
         {

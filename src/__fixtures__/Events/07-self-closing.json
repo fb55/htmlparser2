@@ -29,7 +29,7 @@
         {
             "event": "text",
             "startIndex": 25,
-            "endIndex": 28,
+            "endIndex": 27,
             "data": ["Foo"]
         },
         {

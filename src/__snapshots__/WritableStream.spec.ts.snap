@@ -16,7 +16,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 39,
+    "endIndex": 38,
     "event": "text",
     "startIndex": 38,
   },
@@ -39,7 +39,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 97,
+    "endIndex": 96,
     "event": "text",
     "startIndex": 96,
   },
@@ -78,7 +78,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 141,
+    "endIndex": 140,
     "event": "text",
     "startIndex": 139,
   },
@@ -104,7 +104,7 @@ Array [
     "data": Array [
       "Example Feed",
     ],
-    "endIndex": 160,
+    "endIndex": 159,
     "event": "text",
     "startIndex": 148,
   },
@@ -122,7 +122,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 170,
+    "endIndex": 169,
     "event": "text",
     "startIndex": 168,
   },
@@ -148,7 +148,7 @@ Array [
     "data": Array [
       "A subtitle.",
     ],
-    "endIndex": 191,
+    "endIndex": 190,
     "event": "text",
     "startIndex": 180,
   },
@@ -166,7 +166,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 204,
+    "endIndex": 203,
     "event": "text",
     "startIndex": 202,
   },
@@ -225,7 +225,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 257,
+    "endIndex": 256,
     "event": "text",
     "startIndex": 204,
   },
@@ -273,7 +273,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 294,
+    "endIndex": 293,
     "event": "text",
     "startIndex": 257,
   },
@@ -299,7 +299,7 @@ Array [
     "data": Array [
       "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",
     ],
-    "endIndex": 343,
+    "endIndex": 342,
     "event": "text",
     "startIndex": 298,
   },
@@ -317,7 +317,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 350,
+    "endIndex": 349,
     "event": "text",
     "startIndex": 348,
   },
@@ -343,7 +343,7 @@ Array [
     "data": Array [
       "2003-12-13T18:30:02Z",
     ],
-    "endIndex": 379,
+    "endIndex": 378,
     "event": "text",
     "startIndex": 359,
   },
@@ -361,7 +361,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 391,
+    "endIndex": 390,
     "event": "text",
     "startIndex": 389,
   },
@@ -388,7 +388,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 402,
+    "endIndex": 401,
     "event": "text",
     "startIndex": 399,
   },
@@ -414,7 +414,7 @@ Array [
     "data": Array [
       "John Doe",
     ],
-    "endIndex": 416,
+    "endIndex": 415,
     "event": "text",
     "startIndex": 408,
   },
@@ -432,7 +432,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 426,
+    "endIndex": 425,
     "event": "text",
     "startIndex": 423,
   },
@@ -458,7 +458,7 @@ Array [
     "data": Array [
       "johndoe@example.com",
     ],
-    "endIndex": 452,
+    "endIndex": 451,
     "event": "text",
     "startIndex": 433,
   },
@@ -476,7 +476,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 462,
+    "endIndex": 461,
     "event": "text",
     "startIndex": 460,
   },
@@ -495,7 +495,7 @@ Array [
 
 	",
     ],
-    "endIndex": 474,
+    "endIndex": 473,
     "event": "text",
     "startIndex": 471,
   },
@@ -522,7 +522,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 484,
+    "endIndex": 483,
     "event": "text",
     "startIndex": 481,
   },
@@ -548,7 +548,7 @@ Array [
     "data": Array [
       "Atom-Powered Robots Run Amok",
     ],
-    "endIndex": 519,
+    "endIndex": 518,
     "event": "text",
     "startIndex": 491,
   },
@@ -566,7 +566,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 530,
+    "endIndex": 529,
     "event": "text",
     "startIndex": 527,
   },
@@ -614,7 +614,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 585,
+    "endIndex": 584,
     "event": "text",
     "startIndex": 530,
   },
@@ -684,7 +684,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 677,
+    "endIndex": 676,
     "event": "text",
     "startIndex": 585,
   },
@@ -743,7 +743,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 747,
+    "endIndex": 746,
     "event": "text",
     "startIndex": 677,
   },
@@ -769,7 +769,7 @@ Array [
     "data": Array [
       "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
     ],
-    "endIndex": 796,
+    "endIndex": 795,
     "event": "text",
     "startIndex": 751,
   },
@@ -787,7 +787,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 804,
+    "endIndex": 803,
     "event": "text",
     "startIndex": 801,
   },
@@ -813,7 +813,7 @@ Array [
     "data": Array [
       "2003-12-13T18:30:02Z",
     ],
-    "endIndex": 833,
+    "endIndex": 832,
     "event": "text",
     "startIndex": 813,
   },
@@ -831,7 +831,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 846,
+    "endIndex": 845,
     "event": "text",
     "startIndex": 843,
   },
@@ -887,7 +887,7 @@ Array [
     "data": Array [
       "Some content.",
     ],
-    "endIndex": 883,
+    "endIndex": 882,
     "event": "text",
     "startIndex": 870,
   },
@@ -914,7 +914,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 899,
+    "endIndex": 898,
     "event": "text",
     "startIndex": 897,
   },
@@ -933,7 +933,7 @@ Array [
 
 	",
     ],
-    "endIndex": 910,
+    "endIndex": 909,
     "event": "text",
     "startIndex": 907,
   },
@@ -970,7 +970,7 @@ Array [
 
 ",
     ],
-    "endIndex": 920,
+    "endIndex": 919,
     "event": "text",
     "startIndex": 910,
   },
@@ -988,7 +988,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 928,
+    "endIndex": 927,
     "event": "text",
     "startIndex": 927,
   },
@@ -1011,7 +1011,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 16,
+    "endIndex": 15,
     "event": "text",
     "startIndex": 15,
   },
@@ -1038,7 +1038,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 23,
+    "endIndex": 22,
     "event": "text",
     "startIndex": 22,
   },
@@ -1065,7 +1065,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 31,
+    "endIndex": 30,
     "event": "text",
     "startIndex": 29,
   },
@@ -1091,7 +1091,7 @@ Array [
     "data": Array [
       "Attributes test",
     ],
-    "endIndex": 53,
+    "endIndex": 52,
     "event": "text",
     "startIndex": 38,
   },
@@ -1109,7 +1109,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 62,
+    "endIndex": 61,
     "event": "text",
     "startIndex": 61,
   },
@@ -1127,7 +1127,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 70,
+    "endIndex": 69,
     "event": "text",
     "startIndex": 69,
   },
@@ -1154,7 +1154,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 78,
+    "endIndex": 77,
     "event": "text",
     "startIndex": 76,
   },
@@ -1177,7 +1177,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 106,
+    "endIndex": 105,
     "event": "text",
     "startIndex": 104,
   },
@@ -1237,7 +1237,7 @@ Array [
     "data": Array [
       "class=\\"value0\\" title=\\"value1\\"",
     ],
-    "endIndex": 184,
+    "endIndex": 183,
     "event": "text",
     "startIndex": 155,
   },
@@ -1256,7 +1256,7 @@ Array [
 
 	",
     ],
-    "endIndex": 196,
+    "endIndex": 195,
     "event": "text",
     "startIndex": 193,
   },
@@ -1279,7 +1279,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 241,
+    "endIndex": 240,
     "event": "text",
     "startIndex": 239,
   },
@@ -1338,7 +1338,7 @@ Array [
     "data": Array [
       "class=value2 disabled",
     ],
-    "endIndex": 303,
+    "endIndex": 302,
     "event": "text",
     "startIndex": 282,
   },
@@ -1357,7 +1357,7 @@ Array [
 
 	",
     ],
-    "endIndex": 315,
+    "endIndex": 314,
     "event": "text",
     "startIndex": 312,
   },
@@ -1380,7 +1380,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 402,
+    "endIndex": 401,
     "event": "text",
     "startIndex": 400,
   },
@@ -1440,7 +1440,7 @@ Array [
     "data": Array [
       "class=\\"value4\\"title=\\"value5\\"",
     ],
-    "endIndex": 478,
+    "endIndex": 477,
     "event": "text",
     "startIndex": 450,
   },
@@ -1458,7 +1458,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 488,
+    "endIndex": 487,
     "event": "text",
     "startIndex": 487,
   },
@@ -1476,7 +1476,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 496,
+    "endIndex": 495,
     "event": "text",
     "startIndex": 495,
   },
@@ -1543,7 +1543,7 @@ Array [
     "data": Array [
       "The Title",
     ],
-    "endIndex": 37,
+    "endIndex": 36,
     "event": "text",
     "startIndex": 28,
   },
@@ -1578,7 +1578,7 @@ Array [
     "data": Array [
       "Hello world",
     ],
-    "endIndex": 62,
+    "endIndex": 61,
     "event": "text",
     "startIndex": 51,
   },
@@ -1619,7 +1619,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 39,
+    "endIndex": 38,
     "event": "text",
     "startIndex": 38,
   },
@@ -1746,7 +1746,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 481,
+    "endIndex": 480,
     "event": "text",
     "startIndex": 479,
   },
@@ -1785,7 +1785,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 542,
+    "endIndex": 541,
     "event": "text",
     "startIndex": 539,
   },
@@ -1811,7 +1811,7 @@ Array [
     "data": Array [
       "A title to parse and remember",
     ],
-    "endIndex": 578,
+    "endIndex": 577,
     "event": "text",
     "startIndex": 549,
   },
@@ -1829,7 +1829,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 589,
+    "endIndex": 588,
     "event": "text",
     "startIndex": 586,
   },
@@ -1855,7 +1855,7 @@ Array [
     "data": Array [
       "https://github.com/fb55/htmlparser2/",
     ],
-    "endIndex": 631,
+    "endIndex": 630,
     "event": "text",
     "startIndex": 595,
   },
@@ -1873,7 +1873,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 641,
+    "endIndex": 640,
     "event": "text",
     "startIndex": 638,
   },
@@ -1909,7 +1909,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 658,
+    "endIndex": 657,
     "event": "text",
     "startIndex": 641,
   },
@@ -1935,7 +1935,7 @@ Array [
     "data": Array [
       "en-us",
     ],
-    "endIndex": 676,
+    "endIndex": 675,
     "event": "text",
     "startIndex": 671,
   },
@@ -1953,7 +1953,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 693,
+    "endIndex": 692,
     "event": "text",
     "startIndex": 690,
   },
@@ -1979,7 +1979,7 @@ Array [
     "data": Array [
       "Copyright 2015 the authors",
     ],
-    "endIndex": 730,
+    "endIndex": 729,
     "event": "text",
     "startIndex": 704,
   },
@@ -1997,7 +1997,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 745,
+    "endIndex": 744,
     "event": "text",
     "startIndex": 742,
   },
@@ -2023,7 +2023,7 @@ Array [
     "data": Array [
       "webmaster@thisisafakedoma.in",
     ],
-    "endIndex": 787,
+    "endIndex": 786,
     "event": "text",
     "startIndex": 759,
   },
@@ -2041,7 +2041,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 805,
+    "endIndex": 804,
     "event": "text",
     "startIndex": 802,
   },
@@ -2067,7 +2067,7 @@ Array [
     "data": Array [
       "webmaster@thisisafakedoma.in",
     ],
-    "endIndex": 845,
+    "endIndex": 844,
     "event": "text",
     "startIndex": 817,
   },
@@ -2085,7 +2085,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 861,
+    "endIndex": 860,
     "event": "text",
     "startIndex": 858,
   },
@@ -2111,7 +2111,7 @@ Array [
     "data": Array [
       "https://github.com/fb55/htmlparser2/",
     ],
-    "endIndex": 908,
+    "endIndex": 907,
     "event": "text",
     "startIndex": 872,
   },
@@ -2129,7 +2129,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 923,
+    "endIndex": 922,
     "event": "text",
     "startIndex": 920,
   },
@@ -2155,7 +2155,7 @@ Array [
     "data": Array [
       "A title to parse and remember",
     ],
-    "endIndex": 962,
+    "endIndex": 961,
     "event": "text",
     "startIndex": 933,
   },
@@ -2173,7 +2173,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 976,
+    "endIndex": 975,
     "event": "text",
     "startIndex": 973,
   },
@@ -2199,7 +2199,7 @@ Array [
     "data": Array [
       "Collection",
     ],
-    "endIndex": 995,
+    "endIndex": 994,
     "event": "text",
     "startIndex": 985,
   },
@@ -2217,7 +2217,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1008,
+    "endIndex": 1007,
     "event": "text",
     "startIndex": 1005,
   },
@@ -2243,7 +2243,7 @@ Array [
     "data": Array [
       "2011-11-04T09:39:10-07:00",
     ],
-    "endIndex": 1049,
+    "endIndex": 1048,
     "event": "text",
     "startIndex": 1024,
   },
@@ -2261,7 +2261,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1069,
+    "endIndex": 1068,
     "event": "text",
     "startIndex": 1066,
   },
@@ -2287,7 +2287,7 @@ Array [
     "data": Array [
       "4",
     ],
-    "endIndex": 1091,
+    "endIndex": 1090,
     "event": "text",
     "startIndex": 1090,
   },
@@ -2305,7 +2305,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1116,
+    "endIndex": 1115,
     "event": "text",
     "startIndex": 1113,
   },
@@ -2331,7 +2331,7 @@ Array [
     "data": Array [
       "hourly",
     ],
-    "endIndex": 1140,
+    "endIndex": 1139,
     "event": "text",
     "startIndex": 1134,
   },
@@ -2349,7 +2349,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1162,
+    "endIndex": 1161,
     "event": "text",
     "startIndex": 1159,
   },
@@ -2376,7 +2376,7 @@ Array [
       "
 			",
     ],
-    "endIndex": 1173,
+    "endIndex": 1172,
     "event": "text",
     "startIndex": 1169,
   },
@@ -2403,7 +2403,7 @@ Array [
       "
 				",
     ],
-    "endIndex": 1187,
+    "endIndex": 1186,
     "event": "text",
     "startIndex": 1182,
   },
@@ -2451,7 +2451,7 @@ Array [
       "
 			",
     ],
-    "endIndex": 1258,
+    "endIndex": 1257,
     "event": "text",
     "startIndex": 1187,
   },
@@ -2469,7 +2469,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1271,
+    "endIndex": 1270,
     "event": "text",
     "startIndex": 1268,
   },
@@ -2487,7 +2487,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 1281,
+    "endIndex": 1280,
     "event": "text",
     "startIndex": 1279,
   },
@@ -2505,7 +2505,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 1293,
+    "endIndex": 1292,
     "event": "text",
     "startIndex": 1291,
   },
@@ -2544,7 +2544,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1357,
+    "endIndex": 1356,
     "event": "text",
     "startIndex": 1354,
   },
@@ -2600,7 +2600,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 1406,
+    "endIndex": 1405,
     "event": "text",
     "startIndex": 1403,
   },
@@ -2628,7 +2628,7 @@ Array [
 http://somefakesite/path/to/something.html
 ",
     ],
-    "endIndex": 1456,
+    "endIndex": 1455,
     "event": "text",
     "startIndex": 1412,
   },
@@ -2646,7 +2646,7 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
-    "endIndex": 1466,
+    "endIndex": 1465,
     "event": "text",
     "startIndex": 1463,
   },
@@ -2704,7 +2704,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
-    "endIndex": 1578,
+    "endIndex": 1577,
     "event": "text",
     "startIndex": 1575,
   },
@@ -2730,7 +2730,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "data": Array [
       "2011-11-04T09:35:17-07:00",
     ],
-    "endIndex": 1612,
+    "endIndex": 1611,
     "event": "text",
     "startIndex": 1587,
   },
@@ -2748,7 +2748,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
-    "endIndex": 1625,
+    "endIndex": 1624,
     "event": "text",
     "startIndex": 1622,
   },
@@ -2774,7 +2774,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "data": Array [
       "en-us",
     ],
-    "endIndex": 1643,
+    "endIndex": 1642,
     "event": "text",
     "startIndex": 1638,
   },
@@ -2792,7 +2792,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
-    "endIndex": 1660,
+    "endIndex": 1659,
     "event": "text",
     "startIndex": 1657,
   },
@@ -2818,7 +2818,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "data": Array [
       "Copyright 2015 the authors",
     ],
-    "endIndex": 1697,
+    "endIndex": 1696,
     "event": "text",
     "startIndex": 1671,
   },
@@ -2836,7 +2836,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
       "
 		",
     ],
-    "endIndex": 1712,
+    "endIndex": 1711,
     "event": "text",
     "startIndex": 1709,
   },
@@ -2864,7 +2864,7 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
 http://somefakesite/path/to/something.html
 ",
     ],
-    "endIndex": 1767,
+    "endIndex": 1766,
     "event": "text",
     "startIndex": 1723,
   },
@@ -2882,7 +2882,7 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
-    "endIndex": 1782,
+    "endIndex": 1781,
     "event": "text",
     "startIndex": 1779,
   },
@@ -2938,7 +2938,7 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
-    "endIndex": 1837,
+    "endIndex": 1836,
     "event": "text",
     "startIndex": 1834,
   },
@@ -2964,7 +2964,7 @@ http://somefakesite/path/to/something.html
     "data": Array [
       "text",
     ],
-    "endIndex": 1850,
+    "endIndex": 1849,
     "event": "text",
     "startIndex": 1846,
   },
@@ -2982,7 +2982,7 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
-    "endIndex": 1863,
+    "endIndex": 1862,
     "event": "text",
     "startIndex": 1860,
   },
@@ -3008,7 +3008,7 @@ http://somefakesite/path/to/something.html
     "data": Array [
       "2011-11-04T09:35:17-07:00",
     ],
-    "endIndex": 1904,
+    "endIndex": 1903,
     "event": "text",
     "startIndex": 1879,
   },
@@ -3026,7 +3026,7 @@ http://somefakesite/path/to/something.html
       "
 	",
     ],
-    "endIndex": 1923,
+    "endIndex": 1922,
     "event": "text",
     "startIndex": 1921,
   },
@@ -3044,7 +3044,7 @@ http://somefakesite/path/to/something.html
       "
 	",
     ],
-    "endIndex": 1932,
+    "endIndex": 1931,
     "event": "text",
     "startIndex": 1930,
   },
@@ -3083,7 +3083,7 @@ http://somefakesite/path/to/something.html
       "
 		",
     ],
-    "endIndex": 2001,
+    "endIndex": 2000,
     "event": "text",
     "startIndex": 1998,
   },
@@ -3141,7 +3141,7 @@ This space intentionally left blank
       "
 		",
     ],
-    "endIndex": 2068,
+    "endIndex": 2067,
     "event": "text",
     "startIndex": 2065,
   },
@@ -3169,7 +3169,7 @@ This space intentionally left blank
 http://somefakesite/path/to/something-else.html
 ",
     ],
-    "endIndex": 2123,
+    "endIndex": 2122,
     "event": "text",
     "startIndex": 2074,
   },
@@ -3187,7 +3187,7 @@ http://somefakesite/path/to/something-else.html
       "
 		",
     ],
-    "endIndex": 2133,
+    "endIndex": 2132,
     "event": "text",
     "startIndex": 2130,
   },
@@ -3245,7 +3245,7 @@ The early bird gets the worm
       "
 		",
     ],
-    "endIndex": 2205,
+    "endIndex": 2204,
     "event": "text",
     "startIndex": 2202,
   },
@@ -3271,7 +3271,7 @@ The early bird gets the worm
     "data": Array [
       "2011-11-04T09:34:54-07:00",
     ],
-    "endIndex": 2239,
+    "endIndex": 2238,
     "event": "text",
     "startIndex": 2214,
   },
@@ -3289,7 +3289,7 @@ The early bird gets the worm
       "
 		",
     ],
-    "endIndex": 2252,
+    "endIndex": 2251,
     "event": "text",
     "startIndex": 2249,
   },
@@ -3315,7 +3315,7 @@ The early bird gets the worm
     "data": Array [
       "en-us",
     ],
-    "endIndex": 2270,
+    "endIndex": 2269,
     "event": "text",
     "startIndex": 2265,
   },
@@ -3333,7 +3333,7 @@ The early bird gets the worm
       "
 		",
     ],
-    "endIndex": 2287,
+    "endIndex": 2286,
     "event": "text",
     "startIndex": 2284,
   },
@@ -3359,7 +3359,7 @@ The early bird gets the worm
     "data": Array [
       "Copyright 2015 the authors",
     ],
-    "endIndex": 2324,
+    "endIndex": 2323,
     "event": "text",
     "startIndex": 2298,
   },
@@ -3377,7 +3377,7 @@ The early bird gets the worm
       "
 		",
     ],
-    "endIndex": 2339,
+    "endIndex": 2338,
     "event": "text",
     "startIndex": 2336,
   },
@@ -3405,7 +3405,7 @@ The early bird gets the worm
 http://somefakesite/path/to/something-else.html
 ",
     ],
-    "endIndex": 2399,
+    "endIndex": 2398,
     "event": "text",
     "startIndex": 2350,
   },
@@ -3423,7 +3423,7 @@ http://somefakesite/path/to/something-else.html
       "
 		",
     ],
-    "endIndex": 2414,
+    "endIndex": 2413,
     "event": "text",
     "startIndex": 2411,
   },
@@ -3481,7 +3481,7 @@ This space intentionally left blank
       "
 		",
     ],
-    "endIndex": 2487,
+    "endIndex": 2486,
     "event": "text",
     "startIndex": 2484,
   },
@@ -3507,7 +3507,7 @@ This space intentionally left blank
     "data": Array [
       "text",
     ],
-    "endIndex": 2500,
+    "endIndex": 2499,
     "event": "text",
     "startIndex": 2496,
   },
@@ -3525,7 +3525,7 @@ This space intentionally left blank
       "
 		",
     ],
-    "endIndex": 2513,
+    "endIndex": 2512,
     "event": "text",
     "startIndex": 2510,
   },
@@ -3551,7 +3551,7 @@ This space intentionally left blank
     "data": Array [
       "2011-11-04T09:34:54-07:00",
     ],
-    "endIndex": 2554,
+    "endIndex": 2553,
     "event": "text",
     "startIndex": 2529,
   },
@@ -3569,7 +3569,7 @@ This space intentionally left blank
       "
 	",
     ],
-    "endIndex": 2573,
+    "endIndex": 2572,
     "event": "text",
     "startIndex": 2571,
   },
@@ -3587,7 +3587,7 @@ This space intentionally left blank
       "
 ",
     ],
-    "endIndex": 2581,
+    "endIndex": 2580,
     "event": "text",
     "startIndex": 2580,
   },
@@ -3619,7 +3619,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 22,
+    "endIndex": 21,
     "event": "text",
     "startIndex": 21,
   },
@@ -3642,7 +3642,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 88,
+    "endIndex": 87,
     "event": "text",
     "startIndex": 87,
   },
@@ -3681,7 +3681,7 @@ Array [
       "
    ",
     ],
-    "endIndex": 111,
+    "endIndex": 110,
     "event": "text",
     "startIndex": 107,
   },
@@ -3708,7 +3708,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 127,
+    "endIndex": 126,
     "event": "text",
     "startIndex": 120,
   },
@@ -3734,7 +3734,7 @@ Array [
     "data": Array [
       "Liftoff News",
     ],
-    "endIndex": 146,
+    "endIndex": 145,
     "event": "text",
     "startIndex": 134,
   },
@@ -3752,7 +3752,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 161,
+    "endIndex": 160,
     "event": "text",
     "startIndex": 154,
   },
@@ -3778,7 +3778,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/",
     ],
-    "endIndex": 196,
+    "endIndex": 195,
     "event": "text",
     "startIndex": 167,
   },
@@ -3796,7 +3796,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 210,
+    "endIndex": 209,
     "event": "text",
     "startIndex": 203,
   },
@@ -3822,7 +3822,7 @@ Array [
     "data": Array [
       "Liftoff to Space Exploration.",
     ],
-    "endIndex": 252,
+    "endIndex": 251,
     "event": "text",
     "startIndex": 223,
   },
@@ -3840,7 +3840,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 273,
+    "endIndex": 272,
     "event": "text",
     "startIndex": 266,
   },
@@ -3866,7 +3866,7 @@ Array [
     "data": Array [
       "en-us",
     ],
-    "endIndex": 288,
+    "endIndex": 287,
     "event": "text",
     "startIndex": 283,
   },
@@ -3884,7 +3884,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 306,
+    "endIndex": 305,
     "event": "text",
     "startIndex": 299,
   },
@@ -3910,7 +3910,7 @@ Array [
     "data": Array [
       "Tue, 10 Jun 2003 04:00:00 GMT",
     ],
-    "endIndex": 344,
+    "endIndex": 343,
     "event": "text",
     "startIndex": 315,
   },
@@ -3929,7 +3929,7 @@ Array [
 
       ",
     ],
-    "endIndex": 362,
+    "endIndex": 361,
     "event": "text",
     "startIndex": 354,
   },
@@ -3955,7 +3955,7 @@ Array [
     "data": Array [
       "Tue, 10 Jun 2003 09:41:01 GMT",
     ],
-    "endIndex": 406,
+    "endIndex": 405,
     "event": "text",
     "startIndex": 377,
   },
@@ -3973,7 +3973,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 429,
+    "endIndex": 428,
     "event": "text",
     "startIndex": 422,
   },
@@ -3999,7 +3999,7 @@ Array [
     "data": Array [
       "http://blogs.law.harvard.edu/tech/rss",
     ],
-    "endIndex": 472,
+    "endIndex": 471,
     "event": "text",
     "startIndex": 435,
   },
@@ -4017,7 +4017,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 486,
+    "endIndex": 485,
     "event": "text",
     "startIndex": 479,
   },
@@ -4043,7 +4043,7 @@ Array [
     "data": Array [
       "Weblog Editor 2.0",
     ],
-    "endIndex": 514,
+    "endIndex": 513,
     "event": "text",
     "startIndex": 497,
   },
@@ -4061,7 +4061,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 533,
+    "endIndex": 532,
     "event": "text",
     "startIndex": 526,
   },
@@ -4087,7 +4087,7 @@ Array [
     "data": Array [
       "editor@example.com",
     ],
-    "endIndex": 567,
+    "endIndex": 566,
     "event": "text",
     "startIndex": 549,
   },
@@ -4105,7 +4105,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 591,
+    "endIndex": 590,
     "event": "text",
     "startIndex": 584,
   },
@@ -4131,7 +4131,7 @@ Array [
     "data": Array [
       "webmaster@example.com",
     ],
-    "endIndex": 623,
+    "endIndex": 622,
     "event": "text",
     "startIndex": 602,
   },
@@ -4149,7 +4149,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 642,
+    "endIndex": 641,
     "event": "text",
     "startIndex": 635,
   },
@@ -4177,7 +4177,7 @@ Array [
 
          ",
     ],
-    "endIndex": 659,
+    "endIndex": 658,
     "event": "text",
     "startIndex": 648,
   },
@@ -4203,7 +4203,7 @@ Array [
     "data": Array [
       "Star City",
     ],
-    "endIndex": 675,
+    "endIndex": 674,
     "event": "text",
     "startIndex": 666,
   },
@@ -4221,7 +4221,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 693,
+    "endIndex": 692,
     "event": "text",
     "startIndex": 683,
   },
@@ -4247,7 +4247,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp",
     ],
-    "endIndex": 755,
+    "endIndex": 754,
     "event": "text",
     "startIndex": 699,
   },
@@ -4265,7 +4265,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 772,
+    "endIndex": 771,
     "event": "text",
     "startIndex": 762,
   },
@@ -4291,7 +4291,7 @@ Array [
     "data": Array [
       "How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia's <a href=\\"http://howe.iki.rssi.ru/GCTC/gctc_e.htm\\">Star City</a>.",
     ],
-    "endIndex": 1021,
+    "endIndex": 1020,
     "event": "text",
     "startIndex": 785,
   },
@@ -4309,7 +4309,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1045,
+    "endIndex": 1044,
     "event": "text",
     "startIndex": 1035,
   },
@@ -4335,7 +4335,7 @@ Array [
     "data": Array [
       "Tue, 03 Jun 2003 09:39:21 GMT",
     ],
-    "endIndex": 1083,
+    "endIndex": 1082,
     "event": "text",
     "startIndex": 1054,
   },
@@ -4353,7 +4353,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1103,
+    "endIndex": 1102,
     "event": "text",
     "startIndex": 1093,
   },
@@ -4379,7 +4379,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/06/03.html#item573",
     ],
-    "endIndex": 1161,
+    "endIndex": 1160,
     "event": "text",
     "startIndex": 1109,
   },
@@ -4398,7 +4398,7 @@ Array [
 
       ",
     ],
-    "endIndex": 1176,
+    "endIndex": 1175,
     "event": "text",
     "startIndex": 1168,
   },
@@ -4416,7 +4416,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 1190,
+    "endIndex": 1189,
     "event": "text",
     "startIndex": 1183,
   },
@@ -4443,7 +4443,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1206,
+    "endIndex": 1205,
     "event": "text",
     "startIndex": 1196,
   },
@@ -4469,7 +4469,7 @@ Array [
     "data": Array [
       "Sky watchers in Europe, Asia, and parts of Alaska and Canada will experience a <a href=\\"http://science.nasa.gov/headlines/y2003/30may_solareclipse.htm\\">partial eclipse of the Sun</a> on Saturday, May 31st.",
     ],
-    "endIndex": 1436,
+    "endIndex": 1435,
     "event": "text",
     "startIndex": 1219,
   },
@@ -4487,7 +4487,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1460,
+    "endIndex": 1459,
     "event": "text",
     "startIndex": 1450,
   },
@@ -4513,7 +4513,7 @@ Array [
     "data": Array [
       "Fri, 30 May 2003 11:06:42 GMT",
     ],
-    "endIndex": 1498,
+    "endIndex": 1497,
     "event": "text",
     "startIndex": 1469,
   },
@@ -4531,7 +4531,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1518,
+    "endIndex": 1517,
     "event": "text",
     "startIndex": 1508,
   },
@@ -4557,7 +4557,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/05/30.html#item572",
     ],
-    "endIndex": 1576,
+    "endIndex": 1575,
     "event": "text",
     "startIndex": 1524,
   },
@@ -4576,7 +4576,7 @@ Array [
 
       ",
     ],
-    "endIndex": 1591,
+    "endIndex": 1590,
     "event": "text",
     "startIndex": 1583,
   },
@@ -4594,7 +4594,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 1605,
+    "endIndex": 1604,
     "event": "text",
     "startIndex": 1598,
   },
@@ -4621,7 +4621,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1621,
+    "endIndex": 1620,
     "event": "text",
     "startIndex": 1611,
   },
@@ -4647,7 +4647,7 @@ Array [
     "data": Array [
       "The Engine That Does More",
     ],
-    "endIndex": 1653,
+    "endIndex": 1652,
     "event": "text",
     "startIndex": 1628,
   },
@@ -4665,7 +4665,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1671,
+    "endIndex": 1670,
     "event": "text",
     "startIndex": 1661,
   },
@@ -4691,7 +4691,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/news/2003/news-VASIMR.asp",
     ],
-    "endIndex": 1731,
+    "endIndex": 1730,
     "event": "text",
     "startIndex": 1677,
   },
@@ -4709,7 +4709,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1748,
+    "endIndex": 1747,
     "event": "text",
     "startIndex": 1738,
   },
@@ -4735,7 +4735,7 @@ Array [
     "data": Array [
       "Before man travels to Mars, NASA hopes to design new engines that will let us fly through the Solar System more quickly.  The proposed VASIMR engine would do that.",
     ],
-    "endIndex": 1924,
+    "endIndex": 1923,
     "event": "text",
     "startIndex": 1761,
   },
@@ -4753,7 +4753,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 1948,
+    "endIndex": 1947,
     "event": "text",
     "startIndex": 1938,
   },
@@ -4779,7 +4779,7 @@ Array [
     "data": Array [
       "Tue, 27 May 2003 08:37:32 GMT",
     ],
-    "endIndex": 1986,
+    "endIndex": 1985,
     "event": "text",
     "startIndex": 1957,
   },
@@ -4797,7 +4797,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 2006,
+    "endIndex": 2005,
     "event": "text",
     "startIndex": 1996,
   },
@@ -4823,7 +4823,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/05/27.html#item571",
     ],
-    "endIndex": 2064,
+    "endIndex": 2063,
     "event": "text",
     "startIndex": 2012,
   },
@@ -4842,7 +4842,7 @@ Array [
 
       ",
     ],
-    "endIndex": 2079,
+    "endIndex": 2078,
     "event": "text",
     "startIndex": 2071,
   },
@@ -4860,7 +4860,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 2093,
+    "endIndex": 2092,
     "event": "text",
     "startIndex": 2086,
   },
@@ -4887,7 +4887,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 2109,
+    "endIndex": 2108,
     "event": "text",
     "startIndex": 2099,
   },
@@ -4913,7 +4913,7 @@ Array [
     "data": Array [
       "Astronauts' Dirty Laundry",
     ],
-    "endIndex": 2141,
+    "endIndex": 2140,
     "event": "text",
     "startIndex": 2116,
   },
@@ -4931,7 +4931,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 2159,
+    "endIndex": 2158,
     "event": "text",
     "startIndex": 2149,
   },
@@ -4957,7 +4957,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/news/2003/news-laundry.asp",
     ],
-    "endIndex": 2220,
+    "endIndex": 2219,
     "event": "text",
     "startIndex": 2165,
   },
@@ -4975,7 +4975,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 2237,
+    "endIndex": 2236,
     "event": "text",
     "startIndex": 2227,
   },
@@ -5001,7 +5001,7 @@ Array [
     "data": Array [
       "Compared to earlier spacecraft, the International Space Station has many luxuries, but laundry facilities are not one of them.  Instead, astronauts have other options.",
     ],
-    "endIndex": 2417,
+    "endIndex": 2416,
     "event": "text",
     "startIndex": 2250,
   },
@@ -5019,7 +5019,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 2441,
+    "endIndex": 2440,
     "event": "text",
     "startIndex": 2431,
   },
@@ -5045,7 +5045,7 @@ Array [
     "data": Array [
       "Tue, 20 May 2003 08:56:02 GMT",
     ],
-    "endIndex": 2479,
+    "endIndex": 2478,
     "event": "text",
     "startIndex": 2450,
   },
@@ -5063,7 +5063,7 @@ Array [
       "
          ",
     ],
-    "endIndex": 2499,
+    "endIndex": 2498,
     "event": "text",
     "startIndex": 2489,
   },
@@ -5089,7 +5089,7 @@ Array [
     "data": Array [
       "http://liftoff.msfc.nasa.gov/2003/05/20.html#item570",
     ],
-    "endIndex": 2557,
+    "endIndex": 2556,
     "event": "text",
     "startIndex": 2505,
   },
@@ -5108,7 +5108,7 @@ Array [
 
          ",
     ],
-    "endIndex": 2575,
+    "endIndex": 2574,
     "event": "text",
     "startIndex": 2564,
   },
@@ -5189,7 +5189,7 @@ Array [
       "
       ",
     ],
-    "endIndex": 2670,
+    "endIndex": 2669,
     "event": "text",
     "startIndex": 2575,
   },
@@ -5207,7 +5207,7 @@ Array [
       "
    ",
     ],
-    "endIndex": 2681,
+    "endIndex": 2680,
     "event": "text",
     "startIndex": 2677,
   },
@@ -5225,7 +5225,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 2692,
+    "endIndex": 2691,
     "event": "text",
     "startIndex": 2691,
   },
@@ -5257,7 +5257,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 16,
+    "endIndex": 15,
     "event": "text",
     "startIndex": 15,
   },
@@ -5284,7 +5284,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 23,
+    "endIndex": 22,
     "event": "text",
     "startIndex": 22,
   },
@@ -5311,7 +5311,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 31,
+    "endIndex": 30,
     "event": "text",
     "startIndex": 29,
   },
@@ -5337,7 +5337,7 @@ Array [
     "data": Array [
       "SVG test",
     ],
-    "endIndex": 46,
+    "endIndex": 45,
     "event": "text",
     "startIndex": 38,
   },
@@ -5355,7 +5355,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 55,
+    "endIndex": 54,
     "event": "text",
     "startIndex": 54,
   },
@@ -5373,7 +5373,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 63,
+    "endIndex": 62,
     "event": "text",
     "startIndex": 62,
   },
@@ -5400,7 +5400,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 71,
+    "endIndex": 70,
     "event": "text",
     "startIndex": 69,
   },
@@ -5461,7 +5461,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 171,
+    "endIndex": 170,
     "event": "text",
     "startIndex": 168,
   },
@@ -5487,7 +5487,7 @@ Array [
     "data": Array [
       "Test",
     ],
-    "endIndex": 182,
+    "endIndex": 181,
     "event": "text",
     "startIndex": 178,
   },
@@ -5505,7 +5505,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 193,
+    "endIndex": 192,
     "event": "text",
     "startIndex": 190,
   },
@@ -5541,7 +5541,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 207,
+    "endIndex": 206,
     "event": "text",
     "startIndex": 193,
   },
@@ -5577,7 +5577,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 221,
+    "endIndex": 220,
     "event": "text",
     "startIndex": 207,
   },
@@ -5604,7 +5604,7 @@ Array [
       "
 			",
     ],
-    "endIndex": 228,
+    "endIndex": 227,
     "event": "text",
     "startIndex": 224,
   },
@@ -5631,7 +5631,7 @@ Array [
       "
 				",
     ],
-    "endIndex": 239,
+    "endIndex": 238,
     "event": "text",
     "startIndex": 234,
   },
@@ -5657,7 +5657,7 @@ Array [
     "data": Array [
       "x",
     ],
-    "endIndex": 247,
+    "endIndex": 246,
     "event": "text",
     "startIndex": 246,
   },
@@ -5675,7 +5675,7 @@ Array [
       "
 				",
     ],
-    "endIndex": 260,
+    "endIndex": 259,
     "event": "text",
     "startIndex": 255,
   },
@@ -5711,7 +5711,7 @@ Array [
       "
 			",
     ],
-    "endIndex": 275,
+    "endIndex": 274,
     "event": "text",
     "startIndex": 260,
   },
@@ -5729,7 +5729,7 @@ Array [
       "
 		",
     ],
-    "endIndex": 285,
+    "endIndex": 284,
     "event": "text",
     "startIndex": 282,
   },
@@ -5747,7 +5747,7 @@ Array [
       "
 	",
     ],
-    "endIndex": 291,
+    "endIndex": 290,
     "event": "text",
     "startIndex": 289,
   },
@@ -5765,7 +5765,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 298,
+    "endIndex": 297,
     "event": "text",
     "startIndex": 297,
   },
@@ -5783,7 +5783,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 306,
+    "endIndex": 305,
     "event": "text",
     "startIndex": 305,
   },
@@ -5801,7 +5801,7 @@ Array [
       "
 ",
     ],
-    "endIndex": 314,
+    "endIndex": 313,
     "event": "text",
     "startIndex": 313,
   },

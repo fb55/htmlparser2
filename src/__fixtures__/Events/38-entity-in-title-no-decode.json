@@ -22,7 +22,7 @@
         {
             "event": "text",
             "startIndex": 7,
-            "endIndex": 28,
+            "endIndex": 27,
             "data": ["the &quot;title&quot;"]
         },
         {

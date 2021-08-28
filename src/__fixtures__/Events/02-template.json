@@ -41,7 +41,7 @@
         {
             "event": "text",
             "startIndex": 32,
-            "endIndex": 49,
+            "endIndex": 48,
             "data": ["<h1>Heading1</h1>"]
         },
         {

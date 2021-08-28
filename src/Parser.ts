@@ -237,7 +237,7 @@ export class Parser {
     /** @internal */
     ontext(data: string): void {
         const idx = this.tokenizer.getAbsoluteIndex();
-        this.endIndex = idx;
+        this.endIndex = idx - 1;
         this.cbs.ontext?.(data);
         this.startIndex = idx;
     }

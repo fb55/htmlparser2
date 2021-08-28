@@ -10,7 +10,7 @@
         {
             "event": "text",
             "startIndex": 0,
-            "endIndex": 49,
+            "endIndex": 48,
             "data": ["&>&amp<&uuml;a&#x62c&#100&#101"]
         }
     ]
