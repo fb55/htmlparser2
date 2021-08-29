@@ -54,7 +54,7 @@
             "event": "closetag",
             "startIndex": 39,
             "endIndex": 46,
-            "data": ["title", true]
+            "data": ["title", false]
         },
         {
             "event": "text",
@@ -108,13 +108,13 @@
             "event": "closetag",
             "startIndex": 81,
             "endIndex": 84,
-            "data": ["p", true]
+            "data": ["p", false]
         },
         {
             "event": "closetag",
             "startIndex": 85,
             "endIndex": 91,
-            "data": ["body", true]
+            "data": ["body", false]
         },
         {
             "event": "text",

@@ -156,7 +156,7 @@
             "event": "closetag",
             "startIndex": 83,
             "endIndex": 87,
-            "data": ["h3", true]
+            "data": ["h3", false]
         },
         {
             "event": "closetag",
@@ -216,7 +216,7 @@
             "event": "closetag",
             "startIndex": 104,
             "endIndex": 109,
-            "data": ["div", true]
+            "data": ["div", false]
         },
         {
             "event": "closetag",
@@ -258,7 +258,7 @@
             "event": "closetag",
             "startIndex": 123,
             "endIndex": 128,
-            "data": ["div", true]
+            "data": ["div", false]
         },
         {
             "event": "closetag",
@@ -276,13 +276,13 @@
             "event": "closetag",
             "startIndex": 129,
             "endIndex": 136,
-            "data": ["table", true]
+            "data": ["table", false]
         },
         {
             "event": "closetag",
             "startIndex": 137,
             "endIndex": 142,
-            "data": ["div", true]
+            "data": ["div", false]
         },
         {
             "event": "closetag",
@@ -336,19 +336,19 @@
             "event": "closetag",
             "startIndex": 165,
             "endIndex": 169,
-            "data": ["h3", true]
+            "data": ["h3", false]
         },
         {
             "event": "closetag",
             "startIndex": 170,
             "endIndex": 175,
-            "data": ["div", true]
+            "data": ["div", false]
         },
         {
             "event": "closetag",
             "startIndex": 176,
             "endIndex": 180,
-            "data": ["li", true]
+            "data": ["li", false]
         },
         {
             "event": "closetag",
@@ -480,7 +480,7 @@
             "event": "closetag",
             "startIndex": 231,
             "endIndex": 235,
-            "data": ["li", false]
+            "data": ["li", true]
         },
         {
             "event": "closetag",
