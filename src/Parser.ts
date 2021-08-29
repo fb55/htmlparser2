@@ -330,7 +330,7 @@ export class Parser {
                     let count = this.stack.length - pos;
                     while (count--) {
                         // We know the stack has sufficient elements.
-                        this.cbs.onclosetag(this.stack.pop()!, pos !== 0);
+                        this.cbs.onclosetag(this.stack.pop()!, count !== 0);
                     }
                 } else this.stack.length = pos;
             } else if (!this.options.xmlMode && name === "p") {

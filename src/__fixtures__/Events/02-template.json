@@ -48,7 +48,7 @@
             "event": "closetag",
             "startIndex": 49,
             "endIndex": 57,
-            "data": ["script", true]
+            "data": ["script", false]
         },
         {
             "event": "closetag",
