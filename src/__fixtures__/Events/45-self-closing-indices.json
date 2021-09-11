@@ -1,0 +1,65 @@
+{
+    "name": "Self-closing indices (#941)",
+    "options": {
+        "parser": {
+            "xmlMode": true
+        }
+    },
+    "input": "<xml><a/><b/></xml>",
+    "expected": [
+        {
+            "event": "opentagname",
+            "data": ["xml"],
+            "startIndex": 0,
+            "endIndex": 4
+        },
+        {
+            "event": "opentag",
+            "data": ["xml", {}, false],
+            "startIndex": 0,
+            "endIndex": 4
+        },
+        {
+            "event": "opentagname",
+            "data": ["a"],
+            "startIndex": 5,
+            "endIndex": 7
+        },
+        {
+            "event": "opentag",
+            "data": ["a", {}, false],
+            "startIndex": 5,
+            "endIndex": 8
+        },
+        {
+            "event": "closetag",
+            "data": ["a", true],
+            "startIndex": 5,
+            "endIndex": 8
+        },
+        {
+            "event": "opentagname",
+            "data": ["b"],
+            "startIndex": 9,
+            "endIndex": 11
+        },
+        {
+            "event": "opentag",
+            "data": ["b", {}, false],
+            "startIndex": 9,
+            "endIndex": 12
+        },
+        {
+            "event": "closetag",
+            "data": ["b", true],
+            "startIndex": 9,
+            "endIndex": 12
+        },
+        {
+            "event": "closetag",
+            "data": ["xml", false],
+            "startIndex": 13,
+            "endIndex": 18
+        }
+    ]
+}

@@ -356,6 +356,9 @@ export class Parser {
             this.foreignContext[this.foreignContext.length - 1]
         ) {
             this.closeCurrentTag(false);
+
+            // Set `startIndex` for next node
+            this.startIndex = this.endIndex + 1;
         } else {
             // Ignore the fact that the tag is self-closing.
             this.onopentagend();
