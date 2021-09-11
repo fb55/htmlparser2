@@ -1,7 +1,7 @@
 {
     "name": "htmlparser2",
     "description": "Fast & forgiving HTML/XML parser",
-    "version": "7.1.1",
+    "version": "7.1.2",
     "author": "Felix Boehm <me@feedic.com>",
     "funding": [
         "https://github.com/fb55/htmlparser2?sponsor=1",
