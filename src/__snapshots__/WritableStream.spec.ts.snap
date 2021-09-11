@@ -227,7 +227,7 @@ Array [
     ],
     "endIndex": 256,
     "event": "text",
-    "startIndex": 204,
+    "startIndex": 255,
   },
   Object {
     "data": Array [
@@ -275,7 +275,7 @@ Array [
     ],
     "endIndex": 293,
     "event": "text",
-    "startIndex": 257,
+    "startIndex": 292,
   },
   Object {
     "data": Array [
@@ -616,7 +616,7 @@ Array [
     ],
     "endIndex": 584,
     "event": "text",
-    "startIndex": 530,
+    "startIndex": 582,
   },
   Object {
     "data": Array [
@@ -686,7 +686,7 @@ Array [
     ],
     "endIndex": 676,
     "event": "text",
-    "startIndex": 585,
+    "startIndex": 674,
   },
   Object {
     "data": Array [
@@ -745,7 +745,7 @@ Array [
     ],
     "endIndex": 746,
     "event": "text",
-    "startIndex": 677,
+    "startIndex": 744,
   },
   Object {
     "data": Array [
@@ -972,7 +972,7 @@ Array [
     ],
     "endIndex": 919,
     "event": "text",
-    "startIndex": 910,
+    "startIndex": 918,
   },
   Object {
     "data": Array [
@@ -1911,7 +1911,7 @@ Array [
     ],
     "endIndex": 657,
     "event": "text",
-    "startIndex": 641,
+    "startIndex": 655,
   },
   Object {
     "data": Array [
@@ -2453,7 +2453,7 @@ Array [
     ],
     "endIndex": 1257,
     "event": "text",
-    "startIndex": 1187,
+    "startIndex": 1254,
   },
   Object {
     "data": Array [
@@ -5191,7 +5191,7 @@ Array [
     ],
     "endIndex": 2669,
     "event": "text",
-    "startIndex": 2575,
+    "startIndex": 2663,
   },
   Object {
     "data": Array [
@@ -5543,7 +5543,7 @@ Array [
     ],
     "endIndex": 206,
     "event": "text",
-    "startIndex": 193,
+    "startIndex": 204,
   },
   Object {
     "data": Array [
@@ -5579,7 +5579,7 @@ Array [
     ],
     "endIndex": 220,
     "event": "text",
-    "startIndex": 207,
+    "startIndex": 218,
   },
   Object {
     "data": Array [
@@ -5713,7 +5713,7 @@ Array [
     ],
     "endIndex": 274,
     "event": "text",
-    "startIndex": 260,
+    "startIndex": 271,
   },
   Object {
     "data": Array [

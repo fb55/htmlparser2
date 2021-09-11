@@ -27,13 +27,13 @@
         },
         {
             "event": "opentagname",
-            "startIndex": 0,
+            "startIndex": 10,
             "endIndex": 14,
             "data": ["tag"]
         },
         {
             "event": "opentag",
-            "startIndex": 0,
+            "startIndex": 10,
             "endIndex": 14,
             "data": ["tag", {}, false]
         },
