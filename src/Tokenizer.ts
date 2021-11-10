@@ -76,12 +76,6 @@ const enum State {
     AfterComment2,
 
     // Cdata
-    BeforeCdata1, // [
-    BeforeCdata2, // C
-    BeforeCdata3, // D
-    BeforeCdata4, // A
-    BeforeCdata5, // T
-    BeforeCdata6, // A
     InCdata, // [
     AfterCdata1, // ]
     AfterCdata2, // ]
@@ -126,6 +120,9 @@ const enum State {
     InNamedEntity,
     InNumericEntity,
     InHexEntity, // X
+
+    // Sequences
+    CDATASequence,
 }
 
 const enum Special {
@@ -183,31 +180,17 @@ function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
     };
 }
 
-const stateBeforeCdata1 = ifElseState(
-    "C",
-    State.BeforeCdata2,
-    State.InDeclaration
-);
-const stateBeforeCdata2 = ifElseState(
-    "D",
-    State.BeforeCdata3,
-    State.InDeclaration
-);
-const stateBeforeCdata3 = ifElseState(
-    "A",
-    State.BeforeCdata4,
-    State.InDeclaration
-);
-const stateBeforeCdata4 = ifElseState(
-    "T",
-    State.BeforeCdata5,
-    State.InDeclaration
-);
-const stateBeforeCdata5 = ifElseState(
-    "A",
-    State.BeforeCdata6,
-    State.InDeclaration
-);
+const SEQUENCES = {
+    CDATA: new Uint16Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
+    SCRIPT: new Uint16Array([0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `script`
+    SCRIPT_END: new Uint16Array([
+        0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+    ]), // `</script`
+    STYLE: new Uint16Array([0x73, 0x74, 0x79, 0x6c, 0x65]), // `style`
+    TITLE: new Uint16Array([0x74, 0x69, 0x74, 0x6c, 0x65]), // `title`
+
+    CDATA_END: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
+};
 
 const stateBeforeScript1 = ifElseState(
     "R",
@@ -376,6 +359,21 @@ export default class Tokenizer {
             this.sectionStart = this._index;
         }
     }
+    private sequenceIndex = 0;
+    private stateCDATASequence(c: number) {
+        if (c === SEQUENCES.CDATA[this.sequenceIndex]) {
+            if (++this.sequenceIndex === SEQUENCES.CDATA.length) {
+                this._state = State.InCdata;
+                this.sectionStart = this._index + 1;
+                return;
+            }
+        } else {
+            this.sequenceIndex = 0;
+            this._state = State.InDeclaration;
+            this.stateInDeclaration(c); // Reconsume the character
+        }
+    }
+
     /**
      * HTML only allows ASCII alpha characters (a-z and A-Z) at the beginning of a tag name.
      *
@@ -570,12 +568,15 @@ export default class Tokenizer {
         }
     }
     private stateBeforeDeclaration(c: number) {
-        this._state =
-            c === CharCodes.OpeningSquareBracket
-                ? State.BeforeCdata1
-                : c === CharCodes.Dash
-                ? State.BeforeComment
-                : State.InDeclaration;
+        if (c === CharCodes.OpeningSquareBracket) {
+            this._state = State.CDATASequence;
+            this.sequenceIndex = 0;
+        } else {
+            this._state =
+                c === CharCodes.Dash
+                    ? State.BeforeComment
+                    : State.InDeclaration;
+        }
     }
     private stateInDeclaration(c: number) {
         if (c === CharCodes.Gt) {
@@ -630,15 +631,6 @@ export default class Tokenizer {
             this._state = State.InComment;
         }
         // Else: stay in AFTER_COMMENT_2 (`--->`)
-    }
-    private stateBeforeCdata6(c: number) {
-        if (c === CharCodes.OpeningSquareBracket) {
-            this._state = State.InCdata;
-            this.sectionStart = this._index + 1;
-        } else {
-            this._state = State.InDeclaration;
-            this.stateInDeclaration(c);
-        }
     }
     private stateInCdata(c: number) {
         if (c === CharCodes.ClosingSquareBracket)
@@ -843,16 +835,22 @@ export default class Tokenizer {
         }
     }
 
+    private shouldContinue() {
+        return this._index < this.buffer.length && this.running;
+    }
+
     /**
      * Iterates through the buffer, calling the function corresponding to the current state.
      *
      * States that are more likely to be hit are higher up, as a performance improvement.
      */
     private parse() {
-        while (this._index < this.buffer.length && this.running) {
+        while (this.shouldContinue()) {
             const c = this.buffer.charCodeAt(this._index);
             if (this._state === State.Text) {
                 this.stateText(c);
+            } else if (this._state === State.CDATASequence) {
+                this.stateCDATASequence(c);
             } else if (this._state === State.InAttributeValueDq) {
                 this.stateInAttributeValueDoubleQuotes(c);
             } else if (this._state === State.InAttributeName) {
@@ -959,24 +957,12 @@ export default class Tokenizer {
                 this.stateInProcessingInstruction(c);
             } else if (this._state === State.InNamedEntity) {
                 this.stateInNamedEntity(c);
-            } else if (this._state === State.BeforeCdata1) {
-                stateBeforeCdata1(this, c);
             } else if (this._state === State.BeforeEntity) {
                 this.stateBeforeEntity(c);
-            } else if (this._state === State.BeforeCdata2) {
-                stateBeforeCdata2(this, c);
-            } else if (this._state === State.BeforeCdata3) {
-                stateBeforeCdata3(this, c);
             } else if (this._state === State.AfterCdata1) {
                 this.stateAfterCdata1(c);
             } else if (this._state === State.AfterCdata2) {
                 this.stateAfterCdata2(c);
-            } else if (this._state === State.BeforeCdata4) {
-                stateBeforeCdata4(this, c);
-            } else if (this._state === State.BeforeCdata5) {
-                stateBeforeCdata5(this, c);
-            } else if (this._state === State.BeforeCdata6) {
-                this.stateBeforeCdata6(c);
             } else if (this._state === State.InHexEntity) {
                 this.stateInHexEntity(c);
             } else if (this._state === State.InNumericEntity) {
