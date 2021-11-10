@@ -70,15 +70,8 @@ const enum State {
 
     // Comments
     BeforeComment,
-    InComment,
     InSpecialComment,
-    AfterComment1,
-    AfterComment2,
-
-    // Cdata
-    InCdata, // [
-    AfterCdata1, // ]
-    AfterCdata2, // ]
+    InCommentLike,
 
     // Special tags
     BeforeSpecialS, // S
@@ -177,6 +170,7 @@ const SEQUENCES = {
     STYLE: new Uint16Array([0x73, 0x74, 0x79, 0x6c, 0x65]), // `style`
     TITLE: new Uint16Array([0x74, 0x69, 0x74, 0x6c, 0x65]), // `title`
 
+    COMMENT_END: new Uint16Array([0x2d, 0x2d, 0x3e]), // `-->`
     CDATA_END: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
 };
 
@@ -340,12 +334,68 @@ export default class Tokenizer {
     private stateCDATASequence(c: number) {
         if (c === SEQUENCES.CDATA[this.sequenceIndex]) {
             if (++this.sequenceIndex === SEQUENCES.CDATA.length) {
-                this._state = State.InCdata;
+                this._state = State.InCommentLike;
+                this.currentSequence = SEQUENCES.CDATA_END;
+                this.sequenceIndex = 0;
                 this.sectionStart = this._index + 1;
             }
         } else {
             this._state = State.InDeclaration;
             this.stateInDeclaration(c); // Reconsume the character
+        }
+    }
+
+    /**
+     * When we wait for one specific character, we can speed things up
+     * by skipping through the buffer until we find it.
+     *
+     * @returns Whether the character was found.
+     */
+    private fastForwardTo(_c: number): boolean {
+        // TODO: Refactor `parse` to increment index before calling states.
+        while (this._index < this.buffer.length - 1) {
+            if (this.buffer.charCodeAt(this._index) === _c) {
+                return true;
+            }
+            this._index++;
+        }
+        return false;
+    }
+
+    /**
+     * Comments and CDATA end with `-->` and `]]>`.
+     *
+     * Their common qualities are:
+     * - Their end sequences have a distinct character they start with.
+     * - That character is then repeated, so we have to check multiple repeats.
+     * - All characters but the start character of the sequence can be skipped.
+     */
+    private stateInCommentLike(c: number) {
+        if (c === this.currentSequence[this.sequenceIndex]) {
+            if (++this.sequenceIndex === this.currentSequence.length) {
+                // Remove 2 trailing chars
+                const section = this.buffer.slice(
+                    this.sectionStart,
+                    this._index - 2
+                );
+
+                if (this.currentSequence === SEQUENCES.CDATA_END) {
+                    this.cbs.oncdata(section);
+                } else {
+                    this.cbs.oncomment(section);
+                }
+
+                this.sectionStart = this._index + 1;
+                this._state = State.Text;
+            }
+        } else if (this.sequenceIndex === 0) {
+            // Fast-forward to the first character of the sequence
+            if (this.fastForwardTo(this.currentSequence[0])) {
+                this.sequenceIndex = 1;
+            }
+        } else if (c !== this.currentSequence[this.sequenceIndex - 1]) {
+            // Allow long sequences, eg. --->, ]]]>
+            this.sequenceIndex = 0;
         }
     }
 
@@ -576,14 +626,14 @@ export default class Tokenizer {
     }
     private stateBeforeComment(c: number) {
         if (c === CharCodes.Dash) {
-            this._state = State.InComment;
+            this._state = State.InCommentLike;
+            this.currentSequence = SEQUENCES.COMMENT_END;
+            // Allow short comments (eg. <!-->)
+            this.sequenceIndex = 2;
             this.sectionStart = this._index + 1;
         } else {
             this._state = State.InDeclaration;
         }
-    }
-    private stateInComment(c: number) {
-        if (c === CharCodes.Dash) this._state = State.AfterComment1;
     }
     private stateInSpecialComment(c: number) {
         if (c === CharCodes.Gt) {
@@ -593,48 +643,6 @@ export default class Tokenizer {
             this._state = State.Text;
             this.sectionStart = this._index + 1;
         }
-    }
-    private stateAfterComment1(c: number) {
-        if (c === CharCodes.Dash) {
-            this._state = State.AfterComment2;
-        } else {
-            this._state = State.InComment;
-        }
-    }
-    private stateAfterComment2(c: number) {
-        if (c === CharCodes.Gt) {
-            // Remove 2 trailing chars
-            this.cbs.oncomment(
-                this.buffer.substring(this.sectionStart, this._index - 2)
-            );
-            this._state = State.Text;
-            this.sectionStart = this._index + 1;
-        } else if (c !== CharCodes.Dash) {
-            this._state = State.InComment;
-        }
-        // Else: stay in AFTER_COMMENT_2 (`--->`)
-    }
-    private stateInCdata(c: number) {
-        if (c === CharCodes.ClosingSquareBracket)
-            this._state = State.AfterCdata1;
-    }
-    private stateAfterCdata1(c: number) {
-        if (c === CharCodes.ClosingSquareBracket)
-            this._state = State.AfterCdata2;
-        else this._state = State.InCdata;
-    }
-    private stateAfterCdata2(c: number) {
-        if (c === CharCodes.Gt) {
-            // Remove 2 trailing chars
-            this.cbs.oncdata(
-                this.buffer.substring(this.sectionStart, this._index - 2)
-            );
-            this._state = State.Text;
-            this.sectionStart = this._index + 1;
-        } else if (c !== CharCodes.ClosingSquareBracket) {
-            this._state = State.InCdata;
-        }
-        // Else: stay in AFTER_CDATA_2 (`]]]>`)
     }
     private stateBeforeSpecialS(c: number) {
         if (c === CharCodes.LowerC || c === CharCodes.UpperC) {
@@ -840,8 +848,8 @@ export default class Tokenizer {
                 this.stateInAttributeValueDoubleQuotes(c);
             } else if (this._state === State.InAttributeName) {
                 this.stateInAttributeName(c);
-            } else if (this._state === State.InComment) {
-                this.stateInComment(c);
+            } else if (this._state === State.InCommentLike) {
+                this.stateInCommentLike(c);
             } else if (this._state === State.InSpecialComment) {
                 this.stateInSpecialComment(c);
             } else if (this._state === State.BeforeAttributeName) {
@@ -864,8 +872,6 @@ export default class Tokenizer {
                 this.stateAfterClosingTagName(c);
             } else if (this._state === State.BeforeSpecialS) {
                 this.stateBeforeSpecialS(c);
-            } else if (this._state === State.AfterComment1) {
-                this.stateAfterComment1(c);
             } else if (this._state === State.InAttributeValueNq) {
                 this.stateInAttributeValueNoQuotes(c);
             } else if (this._state === State.InSelfClosingTag) {
@@ -874,8 +880,6 @@ export default class Tokenizer {
                 this.stateInDeclaration(c);
             } else if (this._state === State.BeforeDeclaration) {
                 this.stateBeforeDeclaration(c);
-            } else if (this._state === State.AfterComment2) {
-                this.stateAfterComment2(c);
             } else if (this._state === State.BeforeComment) {
                 this.stateBeforeComment(c);
             } else if (this._state === State.BeforeSpecialSEnd) {
@@ -892,8 +896,6 @@ export default class Tokenizer {
                 stateAfterScript4(this, c);
             } else if (this._state === State.AfterScript5) {
                 this.stateAfterSpecialLast(c, 6);
-            } else if (this._state === State.InCdata) {
-                this.stateInCdata(c);
             } else if (this._state === State.AfterStyle1) {
                 stateAfterStyle1(this, c);
             } else if (this._state === State.AfterStyle2) {
@@ -916,10 +918,6 @@ export default class Tokenizer {
                 this.stateInNamedEntity(c);
             } else if (this._state === State.BeforeEntity) {
                 this.stateBeforeEntity(c);
-            } else if (this._state === State.AfterCdata1) {
-                this.stateAfterCdata1(c);
-            } else if (this._state === State.AfterCdata2) {
-                this.stateAfterCdata2(c);
             } else if (this._state === State.InHexEntity) {
                 this.stateInHexEntity(c);
             } else if (this._state === State.InNumericEntity) {
@@ -944,18 +942,12 @@ export default class Tokenizer {
     /** Handle any trailing data. */
     private handleTrailingData() {
         const data = this.buffer.substr(this.sectionStart);
-        if (
-            this._state === State.InCdata ||
-            this._state === State.AfterCdata1 ||
-            this._state === State.AfterCdata2
-        ) {
-            this.cbs.oncdata(data);
-        } else if (
-            this._state === State.InComment ||
-            this._state === State.AfterComment1 ||
-            this._state === State.AfterComment2
-        ) {
-            this.cbs.oncomment(data);
+        if (this._state === State.InCommentLike) {
+            if (this.currentSequence === SEQUENCES.CDATA_END) {
+                this.cbs.oncdata(data);
+            } else {
+                this.cbs.oncomment(data);
+            }
         } else if (this._state === State.InNamedEntity && !this.xmlMode) {
             // Increase excess for EOF
             this.trieExcess++;
