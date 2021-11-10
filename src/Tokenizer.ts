@@ -84,32 +84,18 @@ const enum State {
     BeforeSpecialS, // S
     BeforeSpecialSEnd, // S
 
-    BeforeScript1, // C
-    BeforeScript2, // R
-    BeforeScript3, // I
-    BeforeScript4, // P
-    BeforeScript5, // T
     AfterScript1, // C
     AfterScript2, // R
     AfterScript3, // I
     AfterScript4, // P
     AfterScript5, // T
 
-    BeforeStyle1, // T
-    BeforeStyle2, // Y
-    BeforeStyle3, // L
-    BeforeStyle4, // E
     AfterStyle1, // T
     AfterStyle2, // Y
     AfterStyle3, // L
     AfterStyle4, // E
 
-    BeforeSpecialT, // T
     BeforeSpecialTEnd, // T
-    BeforeTitle1, // I
-    BeforeTitle2, // T
-    BeforeTitle3, // L
-    BeforeTitle4, // E
     AfterTitle1, // I
     AfterTitle2, // T
     AfterTitle3, // L
@@ -123,6 +109,8 @@ const enum State {
 
     // Sequences
     CDATASequence,
+    SpecialStartSequence,
+    SpecialEndSequence,
 }
 
 const enum Special {
@@ -192,48 +180,14 @@ const SEQUENCES = {
     CDATA_END: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
 };
 
-const stateBeforeScript1 = ifElseState(
-    "R",
-    State.BeforeScript2,
-    State.InTagName
-);
-const stateBeforeScript2 = ifElseState(
-    "I",
-    State.BeforeScript3,
-    State.InTagName
-);
-const stateBeforeScript3 = ifElseState(
-    "P",
-    State.BeforeScript4,
-    State.InTagName
-);
-const stateBeforeScript4 = ifElseState(
-    "T",
-    State.BeforeScript5,
-    State.InTagName
-);
-
 const stateAfterScript1 = ifElseState("R", State.AfterScript2, State.Text);
 const stateAfterScript2 = ifElseState("I", State.AfterScript3, State.Text);
 const stateAfterScript3 = ifElseState("P", State.AfterScript4, State.Text);
 const stateAfterScript4 = ifElseState("T", State.AfterScript5, State.Text);
 
-const stateBeforeStyle1 = ifElseState("Y", State.BeforeStyle2, State.InTagName);
-const stateBeforeStyle2 = ifElseState("L", State.BeforeStyle3, State.InTagName);
-const stateBeforeStyle3 = ifElseState("E", State.BeforeStyle4, State.InTagName);
-
 const stateAfterStyle1 = ifElseState("Y", State.AfterStyle2, State.Text);
 const stateAfterStyle2 = ifElseState("L", State.AfterStyle3, State.Text);
 const stateAfterStyle3 = ifElseState("E", State.AfterStyle4, State.Text);
-
-const stateBeforeSpecialT = ifElseState(
-    "I",
-    State.BeforeTitle1,
-    State.InTagName
-);
-const stateBeforeTitle1 = ifElseState("T", State.BeforeTitle2, State.InTagName);
-const stateBeforeTitle2 = ifElseState("L", State.BeforeTitle3, State.InTagName);
-const stateBeforeTitle3 = ifElseState("E", State.BeforeTitle4, State.InTagName);
 
 const stateBeforeSpecialTEnd = ifElseState("I", State.AfterTitle1, State.Text);
 const stateAfterTitle1 = ifElseState("T", State.AfterTitle2, State.Text);
@@ -359,16 +313,37 @@ export default class Tokenizer {
             this.sectionStart = this._index;
         }
     }
+
+    private currentSequence!: Uint16Array;
     private sequenceIndex = 0;
+    private stateSpecialStartSequence(c: number) {
+        const isMatch =
+            this.sequenceIndex === this.currentSequence.length
+                ? // If we are at the end of the sequence, make sure the tag name has ended
+                  c === CharCodes.Slash || c === CharCodes.Gt || whitespace(c)
+                : // Otherwise, do a case-insensitive comparison
+                  (c | 0x20) === this.currentSequence[this.sequenceIndex];
+
+        if (!isMatch) {
+            this.special = Special.None;
+        } else if (this.sequenceIndex < this.currentSequence.length) {
+            this.sequenceIndex++;
+            return;
+        }
+
+        this._state = State.InTagName;
+        this.stateInTagName(c); // Reconsume the character
+    }
+
+    private stateSpecialEndSequence(_c: number) {}
+
     private stateCDATASequence(c: number) {
         if (c === SEQUENCES.CDATA[this.sequenceIndex]) {
             if (++this.sequenceIndex === SEQUENCES.CDATA.length) {
                 this._state = State.InCdata;
                 this.sectionStart = this._index + 1;
-                return;
             }
         } else {
-            this.sequenceIndex = 0;
             this._state = State.InDeclaration;
             this.stateInDeclaration(c); // Reconsume the character
         }
@@ -410,15 +385,22 @@ export default class Tokenizer {
         } else if (!this.isTagStartChar(c)) {
             this._state = State.Text;
         } else {
-            this._state =
-                !this.xmlMode &&
-                (c === CharCodes.LowerS || c === CharCodes.UpperS)
-                    ? State.BeforeSpecialS
-                    : !this.xmlMode &&
-                      (c === CharCodes.LowerT || c === CharCodes.UpperT)
-                    ? State.BeforeSpecialT
-                    : State.InTagName;
             this.sectionStart = this._index;
+            if (
+                !this.xmlMode &&
+                (c === CharCodes.LowerT || c === CharCodes.UpperT)
+            ) {
+                this.special = Special.Title;
+                this.currentSequence = SEQUENCES.TITLE;
+                this.sequenceIndex = 1;
+                this._state = State.SpecialStartSequence;
+            } else {
+                this._state =
+                    !this.xmlMode &&
+                    (c === CharCodes.LowerS || c === CharCodes.UpperS)
+                        ? State.BeforeSpecialS
+                        : State.InTagName;
+            }
         }
     }
     private stateInTagName(c: number) {
@@ -656,9 +638,15 @@ export default class Tokenizer {
     }
     private stateBeforeSpecialS(c: number) {
         if (c === CharCodes.LowerC || c === CharCodes.UpperC) {
-            this._state = State.BeforeScript1;
+            this.special = Special.Script;
+            this.currentSequence = SEQUENCES.SCRIPT;
+            this.sequenceIndex = 2;
+            this._state = State.SpecialStartSequence;
         } else if (c === CharCodes.LowerT || c === CharCodes.UpperT) {
-            this._state = State.BeforeStyle1;
+            this.special = Special.Style;
+            this.currentSequence = SEQUENCES.STYLE;
+            this.sequenceIndex = 2;
+            this._state = State.SpecialStartSequence;
         } else {
             this._state = State.InTagName;
             this.stateInTagName(c); // Consume the token again
@@ -676,13 +664,6 @@ export default class Tokenizer {
         ) {
             this._state = State.AfterStyle1;
         } else this._state = State.Text;
-    }
-    private stateBeforeSpecialLast(c: number, special: Special) {
-        if (c === CharCodes.Slash || c === CharCodes.Gt || whitespace(c)) {
-            this.special = special;
-        }
-        this._state = State.InTagName;
-        this.stateInTagName(c); // Consume the token again
     }
     private stateAfterSpecialLast(c: number, sectionStartOffset: number) {
         if (c === CharCodes.Gt || whitespace(c)) {
@@ -849,6 +830,10 @@ export default class Tokenizer {
             const c = this.buffer.charCodeAt(this._index);
             if (this._state === State.Text) {
                 this.stateText(c);
+            } else if (this._state === State.SpecialStartSequence) {
+                this.stateSpecialStartSequence(c);
+            } else if (this._state === State.SpecialEndSequence) {
+                this.stateSpecialEndSequence(c);
             } else if (this._state === State.CDATASequence) {
                 this.stateCDATASequence(c);
             } else if (this._state === State.InAttributeValueDq) {
@@ -903,30 +888,12 @@ export default class Tokenizer {
                 stateAfterScript2(this, c);
             } else if (this._state === State.AfterScript3) {
                 stateAfterScript3(this, c);
-            } else if (this._state === State.BeforeScript1) {
-                stateBeforeScript1(this, c);
-            } else if (this._state === State.BeforeScript2) {
-                stateBeforeScript2(this, c);
-            } else if (this._state === State.BeforeScript3) {
-                stateBeforeScript3(this, c);
-            } else if (this._state === State.BeforeScript4) {
-                stateBeforeScript4(this, c);
-            } else if (this._state === State.BeforeScript5) {
-                this.stateBeforeSpecialLast(c, Special.Script);
             } else if (this._state === State.AfterScript4) {
                 stateAfterScript4(this, c);
             } else if (this._state === State.AfterScript5) {
                 this.stateAfterSpecialLast(c, 6);
-            } else if (this._state === State.BeforeStyle1) {
-                stateBeforeStyle1(this, c);
             } else if (this._state === State.InCdata) {
                 this.stateInCdata(c);
-            } else if (this._state === State.BeforeStyle2) {
-                stateBeforeStyle2(this, c);
-            } else if (this._state === State.BeforeStyle3) {
-                stateBeforeStyle3(this, c);
-            } else if (this._state === State.BeforeStyle4) {
-                this.stateBeforeSpecialLast(c, Special.Style);
             } else if (this._state === State.AfterStyle1) {
                 stateAfterStyle1(this, c);
             } else if (this._state === State.AfterStyle2) {
@@ -935,16 +902,6 @@ export default class Tokenizer {
                 stateAfterStyle3(this, c);
             } else if (this._state === State.AfterStyle4) {
                 this.stateAfterSpecialLast(c, 5);
-            } else if (this._state === State.BeforeSpecialT) {
-                stateBeforeSpecialT(this, c);
-            } else if (this._state === State.BeforeTitle1) {
-                stateBeforeTitle1(this, c);
-            } else if (this._state === State.BeforeTitle2) {
-                stateBeforeTitle2(this, c);
-            } else if (this._state === State.BeforeTitle3) {
-                stateBeforeTitle3(this, c);
-            } else if (this._state === State.BeforeTitle4) {
-                this.stateBeforeSpecialLast(c, Special.Title);
             } else if (this._state === State.AfterTitle1) {
                 stateAfterTitle1(this, c);
             } else if (this._state === State.AfterTitle2) {
