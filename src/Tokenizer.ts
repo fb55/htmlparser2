@@ -294,7 +294,10 @@ export default class Tokenizer {
     }
 
     private stateText(c: number) {
-        if (c === CharCodes.Lt) {
+        if (
+            c === CharCodes.Lt ||
+            (!this.decodeEntities && this.fastForwardTo(CharCodes.Lt))
+        ) {
             if (this._index > this.sectionStart) {
                 this.cbs.ontext(this.getSection());
             }
@@ -571,7 +574,10 @@ export default class Tokenizer {
         }
     }
     private handleInAttributeValue(c: number, quote: number) {
-        if (c === quote) {
+        if (
+            c === quote ||
+            (!this.decodeEntities && this.fastForwardTo(quote))
+        ) {
             this.cbs.onattribdata(this.getSection());
             this.sectionStart = -1;
             this.cbs.onattribend(String.fromCharCode(quote));
