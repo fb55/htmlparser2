@@ -320,7 +320,7 @@ export default class Tokenizer {
         const isMatch =
             this.sequenceIndex === this.currentSequence.length
                 ? // If we are at the end of the sequence, make sure the tag name has ended
-                  c === CharCodes.Slash || c === CharCodes.Gt || whitespace(c)
+                  endOfTagSectionChars.has(c)
                 : // Otherwise, do a case-insensitive comparison
                   (c | 0x20) === this.currentSequence[this.sequenceIndex];
 
@@ -357,14 +357,21 @@ export default class Tokenizer {
      *
      * @returns Whether the character was found.
      */
-    private fastForwardTo(_c: number): boolean {
-        // TODO: Refactor `parse` to increment index before calling states.
-        while (this._index < this.buffer.length - 1) {
-            if (this.buffer.charCodeAt(this._index) === _c) {
+    private fastForwardTo(c: number): boolean {
+        while (++this._index < this.buffer.length) {
+            if (this.buffer.charCodeAt(this._index) === c) {
                 return true;
             }
-            this._index++;
         }
+
+        /*
+         * We increment the index at the end of the `parse` loop,
+         * so set it to `buffer.length - 1` here.
+         *
+         * TODO: Refactor `parse` to increment index before calling states.
+         */
+        this._index = this.buffer.length - 1;
+
         return false;
     }
 
@@ -501,7 +508,7 @@ export default class Tokenizer {
     }
     private stateAfterClosingTagName(c: number) {
         // Skip everything until ">"
-        if (c === CharCodes.Gt) {
+        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this._state = State.Text;
             this.sectionStart = this._index + 1;
         }
@@ -608,14 +615,14 @@ export default class Tokenizer {
         }
     }
     private stateInDeclaration(c: number) {
-        if (c === CharCodes.Gt) {
+        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this.cbs.ondeclaration(this.getSection());
             this._state = State.Text;
             this.sectionStart = this._index + 1;
         }
     }
     private stateInProcessingInstruction(c: number) {
-        if (c === CharCodes.Gt) {
+        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this.cbs.onprocessinginstruction(this.getSection());
             this._state = State.Text;
             this.sectionStart = this._index + 1;
@@ -633,7 +640,7 @@ export default class Tokenizer {
         }
     }
     private stateInSpecialComment(c: number) {
-        if (c === CharCodes.Gt) {
+        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this.cbs.oncomment(this.getSection());
             this._state = State.Text;
             this.sectionStart = this._index + 1;
