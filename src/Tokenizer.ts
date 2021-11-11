@@ -66,13 +66,15 @@ const enum State {
     // Processing instructions
     InProcessingInstruction, // ?
 
-    // Comments
+    // Comments & CDATA
     BeforeComment,
+    CDATASequence,
     InSpecialComment,
     InCommentLike,
 
     // Special tags
-    BeforeSpecialS, // S
+    BeforeSpecialS, // Decide if we deal with `<script` or `<style`
+    SpecialStartSequence,
     InSpecialTag,
 
     BeforeEntity, // &
@@ -80,27 +82,21 @@ const enum State {
     InNamedEntity,
     InNumericEntity,
     InHexEntity, // X
-
-    // Sequences
-    CDATASequence,
-    SpecialStartSequence,
 }
 
-// Maintained as an array to keep TS at ES5
-const whitespaceCharArray = [
-    CharCodes.Space,
-    CharCodes.NewLine,
-    CharCodes.Tab,
-    CharCodes.FormFeed,
-    CharCodes.CarriageReturn,
-];
+function isWhitespace(c: number): boolean {
+    return (
+        c === CharCodes.Space ||
+        c === CharCodes.NewLine ||
+        c === CharCodes.Tab ||
+        c === CharCodes.FormFeed ||
+        c === CharCodes.CarriageReturn
+    );
+}
 
-const whitespaceChars = new Set(whitespaceCharArray);
-const endOfTagSectionChars = new Set([
-    ...whitespaceCharArray,
-    CharCodes.Slash,
-    CharCodes.Gt,
-]);
+function isEndOfTagSection(c: number): boolean {
+    return c === CharCodes.Slash || c === CharCodes.Gt || isWhitespace(c);
+}
 
 function isASCIIAlpha(c: number): boolean {
     return (
@@ -260,7 +256,7 @@ export default class Tokenizer {
         const isEnd = this.sequenceIndex === this.currentSequence.length;
         const isMatch = isEnd
             ? // If we are at the end of the sequence, make sure the tag name has ended
-              endOfTagSectionChars.has(c)
+              isEndOfTagSection(c)
             : // Otherwise, do a case-insensitive comparison
               (c | 0x20) === this.currentSequence[this.sequenceIndex];
 
@@ -279,7 +275,7 @@ export default class Tokenizer {
     /** Look for an end tag. For <title> tags, also decode entities. */
     private stateInSpecialTag(c: number) {
         if (this.sequenceIndex === this.currentSequence.length) {
-            if (c === CharCodes.Gt || whitespaceChars.has(c)) {
+            if (c === CharCodes.Gt || isWhitespace(c)) {
                 const endOfText = this._index - this.currentSequence.length;
 
                 if (this.sectionStart < endOfText) {
@@ -406,9 +402,7 @@ export default class Tokenizer {
      * We allow anything that wouldn't end the tag.
      */
     private isTagStartChar(c: number) {
-        return (
-            isASCIIAlpha(c) || (this.xmlMode && !endOfTagSectionChars.has(c))
-        );
+        return isASCIIAlpha(c) || (this.xmlMode && !isEndOfTagSection(c));
     }
     private stateBeforeTagName(c: number) {
         if (c === CharCodes.Slash) {
@@ -416,7 +410,7 @@ export default class Tokenizer {
         } else if (c === CharCodes.Lt) {
             this.cbs.ontext(this.getSection());
             this.sectionStart = this._index;
-        } else if (c === CharCodes.Gt || whitespaceChars.has(c)) {
+        } else if (c === CharCodes.Gt || isWhitespace(c)) {
             this._state = State.Text;
         } else if (c === CharCodes.ExclamationMark) {
             this._state = State.BeforeDeclaration;
@@ -443,7 +437,7 @@ export default class Tokenizer {
         }
     }
     private stateInTagName(c: number) {
-        if (endOfTagSectionChars.has(c)) {
+        if (isEndOfTagSection(c)) {
             this.cbs.onopentagname(this.getSection());
             this.sectionStart = -1;
             this._state = State.BeforeAttributeName;
@@ -451,7 +445,7 @@ export default class Tokenizer {
         }
     }
     private stateBeforeClosingTagName(c: number) {
-        if (whitespaceChars.has(c)) {
+        if (isWhitespace(c)) {
             // Ignore
         } else if (c === CharCodes.Gt) {
             this._state = State.Text;
@@ -464,7 +458,7 @@ export default class Tokenizer {
         }
     }
     private stateInClosingTagName(c: number) {
-        if (c === CharCodes.Gt || whitespaceChars.has(c)) {
+        if (c === CharCodes.Gt || isWhitespace(c)) {
             this.cbs.onclosetag(this.getSection());
             this.sectionStart = -1;
             this._state = State.AfterClosingTagName;
@@ -499,7 +493,7 @@ export default class Tokenizer {
             this.sectionStart = this._index + 1;
         } else if (c === CharCodes.Slash) {
             this._state = State.InSelfClosingTag;
-        } else if (!whitespaceChars.has(c)) {
+        } else if (!isWhitespace(c)) {
             this._state = State.InAttributeName;
             this.sectionStart = this._index;
         }
@@ -511,13 +505,13 @@ export default class Tokenizer {
             this.baseState = State.Text;
             this.sectionStart = this._index + 1;
             this.isSpecial = false; // Reset special state, in case of self-closing special tags
-        } else if (!whitespaceChars.has(c)) {
+        } else if (!isWhitespace(c)) {
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
         }
     }
     private stateInAttributeName(c: number) {
-        if (c === CharCodes.Eq || endOfTagSectionChars.has(c)) {
+        if (c === CharCodes.Eq || isEndOfTagSection(c)) {
             this.cbs.onattribname(this.getSection());
             this.sectionStart = -1;
             this._state = State.AfterAttributeName;
@@ -531,7 +525,7 @@ export default class Tokenizer {
             this.cbs.onattribend(undefined);
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
-        } else if (!whitespaceChars.has(c)) {
+        } else if (!isWhitespace(c)) {
             this.cbs.onattribend(undefined);
             this._state = State.InAttributeName;
             this.sectionStart = this._index;
@@ -544,7 +538,7 @@ export default class Tokenizer {
         } else if (c === CharCodes.SingleQuote) {
             this._state = State.InAttributeValueSq;
             this.sectionStart = this._index + 1;
-        } else if (!whitespaceChars.has(c)) {
+        } else if (!isWhitespace(c)) {
             this.sectionStart = this._index;
             this._state = State.InAttributeValueNq;
             this.stateInAttributeValueNoQuotes(c); // Reconsume token
@@ -573,7 +567,7 @@ export default class Tokenizer {
         this.handleInAttributeValue(c, CharCodes.SingleQuote);
     }
     private stateInAttributeValueNoQuotes(c: number) {
-        if (whitespaceChars.has(c) || c === CharCodes.Gt) {
+        if (isWhitespace(c) || c === CharCodes.Gt) {
             this.cbs.onattribdata(this.getSection());
             this.sectionStart = -1;
             this.cbs.onattribend(null);
