@@ -122,30 +122,32 @@ export interface Callbacks {
     ontext(value: string): void;
 }
 
-const SEQUENCES = {
-    CDATA: new Uint16Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
-    SCRIPT: new Uint16Array([0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `script`
-    SCRIPT_END: new Uint16Array([
+/**
+ * Sequences used to match longer strings.
+ *
+ * We don't have `Script`, `Style`, or `Title` here. Instead, we re-use the *End
+ * sequences with an increased offset.
+ */
+const Sequences = {
+    Cdata: new Uint16Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
+    CdataEnd: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
+    CommentEnd: new Uint16Array([0x2d, 0x2d, 0x3e]), // `-->`
+    ScriptEnd: new Uint16Array([
         0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
     ]), // `</script`
-    STYLE: new Uint16Array([0x73, 0x74, 0x79, 0x6c, 0x65]), // `style`
-    STYLE_END: new Uint16Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
-    TITLE: new Uint16Array([0x74, 0x69, 0x74, 0x6c, 0x65]), // `title`
-    TITLE_END: new Uint16Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
-
-    COMMENT_END: new Uint16Array([0x2d, 0x2d, 0x3e]), // `-->`
-    CDATA_END: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
+    StyleEnd: new Uint16Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
+    TitleEnd: new Uint16Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
 };
 
 export default class Tokenizer {
     /** The current state the tokenizer is in. */
-    _state = State.Text;
+    private _state = State.Text;
     /** The read buffer. */
     private buffer = "";
     /** The beginning of the section that is currently being read. */
     public sectionStart = 0;
     /** The index within the buffer that we are currently looking at. */
-    _index = 0;
+    private _index = 0;
     /**
      * Data that has already been processed will be removed from the buffer occasionally.
      * `_bufferOffset` keeps track of how many characters have been removed, to make sure position information is accurate.
@@ -298,7 +300,7 @@ export default class Tokenizer {
         if ((c | 0x20) === this.currentSequence[this.sequenceIndex]) {
             this.sequenceIndex += 1;
         } else if (this.sequenceIndex === 0) {
-            if (this.currentSequence === SEQUENCES.TITLE_END) {
+            if (this.currentSequence === Sequences.TitleEnd) {
                 // We have to parse entities in <title> tags.
                 if (this.decodeEntities && c === CharCodes.Amp) {
                     if (this._index > this.sectionStart) {
@@ -319,10 +321,10 @@ export default class Tokenizer {
     }
 
     private stateCDATASequence(c: number) {
-        if (c === SEQUENCES.CDATA[this.sequenceIndex]) {
-            if (++this.sequenceIndex === SEQUENCES.CDATA.length) {
+        if (c === Sequences.Cdata[this.sequenceIndex]) {
+            if (++this.sequenceIndex === Sequences.Cdata.length) {
                 this._state = State.InCommentLike;
-                this.currentSequence = SEQUENCES.CDATA_END;
+                this.currentSequence = Sequences.CdataEnd;
                 this.sequenceIndex = 0;
                 this.sectionStart = this._index + 1;
             }
@@ -374,7 +376,7 @@ export default class Tokenizer {
                     this._index - 2
                 );
 
-                if (this.currentSequence === SEQUENCES.CDATA_END) {
+                if (this.currentSequence === Sequences.CdataEnd) {
                     this.cbs.oncdata(section);
                 } else {
                     this.cbs.oncomment(section);
@@ -425,8 +427,8 @@ export default class Tokenizer {
             this.sectionStart = this._index;
             if (!this.xmlMode && lower === CharCodes.LowerT) {
                 this.isSpecial = true;
-                this.currentSequence = SEQUENCES.TITLE;
-                this.sequenceIndex = 1;
+                this.currentSequence = Sequences.TitleEnd;
+                this.sequenceIndex = 3;
                 this._state = State.SpecialStartSequence;
             } else {
                 this._state =
@@ -478,18 +480,10 @@ export default class Tokenizer {
             if (this.isSpecial) {
                 this._state = State.InSpecialTag;
                 this.sequenceIndex = 0;
-
-                if (this.currentSequence === SEQUENCES.SCRIPT) {
-                    this.currentSequence = SEQUENCES.SCRIPT_END;
-                } else if (this.currentSequence === SEQUENCES.STYLE) {
-                    this.currentSequence = SEQUENCES.STYLE_END;
-                } else if (this.currentSequence === SEQUENCES.TITLE) {
-                    this.currentSequence = SEQUENCES.TITLE_END;
-                }
             } else {
                 this._state = State.Text;
-                this.baseState = State.Text;
             }
+            this.baseState = this._state;
             this.sectionStart = this._index + 1;
         } else if (c === CharCodes.Slash) {
             this._state = State.InSelfClosingTag;
@@ -608,7 +602,7 @@ export default class Tokenizer {
     private stateBeforeComment(c: number) {
         if (c === CharCodes.Dash) {
             this._state = State.InCommentLike;
-            this.currentSequence = SEQUENCES.COMMENT_END;
+            this.currentSequence = Sequences.CommentEnd;
             // Allow short comments (eg. <!-->)
             this.sequenceIndex = 2;
             this.sectionStart = this._index + 1;
@@ -627,13 +621,13 @@ export default class Tokenizer {
         const lower = c | 0x20;
         if (lower === CharCodes.LowerC) {
             this.isSpecial = true;
-            this.currentSequence = SEQUENCES.SCRIPT;
-            this.sequenceIndex = 2;
+            this.currentSequence = Sequences.ScriptEnd;
+            this.sequenceIndex = 4;
             this._state = State.SpecialStartSequence;
         } else if (lower === CharCodes.LowerT) {
             this.isSpecial = true;
-            this.currentSequence = SEQUENCES.STYLE;
-            this.sequenceIndex = 2;
+            this.currentSequence = Sequences.StyleEnd;
+            this.sequenceIndex = 4;
             this._state = State.SpecialStartSequence;
         } else {
             this._state = State.InTagName;
@@ -887,7 +881,7 @@ export default class Tokenizer {
     private handleTrailingData() {
         const data = this.buffer.substr(this.sectionStart);
         if (this._state === State.InCommentLike) {
-            if (this.currentSequence === SEQUENCES.CDATA_END) {
+            if (this.currentSequence === Sequences.CdataEnd) {
                 this.cbs.oncdata(data);
             } else {
                 this.cbs.oncomment(data);
