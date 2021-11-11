@@ -789,7 +789,7 @@ export default class Tokenizer {
                     this.sequenceIndex === 0))
         ) {
             // TODO: We could emit attribute data here as well.
-            this.emitPartial(this.buffer.substr(this.sectionStart));
+            this.cbs.ontext(this.buffer.substr(this.sectionStart));
             this.sectionStart = this._index;
         }
 
