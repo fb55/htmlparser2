@@ -246,7 +246,6 @@ export default class Tokenizer {
             if (this._index > this.sectionStart) {
                 this.cbs.ontext(this.getSection());
             }
-            this.baseState = State.Text;
             this._state = State.BeforeEntity;
             this.sectionStart = this._index;
         }
@@ -306,7 +305,6 @@ export default class Tokenizer {
                     if (this._index > this.sectionStart) {
                         this.cbs.ontext(this.getSection());
                     }
-                    this.baseState = State.InSpecialTag;
                     this._state = State.BeforeEntity;
                     this.sectionStart = this._index;
                 }
