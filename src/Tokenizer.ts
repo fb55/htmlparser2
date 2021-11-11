@@ -35,6 +35,7 @@ const enum CharCodes {
     LowerF = 0x66, // "f"
     UpperZ = 0x5a, // "Z"
     LowerZ = 0x7a, // "z"
+    LowerX = 0x78, // "x"
     OpeningSquareBracket = 0x5b, // "["
     ClosingSquareBracket = 0x5d, // "]"
 }
@@ -132,20 +133,6 @@ export interface Callbacks {
     ontext(value: string): void;
 }
 
-function ifElseState(upper: string, SUCCESS: State, FAILURE: State) {
-    const upperCode = upper.charCodeAt(0);
-    const lowerCode = upper.toLowerCase().charCodeAt(0);
-
-    return (t: Tokenizer, c: number) => {
-        if (c === lowerCode || c === upperCode) {
-            t._state = SUCCESS;
-        } else {
-            t._state = FAILURE;
-            t._index--;
-        }
-    };
-}
-
 const SEQUENCES = {
     CDATA: new Uint16Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
     SCRIPT: new Uint16Array([0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `script`
@@ -160,12 +147,6 @@ const SEQUENCES = {
     COMMENT_END: new Uint16Array([0x2d, 0x2d, 0x3e]), // `-->`
     CDATA_END: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
 };
-
-const stateBeforeNumericEntity = ifElseState(
-    "X",
-    State.InHexEntity,
-    State.InNumericEntity
-);
 
 export default class Tokenizer {
     /** The current state the tokenizer is in. */
@@ -297,6 +278,7 @@ export default class Tokenizer {
             return;
         }
 
+        this.sequenceIndex = 0;
         this._state = State.InTagName;
         this.stateInTagName(c);
     }
@@ -356,6 +338,7 @@ export default class Tokenizer {
                 this.sectionStart = this._index + 1;
             }
         } else {
+            this.sequenceIndex = 0;
             this._state = State.InDeclaration;
             this.stateInDeclaration(c); // Reconsume the character
         }
@@ -408,6 +391,7 @@ export default class Tokenizer {
                     this.cbs.oncomment(section);
                 }
 
+                this.sequenceIndex = 0;
                 this.sectionStart = this._index + 1;
                 this._state = State.Text;
             }
@@ -525,6 +509,7 @@ export default class Tokenizer {
                 }
             } else {
                 this._state = State.Text;
+                this.baseState = State.Text;
             }
             this.sectionStart = this._index + 1;
         } else if (c === CharCodes.Slash) {
@@ -538,6 +523,7 @@ export default class Tokenizer {
         if (c === CharCodes.Gt) {
             this.cbs.onselfclosingtag();
             this._state = State.Text;
+            this.baseState = State.Text;
             this.sectionStart = this._index + 1;
             this.special = Special.None; // Reset special state, in case of self-closing special tags
         } else if (!whitespaceChars.has(c)) {
@@ -748,6 +734,15 @@ export default class Tokenizer {
         this._state = this.baseState;
     }
 
+    private stateBeforeNumericEntity(c: number) {
+        if ((c | 0x20) === CharCodes.LowerX) {
+            this._state = State.InHexEntity;
+        } else {
+            this._state = State.InNumericEntity;
+            this.stateInNumericEntity(c);
+        }
+    }
+
     private decodeNumericEntity(base: 10 | 16, strict: boolean) {
         const sectionStart = this.sectionStart + 2 + (base >> 4);
         if (sectionStart !== this._index) {
@@ -809,7 +804,7 @@ export default class Tokenizer {
                     this.sequenceIndex === 0))
         ) {
             // TODO: We could emit attribute data here as well.
-            this.cbs.ontext(this.buffer.substr(this.sectionStart));
+            this.emitPartial(this.buffer.substr(this.sectionStart));
             this.sectionStart = this._index;
         }
 
@@ -894,7 +889,7 @@ export default class Tokenizer {
                 this.stateInNumericEntity(c);
             } else {
                 // `this._state === State.BeforeNumericEntity`
-                stateBeforeNumericEntity(this, c);
+                this.stateBeforeNumericEntity(c);
             }
             this._index++;
         }
