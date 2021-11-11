@@ -86,13 +86,6 @@ const enum State {
     SpecialStartSequence,
 }
 
-const enum Special {
-    None = 1,
-    Script,
-    Style,
-    Title,
-}
-
 // Maintained as an array to keep TS at ES5
 const whitespaceCharArray = [
     CharCodes.Space,
@@ -165,7 +158,7 @@ export default class Tokenizer {
     /** Some behavior, eg. when decoding entities, is done while we are in another state. This keeps track of the other state type. */
     private baseState = State.Text;
     /** For special parsing behavior inside of script and style tags. */
-    private special = Special.None;
+    private isSpecial = false;
     /** Indicates whether the tokenizer has been paused. */
     private running = true;
     /** Indicates whether the tokenizer has finished running / `.end` has been called. */
@@ -194,7 +187,7 @@ export default class Tokenizer {
         this._index = 0;
         this.bufferOffset = 0;
         this.baseState = State.Text;
-        this.special = Special.None;
+        this.currentSequence = undefined!;
         this.running = true;
         this.ended = false;
     }
@@ -272,7 +265,7 @@ export default class Tokenizer {
               (c | 0x20) === this.currentSequence[this.sequenceIndex];
 
         if (!isMatch) {
-            this.special = Special.None;
+            this.isSpecial = false;
         } else if (!isEnd) {
             this.sequenceIndex++;
             return;
@@ -297,7 +290,7 @@ export default class Tokenizer {
                     this._index = actualIndex;
                 }
 
-                this.special = Special.None;
+                this.isSpecial = false;
                 this.sectionStart = endOfText + 2; // Skip over the `</`
                 this.stateInClosingTagName(c);
                 return; // We are done; skip the rest of the function.
@@ -309,7 +302,7 @@ export default class Tokenizer {
         if ((c | 0x20) === this.currentSequence[this.sequenceIndex]) {
             this.sequenceIndex += 1;
         } else if (this.sequenceIndex === 0) {
-            if (this.special === Special.Title) {
+            if (this.currentSequence === SEQUENCES.TITLE_END) {
                 // We have to parse entities in <title> tags.
                 if (this.decodeEntities && c === CharCodes.Amp) {
                     if (this._index > this.sectionStart) {
@@ -423,11 +416,7 @@ export default class Tokenizer {
         } else if (c === CharCodes.Lt) {
             this.cbs.ontext(this.getSection());
             this.sectionStart = this._index;
-        } else if (
-            c === CharCodes.Gt ||
-            this.special !== Special.None ||
-            whitespaceChars.has(c)
-        ) {
+        } else if (c === CharCodes.Gt || whitespaceChars.has(c)) {
             this._state = State.Text;
         } else if (c === CharCodes.ExclamationMark) {
             this._state = State.BeforeDeclaration;
@@ -441,7 +430,7 @@ export default class Tokenizer {
             const lower = c | 0x20;
             this.sectionStart = this._index;
             if (!this.xmlMode && lower === CharCodes.LowerT) {
-                this.special = Special.Title;
+                this.isSpecial = true;
                 this.currentSequence = SEQUENCES.TITLE;
                 this.sequenceIndex = 1;
                 this._state = State.SpecialStartSequence;
@@ -492,20 +481,16 @@ export default class Tokenizer {
     private stateBeforeAttributeName(c: number) {
         if (c === CharCodes.Gt) {
             this.cbs.onopentagend();
-            if (this.special !== Special.None) {
+            if (this.isSpecial) {
                 this._state = State.InSpecialTag;
                 this.sequenceIndex = 0;
 
-                switch (this.special) {
-                    case Special.Script:
-                        this.currentSequence = SEQUENCES.SCRIPT_END;
-                        break;
-                    case Special.Style:
-                        this.currentSequence = SEQUENCES.STYLE_END;
-                        break;
-                    case Special.Title:
-                        this.currentSequence = SEQUENCES.TITLE_END;
-                        break;
+                if (this.currentSequence === SEQUENCES.SCRIPT) {
+                    this.currentSequence = SEQUENCES.SCRIPT_END;
+                } else if (this.currentSequence === SEQUENCES.STYLE) {
+                    this.currentSequence = SEQUENCES.STYLE_END;
+                } else if (this.currentSequence === SEQUENCES.TITLE) {
+                    this.currentSequence = SEQUENCES.TITLE_END;
                 }
             } else {
                 this._state = State.Text;
@@ -525,7 +510,7 @@ export default class Tokenizer {
             this._state = State.Text;
             this.baseState = State.Text;
             this.sectionStart = this._index + 1;
-            this.special = Special.None; // Reset special state, in case of self-closing special tags
+            this.isSpecial = false; // Reset special state, in case of self-closing special tags
         } else if (!whitespaceChars.has(c)) {
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
@@ -647,12 +632,12 @@ export default class Tokenizer {
     private stateBeforeSpecialS(c: number) {
         const lower = c | 0x20;
         if (lower === CharCodes.LowerC) {
-            this.special = Special.Script;
+            this.isSpecial = true;
             this.currentSequence = SEQUENCES.SCRIPT;
             this.sequenceIndex = 2;
             this._state = State.SpecialStartSequence;
         } else if (lower === CharCodes.LowerT) {
-            this.special = Special.Style;
+            this.isSpecial = true;
             this.currentSequence = SEQUENCES.STYLE;
             this.sequenceIndex = 2;
             this._state = State.SpecialStartSequence;
