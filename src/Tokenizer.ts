@@ -192,8 +192,7 @@ export default class Tokenizer {
 
     public write(chunk: string): void {
         if (this.ended) return this.cbs.onerror(Error(".write() after done!"));
-        if (this.buffer.length) this.buffer += chunk;
-        else this.buffer = chunk;
+        this.buffer += chunk;
         this.parse();
     }
 
