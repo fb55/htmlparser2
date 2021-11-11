@@ -1,0 +1,13 @@
+{
+    "name": "Entity after <",
+    "options": {},
+    "input": "<&amp;",
+    "expected": [
+        {
+            "event": "text",
+            "startIndex": 0,
+            "endIndex": 5,
+            "data": ["<&"]
+        }
+    ]
+}
