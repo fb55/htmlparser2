@@ -26,9 +26,6 @@ const enum CharCodes {
     Eq = 0x3d, // "="
     Gt = 0x3e, // ">"
     Questionmark = 0x3f, // "?"
-    LowerC = 0x63, // "c"
-    LowerS = 0x73, // "s"
-    LowerT = 0x74, // "t"
     UpperA = 0x41, // "A"
     LowerA = 0x61, // "a"
     UpperF = 0x46, // "F"
@@ -37,7 +34,6 @@ const enum CharCodes {
     LowerZ = 0x7a, // "z"
     LowerX = 0x78, // "x"
     OpeningSquareBracket = 0x5b, // "["
-    ClosingSquareBracket = 0x5d, // "]"
 }
 
 /** All the states the tokenizer can be in. */
@@ -402,38 +398,39 @@ export default class Tokenizer {
      * We allow anything that wouldn't end the tag.
      */
     private isTagStartChar(c: number) {
-        return isASCIIAlpha(c) || (this.xmlMode && !isEndOfTagSection(c));
+        return this.xmlMode ? !isEndOfTagSection(c) : isASCIIAlpha(c);
     }
+
+    private startSpecial(sequence: Uint16Array, offset: number) {
+        this.isSpecial = true;
+        this.currentSequence = sequence;
+        this.sequenceIndex = offset;
+        this._state = State.SpecialStartSequence;
+    }
+
     private stateBeforeTagName(c: number) {
-        if (c === CharCodes.Slash) {
-            this._state = State.BeforeClosingTagName;
-        } else if (c === CharCodes.Lt) {
-            this.cbs.ontext(this.getSection());
-            this.sectionStart = this._index;
-        } else if (c === CharCodes.Gt || isWhitespace(c)) {
-            this._state = State.Text;
-        } else if (c === CharCodes.ExclamationMark) {
+        if (c === CharCodes.ExclamationMark) {
             this._state = State.BeforeDeclaration;
             this.sectionStart = this._index + 1;
         } else if (c === CharCodes.Questionmark) {
             this._state = State.InProcessingInstruction;
             this.sectionStart = this._index + 1;
-        } else if (!this.isTagStartChar(c)) {
-            this._state = State.Text;
-        } else {
+        } else if (this.isTagStartChar(c)) {
             const lower = c | 0x20;
             this.sectionStart = this._index;
-            if (!this.xmlMode && lower === CharCodes.LowerT) {
-                this.isSpecial = true;
-                this.currentSequence = Sequences.TitleEnd;
-                this.sequenceIndex = 3;
-                this._state = State.SpecialStartSequence;
+            if (!this.xmlMode && lower === Sequences.TitleEnd[2]) {
+                this.startSpecial(Sequences.TitleEnd, 3);
             } else {
                 this._state =
-                    !this.xmlMode && lower === CharCodes.LowerS
+                    !this.xmlMode && lower === Sequences.ScriptEnd[2]
                         ? State.BeforeSpecialS
                         : State.InTagName;
             }
+        } else if (c === CharCodes.Slash) {
+            this._state = State.BeforeClosingTagName;
+        } else {
+            this._state = State.Text;
+            this.stateText(c);
         }
     }
     private stateInTagName(c: number) {
@@ -449,11 +446,10 @@ export default class Tokenizer {
             // Ignore
         } else if (c === CharCodes.Gt) {
             this._state = State.Text;
-        } else if (!this.isTagStartChar(c)) {
-            this._state = State.InSpecialComment;
-            this.sectionStart = this._index;
         } else {
-            this._state = State.InClosingTagName;
+            this._state = this.isTagStartChar(c)
+                ? State.InClosingTagName
+                : State.InSpecialComment;
             this.sectionStart = this._index;
         }
     }
@@ -617,16 +613,10 @@ export default class Tokenizer {
     }
     private stateBeforeSpecialS(c: number) {
         const lower = c | 0x20;
-        if (lower === CharCodes.LowerC) {
-            this.isSpecial = true;
-            this.currentSequence = Sequences.ScriptEnd;
-            this.sequenceIndex = 4;
-            this._state = State.SpecialStartSequence;
-        } else if (lower === CharCodes.LowerT) {
-            this.isSpecial = true;
-            this.currentSequence = Sequences.StyleEnd;
-            this.sequenceIndex = 4;
-            this._state = State.SpecialStartSequence;
+        if (lower === Sequences.ScriptEnd[3]) {
+            this.startSpecial(Sequences.ScriptEnd, 4);
+        } else if (lower === Sequences.StyleEnd[3]) {
+            this.startSpecial(Sequences.StyleEnd, 4);
         } else {
             this._state = State.InTagName;
             this.stateInTagName(c); // Consume the token again
