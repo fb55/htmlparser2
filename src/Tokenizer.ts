@@ -94,6 +94,10 @@ function isEndOfTagSection(c: number): boolean {
     return c === CharCodes.Slash || c === CharCodes.Gt || isWhitespace(c);
 }
 
+function isNumber(c: number): boolean {
+    return c >= CharCodes.Zero && c <= CharCodes.Nine;
+}
+
 function isASCIIAlpha(c: number): boolean {
     return (
         (c >= CharCodes.LowerA && c <= CharCodes.LowerZ) ||
@@ -239,11 +243,7 @@ export default class Tokenizer {
             this._state = State.BeforeTagName;
             this.sectionStart = this._index;
         } else if (this.decodeEntities && c === CharCodes.Amp) {
-            if (this._index > this.sectionStart) {
-                this.cbs.ontext(this.getSection());
-            }
             this._state = State.BeforeEntity;
-            this.sectionStart = this._index;
         }
     }
 
@@ -298,11 +298,7 @@ export default class Tokenizer {
             if (this.currentSequence === Sequences.TitleEnd) {
                 // We have to parse entities in <title> tags.
                 if (this.decodeEntities && c === CharCodes.Amp) {
-                    if (this._index > this.sectionStart) {
-                        this.cbs.ontext(this.getSection());
-                    }
                     this._state = State.BeforeEntity;
-                    this.sectionStart = this._index;
                 }
             } else if (this.fastForwardTo(CharCodes.Lt)) {
                 // Outside of <title> tags, we can fast-forward.
@@ -542,10 +538,8 @@ export default class Tokenizer {
             this.cbs.onattribend(String.fromCharCode(quote));
             this._state = State.BeforeAttributeName;
         } else if (this.decodeEntities && c === CharCodes.Amp) {
-            this.cbs.onattribdata(this.getSection());
             this.baseState = this._state;
             this._state = State.BeforeEntity;
-            this.sectionStart = this._index;
         }
     }
     private stateInAttributeValueDoubleQuotes(c: number) {
@@ -562,10 +556,8 @@ export default class Tokenizer {
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
         } else if (this.decodeEntities && c === CharCodes.Amp) {
-            this.cbs.onattribdata(this.getSection());
             this.baseState = this._state;
             this._state = State.BeforeEntity;
-            this.sectionStart = this._index;
         }
     }
     private stateBeforeDeclaration(c: number) {
@@ -626,28 +618,27 @@ export default class Tokenizer {
     private trieIndex = 0;
     private trieCurrent = 0;
     private trieResult: string | null = null;
-    private trieExcess = 0;
+    private entityExcess = 0;
 
     private stateBeforeEntity(c: number) {
+        // Start excess with 1 to include the '&'
+        this.entityExcess = 1;
+
         if (c === CharCodes.Num) {
             this._state = State.BeforeNumericEntity;
         } else if (c === CharCodes.Amp) {
-            // We have two `&` characters in a row. Emit the first one.
-            this.emitPartial(this.getSection());
-            this.sectionStart = this._index;
+            // We have two `&` characters in a row. Stay in the current state.
         } else {
-            this._state = State.InNamedEntity;
             this.trieIndex = 0;
             this.trieCurrent = this.entityTrie[0];
             this.trieResult = null;
-            // Start excess with 1 to include the '&'
-            this.trieExcess = 1;
-            this._index--;
+            this._state = State.InNamedEntity;
+            this.stateInNamedEntity(c);
         }
     }
 
     private stateInNamedEntity(c: number) {
-        this.trieExcess += 1;
+        this.entityExcess += 1;
 
         this.trieIndex = determineBranch(
             this.entityTrie,
@@ -671,6 +662,15 @@ export default class Tokenizer {
                 // No need to consider multi-byte values, as the legacy entity is always a single byte
                 this.trieIndex += 1;
             } else {
+                // Add 1 as we have already incremented the excess
+                const entityStart = this._index - this.entityExcess + 1;
+
+                if (entityStart > this.sectionStart) {
+                    this.emitPartial(
+                        this.buffer.substring(this.sectionStart, entityStart)
+                    );
+                }
+
                 // If this is a surrogate pair, combine the higher bits from the node with the next byte
                 this.trieResult =
                     this.trieCurrent & BinTrieFlags.MULTI_BYTE
@@ -681,7 +681,8 @@ export default class Tokenizer {
                         : String.fromCharCode(
                               this.entityTrie[++this.trieIndex]
                           );
-                this.trieExcess = 0;
+                this.entityExcess = 0;
+                this.sectionStart = this._index + 1;
             }
         }
     }
@@ -691,12 +692,12 @@ export default class Tokenizer {
             this.emitPartial(this.trieResult);
         }
 
-        this.sectionStart = this._index - this.trieExcess + 1;
         this._state = this.baseState;
     }
 
     private stateBeforeNumericEntity(c: number) {
         if ((c | 0x20) === CharCodes.LowerX) {
+            this.entityExcess++;
             this._state = State.InHexEntity;
         } else {
             this._state = State.InNumericEntity;
@@ -705,10 +706,19 @@ export default class Tokenizer {
     }
 
     private decodeNumericEntity(base: 10 | 16, strict: boolean) {
-        const sectionStart = this.sectionStart + 2 + (base >> 4);
-        if (sectionStart !== this._index) {
+        const entityStart = this._index - this.entityExcess - 1;
+        const numberStart = entityStart + 2 + (base >> 4);
+
+        if (numberStart !== this._index) {
+            // Emit leading data if any
+            if (entityStart > this.sectionStart) {
+                this.emitPartial(
+                    this.buffer.substring(this.sectionStart, entityStart)
+                );
+            }
+
             // Parse entity
-            const entity = this.buffer.substring(sectionStart, this._index);
+            const entity = this.buffer.substring(numberStart, this._index);
             const parsed = parseInt(entity, base);
             this.emitPartial(decodeCodePoint(parsed));
             this.sectionStart = this._index + Number(strict);
@@ -718,13 +728,15 @@ export default class Tokenizer {
     private stateInNumericEntity(c: number) {
         if (c === CharCodes.Semi) {
             this.decodeNumericEntity(10, true);
-        } else if (c < CharCodes.Zero || c > CharCodes.Nine) {
+        } else if (!isNumber(c)) {
             if (this.allowLegacyEntity()) {
                 this.decodeNumericEntity(10, false);
             } else {
                 this._state = this.baseState;
             }
             this._index--;
+        } else {
+            this.entityExcess++;
         }
     }
     private stateInHexEntity(c: number) {
@@ -733,7 +745,7 @@ export default class Tokenizer {
         } else if (
             (c < CharCodes.LowerA || c > CharCodes.LowerF) &&
             (c < CharCodes.UpperA || c > CharCodes.UpperF) &&
-            (c < CharCodes.Zero || c > CharCodes.Nine)
+            !isNumber(c)
         ) {
             if (this.allowLegacyEntity()) {
                 this.decodeNumericEntity(16, false);
@@ -741,6 +753,8 @@ export default class Tokenizer {
                 this._state = this.baseState;
             }
             this._index--;
+        } else {
+            this.entityExcess++;
         }
     }
 
@@ -858,6 +872,10 @@ export default class Tokenizer {
     }
 
     private finish() {
+        if (this._state === State.InNamedEntity) {
+            this.emitNamedEntity();
+        }
+
         // If there is remaining data, emit it in a reasonable way
         if (this.sectionStart < this._index) {
             this.handleTrailingData();
@@ -874,18 +892,16 @@ export default class Tokenizer {
             } else {
                 this.cbs.oncomment(data);
             }
-        } else if (this._state === State.InNamedEntity && !this.xmlMode) {
-            // Increase excess for EOF
-            this.trieExcess++;
-            this.emitNamedEntity();
-            if (this.sectionStart < this._index) {
-                this._state = this.baseState;
-                this.handleTrailingData();
-            }
-        } else if (this._state === State.InNumericEntity && !this.xmlMode) {
+        } else if (
+            this._state === State.InNumericEntity &&
+            this.allowLegacyEntity()
+        ) {
             this.decodeNumericEntity(10, false);
             // All trailing data will have been consumed
-        } else if (this._state === State.InHexEntity && !this.xmlMode) {
+        } else if (
+            this._state === State.InHexEntity &&
+            this.allowLegacyEntity()
+        ) {
             this.decodeNumericEntity(16, false);
             // All trailing data will have been consumed
         } else if (
