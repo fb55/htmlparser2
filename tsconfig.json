@@ -19,6 +19,8 @@
         "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
         "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
 
+        "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
+
         /* Module Resolution Options */
         // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
         "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
