@@ -1,6 +1,11 @@
 {
-    "name": "Self-closing tags",
+    "name": "Self-closing tags (recognizeSelfClosing=true)",
     "input": "<a href=http://test.com/>Foo</a><hr / ><break /><br/><img src='w3html.gif'/>",
+    "options": {
+        "parser": {
+            "recognizeSelfClosing": true
+        }
+    },
     "expected": [
         {
             "event": "opentagname",
@@ -69,6 +74,12 @@
             "data": ["break", {}, false]
         },
         {
+            "event": "closetag",
+            "startIndex": 39,
+            "endIndex": 47,
+            "data": ["break", true]
+        },
+        {
             "event": "opentagname",
             "startIndex": 48,
             "endIndex": 51,
@@ -115,12 +126,6 @@
             "startIndex": 53,
             "endIndex": 75,
             "data": ["img", true]
-        },
-        {
-            "event": "closetag",
-            "startIndex": 76,
-            "endIndex": 76,
-            "data": ["break", true]
         }
     ]
 }

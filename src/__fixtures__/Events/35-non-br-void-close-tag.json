@@ -1,6 +1,6 @@
 {
     "name": "open-implies-close case of (non-br) void close tag in non-XML mode",
-    "input": "<select><input></select>",
+    "input": "<select><input><br></select>",
     "options": {
         "parser": {
             "lowerCaseAttributeNames": true
@@ -42,6 +42,24 @@
             "startIndex": 8,
             "endIndex": 14,
             "data": ["input", true]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 15,
+            "endIndex": 18,
+            "data": ["br"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 15,
+            "endIndex": 18,
+            "data": ["br", {}, false]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 15,
+            "endIndex": 18,
+            "data": ["br", true]
         }
     ]
 }
