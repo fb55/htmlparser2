@@ -1,0 +1,90 @@
+{
+    "name": "misnested formatting tags",
+    "input": "plain <b>bold <i>italic bold </b>italic </i>plain",
+    "expected": [
+        {
+            "event": "text",
+            "startIndex": 0,
+            "endIndex": 5,
+            "data": ["plain "]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 6,
+            "endIndex": 8,
+            "data": ["b"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 6,
+            "endIndex": 8,
+            "data": ["b", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 9,
+            "endIndex": 13,
+            "data": ["bold "]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 14,
+            "endIndex": 16,
+            "data": ["i"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 14,
+            "endIndex": 16,
+            "data": ["i", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 17,
+            "endIndex": 28,
+            "data": ["italic bold "]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 29,
+            "endIndex": 32,
+            "data": ["i", true]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 29,
+            "endIndex": 32,
+            "data": ["b", false]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 29,
+            "endIndex": 32,
+            "data": ["i"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 29,
+            "endIndex": 32,
+            "data": ["i", {}, true]
+        },
+        {
+            "event": "text",
+            "startIndex": 33,
+            "endIndex": 39,
+            "data": ["italic "]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 40,
+            "endIndex": 43,
+            "data": ["i", false]
+        },
+        {
+            "event": "text",
+            "startIndex": 44,
+            "endIndex": 48,
+            "data": ["plain"]
+        }
+    ]
+}

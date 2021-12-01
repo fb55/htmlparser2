@@ -1,0 +1,162 @@
+{
+    "name": "misnested formatting and block tags",
+    "input": "<p>plain <b>bold  <p><i>italic bold <p></b> italic </i> plain",
+    "expected": [
+        {
+            "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 2,
+            "data": ["p"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 2,
+            "data": ["p", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 3,
+            "endIndex": 8,
+            "data": ["plain "]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 9,
+            "endIndex": 11,
+            "data": ["b"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 9,
+            "endIndex": 11,
+            "data": ["b", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 12,
+            "endIndex": 17,
+            "data": ["bold  "]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 18,
+            "endIndex": 20,
+            "data": ["b", true]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 18,
+            "endIndex": 20,
+            "data": ["p", true]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 18,
+            "endIndex": 20,
+            "data": ["p"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 18,
+            "endIndex": 20,
+            "data": ["p", {}, false]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 18,
+            "endIndex": 20,
+            "data": ["b"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 18,
+            "endIndex": 20,
+            "data": ["b", {}, true]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 21,
+            "endIndex": 23,
+            "data": ["i"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 21,
+            "endIndex": 23,
+            "data": ["i", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 24,
+            "endIndex": 35,
+            "data": ["italic bold "]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["i", true]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["b", true]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["p", true]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["p"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["p", {}, false]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["i"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 36,
+            "endIndex": 38,
+            "data": ["i", {}, true]
+        },
+        {
+            "event": "text",
+            "startIndex": 43,
+            "endIndex": 50,
+            "data": [" italic "]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 51,
+            "endIndex": 54,
+            "data": ["i", false]
+        },
+        {
+            "event": "text",
+            "startIndex": 55,
+            "endIndex": 60,
+            "data": [" plain"]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 61,
+            "endIndex": 61,
+            "data": ["p", true]
+        }
+    ]
+}
