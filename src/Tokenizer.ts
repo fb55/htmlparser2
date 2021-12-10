@@ -670,7 +670,7 @@ export default class Tokenizer {
                     );
                 }
 
-                // If this is a surrogate pair, combine the higher bits from the node with the next byte
+                // If this is a surrogate pair, consume the next two bytes
                 this.trieResult =
                     this.trieCurrent & BinTrieFlags.MULTI_BYTE
                         ? String.fromCharCode(
