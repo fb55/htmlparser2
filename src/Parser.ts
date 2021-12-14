@@ -334,14 +334,15 @@ export class Parser {
                     }
                 } else this.stack.length = pos;
             } else if (!this.options.xmlMode && name === "p") {
-                this.emitOpenTag(name);
+                // Implicit open before close
+                this.emitOpenTag("p");
                 this.closeCurrentTag(true);
             }
         } else if (!this.options.xmlMode && name === "br") {
-            // We can't go through `emitOpenTag` here, as `br` would be implicitly closed.
-            this.cbs.onopentagname?.(name);
-            this.cbs.onopentag?.(name, {}, true);
-            this.cbs.onclosetag?.(name, false);
+            // We can't use `emitOpenTag` for implicit open, as `br` would be implicitly closed.
+            this.cbs.onopentagname?.("br");
+            this.cbs.onopentag?.("br", {}, true);
+            this.cbs.onclosetag?.("br", false);
         }
 
         // Set `startIndex` for next node
