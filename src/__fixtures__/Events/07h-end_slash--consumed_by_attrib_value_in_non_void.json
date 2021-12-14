@@ -1,6 +1,6 @@
 {
-    "name": "Self-closing tags",
-    "input": "<a href=http://test.com/>Foo</a><hr / >",
+    "name": "end slash: as part of attrib value of non-void element",
+    "input": "<a href=http://test.com/>Foo</a><p>Hold the line.",
     "expected": [
         {
             "event": "opentagname",
@@ -18,13 +18,7 @@
             "event": "opentag",
             "startIndex": 0,
             "endIndex": 24,
-            "data": [
-                "a",
-                {
-                    "href": "http://test.com/"
-                },
-                false
-            ]
+            "data": ["a", { "href": "http://test.com/" }, false]
         },
         {
             "event": "text",
@@ -41,20 +35,26 @@
         {
             "event": "opentagname",
             "startIndex": 32,
-            "endIndex": 35,
-            "data": ["hr"]
+            "endIndex": 34,
+            "data": ["p"]
         },
         {
             "event": "opentag",
             "startIndex": 32,
-            "endIndex": 38,
-            "data": ["hr", {}, false]
+            "endIndex": 34,
+            "data": ["p", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 35,
+            "endIndex": 48,
+            "data": ["Hold the line."]
         },
         {
             "event": "closetag",
-            "startIndex": 32,
-            "endIndex": 38,
-            "data": ["hr", true]
+            "startIndex": 49,
+            "endIndex": 49,
+            "data": ["p", true]
         }
     ]
 }
