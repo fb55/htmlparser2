@@ -48,11 +48,11 @@ describe("API", () => {
         p.resume();
         expect(onText).toHaveBeenCalledTimes(1);
         p.pause();
-        p.end("foo");
+        p.end("bar");
         expect(onText).toHaveBeenCalledTimes(1);
         p.resume();
         expect(onText).toHaveBeenCalledTimes(2);
-        expect(onText).toHaveBeenLastCalledWith("foo");
+        expect(onText).toHaveBeenLastCalledWith("bar");
     });
 
     test("should back out of numeric entities (#125)", () => {

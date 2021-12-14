@@ -128,7 +128,6 @@ export interface Callbacks {
     oncomment(start: number, endIndex: number, endOffset: number): void;
     ondeclaration(start: number, endIndex: number): void;
     onend(): void;
-    onerror(error: Error, state?: State): void;
     onopentagend(endIndex: number): void;
     onopentagname(start: number, endIndex: number): void;
     onprocessinginstruction(start: number, endIndex: number): void;
@@ -166,9 +165,9 @@ export default class Tokenizer {
     /** For special parsing behavior inside of script and style tags. */
     private isSpecial = false;
     /** Indicates whether the tokenizer has been paused. */
-    private running = true;
-    /** Indicates whether the tokenizer has finished running / `.end` has been called. */
-    private ended = false;
+    public running = true;
+    /** The offset of the current buffer. */
+    private offset = 0;
 
     private readonly xmlMode: boolean;
     private readonly decodeEntities: boolean;
@@ -194,19 +193,16 @@ export default class Tokenizer {
         this.baseState = State.Text;
         this.currentSequence = undefined!;
         this.running = true;
-        this.ended = false;
+        this.offset = 0;
     }
 
     public write(chunk: string): void {
-        if (this.ended) return this.cbs.onerror(Error(".write() after done!"));
-        this.buffer += chunk;
+        this.offset += this.buffer.length;
+        this.buffer = chunk;
         this.parse();
     }
 
-    public end(chunk?: string): void {
-        if (this.ended) return this.cbs.onerror(Error(".end() after done!"));
-        if (chunk) this.write(chunk);
-        this.ended = true;
+    public end(): void {
         if (this.running) this.finish();
     }
 
@@ -216,11 +212,8 @@ export default class Tokenizer {
 
     public resume(): void {
         this.running = true;
-        if (this._index < this.buffer.length) {
+        if (this._index < this.buffer.length + this.offset) {
             this.parse();
-        }
-        if (this.ended) {
-            this.finish();
         }
     }
 
@@ -331,8 +324,8 @@ export default class Tokenizer {
      * @returns Whether the character was found.
      */
     private fastForwardTo(c: number): boolean {
-        while (++this._index < this.buffer.length) {
-            if (this.buffer.charCodeAt(this._index) === c) {
+        while (++this._index < this.buffer.length + this.offset) {
+            if (this.buffer.charCodeAt(this._index - this.offset) === c) {
                 return true;
             }
         }
@@ -343,7 +336,7 @@ export default class Tokenizer {
          *
          * TODO: Refactor `parse` to increment index before calling states.
          */
-        this._index = this.buffer.length - 1;
+        this._index = this.buffer.length + this.offset - 1;
 
         return false;
     }
@@ -795,7 +788,7 @@ export default class Tokenizer {
     }
 
     private shouldContinue() {
-        return this._index < this.buffer.length && this.running;
+        return this._index < this.buffer.length + this.offset && this.running;
     }
 
     /**
@@ -805,7 +798,7 @@ export default class Tokenizer {
      */
     private parse() {
         while (this.shouldContinue()) {
-            const c = this.buffer.charCodeAt(this._index);
+            const c = this.buffer.charCodeAt(this._index - this.offset);
             if (this._state === State.Text) {
                 this.stateText(c);
             } else if (this._state === State.SpecialStartSequence) {
@@ -885,11 +878,12 @@ export default class Tokenizer {
 
     /** Handle any trailing data. */
     private handleTrailingData() {
+        const endIndex = this.buffer.length + this.offset;
         if (this._state === State.InCommentLike) {
             if (this.currentSequence === Sequences.CdataEnd) {
-                this.cbs.oncdata(this.sectionStart, this.buffer.length, 0);
+                this.cbs.oncdata(this.sectionStart, endIndex, 0);
             } else {
-                this.cbs.oncomment(this.sectionStart, this.buffer.length, 0);
+                this.cbs.oncomment(this.sectionStart, endIndex, 0);
             }
         } else if (
             this._state === State.InNumericEntity &&
@@ -919,7 +913,7 @@ export default class Tokenizer {
              * respective callback signals that the tag should be ignored.
              */
         } else {
-            this.cbs.ontext(this.sectionStart, this.buffer.length);
+            this.cbs.ontext(this.sectionStart, endIndex);
         }
     }
 

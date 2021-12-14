@@ -218,6 +218,13 @@ export class Parser implements Callbacks {
     private readonly lowerCaseAttributeNames: boolean;
     private readonly tokenizer: Tokenizer;
 
+    private readonly buffers: string[] = [];
+    private bufferOffset = 0;
+    /** The index of the last written buffer. Used when resuming after a `pause()`. */
+    private writeIndex = 0;
+    /** Indicates whether the parser has finished running / `.end` has been called. */
+    private ended = false;
+
     constructor(
         cbs?: Partial<Handler> | null,
         private readonly options: ParserOptions = {}
@@ -504,11 +511,6 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onerror(err: Error): void {
-        this.cbs.onerror?.(err);
-    }
-
-    /** @internal */
     onend(): void {
         if (this.cbs.onclosetag) {
             // Set the end index for all remaining tags
@@ -531,11 +533,14 @@ export class Parser implements Callbacks {
         this.tagname = "";
         this.attribname = "";
         this.attribs = null;
-        this.stack = [];
+        this.stack.length = 0;
         this.startIndex = 0;
         this.endIndex = 0;
         this.cbs.onparserinit?.(this);
-        this.buffer = "";
+        this.buffers.length = 0;
+        this.bufferOffset = 0;
+        this.writeIndex = 0;
+        this.ended = false;
     }
 
     /**
@@ -549,10 +554,28 @@ export class Parser implements Callbacks {
         this.end(data);
     }
 
-    private buffer = "";
-
     private getSlice(start: number, end: number) {
-        return this.buffer.slice(start, end);
+        while (start - this.bufferOffset >= this.buffers[0].length) {
+            this.shiftBuffer();
+        }
+
+        let str = this.buffers[0].slice(
+            start - this.bufferOffset,
+            end - this.bufferOffset
+        );
+
+        while (end - this.bufferOffset > this.buffers[0].length) {
+            this.shiftBuffer();
+            str += this.buffers[0].slice(0, end - this.bufferOffset);
+        }
+
+        return str;
+    }
+
+    private shiftBuffer(): void {
+        this.bufferOffset += this.buffers[0].length;
+        this.writeIndex--;
+        this.buffers.shift();
     }
 
     /**
@@ -561,8 +584,16 @@ export class Parser implements Callbacks {
      * @param chunk Chunk to parse.
      */
     public write(chunk: string): void {
-        this.buffer += chunk;
-        this.tokenizer.write(chunk);
+        if (this.ended) {
+            this.cbs.onerror?.(new Error(".write() after done!"));
+            return;
+        }
+
+        this.buffers.push(chunk);
+        if (this.tokenizer.running) {
+            this.tokenizer.write(chunk);
+            this.writeIndex++;
+        }
     }
 
     /**
@@ -571,8 +602,14 @@ export class Parser implements Callbacks {
      * @param chunk Optional final chunk to parse.
      */
     public end(chunk?: string): void {
-        if (chunk) this.buffer += chunk;
-        this.tokenizer.end(chunk);
+        if (this.ended) {
+            this.cbs.onerror?.(Error(".end() after done!"));
+            return;
+        }
+
+        if (chunk) this.write(chunk);
+        this.ended = true;
+        this.tokenizer.end();
     }
 
     /**
@@ -587,6 +624,15 @@ export class Parser implements Callbacks {
      */
     public resume(): void {
         this.tokenizer.resume();
+
+        while (
+            this.tokenizer.running &&
+            this.writeIndex < this.buffers.length
+        ) {
+            this.tokenizer.write(this.buffers[this.writeIndex++]);
+        }
+
+        if (this.ended) this.tokenizer.end();
     }
 
     /**
