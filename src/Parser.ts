@@ -1,4 +1,5 @@
-import Tokenizer from "./Tokenizer";
+import Tokenizer, { Callbacks, QuoteType } from "./Tokenizer";
+import decodeCodePoint from "entities/lib/decode_codepoint";
 
 const formTags = new Set([
     "input",
@@ -195,7 +196,7 @@ export interface Handler {
 
 const reNameEnd = /\s|\//;
 
-export class Parser {
+export class Parser implements Callbacks {
     /** The start index of the last event. */
     public startIndex = 0;
     /** The end index of the last event. */
@@ -235,10 +236,19 @@ export class Parser {
     // Tokenizer event handlers
 
     /** @internal */
-    ontext(data: string): void {
-        const idx = this.tokenizer.getAbsoluteIndex();
+    ontext(start: number, length: number): void {
+        const data = this.getSubstr(start, length);
+        const idx = start + length;
         this.endIndex = idx - 1;
         this.cbs.ontext?.(data);
+        this.startIndex = idx;
+    }
+
+    /** @internal */
+    ontextentity(cp: number): void {
+        const idx = this.tokenizer.getIndex();
+        this.endIndex = idx - 1;
+        this.cbs.ontext?.(decodeCodePoint(cp));
         this.startIndex = idx;
     }
 
@@ -247,8 +257,10 @@ export class Parser {
     }
 
     /** @internal */
-    onopentagname(name: string): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    onopentagname(start: number, length: number): void {
+        this.endIndex = this.tokenizer.getIndex();
+
+        let name = this.getSubstr(start, length);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -287,7 +299,7 @@ export class Parser {
 
     private endOpenTag(isImplied: boolean) {
         this.startIndex = this.openTagStart;
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+        this.endIndex = this.tokenizer.getIndex();
 
         if (this.attribs) {
             this.cbs.onopentag?.(this.tagname, this.attribs, isImplied);
@@ -309,8 +321,10 @@ export class Parser {
     }
 
     /** @internal */
-    onclosetag(name: string): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    onclosetag(start: number, length: number): void {
+        this.endIndex = this.tokenizer.getIndex();
+
+        let name = this.getSubstr(start, length);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -378,25 +392,39 @@ export class Parser {
     }
 
     /** @internal */
-    onattribname(name: string): void {
-        this.startIndex = this.tokenizer.getAbsoluteSectionStart();
+    onattribname(start: number, length: number): void {
+        this.startIndex = start;
+        const name = this.getSubstr(start, length);
 
-        if (this.lowerCaseAttributeNames) {
-            name = name.toLowerCase();
-        }
-        this.attribname = name;
+        this.attribname = this.lowerCaseAttributeNames
+            ? name.toLowerCase()
+            : name;
     }
 
     /** @internal */
-    onattribdata(value: string): void {
-        this.attribvalue += value;
+    onattribdata(start: number, length: number): void {
+        this.attribvalue += this.getSubstr(start, length);
     }
 
     /** @internal */
-    onattribend(quote: string | undefined | null): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    onattribentity(cp: number): void {
+        this.attribvalue += decodeCodePoint(cp);
+    }
 
-        this.cbs.onattribute?.(this.attribname, this.attribvalue, quote);
+    /** @internal */
+    onattribend(quote: QuoteType): void {
+        this.endIndex = this.tokenizer.getIndex();
+
+        const quoteVal =
+            quote === QuoteType.Double
+                ? '"'
+                : quote === QuoteType.Single
+                ? "'"
+                : quote === QuoteType.NoValue
+                ? undefined
+                : null;
+
+        this.cbs.onattribute?.(this.attribname, this.attribvalue, quoteVal);
         if (
             this.attribs &&
             !Object.prototype.hasOwnProperty.call(this.attribs, this.attribname)
@@ -419,8 +447,9 @@ export class Parser {
     }
 
     /** @internal */
-    ondeclaration(value: string): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    ondeclaration(start: number, length: number): void {
+        this.endIndex = this.tokenizer.getIndex();
+        const value = this.getSubstr(start, length);
 
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
@@ -432,8 +461,9 @@ export class Parser {
     }
 
     /** @internal */
-    onprocessinginstruction(value: string): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    onprocessinginstruction(start: number, length: number): void {
+        this.endIndex = this.tokenizer.getIndex();
+        const value = this.getSubstr(start, length);
 
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
@@ -445,8 +475,9 @@ export class Parser {
     }
 
     /** @internal */
-    oncomment(value: string): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    oncomment(start: number, length: number): void {
+        this.endIndex = this.tokenizer.getIndex();
+        const value = this.getSubstr(start, length);
 
         this.cbs.oncomment?.(value);
         this.cbs.oncommentend?.();
@@ -456,8 +487,9 @@ export class Parser {
     }
 
     /** @internal */
-    oncdata(value: string): void {
-        this.endIndex = this.tokenizer.getAbsoluteIndex();
+    oncdata(start: number, length: number): void {
+        this.endIndex = this.tokenizer.getIndex();
+        const value = this.getSubstr(start, length);
 
         if (this.options.xmlMode || this.options.recognizeCDATA) {
             this.cbs.oncdatastart?.();
@@ -504,6 +536,7 @@ export class Parser {
         this.startIndex = 0;
         this.endIndex = 0;
         this.cbs.onparserinit?.(this);
+        this.buffer = "";
     }
 
     /**
@@ -517,12 +550,19 @@ export class Parser {
         this.end(data);
     }
 
+    private buffer = "";
+
+    private getSubstr(start: number, length: number) {
+        return this.buffer.substr(start, length);
+    }
+
     /**
      * Parses a chunk of data and calls the corresponding callbacks.
      *
      * @param chunk Chunk to parse.
      */
     public write(chunk: string): void {
+        this.buffer += chunk;
         this.tokenizer.write(chunk);
     }
 
@@ -532,6 +572,7 @@ export class Parser {
      * @param chunk Optional final chunk to parse.
      */
     public end(chunk?: string): void {
+        if (chunk) this.buffer += chunk;
         this.tokenizer.end(chunk);
     }
 

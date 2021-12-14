@@ -3,12 +3,13 @@
 exports[`Tokenizer should not lose data when pausing 1`] = `
 Array [
   Array [
-    "ontext",
-    "&",
+    "ontextentity",
+    38,
   ],
   Array [
     "ontext",
-    " it up!",
+    5,
+    7,
   ],
   Array [
     "onend",
@@ -20,21 +21,24 @@ exports[`Tokenizer should support self-closing special tags for self-closing scr
 Array [
   Array [
     "onopentagname",
-    "script",
+    1,
+    6,
   ],
   Array [
     "onselfclosingtag",
   ],
   Array [
     "onopentagname",
-    "div",
+    11,
+    3,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "div",
+    17,
+    3,
   ],
   Array [
     "onend",
@@ -46,21 +50,24 @@ exports[`Tokenizer should support self-closing special tags for self-closing sty
 Array [
   Array [
     "onopentagname",
-    "style",
+    1,
+    5,
   ],
   Array [
     "onselfclosingtag",
   ],
   Array [
     "onopentagname",
-    "div",
+    10,
+    3,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "div",
+    16,
+    3,
   ],
   Array [
     "onend",
@@ -72,21 +79,24 @@ exports[`Tokenizer should support self-closing special tags for self-closing tit
 Array [
   Array [
     "onopentagname",
-    "title",
+    1,
+    5,
   ],
   Array [
     "onselfclosingtag",
   ],
   Array [
     "onopentagname",
-    "div",
+    10,
+    3,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "div",
+    16,
+    3,
   ],
   Array [
     "onend",
@@ -98,25 +108,29 @@ exports[`Tokenizer should support standard special tags for normal script tag 1`
 Array [
   Array [
     "onopentagname",
-    "script",
+    1,
+    6,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "script",
+    10,
+    6,
   ],
   Array [
     "onopentagname",
-    "div",
+    18,
+    3,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "div",
+    24,
+    3,
   ],
   Array [
     "onend",
@@ -128,25 +142,29 @@ exports[`Tokenizer should support standard special tags for normal sitle tag 1`]
 Array [
   Array [
     "onopentagname",
-    "title",
+    1,
+    5,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "title",
+    9,
+    5,
   ],
   Array [
     "onopentagname",
-    "div",
+    16,
+    3,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "div",
+    22,
+    3,
   ],
   Array [
     "onend",
@@ -158,25 +176,29 @@ exports[`Tokenizer should support standard special tags for normal style tag 1`]
 Array [
   Array [
     "onopentagname",
-    "style",
+    1,
+    5,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "style",
+    9,
+    5,
   ],
   Array [
     "onopentagname",
-    "div",
+    16,
+    3,
   ],
   Array [
     "onopentagend",
   ],
   Array [
     "onclosetag",
-    "div",
+    22,
+    3,
   ],
   Array [
     "onend",
