@@ -236,12 +236,11 @@ export class Parser implements Callbacks {
     // Tokenizer event handlers
 
     /** @internal */
-    ontext(start: number, length: number): void {
-        const data = this.getSubstr(start, length);
-        const idx = start + length;
-        this.endIndex = idx - 1;
+    ontext(start: number, endIndex: number): void {
+        const data = this.getSlice(start, endIndex);
+        this.endIndex = endIndex - 1;
         this.cbs.ontext?.(data);
-        this.startIndex = idx;
+        this.startIndex = endIndex;
     }
 
     /** @internal */
@@ -260,7 +259,7 @@ export class Parser implements Callbacks {
     onopentagname(start: number, endIndex: number): void {
         this.endIndex = endIndex;
 
-        let name = this.getSubstr(start, endIndex - start);
+        let name = this.getSlice(start, endIndex);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -299,7 +298,6 @@ export class Parser implements Callbacks {
 
     private endOpenTag(isImplied: boolean) {
         this.startIndex = this.openTagStart;
-        this.endIndex = this.tokenizer.getIndex();
 
         if (this.attribs) {
             this.cbs.onopentag?.(this.tagname, this.attribs, isImplied);
@@ -313,18 +311,19 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onopentagend(): void {
+    onopentagend(endIndex: number): void {
+        this.endIndex = endIndex;
         this.endOpenTag(false);
 
         // Set `startIndex` for next node
-        this.startIndex = this.endIndex + 1;
+        this.startIndex = endIndex + 1;
     }
 
     /** @internal */
     onclosetag(start: number, endIndex: number): void {
         this.endIndex = endIndex;
 
-        let name = this.getSubstr(start, endIndex - start);
+        let name = this.getSlice(start, endIndex);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -359,11 +358,12 @@ export class Parser implements Callbacks {
         }
 
         // Set `startIndex` for next node
-        this.startIndex = this.endIndex + 1;
+        this.startIndex = endIndex + 1;
     }
 
     /** @internal */
-    onselfclosingtag(): void {
+    onselfclosingtag(endIndex: number): void {
+        this.endIndex = endIndex;
         if (
             this.options.xmlMode ||
             this.options.recognizeSelfClosing ||
@@ -372,10 +372,10 @@ export class Parser implements Callbacks {
             this.closeCurrentTag(false);
 
             // Set `startIndex` for next node
-            this.startIndex = this.endIndex + 1;
+            this.startIndex = endIndex + 1;
         } else {
             // Ignore the fact that the tag is self-closing.
-            this.onopentagend();
+            this.onopentagend(endIndex);
         }
     }
 
@@ -392,9 +392,9 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onattribname(start: number, length: number): void {
+    onattribname(start: number, endIndex: number): void {
         this.startIndex = start;
-        const name = this.getSubstr(start, length);
+        const name = this.getSlice(start, endIndex);
 
         this.attribname = this.lowerCaseAttributeNames
             ? name.toLowerCase()
@@ -402,8 +402,8 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onattribdata(start: number, length: number): void {
-        this.attribvalue += this.getSubstr(start, length);
+    onattribdata(start: number, endIndex: number): void {
+        this.attribvalue += this.getSlice(start, endIndex);
     }
 
     /** @internal */
@@ -449,7 +449,7 @@ export class Parser implements Callbacks {
     /** @internal */
     ondeclaration(start: number, endIndex: number): void {
         this.endIndex = endIndex;
-        const value = this.getSubstr(start, endIndex - start);
+        const value = this.getSlice(start, endIndex);
 
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
@@ -457,13 +457,13 @@ export class Parser implements Callbacks {
         }
 
         // Set `startIndex` for next node
-        this.startIndex = this.endIndex + 1;
+        this.startIndex = endIndex + 1;
     }
 
     /** @internal */
     onprocessinginstruction(start: number, endIndex: number): void {
         this.endIndex = endIndex;
-        const value = this.getSubstr(start, endIndex - start);
+        const value = this.getSlice(start, endIndex);
 
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
@@ -471,25 +471,24 @@ export class Parser implements Callbacks {
         }
 
         // Set `startIndex` for next node
-        this.startIndex = this.endIndex + 1;
+        this.startIndex = endIndex + 1;
     }
 
     /** @internal */
-    oncomment(start: number, length: number): void {
-        this.endIndex = this.tokenizer.getIndex();
-        const value = this.getSubstr(start, length);
+    oncomment(start: number, endIndex: number, offset: number): void {
+        this.endIndex = endIndex;
 
-        this.cbs.oncomment?.(value);
+        this.cbs.oncomment?.(this.getSlice(start, endIndex - offset));
         this.cbs.oncommentend?.();
 
         // Set `startIndex` for next node
-        this.startIndex = this.endIndex + 1;
+        this.startIndex = endIndex + 1;
     }
 
     /** @internal */
-    oncdata(start: number, length: number): void {
-        this.endIndex = this.tokenizer.getIndex();
-        const value = this.getSubstr(start, length);
+    oncdata(start: number, endIndex: number, offset: number): void {
+        this.endIndex = endIndex;
+        const value = this.getSlice(start, endIndex - offset);
 
         if (this.options.xmlMode || this.options.recognizeCDATA) {
             this.cbs.oncdatastart?.();
@@ -501,7 +500,7 @@ export class Parser implements Callbacks {
         }
 
         // Set `startIndex` for next node
-        this.startIndex = this.endIndex + 1;
+        this.startIndex = endIndex + 1;
     }
 
     /** @internal */
@@ -552,8 +551,8 @@ export class Parser implements Callbacks {
 
     private buffer = "";
 
-    private getSubstr(start: number, length: number) {
-        return this.buffer.substr(start, length);
+    private getSlice(start: number, end: number) {
+        return this.buffer.slice(start, end);
     }
 
     /**

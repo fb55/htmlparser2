@@ -9,7 +9,7 @@ Array [
   Array [
     "ontext",
     5,
-    7,
+    12,
   ],
   Array [
     "onend",
@@ -26,6 +26,7 @@ Array [
   ],
   Array [
     "onselfclosingtag",
+    9,
   ],
   Array [
     "onopentagname",
@@ -34,6 +35,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    14,
   ],
   Array [
     "onclosetag",
@@ -55,6 +57,7 @@ Array [
   ],
   Array [
     "onselfclosingtag",
+    8,
   ],
   Array [
     "onopentagname",
@@ -63,6 +66,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    13,
   ],
   Array [
     "onclosetag",
@@ -84,6 +88,7 @@ Array [
   ],
   Array [
     "onselfclosingtag",
+    8,
   ],
   Array [
     "onopentagname",
@@ -92,6 +97,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    13,
   ],
   Array [
     "onclosetag",
@@ -113,6 +119,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    7,
   ],
   Array [
     "onclosetag",
@@ -126,6 +133,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    21,
   ],
   Array [
     "onclosetag",
@@ -147,6 +155,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    6,
   ],
   Array [
     "onclosetag",
@@ -160,6 +169,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    19,
   ],
   Array [
     "onclosetag",
@@ -181,6 +191,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    6,
   ],
   Array [
     "onclosetag",
@@ -194,6 +205,7 @@ Array [
   ],
   Array [
     "onopentagend",
+    19,
   ],
   Array [
     "onclosetag",
