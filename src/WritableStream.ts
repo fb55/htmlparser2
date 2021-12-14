@@ -25,11 +25,15 @@ export class WritableStream extends Writable {
         this._parser = new Parser(cbs, options);
     }
 
-    _write(chunk: string | Buffer, encoding: string, cb: () => void): void {
-        this._parser.write(
-            isBuffer(chunk, encoding) ? this._decoder.write(chunk) : chunk
-        );
-        cb();
+    _write(chunk: string | Buffer, encoding: string, cb:(err?: any) => void): void {
+        try {
+            this._parser.write(
+                isBuffer(chunk, encoding) ? this._decoder.write(chunk) : chunk
+            );
+            cb();
+        } catch (e) {
+            cb(e);
+        }
     }
 
     _final(cb: () => void): void {
