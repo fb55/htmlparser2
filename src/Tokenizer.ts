@@ -114,17 +114,17 @@ export enum QuoteType {
 export interface Callbacks {
     onattribdata(start: number, length: number): void;
     onattribentity(codepoint: number): void;
-    onattribend(quote: QuoteType): void;
+    onattribend(quote: QuoteType, endIndex: number): void;
     onattribname(start: number, length: number): void;
     oncdata(start: number, length: number): void;
-    onclosetag(start: number, length: number): void;
+    onclosetag(start: number, endIndex: number): void;
     oncomment(start: number, length: number): void;
-    ondeclaration(start: number, length: number): void;
+    ondeclaration(start: number, endIndex: number): void;
     onend(): void;
     onerror(error: Error, state?: State): void;
     onopentagend(): void;
-    onopentagname(start: number, length: number): void;
-    onprocessinginstruction(start: number, length: number): void;
+    onopentagname(start: number, endIndex: number): void;
+    onprocessinginstruction(start: number, endIndex: number): void;
     onselfclosingtag(): void;
     ontext(start: number, length: number): void;
     ontextentity(codepoint: number): void;
@@ -426,10 +426,7 @@ export default class Tokenizer {
     }
     private stateInTagName(c: number): void {
         if (isEndOfTagSection(c)) {
-            this.cbs.onopentagname(
-                this.sectionStart,
-                this._index - this.sectionStart
-            );
+            this.cbs.onopentagname(this.sectionStart, this._index);
             this.sectionStart = -1;
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
@@ -449,10 +446,7 @@ export default class Tokenizer {
     }
     private stateInClosingTagName(c: number): void {
         if (c === CharCodes.Gt || isWhitespace(c)) {
-            this.cbs.onclosetag(
-                this.sectionStart,
-                this._index - this.sectionStart
-            );
+            this.cbs.onclosetag(this.sectionStart, this._index);
             this.sectionStart = -1;
             this._state = State.AfterClosingTagName;
             this.stateAfterClosingTagName(c);
@@ -510,11 +504,11 @@ export default class Tokenizer {
         if (c === CharCodes.Eq) {
             this._state = State.BeforeAttributeValue;
         } else if (c === CharCodes.Slash || c === CharCodes.Gt) {
-            this.cbs.onattribend(QuoteType.NoValue);
+            this.cbs.onattribend(QuoteType.NoValue, this._index);
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
         } else if (!isWhitespace(c)) {
-            this.cbs.onattribend(QuoteType.NoValue);
+            this.cbs.onattribend(QuoteType.NoValue, this._index);
             this._state = State.InAttributeName;
             this.sectionStart = this._index;
         }
@@ -545,7 +539,8 @@ export default class Tokenizer {
             this.cbs.onattribend(
                 quote === CharCodes.DoubleQuote
                     ? QuoteType.Double
-                    : QuoteType.Single
+                    : QuoteType.Single,
+                this._index
             );
             this._state = State.BeforeAttributeName;
         } else if (this.decodeEntities && c === CharCodes.Amp) {
@@ -566,7 +561,7 @@ export default class Tokenizer {
                 this._index - this.sectionStart
             );
             this.sectionStart = -1;
-            this.cbs.onattribend(QuoteType.Unquoted);
+            this.cbs.onattribend(QuoteType.Unquoted, this._index);
             this._state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
         } else if (this.decodeEntities && c === CharCodes.Amp) {
@@ -587,20 +582,14 @@ export default class Tokenizer {
     }
     private stateInDeclaration(c: number): void {
         if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.ondeclaration(
-                this.sectionStart,
-                this._index - this.sectionStart
-            );
+            this.cbs.ondeclaration(this.sectionStart, this._index);
             this._state = State.Text;
             this.sectionStart = this._index + 1;
         }
     }
     private stateInProcessingInstruction(c: number): void {
         if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.onprocessinginstruction(
-                this.sectionStart,
-                this._index - this.sectionStart
-            );
+            this.cbs.onprocessinginstruction(this.sectionStart, this._index);
             this._state = State.Text;
             this.sectionStart = this._index + 1;
         }
@@ -706,7 +695,7 @@ export default class Tokenizer {
         }
     }
 
-    private emitNamedEntity() {
+    private emitNamedEntity(): void {
         if (this.entityResult !== 0) {
             if (this.entityTrie[this.entityResult] & BinTrieFlags.MULTI_BYTE) {
                 const first = this.entityTrie[this.entityResult + 1];
@@ -960,7 +949,7 @@ export default class Tokenizer {
         }
     }
 
-    private emitPartial(start: number, length: number) {
+    private emitPartial(start: number, length: number): void {
         if (
             this.baseState !== State.Text &&
             this.baseState !== State.InSpecialTag
@@ -970,7 +959,7 @@ export default class Tokenizer {
             this.cbs.ontext(start, length);
         }
     }
-    private emitCodePoint(cp: number) {
+    private emitCodePoint(cp: number): void {
         if (
             this.baseState !== State.Text &&
             this.baseState !== State.InSpecialTag

@@ -257,10 +257,10 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onopentagname(start: number, length: number): void {
-        this.endIndex = this.tokenizer.getIndex();
+    onopentagname(start: number, endIndex: number): void {
+        this.endIndex = endIndex;
 
-        let name = this.getSubstr(start, length);
+        let name = this.getSubstr(start, endIndex - start);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -321,10 +321,10 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onclosetag(start: number, length: number): void {
-        this.endIndex = this.tokenizer.getIndex();
+    onclosetag(start: number, endIndex: number): void {
+        this.endIndex = endIndex;
 
-        let name = this.getSubstr(start, length);
+        let name = this.getSubstr(start, endIndex - start);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -412,8 +412,8 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onattribend(quote: QuoteType): void {
-        this.endIndex = this.tokenizer.getIndex();
+    onattribend(quote: QuoteType, endIndex: number): void {
+        this.endIndex = endIndex;
 
         const quoteVal =
             quote === QuoteType.Double
@@ -447,9 +447,9 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    ondeclaration(start: number, length: number): void {
-        this.endIndex = this.tokenizer.getIndex();
-        const value = this.getSubstr(start, length);
+    ondeclaration(start: number, endIndex: number): void {
+        this.endIndex = endIndex;
+        const value = this.getSubstr(start, endIndex - start);
 
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);
@@ -461,9 +461,9 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    onprocessinginstruction(start: number, length: number): void {
-        this.endIndex = this.tokenizer.getIndex();
-        const value = this.getSubstr(start, length);
+    onprocessinginstruction(start: number, endIndex: number): void {
+        this.endIndex = endIndex;
+        const value = this.getSubstr(start, endIndex - start);
 
         if (this.cbs.onprocessinginstruction) {
             const name = this.getInstructionName(value);

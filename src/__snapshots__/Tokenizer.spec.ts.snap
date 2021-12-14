@@ -22,7 +22,7 @@ Array [
   Array [
     "onopentagname",
     1,
-    6,
+    7,
   ],
   Array [
     "onselfclosingtag",
@@ -30,7 +30,7 @@ Array [
   Array [
     "onopentagname",
     11,
-    3,
+    14,
   ],
   Array [
     "onopentagend",
@@ -38,7 +38,7 @@ Array [
   Array [
     "onclosetag",
     17,
-    3,
+    20,
   ],
   Array [
     "onend",
@@ -51,7 +51,7 @@ Array [
   Array [
     "onopentagname",
     1,
-    5,
+    6,
   ],
   Array [
     "onselfclosingtag",
@@ -59,7 +59,7 @@ Array [
   Array [
     "onopentagname",
     10,
-    3,
+    13,
   ],
   Array [
     "onopentagend",
@@ -67,7 +67,7 @@ Array [
   Array [
     "onclosetag",
     16,
-    3,
+    19,
   ],
   Array [
     "onend",
@@ -80,7 +80,7 @@ Array [
   Array [
     "onopentagname",
     1,
-    5,
+    6,
   ],
   Array [
     "onselfclosingtag",
@@ -88,7 +88,7 @@ Array [
   Array [
     "onopentagname",
     10,
-    3,
+    13,
   ],
   Array [
     "onopentagend",
@@ -96,7 +96,7 @@ Array [
   Array [
     "onclosetag",
     16,
-    3,
+    19,
   ],
   Array [
     "onend",
@@ -109,7 +109,7 @@ Array [
   Array [
     "onopentagname",
     1,
-    6,
+    7,
   ],
   Array [
     "onopentagend",
@@ -117,12 +117,12 @@ Array [
   Array [
     "onclosetag",
     10,
-    6,
+    16,
   ],
   Array [
     "onopentagname",
     18,
-    3,
+    21,
   ],
   Array [
     "onopentagend",
@@ -130,7 +130,7 @@ Array [
   Array [
     "onclosetag",
     24,
-    3,
+    27,
   ],
   Array [
     "onend",
@@ -143,7 +143,7 @@ Array [
   Array [
     "onopentagname",
     1,
-    5,
+    6,
   ],
   Array [
     "onopentagend",
@@ -151,12 +151,12 @@ Array [
   Array [
     "onclosetag",
     9,
-    5,
+    14,
   ],
   Array [
     "onopentagname",
     16,
-    3,
+    19,
   ],
   Array [
     "onopentagend",
@@ -164,7 +164,7 @@ Array [
   Array [
     "onclosetag",
     22,
-    3,
+    25,
   ],
   Array [
     "onend",
@@ -177,7 +177,7 @@ Array [
   Array [
     "onopentagname",
     1,
-    5,
+    6,
   ],
   Array [
     "onopentagend",
@@ -185,12 +185,12 @@ Array [
   Array [
     "onclosetag",
     9,
-    5,
+    14,
   ],
   Array [
     "onopentagname",
     16,
-    3,
+    19,
   ],
   Array [
     "onopentagend",
@@ -198,7 +198,7 @@ Array [
   Array [
     "onclosetag",
     22,
-    3,
+    25,
   ],
   Array [
     "onend",
