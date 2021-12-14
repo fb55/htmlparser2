@@ -129,14 +129,12 @@ export interface Callbacks {
  * sequences with an increased offset.
  */
 const Sequences = {
-    Cdata: new Uint16Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
-    CdataEnd: new Uint16Array([0x5d, 0x5d, 0x3e]), // ]]>
-    CommentEnd: new Uint16Array([0x2d, 0x2d, 0x3e]), // `-->`
-    ScriptEnd: new Uint16Array([
-        0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
-    ]), // `</script`
-    StyleEnd: new Uint16Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
-    TitleEnd: new Uint16Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
+    Cdata: new Uint8Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
+    CdataEnd: new Uint8Array([0x5d, 0x5d, 0x3e]), // ]]>
+    CommentEnd: new Uint8Array([0x2d, 0x2d, 0x3e]), // `-->`
+    ScriptEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `</script`
+    StyleEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
+    TitleEnd: new Uint8Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
 };
 
 export default class Tokenizer {
@@ -246,7 +244,7 @@ export default class Tokenizer {
         }
     }
 
-    private currentSequence!: Uint16Array;
+    private currentSequence!: Uint8Array;
     private sequenceIndex = 0;
     private stateSpecialStartSequence(c: number) {
         const isEnd = this.sequenceIndex === this.currentSequence.length;
@@ -396,7 +394,7 @@ export default class Tokenizer {
         return this.xmlMode ? !isEndOfTagSection(c) : isASCIIAlpha(c);
     }
 
-    private startSpecial(sequence: Uint16Array, offset: number) {
+    private startSpecial(sequence: Uint8Array, offset: number) {
         this.isSpecial = true;
         this.currentSequence = sequence;
         this.sequenceIndex = offset;
