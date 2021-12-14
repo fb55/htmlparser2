@@ -104,6 +104,13 @@ function isASCIIAlpha(c: number): boolean {
     );
 }
 
+function isHexDigit(c: number): boolean {
+    return (
+        (c >= CharCodes.UpperA && c <= CharCodes.UpperF) ||
+        (c >= CharCodes.LowerA && c <= CharCodes.LowerF)
+    );
+}
+
 export enum QuoteType {
     NoValue = 0,
     Unquoted = 1,
@@ -629,6 +636,7 @@ export default class Tokenizer {
 
     private trieIndex = 0;
     private trieCurrent = 0;
+    /** For named entities, the index of the value. For numeric entities, the code point. */
     private entityResult = 0;
     private entityExcess = 0;
 
@@ -728,9 +736,10 @@ export default class Tokenizer {
         }
     }
 
-    private decodeNumericEntity(base: 10 | 16, strict: boolean) {
+    private emitNumericEntity(strict: boolean) {
         const entityStart = this._index - this.entityExcess - 1;
-        const numberStart = entityStart + 2 + (base >> 4);
+        const numberStart =
+            entityStart + 2 + Number(this._state === State.InHexEntity);
 
         if (numberStart !== this._index) {
             // Emit leading data if any
@@ -741,44 +750,43 @@ export default class Tokenizer {
                 );
             }
 
-            // Parse entity
-            const entity = this.buffer.substring(numberStart, this._index);
-            const parsed = parseInt(entity, base);
-            this.emitCodePoint(parsed);
+            this.emitCodePoint(this.entityResult);
             this.sectionStart = this._index + Number(strict);
         }
         this._state = this.baseState;
     }
     private stateInNumericEntity(c: number): void {
         if (c === CharCodes.Semi) {
-            this.decodeNumericEntity(10, true);
-        } else if (!isNumber(c)) {
+            this.emitNumericEntity(true);
+        } else if (isNumber(c)) {
+            this.entityResult = this.entityResult * 10 + (c - CharCodes.Zero);
+            this.entityExcess++;
+        } else {
             if (this.allowLegacyEntity()) {
-                this.decodeNumericEntity(10, false);
+                this.emitNumericEntity(false);
             } else {
                 this._state = this.baseState;
             }
             this._index--;
-        } else {
-            this.entityExcess++;
         }
     }
     private stateInHexEntity(c: number): void {
         if (c === CharCodes.Semi) {
-            this.decodeNumericEntity(16, true);
-        } else if (
-            (c < CharCodes.LowerA || c > CharCodes.LowerF) &&
-            (c < CharCodes.UpperA || c > CharCodes.UpperF) &&
-            !isNumber(c)
-        ) {
+            this.emitNumericEntity(true);
+        } else if (isNumber(c)) {
+            this.entityResult = this.entityResult * 16 + (c - CharCodes.Zero);
+            this.entityExcess++;
+        } else if (isHexDigit(c)) {
+            this.entityResult =
+                this.entityResult * 16 + ((c | 0x20) - CharCodes.LowerA + 10);
+            this.entityExcess++;
+        } else {
             if (this.allowLegacyEntity()) {
-                this.decodeNumericEntity(16, false);
+                this.emitNumericEntity(false);
             } else {
                 this._state = this.baseState;
             }
             this._index--;
-        } else {
-            this.entityExcess++;
         }
     }
 
@@ -921,13 +929,13 @@ export default class Tokenizer {
             this._state === State.InNumericEntity &&
             this.allowLegacyEntity()
         ) {
-            this.decodeNumericEntity(10, false);
+            this.emitNumericEntity(false);
             // All trailing data will have been consumed
         } else if (
             this._state === State.InHexEntity &&
             this.allowLegacyEntity()
         ) {
-            this.decodeNumericEntity(16, false);
+            this.emitNumericEntity(false);
             // All trailing data will have been consumed
         } else if (
             this._state === State.InTagName ||
