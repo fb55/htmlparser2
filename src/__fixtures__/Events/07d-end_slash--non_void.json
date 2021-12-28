@@ -1,0 +1,48 @@
+{
+    "name": "end slash: non-void element ending with />",
+    "input": "<xx / ><p>Hold the line.",
+    "expected": [
+        {
+            "event": "opentagname",
+            "startIndex": 0,
+            "endIndex": 3,
+            "data": ["xx"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 0,
+            "endIndex": 6,
+            "data": ["xx", {}, false]
+        },
+        {
+            "event": "opentagname",
+            "startIndex": 7,
+            "endIndex": 9,
+            "data": ["p"]
+        },
+        {
+            "event": "opentag",
+            "startIndex": 7,
+            "endIndex": 9,
+            "data": ["p", {}, false]
+        },
+        {
+            "event": "text",
+            "startIndex": 10,
+            "endIndex": 23,
+            "data": ["Hold the line."]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 24,
+            "endIndex": 24,
+            "data": ["p", true]
+        },
+        {
+            "event": "closetag",
+            "startIndex": 24,
+            "endIndex": 24,
+            "data": ["xx", true]
+        }
+    ]
+}
