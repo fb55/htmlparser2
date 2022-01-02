@@ -423,16 +423,18 @@ export class Parser implements Callbacks {
     onattribend(quote: QuoteType, endIndex: number): void {
         this.endIndex = endIndex;
 
-        const quoteVal =
+        this.cbs.onattribute?.(
+            this.attribname,
+            this.attribvalue,
             quote === QuoteType.Double
                 ? '"'
                 : quote === QuoteType.Single
                 ? "'"
                 : quote === QuoteType.NoValue
                 ? undefined
-                : null;
+                : null
+        );
 
-        this.cbs.onattribute?.(this.attribname, this.attribvalue, quoteVal);
         if (
             this.attribs &&
             !Object.prototype.hasOwnProperty.call(this.attribs, this.attribname)
