@@ -17,6 +17,25 @@ function tokenize(str: string) {
     return log;
 }
 
+function xmlTokenize(str: string) {
+    const log: unknown[][] = [];
+    const tokenizer = new Tokenizer(
+        {
+            xmlMode: true,
+        },
+        new Proxy({} as any, {
+            get(_, prop) {
+                return (...args: unknown[]) => log.push([prop, ...args]);
+            },
+        })
+    );
+
+    tokenizer.write(str);
+    tokenizer.end();
+
+    return log;
+}
+
 describe("Tokenizer", () => {
     describe("should support self-closing special tags", () => {
         it("for self-closing script tag", () => {
@@ -64,5 +83,13 @@ describe("Tokenizer", () => {
         tokenizer.end();
 
         expect(log).toMatchSnapshot();
+    });
+});
+
+describe("XmlTokenizer", () => {
+    describe("should support xml with special symbol in entity content", () => {
+        it("for self-closing script tag", () => {
+            expect(tokenize("<text wx:else>{{goodsMap[item].quantity <= 20 ? 'smaller' : 'bigger'}}</text>")).toMatchSnapshot();
+        });
     });
 });
