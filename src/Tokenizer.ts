@@ -415,7 +415,6 @@ export default class Tokenizer {
      * HTML only allows ASCII alpha characters (a-z and A-Z) at the beginning of a tag name.
      *
      * XML allows a lot more characters here (@see https://www.w3.org/TR/REC-xml/#NT-NameStartChar).
-     * We allow anything that wouldn't end the tag.
      */
     private isTagStartChar(c: number) {
         return this.xmlMode ? isLegalXmlStartChar(c) : isASCIIAlpha(c);
