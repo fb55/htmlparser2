@@ -33,6 +33,44 @@ const enum CharCodes {
     LowerZ = 0x7a, // "z"
     LowerX = 0x78, // "x"
     OpeningSquareBracket = 0x5b, // "["
+    Colon = 0x3a, // ':'
+    Underline = 0x5f, // "_"
+}
+
+/**
+ * Xml legal NameStartChar
+ * ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFF]
+ */
+const NameStartChar: {
+    ExactValue: { [key: number]: boolean };
+    Range: [number, number][];
+} = {
+    ExactValue: {
+        [CharCodes.Colon]: true,
+        [CharCodes.UpperA]: true,
+    },
+    Range: [
+        [CharCodes.UpperA, CharCodes.UpperZ],
+        [CharCodes.LowerA, CharCodes.LowerZ],
+        [0xc0, 0xd6],
+        [0xd8, 0xf6],
+        [0xf8, 0x2ff],
+        [0x370, 0x37d],
+        [0x37f, 0x1fff],
+        [0x200c, 0x200d],
+        [0x2070, 0x218f],
+        [0x2c00, 0x2fef],
+        [0x3001, 0xd7ff],
+        [0xf900, 0xfdcf],
+        [0xfdf0, 0xfffd],
+        [0x10000, 0xeff],
+    ],
+};
+
+export function isLegalXmlStartChar(c: number) {
+    return (
+        NameStartChar.ExactValue[c] || NameStartChar.Range.findIndex(([min, max]) => c >= min && c <= max) !== -1
+    );
 }
 
 /** All the states the tokenizer can be in. */
@@ -380,7 +418,7 @@ export default class Tokenizer {
      * We allow anything that wouldn't end the tag.
      */
     private isTagStartChar(c: number) {
-        return this.xmlMode ? !isEndOfTagSection(c) : isASCIIAlpha(c);
+        return this.xmlMode ? isLegalXmlStartChar(c) : isASCIIAlpha(c);
     }
 
     private startSpecial(sequence: Uint8Array, offset: number) {
