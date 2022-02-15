@@ -44,7 +44,7 @@
         "format:es": "npm run lint:es -- --fix",
         "format:prettier": "npm run format:prettier:raw -- --write",
         "format:prettier:raw": "prettier '**/*.{ts,md,json,yml}'",
-        "build": "tsc",
+        "build": "tsc && tsc --project tsconfig.esm.json",
         "prepare": "npm run build"
     },
     "dependencies": {
