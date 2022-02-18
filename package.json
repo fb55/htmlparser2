@@ -30,6 +30,7 @@
         "lib": "lib/"
     },
     "main": "lib/index.js",
+    "module": "lib/esm/index.js",
     "types": "lib/index.d.ts",
     "files": [
         "lib/**/*"
