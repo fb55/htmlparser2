@@ -51,7 +51,7 @@
         "domelementtype": "^2.0.1",
         "domhandler": "^4.3.1",
         "domutils": "^2.8.0",
-        "entities": "^3.0.1"
+        "entities": "^4.1.0"
     },
     "devDependencies": {
         "@types/jest": "^27.4.1",
