@@ -157,7 +157,7 @@ export default class Tokenizer {
     /** The read buffer. */
     private buffer = "";
     /** The beginning of the section that is currently being read. */
-    public sectionStart = 0;
+    private sectionStart = 0;
     /** The index within the buffer that we are currently looking at. */
     private index = 0;
     /** Some behavior, eg. when decoding entities, is done while we are in another state. This keeps track of the other state type. */
@@ -222,6 +222,13 @@ export default class Tokenizer {
      */
     public getIndex(): number {
         return this.index;
+    }
+
+    /**
+     * The start of the current section.
+     */
+    public getSectionStart(): number {
+        return this.sectionStart;
     }
 
     private stateText(c: number): void {
@@ -647,12 +654,16 @@ export default class Tokenizer {
 
         this.trieCurrent = this.entityTrie[this.trieIndex];
 
+        const masked = this.trieCurrent & BinTrieFlags.VALUE_LENGTH;
+
         // If the branch is a value, store it and continue
-        if (this.trieCurrent & BinTrieFlags.HAS_VALUE) {
+        if (masked) {
+            // The mask is the number of bytes of the value, including the current byte.
+            const valueLength = (masked >> 14) - 1;
+
             // If we have a legacy entity while parsing strictly, just skip the number of bytes
             if (!this.allowLegacyEntity() && c !== CharCodes.Semi) {
-                // No need to consider multi-byte values, as the legacy entity is always a single byte
-                this.trieIndex += 1;
+                this.trieIndex += valueLength;
             } else {
                 // Add 1 as we have already incremented the excess
                 const entityStart = this.index - this.entityExcess + 1;
@@ -663,20 +674,42 @@ export default class Tokenizer {
 
                 // If this is a surrogate pair, consume the next two bytes
                 this.entityResult = this.trieIndex;
-                this.trieIndex +=
-                    1 +
-                    Number((this.trieCurrent & BinTrieFlags.MULTI_BYTE) !== 0);
+                this.trieIndex += valueLength;
                 this.entityExcess = 0;
                 this.sectionStart = this.index + 1;
+
+                if (valueLength === 0) {
+                    this.emitNamedEntity();
+                }
             }
         }
     }
 
     private emitNamedEntity(): void {
-        if (this.entityResult !== 0) {
-            if (this.entityTrie[this.entityResult] & BinTrieFlags.MULTI_BYTE) {
+        this.state = this.baseState;
+
+        if (this.entityResult === 0) {
+            return;
+        }
+
+        const valueLength =
+            (this.entityTrie[this.entityResult] & BinTrieFlags.VALUE_LENGTH) >>
+            14;
+
+        switch (valueLength) {
+            case 1:
+                this.emitCodePoint(
+                    this.entityTrie[this.entityResult] &
+                        ~BinTrieFlags.VALUE_LENGTH
+                );
+                break;
+            case 2:
+                this.emitCodePoint(this.entityTrie[this.entityResult + 1]);
+                break;
+            case 3: {
                 const first = this.entityTrie[this.entityResult + 1];
                 const second = this.entityTrie[this.entityResult + 2];
+
                 // If this is a surrogate pair, combine the code points.
                 if (first >= 0xd8_00 && first <= 0xdf_ff) {
                     this.emitCodePoint(
@@ -687,12 +720,8 @@ export default class Tokenizer {
                     this.emitCodePoint(first);
                     this.emitCodePoint(second);
                 }
-            } else {
-                this.emitCodePoint(this.entityTrie[this.entityResult + 1]);
             }
         }
-
-        this.state = this.baseState;
     }
 
     private stateBeforeNumericEntity(c: number): void {
@@ -716,8 +745,8 @@ export default class Tokenizer {
                 this.emitPartial(this.sectionStart, entityStart);
             }
 
-            this.emitCodePoint(this.entityResult);
             this.sectionStart = this.index + Number(strict);
+            this.emitCodePoint(this.entityResult);
         }
         this.state = this.baseState;
     }
