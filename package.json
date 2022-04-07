@@ -48,7 +48,7 @@
         "prepare": "npm run build"
     },
     "dependencies": {
-        "domelementtype": "^2.0.1",
+        "domelementtype": "^2.3.0",
         "domhandler": "^4.3.1",
         "domutils": "^2.8.0",
         "entities": "^4.2.0"
