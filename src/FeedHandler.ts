@@ -1,6 +1,6 @@
 import DomHandler, { DomHandlerOptions } from "domhandler";
 import { getFeed, Feed } from "domutils";
-import { Parser, ParserOptions } from "./Parser";
+import { Parser, ParserOptions } from "./Parser.js";
 
 export { getFeed };
 
@@ -24,7 +24,7 @@ export class FeedHandler extends DomHandler {
         super(callback, options);
     }
 
-    onend(): void {
+    override onend(): void {
         const feed = getFeed(this.dom);
 
         if (feed) {

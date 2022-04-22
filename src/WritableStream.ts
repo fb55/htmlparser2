@@ -1,4 +1,4 @@
-import { Parser, Handler, ParserOptions } from "./Parser";
+import { Parser, Handler, ParserOptions } from "./Parser.js";
 /*
  * NOTE: If either of these two imports produces a type error,
  * please update your @types/node dependency!
@@ -25,14 +25,18 @@ export class WritableStream extends Writable {
         this._parser = new Parser(cbs, options);
     }
 
-    _write(chunk: string | Buffer, encoding: string, cb: () => void): void {
+    override _write(
+        chunk: string | Buffer,
+        encoding: string,
+        cb: () => void
+    ): void {
         this._parser.write(
             isBuffer(chunk, encoding) ? this._decoder.write(chunk) : chunk
         );
         cb();
     }
 
-    _final(cb: () => void): void {
+    override _final(cb: () => void): void {
         this._parser.end(this._decoder.end());
         cb();
     }
