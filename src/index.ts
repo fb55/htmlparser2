@@ -4,7 +4,7 @@ export { Parser, ParserOptions };
 import {
     DomHandler,
     DomHandlerOptions,
-    Node,
+    ChildNode,
     Element,
     Document,
 } from "domhandler";
@@ -36,7 +36,7 @@ export function parseDocument(data: string, options?: Options): Document {
  * @param options Optional options for the parser and DOM builder.
  * @deprecated Use `parseDocument` instead.
  */
-export function parseDOM(data: string, options?: Options): Node[] {
+export function parseDOM(data: string, options?: Options): ChildNode[] {
     return parseDocument(data, options).children;
 }
 /**
@@ -47,7 +47,7 @@ export function parseDOM(data: string, options?: Options): Node[] {
  * @param elementCb An optional callback that will be called every time a tag has been completed inside of the DOM.
  */
 export function createDomStream(
-    cb: (error: Error | null, dom: Node[]) => void,
+    cb: (error: Error | null, dom: ChildNode[]) => void,
     options?: Options,
     elementCb?: (element: Element) => void
 ): Parser {
