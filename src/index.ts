@@ -1,5 +1,5 @@
-import { Parser, ParserOptions } from "./Parser";
-export { Parser, ParserOptions };
+import { Parser, ParserOptions } from "./Parser.js";
+export { Parser, type ParserOptions };
 
 import {
     DomHandler,
@@ -9,7 +9,7 @@ import {
     Document,
 } from "domhandler";
 
-export { DomHandler, DomHandlerOptions };
+export { DomHandler, type DomHandlerOptions };
 
 type Options = ParserOptions & DomHandlerOptions;
 
@@ -57,8 +57,8 @@ export function createDomStream(
 
 export {
     default as Tokenizer,
-    Callbacks as TokenizerCallbacks,
-} from "./Tokenizer";
+    type Callbacks as TokenizerCallbacks,
+} from "./Tokenizer.js";
 import * as ElementType from "domelementtype";
 export { ElementType };
 
@@ -67,9 +67,9 @@ export { ElementType };
  * They should probably be removed eventually.
  */
 
-export * from "./FeedHandler";
+export * from "./FeedHandler.js";
 export * as DomUtils from "domutils";
 
 // Old names for Dom- & FeedHandler
 export { DomHandler as DefaultHandler };
-export { FeedHandler as RssHandler } from "./FeedHandler";
+export { FeedHandler as RssHandler } from "./FeedHandler.js";

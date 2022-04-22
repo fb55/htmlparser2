@@ -3,7 +3,7 @@ import {
     xmlDecodeTree,
     BinTrieFlags,
     determineBranch,
-} from "entities/lib/decode";
+} from "entities/lib/decode.js";
 
 const enum CharCodes {
     Tab = 0x9, // "\t"
