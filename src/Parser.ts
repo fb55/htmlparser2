@@ -445,7 +445,6 @@ export class Parser implements Callbacks {
         ) {
             this.attribs[this.attribname] = this.attribvalue;
         }
-        this.attribname = "";
         this.attribvalue = "";
     }
 
