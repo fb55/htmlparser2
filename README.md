@@ -7,7 +7,7 @@
 
 The fast & forgiving HTML/XML parser.
 
-> *For speed, choose htmlparser2. It's [the fastest](#performance). If you need HTML5 spec compliance, choose [parse5](https://github.com/inikulin/parse5).*
+*htmlparser2 is [the fastest HTML parser](#performance), and takes some shortcuts to get there. If you need strict HTML spec compliance, have a look at [parse5](https://github.com/inikulin/parse5).*
 
 ## Installation
 
