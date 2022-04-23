@@ -7,6 +7,8 @@
 
 The fast & forgiving HTML/XML parser.
 
+_htmlparser2 is [the fastest HTML parser](#performance), and takes some shortcuts to get there. If you need strict HTML spec compliance, have a look at [parse5](https://github.com/inikulin/parse5)._
+
 ## Installation
 
     npm install htmlparser2
