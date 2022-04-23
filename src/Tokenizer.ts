@@ -3,6 +3,7 @@ import {
     xmlDecodeTree,
     BinTrieFlags,
     determineBranch,
+    replaceCodePoint,
 } from "entities/lib/decode.js";
 
 const enum CharCodes {
@@ -707,19 +708,8 @@ export default class Tokenizer {
                 this.emitCodePoint(this.entityTrie[this.entityResult + 1]);
                 break;
             case 3: {
-                const first = this.entityTrie[this.entityResult + 1];
-                const second = this.entityTrie[this.entityResult + 2];
-
-                // If this is a surrogate pair, combine the code points.
-                if (first >= 0xd8_00 && first <= 0xdf_ff) {
-                    this.emitCodePoint(
-                        // http://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
-                        (first - 0xd8_00) * 0x4_00 + second + 0x24_00
-                    );
-                } else {
-                    this.emitCodePoint(first);
-                    this.emitCodePoint(second);
-                }
+                this.emitCodePoint(this.entityTrie[this.entityResult + 1]);
+                this.emitCodePoint(this.entityTrie[this.entityResult + 2]);
             }
         }
     }
@@ -746,7 +736,7 @@ export default class Tokenizer {
             }
 
             this.sectionStart = this.index + Number(strict);
-            this.emitCodePoint(this.entityResult);
+            this.emitCodePoint(replaceCodePoint(this.entityResult));
         }
         this.state = this.baseState;
     }

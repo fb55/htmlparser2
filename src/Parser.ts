@@ -1,5 +1,5 @@
 import Tokenizer, { Callbacks, QuoteType } from "./Tokenizer.js";
-import { decodeCodePoint } from "entities/lib/decode.js";
+import { fromCodePoint } from "entities/lib/decode.js";
 
 const formTags = new Set([
     "input",
@@ -258,7 +258,7 @@ export class Parser implements Callbacks {
          */
         const idx = this.tokenizer.getSectionStart();
         this.endIndex = idx - 1;
-        this.cbs.ontext?.(decodeCodePoint(cp));
+        this.cbs.ontext?.(fromCodePoint(cp));
         this.startIndex = idx;
     }
 
@@ -420,7 +420,7 @@ export class Parser implements Callbacks {
 
     /** @internal */
     onattribentity(cp: number): void {
-        this.attribvalue += decodeCodePoint(cp);
+        this.attribvalue += fromCodePoint(cp);
     }
 
     /** @internal */
