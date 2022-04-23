@@ -4,9 +4,7 @@ import {
     createDomStream,
     DomHandler,
     DefaultHandler,
-    RssHandler,
 } from ".";
-import { FeedHandler } from "./FeedHandler";
 import { Element } from "domhandler";
 
 // Add an `attributes` prop to the Element for now, to make it possible for Jest to render DOM nodes.
@@ -49,7 +47,6 @@ describe("Index", () => {
 
     describe("API", () => {
         it("should export the appropriate APIs", () => {
-            expect(RssHandler).toEqual(FeedHandler);
             expect(DomHandler).toEqual(DefaultHandler);
         });
     });

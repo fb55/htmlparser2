@@ -59,17 +59,32 @@ export {
     default as Tokenizer,
     type Callbacks as TokenizerCallbacks,
 } from "./Tokenizer.js";
-import * as ElementType from "domelementtype";
-export { ElementType };
 
 /*
  * All of the following exports exist for backwards-compatibility.
  * They should probably be removed eventually.
  */
+import * as ElementType from "domelementtype";
+export { ElementType };
 
-export * from "./FeedHandler.js";
+import { getFeed, Feed } from "domutils";
+
+export { getFeed };
+
+/**
+ * Parse a feed.
+ *
+ * @param feed The feed that should be parsed, as a string.
+ * @param options Optionally, options for parsing. When using this, you should set `xmlMode` to `true`.
+ */
+export function parseFeed(
+    feed: string,
+    options: ParserOptions & DomHandlerOptions = { xmlMode: true }
+): Feed | null {
+    return getFeed(parseDOM(feed, options));
+}
+
 export * as DomUtils from "domutils";
 
-// Old names for Dom- & FeedHandler
+// Old name for DomHandler
 export { DomHandler as DefaultHandler };
-export { FeedHandler as RssHandler } from "./FeedHandler.js";

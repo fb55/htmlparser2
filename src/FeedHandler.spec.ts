@@ -1,7 +1,7 @@
 // Runs tests for feeds
 
 import * as helper from "./__fixtures__/test-helper";
-import { FeedHandler, parseFeed } from "./FeedHandler";
+import { DomHandler, getFeed, parseFeed } from ".";
 import fs from "fs";
 import path from "path";
 
@@ -9,8 +9,8 @@ const documents = path.join(__dirname, "__fixtures__", "Documents");
 
 helper.createSuite("Feeds", (test, cb) => {
     const file = fs.readFileSync(path.join(documents, test.file), "utf8");
-    const handler: FeedHandler = new FeedHandler((err) =>
-        cb(err, handler.feed)
+    const handler: DomHandler = new DomHandler((err) =>
+        cb(err, getFeed(handler.dom))
     );
 
     helper.writeToParser(handler, { xmlMode: true }, file);
