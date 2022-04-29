@@ -33,8 +33,14 @@
     "types": "lib/index.d.ts",
     "module": "lib/esm/index.js",
     "exports": {
-        "require": "./lib/index.js",
-        "import": "./lib/esm/index.js"
+        ".": {
+            "require": "./lib/index.js",
+            "import": "./lib/esm/index.js"
+        },
+        "./lib/WritableStream": {
+            "require": "./lib/WritableStream.js",
+            "import": "./lib/esm/WritableStream.js"
+        }
     },
     "files": [
         "lib/**/*"
