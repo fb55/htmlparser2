@@ -33,6 +33,7 @@ For a more ergonomic experience, read [Getting a DOM](#getting-a-dom) below.
 
 ```javascript
 const htmlparser2 = require("htmlparser2");
+
 const parser = new htmlparser2.Parser({
     onopentag(name, attributes) {
         /*
@@ -50,7 +51,7 @@ const parser = new htmlparser2.Parser({
          * Fires whenever a section of text was processed.
          *
          * Note that this can fire at any point within text and you might
-         * have to stich together multiple pieces.
+         * have to stitch together multiple pieces.
          */
         console.log("-->", text);
     },
@@ -68,7 +69,7 @@ const parser = new htmlparser2.Parser({
     },
 });
 parser.write(
-    "Xyz <script type='text/javascript'>const foo = '<<bar>>';</ script>"
+    "Xyz <script type='text/javascript'>const foo = '<<bar>>';</script>"
 );
 parser.end();
 ```
@@ -92,6 +93,7 @@ Use the `WritableStream` interface to process a streaming input:
 
 ```javascript
 const { WritableStream } = require("htmlparser2/lib/WritableStream");
+
 const parserStream = new WritableStream({
     ontext(text) {
         console.log("Streaming:", text);
@@ -163,6 +165,6 @@ Tidelift will coordinate the fix and disclosure.
 
 ## `htmlparser2` for enterprise
 
-Available as part of the Tidelift Subscription
+Available as part of the Tidelift Subscription.
 
 The maintainers of `htmlparser2` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-htmlparser2?utm_source=npm-htmlparser2&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
