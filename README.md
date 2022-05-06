@@ -31,8 +31,8 @@ A live demo of `htmlparser2` is available [here](https://astexplorer.net/#/2AmVr
 `htmlparser2` itself provides a callback interface that allows consumption of documents with minimal allocations.
 For a more ergonomic experience, read [Getting a DOM](#getting-a-dom) below.
 
-```javascript
-const htmlparser2 = require("htmlparser2");
+```js
+import * as htmlparser2 from "htmlparser2";
 
 const parser = new htmlparser2.Parser({
     onopentag(name, attributes) {
@@ -91,8 +91,8 @@ Read more about the parser, its events and options in the [wiki](https://github.
 While the `Parser` interface closely resembles Node.js streams, it's not a 100% match.
 Use the `WritableStream` interface to process a streaming input:
 
-```javascript
-const { WritableStream } = require("htmlparser2/lib/WritableStream");
+```js
+import { WritableStream } from "htmlparser2/lib/WritableStream";
 
 const parserStream = new WritableStream({
     ontext(text) {
@@ -109,7 +109,7 @@ htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
 The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
 
 ```js
-const htmlparser2 = require("htmlparser2");
+import * as htmlparser2 from "htmlparser2";
 
 const dom = htmlparser2.parseDocument(htmlString);
 ```
