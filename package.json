@@ -40,6 +40,14 @@
         "./lib/WritableStream": {
             "require": "./lib/WritableStream.js",
             "import": "./lib/esm/WritableStream.js"
+        },
+        "./lib/Parser":{
+            "require": "./lib/Parser.js",
+            "import": "./lib/esm/Parser.js"
+        },
+        "./lib/Tokenizer":{
+            "require": "./lib/Tokenizer.js",
+            "import": "./lib/esm/Tokenizer.js"
         }
     },
     "files": [
