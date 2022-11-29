@@ -7,10 +7,10 @@ import path from "node:path";
 
 const documents = path.join(__dirname, "__fixtures__", "Documents");
 
-helper.createSuite("Feeds", (test, cb) => {
+helper.createSuite("Feeds", (test, callback) => {
     const file = fs.readFileSync(path.join(documents, test.file), "utf8");
-    const handler: DomHandler = new DomHandler((err) =>
-        cb(err, getFeed(handler.dom))
+    const handler: DomHandler = new DomHandler((error) =>
+        callback(error, getFeed(handler.dom))
     );
 
     helper.writeToParser(handler, { xmlMode: true }, file);

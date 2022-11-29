@@ -18,8 +18,8 @@ export function writeToParser(
 ): void {
     const parser = new Parser(handler, options);
     // First, try to run the test via chunks
-    for (let i = 0; i < data.length; i++) {
-        parser.write(data.charAt(i));
+    for (let index = 0; index < data.length; index++) {
+        parser.write(data.charAt(index));
     }
     parser.end();
     // Then, parse everything
@@ -41,7 +41,7 @@ interface Event {
  * @param cb Function to call with all events.
  */
 export function getEventCollector(
-    cb: (error: Error | null, events?: Event[]) => void
+    callback: (error: Error | null, events?: Event[]) => void
 ): Partial<Handler> {
     const events: Event[] = [];
     let parser: Parser;
@@ -49,12 +49,12 @@ export function getEventCollector(
     function handle(event: string, ...data: unknown[]): void {
         switch (event) {
             case "onerror": {
-                cb(data[0] as Error);
+                callback(data[0] as Error);
 
                 break;
             }
             case "onend": {
-                cb(null, events);
+                callback(null, events);
 
                 break;
             }
@@ -91,7 +91,7 @@ export function getEventCollector(
                     }
 
                     events.push({
-                        event: event.substr(2),
+                        event: event.slice(2),
                         startIndex: parser.startIndex,
                         endIndex: parser.endIndex,
                         data,
@@ -115,11 +115,11 @@ export function getEventCollector(
  * @param file Test file to execute.
  * @param done Function to call on completion.
  */
-function getCallback(file: TestFile, done: (err?: Error | null) => void) {
+function getCallback(file: TestFile, done: (error?: Error | null) => void) {
     let firstResult: unknown | undefined;
 
-    return (err: null | Error, actual?: unknown | unknown[]) => {
-        expect(err).toBeNull();
+    return (error: null | Error, actual?: unknown | unknown[]) => {
+        expect(error).toBeNull();
 
         if (firstResult) {
             expect(actual).toStrictEqual(firstResult);
@@ -162,24 +162,20 @@ export function createSuite(
         done: (error: Error | null, actual?: unknown | unknown[]) => void
     ) => void
 ): void {
-    describe(name, readDir);
+    describe(name, () => {
+        const directory = path.join(__dirname, name);
 
-    function readDir() {
-        const dir = path.join(__dirname, name);
-
-        for (const name of fs.readdirSync(dir)) {
+        for (const name of fs.readdirSync(directory)) {
             if (name.startsWith(".") || name.startsWith("_")) {
                 continue;
             }
 
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const file = require(path.join(dir, name));
+            const testFile: TestFile = require(path.join(directory, name));
 
-            runTest(file);
+            test(testFile.name, (done) =>
+                getResult(testFile, getCallback(testFile, done))
+            );
         }
-    }
-
-    function runTest(file: TestFile) {
-        test(file.name, (done) => getResult(file, getCallback(file, done)));
-    }
+    });
 }

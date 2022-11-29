@@ -13,7 +13,7 @@ const enum CharCodes {
     CarriageReturn = 0xd, // "\r"
     Space = 0x20, // " "
     ExclamationMark = 0x21, // "!"
-    Num = 0x23, // "#"
+    Number = 0x23, // "#"
     Amp = 0x26, // "&"
     SingleQuote = 0x27, // "'"
     DoubleQuote = 0x22, // '"'
@@ -625,7 +625,7 @@ export default class Tokenizer {
         this.entityExcess = 1;
         this.entityResult = 0;
 
-        if (c === CharCodes.Num) {
+        if (c === CharCodes.Number) {
             this.state = State.BeforeNumericEntity;
         } else if (c === CharCodes.Amp) {
             // We have two `&` characters in a row. Stay in the current state.

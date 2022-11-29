@@ -33,8 +33,7 @@
         "unicorn/no-null": 0,
         "unicorn/prefer-code-point": 0,
         "unicorn/prefer-string-slice": 0,
-        "unicorn/prefer-add-event-listener": 0,
-        "unicorn/prevent-abbreviations": 0
+        "unicorn/prefer-add-event-listener": 0
     },
     "overrides": [
         {

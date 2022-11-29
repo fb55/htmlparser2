@@ -52,11 +52,11 @@ export function parseDOM(data: string, options?: Options): ChildNode[] {
  * @param elementCb An optional callback that will be called every time a tag has been completed inside of the DOM.
  */
 export function createDomStream(
-    cb: (error: Error | null, dom: ChildNode[]) => void,
+    callback: (error: Error | null, dom: ChildNode[]) => void,
     options?: Options,
-    elementCb?: (element: Element) => void
+    elementCallback?: (element: Element) => void
 ): Parser {
-    const handler = new DomHandler(cb, options, elementCb);
+    const handler = new DomHandler(callback, options, elementCallback);
     return new Parser(handler, options);
 }
 

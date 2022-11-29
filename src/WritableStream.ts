@@ -28,16 +28,16 @@ export class WritableStream extends Writable {
     override _write(
         chunk: string | Buffer,
         encoding: string,
-        cb: () => void
+        callback: () => void
     ): void {
         this._parser.write(
             isBuffer(chunk, encoding) ? this._decoder.write(chunk) : chunk
         );
-        cb();
+        callback();
     }
 
-    override _final(cb: () => void): void {
+    override _final(callback: () => void): void {
         this._parser.end(this._decoder.end());
-        cb();
+        callback();
     }
 }

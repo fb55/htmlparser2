@@ -31,8 +31,8 @@ describe("Index", () => {
     });
 
     test("createDomStream", (done) => {
-        const domStream = createDomStream((err, dom) => {
-            expect(err).toBeNull();
+        const domStream = createDomStream((error, dom) => {
+            expect(error).toBeNull();
             expect(dom).toMatchSnapshot();
 
             done();
