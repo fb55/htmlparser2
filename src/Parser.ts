@@ -609,7 +609,7 @@ export class Parser implements Callbacks {
      */
     public end(chunk?: string): void {
         if (this.ended) {
-            this.cbs.onerror?.(Error(".end() after done!"));
+            this.cbs.onerror?.(new Error(".end() after done!"));
             return;
         }
 

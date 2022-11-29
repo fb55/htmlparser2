@@ -1,6 +1,6 @@
 import { Parser, Handler, ParserOptions } from "../Parser.js";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 /**
  * Write to the parser twice, once a bytes, once as
@@ -47,43 +47,59 @@ export function getEventCollector(
     let parser: Parser;
 
     function handle(event: string, ...data: unknown[]): void {
-        if (event === "onerror") {
-            cb(data[0] as Error);
-        } else if (event === "onend") {
-            cb(null, events);
-        } else if (event === "onreset") {
-            events.length = 0;
-        } else if (event === "onparserinit") {
-            parser = data[0] as Parser;
-            // Don't collect event
-        } else if (
-            event === "ontext" &&
-            events[events.length - 1]?.event === "text"
-        ) {
-            const last = events[events.length - 1];
-            // Combine text nodes
-            (last.data[0] as string) += data[0];
-            last.endIndex = parser.endIndex;
-        } else {
-            // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
-            if (event === "onattribute" && data[2] === undefined) {
-                data.pop();
+        switch (event) {
+            case "onerror": {
+                cb(data[0] as Error);
+
+                break;
             }
+            case "onend": {
+                cb(null, events);
 
-            if (!(parser.startIndex <= parser.endIndex)) {
-                throw new Error(
-                    `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
-                );
+                break;
             }
+            case "onreset": {
+                events.length = 0;
 
-            events.push({
-                event: event.substr(2),
-                startIndex: parser.startIndex,
-                endIndex: parser.endIndex,
-                data,
-            });
+                break;
+            }
+            case "onparserinit": {
+                parser = data[0] as Parser;
+                // Don't collect event
 
-            parser.endIndex;
+                break;
+            }
+            default: {
+                if (
+                    event === "ontext" &&
+                    events[events.length - 1]?.event === "text"
+                ) {
+                    const last = events[events.length - 1];
+                    // Combine text nodes
+                    (last.data[0] as string) += data[0];
+                    last.endIndex = parser.endIndex;
+                } else {
+                    // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
+                    if (event === "onattribute" && data[2] === undefined) {
+                        data.pop();
+                    }
+
+                    if (!(parser.startIndex <= parser.endIndex)) {
+                        throw new Error(
+                            `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
+                        );
+                    }
+
+                    events.push({
+                        event: event.substr(2),
+                        startIndex: parser.startIndex,
+                        endIndex: parser.endIndex,
+                        data,
+                    });
+
+                    parser.endIndex;
+                }
+            }
         }
     }
 
@@ -151,11 +167,16 @@ export function createSuite(
     function readDir() {
         const dir = path.join(__dirname, name);
 
-        fs.readdirSync(dir)
-            .filter((file) => !file.startsWith(".") && !file.startsWith("_"))
-            .map((name) => path.join(dir, name))
-            .map(require)
-            .forEach(runTest);
+        for (const name of fs.readdirSync(dir)) {
+            if (name.startsWith(".") || name.startsWith("_")) {
+                continue;
+            }
+
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const file = require(path.join(dir, name));
+
+            runTest(file);
+        }
     }
 
     function runTest(file: TestFile) {
