@@ -1,5 +1,5 @@
 {
-    "extends": ["eslint:recommended", "prettier"],
+    "extends": ["eslint:recommended", "prettier", "plugin:n/recommended"],
     "env": {
         "node": true,
         "es6": true
@@ -55,7 +55,9 @@
                 "@typescript-eslint/prefer-includes": 2,
                 "@typescript-eslint/no-unnecessary-condition": 2,
                 "@typescript-eslint/switch-exhaustiveness-check": 2,
-                "@typescript-eslint/prefer-nullish-coalescing": 2
+                "@typescript-eslint/prefer-nullish-coalescing": 2,
+
+                "n/no-unsupported-features/es-syntax": 0
             }
         }
     ]

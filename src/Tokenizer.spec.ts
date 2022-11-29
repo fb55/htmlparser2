@@ -1,4 +1,4 @@
-import { Tokenizer } from ".";
+import { Tokenizer } from "./index.js";
 
 function tokenize(str: string) {
     const log: unknown[][] = [];

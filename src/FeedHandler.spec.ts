@@ -1,9 +1,9 @@
 // Runs tests for feeds
 
-import * as helper from "./__fixtures__/test-helper";
-import { DomHandler, getFeed, parseFeed } from ".";
-import fs from "fs";
-import path from "path";
+import * as helper from "./__fixtures__/test-helper.js";
+import { DomHandler, getFeed, parseFeed } from "./index.js";
+import fs from "node:fs";
+import path from "node:path";
 
 const documents = path.join(__dirname, "__fixtures__", "Documents");
 

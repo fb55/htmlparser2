@@ -1,4 +1,4 @@
-import { Parser, Handler, ParserOptions } from "../Parser";
+import { Parser, Handler, ParserOptions } from "../Parser.js";
 import fs from "fs";
 import path from "path";
 

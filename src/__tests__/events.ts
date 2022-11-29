@@ -1,5 +1,5 @@
-import { Parser } from "..";
-import * as helper from "../__fixtures__/test-helper";
+import { Parser } from "../index.js";
+import * as helper from "../__fixtures__/test-helper.js";
 
 helper.createSuite("Events", ({ options, input }, cb) =>
     helper.writeToParser(helper.getEventCollector(cb), options?.parser, input)

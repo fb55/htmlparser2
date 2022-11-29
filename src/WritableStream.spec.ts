@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { WritableStream } from "./WritableStream";
-import * as helper from "./__fixtures__/test-helper";
+import { WritableStream } from "./WritableStream.js";
+import * as helper from "./__fixtures__/test-helper.js";
 
 describe("WritableStream", () => {
     test("should decode fragmented unicode characters", () => {
