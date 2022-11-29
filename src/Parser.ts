@@ -211,7 +211,7 @@ export class Parser implements Callbacks {
     private attribname = "";
     private attribvalue = "";
     private attribs: null | { [key: string]: string } = null;
-    private stack: string[] = [];
+    private readonly stack: string[] = [];
     private readonly foreignContext: boolean[] = [];
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
