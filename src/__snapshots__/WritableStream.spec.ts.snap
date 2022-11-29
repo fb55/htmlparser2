@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Stream Atom feed 1`] = `
-Array [
-  Object {
-    "data": Array [
+[
+  {
+    "data": [
       "?xml",
-      "?xml version=\\"1.0\\" encoding=\\"utf-8\\"?",
+      "?xml version="1.0" encoding="utf-8"?",
     ],
     "endIndex": 37,
     "event": "processinginstruction",
     "startIndex": 0,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -20,22 +20,22 @@ Array [
     "event": "text",
     "startIndex": 38,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " http://en.wikipedia.org/wiki/Atom_%28standard%29 ",
     ],
     "endIndex": 95,
     "event": "comment",
     "startIndex": 39,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 95,
     "event": "commentend",
     "startIndex": 39,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -43,28 +43,28 @@ Array [
     "event": "text",
     "startIndex": 96,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "feed",
     ],
     "endIndex": 102,
     "event": "opentagname",
     "startIndex": 97,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns",
       "http://www.w3.org/2005/Atom",
-      "\\"",
+      """,
     ],
     "endIndex": 137,
     "event": "attribute",
     "startIndex": 103,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "feed",
-      Object {
+      {
         "xmlns": "http://www.w3.org/2005/Atom",
       },
       false,
@@ -73,8 +73,8 @@ Array [
     "event": "opentag",
     "startIndex": 97,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -82,34 +82,34 @@ Array [
     "event": "text",
     "startIndex": 139,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 147,
     "event": "opentagname",
     "startIndex": 141,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 147,
     "event": "opentag",
     "startIndex": 141,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Example Feed",
     ],
     "endIndex": 159,
     "event": "text",
     "startIndex": 148,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -117,8 +117,8 @@ Array [
     "event": "closetag",
     "startIndex": 160,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -126,34 +126,34 @@ Array [
     "event": "text",
     "startIndex": 168,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "subtitle",
     ],
     "endIndex": 179,
     "event": "opentagname",
     "startIndex": 170,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "subtitle",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 179,
     "event": "opentag",
     "startIndex": 170,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "A subtitle.",
     ],
     "endIndex": 190,
     "event": "text",
     "startIndex": 180,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "subtitle",
       false,
     ],
@@ -161,8 +161,8 @@ Array [
     "event": "closetag",
     "startIndex": 191,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -170,38 +170,38 @@ Array [
     "event": "text",
     "startIndex": 202,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 209,
     "event": "opentagname",
     "startIndex": 204,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "href",
       "http://example.org/feed/",
-      "\\"",
+      """,
     ],
     "endIndex": 240,
     "event": "attribute",
     "startIndex": 210,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rel",
       "self",
-      "\\"",
+      """,
     ],
     "endIndex": 251,
     "event": "attribute",
     "startIndex": 242,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {
+      {
         "href": "http://example.org/feed/",
         "rel": "self",
       },
@@ -211,8 +211,8 @@ Array [
     "event": "opentag",
     "startIndex": 204,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       true,
     ],
@@ -220,8 +220,8 @@ Array [
     "event": "closetag",
     "startIndex": 204,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -229,28 +229,28 @@ Array [
     "event": "text",
     "startIndex": 255,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 262,
     "event": "opentagname",
     "startIndex": 257,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "href",
       "http://example.org/",
-      "\\"",
+      """,
     ],
     "endIndex": 288,
     "event": "attribute",
     "startIndex": 263,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {
+      {
         "href": "http://example.org/",
       },
       false,
@@ -259,8 +259,8 @@ Array [
     "event": "opentag",
     "startIndex": 257,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       true,
     ],
@@ -268,8 +268,8 @@ Array [
     "event": "closetag",
     "startIndex": 257,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -277,34 +277,34 @@ Array [
     "event": "text",
     "startIndex": 292,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
     ],
     "endIndex": 297,
     "event": "opentagname",
     "startIndex": 294,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 297,
     "event": "opentag",
     "startIndex": 294,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6",
     ],
     "endIndex": 342,
     "event": "text",
     "startIndex": 298,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
       false,
     ],
@@ -312,8 +312,8 @@ Array [
     "event": "closetag",
     "startIndex": 343,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -321,34 +321,34 @@ Array [
     "event": "text",
     "startIndex": 348,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "updated",
     ],
     "endIndex": 358,
     "event": "opentagname",
     "startIndex": 350,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "updated",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 358,
     "event": "opentag",
     "startIndex": 350,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2003-12-13T18:30:02Z",
     ],
     "endIndex": 378,
     "event": "text",
     "startIndex": 359,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "updated",
       false,
     ],
@@ -356,8 +356,8 @@ Array [
     "event": "closetag",
     "startIndex": 379,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -365,26 +365,26 @@ Array [
     "event": "text",
     "startIndex": 389,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "author",
     ],
     "endIndex": 398,
     "event": "opentagname",
     "startIndex": 391,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "author",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 398,
     "event": "opentag",
     "startIndex": 391,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -392,34 +392,34 @@ Array [
     "event": "text",
     "startIndex": 399,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "name",
     ],
     "endIndex": 407,
     "event": "opentagname",
     "startIndex": 402,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "name",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 407,
     "event": "opentag",
     "startIndex": 402,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "John Doe",
     ],
     "endIndex": 415,
     "event": "text",
     "startIndex": 408,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "name",
       false,
     ],
@@ -427,8 +427,8 @@ Array [
     "event": "closetag",
     "startIndex": 416,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -436,34 +436,34 @@ Array [
     "event": "text",
     "startIndex": 423,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "email",
     ],
     "endIndex": 432,
     "event": "opentagname",
     "startIndex": 426,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "email",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 432,
     "event": "opentag",
     "startIndex": 426,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "johndoe@example.com",
     ],
     "endIndex": 451,
     "event": "text",
     "startIndex": 433,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "email",
       false,
     ],
@@ -471,8 +471,8 @@ Array [
     "event": "closetag",
     "startIndex": 452,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -480,8 +480,8 @@ Array [
     "event": "text",
     "startIndex": 460,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "author",
       false,
     ],
@@ -489,8 +489,8 @@ Array [
     "event": "closetag",
     "startIndex": 462,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
 	",
@@ -499,26 +499,26 @@ Array [
     "event": "text",
     "startIndex": 471,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "entry",
     ],
     "endIndex": 480,
     "event": "opentagname",
     "startIndex": 474,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "entry",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 480,
     "event": "opentag",
     "startIndex": 474,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -526,34 +526,34 @@ Array [
     "event": "text",
     "startIndex": 481,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 490,
     "event": "opentagname",
     "startIndex": 484,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 490,
     "event": "opentag",
     "startIndex": 484,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Atom-Powered Robots Run Amok",
     ],
     "endIndex": 518,
     "event": "text",
     "startIndex": 491,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -561,8 +561,8 @@ Array [
     "event": "closetag",
     "startIndex": 519,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -570,28 +570,28 @@ Array [
     "event": "text",
     "startIndex": 527,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 535,
     "event": "opentagname",
     "startIndex": 530,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "href",
       "http://example.org/2003/12/13/atom03",
-      "\\"",
+      """,
     ],
     "endIndex": 578,
     "event": "attribute",
     "startIndex": 536,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {
+      {
         "href": "http://example.org/2003/12/13/atom03",
       },
       false,
@@ -600,8 +600,8 @@ Array [
     "event": "opentag",
     "startIndex": 530,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       true,
     ],
@@ -609,8 +609,8 @@ Array [
     "event": "closetag",
     "startIndex": 530,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -618,48 +618,48 @@ Array [
     "event": "text",
     "startIndex": 582,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 590,
     "event": "opentagname",
     "startIndex": 585,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rel",
       "alternate",
-      "\\"",
+      """,
     ],
     "endIndex": 605,
     "event": "attribute",
     "startIndex": 591,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "type",
       "text/html",
-      "\\"",
+      """,
     ],
     "endIndex": 622,
     "event": "attribute",
     "startIndex": 607,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "href",
       "http://example.org/2003/12/13/atom03.html",
-      "\\"",
+      """,
     ],
     "endIndex": 671,
     "event": "attribute",
     "startIndex": 624,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {
+      {
         "href": "http://example.org/2003/12/13/atom03.html",
         "rel": "alternate",
         "type": "text/html",
@@ -670,8 +670,8 @@ Array [
     "event": "opentag",
     "startIndex": 585,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       true,
     ],
@@ -679,8 +679,8 @@ Array [
     "event": "closetag",
     "startIndex": 585,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -688,38 +688,38 @@ Array [
     "event": "text",
     "startIndex": 674,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 682,
     "event": "opentagname",
     "startIndex": 677,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rel",
       "edit",
-      "\\"",
+      """,
     ],
     "endIndex": 692,
     "event": "attribute",
     "startIndex": 683,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "href",
       "http://example.org/2003/12/13/atom03/edit",
-      "\\"",
+      """,
     ],
     "endIndex": 741,
     "event": "attribute",
     "startIndex": 694,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {
+      {
         "href": "http://example.org/2003/12/13/atom03/edit",
         "rel": "edit",
       },
@@ -729,8 +729,8 @@ Array [
     "event": "opentag",
     "startIndex": 677,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       true,
     ],
@@ -738,8 +738,8 @@ Array [
     "event": "closetag",
     "startIndex": 677,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -747,34 +747,34 @@ Array [
     "event": "text",
     "startIndex": 744,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
     ],
     "endIndex": 750,
     "event": "opentagname",
     "startIndex": 747,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 750,
     "event": "opentag",
     "startIndex": 747,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
     ],
     "endIndex": 795,
     "event": "text",
     "startIndex": 751,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
       false,
     ],
@@ -782,8 +782,8 @@ Array [
     "event": "closetag",
     "startIndex": 796,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -791,34 +791,34 @@ Array [
     "event": "text",
     "startIndex": 801,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "updated",
     ],
     "endIndex": 812,
     "event": "opentagname",
     "startIndex": 804,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "updated",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 812,
     "event": "opentag",
     "startIndex": 804,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2003-12-13T18:30:02Z",
     ],
     "endIndex": 832,
     "event": "text",
     "startIndex": 813,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "updated",
       false,
     ],
@@ -826,8 +826,8 @@ Array [
     "event": "closetag",
     "startIndex": 833,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -835,28 +835,28 @@ Array [
     "event": "text",
     "startIndex": 843,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "content",
     ],
     "endIndex": 854,
     "event": "opentagname",
     "startIndex": 846,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "type",
       "html",
-      "\\"",
+      """,
     ],
     "endIndex": 865,
     "event": "attribute",
     "startIndex": 855,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "content",
-      Object {
+      {
         "type": "html",
       },
       false,
@@ -865,34 +865,34 @@ Array [
     "event": "opentag",
     "startIndex": 846,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "p",
     ],
     "endIndex": 869,
     "event": "opentagname",
     "startIndex": 867,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "p",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 869,
     "event": "opentag",
     "startIndex": 867,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Some content.",
     ],
     "endIndex": 882,
     "event": "text",
     "startIndex": 870,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "p",
       false,
     ],
@@ -900,8 +900,8 @@ Array [
     "event": "closetag",
     "startIndex": 883,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "content",
       false,
     ],
@@ -909,8 +909,8 @@ Array [
     "event": "closetag",
     "startIndex": 887,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -918,8 +918,8 @@ Array [
     "event": "text",
     "startIndex": 897,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "entry",
       false,
     ],
@@ -927,8 +927,8 @@ Array [
     "event": "closetag",
     "startIndex": 899,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
 	",
@@ -937,26 +937,26 @@ Array [
     "event": "text",
     "startIndex": 907,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "entry",
     ],
     "endIndex": 916,
     "event": "opentagname",
     "startIndex": 910,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "entry",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 917,
     "event": "opentag",
     "startIndex": 910,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "entry",
       true,
     ],
@@ -964,8 +964,8 @@ Array [
     "event": "closetag",
     "startIndex": 910,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
 ",
@@ -974,8 +974,8 @@ Array [
     "event": "text",
     "startIndex": 918,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "feed",
       false,
     ],
@@ -983,8 +983,8 @@ Array [
     "event": "closetag",
     "startIndex": 920,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -996,9 +996,9 @@ Array [
 `;
 
 exports[`Stream Attributes 1`] = `
-Array [
-  Object {
-    "data": Array [
+[
+  {
+    "data": [
       "!doctype",
       "!doctype html",
     ],
@@ -1006,8 +1006,8 @@ Array [
     "event": "processinginstruction",
     "startIndex": 0,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1015,26 +1015,26 @@ Array [
     "event": "text",
     "startIndex": 15,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
     ],
     "endIndex": 21,
     "event": "opentagname",
     "startIndex": 16,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 21,
     "event": "opentag",
     "startIndex": 16,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1042,26 +1042,26 @@ Array [
     "event": "text",
     "startIndex": 22,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "head",
     ],
     "endIndex": 28,
     "event": "opentagname",
     "startIndex": 23,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "head",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 28,
     "event": "opentag",
     "startIndex": 23,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -1069,34 +1069,34 @@ Array [
     "event": "text",
     "startIndex": 29,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 37,
     "event": "opentagname",
     "startIndex": 31,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 37,
     "event": "opentag",
     "startIndex": 31,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Attributes test",
     ],
     "endIndex": 52,
     "event": "text",
     "startIndex": 38,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -1104,8 +1104,8 @@ Array [
     "event": "closetag",
     "startIndex": 53,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1113,8 +1113,8 @@ Array [
     "event": "text",
     "startIndex": 61,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "head",
       false,
     ],
@@ -1122,8 +1122,8 @@ Array [
     "event": "closetag",
     "startIndex": 62,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1131,26 +1131,26 @@ Array [
     "event": "text",
     "startIndex": 69,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
     ],
     "endIndex": 75,
     "event": "opentagname",
     "startIndex": 70,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 75,
     "event": "opentag",
     "startIndex": 70,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -1158,22 +1158,22 @@ Array [
     "event": "text",
     "startIndex": 76,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " Normal attributes ",
     ],
     "endIndex": 103,
     "event": "comment",
     "startIndex": 78,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 103,
     "event": "commentend",
     "startIndex": 78,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -1181,48 +1181,48 @@ Array [
     "event": "text",
     "startIndex": 104,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
     ],
     "endIndex": 113,
     "event": "opentagname",
     "startIndex": 106,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
       "test0",
-      "\\"",
+      """,
     ],
     "endIndex": 123,
     "event": "attribute",
     "startIndex": 114,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "class",
       "value0",
-      "\\"",
+      """,
     ],
     "endIndex": 138,
     "event": "attribute",
     "startIndex": 125,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       "value1",
-      "\\"",
+      """,
     ],
     "endIndex": 153,
     "event": "attribute",
     "startIndex": 140,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
-      Object {
+      {
         "class": "value0",
         "id": "test0",
         "title": "value1",
@@ -1233,16 +1233,16 @@ Array [
     "event": "opentag",
     "startIndex": 106,
   },
-  Object {
-    "data": Array [
-      "class=\\"value0\\" title=\\"value1\\"",
+  {
+    "data": [
+      "class="value0" title="value1"",
     ],
     "endIndex": 183,
     "event": "text",
     "startIndex": 155,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
       false,
     ],
@@ -1250,8 +1250,8 @@ Array [
     "event": "closetag",
     "startIndex": 184,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
 	",
@@ -1260,22 +1260,22 @@ Array [
     "event": "text",
     "startIndex": 193,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " Attributes with no quotes or value ",
     ],
     "endIndex": 238,
     "event": "comment",
     "startIndex": 196,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 238,
     "event": "commentend",
     "startIndex": 196,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -1283,26 +1283,26 @@ Array [
     "event": "text",
     "startIndex": 239,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
     ],
     "endIndex": 248,
     "event": "opentagname",
     "startIndex": 241,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
       "test1",
-      "\\"",
+      """,
     ],
     "endIndex": 258,
     "event": "attribute",
     "startIndex": 249,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "class",
       "value2",
       null,
@@ -1311,8 +1311,8 @@ Array [
     "event": "attribute",
     "startIndex": 260,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "disabled",
       "",
     ],
@@ -1320,10 +1320,10 @@ Array [
     "event": "attribute",
     "startIndex": 273,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
-      Object {
+      {
         "class": "value2",
         "disabled": "",
         "id": "test1",
@@ -1334,16 +1334,16 @@ Array [
     "event": "opentag",
     "startIndex": 241,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "class=value2 disabled",
     ],
     "endIndex": 302,
     "event": "text",
     "startIndex": 282,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
       false,
     ],
@@ -1351,8 +1351,8 @@ Array [
     "event": "closetag",
     "startIndex": 303,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
 	",
@@ -1361,22 +1361,22 @@ Array [
     "event": "text",
     "startIndex": 312,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " Attributes with no space between them. No valid, but accepted by the browser ",
     ],
     "endIndex": 399,
     "event": "comment",
     "startIndex": 315,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 399,
     "event": "commentend",
     "startIndex": 315,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -1384,48 +1384,48 @@ Array [
     "event": "text",
     "startIndex": 400,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
     ],
     "endIndex": 409,
     "event": "opentagname",
     "startIndex": 402,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "id",
       "test2",
-      "\\"",
+      """,
     ],
     "endIndex": 419,
     "event": "attribute",
     "startIndex": 410,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "class",
       "value4",
-      "\\"",
+      """,
     ],
     "endIndex": 434,
     "event": "attribute",
     "startIndex": 421,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       "value5",
-      "\\"",
+      """,
     ],
     "endIndex": 448,
     "event": "attribute",
     "startIndex": 435,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
-      Object {
+      {
         "class": "value4",
         "id": "test2",
         "title": "value5",
@@ -1436,16 +1436,16 @@ Array [
     "event": "opentag",
     "startIndex": 402,
   },
-  Object {
-    "data": Array [
-      "class=\\"value4\\"title=\\"value5\\"",
+  {
+    "data": [
+      "class="value4"title="value5"",
     ],
     "endIndex": 477,
     "event": "text",
     "startIndex": 450,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "button",
       false,
     ],
@@ -1453,8 +1453,8 @@ Array [
     "event": "closetag",
     "startIndex": 478,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1462,8 +1462,8 @@ Array [
     "event": "text",
     "startIndex": 487,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
       false,
     ],
@@ -1471,8 +1471,8 @@ Array [
     "event": "closetag",
     "startIndex": 488,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1480,8 +1480,8 @@ Array [
     "event": "text",
     "startIndex": 495,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
       false,
     ],
@@ -1493,9 +1493,9 @@ Array [
 `;
 
 exports[`Stream Basic html 1`] = `
-Array [
-  Object {
-    "data": Array [
+[
+  {
+    "data": [
       "!doctype",
       "!DOCTYPE html",
     ],
@@ -1503,52 +1503,52 @@ Array [
     "event": "processinginstruction",
     "startIndex": 0,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
     ],
     "endIndex": 20,
     "event": "opentagname",
     "startIndex": 15,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 20,
     "event": "opentag",
     "startIndex": 15,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 27,
     "event": "opentagname",
     "startIndex": 21,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 27,
     "event": "opentag",
     "startIndex": 21,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "The Title",
     ],
     "endIndex": 36,
     "event": "text",
     "startIndex": 28,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -1556,34 +1556,34 @@ Array [
     "event": "closetag",
     "startIndex": 37,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
     ],
     "endIndex": 50,
     "event": "opentagname",
     "startIndex": 45,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 50,
     "event": "opentag",
     "startIndex": 45,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Hello world",
     ],
     "endIndex": 61,
     "event": "text",
     "startIndex": 51,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
       false,
     ],
@@ -1591,8 +1591,8 @@ Array [
     "event": "closetag",
     "startIndex": 62,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
       false,
     ],
@@ -1604,18 +1604,18 @@ Array [
 `;
 
 exports[`Stream RDF feed 1`] = `
-Array [
-  Object {
-    "data": Array [
+[
+  {
+    "data": [
       "?xml",
-      "?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?",
+      "?xml version="1.0" encoding="UTF-8"?",
     ],
     "endIndex": 37,
     "event": "processinginstruction",
     "startIndex": 0,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -1623,108 +1623,108 @@ Array [
     "event": "text",
     "startIndex": 38,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:RDF",
     ],
     "endIndex": 47,
     "event": "opentagname",
     "startIndex": 39,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:rdf",
       "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "\\"",
+      """,
     ],
     "endIndex": 102,
     "event": "attribute",
     "startIndex": 48,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns",
       "http://purl.org/rss/1.0/",
-      "\\"",
+      """,
     ],
     "endIndex": 135,
     "event": "attribute",
     "startIndex": 104,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:ev",
       "http://purl.org/rss/1.0/modules/event/",
-      "\\"",
+      """,
     ],
     "endIndex": 185,
     "event": "attribute",
     "startIndex": 137,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:content",
       "http://purl.org/rss/1.0/modules/content/",
-      "\\"",
+      """,
     ],
     "endIndex": 242,
     "event": "attribute",
     "startIndex": 187,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:taxo",
       "http://purl.org/rss/1.0/modules/taxonomy/",
-      "\\"",
+      """,
     ],
     "endIndex": 297,
     "event": "attribute",
     "startIndex": 244,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:dc",
       "http://purl.org/dc/elements/1.1/",
-      "\\"",
+      """,
     ],
     "endIndex": 341,
     "event": "attribute",
     "startIndex": 299,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:syn",
       "http://purl.org/rss/1.0/modules/syndication/",
-      "\\"",
+      """,
     ],
     "endIndex": 398,
     "event": "attribute",
     "startIndex": 343,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:dcterms",
       "http://purl.org/dc/terms/",
-      "\\"",
+      """,
     ],
     "endIndex": 440,
     "event": "attribute",
     "startIndex": 400,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:admin",
       "http://webns.net/mvcb/",
-      "\\"",
+      """,
     ],
     "endIndex": 477,
     "event": "attribute",
     "startIndex": 442,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:RDF",
-      Object {
+      {
         "xmlns": "http://purl.org/rss/1.0/",
         "xmlns:admin": "http://webns.net/mvcb/",
         "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
@@ -1741,8 +1741,8 @@ Array [
     "event": "opentag",
     "startIndex": 39,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -1750,28 +1750,28 @@ Array [
     "event": "text",
     "startIndex": 479,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "channel",
     ],
     "endIndex": 489,
     "event": "opentagname",
     "startIndex": 481,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:about",
       "https://github.com/fb55/htmlparser2/",
-      "\\"",
+      """,
     ],
     "endIndex": 537,
     "event": "attribute",
     "startIndex": 490,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "channel",
-      Object {
+      {
         "rdf:about": "https://github.com/fb55/htmlparser2/",
       },
       false,
@@ -1780,8 +1780,8 @@ Array [
     "event": "opentag",
     "startIndex": 481,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -1789,34 +1789,34 @@ Array [
     "event": "text",
     "startIndex": 539,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 548,
     "event": "opentagname",
     "startIndex": 542,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 548,
     "event": "opentag",
     "startIndex": 542,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "A title to parse and remember",
     ],
     "endIndex": 577,
     "event": "text",
     "startIndex": 549,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -1824,8 +1824,8 @@ Array [
     "event": "closetag",
     "startIndex": 578,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -1833,34 +1833,34 @@ Array [
     "event": "text",
     "startIndex": 586,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 594,
     "event": "opentagname",
     "startIndex": 589,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 594,
     "event": "opentag",
     "startIndex": 589,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "https://github.com/fb55/htmlparser2/",
     ],
     "endIndex": 630,
     "event": "text",
     "startIndex": 595,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -1868,8 +1868,8 @@ Array [
     "event": "closetag",
     "startIndex": 631,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -1877,26 +1877,26 @@ Array [
     "event": "text",
     "startIndex": 638,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 653,
     "event": "opentagname",
     "startIndex": 641,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 654,
     "event": "opentag",
     "startIndex": 641,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       true,
     ],
@@ -1904,8 +1904,8 @@ Array [
     "event": "closetag",
     "startIndex": 641,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -1913,34 +1913,34 @@ Array [
     "event": "text",
     "startIndex": 655,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
     ],
     "endIndex": 670,
     "event": "opentagname",
     "startIndex": 658,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 670,
     "event": "opentag",
     "startIndex": 658,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "en-us",
     ],
     "endIndex": 675,
     "event": "text",
     "startIndex": 671,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
       false,
     ],
@@ -1948,8 +1948,8 @@ Array [
     "event": "closetag",
     "startIndex": 676,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -1957,34 +1957,34 @@ Array [
     "event": "text",
     "startIndex": 690,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
     ],
     "endIndex": 703,
     "event": "opentagname",
     "startIndex": 693,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 703,
     "event": "opentag",
     "startIndex": 693,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Copyright 2015 the authors",
     ],
     "endIndex": 729,
     "event": "text",
     "startIndex": 704,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
       false,
     ],
@@ -1992,8 +1992,8 @@ Array [
     "event": "closetag",
     "startIndex": 730,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2001,34 +2001,34 @@ Array [
     "event": "text",
     "startIndex": 742,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:publisher",
     ],
     "endIndex": 758,
     "event": "opentagname",
     "startIndex": 745,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:publisher",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 758,
     "event": "opentag",
     "startIndex": 745,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "webmaster@thisisafakedoma.in",
     ],
     "endIndex": 786,
     "event": "text",
     "startIndex": 759,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:publisher",
       false,
     ],
@@ -2036,8 +2036,8 @@ Array [
     "event": "closetag",
     "startIndex": 787,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2045,34 +2045,34 @@ Array [
     "event": "text",
     "startIndex": 802,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:creator",
     ],
     "endIndex": 816,
     "event": "opentagname",
     "startIndex": 805,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:creator",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 816,
     "event": "opentag",
     "startIndex": 805,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "webmaster@thisisafakedoma.in",
     ],
     "endIndex": 844,
     "event": "text",
     "startIndex": 817,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:creator",
       false,
     ],
@@ -2080,8 +2080,8 @@ Array [
     "event": "closetag",
     "startIndex": 845,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2089,34 +2089,34 @@ Array [
     "event": "text",
     "startIndex": 858,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
     ],
     "endIndex": 871,
     "event": "opentagname",
     "startIndex": 861,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 871,
     "event": "opentag",
     "startIndex": 861,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "https://github.com/fb55/htmlparser2/",
     ],
     "endIndex": 907,
     "event": "text",
     "startIndex": 872,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
       false,
     ],
@@ -2124,8 +2124,8 @@ Array [
     "event": "closetag",
     "startIndex": 908,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2133,34 +2133,34 @@ Array [
     "event": "text",
     "startIndex": 920,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
     ],
     "endIndex": 932,
     "event": "opentagname",
     "startIndex": 923,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 932,
     "event": "opentag",
     "startIndex": 923,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "A title to parse and remember",
     ],
     "endIndex": 961,
     "event": "text",
     "startIndex": 933,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
       false,
     ],
@@ -2168,8 +2168,8 @@ Array [
     "event": "closetag",
     "startIndex": 962,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2177,34 +2177,34 @@ Array [
     "event": "text",
     "startIndex": 973,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
     ],
     "endIndex": 984,
     "event": "opentagname",
     "startIndex": 976,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 984,
     "event": "opentag",
     "startIndex": 976,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Collection",
     ],
     "endIndex": 994,
     "event": "text",
     "startIndex": 985,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
       false,
     ],
@@ -2212,8 +2212,8 @@ Array [
     "event": "closetag",
     "startIndex": 995,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2221,34 +2221,34 @@ Array [
     "event": "text",
     "startIndex": 1005,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updateBase",
     ],
     "endIndex": 1023,
     "event": "opentagname",
     "startIndex": 1008,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updateBase",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1023,
     "event": "opentag",
     "startIndex": 1008,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2011-11-04T09:39:10-07:00",
     ],
     "endIndex": 1048,
     "event": "text",
     "startIndex": 1024,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updateBase",
       false,
     ],
@@ -2256,8 +2256,8 @@ Array [
     "event": "closetag",
     "startIndex": 1049,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2265,34 +2265,34 @@ Array [
     "event": "text",
     "startIndex": 1066,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updateFrequency",
     ],
     "endIndex": 1089,
     "event": "opentagname",
     "startIndex": 1069,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updateFrequency",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1089,
     "event": "opentag",
     "startIndex": 1069,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "4",
     ],
     "endIndex": 1090,
     "event": "text",
     "startIndex": 1090,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updateFrequency",
       false,
     ],
@@ -2300,8 +2300,8 @@ Array [
     "event": "closetag",
     "startIndex": 1091,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2309,34 +2309,34 @@ Array [
     "event": "text",
     "startIndex": 1113,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updatePeriod",
     ],
     "endIndex": 1133,
     "event": "opentagname",
     "startIndex": 1116,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updatePeriod",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1133,
     "event": "opentag",
     "startIndex": 1116,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "hourly",
     ],
     "endIndex": 1139,
     "event": "text",
     "startIndex": 1134,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "syn:updatePeriod",
       false,
     ],
@@ -2344,8 +2344,8 @@ Array [
     "event": "closetag",
     "startIndex": 1140,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2353,26 +2353,26 @@ Array [
     "event": "text",
     "startIndex": 1159,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "items",
     ],
     "endIndex": 1168,
     "event": "opentagname",
     "startIndex": 1162,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "items",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1168,
     "event": "opentag",
     "startIndex": 1162,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 			",
     ],
@@ -2380,26 +2380,26 @@ Array [
     "event": "text",
     "startIndex": 1169,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:Seq",
     ],
     "endIndex": 1181,
     "event": "opentagname",
     "startIndex": 1173,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:Seq",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1181,
     "event": "opentag",
     "startIndex": 1173,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 				",
     ],
@@ -2407,28 +2407,28 @@ Array [
     "event": "text",
     "startIndex": 1182,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:li",
     ],
     "endIndex": 1194,
     "event": "opentagname",
     "startIndex": 1187,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:resource",
       "http://somefakesite/path/to/something.html",
-      "\\"",
+      """,
     ],
     "endIndex": 1251,
     "event": "attribute",
     "startIndex": 1195,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:li",
-      Object {
+      {
         "rdf:resource": "http://somefakesite/path/to/something.html",
       },
       false,
@@ -2437,8 +2437,8 @@ Array [
     "event": "opentag",
     "startIndex": 1187,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:li",
       true,
     ],
@@ -2446,8 +2446,8 @@ Array [
     "event": "closetag",
     "startIndex": 1187,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 			",
     ],
@@ -2455,8 +2455,8 @@ Array [
     "event": "text",
     "startIndex": 1254,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:Seq",
       false,
     ],
@@ -2464,8 +2464,8 @@ Array [
     "event": "closetag",
     "startIndex": 1258,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2473,8 +2473,8 @@ Array [
     "event": "text",
     "startIndex": 1268,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "items",
       false,
     ],
@@ -2482,8 +2482,8 @@ Array [
     "event": "closetag",
     "startIndex": 1271,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -2491,8 +2491,8 @@ Array [
     "event": "text",
     "startIndex": 1279,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "channel",
       false,
     ],
@@ -2500,8 +2500,8 @@ Array [
     "event": "closetag",
     "startIndex": 1281,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -2509,28 +2509,28 @@ Array [
     "event": "text",
     "startIndex": 1291,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
     ],
     "endIndex": 1298,
     "event": "opentagname",
     "startIndex": 1293,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:about",
       "http://somefakesite/path/to/something.html",
-      "\\"",
+      """,
     ],
     "endIndex": 1352,
     "event": "attribute",
     "startIndex": 1299,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
-      Object {
+      {
         "rdf:about": "http://somefakesite/path/to/something.html",
       },
       false,
@@ -2539,8 +2539,8 @@ Array [
     "event": "opentag",
     "startIndex": 1293,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2548,46 +2548,46 @@ Array [
     "event": "text",
     "startIndex": 1354,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 1363,
     "event": "opentagname",
     "startIndex": 1357,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1363,
     "event": "opentag",
     "startIndex": 1357,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 1394,
     "event": "cdatastart",
     "startIndex": 1364,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " Fast HTML Parsing ",
     ],
     "endIndex": 1394,
     "event": "text",
     "startIndex": 1364,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 1394,
     "event": "cdataend",
     "startIndex": 1364,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -2595,8 +2595,8 @@ Array [
     "event": "closetag",
     "startIndex": 1395,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2604,26 +2604,26 @@ Array [
     "event": "text",
     "startIndex": 1403,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 1411,
     "event": "opentagname",
     "startIndex": 1406,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1411,
     "event": "opentag",
     "startIndex": 1406,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 http://somefakesite/path/to/something.html
 ",
@@ -2632,8 +2632,8 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1412,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -2641,8 +2641,8 @@ http://somefakesite/path/to/something.html
     "event": "closetag",
     "startIndex": 1456,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2650,48 +2650,48 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1463,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 1478,
     "event": "opentagname",
     "startIndex": 1466,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1478,
     "event": "opentag",
     "startIndex": 1466,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 1560,
     "event": "cdatastart",
     "startIndex": 1479,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
-Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
+Great test content<br>A link: <a href="http://github.com">Github</a>
 ",
     ],
     "endIndex": 1560,
     "event": "text",
     "startIndex": 1479,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 1560,
     "event": "cdataend",
     "startIndex": 1479,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -2699,8 +2699,8 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "closetag",
     "startIndex": 1561,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2708,34 +2708,34 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "text",
     "startIndex": 1575,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:date",
     ],
     "endIndex": 1586,
     "event": "opentagname",
     "startIndex": 1578,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:date",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1586,
     "event": "opentag",
     "startIndex": 1578,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2011-11-04T09:35:17-07:00",
     ],
     "endIndex": 1611,
     "event": "text",
     "startIndex": 1587,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:date",
       false,
     ],
@@ -2743,8 +2743,8 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "closetag",
     "startIndex": 1612,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2752,34 +2752,34 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "text",
     "startIndex": 1622,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
     ],
     "endIndex": 1637,
     "event": "opentagname",
     "startIndex": 1625,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1637,
     "event": "opentag",
     "startIndex": 1625,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "en-us",
     ],
     "endIndex": 1642,
     "event": "text",
     "startIndex": 1638,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
       false,
     ],
@@ -2787,8 +2787,8 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "closetag",
     "startIndex": 1643,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2796,34 +2796,34 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "text",
     "startIndex": 1657,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
     ],
     "endIndex": 1670,
     "event": "opentagname",
     "startIndex": 1660,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1670,
     "event": "opentag",
     "startIndex": 1660,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Copyright 2015 the authors",
     ],
     "endIndex": 1696,
     "event": "text",
     "startIndex": 1671,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
       false,
     ],
@@ -2831,8 +2831,8 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "closetag",
     "startIndex": 1697,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2840,26 +2840,26 @@ Great test content<br>A link: <a href=\\"http://github.com\\">Github</a>
     "event": "text",
     "startIndex": 1709,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
     ],
     "endIndex": 1722,
     "event": "opentagname",
     "startIndex": 1712,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1722,
     "event": "opentag",
     "startIndex": 1712,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 http://somefakesite/path/to/something.html
 ",
@@ -2868,8 +2868,8 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1723,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
       false,
     ],
@@ -2877,8 +2877,8 @@ http://somefakesite/path/to/something.html
     "event": "closetag",
     "startIndex": 1767,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2886,46 +2886,46 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1779,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
     ],
     "endIndex": 1791,
     "event": "opentagname",
     "startIndex": 1782,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1791,
     "event": "opentag",
     "startIndex": 1782,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 1822,
     "event": "cdatastart",
     "startIndex": 1792,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " Fast HTML Parsing ",
     ],
     "endIndex": 1822,
     "event": "text",
     "startIndex": 1792,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 1822,
     "event": "cdataend",
     "startIndex": 1792,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
       false,
     ],
@@ -2933,8 +2933,8 @@ http://somefakesite/path/to/something.html
     "event": "closetag",
     "startIndex": 1823,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2942,34 +2942,34 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1834,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
     ],
     "endIndex": 1845,
     "event": "opentagname",
     "startIndex": 1837,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1845,
     "event": "opentag",
     "startIndex": 1837,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "text",
     ],
     "endIndex": 1849,
     "event": "text",
     "startIndex": 1846,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
       false,
     ],
@@ -2977,8 +2977,8 @@ http://somefakesite/path/to/something.html
     "event": "closetag",
     "startIndex": 1850,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -2986,34 +2986,34 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1860,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dcterms:issued",
     ],
     "endIndex": 1878,
     "event": "opentagname",
     "startIndex": 1863,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dcterms:issued",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1878,
     "event": "opentag",
     "startIndex": 1863,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2011-11-04T09:35:17-07:00",
     ],
     "endIndex": 1903,
     "event": "text",
     "startIndex": 1879,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dcterms:issued",
       false,
     ],
@@ -3021,8 +3021,8 @@ http://somefakesite/path/to/something.html
     "event": "closetag",
     "startIndex": 1904,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -3030,8 +3030,8 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1921,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
       false,
     ],
@@ -3039,8 +3039,8 @@ http://somefakesite/path/to/something.html
     "event": "closetag",
     "startIndex": 1923,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -3048,28 +3048,28 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1930,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
     ],
     "endIndex": 1937,
     "event": "opentagname",
     "startIndex": 1932,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:about",
       "http://somefakesite/path/to/something-else.html",
-      "\\"",
+      """,
     ],
     "endIndex": 1996,
     "event": "attribute",
     "startIndex": 1938,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
-      Object {
+      {
         "rdf:about": "http://somefakesite/path/to/something-else.html",
       },
       false,
@@ -3078,8 +3078,8 @@ http://somefakesite/path/to/something.html
     "event": "opentag",
     "startIndex": 1932,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3087,32 +3087,32 @@ http://somefakesite/path/to/something.html
     "event": "text",
     "startIndex": 1998,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 2007,
     "event": "opentagname",
     "startIndex": 2001,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2007,
     "event": "opentag",
     "startIndex": 2001,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 2056,
     "event": "cdatastart",
     "startIndex": 2008,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 This space intentionally left blank
 ",
@@ -3121,14 +3121,14 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2008,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 2056,
     "event": "cdataend",
     "startIndex": 2008,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -3136,8 +3136,8 @@ This space intentionally left blank
     "event": "closetag",
     "startIndex": 2057,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3145,26 +3145,26 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2065,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 2073,
     "event": "opentagname",
     "startIndex": 2068,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2073,
     "event": "opentag",
     "startIndex": 2068,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 http://somefakesite/path/to/something-else.html
 ",
@@ -3173,8 +3173,8 @@ http://somefakesite/path/to/something-else.html
     "event": "text",
     "startIndex": 2074,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -3182,8 +3182,8 @@ http://somefakesite/path/to/something-else.html
     "event": "closetag",
     "startIndex": 2123,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3191,32 +3191,32 @@ http://somefakesite/path/to/something-else.html
     "event": "text",
     "startIndex": 2130,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 2145,
     "event": "opentagname",
     "startIndex": 2133,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2145,
     "event": "opentag",
     "startIndex": 2133,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 2187,
     "event": "cdatastart",
     "startIndex": 2146,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 The early bird gets the worm
 ",
@@ -3225,14 +3225,14 @@ The early bird gets the worm
     "event": "text",
     "startIndex": 2146,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 2187,
     "event": "cdataend",
     "startIndex": 2146,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -3240,8 +3240,8 @@ The early bird gets the worm
     "event": "closetag",
     "startIndex": 2188,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3249,34 +3249,34 @@ The early bird gets the worm
     "event": "text",
     "startIndex": 2202,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:date",
     ],
     "endIndex": 2213,
     "event": "opentagname",
     "startIndex": 2205,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:date",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2213,
     "event": "opentag",
     "startIndex": 2205,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2011-11-04T09:34:54-07:00",
     ],
     "endIndex": 2238,
     "event": "text",
     "startIndex": 2214,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:date",
       false,
     ],
@@ -3284,8 +3284,8 @@ The early bird gets the worm
     "event": "closetag",
     "startIndex": 2239,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3293,34 +3293,34 @@ The early bird gets the worm
     "event": "text",
     "startIndex": 2249,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
     ],
     "endIndex": 2264,
     "event": "opentagname",
     "startIndex": 2252,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2264,
     "event": "opentag",
     "startIndex": 2252,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "en-us",
     ],
     "endIndex": 2269,
     "event": "text",
     "startIndex": 2265,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:language",
       false,
     ],
@@ -3328,8 +3328,8 @@ The early bird gets the worm
     "event": "closetag",
     "startIndex": 2270,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3337,34 +3337,34 @@ The early bird gets the worm
     "event": "text",
     "startIndex": 2284,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
     ],
     "endIndex": 2297,
     "event": "opentagname",
     "startIndex": 2287,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2297,
     "event": "opentag",
     "startIndex": 2287,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Copyright 2015 the authors",
     ],
     "endIndex": 2323,
     "event": "text",
     "startIndex": 2298,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:rights",
       false,
     ],
@@ -3372,8 +3372,8 @@ The early bird gets the worm
     "event": "closetag",
     "startIndex": 2324,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3381,26 +3381,26 @@ The early bird gets the worm
     "event": "text",
     "startIndex": 2336,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
     ],
     "endIndex": 2349,
     "event": "opentagname",
     "startIndex": 2339,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2349,
     "event": "opentag",
     "startIndex": 2339,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 http://somefakesite/path/to/something-else.html
 ",
@@ -3409,8 +3409,8 @@ http://somefakesite/path/to/something-else.html
     "event": "text",
     "startIndex": 2350,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:source",
       false,
     ],
@@ -3418,8 +3418,8 @@ http://somefakesite/path/to/something-else.html
     "event": "closetag",
     "startIndex": 2399,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3427,32 +3427,32 @@ http://somefakesite/path/to/something-else.html
     "event": "text",
     "startIndex": 2411,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
     ],
     "endIndex": 2423,
     "event": "opentagname",
     "startIndex": 2414,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2423,
     "event": "opentag",
     "startIndex": 2414,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 2472,
     "event": "cdatastart",
     "startIndex": 2424,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 This space intentionally left blank
 ",
@@ -3461,14 +3461,14 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2424,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 2472,
     "event": "cdataend",
     "startIndex": 2424,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:title",
       false,
     ],
@@ -3476,8 +3476,8 @@ This space intentionally left blank
     "event": "closetag",
     "startIndex": 2473,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3485,34 +3485,34 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2484,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
     ],
     "endIndex": 2495,
     "event": "opentagname",
     "startIndex": 2487,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2495,
     "event": "opentag",
     "startIndex": 2487,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "text",
     ],
     "endIndex": 2499,
     "event": "text",
     "startIndex": 2496,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dc:type",
       false,
     ],
@@ -3520,8 +3520,8 @@ This space intentionally left blank
     "event": "closetag",
     "startIndex": 2500,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -3529,34 +3529,34 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2510,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dcterms:issued",
     ],
     "endIndex": 2528,
     "event": "opentagname",
     "startIndex": 2513,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dcterms:issued",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2528,
     "event": "opentag",
     "startIndex": 2513,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "2011-11-04T09:34:54-07:00",
     ],
     "endIndex": 2553,
     "event": "text",
     "startIndex": 2529,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "dcterms:issued",
       false,
     ],
@@ -3564,8 +3564,8 @@ This space intentionally left blank
     "event": "closetag",
     "startIndex": 2554,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -3573,8 +3573,8 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2571,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
       false,
     ],
@@ -3582,8 +3582,8 @@ This space intentionally left blank
     "event": "closetag",
     "startIndex": 2573,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -3591,8 +3591,8 @@ This space intentionally left blank
     "event": "text",
     "startIndex": 2580,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rdf:RDF",
       false,
     ],
@@ -3604,18 +3604,18 @@ This space intentionally left blank
 `;
 
 exports[`Stream RSS feed 1`] = `
-Array [
-  Object {
-    "data": Array [
+[
+  {
+    "data": [
       "?xml",
-      "?xml version=\\"1.0\\"?",
+      "?xml version="1.0"?",
     ],
     "endIndex": 20,
     "event": "processinginstruction",
     "startIndex": 0,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -3623,22 +3623,22 @@ Array [
     "event": "text",
     "startIndex": 21,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       " http://cyber.law.harvard.edu/rss/examples/rss2sample.xml ",
     ],
     "endIndex": 86,
     "event": "comment",
     "startIndex": 22,
   },
-  Object {
-    "data": Array [],
+  {
+    "data": [],
     "endIndex": 86,
     "event": "commentend",
     "startIndex": 22,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -3646,28 +3646,28 @@ Array [
     "event": "text",
     "startIndex": 87,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rss",
     ],
     "endIndex": 92,
     "event": "opentagname",
     "startIndex": 88,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "version",
       "2.0",
-      "\\"",
+      """,
     ],
     "endIndex": 105,
     "event": "attribute",
     "startIndex": 93,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rss",
-      Object {
+      {
         "version": "2.0",
       },
       false,
@@ -3676,8 +3676,8 @@ Array [
     "event": "opentag",
     "startIndex": 88,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
    ",
     ],
@@ -3685,26 +3685,26 @@ Array [
     "event": "text",
     "startIndex": 107,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "channel",
     ],
     "endIndex": 119,
     "event": "opentagname",
     "startIndex": 111,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "channel",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 119,
     "event": "opentag",
     "startIndex": 111,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -3712,34 +3712,34 @@ Array [
     "event": "text",
     "startIndex": 120,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 133,
     "event": "opentagname",
     "startIndex": 127,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 133,
     "event": "opentag",
     "startIndex": 127,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Liftoff News",
     ],
     "endIndex": 145,
     "event": "text",
     "startIndex": 134,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -3747,8 +3747,8 @@ Array [
     "event": "closetag",
     "startIndex": 146,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -3756,34 +3756,34 @@ Array [
     "event": "text",
     "startIndex": 154,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 166,
     "event": "opentagname",
     "startIndex": 161,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 166,
     "event": "opentag",
     "startIndex": 161,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/",
     ],
     "endIndex": 195,
     "event": "text",
     "startIndex": 167,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -3791,8 +3791,8 @@ Array [
     "event": "closetag",
     "startIndex": 196,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -3800,34 +3800,34 @@ Array [
     "event": "text",
     "startIndex": 203,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 222,
     "event": "opentagname",
     "startIndex": 210,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 222,
     "event": "opentag",
     "startIndex": 210,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Liftoff to Space Exploration.",
     ],
     "endIndex": 251,
     "event": "text",
     "startIndex": 223,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -3835,8 +3835,8 @@ Array [
     "event": "closetag",
     "startIndex": 252,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -3844,34 +3844,34 @@ Array [
     "event": "text",
     "startIndex": 266,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "language",
     ],
     "endIndex": 282,
     "event": "opentagname",
     "startIndex": 273,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "language",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 282,
     "event": "opentag",
     "startIndex": 273,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "en-us",
     ],
     "endIndex": 287,
     "event": "text",
     "startIndex": 283,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "language",
       false,
     ],
@@ -3879,8 +3879,8 @@ Array [
     "event": "closetag",
     "startIndex": 288,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -3888,34 +3888,34 @@ Array [
     "event": "text",
     "startIndex": 299,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
     ],
     "endIndex": 314,
     "event": "opentagname",
     "startIndex": 306,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 314,
     "event": "opentag",
     "startIndex": 306,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Tue, 10 Jun 2003 04:00:00 GMT",
     ],
     "endIndex": 343,
     "event": "text",
     "startIndex": 315,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
       false,
     ],
@@ -3923,8 +3923,8 @@ Array [
     "event": "closetag",
     "startIndex": 344,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
       ",
@@ -3933,34 +3933,34 @@ Array [
     "event": "text",
     "startIndex": 354,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "lastBuildDate",
     ],
     "endIndex": 376,
     "event": "opentagname",
     "startIndex": 362,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "lastBuildDate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 376,
     "event": "opentag",
     "startIndex": 362,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Tue, 10 Jun 2003 09:41:01 GMT",
     ],
     "endIndex": 405,
     "event": "text",
     "startIndex": 377,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "lastBuildDate",
       false,
     ],
@@ -3968,8 +3968,8 @@ Array [
     "event": "closetag",
     "startIndex": 406,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -3977,34 +3977,34 @@ Array [
     "event": "text",
     "startIndex": 422,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "docs",
     ],
     "endIndex": 434,
     "event": "opentagname",
     "startIndex": 429,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "docs",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 434,
     "event": "opentag",
     "startIndex": 429,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://blogs.law.harvard.edu/tech/rss",
     ],
     "endIndex": 471,
     "event": "text",
     "startIndex": 435,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "docs",
       false,
     ],
@@ -4012,8 +4012,8 @@ Array [
     "event": "closetag",
     "startIndex": 472,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4021,34 +4021,34 @@ Array [
     "event": "text",
     "startIndex": 479,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "generator",
     ],
     "endIndex": 496,
     "event": "opentagname",
     "startIndex": 486,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "generator",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 496,
     "event": "opentag",
     "startIndex": 486,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Weblog Editor 2.0",
     ],
     "endIndex": 513,
     "event": "text",
     "startIndex": 497,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "generator",
       false,
     ],
@@ -4056,8 +4056,8 @@ Array [
     "event": "closetag",
     "startIndex": 514,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4065,34 +4065,34 @@ Array [
     "event": "text",
     "startIndex": 526,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "managingEditor",
     ],
     "endIndex": 548,
     "event": "opentagname",
     "startIndex": 533,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "managingEditor",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 548,
     "event": "opentag",
     "startIndex": 533,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "editor@example.com",
     ],
     "endIndex": 566,
     "event": "text",
     "startIndex": 549,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "managingEditor",
       false,
     ],
@@ -4100,8 +4100,8 @@ Array [
     "event": "closetag",
     "startIndex": 567,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4109,34 +4109,34 @@ Array [
     "event": "text",
     "startIndex": 584,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "webMaster",
     ],
     "endIndex": 601,
     "event": "opentagname",
     "startIndex": 591,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "webMaster",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 601,
     "event": "opentag",
     "startIndex": 591,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "webmaster@example.com",
     ],
     "endIndex": 622,
     "event": "text",
     "startIndex": 602,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "webMaster",
       false,
     ],
@@ -4144,8 +4144,8 @@ Array [
     "event": "closetag",
     "startIndex": 623,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4153,26 +4153,26 @@ Array [
     "event": "text",
     "startIndex": 635,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
     ],
     "endIndex": 647,
     "event": "opentagname",
     "startIndex": 642,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 647,
     "event": "opentag",
     "startIndex": 642,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
          ",
@@ -4181,34 +4181,34 @@ Array [
     "event": "text",
     "startIndex": 648,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 665,
     "event": "opentagname",
     "startIndex": 659,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 665,
     "event": "opentag",
     "startIndex": 659,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Star City",
     ],
     "endIndex": 674,
     "event": "text",
     "startIndex": 666,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -4216,8 +4216,8 @@ Array [
     "event": "closetag",
     "startIndex": 675,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4225,34 +4225,34 @@ Array [
     "event": "text",
     "startIndex": 683,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 698,
     "event": "opentagname",
     "startIndex": 693,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 698,
     "event": "opentag",
     "startIndex": 693,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp",
     ],
     "endIndex": 754,
     "event": "text",
     "startIndex": 699,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -4260,8 +4260,8 @@ Array [
     "event": "closetag",
     "startIndex": 755,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4269,34 +4269,34 @@ Array [
     "event": "text",
     "startIndex": 762,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 784,
     "event": "opentagname",
     "startIndex": 772,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 784,
     "event": "opentag",
     "startIndex": 772,
   },
-  Object {
-    "data": Array [
-      "How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia's <a href=\\"http://howe.iki.rssi.ru/GCTC/gctc_e.htm\\">Star City</a>.",
+  {
+    "data": [
+      "How do Americans get ready to work with Russians aboard the International Space Station? They take a crash course in culture, language and protocol at Russia's <a href="http://howe.iki.rssi.ru/GCTC/gctc_e.htm">Star City</a>.",
     ],
     "endIndex": 1020,
     "event": "text",
     "startIndex": 785,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -4304,8 +4304,8 @@ Array [
     "event": "closetag",
     "startIndex": 1021,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4313,34 +4313,34 @@ Array [
     "event": "text",
     "startIndex": 1035,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
     ],
     "endIndex": 1053,
     "event": "opentagname",
     "startIndex": 1045,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1053,
     "event": "opentag",
     "startIndex": 1045,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Tue, 03 Jun 2003 09:39:21 GMT",
     ],
     "endIndex": 1082,
     "event": "text",
     "startIndex": 1054,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
       false,
     ],
@@ -4348,8 +4348,8 @@ Array [
     "event": "closetag",
     "startIndex": 1083,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4357,34 +4357,34 @@ Array [
     "event": "text",
     "startIndex": 1093,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
     ],
     "endIndex": 1108,
     "event": "opentagname",
     "startIndex": 1103,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1108,
     "event": "opentag",
     "startIndex": 1103,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/2003/06/03.html#item573",
     ],
     "endIndex": 1160,
     "event": "text",
     "startIndex": 1109,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
       false,
     ],
@@ -4392,8 +4392,8 @@ Array [
     "event": "closetag",
     "startIndex": 1161,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
       ",
@@ -4402,8 +4402,8 @@ Array [
     "event": "text",
     "startIndex": 1168,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
       false,
     ],
@@ -4411,8 +4411,8 @@ Array [
     "event": "closetag",
     "startIndex": 1176,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4420,26 +4420,26 @@ Array [
     "event": "text",
     "startIndex": 1183,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
     ],
     "endIndex": 1195,
     "event": "opentagname",
     "startIndex": 1190,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1195,
     "event": "opentag",
     "startIndex": 1190,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4447,34 +4447,34 @@ Array [
     "event": "text",
     "startIndex": 1196,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 1218,
     "event": "opentagname",
     "startIndex": 1206,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1218,
     "event": "opentag",
     "startIndex": 1206,
   },
-  Object {
-    "data": Array [
-      "Sky watchers in Europe, Asia, and parts of Alaska and Canada will experience a <a href=\\"http://science.nasa.gov/headlines/y2003/30may_solareclipse.htm\\">partial eclipse of the Sun</a> on Saturday, May 31st.",
+  {
+    "data": [
+      "Sky watchers in Europe, Asia, and parts of Alaska and Canada will experience a <a href="http://science.nasa.gov/headlines/y2003/30may_solareclipse.htm">partial eclipse of the Sun</a> on Saturday, May 31st.",
     ],
     "endIndex": 1435,
     "event": "text",
     "startIndex": 1219,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -4482,8 +4482,8 @@ Array [
     "event": "closetag",
     "startIndex": 1436,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4491,34 +4491,34 @@ Array [
     "event": "text",
     "startIndex": 1450,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
     ],
     "endIndex": 1468,
     "event": "opentagname",
     "startIndex": 1460,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1468,
     "event": "opentag",
     "startIndex": 1460,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Fri, 30 May 2003 11:06:42 GMT",
     ],
     "endIndex": 1497,
     "event": "text",
     "startIndex": 1469,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
       false,
     ],
@@ -4526,8 +4526,8 @@ Array [
     "event": "closetag",
     "startIndex": 1498,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4535,34 +4535,34 @@ Array [
     "event": "text",
     "startIndex": 1508,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
     ],
     "endIndex": 1523,
     "event": "opentagname",
     "startIndex": 1518,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1523,
     "event": "opentag",
     "startIndex": 1518,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/2003/05/30.html#item572",
     ],
     "endIndex": 1575,
     "event": "text",
     "startIndex": 1524,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
       false,
     ],
@@ -4570,8 +4570,8 @@ Array [
     "event": "closetag",
     "startIndex": 1576,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
       ",
@@ -4580,8 +4580,8 @@ Array [
     "event": "text",
     "startIndex": 1583,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
       false,
     ],
@@ -4589,8 +4589,8 @@ Array [
     "event": "closetag",
     "startIndex": 1591,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4598,26 +4598,26 @@ Array [
     "event": "text",
     "startIndex": 1598,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
     ],
     "endIndex": 1610,
     "event": "opentagname",
     "startIndex": 1605,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1610,
     "event": "opentag",
     "startIndex": 1605,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4625,34 +4625,34 @@ Array [
     "event": "text",
     "startIndex": 1611,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 1627,
     "event": "opentagname",
     "startIndex": 1621,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1627,
     "event": "opentag",
     "startIndex": 1621,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "The Engine That Does More",
     ],
     "endIndex": 1652,
     "event": "text",
     "startIndex": 1628,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -4660,8 +4660,8 @@ Array [
     "event": "closetag",
     "startIndex": 1653,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4669,34 +4669,34 @@ Array [
     "event": "text",
     "startIndex": 1661,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 1676,
     "event": "opentagname",
     "startIndex": 1671,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1676,
     "event": "opentag",
     "startIndex": 1671,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/news/2003/news-VASIMR.asp",
     ],
     "endIndex": 1730,
     "event": "text",
     "startIndex": 1677,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -4704,8 +4704,8 @@ Array [
     "event": "closetag",
     "startIndex": 1731,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4713,34 +4713,34 @@ Array [
     "event": "text",
     "startIndex": 1738,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 1760,
     "event": "opentagname",
     "startIndex": 1748,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1760,
     "event": "opentag",
     "startIndex": 1748,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Before man travels to Mars, NASA hopes to design new engines that will let us fly through the Solar System more quickly.  The proposed VASIMR engine would do that.",
     ],
     "endIndex": 1923,
     "event": "text",
     "startIndex": 1761,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -4748,8 +4748,8 @@ Array [
     "event": "closetag",
     "startIndex": 1924,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4757,34 +4757,34 @@ Array [
     "event": "text",
     "startIndex": 1938,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
     ],
     "endIndex": 1956,
     "event": "opentagname",
     "startIndex": 1948,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 1956,
     "event": "opentag",
     "startIndex": 1948,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Tue, 27 May 2003 08:37:32 GMT",
     ],
     "endIndex": 1985,
     "event": "text",
     "startIndex": 1957,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
       false,
     ],
@@ -4792,8 +4792,8 @@ Array [
     "event": "closetag",
     "startIndex": 1986,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4801,34 +4801,34 @@ Array [
     "event": "text",
     "startIndex": 1996,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
     ],
     "endIndex": 2011,
     "event": "opentagname",
     "startIndex": 2006,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2011,
     "event": "opentag",
     "startIndex": 2006,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/2003/05/27.html#item571",
     ],
     "endIndex": 2063,
     "event": "text",
     "startIndex": 2012,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
       false,
     ],
@@ -4836,8 +4836,8 @@ Array [
     "event": "closetag",
     "startIndex": 2064,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
       ",
@@ -4846,8 +4846,8 @@ Array [
     "event": "text",
     "startIndex": 2071,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
       false,
     ],
@@ -4855,8 +4855,8 @@ Array [
     "event": "closetag",
     "startIndex": 2079,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -4864,26 +4864,26 @@ Array [
     "event": "text",
     "startIndex": 2086,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
     ],
     "endIndex": 2098,
     "event": "opentagname",
     "startIndex": 2093,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2098,
     "event": "opentag",
     "startIndex": 2093,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4891,34 +4891,34 @@ Array [
     "event": "text",
     "startIndex": 2099,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 2115,
     "event": "opentagname",
     "startIndex": 2109,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2115,
     "event": "opentag",
     "startIndex": 2109,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Astronauts' Dirty Laundry",
     ],
     "endIndex": 2140,
     "event": "text",
     "startIndex": 2116,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -4926,8 +4926,8 @@ Array [
     "event": "closetag",
     "startIndex": 2141,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4935,34 +4935,34 @@ Array [
     "event": "text",
     "startIndex": 2149,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
     ],
     "endIndex": 2164,
     "event": "opentagname",
     "startIndex": 2159,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2164,
     "event": "opentag",
     "startIndex": 2159,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/news/2003/news-laundry.asp",
     ],
     "endIndex": 2219,
     "event": "text",
     "startIndex": 2165,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "link",
       false,
     ],
@@ -4970,8 +4970,8 @@ Array [
     "event": "closetag",
     "startIndex": 2220,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -4979,34 +4979,34 @@ Array [
     "event": "text",
     "startIndex": 2227,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
     ],
     "endIndex": 2249,
     "event": "opentagname",
     "startIndex": 2237,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2249,
     "event": "opentag",
     "startIndex": 2237,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Compared to earlier spacecraft, the International Space Station has many luxuries, but laundry facilities are not one of them.  Instead, astronauts have other options.",
     ],
     "endIndex": 2416,
     "event": "text",
     "startIndex": 2250,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "description",
       false,
     ],
@@ -5014,8 +5014,8 @@ Array [
     "event": "closetag",
     "startIndex": 2417,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -5023,34 +5023,34 @@ Array [
     "event": "text",
     "startIndex": 2431,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
     ],
     "endIndex": 2449,
     "event": "opentagname",
     "startIndex": 2441,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2449,
     "event": "opentag",
     "startIndex": 2441,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Tue, 20 May 2003 08:56:02 GMT",
     ],
     "endIndex": 2478,
     "event": "text",
     "startIndex": 2450,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "pubDate",
       false,
     ],
@@ -5058,8 +5058,8 @@ Array [
     "event": "closetag",
     "startIndex": 2479,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
          ",
     ],
@@ -5067,34 +5067,34 @@ Array [
     "event": "text",
     "startIndex": 2489,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
     ],
     "endIndex": 2504,
     "event": "opentagname",
     "startIndex": 2499,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 2504,
     "event": "opentag",
     "startIndex": 2499,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "http://liftoff.msfc.nasa.gov/2003/05/20.html#item570",
     ],
     "endIndex": 2556,
     "event": "text",
     "startIndex": 2505,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "guid",
       false,
     ],
@@ -5102,8 +5102,8 @@ Array [
     "event": "closetag",
     "startIndex": 2557,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 
          ",
@@ -5112,58 +5112,58 @@ Array [
     "event": "text",
     "startIndex": 2564,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "media:content",
     ],
     "endIndex": 2589,
     "event": "opentagname",
     "startIndex": 2575,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "height",
       "200",
-      "\\"",
+      """,
     ],
     "endIndex": 2601,
     "event": "attribute",
     "startIndex": 2590,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "medium",
       "image",
-      "\\"",
+      """,
     ],
     "endIndex": 2616,
     "event": "attribute",
     "startIndex": 2603,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "url",
       "https://picsum.photos/200",
-      "\\"",
+      """,
     ],
     "endIndex": 2648,
     "event": "attribute",
     "startIndex": 2618,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "width",
       "200",
-      "\\"",
+      """,
     ],
     "endIndex": 2660,
     "event": "attribute",
     "startIndex": 2650,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "media:content",
-      Object {
+      {
         "height": "200",
         "medium": "image",
         "url": "https://picsum.photos/200",
@@ -5175,8 +5175,8 @@ Array [
     "event": "opentag",
     "startIndex": 2575,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "media:content",
       true,
     ],
@@ -5184,8 +5184,8 @@ Array [
     "event": "closetag",
     "startIndex": 2575,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
       ",
     ],
@@ -5193,8 +5193,8 @@ Array [
     "event": "text",
     "startIndex": 2663,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "item",
       false,
     ],
@@ -5202,8 +5202,8 @@ Array [
     "event": "closetag",
     "startIndex": 2670,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
    ",
     ],
@@ -5211,8 +5211,8 @@ Array [
     "event": "text",
     "startIndex": 2677,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "channel",
       false,
     ],
@@ -5220,8 +5220,8 @@ Array [
     "event": "closetag",
     "startIndex": 2681,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5229,8 +5229,8 @@ Array [
     "event": "text",
     "startIndex": 2691,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "rss",
       false,
     ],
@@ -5242,9 +5242,9 @@ Array [
 `;
 
 exports[`Stream SVG 1`] = `
-Array [
-  Object {
-    "data": Array [
+[
+  {
+    "data": [
       "!doctype",
       "!doctype html",
     ],
@@ -5252,8 +5252,8 @@ Array [
     "event": "processinginstruction",
     "startIndex": 0,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5261,26 +5261,26 @@ Array [
     "event": "text",
     "startIndex": 15,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
     ],
     "endIndex": 21,
     "event": "opentagname",
     "startIndex": 16,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 21,
     "event": "opentag",
     "startIndex": 16,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5288,26 +5288,26 @@ Array [
     "event": "text",
     "startIndex": 22,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "head",
     ],
     "endIndex": 28,
     "event": "opentagname",
     "startIndex": 23,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "head",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 28,
     "event": "opentag",
     "startIndex": 23,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -5315,34 +5315,34 @@ Array [
     "event": "text",
     "startIndex": 29,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 37,
     "event": "opentagname",
     "startIndex": 31,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 37,
     "event": "opentag",
     "startIndex": 31,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "SVG test",
     ],
     "endIndex": 45,
     "event": "text",
     "startIndex": 38,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -5350,8 +5350,8 @@ Array [
     "event": "closetag",
     "startIndex": 46,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5359,8 +5359,8 @@ Array [
     "event": "text",
     "startIndex": 54,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "head",
       false,
     ],
@@ -5368,8 +5368,8 @@ Array [
     "event": "closetag",
     "startIndex": 55,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5377,26 +5377,26 @@ Array [
     "event": "text",
     "startIndex": 62,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
     ],
     "endIndex": 68,
     "event": "opentagname",
     "startIndex": 63,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 68,
     "event": "opentag",
     "startIndex": 63,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -5404,48 +5404,48 @@ Array [
     "event": "text",
     "startIndex": 69,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "svg",
     ],
     "endIndex": 75,
     "event": "opentagname",
     "startIndex": 71,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "version",
       "1.1",
-      "\\"",
+      """,
     ],
     "endIndex": 88,
     "event": "attribute",
     "startIndex": 76,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns",
       "http://www.w3.org/2000/svg",
-      "\\"",
+      """,
     ],
     "endIndex": 123,
     "event": "attribute",
     "startIndex": 90,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "xmlns:xlink",
       "http://www.w3.org/1999/xlink",
-      "\\"",
+      """,
     ],
     "endIndex": 166,
     "event": "attribute",
     "startIndex": 125,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "svg",
-      Object {
+      {
         "version": "1.1",
         "xmlns": "http://www.w3.org/2000/svg",
         "xmlns:xlink": "http://www.w3.org/1999/xlink",
@@ -5456,8 +5456,8 @@ Array [
     "event": "opentag",
     "startIndex": 71,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -5465,34 +5465,34 @@ Array [
     "event": "text",
     "startIndex": 168,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 177,
     "event": "opentagname",
     "startIndex": 171,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 177,
     "event": "opentag",
     "startIndex": 171,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "Test",
     ],
     "endIndex": 181,
     "event": "text",
     "startIndex": 178,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -5500,8 +5500,8 @@ Array [
     "event": "closetag",
     "startIndex": 182,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -5509,26 +5509,26 @@ Array [
     "event": "text",
     "startIndex": 190,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "animate",
     ],
     "endIndex": 201,
     "event": "opentagname",
     "startIndex": 193,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "animate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 203,
     "event": "opentag",
     "startIndex": 193,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "animate",
       true,
     ],
@@ -5536,8 +5536,8 @@ Array [
     "event": "closetag",
     "startIndex": 193,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -5545,26 +5545,26 @@ Array [
     "event": "text",
     "startIndex": 204,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "polygon",
     ],
     "endIndex": 215,
     "event": "opentagname",
     "startIndex": 207,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "polygon",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 217,
     "event": "opentag",
     "startIndex": 207,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "polygon",
       true,
     ],
@@ -5572,8 +5572,8 @@ Array [
     "event": "closetag",
     "startIndex": 207,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -5581,26 +5581,26 @@ Array [
     "event": "text",
     "startIndex": 218,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "g",
     ],
     "endIndex": 223,
     "event": "opentagname",
     "startIndex": 221,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "g",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 223,
     "event": "opentag",
     "startIndex": 221,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 			",
     ],
@@ -5608,26 +5608,26 @@ Array [
     "event": "text",
     "startIndex": 224,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "path",
     ],
     "endIndex": 233,
     "event": "opentagname",
     "startIndex": 228,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "path",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 233,
     "event": "opentag",
     "startIndex": 228,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 				",
     ],
@@ -5635,34 +5635,34 @@ Array [
     "event": "text",
     "startIndex": 234,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
     ],
     "endIndex": 245,
     "event": "opentagname",
     "startIndex": 239,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 245,
     "event": "opentag",
     "startIndex": 239,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "x",
     ],
     "endIndex": 246,
     "event": "text",
     "startIndex": 246,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "title",
       false,
     ],
@@ -5670,8 +5670,8 @@ Array [
     "event": "closetag",
     "startIndex": 247,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 				",
     ],
@@ -5679,26 +5679,26 @@ Array [
     "event": "text",
     "startIndex": 255,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "animate",
     ],
     "endIndex": 268,
     "event": "opentagname",
     "startIndex": 260,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "animate",
-      Object {},
+      {},
       false,
     ],
     "endIndex": 270,
     "event": "opentag",
     "startIndex": 260,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "animate",
       true,
     ],
@@ -5706,8 +5706,8 @@ Array [
     "event": "closetag",
     "startIndex": 260,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 			",
     ],
@@ -5715,8 +5715,8 @@ Array [
     "event": "text",
     "startIndex": 271,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "path",
       false,
     ],
@@ -5724,8 +5724,8 @@ Array [
     "event": "closetag",
     "startIndex": 275,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 		",
     ],
@@ -5733,8 +5733,8 @@ Array [
     "event": "text",
     "startIndex": 282,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "g",
       false,
     ],
@@ -5742,8 +5742,8 @@ Array [
     "event": "closetag",
     "startIndex": 285,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 	",
     ],
@@ -5751,8 +5751,8 @@ Array [
     "event": "text",
     "startIndex": 289,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "svg",
       false,
     ],
@@ -5760,8 +5760,8 @@ Array [
     "event": "closetag",
     "startIndex": 291,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5769,8 +5769,8 @@ Array [
     "event": "text",
     "startIndex": 297,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "body",
       false,
     ],
@@ -5778,8 +5778,8 @@ Array [
     "event": "closetag",
     "startIndex": 298,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
@@ -5787,8 +5787,8 @@ Array [
     "event": "text",
     "startIndex": 305,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "html",
       false,
     ],
@@ -5796,8 +5796,8 @@ Array [
     "event": "closetag",
     "startIndex": 306,
   },
-  Object {
-    "data": Array [
+  {
+    "data": [
       "
 ",
     ],
