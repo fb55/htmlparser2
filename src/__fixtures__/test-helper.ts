@@ -1,6 +1,6 @@
-import { Parser, Handler, ParserOptions } from "../Parser";
-import fs from "fs";
-import path from "path";
+import { Parser, Handler, ParserOptions } from "../Parser.js";
+import fs from "node:fs";
+import path from "node:path";
 
 /**
  * Write to the parser twice, once a bytes, once as
@@ -18,8 +18,8 @@ export function writeToParser(
 ): void {
     const parser = new Parser(handler, options);
     // First, try to run the test via chunks
-    for (let i = 0; i < data.length; i++) {
-        parser.write(data.charAt(i));
+    for (let index = 0; index < data.length; index++) {
+        parser.write(data.charAt(index));
     }
     parser.end();
     // Then, parse everything
@@ -41,49 +41,65 @@ interface Event {
  * @param cb Function to call with all events.
  */
 export function getEventCollector(
-    cb: (error: Error | null, events?: Event[]) => void
+    callback: (error: Error | null, events?: Event[]) => void
 ): Partial<Handler> {
     const events: Event[] = [];
     let parser: Parser;
 
     function handle(event: string, ...data: unknown[]): void {
-        if (event === "onerror") {
-            cb(data[0] as Error);
-        } else if (event === "onend") {
-            cb(null, events);
-        } else if (event === "onreset") {
-            events.length = 0;
-        } else if (event === "onparserinit") {
-            parser = data[0] as Parser;
-            // Don't collect event
-        } else if (
-            event === "ontext" &&
-            events[events.length - 1]?.event === "text"
-        ) {
-            const last = events[events.length - 1];
-            // Combine text nodes
-            (last.data[0] as string) += data[0];
-            last.endIndex = parser.endIndex;
-        } else {
-            // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
-            if (event === "onattribute" && data[2] === undefined) {
-                data.pop();
+        switch (event) {
+            case "onerror": {
+                callback(data[0] as Error);
+
+                break;
             }
+            case "onend": {
+                callback(null, events);
 
-            if (!(parser.startIndex <= parser.endIndex)) {
-                throw new Error(
-                    `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
-                );
+                break;
             }
+            case "onreset": {
+                events.length = 0;
 
-            events.push({
-                event: event.substr(2),
-                startIndex: parser.startIndex,
-                endIndex: parser.endIndex,
-                data,
-            });
+                break;
+            }
+            case "onparserinit": {
+                parser = data[0] as Parser;
+                // Don't collect event
 
-            parser.endIndex;
+                break;
+            }
+            default: {
+                if (
+                    event === "ontext" &&
+                    events[events.length - 1]?.event === "text"
+                ) {
+                    const last = events[events.length - 1];
+                    // Combine text nodes
+                    (last.data[0] as string) += data[0];
+                    last.endIndex = parser.endIndex;
+                } else {
+                    // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
+                    if (event === "onattribute" && data[2] === undefined) {
+                        data.pop();
+                    }
+
+                    if (!(parser.startIndex <= parser.endIndex)) {
+                        throw new Error(
+                            `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
+                        );
+                    }
+
+                    events.push({
+                        event: event.slice(2),
+                        startIndex: parser.startIndex,
+                        endIndex: parser.endIndex,
+                        data,
+                    });
+
+                    parser.endIndex;
+                }
+            }
         }
     }
 
@@ -99,11 +115,11 @@ export function getEventCollector(
  * @param file Test file to execute.
  * @param done Function to call on completion.
  */
-function getCallback(file: TestFile, done: (err?: Error | null) => void) {
+function getCallback(file: TestFile, done: (error?: Error | null) => void) {
     let firstResult: unknown | undefined;
 
-    return (err: null | Error, actual?: unknown | unknown[]) => {
-        expect(err).toBeNull();
+    return (error: null | Error, actual?: unknown | unknown[]) => {
+        expect(error).toBeNull();
 
         if (firstResult) {
             expect(actual).toStrictEqual(firstResult);
@@ -146,19 +162,18 @@ export function createSuite(
         done: (error: Error | null, actual?: unknown | unknown[]) => void
     ) => void
 ): void {
-    describe(name, readDir);
+    describe(name, () => {
+        const directory = path.join(__dirname, name);
 
-    function readDir() {
-        const dir = path.join(__dirname, name);
+        for (const name of fs.readdirSync(directory)) {
+            if (name.startsWith(".") || name.startsWith("_")) {
+                continue;
+            }
 
-        fs.readdirSync(dir)
-            .filter((file) => !file.startsWith(".") && !file.startsWith("_"))
-            .map((name) => path.join(dir, name))
-            .map(require)
-            .forEach(runTest);
-    }
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const test: TestFile = require(path.join(directory, name));
 
-    function runTest(file: TestFile) {
-        test(file.name, (done) => getResult(file, getCallback(file, done)));
-    }
+            it(test.name, (done) => getResult(test, getCallback(test, done)));
+        }
+    });
 }

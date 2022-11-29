@@ -1,17 +1,18 @@
-import { Tokenizer } from ".";
+import { Tokenizer } from "./index.js";
 
-function tokenize(str: string) {
+function tokenize(data: string) {
     const log: unknown[][] = [];
     const tokenizer = new Tokenizer(
         {},
         new Proxy({} as any, {
-            get(_, prop) {
-                return (...args: unknown[]) => log.push([prop, ...args]);
+            get(_, property) {
+                return (...values: unknown[]) =>
+                    log.push([property, ...values]);
             },
         })
     );
 
-    tokenizer.write(str);
+    tokenizer.write(data);
     tokenizer.end();
 
     return log;
@@ -47,12 +48,12 @@ describe("Tokenizer", () => {
         const tokenizer = new Tokenizer(
             {},
             new Proxy({} as any, {
-                get(_, prop) {
-                    return (...args: unknown[]) => {
-                        if (prop === "ontext") {
+                get(_, property) {
+                    return (...values: unknown[]) => {
+                        if (property === "ontext") {
                             tokenizer.pause();
                         }
-                        log.push([prop, ...args]);
+                        log.push([property, ...values]);
                     };
                 },
             })

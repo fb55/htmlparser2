@@ -4,7 +4,7 @@ import {
     createDomStream,
     DomHandler,
     DefaultHandler,
-} from ".";
+} from "./index.js";
 import { Element } from "domhandler";
 
 // Add an `attributes` prop to the Element for now, to make it possible for Jest to render DOM nodes.
@@ -31,8 +31,8 @@ describe("Index", () => {
     });
 
     test("createDomStream", (done) => {
-        const domStream = createDomStream((err, dom) => {
-            expect(err).toBeNull();
+        const domStream = createDomStream((error, dom) => {
+            expect(error).toBeNull();
             expect(dom).toMatchSnapshot();
 
             done();

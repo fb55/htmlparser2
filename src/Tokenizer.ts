@@ -13,7 +13,7 @@ const enum CharCodes {
     CarriageReturn = 0xd, // "\r"
     Space = 0x20, // " "
     ExclamationMark = 0x21, // "!"
-    Num = 0x23, // "#"
+    Number = 0x23, // "#"
     Amp = 0x26, // "&"
     SingleQuote = 0x27, // "'"
     DoubleQuote = 0x22, // '"'
@@ -625,7 +625,7 @@ export default class Tokenizer {
         this.entityExcess = 1;
         this.entityResult = 0;
 
-        if (c === CharCodes.Num) {
+        if (c === CharCodes.Number) {
             this.state = State.BeforeNumericEntity;
         } else if (c === CharCodes.Amp) {
             // We have two `&` characters in a row. Stay in the current state.
@@ -698,15 +698,17 @@ export default class Tokenizer {
             14;
 
         switch (valueLength) {
-            case 1:
+            case 1: {
                 this.emitCodePoint(
                     this.entityTrie[this.entityResult] &
                         ~BinTrieFlags.VALUE_LENGTH
                 );
                 break;
-            case 2:
+            }
+            case 2: {
                 this.emitCodePoint(this.entityTrie[this.entityResult + 1]);
                 break;
+            }
             case 3: {
                 this.emitCodePoint(this.entityTrie[this.entityResult + 1]);
                 this.emitCodePoint(this.entityTrie[this.entityResult + 2]);
@@ -818,65 +820,123 @@ export default class Tokenizer {
     private parse() {
         while (this.shouldContinue()) {
             const c = this.buffer.charCodeAt(this.index - this.offset);
-            if (this.state === State.Text) {
-                this.stateText(c);
-            } else if (this.state === State.SpecialStartSequence) {
-                this.stateSpecialStartSequence(c);
-            } else if (this.state === State.InSpecialTag) {
-                this.stateInSpecialTag(c);
-            } else if (this.state === State.CDATASequence) {
-                this.stateCDATASequence(c);
-            } else if (this.state === State.InAttributeValueDq) {
-                this.stateInAttributeValueDoubleQuotes(c);
-            } else if (this.state === State.InAttributeName) {
-                this.stateInAttributeName(c);
-            } else if (this.state === State.InCommentLike) {
-                this.stateInCommentLike(c);
-            } else if (this.state === State.InSpecialComment) {
-                this.stateInSpecialComment(c);
-            } else if (this.state === State.BeforeAttributeName) {
-                this.stateBeforeAttributeName(c);
-            } else if (this.state === State.InTagName) {
-                this.stateInTagName(c);
-            } else if (this.state === State.InClosingTagName) {
-                this.stateInClosingTagName(c);
-            } else if (this.state === State.BeforeTagName) {
-                this.stateBeforeTagName(c);
-            } else if (this.state === State.AfterAttributeName) {
-                this.stateAfterAttributeName(c);
-            } else if (this.state === State.InAttributeValueSq) {
-                this.stateInAttributeValueSingleQuotes(c);
-            } else if (this.state === State.BeforeAttributeValue) {
-                this.stateBeforeAttributeValue(c);
-            } else if (this.state === State.BeforeClosingTagName) {
-                this.stateBeforeClosingTagName(c);
-            } else if (this.state === State.AfterClosingTagName) {
-                this.stateAfterClosingTagName(c);
-            } else if (this.state === State.BeforeSpecialS) {
-                this.stateBeforeSpecialS(c);
-            } else if (this.state === State.InAttributeValueNq) {
-                this.stateInAttributeValueNoQuotes(c);
-            } else if (this.state === State.InSelfClosingTag) {
-                this.stateInSelfClosingTag(c);
-            } else if (this.state === State.InDeclaration) {
-                this.stateInDeclaration(c);
-            } else if (this.state === State.BeforeDeclaration) {
-                this.stateBeforeDeclaration(c);
-            } else if (this.state === State.BeforeComment) {
-                this.stateBeforeComment(c);
-            } else if (this.state === State.InProcessingInstruction) {
-                this.stateInProcessingInstruction(c);
-            } else if (this.state === State.InNamedEntity) {
-                this.stateInNamedEntity(c);
-            } else if (this.state === State.BeforeEntity) {
-                this.stateBeforeEntity(c);
-            } else if (this.state === State.InHexEntity) {
-                this.stateInHexEntity(c);
-            } else if (this.state === State.InNumericEntity) {
-                this.stateInNumericEntity(c);
-            } else {
-                // `this._state === State.BeforeNumericEntity`
-                this.stateBeforeNumericEntity(c);
+            switch (this.state) {
+                case State.Text: {
+                    this.stateText(c);
+                    break;
+                }
+                case State.SpecialStartSequence: {
+                    this.stateSpecialStartSequence(c);
+                    break;
+                }
+                case State.InSpecialTag: {
+                    this.stateInSpecialTag(c);
+                    break;
+                }
+                case State.CDATASequence: {
+                    this.stateCDATASequence(c);
+                    break;
+                }
+                case State.InAttributeValueDq: {
+                    this.stateInAttributeValueDoubleQuotes(c);
+                    break;
+                }
+                case State.InAttributeName: {
+                    this.stateInAttributeName(c);
+                    break;
+                }
+                case State.InCommentLike: {
+                    this.stateInCommentLike(c);
+                    break;
+                }
+                case State.InSpecialComment: {
+                    this.stateInSpecialComment(c);
+                    break;
+                }
+                case State.BeforeAttributeName: {
+                    this.stateBeforeAttributeName(c);
+                    break;
+                }
+                case State.InTagName: {
+                    this.stateInTagName(c);
+                    break;
+                }
+                case State.InClosingTagName: {
+                    this.stateInClosingTagName(c);
+                    break;
+                }
+                case State.BeforeTagName: {
+                    this.stateBeforeTagName(c);
+                    break;
+                }
+                case State.AfterAttributeName: {
+                    this.stateAfterAttributeName(c);
+                    break;
+                }
+                case State.InAttributeValueSq: {
+                    this.stateInAttributeValueSingleQuotes(c);
+                    break;
+                }
+                case State.BeforeAttributeValue: {
+                    this.stateBeforeAttributeValue(c);
+                    break;
+                }
+                case State.BeforeClosingTagName: {
+                    this.stateBeforeClosingTagName(c);
+                    break;
+                }
+                case State.AfterClosingTagName: {
+                    this.stateAfterClosingTagName(c);
+                    break;
+                }
+                case State.BeforeSpecialS: {
+                    this.stateBeforeSpecialS(c);
+                    break;
+                }
+                case State.InAttributeValueNq: {
+                    this.stateInAttributeValueNoQuotes(c);
+                    break;
+                }
+                case State.InSelfClosingTag: {
+                    this.stateInSelfClosingTag(c);
+                    break;
+                }
+                case State.InDeclaration: {
+                    this.stateInDeclaration(c);
+                    break;
+                }
+                case State.BeforeDeclaration: {
+                    this.stateBeforeDeclaration(c);
+                    break;
+                }
+                case State.BeforeComment: {
+                    this.stateBeforeComment(c);
+                    break;
+                }
+                case State.InProcessingInstruction: {
+                    this.stateInProcessingInstruction(c);
+                    break;
+                }
+                case State.InNamedEntity: {
+                    this.stateInNamedEntity(c);
+                    break;
+                }
+                case State.BeforeEntity: {
+                    this.stateBeforeEntity(c);
+                    break;
+                }
+                case State.InHexEntity: {
+                    this.stateInHexEntity(c);
+                    break;
+                }
+                case State.InNumericEntity: {
+                    this.stateInNumericEntity(c);
+                    break;
+                }
+                default: {
+                    // `this._state === State.BeforeNumericEntity`
+                    this.stateBeforeNumericEntity(c);
+                }
             }
             this.index++;
         }

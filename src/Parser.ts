@@ -256,10 +256,10 @@ export class Parser implements Callbacks {
          * Entities can be emitted on the character, or directly after.
          * We use the section start here to get accurate indices.
          */
-        const idx = this.tokenizer.getSectionStart();
-        this.endIndex = idx - 1;
+        const index = this.tokenizer.getSectionStart();
+        this.endIndex = index - 1;
         this.cbs.ontext?.(fromCodePoint(cp));
-        this.startIndex = idx;
+        this.startIndex = index;
     }
 
     protected isVoidElement(name: string): boolean {
@@ -291,8 +291,8 @@ export class Parser implements Callbacks {
                 this.stack.length > 0 &&
                 impliesClose.has(this.stack[this.stack.length - 1])
             ) {
-                const el = this.stack.pop()!;
-                this.cbs.onclosetag?.(el, true);
+                const element = this.stack.pop()!;
+                this.cbs.onclosetag?.(element, true);
             }
         }
         if (!this.isVoidElement(name)) {
@@ -449,8 +449,8 @@ export class Parser implements Callbacks {
     }
 
     private getInstructionName(value: string) {
-        const idx = value.search(reNameEnd);
-        let name = idx < 0 ? value : value.substr(0, idx);
+        const index = value.search(reNameEnd);
+        let name = index < 0 ? value : value.substr(0, index);
 
         if (this.lowerCaseTagNames) {
             name = name.toLowerCase();
@@ -522,9 +522,9 @@ export class Parser implements Callbacks {
             // Set the end index for all remaining tags
             this.endIndex = this.startIndex;
             for (
-                let i = this.stack.length;
-                i > 0;
-                this.cbs.onclosetag(this.stack[--i], true)
+                let index = this.stack.length;
+                index > 0;
+                this.cbs.onclosetag(this.stack[--index], true)
             );
         }
         this.cbs.onend?.();
@@ -565,17 +565,17 @@ export class Parser implements Callbacks {
             this.shiftBuffer();
         }
 
-        let str = this.buffers[0].slice(
+        let slice = this.buffers[0].slice(
             start - this.bufferOffset,
             end - this.bufferOffset
         );
 
         while (end - this.bufferOffset > this.buffers[0].length) {
             this.shiftBuffer();
-            str += this.buffers[0].slice(0, end - this.bufferOffset);
+            slice += this.buffers[0].slice(0, end - this.bufferOffset);
         }
 
-        return str;
+        return slice;
     }
 
     private shiftBuffer(): void {
@@ -609,7 +609,7 @@ export class Parser implements Callbacks {
      */
     public end(chunk?: string): void {
         if (this.ended) {
-            this.cbs.onerror?.(Error(".end() after done!"));
+            this.cbs.onerror?.(new Error(".end() after done!"));
             return;
         }
 

@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { WritableStream } from "./WritableStream";
-import * as helper from "./__fixtures__/test-helper";
+import fs from "node:fs";
+import path from "node:path";
+import { WritableStream } from "./WritableStream.js";
+import * as helper from "./__fixtures__/test-helper.js";
 
 describe("WritableStream", () => {
     test("should decode fragmented unicode characters", () => {
@@ -17,7 +17,7 @@ describe("WritableStream", () => {
     });
 });
 
-helper.createSuite("Stream", (test, cb) => {
+helper.createSuite("Stream", (test, callback) => {
     const filePath = path.join(
         __dirname,
         "__fixtures__",
@@ -28,18 +28,18 @@ helper.createSuite("Stream", (test, cb) => {
     fs.createReadStream(filePath)
         .pipe(
             new WritableStream(
-                helper.getEventCollector((err, events) => {
-                    cb(err, events);
+                helper.getEventCollector((error, events) => {
+                    callback(error, events);
 
-                    const handler = helper.getEventCollector(cb);
+                    const handler = helper.getEventCollector(callback);
                     const stream = new WritableStream(handler, test.options);
 
-                    fs.readFile(filePath, (err, data) =>
-                        err ? cb(err) : stream.end(data)
+                    fs.readFile(filePath, (error, data) =>
+                        error ? callback(error) : stream.end(data)
                     );
                 }),
                 test.options
             )
         )
-        .on("error", cb);
+        .on("error", callback);
 });

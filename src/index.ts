@@ -1,5 +1,5 @@
 import { Parser, ParserOptions } from "./Parser.js";
-export { Parser, type ParserOptions };
+export { Parser, type ParserOptions } from "./Parser.js";
 
 import {
     DomHandler,
@@ -9,9 +9,14 @@ import {
     Document,
 } from "domhandler";
 
-export { DomHandler, type DomHandlerOptions };
+export {
+    DomHandler,
+    // Old name for DomHandler
+    DomHandler as DefaultHandler,
+    type DomHandlerOptions,
+} from "domhandler";
 
-type Options = ParserOptions & DomHandlerOptions;
+export type Options = ParserOptions & DomHandlerOptions;
 
 // Helper methods
 
@@ -47,11 +52,11 @@ export function parseDOM(data: string, options?: Options): ChildNode[] {
  * @param elementCb An optional callback that will be called every time a tag has been completed inside of the DOM.
  */
 export function createDomStream(
-    cb: (error: Error | null, dom: ChildNode[]) => void,
+    callback: (error: Error | null, dom: ChildNode[]) => void,
     options?: Options,
-    elementCb?: (element: Element) => void
+    elementCallback?: (element: Element) => void
 ): Parser {
-    const handler = new DomHandler(cb, options, elementCb);
+    const handler = new DomHandler(callback, options, elementCallback);
     return new Parser(handler, options);
 }
 
@@ -64,12 +69,13 @@ export {
  * All of the following exports exist for backwards-compatibility.
  * They should probably be removed eventually.
  */
-import * as ElementType from "domelementtype";
-export { ElementType };
+export * as ElementType from "domelementtype";
 
 import { getFeed, Feed } from "domutils";
 
-export { getFeed };
+export { getFeed } from "domutils";
+
+const parseFeedDefaultOptions = { xmlMode: true };
 
 /**
  * Parse a feed.
@@ -79,12 +85,9 @@ export { getFeed };
  */
 export function parseFeed(
     feed: string,
-    options: ParserOptions & DomHandlerOptions = { xmlMode: true }
+    options: Options = parseFeedDefaultOptions
 ): Feed | null {
     return getFeed(parseDOM(feed, options));
 }
 
 export * as DomUtils from "domutils";
-
-// Old name for DomHandler
-export { DomHandler as DefaultHandler };

@@ -1,21 +1,25 @@
-import { Parser } from "..";
-import * as helper from "../__fixtures__/test-helper";
+import { Parser } from "../index.js";
+import * as helper from "../__fixtures__/test-helper.js";
 
-helper.createSuite("Events", ({ options, input }, cb) =>
-    helper.writeToParser(helper.getEventCollector(cb), options?.parser, input)
+helper.createSuite("Events", ({ options, input }, callback) =>
+    helper.writeToParser(
+        helper.getEventCollector(callback),
+        options?.parser,
+        input
+    )
 );
 
 describe("Helper", () => {
     it("should handle errors", () => {
-        const eventCb = jest.fn();
-        const parser = new Parser(helper.getEventCollector(eventCb));
+        const eventCallback = jest.fn();
+        const parser = new Parser(helper.getEventCollector(eventCallback));
 
         parser.end();
         parser.write("foo");
 
-        expect(eventCb).toHaveBeenCalledTimes(2);
-        expect(eventCb).toHaveBeenNthCalledWith(1, null, []);
-        expect(eventCb).toHaveBeenLastCalledWith(
+        expect(eventCallback).toHaveBeenCalledTimes(2);
+        expect(eventCallback).toHaveBeenNthCalledWith(1, null, []);
+        expect(eventCallback).toHaveBeenLastCalledWith(
             new Error(".write() after done!")
         );
     });

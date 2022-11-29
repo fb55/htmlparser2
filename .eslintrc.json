@@ -1,5 +1,10 @@
 {
-    "extends": ["eslint:recommended", "prettier"],
+    "extends": [
+        "eslint:recommended",
+        "prettier",
+        "plugin:n/recommended",
+        "plugin:unicorn/recommended"
+    ],
     "env": {
         "node": true,
         "es6": true
@@ -21,7 +26,14 @@
         "spaced-comment": 2,
         "yoda": [2, "never"],
         "curly": [2, "multi-line"],
-        "no-else-return": 2
+        "no-else-return": 2,
+
+        "unicorn/prefer-module": 0,
+        "unicorn/filename-case": 0,
+        "unicorn/no-null": 0,
+        "unicorn/prefer-code-point": 0,
+        "unicorn/prefer-string-slice": 0,
+        "unicorn/prefer-add-event-listener": 0
     },
     "overrides": [
         {
@@ -55,7 +67,9 @@
                 "@typescript-eslint/prefer-includes": 2,
                 "@typescript-eslint/no-unnecessary-condition": 2,
                 "@typescript-eslint/switch-exhaustiveness-check": 2,
-                "@typescript-eslint/prefer-nullish-coalescing": 2
+                "@typescript-eslint/prefer-nullish-coalescing": 2,
+
+                "n/no-unsupported-features/es-syntax": 0
             }
         }
     ]
