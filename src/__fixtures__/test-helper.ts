@@ -171,11 +171,9 @@ export function createSuite(
             }
 
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const testFile: TestFile = require(path.join(directory, name));
+            const test: TestFile = require(path.join(directory, name));
 
-            test(testFile.name, (done) =>
-                getResult(testFile, getCallback(testFile, done))
-            );
+            it(test.name, (done) => getResult(test, getCallback(test, done)));
         }
     });
 }
