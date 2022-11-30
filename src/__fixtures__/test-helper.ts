@@ -1,6 +1,4 @@
-import { Parser, Handler, ParserOptions } from "../Parser.js";
-import fs from "node:fs";
-import path from "node:path";
+import { Parser, type Handler, type ParserOptions } from "../Parser.js";
 
 /**
  * Write to the parser twice, once a bytes, once as
@@ -38,7 +36,7 @@ interface Event {
  * completion.
  *
  * @internal
- * @param cb Function to call with all events.
+ * @param callback Function to call with all events.
  */
 export function getEventCollector(
     callback: (error: Error | null, events?: Event[]) => void
@@ -65,8 +63,8 @@ export function getEventCollector(
             }
             case "onparserinit": {
                 parser = data[0] as Parser;
-                // Don't collect event
 
+                // Don't collect event
                 break;
             }
             default: {
@@ -109,71 +107,20 @@ export function getEventCollector(
     );
 }
 
-/**
- * Runs a test suite twice, ensuring input data matches expectations.
- *
- * @param file Test file to execute.
- * @param done Function to call on completion.
- */
-function getCallback(file: TestFile, done: (error?: Error | null) => void) {
-    let firstResult: unknown | undefined;
-
-    return (error: null | Error, actual?: unknown | unknown[]) => {
-        expect(error).toBeNull();
-
-        if (firstResult) {
-            expect(actual).toStrictEqual(firstResult);
-            done();
-        } else {
-            if (file.useSnapshot) {
-                expect(actual).toMatchSnapshot();
+export function getPromiseEventCollector(): [
+    handler: Partial<Handler>,
+    promise: Promise<Event[]>
+] {
+    let handler: Partial<Handler> | undefined;
+    const promise = new Promise<Event[]>((resolve, reject) => {
+        handler = getEventCollector((error, events) => {
+            if (error) {
+                reject(error);
             } else {
-                expect(actual).toStrictEqual(file.expected);
+                resolve(events!);
             }
-
-            firstResult = actual;
-        }
-    };
-}
-
-interface TestFile {
-    name: string;
-    options?: {
-        parser?: ParserOptions;
-    } & Partial<ParserOptions>;
-    input: string;
-    file: string;
-    useSnapshot?: boolean;
-    expected?: unknown | unknown[];
-}
-
-/**
- * Creates a test suite for a particular directory, with
- * a specified test function.
- *
- * @internal
- * @param name Name of the test directory.
- * @param getResult Function to be called with the actual results.
- */
-export function createSuite(
-    name: "Events" | "Feeds" | "Stream",
-    getResult: (
-        file: TestFile,
-        done: (error: Error | null, actual?: unknown | unknown[]) => void
-    ) => void
-): void {
-    describe(name, () => {
-        const directory = path.join(__dirname, name);
-
-        for (const name of fs.readdirSync(directory)) {
-            if (name.startsWith(".") || name.startsWith("_")) {
-                continue;
-            }
-
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const test: TestFile = require(path.join(directory, name));
-
-            it(test.name, (done) => getResult(test, getCallback(test, done)));
-        }
+        });
     });
+
+    return [handler!, promise];
 }

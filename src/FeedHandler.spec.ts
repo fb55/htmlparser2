@@ -7,13 +7,39 @@ import path from "node:path";
 
 const documents = path.join(__dirname, "__fixtures__", "Documents");
 
-helper.createSuite("Feeds", (test, callback) => {
-    const file = fs.readFileSync(path.join(documents, test.file), "utf8");
-    const handler: DomHandler = new DomHandler((error) =>
-        callback(error, getFeed(handler.dom))
-    );
+async function runTest(file: string): Promise<void> {
+    const filePath = path.join(documents, file);
+    const input = fs.readFileSync(filePath, "utf8");
 
-    helper.writeToParser(handler, { xmlMode: true }, file);
+    let firstResult: unknown;
+    let handler: DomHandler | undefined;
+
+    const domPromise = new Promise<void>((resolve, reject) => {
+        handler = new DomHandler((error) => {
+            if (error) {
+                reject(error);
+                return;
+            }
+            const feed = getFeed(handler!.dom);
+            if (firstResult) {
+                expect(feed).toStrictEqual(firstResult);
+                resolve();
+            } else {
+                firstResult = feed;
+                expect(feed).toMatchSnapshot();
+            }
+        });
+    });
+
+    helper.writeToParser(handler!, { xmlMode: true }, input);
+
+    return domPromise;
+}
+
+describe("Feeds", () => {
+    it("RSS (2.0)", () => runTest("RSS_Example.xml"));
+    it("Atom (1.0)", () => runTest("Atom_Example.xml"));
+    it("RDF test", () => runTest("RDF_Example.xml"));
 });
 
 describe("parseFeed", () => {

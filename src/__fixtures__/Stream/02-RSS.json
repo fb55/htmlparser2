@@ -1,6 +1,0 @@
-{
-    "name": "RSS feed",
-    "options": { "xmlMode": true },
-    "file": "RSS_Example.xml",
-    "useSnapshot": true
-}
