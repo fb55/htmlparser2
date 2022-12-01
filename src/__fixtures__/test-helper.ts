@@ -106,21 +106,3 @@ export function getEventCollector(
         { get: (_, event) => handle.bind(null, event as string) }
     );
 }
-
-export function getPromiseEventCollector(): [
-    handler: Partial<Handler>,
-    promise: Promise<Event[]>
-] {
-    let handler: Partial<Handler> | undefined;
-    const promise = new Promise<Event[]>((resolve, reject) => {
-        handler = getEventCollector((error, events) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve(events!);
-            }
-        });
-    });
-
-    return [handler!, promise];
-}

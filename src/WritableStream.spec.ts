@@ -2,7 +2,7 @@ import { createReadStream } from "node:fs";
 import * as fs from "node:fs/promises";
 import path from "node:path";
 import { finished } from "node:stream/promises";
-import type { ParserOptions } from "./Parser.js";
+import type { Handler, ParserOptions } from "./Parser.js";
 import { WritableStream } from "./WritableStream.js";
 import * as helper from "./__fixtures__/test-helper.js";
 
@@ -20,13 +20,31 @@ describe("WritableStream", () => {
     });
 });
 
+function getPromiseEventCollector(): [
+    handler: Partial<Handler>,
+    promise: Promise<unknown>
+] {
+    let handler: Partial<Handler> | undefined;
+    const promise = new Promise<unknown>((resolve, reject) => {
+        handler = helper.getEventCollector((error, events) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(events);
+            }
+        });
+    });
+
+    return [handler!, promise];
+}
+
 async function testStream(
     file: string,
     options?: ParserOptions
 ): Promise<void> {
     const filePath = path.join(__dirname, "__fixtures__", "Documents", file);
 
-    const [streamHandler, eventsPromise] = helper.getPromiseEventCollector();
+    const [streamHandler, eventsPromise] = getPromiseEventCollector();
 
     const fsStream = createReadStream(filePath).pipe(
         new WritableStream(streamHandler, options)
@@ -38,8 +56,7 @@ async function testStream(
 
     expect(events).toMatchSnapshot();
 
-    const [singlePassHandler, singlePassPromise] =
-        helper.getPromiseEventCollector();
+    const [singlePassHandler, singlePassPromise] = getPromiseEventCollector();
 
     const singlePassStream = new WritableStream(singlePassHandler, options).end(
         await fs.readFile(filePath)
