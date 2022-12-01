@@ -1,7 +1,7 @@
 import { createReadStream } from "node:fs";
 import * as fs from "node:fs/promises";
 import path from "node:path";
-import { finished } from "node:stream/promises";
+import * as stream from "node:stream";
 import type { Handler, ParserOptions } from "./Parser.js";
 import { WritableStream } from "./WritableStream.js";
 import * as helper from "./__fixtures__/test-helper.js";
@@ -43,6 +43,13 @@ function getPromiseEventCollector(): [
     });
 
     return [handler!, promise];
+}
+
+// TODO[engine:node@>=16]: Use promise version of `stream.finished` instead.
+function finished(input: Parameters<typeof stream.finished>[0]): Promise<void> {
+    return new Promise((resolve, reject) => {
+        stream.finished(input, (error) => (error ? reject(error) : resolve()));
+    });
 }
 
 async function testStream(
