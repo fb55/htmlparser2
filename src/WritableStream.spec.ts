@@ -16,7 +16,7 @@ describe("WritableStream", () => {
         stream.write("");
         stream.end();
 
-        expect(ontext).toBeCalledWith("€");
+        expect(ontext).toHaveBeenCalledWith("€");
     });
 });
 
