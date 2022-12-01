@@ -2,38 +2,37 @@
 
 import * as helper from "./__fixtures__/test-helper.js";
 import { DomHandler, getFeed, parseFeed } from "./index.js";
-import fs from "node:fs";
+import fs from "node:fs/promises";
 import path from "node:path";
 
 const documents = path.join(__dirname, "__fixtures__", "Documents");
 
 async function runTest(file: string): Promise<void> {
-    const filePath = path.join(documents, file);
-    const input = fs.readFileSync(filePath, "utf8");
+    const input = await fs.readFile(path.join(documents, file), "utf8");
 
-    let firstResult: unknown;
-    let handler: DomHandler | undefined;
+    return new Promise((resolve, reject) => {
+        let handler: DomHandler;
+        let firstResult: unknown;
 
-    const domPromise = new Promise<void>((resolve, reject) => {
-        handler = new DomHandler((error) => {
-            if (error) {
-                reject(error);
-                return;
-            }
-            const feed = getFeed(handler!.dom);
-            if (firstResult) {
-                expect(feed).toStrictEqual(firstResult);
-                resolve();
-            } else {
-                firstResult = feed;
-                expect(feed).toMatchSnapshot();
-            }
-        });
+        helper.writeToParser(
+            (handler = new DomHandler((error) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                const feed = getFeed(handler.dom);
+                if (firstResult) {
+                    expect(feed).toStrictEqual(firstResult);
+                    resolve();
+                } else {
+                    firstResult = feed;
+                    expect(feed).toMatchSnapshot();
+                }
+            })),
+            { xmlMode: true },
+            input
+        );
     });
-
-    helper.writeToParser(handler!, { xmlMode: true }, input);
-
-    return domPromise;
 }
 
 describe("Feeds", () => {
@@ -45,7 +44,7 @@ describe("Feeds", () => {
 describe("parseFeed", () => {
     test("(rssFeed)", async () => {
         const file = path.join(documents, "RSS_Example.xml");
-        const rss = await fs.promises.readFile(file, "utf8");
+        const rss = await fs.readFile(file, "utf8");
         const feed = parseFeed(rss);
 
         expect(feed).toMatchSnapshot();
