@@ -25,7 +25,7 @@ export function writeToParser(
 }
 
 interface Event {
-    event: string;
+    $event: string;
     data: unknown[];
     startIndex?: number;
     endIndex?: number;
@@ -70,7 +70,7 @@ export function getEventCollector(
             default: {
                 if (
                     event === "ontext" &&
-                    events[events.length - 1]?.event === "text"
+                    events[events.length - 1]?.$event === "text"
                 ) {
                     const last = events[events.length - 1];
                     // Combine text nodes
@@ -89,7 +89,7 @@ export function getEventCollector(
                     }
 
                     events.push({
-                        event: event.slice(2),
+                        $event: event.slice(2),
                         startIndex: parser.startIndex,
                         endIndex: parser.endIndex,
                         data,
