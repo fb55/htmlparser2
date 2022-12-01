@@ -1,28 +1,4 @@
-import { Parser, type Handler, type ParserOptions } from "../Parser.js";
-
-/**
- * Write to the parser twice, once a bytes, once as
- * a single blob.
- *
- * @internal
- * @param handler Handler to execute.
- * @param options Parsing options.
- * @param data Data to write.
- */
-export function writeToParser(
-    handler: Partial<Handler>,
-    options: ParserOptions | undefined,
-    data: string
-): void {
-    const parser = new Parser(handler, options);
-    // First, try to run the test via chunks
-    for (let index = 0; index < data.length; index++) {
-        parser.write(data.charAt(index));
-    }
-    parser.end();
-    // Then, parse everything
-    parser.parseComplete(data);
-}
+import type { Parser, Handler } from "../Parser.js";
 
 interface Event {
     $event: string;

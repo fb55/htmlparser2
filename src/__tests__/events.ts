@@ -1,28 +1,42 @@
 import { Parser, type ParserOptions } from "../index.js";
 import * as helper from "../__fixtures__/test-helper.js";
 
+/**
+ * Write to the parser twice, once a bytes, once as a single blob. Then check
+ * that we received the expected events.
+ *
+ * @internal
+ * @param input Data to write.
+ * @param options Parser options.
+ * @returns Promise that resolves if the test passes.
+ */
 function runTest(input: string, options?: ParserOptions) {
     let firstResult: unknown[] | undefined;
 
-    return new Promise<void>((resolve, reject) =>
-        helper.writeToParser(
-            helper.getEventCollector((error, actual) => {
-                if (error) {
-                    return reject(error);
-                }
+    return new Promise<void>((resolve, reject) => {
+        const handler = helper.getEventCollector((error, actual) => {
+            if (error) {
+                return reject(error);
+            }
 
-                if (firstResult) {
-                    expect(actual).toEqual(firstResult);
-                    resolve();
-                } else {
-                    firstResult = actual;
-                    expect(actual).toMatchSnapshot();
-                }
-            }),
-            options,
-            input
-        )
-    );
+            if (firstResult) {
+                expect(actual).toEqual(firstResult);
+                resolve();
+            } else {
+                firstResult = actual;
+                expect(actual).toMatchSnapshot();
+            }
+        });
+
+        const parser = new Parser(handler, options);
+        // First, try to run the test via chunks
+        for (let index = 0; index < input.length; index++) {
+            parser.write(input.charAt(index));
+        }
+        parser.end();
+        // Then, parse everything
+        parser.parseComplete(input);
+    });
 }
 
 describe("Events", () => {
