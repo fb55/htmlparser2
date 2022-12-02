@@ -21,7 +21,7 @@ describe("WritableStream", () => {
 
     it("Basic html", () => testStream("Basic.html"));
     it("Attributes", () => testStream("Attributes.html"));
-    it("SVG", () => testStream("SVG.html"));
+    it("SVG", () => testStream("Svg.html"));
     it("RSS feed", () => testStream("RSS_Example.xml", { xmlMode: true }));
     it("Atom feed", () => testStream("Atom_Example.xml", { xmlMode: true }));
     it("RDF feed", () => testStream("RDF_Example.xml", { xmlMode: true }));
