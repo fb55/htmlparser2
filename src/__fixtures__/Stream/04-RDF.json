@@ -1,6 +1,0 @@
-{
-    "name": "RDF feed",
-    "options": { "xmlMode": true },
-    "file": "RDF_Example.xml",
-    "useSnapshot": true
-}

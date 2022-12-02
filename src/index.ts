@@ -47,9 +47,9 @@ export function parseDOM(data: string, options?: Options): ChildNode[] {
 /**
  * Creates a parser instance, with an attached DOM handler.
  *
- * @param cb A callback that will be called once parsing has been completed.
+ * @param callback A callback that will be called once parsing has been completed.
  * @param options Optional options for the parser and DOM builder.
- * @param elementCb An optional callback that will be called every time a tag has been completed inside of the DOM.
+ * @param elementCallback An optional callback that will be called every time a tag has been completed inside of the DOM.
  */
 export function createDomStream(
     callback: (error: Error | null, dom: ChildNode[]) => void,

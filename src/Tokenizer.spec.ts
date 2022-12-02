@@ -1,15 +1,19 @@
 import { Tokenizer } from "./index.js";
+import type { Callbacks } from "./Tokenizer.js";
 
 function tokenize(data: string) {
     const log: unknown[][] = [];
     const tokenizer = new Tokenizer(
         {},
-        new Proxy({} as any, {
-            get(_, property) {
-                return (...values: unknown[]) =>
-                    log.push([property, ...values]);
-            },
-        })
+        new Proxy(
+            {},
+            {
+                get(_, property) {
+                    return (...values: unknown[]) =>
+                        log.push([property, ...values]);
+                },
+            }
+        ) as Callbacks
     );
 
     tokenizer.write(data);
@@ -47,21 +51,28 @@ describe("Tokenizer", () => {
         const log: unknown[][] = [];
         const tokenizer = new Tokenizer(
             {},
-            new Proxy({} as any, {
-                get(_, property) {
-                    return (...values: unknown[]) => {
-                        if (property === "ontext") {
-                            tokenizer.pause();
-                        }
-                        log.push([property, ...values]);
-                    };
-                },
-            })
+            new Proxy(
+                {},
+                {
+                    get(_, property) {
+                        return (...values: unknown[]) => {
+                            if (property === "ontext") {
+                                tokenizer.pause();
+                            }
+                            log.push([property, ...values]);
+                        };
+                    },
+                }
+            ) as Callbacks
         );
 
         tokenizer.write("&amp; it up!");
         tokenizer.resume();
         tokenizer.resume();
+
+        // Tokenizer shouldn't be paused
+        expect(tokenizer).toHaveProperty("running", true);
+
         tokenizer.end();
 
         expect(log).toMatchSnapshot();

@@ -104,7 +104,7 @@ describe("API", () => {
         p.write("<hr>");
 
         expect(onopentag).toHaveBeenLastCalledWith("hr", 6, 9);
-        expect(onclosetag).toBeCalledTimes(2);
+        expect(onclosetag).toHaveBeenCalledTimes(2);
         expect(onclosetag).toHaveBeenNthCalledWith(1, "p", 9);
         expect(onclosetag).toHaveBeenNthCalledWith(2, "hr", 9);
     });
