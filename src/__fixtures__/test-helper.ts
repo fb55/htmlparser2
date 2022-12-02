@@ -3,8 +3,8 @@ import type { Parser, Handler } from "../Parser.js";
 interface Event {
     $event: string;
     data: unknown[];
-    startIndex?: number;
-    endIndex?: number;
+    startIndex: number;
+    endIndex: number;
 }
 
 /**
@@ -20,7 +20,7 @@ export function getEventCollector(
     const events: Event[] = [];
     let parser: Parser;
 
-    function handle(event: string, ...data: unknown[]): void {
+    function handle(event: string, data: unknown[]): void {
         switch (event) {
             case "onerror": {
                 callback(data[0] as Error);
@@ -79,6 +79,11 @@ export function getEventCollector(
 
     return new Proxy(
         {},
-        { get: (_, event) => handle.bind(null, event as string) }
+        {
+            get:
+                (_, event: string) =>
+                (...data: unknown[]) =>
+                    handle(event, data),
+        }
     );
 }
