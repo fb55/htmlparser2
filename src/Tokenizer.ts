@@ -247,7 +247,7 @@ export default class Tokenizer {
         }
     }
 
-    private currentSequence!: Uint8Array;
+    private currentSequence: Uint8Array = undefined!;
     private sequenceIndex = 0;
     private stateSpecialStartSequence(c: number): void {
         const isEnd = this.sequenceIndex === this.currentSequence.length;
