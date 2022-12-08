@@ -12,7 +12,7 @@ env:
     NODE_COV: lts/* # The Node.js version to run coveralls on
 
 permissions:
-  contents: read #  to fetch code (actions/checkout)
+    contents: read #  to fetch code (actions/checkout)
 
 jobs:
     lint:
@@ -28,8 +28,8 @@ jobs:
 
     test:
         permissions:
-          contents: read #  to fetch code (actions/checkout)
-          checks: write #  to create new checks (coverallsapp/github-action)
+            contents: read #  to fetch code (actions/checkout)
+            checks: write #  to create new checks (coverallsapp/github-action)
 
         name: Node ${{ matrix.node }}
         runs-on: ubuntu-latest
