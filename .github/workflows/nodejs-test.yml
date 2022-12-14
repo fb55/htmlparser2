@@ -11,6 +11,9 @@ env:
     FORCE_COLOR: 2
     NODE_COV: lts/* # The Node.js version to run coveralls on
 
+permissions:
+    contents: read #  to fetch code (actions/checkout)
+
 jobs:
     lint:
         runs-on: ubuntu-latest
@@ -24,6 +27,10 @@ jobs:
             - run: npm run lint
 
     test:
+        permissions:
+            contents: read #  to fetch code (actions/checkout)
+            checks: write #  to create new checks (coverallsapp/github-action)
+
         name: Node ${{ matrix.node }}
         runs-on: ubuntu-latest
 
