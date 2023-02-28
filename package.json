@@ -70,7 +70,7 @@
         "@types/jest": "^29.4.0",
         "@types/node": "^18.14.2",
         "@typescript-eslint/eslint-plugin": "^5.54.0",
-        "@typescript-eslint/parser": "^5.53.0",
+        "@typescript-eslint/parser": "^5.54.0",
         "eslint": "^8.35.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-n": "^15.6.1",
