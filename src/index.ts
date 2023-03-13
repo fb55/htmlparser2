@@ -16,6 +16,8 @@ export {
     type DomHandlerOptions,
 } from "domhandler";
 
+export { WritableStream } from "./WritableStream.js";
+
 export type Options = ParserOptions & DomHandlerOptions;
 
 // Helper methods
