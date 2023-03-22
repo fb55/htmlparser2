@@ -15,7 +15,6 @@
         /* Additional Checks */
         "exactOptionalPropertyTypes": true,
         "forceConsistentCasingInFileNames": true,
-        "importsNotUsedAsValues": "error",
         "isolatedModules": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitOverride": true,
