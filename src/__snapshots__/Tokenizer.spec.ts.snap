@@ -1,5 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tokenizer should not break after special tag followed by an entity for normal special tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onopentagend",
+    6,
+  ],
+  [
+    "ontext",
+    7,
+    10,
+  ],
+  [
+    "onclosetag",
+    12,
+    17,
+  ],
+  [
+    "ontextentity",
+    39,
+  ],
+  [
+    "onopentagname",
+    25,
+    27,
+  ],
+  [
+    "onselfclosingtag",
+    28,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should not break after special tag followed by an entity for self-closing special tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onselfclosingtag",
+    8,
+  ],
+  [
+    "ontextentity",
+    39,
+  ],
+  [
+    "onopentagname",
+    16,
+    18,
+  ],
+  [
+    "onselfclosingtag",
+    19,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer should not lose data when pausing 1`] = `
 [
   [

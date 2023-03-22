@@ -455,6 +455,7 @@ export default class Tokenizer {
         // Skip everything until ">"
         if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this.state = State.Text;
+            this.baseState = State.Text;
             this.sectionStart = this.index + 1;
         }
     }
