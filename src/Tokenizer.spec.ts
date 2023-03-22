@@ -47,6 +47,15 @@ describe("Tokenizer", () => {
         });
     });
 
+    describe("should not break after special tag followed by an entity", () => {
+        it("for normal special tag", () => {
+            expect(tokenize("<style>a{}</style>&apos;<br/>")).toMatchSnapshot();
+        });
+        it("for self-closing special tag", () => {
+            expect(tokenize("<style />&apos;<br/>")).toMatchSnapshot();
+        });
+    });
+
     it("should not lose data when pausing", () => {
         const log: unknown[][] = [];
         const tokenizer = new Tokenizer(
