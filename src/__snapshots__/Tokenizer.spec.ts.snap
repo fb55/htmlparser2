@@ -227,54 +227,6 @@ exports[`Tokenizer should not lose data when pausing 1`] = `
 ]
 `;
 
-exports[`Tokenizer should support XML entities 1`] = `
-[
-  [
-    "ontextentity",
-    38,
-  ],
-  [
-    "ontextentity",
-    62,
-  ],
-  [
-    "ontext",
-    9,
-    13,
-  ],
-  [
-    "ontextentity",
-    60,
-  ],
-  [
-    "ontext",
-    17,
-    23,
-  ],
-  [
-    "ontextentity",
-    97,
-  ],
-  [
-    "ontext",
-    29,
-    34,
-  ],
-  [
-    "ontextentity",
-    99,
-  ],
-  [
-    "ontext",
-    39,
-    49,
-  ],
-  [
-    "onend",
-  ],
-]
-`;
-
 exports[`Tokenizer should support self-closing special tags for self-closing script tag 1`] = `
 [
   [

@@ -624,7 +624,7 @@ export default class Tokenizer {
             this.state = this.baseState;
 
             if (length === 0) {
-                this.index = this.entityStart + 1;
+                this.index = this.entityStart;
             }
         }
     }
@@ -777,16 +777,20 @@ export default class Tokenizer {
             this.state = this.baseState;
         }
 
-        // If there is remaining data, emit it in a reasonable way
-        if (this.sectionStart < this.index) {
-            this.handleTrailingData();
-        }
+        this.handleTrailingData();
+
         this.cbs.onend();
     }
 
     /** Handle any trailing data. */
     private handleTrailingData() {
         const endIndex = this.buffer.length + this.offset;
+
+        // If there is no remaining data, we are done.
+        if (this.sectionStart >= endIndex) {
+            return;
+        }
+
         if (this.state === State.InCommentLike) {
             if (this.currentSequence === Sequences.CdataEnd) {
                 this.cbs.oncdata(this.sectionStart, endIndex, 0);
