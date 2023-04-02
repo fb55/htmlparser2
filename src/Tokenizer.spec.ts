@@ -56,12 +56,27 @@ describe("Tokenizer", () => {
         });
     });
 
-    it("should support XML entities", () =>
-        expect(
-            tokenize("&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101", {
-                xmlMode: true,
-            })
-        ).toMatchSnapshot());
+    describe("should handle entities", () => {
+        it("for XML entities", () =>
+            expect(
+                tokenize("&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101", {
+                    xmlMode: true,
+                })
+            ).toMatchSnapshot());
+
+        it("for entities in attributes (#276)", () =>
+            expect(
+                tokenize(
+                    '<img src="?&image_uri=1&&image;=2&image=3"/>?&image_uri=1&&image;=2&image=3'
+                )
+            ).toMatchSnapshot());
+
+        it("for trailing legacy entity", () =>
+            expect(tokenize("&timesbar;&timesbar")).toMatchSnapshot());
+
+        it("for multi-byte entities", () =>
+            expect(tokenize("&NotGreaterFullEqual;")).toMatchSnapshot());
+    });
 
     it("should not lose data when pausing", () => {
         const log: unknown[][] = [];
