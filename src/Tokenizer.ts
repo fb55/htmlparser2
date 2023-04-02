@@ -171,7 +171,7 @@ export default class Tokenizer {
         this.decodeEntities = decodeEntities;
         this.entityDecoder = new EntityDecoder(
             xmlMode ? xmlDecodeTree : htmlDecodeTree,
-            (cp) => this.emitCodePoint(cp)
+            (cp, consumed) => this.emitCodePoint(cp, consumed)
         );
     }
 
@@ -622,15 +622,9 @@ export default class Tokenizer {
             this.index - this.offset
         );
 
-        // If `length` is negative, we need to wait for more data.
+        // If `length` is positive, we are done with the entity.
         if (length >= 0) {
-            this.index = this.entityStart + length;
             this.state = this.baseState;
-
-            // If we encountered an entity, we already emitted the current section.
-            if (length > 0) {
-                this.sectionStart = this.index;
-            }
         }
     }
 
@@ -778,7 +772,7 @@ export default class Tokenizer {
 
     private finish() {
         if (this.state === State.InEntity) {
-            this.index += this.entityDecoder.end();
+            this.entityDecoder.end();
             this.state = this.baseState;
         }
 
@@ -818,22 +812,24 @@ export default class Tokenizer {
         }
     }
 
-    private emitCodePoint(cp: number): void {
+    private emitCodePoint(cp: number, consumed: number): void {
         if (
             this.baseState !== State.Text &&
             this.baseState !== State.InSpecialTag
         ) {
             if (this.sectionStart < this.entityStart) {
                 this.cbs.onattribdata(this.sectionStart, this.entityStart);
-                this.sectionStart = this.entityStart;
             }
+            this.sectionStart = this.entityStart + consumed;
+            this.index = this.sectionStart - 1;
 
             this.cbs.onattribentity(cp);
         } else {
             if (this.sectionStart < this.entityStart) {
                 this.cbs.ontext(this.sectionStart, this.entityStart);
-                this.sectionStart = this.entityStart;
             }
+            this.sectionStart = this.entityStart + consumed;
+            this.index = this.sectionStart - 1;
 
             this.cbs.ontextentity(cp);
         }
