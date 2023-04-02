@@ -625,6 +625,10 @@ export default class Tokenizer {
         // If `length` is positive, we are done with the entity.
         if (length >= 0) {
             this.state = this.baseState;
+
+            if (length === 0) {
+                this.index = this.entityStart + 1;
+            }
         }
     }
 
