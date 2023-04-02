@@ -444,7 +444,6 @@ export default class Tokenizer {
         // Skip everything until ">"
         if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this.state = State.Text;
-            this.baseState = State.Text;
             this.sectionStart = this.index + 1;
         }
     }
@@ -457,7 +456,6 @@ export default class Tokenizer {
             } else {
                 this.state = State.Text;
             }
-            this.baseState = this.state;
             this.sectionStart = this.index + 1;
         } else if (c === CharCodes.Slash) {
             this.state = State.InSelfClosingTag;
@@ -470,7 +468,6 @@ export default class Tokenizer {
         if (c === CharCodes.Gt) {
             this.cbs.onselfclosingtag(this.index);
             this.state = State.Text;
-            this.baseState = State.Text;
             this.sectionStart = this.index + 1;
             this.isSpecial = false; // Reset special state, in case of self-closing special tags
         } else if (!isWhitespace(c)) {
