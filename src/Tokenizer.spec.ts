@@ -1,10 +1,10 @@
 import { Tokenizer } from "./index.js";
 import type { Callbacks } from "./Tokenizer.js";
 
-function tokenize(data: string) {
+function tokenize(data: string, options = {}) {
     const log: unknown[][] = [];
     const tokenizer = new Tokenizer(
-        {},
+        options,
         new Proxy(
             {},
             {
@@ -55,6 +55,13 @@ describe("Tokenizer", () => {
             expect(tokenize("<style />&apos;<br/>")).toMatchSnapshot();
         });
     });
+
+    it("should support XML entities", () =>
+        expect(
+            tokenize("&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101", {
+                xmlMode: true,
+            })
+        ).toMatchSnapshot());
 
     it("should not lose data when pausing", () => {
         const log: unknown[][] = [];
