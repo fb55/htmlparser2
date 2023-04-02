@@ -617,7 +617,10 @@ export default class Tokenizer {
     }
 
     private stateInEntity(): void {
-        const length = this.entityDecoder.write(this.buffer, this.index);
+        const length = this.entityDecoder.write(
+            this.buffer,
+            this.index - this.offset
+        );
 
         // If `length` is negative, we need to wait for more data.
         if (length >= 0) {
@@ -775,7 +778,8 @@ export default class Tokenizer {
 
     private finish() {
         if (this.state === State.InEntity) {
-            this.entityDecoder.end();
+            this.index += this.entityDecoder.end();
+            this.state = this.baseState;
         }
 
         // If there is remaining data, emit it in a reasonable way
