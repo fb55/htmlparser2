@@ -118,7 +118,7 @@ export interface Callbacks {
     onprocessinginstruction(start: number, endIndex: number): void;
     onselfclosingtag(endIndex: number): void;
     ontext(start: number, endIndex: number): void;
-    ontextentity(codepoint: number): void;
+    ontextentity(codepoint: number, endIndex: number): void;
 }
 
 /**
@@ -205,20 +205,6 @@ export default class Tokenizer {
         if (this.index < this.buffer.length + this.offset) {
             this.parse();
         }
-    }
-
-    /**
-     * The current index within all of the written data.
-     */
-    public getIndex(): number {
-        return this.index;
-    }
-
-    /**
-     * The start of the current section.
-     */
-    public getSectionStart(): number {
-        return this.sectionStart;
     }
 
     private stateText(c: number): void {
@@ -839,7 +825,7 @@ export default class Tokenizer {
             this.sectionStart = this.entityStart + consumed;
             this.index = this.sectionStart - 1;
 
-            this.cbs.ontextentity(cp);
+            this.cbs.ontextentity(cp, this.sectionStart);
         }
     }
 }
