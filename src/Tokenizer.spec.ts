@@ -97,7 +97,8 @@ describe("Tokenizer", () => {
             ) as Callbacks
         );
 
-        tokenizer.write("&amp; it up!");
+        tokenizer.write("&am");
+        tokenizer.write("p; it up!");
         tokenizer.resume();
         tokenizer.resume();
 

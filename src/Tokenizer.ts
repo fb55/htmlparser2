@@ -626,6 +626,9 @@ export default class Tokenizer {
             if (length === 0) {
                 this.index = this.entityStart;
             }
+        } else {
+            // Mark buffer as consumed.
+            this.index = this.offset + this.buffer.length - 1;
         }
     }
 
