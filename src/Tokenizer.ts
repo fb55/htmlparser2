@@ -1,6 +1,6 @@
 import {
     EntityDecoder,
-    EntityDecoderMode,
+    DecodingMode,
     htmlDecodeTree,
     xmlDecodeTree,
 } from "entities/lib/decode.js";
@@ -591,11 +591,11 @@ export default class Tokenizer {
         this.entityStart = this.index;
         this.entityDecoder.startEntity(
             this.xmlMode
-                ? EntityDecoderMode.Strict
+                ? DecodingMode.Strict
                 : this.baseState === State.Text ||
                   this.baseState === State.InSpecialTag
-                ? EntityDecoderMode.Text
-                : EntityDecoderMode.Attribute
+                ? DecodingMode.Legacy
+                : DecodingMode.Attribute
         );
     }
 
