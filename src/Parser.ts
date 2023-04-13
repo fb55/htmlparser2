@@ -251,15 +251,10 @@ export class Parser implements Callbacks {
     }
 
     /** @internal */
-    ontextentity(cp: number): void {
-        /*
-         * Entities can be emitted on the character, or directly after.
-         * We use the section start here to get accurate indices.
-         */
-        const index = this.tokenizer.getSectionStart();
-        this.endIndex = index - 1;
+    ontextentity(cp: number, endIndex: number): void {
+        this.endIndex = endIndex - 1;
         this.cbs.ontext?.(fromCodePoint(cp));
-        this.startIndex = index;
+        this.startIndex = endIndex;
     }
 
     protected isVoidElement(name: string): boolean {

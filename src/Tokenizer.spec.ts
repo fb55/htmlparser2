@@ -1,10 +1,10 @@
 import { Tokenizer } from "./index.js";
 import type { Callbacks } from "./Tokenizer.js";
 
-function tokenize(data: string) {
+function tokenize(data: string, options = {}) {
     const log: unknown[][] = [];
     const tokenizer = new Tokenizer(
-        {},
+        options,
         new Proxy(
             {},
             {
@@ -56,6 +56,28 @@ describe("Tokenizer", () => {
         });
     });
 
+    describe("should handle entities", () => {
+        it("for XML entities", () =>
+            expect(
+                tokenize("&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101", {
+                    xmlMode: true,
+                })
+            ).toMatchSnapshot());
+
+        it("for entities in attributes (#276)", () =>
+            expect(
+                tokenize(
+                    '<img src="?&image_uri=1&&image;=2&image=3"/>?&image_uri=1&&image;=2&image=3'
+                )
+            ).toMatchSnapshot());
+
+        it("for trailing legacy entity", () =>
+            expect(tokenize("&timesbar;&timesbar")).toMatchSnapshot());
+
+        it("for multi-byte entities", () =>
+            expect(tokenize("&NotGreaterFullEqual;")).toMatchSnapshot());
+    });
+
     it("should not lose data when pausing", () => {
         const log: unknown[][] = [];
         const tokenizer = new Tokenizer(
@@ -75,7 +97,8 @@ describe("Tokenizer", () => {
             ) as Callbacks
         );
 
-        tokenizer.write("&amp; it up!");
+        tokenizer.write("&am");
+        tokenizer.write("p; it up!");
         tokenizer.resume();
         tokenizer.resume();
 

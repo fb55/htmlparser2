@@ -1,5 +1,155 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tokenizer should handle entities for XML entities 1`] = `
+[
+  [
+    "ontextentity",
+    38,
+    5,
+  ],
+  [
+    "ontextentity",
+    62,
+    9,
+  ],
+  [
+    "ontext",
+    9,
+    13,
+  ],
+  [
+    "ontextentity",
+    60,
+    17,
+  ],
+  [
+    "ontext",
+    17,
+    23,
+  ],
+  [
+    "ontextentity",
+    97,
+    29,
+  ],
+  [
+    "ontext",
+    29,
+    34,
+  ],
+  [
+    "ontextentity",
+    99,
+    39,
+  ],
+  [
+    "ontext",
+    39,
+    49,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should handle entities for entities in attributes (#276) 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onattribname",
+    5,
+    8,
+  ],
+  [
+    "onattribdata",
+    10,
+    24,
+  ],
+  [
+    "onattribentity",
+    8465,
+  ],
+  [
+    "onattribdata",
+    31,
+    41,
+  ],
+  [
+    "onattribend",
+    3,
+    41,
+  ],
+  [
+    "onselfclosingtag",
+    43,
+  ],
+  [
+    "ontext",
+    44,
+    58,
+  ],
+  [
+    "ontextentity",
+    8465,
+    65,
+  ],
+  [
+    "ontext",
+    65,
+    75,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should handle entities for multi-byte entities 1`] = `
+[
+  [
+    "ontextentity",
+    8807,
+    21,
+  ],
+  [
+    "ontextentity",
+    824,
+    21,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should handle entities for trailing legacy entity 1`] = `
+[
+  [
+    "ontextentity",
+    10801,
+    10,
+  ],
+  [
+    "ontextentity",
+    215,
+    16,
+  ],
+  [
+    "ontext",
+    16,
+    19,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer should not break after special tag followed by an entity for normal special tag 1`] = `
 [
   [
@@ -24,6 +174,7 @@ exports[`Tokenizer should not break after special tag followed by an entity for 
   [
     "ontextentity",
     39,
+    24,
   ],
   [
     "onopentagname",
@@ -54,6 +205,7 @@ exports[`Tokenizer should not break after special tag followed by an entity for 
   [
     "ontextentity",
     39,
+    15,
   ],
   [
     "onopentagname",
@@ -75,6 +227,7 @@ exports[`Tokenizer should not lose data when pausing 1`] = `
   [
     "ontextentity",
     38,
+    5,
   ],
   [
     "ontext",
