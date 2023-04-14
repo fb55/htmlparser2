@@ -75,7 +75,7 @@ import { getFeed, Feed } from "domutils";
 
 export { getFeed } from "domutils";
 
-const parseFeedDefaultOptions = { xmlMode: true };
+const parseFeedDefaultOptions = { xmlMode: true, customVoidElements: [] };
 
 /**
  * Parse a feed.
