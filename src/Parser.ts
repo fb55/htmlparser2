@@ -153,6 +153,14 @@ export interface ParserOptions {
      * Allows the default tokenizer to be overwritten.
      */
     Tokenizer?: typeof Tokenizer;
+
+    /**
+     * If given a list of custom elements, the parser will treat them as void elements.
+     * This means that the parser will not expect them to have end tags.
+     * For example, if you pass `["custom"]` as a custom void element, then the following will be parsed as a single element:
+     * `<custom>text</custom>`.
+     */
+    customVoidElements?: Array<string>;
 }
 
 export interface Handler {
@@ -263,7 +271,11 @@ export class Parser implements Callbacks {
     }
 
     protected isVoidElement(name: string): boolean {
-        return !this.options.xmlMode && voidElements.has(name);
+        return (
+            !this.options.xmlMode &&
+            (this.options.customVoidElements?.includes(name) ||
+                voidElements.has(name))
+        );
     }
 
     /** @internal */
