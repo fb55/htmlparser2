@@ -71,9 +71,9 @@ export {
  */
 export * as ElementType from "domelementtype";
 
-import { getFeed, Feed } from "domutils";
+import { getFeed, type Feed } from "domutils";
 
-export { getFeed } from "domutils";
+export { getFeed, type Feed } from "domutils";
 
 const parseFeedDefaultOptions = { xmlMode: true };
 
