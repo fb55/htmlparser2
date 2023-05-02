@@ -117,14 +117,13 @@ const dom = htmlparser2.parseDocument(htmlString);
 The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler).
 Have a look at that for further information.
 
-## Parsing RSS/RDF/Atom Feeds
+## Parsing Feeds
+
+`htmlparser2` makes it easy to parse RSS, RDF and Atom feeds, by providing a `parseFeed` method:
 
 ```javascript
 const feed = htmlparser2.parseFeed(content, options);
 ```
-
-Note: While the provided feed handler works for most feeds,
-you might want to use [danmactough/node-feedparser](https://github.com/danmactough/node-feedparser), which is much better tested and actively maintained.
 
 ## Performance
 
