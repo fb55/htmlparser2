@@ -44,11 +44,8 @@ export function getEventCollector(
                 break;
             }
             default: {
-                if (
-                    event === "ontext" &&
-                    events[events.length - 1]?.$event === "text"
-                ) {
-                    const last = events[events.length - 1];
+                if (event === "ontext" && events.at(-1)?.$event === "text") {
+                    const last = events.at(-1);
                     // Combine text nodes
                     (last.data[0] as string) += data[0];
                     last.endIndex = parser.endIndex;
