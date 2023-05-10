@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Index createDocumentStream 1`] = `
+Document {
+  "children": [
+    &This is text,
+    <!-- and comments -->,
+    <tags />,
+  ],
+  "endIndex": null,
+  "next": null,
+  "parent": null,
+  "prev": null,
+  "startIndex": null,
+  "type": "root",
+}
+`;
+
 exports[`Index createDomStream 1`] = `
 [
   &This is text,
