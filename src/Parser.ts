@@ -212,10 +212,13 @@ export class Parser implements Callbacks {
     private attribvalue = "";
     private attribs: null | { [key: string]: string } = null;
     private readonly stack: string[] = [];
-    private readonly foreignContext: boolean[] = [];
+    /** Determines whether self-closing tags are recognized. */
+    private readonly foreignContext: boolean[];
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
     private readonly lowerCaseAttributeNames: boolean;
+    /** We are parsing HTML. Inverse of the `xmlMode` option. */
+    private readonly htmlMode: boolean;
     private readonly tokenizer: Tokenizer;
 
     private readonly buffers: string[] = [];
@@ -230,13 +233,15 @@ export class Parser implements Callbacks {
         private readonly options: ParserOptions = {}
     ) {
         this.cbs = cbs ?? {};
-        this.lowerCaseTagNames = options.lowerCaseTags ?? !options.xmlMode;
+        this.htmlMode = !this.options.xmlMode;
+        this.lowerCaseTagNames = options.lowerCaseTags ?? this.htmlMode;
         this.lowerCaseAttributeNames =
-            options.lowerCaseAttributeNames ?? !options.xmlMode;
+            options.lowerCaseAttributeNames ?? this.htmlMode;
         this.tokenizer = new (options.Tokenizer ?? Tokenizer)(
             this.options,
             this
         );
+        this.foreignContext = [!this.htmlMode];
         this.cbs.onparserinit?.(this);
     }
 
@@ -257,8 +262,12 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex;
     }
 
+    /**
+     * Checks if the current tag is a void element. Override this if you want
+     * to specify your own additional void elements.
+     */
     protected isVoidElement(name: string): boolean {
-        return !this.options.xmlMode && voidElements.has(name);
+        return this.htmlMode && voidElements.has(name);
     }
 
     /** @internal */
@@ -278,24 +287,23 @@ export class Parser implements Callbacks {
         this.openTagStart = this.startIndex;
         this.tagname = name;
 
-        const impliesClose =
-            !this.options.xmlMode && openImpliesClose.get(name);
+        const impliesClose = this.htmlMode && openImpliesClose.get(name);
 
         if (impliesClose) {
-            while (
-                this.stack.length > 0 &&
-                impliesClose.has(this.stack[this.stack.length - 1])
-            ) {
-                const element = this.stack.pop()!;
+            while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
+                const element = this.stack.shift()!;
                 this.cbs.onclosetag?.(element, true);
             }
         }
         if (!this.isVoidElement(name)) {
-            this.stack.push(name);
-            if (foreignContextElements.has(name)) {
-                this.foreignContext.push(true);
-            } else if (htmlIntegrationElements.has(name)) {
-                this.foreignContext.push(false);
+            this.stack.unshift(name);
+
+            if (this.htmlMode) {
+                if (foreignContextElements.has(name)) {
+                    this.foreignContext.unshift(true);
+                } else if (htmlIntegrationElements.has(name)) {
+                    this.foreignContext.unshift(false);
+                }
             }
         }
         this.cbs.onopentagname?.(name);
@@ -336,28 +344,27 @@ export class Parser implements Callbacks {
         }
 
         if (
-            foreignContextElements.has(name) ||
-            htmlIntegrationElements.has(name)
+            this.htmlMode &&
+            (foreignContextElements.has(name) ||
+                htmlIntegrationElements.has(name))
         ) {
-            this.foreignContext.pop();
+            this.foreignContext.shift();
         }
 
         if (!this.isVoidElement(name)) {
-            const pos = this.stack.lastIndexOf(name);
+            const pos = this.stack.indexOf(name);
             if (pos !== -1) {
-                if (this.cbs.onclosetag) {
-                    let count = this.stack.length - pos;
-                    while (count--) {
-                        // We know the stack has sufficient elements.
-                        this.cbs.onclosetag(this.stack.pop()!, count !== 0);
-                    }
-                } else this.stack.length = pos;
-            } else if (!this.options.xmlMode && name === "p") {
+                for (let index = 0; index <= pos; index++) {
+                    const element = this.stack.shift()!;
+                    // We know the stack has sufficient elements.
+                    this.cbs.onclosetag?.(element, index !== pos);
+                }
+            } else if (this.htmlMode && name === "p") {
                 // Implicit open before close
                 this.emitOpenTag("p");
                 this.closeCurrentTag(true);
             }
-        } else if (!this.options.xmlMode && name === "br") {
+        } else if (this.htmlMode && name === "br") {
             // We can't use `emitOpenTag` for implicit open, as `br` would be implicitly closed.
             this.cbs.onopentagname?.("br");
             this.cbs.onopentag?.("br", {}, true);
@@ -371,11 +378,7 @@ export class Parser implements Callbacks {
     /** @internal */
     onselfclosingtag(endIndex: number): void {
         this.endIndex = endIndex;
-        if (
-            this.options.xmlMode ||
-            this.options.recognizeSelfClosing ||
-            this.foreignContext[this.foreignContext.length - 1]
-        ) {
+        if (this.options.recognizeSelfClosing || this.foreignContext[0]) {
             this.closeCurrentTag(false);
 
             // Set `startIndex` for next node
@@ -391,10 +394,10 @@ export class Parser implements Callbacks {
         this.endOpenTag(isOpenImplied);
 
         // Self-closing tags will be on the top of the stack
-        if (this.stack[this.stack.length - 1] === name) {
+        if (this.stack[0] === name) {
             // If the opening tag isn't implied, the closing tag has to be implied.
             this.cbs.onclosetag?.(name, !isOpenImplied);
-            this.stack.pop();
+            this.stack.shift();
         }
     }
 
@@ -498,7 +501,7 @@ export class Parser implements Callbacks {
         this.endIndex = endIndex;
         const value = this.getSlice(start, endIndex - offset);
 
-        if (this.options.xmlMode || this.options.recognizeCDATA) {
+        if (!this.htmlMode || this.options.recognizeCDATA) {
             this.cbs.oncdatastart?.();
             this.cbs.ontext?.(value);
             this.cbs.oncdataend?.();
@@ -516,11 +519,9 @@ export class Parser implements Callbacks {
         if (this.cbs.onclosetag) {
             // Set the end index for all remaining tags
             this.endIndex = this.startIndex;
-            for (
-                let index = this.stack.length;
-                index > 0;
-                this.cbs.onclosetag(this.stack[--index], true)
-            );
+            for (let index = 0; index < this.stack.length; index++) {
+                this.cbs.onclosetag(this.stack[index], true);
+            }
         }
         this.cbs.onend?.();
     }
@@ -539,6 +540,8 @@ export class Parser implements Callbacks {
         this.endIndex = 0;
         this.cbs.onparserinit?.(this);
         this.buffers.length = 0;
+        this.foreignContext.length = 0;
+        this.foreignContext.unshift(!this.htmlMode);
         this.bufferOffset = 0;
         this.writeIndex = 0;
         this.ended = false;
