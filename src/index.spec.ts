@@ -1,6 +1,7 @@
 import {
     parseDocument,
     parseDOM,
+    createDocumentStream,
     createDomStream,
     DomHandler,
     DefaultHandler,
@@ -28,6 +29,21 @@ describe("Index", () => {
     test("parseDOM", () => {
         const dom = parseDOM("<a foo><b><c><?foo>Yay!");
         expect(dom).toMatchSnapshot();
+    });
+
+    test("createDocumentStream", (done) => {
+        const domStream = createDocumentStream((error, dom) => {
+            expect(error).toBeNull();
+            expect(dom).toMatchSnapshot();
+
+            done();
+        });
+
+        for (const c of "&amp;This is text<!-- and comments --><tags>") {
+            domStream.write(c);
+        }
+
+        domStream.end();
     });
 
     test("createDomStream", (done) => {
