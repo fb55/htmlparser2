@@ -44,35 +44,37 @@ export function getEventCollector(
                 break;
             }
             default: {
-                if (
-                    event === "ontext" &&
-                    events[events.length - 1]?.$event === "text"
-                ) {
-                    const last = events[events.length - 1];
-                    // Combine text nodes
+                // eslint-disable-next-line unicorn/prefer-at
+                const last = events[events.length - 1];
+
+                // Combine text nodes
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                if (event === "ontext" && last && last.$event === "text") {
                     (last.data[0] as string) += data[0];
                     last.endIndex = parser.endIndex;
-                } else {
-                    // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
-                    if (event === "onattribute" && data[2] === undefined) {
-                        data.pop();
-                    }
 
-                    if (!(parser.startIndex <= parser.endIndex)) {
-                        throw new Error(
-                            `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
-                        );
-                    }
-
-                    events.push({
-                        $event: event.slice(2),
-                        startIndex: parser.startIndex,
-                        endIndex: parser.endIndex,
-                        data,
-                    });
-
-                    parser.endIndex;
+                    break;
                 }
+
+                // Remove `undefined`s from attribute responses, as they cannot be represented in JSON.
+                if (event === "onattribute" && data[2] === undefined) {
+                    data.pop();
+                }
+
+                if (!(parser.startIndex <= parser.endIndex)) {
+                    throw new Error(
+                        `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
+                    );
+                }
+
+                events.push({
+                    $event: event.slice(2),
+                    startIndex: parser.startIndex,
+                    endIndex: parser.endIndex,
+                    data,
+                });
+
+                parser.endIndex;
             }
         }
     }
