@@ -46,8 +46,10 @@ export function getEventCollector(
             default: {
                 // eslint-disable-next-line unicorn/prefer-at
                 const last = events[events.length - 1];
-                if (event === "ontext" && last?.$event === "text") {
-                    // Combine text nodes
+
+                // Combine text nodes
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                if (event === "ontext" && last && last.$event === "text") {
                     (last.data[0] as string) += data[0];
                     last.endIndex = parser.endIndex;
 
