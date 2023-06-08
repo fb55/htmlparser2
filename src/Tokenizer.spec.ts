@@ -47,6 +47,21 @@ describe("Tokenizer", () => {
         });
     });
 
+    describe("should correctly mark attributes", () => {
+        it("for no value attribute", () => {
+            expect(tokenize("<div aaaaaaa >")).toMatchSnapshot();
+        });
+        it("for no quotes attribute", () => {
+            expect(tokenize("<div aaa=aaa >")).toMatchSnapshot();
+        });
+        it("for single quotes attribute", () => {
+            expect(tokenize("<div aaa='a' >")).toMatchSnapshot();
+        });
+        it("for double quotes attribute", () => {
+            expect(tokenize('<div aaa="a" >')).toMatchSnapshot();
+        });
+    });
+
     describe("should not break after special tag followed by an entity", () => {
         it("for normal special tag", () => {
             expect(tokenize("<style>a{}</style>&apos;<br/>")).toMatchSnapshot();
