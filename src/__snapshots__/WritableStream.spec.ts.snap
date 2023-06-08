@@ -58,7 +58,7 @@ exports[`WritableStream Atom feed 1`] = `
       "http://www.w3.org/2005/Atom",
       """,
     ],
-    "endIndex": 137,
+    "endIndex": 138,
     "startIndex": 103,
   },
   {
@@ -185,7 +185,7 @@ exports[`WritableStream Atom feed 1`] = `
       "http://example.org/feed/",
       """,
     ],
-    "endIndex": 240,
+    "endIndex": 241,
     "startIndex": 210,
   },
   {
@@ -195,7 +195,7 @@ exports[`WritableStream Atom feed 1`] = `
       "self",
       """,
     ],
-    "endIndex": 251,
+    "endIndex": 252,
     "startIndex": 242,
   },
   {
@@ -244,7 +244,7 @@ exports[`WritableStream Atom feed 1`] = `
       "http://example.org/",
       """,
     ],
-    "endIndex": 288,
+    "endIndex": 289,
     "startIndex": 263,
   },
   {
@@ -585,7 +585,7 @@ exports[`WritableStream Atom feed 1`] = `
       "http://example.org/2003/12/13/atom03",
       """,
     ],
-    "endIndex": 578,
+    "endIndex": 579,
     "startIndex": 536,
   },
   {
@@ -633,7 +633,7 @@ exports[`WritableStream Atom feed 1`] = `
       "alternate",
       """,
     ],
-    "endIndex": 605,
+    "endIndex": 606,
     "startIndex": 591,
   },
   {
@@ -643,7 +643,7 @@ exports[`WritableStream Atom feed 1`] = `
       "text/html",
       """,
     ],
-    "endIndex": 622,
+    "endIndex": 623,
     "startIndex": 607,
   },
   {
@@ -653,7 +653,7 @@ exports[`WritableStream Atom feed 1`] = `
       "http://example.org/2003/12/13/atom03.html",
       """,
     ],
-    "endIndex": 671,
+    "endIndex": 672,
     "startIndex": 624,
   },
   {
@@ -703,7 +703,7 @@ exports[`WritableStream Atom feed 1`] = `
       "edit",
       """,
     ],
-    "endIndex": 692,
+    "endIndex": 693,
     "startIndex": 683,
   },
   {
@@ -713,7 +713,7 @@ exports[`WritableStream Atom feed 1`] = `
       "http://example.org/2003/12/13/atom03/edit",
       """,
     ],
-    "endIndex": 741,
+    "endIndex": 742,
     "startIndex": 694,
   },
   {
@@ -850,7 +850,7 @@ exports[`WritableStream Atom feed 1`] = `
       "html",
       """,
     ],
-    "endIndex": 865,
+    "endIndex": 866,
     "startIndex": 855,
   },
   {
@@ -1196,7 +1196,7 @@ exports[`WritableStream Attributes 1`] = `
       "test0",
       """,
     ],
-    "endIndex": 123,
+    "endIndex": 124,
     "startIndex": 114,
   },
   {
@@ -1206,7 +1206,7 @@ exports[`WritableStream Attributes 1`] = `
       "value0",
       """,
     ],
-    "endIndex": 138,
+    "endIndex": 139,
     "startIndex": 125,
   },
   {
@@ -1216,7 +1216,7 @@ exports[`WritableStream Attributes 1`] = `
       "value1",
       """,
     ],
-    "endIndex": 153,
+    "endIndex": 154,
     "startIndex": 140,
   },
   {
@@ -1298,7 +1298,7 @@ exports[`WritableStream Attributes 1`] = `
       "test1",
       """,
     ],
-    "endIndex": 258,
+    "endIndex": 259,
     "startIndex": 249,
   },
   {
@@ -1399,7 +1399,7 @@ exports[`WritableStream Attributes 1`] = `
       "test2",
       """,
     ],
-    "endIndex": 419,
+    "endIndex": 420,
     "startIndex": 410,
   },
   {
@@ -1409,7 +1409,7 @@ exports[`WritableStream Attributes 1`] = `
       "value4",
       """,
     ],
-    "endIndex": 434,
+    "endIndex": 435,
     "startIndex": 421,
   },
   {
@@ -1419,7 +1419,7 @@ exports[`WritableStream Attributes 1`] = `
       "value5",
       """,
     ],
-    "endIndex": 448,
+    "endIndex": 449,
     "startIndex": 435,
   },
   {
@@ -1638,7 +1638,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
       """,
     ],
-    "endIndex": 102,
+    "endIndex": 103,
     "startIndex": 48,
   },
   {
@@ -1648,7 +1648,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/rss/1.0/",
       """,
     ],
-    "endIndex": 135,
+    "endIndex": 136,
     "startIndex": 104,
   },
   {
@@ -1658,7 +1658,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/rss/1.0/modules/event/",
       """,
     ],
-    "endIndex": 185,
+    "endIndex": 186,
     "startIndex": 137,
   },
   {
@@ -1668,7 +1668,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/rss/1.0/modules/content/",
       """,
     ],
-    "endIndex": 242,
+    "endIndex": 243,
     "startIndex": 187,
   },
   {
@@ -1678,7 +1678,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/rss/1.0/modules/taxonomy/",
       """,
     ],
-    "endIndex": 297,
+    "endIndex": 298,
     "startIndex": 244,
   },
   {
@@ -1688,7 +1688,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/dc/elements/1.1/",
       """,
     ],
-    "endIndex": 341,
+    "endIndex": 342,
     "startIndex": 299,
   },
   {
@@ -1698,7 +1698,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/rss/1.0/modules/syndication/",
       """,
     ],
-    "endIndex": 398,
+    "endIndex": 399,
     "startIndex": 343,
   },
   {
@@ -1708,7 +1708,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://purl.org/dc/terms/",
       """,
     ],
-    "endIndex": 440,
+    "endIndex": 441,
     "startIndex": 400,
   },
   {
@@ -1718,7 +1718,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://webns.net/mvcb/",
       """,
     ],
-    "endIndex": 477,
+    "endIndex": 478,
     "startIndex": 442,
   },
   {
@@ -1765,7 +1765,7 @@ exports[`WritableStream RDF feed 1`] = `
       "https://github.com/fb55/htmlparser2/",
       """,
     ],
-    "endIndex": 537,
+    "endIndex": 538,
     "startIndex": 490,
   },
   {
@@ -2422,7 +2422,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://somefakesite/path/to/something.html",
       """,
     ],
-    "endIndex": 1251,
+    "endIndex": 1252,
     "startIndex": 1195,
   },
   {
@@ -2524,7 +2524,7 @@ exports[`WritableStream RDF feed 1`] = `
       "http://somefakesite/path/to/something.html",
       """,
     ],
-    "endIndex": 1352,
+    "endIndex": 1353,
     "startIndex": 1299,
   },
   {
@@ -3063,7 +3063,7 @@ http://somefakesite/path/to/something.html
       "http://somefakesite/path/to/something-else.html",
       """,
     ],
-    "endIndex": 1996,
+    "endIndex": 1997,
     "startIndex": 1938,
   },
   {
@@ -3661,7 +3661,7 @@ exports[`WritableStream RSS feed 1`] = `
       "2.0",
       """,
     ],
-    "endIndex": 105,
+    "endIndex": 106,
     "startIndex": 93,
   },
   {
@@ -5127,7 +5127,7 @@ exports[`WritableStream RSS feed 1`] = `
       "200",
       """,
     ],
-    "endIndex": 2601,
+    "endIndex": 2602,
     "startIndex": 2590,
   },
   {
@@ -5137,7 +5137,7 @@ exports[`WritableStream RSS feed 1`] = `
       "image",
       """,
     ],
-    "endIndex": 2616,
+    "endIndex": 2617,
     "startIndex": 2603,
   },
   {
@@ -5147,7 +5147,7 @@ exports[`WritableStream RSS feed 1`] = `
       "https://picsum.photos/200",
       """,
     ],
-    "endIndex": 2648,
+    "endIndex": 2649,
     "startIndex": 2618,
   },
   {
@@ -5157,7 +5157,7 @@ exports[`WritableStream RSS feed 1`] = `
       "200",
       """,
     ],
-    "endIndex": 2660,
+    "endIndex": 2661,
     "startIndex": 2650,
   },
   {
@@ -5419,7 +5419,7 @@ exports[`WritableStream SVG 1`] = `
       "1.1",
       """,
     ],
-    "endIndex": 88,
+    "endIndex": 89,
     "startIndex": 76,
   },
   {
@@ -5429,7 +5429,7 @@ exports[`WritableStream SVG 1`] = `
       "http://www.w3.org/2000/svg",
       """,
     ],
-    "endIndex": 123,
+    "endIndex": 124,
     "startIndex": 90,
   },
   {
@@ -5439,7 +5439,7 @@ exports[`WritableStream SVG 1`] = `
       "http://www.w3.org/1999/xlink",
       """,
     ],
-    "endIndex": 166,
+    "endIndex": 167,
     "startIndex": 125,
   },
   {

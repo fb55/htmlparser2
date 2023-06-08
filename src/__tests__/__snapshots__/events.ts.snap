@@ -57,7 +57,7 @@ exports[`Events Attribute in XML (see #1350) 1`] = `
       "Hello world",
       """,
     ],
-    "endIndex": 28,
+    "endIndex": 29,
     "startIndex": 10,
   },
   {
@@ -67,7 +67,7 @@ exports[`Events Attribute in XML (see #1350) 1`] = `
       "false",
       """,
     ],
-    "endIndex": 57,
+    "endIndex": 58,
     "startIndex": 34,
   },
   {
@@ -395,7 +395,7 @@ exports[`Events Entities in attributes 1`] = `
       "&",
       """,
     ],
-    "endIndex": 25,
+    "endIndex": 26,
     "startIndex": 15,
   },
   {
@@ -405,7 +405,7 @@ exports[`Events Entities in attributes 1`] = `
       "&",
       "'",
     ],
-    "endIndex": 37,
+    "endIndex": 38,
     "startIndex": 27,
   },
   {
@@ -1444,7 +1444,7 @@ exports[`Events Long comment ending 1`] = `
       "before",
       "'",
     ],
-    "endIndex": 16,
+    "endIndex": 17,
     "startIndex": 6,
   },
   {
@@ -1497,7 +1497,7 @@ exports[`Events Long comment ending 1`] = `
       "after",
       "'",
     ],
-    "endIndex": 47,
+    "endIndex": 48,
     "startIndex": 38,
   },
   {
@@ -2254,7 +2254,7 @@ exports[`Events Start & end indices from domhandler 1`] = `
       "foo",
       "'",
     ],
-    "endIndex": 64,
+    "endIndex": 65,
     "startIndex": 54,
   },
   {
@@ -2398,7 +2398,7 @@ exports[`Events Template script tags 1`] = `
       "text/template",
       """,
     ],
-    "endIndex": 30,
+    "endIndex": 31,
     "startIndex": 11,
   },
   {
@@ -2544,7 +2544,7 @@ exports[`Events attributes (no white space, no value, no quotes) 1`] = `
       "test0",
       """,
     ],
-    "endIndex": 20,
+    "endIndex": 21,
     "startIndex": 8,
   },
   {
@@ -2554,7 +2554,7 @@ exports[`Events attributes (no white space, no value, no quotes) 1`] = `
       "test1",
       """,
     ],
-    "endIndex": 33,
+    "endIndex": 34,
     "startIndex": 21,
   },
   {
@@ -2563,7 +2563,7 @@ exports[`Events attributes (no white space, no value, no quotes) 1`] = `
       "disabled",
       "",
     ],
-    "endIndex": 44,
+    "endIndex": 43,
     "startIndex": 35,
   },
   {
@@ -2628,7 +2628,7 @@ exports[`Events crazy attribute 1`] = `
       "",
       "'",
     ],
-    "endIndex": 8,
+    "endIndex": 9,
     "startIndex": 3,
   },
   {
@@ -3360,7 +3360,7 @@ exports[`Events entity in attribute (#276) 1`] = `
       "?&image_uri=1&ℑ=2&image=3",
       """,
     ],
-    "endIndex": 41,
+    "endIndex": 42,
     "startIndex": 5,
   },
   {
@@ -3412,7 +3412,7 @@ exports[`Events entity in attribute 1`] = `
       "http://example.com/pa#x61ge?param=value&param2&param3=<val&; & &",
       "'",
     ],
-    "endIndex": 81,
+    "endIndex": 82,
     "startIndex": 3,
   },
   {
