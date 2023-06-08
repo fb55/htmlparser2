@@ -205,7 +205,7 @@ exports[`Tokenizer should handle entities for entities in attributes (#276) 1`] 
   [
     "onattribend",
     3,
-    41,
+    42,
   ],
   [
     "onselfclosingtag",
