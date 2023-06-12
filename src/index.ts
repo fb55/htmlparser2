@@ -83,6 +83,7 @@ export function createDomStream(
 export {
     default as Tokenizer,
     type Callbacks as TokenizerCallbacks,
+    QuoteType,
 } from "./Tokenizer.js";
 
 /*
