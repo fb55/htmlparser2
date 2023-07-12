@@ -15,7 +15,7 @@ interface Event {
  * @param callback Function to call with all events.
  */
 export function getEventCollector(
-    callback: (error: Error | null, events?: Event[]) => void
+    callback: (error: Error | null, events?: Event[]) => void,
 ): Partial<Handler> {
     const events: Event[] = [];
     let parser: Parser;
@@ -63,7 +63,7 @@ export function getEventCollector(
 
                 if (!(parser.startIndex <= parser.endIndex)) {
                     throw new Error(
-                        `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`
+                        `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`,
                     );
                 }
 
@@ -86,6 +86,6 @@ export function getEventCollector(
                 (_, event: string) =>
                 (...data: unknown[]) =>
                     handle(event, data),
-        }
+        },
     );
 }

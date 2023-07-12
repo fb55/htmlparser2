@@ -69,7 +69,7 @@ const parser = new htmlparser2.Parser({
     },
 });
 parser.write(
-    "Xyz <script type='text/javascript'>const foo = '<<bar>>';</script>"
+    "Xyz <script type='text/javascript'>const foo = '<<bar>>';</script>",
 );
 parser.end();
 ```
