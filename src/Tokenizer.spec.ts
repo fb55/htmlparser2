@@ -12,8 +12,8 @@ function tokenize(data: string, options = {}) {
                     return (...values: unknown[]) =>
                         log.push([property, ...values]);
                 },
-            }
-        ) as Callbacks
+            },
+        ) as Callbacks,
     );
 
     tokenizer.write(data);
@@ -61,14 +61,14 @@ describe("Tokenizer", () => {
             expect(
                 tokenize("&amp;&gt;&amp&lt;&uuml;&#x61;&#x62&#99;&#100&#101", {
                     xmlMode: true,
-                })
+                }),
             ).toMatchSnapshot());
 
         it("for entities in attributes (#276)", () =>
             expect(
                 tokenize(
-                    '<img src="?&image_uri=1&&image;=2&image=3"/>?&image_uri=1&&image;=2&image=3'
-                )
+                    '<img src="?&image_uri=1&&image;=2&image=3"/>?&image_uri=1&&image;=2&image=3',
+                ),
             ).toMatchSnapshot());
 
         it("for trailing legacy entity", () =>
@@ -93,8 +93,8 @@ describe("Tokenizer", () => {
                             log.push([property, ...values]);
                         };
                     },
-                }
-            ) as Callbacks
+                },
+            ) as Callbacks,
         );
 
         tokenizer.write("&am");
