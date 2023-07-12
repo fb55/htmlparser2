@@ -29,7 +29,7 @@ describe("WritableStream", () => {
 
 function getPromiseEventCollector(): [
     handler: Partial<Handler>,
-    promise: Promise<unknown>
+    promise: Promise<unknown>,
 ] {
     let handler: Partial<Handler> | undefined;
     const promise = new Promise<unknown>((resolve, reject) => {
@@ -54,14 +54,14 @@ function finished(input: Parameters<typeof stream.finished>[0]): Promise<void> {
 
 async function testStream(
     file: string,
-    options?: ParserOptions
+    options?: ParserOptions,
 ): Promise<void> {
     const filePath = path.join(__dirname, "__fixtures__", "Documents", file);
 
     const [streamHandler, eventsPromise] = getPromiseEventCollector();
 
     const fsStream = createReadStream(filePath).pipe(
-        new WritableStream(streamHandler, options)
+        new WritableStream(streamHandler, options),
     );
 
     await finished(fsStream);
@@ -73,7 +73,7 @@ async function testStream(
     const [singlePassHandler, singlePassPromise] = getPromiseEventCollector();
 
     const singlePassStream = new WritableStream(singlePassHandler, options).end(
-        await fs.readFile(filePath)
+        await fs.readFile(filePath),
     );
 
     await finished(singlePassStream);

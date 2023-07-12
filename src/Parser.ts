@@ -179,12 +179,12 @@ export interface Handler {
     onattribute(
         name: string,
         value: string,
-        quote?: string | undefined | null
+        quote?: string | undefined | null,
     ): void;
     onopentag(
         name: string,
         attribs: { [s: string]: string },
-        isImplied: boolean
+        isImplied: boolean,
     ): void;
     ontext(data: string): void;
     oncomment(data: string): void;
@@ -230,7 +230,7 @@ export class Parser implements Callbacks {
 
     constructor(
         cbs?: Partial<Handler> | null,
-        private readonly options: ParserOptions = {}
+        private readonly options: ParserOptions = {},
     ) {
         this.cbs = cbs ?? {};
         this.htmlMode = !this.options.xmlMode;
@@ -239,7 +239,7 @@ export class Parser implements Callbacks {
             options.lowerCaseAttributeNames ?? this.htmlMode;
         this.tokenizer = new (options.Tokenizer ?? Tokenizer)(
             this.options,
-            this
+            this,
         );
         this.foreignContext = [!this.htmlMode];
         this.cbs.onparserinit?.(this);
@@ -434,7 +434,7 @@ export class Parser implements Callbacks {
                 ? "'"
                 : quote === QuoteType.NoValue
                 ? undefined
-                : null
+                : null,
         );
 
         if (
@@ -565,7 +565,7 @@ export class Parser implements Callbacks {
 
         let slice = this.buffers[0].slice(
             start - this.bufferOffset,
-            end - this.bufferOffset
+            end - this.bufferOffset,
         );
 
         while (end - this.bufferOffset > this.buffers[0].length) {

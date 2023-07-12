@@ -54,12 +54,12 @@ export function parseDOM(data: string, options?: Options): ChildNode[] {
 export function createDocumentStream(
     callback: (error: Error | null, document: Document) => void,
     options?: Options,
-    elementCallback?: (element: Element) => void
+    elementCallback?: (element: Element) => void,
 ): Parser {
     const handler: DomHandler = new DomHandler(
         (error: Error | null) => callback(error, handler.root),
         options,
-        elementCallback
+        elementCallback,
     );
     return new Parser(handler, options);
 }
@@ -74,7 +74,7 @@ export function createDocumentStream(
 export function createDomStream(
     callback: (error: Error | null, dom: ChildNode[]) => void,
     options?: Options,
-    elementCallback?: (element: Element) => void
+    elementCallback?: (element: Element) => void,
 ): Parser {
     const handler = new DomHandler(callback, options, elementCallback);
     return new Parser(handler, options);
@@ -106,7 +106,7 @@ const parseFeedDefaultOptions = { xmlMode: true };
  */
 export function parseFeed(
     feed: string,
-    options: Options = parseFeedDefaultOptions
+    options: Options = parseFeedDefaultOptions,
 ): Feed | null {
     return getFeed(parseDOM(feed, options));
 }
