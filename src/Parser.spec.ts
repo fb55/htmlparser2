@@ -16,11 +16,11 @@ describe("API", () => {
         p.end();
         p.write("foo");
         expect(cbs.onerror).toHaveBeenLastCalledWith(
-            new Error(".write() after done!")
+            new Error(".write() after done!"),
         );
         p.end();
         expect(cbs.onerror).toHaveBeenLastCalledWith(
-            new Error(".end() after done!")
+            new Error(".end() after done!"),
         );
 
         // Should ignore the error if there is no callback
@@ -156,7 +156,7 @@ describe("API", () => {
                     expect(parser.tokenizer).toBeInstanceOf(CustomTokenizer);
                 },
             },
-            { Tokenizer: CustomTokenizer }
+            { Tokenizer: CustomTokenizer },
         );
         p.done();
     });

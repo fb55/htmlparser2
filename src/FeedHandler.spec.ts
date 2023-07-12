@@ -12,9 +12,9 @@ describe("parseFeed", () => {
             parseFeed(
                 await fs.readFile(
                     path.join(documents, "RSS_Example.xml"),
-                    "utf8"
-                )
-            )
+                    "utf8",
+                ),
+            ),
         ).toMatchSnapshot());
 
     it("(atomFeed)", async () =>
@@ -22,9 +22,9 @@ describe("parseFeed", () => {
             parseFeed(
                 await fs.readFile(
                     path.join(documents, "Atom_Example.xml"),
-                    "utf8"
-                )
-            )
+                    "utf8",
+                ),
+            ),
         ).toMatchSnapshot());
 
     it("(rdfFeed)", async () =>
@@ -32,8 +32,8 @@ describe("parseFeed", () => {
             parseFeed(
                 await fs.readFile(
                     path.join(documents, "RDF_Example.xml"),
-                    "utf8"
-                )
-            )
+                    "utf8",
+                ),
+            ),
         ).toMatchSnapshot());
 });

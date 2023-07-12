@@ -44,7 +44,7 @@ describe("Events", () => {
 
     it("Template script tags", () =>
         runTest(
-            '<p><script type="text/template"><h1>Heading1</h1></script></p>'
+            '<p><script type="text/template"><h1>Heading1</h1></script></p>',
         ));
 
     it("Lowercase tags", () =>
@@ -57,7 +57,7 @@ describe("Events", () => {
 
     it("CDATA (inside special)", () =>
         runTest(
-            "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>"
+            "<script>/*<![CDATA[*/ asdf ><asdf></adsf><> fo/*]]>*/</script>",
         ));
 
     it("leading lt", () => runTest(">a>"));
@@ -88,12 +88,12 @@ describe("Events", () => {
 
     it("Implicit close tags", () =>
         runTest(
-            "<ol><li class=test><div><table style=width:100%><tr><th>TH<td colspan=2><h3>Heading</h3><tr><td><div>Div</div><td><div>Div2</div></table></div><li><div><h3>Heading 2</h3></div></li></ol><p>Para<h4>Heading 4</h4><p><ul><li>Hi<li>bye</ul>"
+            "<ol><li class=test><div><table style=width:100%><tr><th>TH<td colspan=2><h3>Heading</h3><tr><td><div>Div</div><td><div>Div2</div></table></div><li><div><h3>Heading 2</h3></div></li></ol><p>Para<h4>Heading 4</h4><p><ul><li>Hi<li>bye</ul>",
         ));
 
     it("attributes (no white space, no value, no quotes)", () =>
         runTest(
-            '<button class="test0"title="test1" disabled value=test2>adsf</button>'
+            '<button class="test0"title="test1" disabled value=test2>adsf</button>',
         ));
 
     it("crazy attribute", () => runTest("<p < = '' FAIL>stuff</p><a"));
@@ -131,7 +131,7 @@ describe("Events", () => {
 
     it("entity in attribute", () =>
         runTest(
-            "<a href='http://example.com/p&#x61;#x61ge?param=value&param2&param3=&lt;val&; & &'>"
+            "<a href='http://example.com/p&#x61;#x61ge?param=value&param2&param3=&lt;val&; & &'>",
         ));
 
     it("double brackets", () =>
@@ -141,7 +141,7 @@ describe("Events", () => {
 
     it("Special special tags", () =>
         runTest(
-            "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>"
+            "<tItLe><b>foo</b><title></TiTlE><sitle><b></b></sitle><ttyle><b></b></ttyle><sCriPT></scripter</soo</sCript><STyLE></styler</STylE><sCiPt><stylee><scriptee><soo>",
         ));
 
     it("Empty tag name", () => runTest("< ></ >"));
@@ -174,7 +174,7 @@ describe("Events", () => {
 
     it("entity in attribute (#276)", () =>
         runTest(
-            '<img src="?&image_uri=1&&image;=2&image=3"/>?&image_uri=1&&image;=2&image=3'
+            '<img src="?&image_uri=1&&image;=2&image=3"/>?&image_uri=1&&image;=2&image=3',
         ));
 
     it("entity in title (#592)", () => runTest("<title>the &quot;title&quot"));
@@ -195,7 +195,7 @@ describe("Events", () => {
 
     it("Start & end indices from domhandler", () =>
         runTest(
-            "<!DOCTYPE html> <html> <title>The Title</title> <body class='foo'>Hello world <p></p></body> <!-- the comment --> </html> "
+            "<!DOCTYPE html> <html> <title>The Title</title> <body class='foo'>Hello world <p></p></body> <!-- the comment --> </html> ",
         ));
 
     it("Self-closing indices (#941)", () =>
@@ -206,7 +206,7 @@ describe("Events", () => {
     it("Attribute in XML (see #1350)", () =>
         runTest(
             '<Page\n    title="Hello world"\n    actionBarVisible="false"/>',
-            { xmlMode: true }
+            { xmlMode: true },
         ));
 });
 
@@ -221,7 +221,7 @@ describe("Helper", () => {
         expect(eventCallback).toHaveBeenCalledTimes(2);
         expect(eventCallback).toHaveBeenNthCalledWith(1, null, []);
         expect(eventCallback).toHaveBeenLastCalledWith(
-            new Error(".write() after done!")
+            new Error(".write() after done!"),
         );
     });
 });

@@ -165,13 +165,13 @@ export default class Tokenizer {
             xmlMode = false,
             decodeEntities = true,
         }: { xmlMode?: boolean; decodeEntities?: boolean },
-        private readonly cbs: Callbacks
+        private readonly cbs: Callbacks,
     ) {
         this.xmlMode = xmlMode;
         this.decodeEntities = decodeEntities;
         this.entityDecoder = new EntityDecoder(
             xmlMode ? xmlDecodeTree : htmlDecodeTree,
-            (cp, consumed) => this.emitCodePoint(cp, consumed)
+            (cp, consumed) => this.emitCodePoint(cp, consumed),
         );
     }
 
@@ -506,7 +506,7 @@ export default class Tokenizer {
                 quote === CharCodes.DoubleQuote
                     ? QuoteType.Double
                     : QuoteType.Single,
-                this.index
+                this.index,
             );
             this.state = State.BeforeAttributeName;
         } else if (this.decodeEntities && c === CharCodes.Amp) {
@@ -595,14 +595,14 @@ export default class Tokenizer {
                 : this.baseState === State.Text ||
                   this.baseState === State.InSpecialTag
                 ? DecodingMode.Legacy
-                : DecodingMode.Attribute
+                : DecodingMode.Attribute,
         );
     }
 
     private stateInEntity(): void {
         const length = this.entityDecoder.write(
             this.buffer,
-            this.index - this.offset
+            this.index - this.offset,
         );
 
         // If `length` is positive, we are done with the entity.
