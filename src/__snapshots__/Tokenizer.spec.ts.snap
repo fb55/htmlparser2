@@ -1,5 +1,128 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tokenizer should correctly mark attributes for double quotes attribute 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onattribname",
+    5,
+    8,
+  ],
+  [
+    "onattribdata",
+    10,
+    11,
+  ],
+  [
+    "onattribend",
+    3,
+    12,
+  ],
+  [
+    "onopentagend",
+    13,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should correctly mark attributes for no quotes attribute 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onattribname",
+    5,
+    8,
+  ],
+  [
+    "onattribdata",
+    9,
+    12,
+  ],
+  [
+    "onattribend",
+    1,
+    12,
+  ],
+  [
+    "onopentagend",
+    13,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should correctly mark attributes for no value attribute 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onattribname",
+    5,
+    12,
+  ],
+  [
+    "onattribend",
+    0,
+    12,
+  ],
+  [
+    "onopentagend",
+    13,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should correctly mark attributes for single quotes attribute 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onattribname",
+    5,
+    8,
+  ],
+  [
+    "onattribdata",
+    10,
+    11,
+  ],
+  [
+    "onattribend",
+    2,
+    12,
+  ],
+  [
+    "onopentagend",
+    13,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer should handle entities for XML entities 1`] = `
 [
   [
@@ -82,7 +205,7 @@ exports[`Tokenizer should handle entities for entities in attributes (#276) 1`] 
   [
     "onattribend",
     3,
-    41,
+    42,
   ],
   [
     "onselfclosingtag",

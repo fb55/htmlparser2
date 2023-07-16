@@ -464,7 +464,7 @@ export default class Tokenizer {
     private stateInAttributeName(c: number): void {
         if (c === CharCodes.Eq || isEndOfTagSection(c)) {
             this.cbs.onattribname(this.sectionStart, this.index);
-            this.sectionStart = -1;
+            this.sectionStart = this.index;
             this.state = State.AfterAttributeName;
             this.stateAfterAttributeName(c);
         }
@@ -473,11 +473,12 @@ export default class Tokenizer {
         if (c === CharCodes.Eq) {
             this.state = State.BeforeAttributeValue;
         } else if (c === CharCodes.Slash || c === CharCodes.Gt) {
-            this.cbs.onattribend(QuoteType.NoValue, this.index);
+            this.cbs.onattribend(QuoteType.NoValue, this.sectionStart);
+            this.sectionStart = -1;
             this.state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
         } else if (!isWhitespace(c)) {
-            this.cbs.onattribend(QuoteType.NoValue, this.index);
+            this.cbs.onattribend(QuoteType.NoValue, this.sectionStart);
             this.state = State.InAttributeName;
             this.sectionStart = this.index;
         }
@@ -506,7 +507,7 @@ export default class Tokenizer {
                 quote === CharCodes.DoubleQuote
                     ? QuoteType.Double
                     : QuoteType.Single,
-                this.index,
+                this.index + 1,
             );
             this.state = State.BeforeAttributeName;
         } else if (this.decodeEntities && c === CharCodes.Amp) {
