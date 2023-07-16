@@ -217,6 +217,7 @@ export class Parser implements Callbacks {
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
     private readonly lowerCaseAttributeNames: boolean;
+    private readonly recognizeSelfClosing: boolean;
     /** We are parsing HTML. Inverse of the `xmlMode` option. */
     private readonly htmlMode: boolean;
     private readonly tokenizer: Tokenizer;
@@ -237,6 +238,8 @@ export class Parser implements Callbacks {
         this.lowerCaseTagNames = options.lowerCaseTags ?? this.htmlMode;
         this.lowerCaseAttributeNames =
             options.lowerCaseAttributeNames ?? this.htmlMode;
+        this.recognizeSelfClosing =
+            options.recognizeSelfClosing ?? !this.htmlMode;
         this.tokenizer = new (options.Tokenizer ?? Tokenizer)(
             this.options,
             this,
@@ -378,7 +381,7 @@ export class Parser implements Callbacks {
     /** @internal */
     onselfclosingtag(endIndex: number): void {
         this.endIndex = endIndex;
-        if (this.options.recognizeSelfClosing || this.foreignContext[0]) {
+        if (this.recognizeSelfClosing || this.foreignContext[0]) {
             this.closeCurrentTag(false);
 
             // Set `startIndex` for next node
