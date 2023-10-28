@@ -29,7 +29,7 @@ A live demo of `htmlparser2` is available [on AST Explorer](https://astexplorer.
 ## Usage
 
 `htmlparser2` itself provides a callback interface that allows consumption of documents with minimal allocations.
-For a more ergonomic experience, read [Getting a DOM](#getting-a-dom) below.
+For a more ergonomic experience, read [Getting a DOM](#getting-a-dom) below:
 
 ```js
 import * as htmlparser2 from "htmlparser2";
@@ -106,7 +106,7 @@ htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
 
 ## Getting a DOM
 
-The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
+The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper:
 
 ```js
 import * as htmlparser2 from "htmlparser2";
