@@ -1,5 +1,5 @@
 import { Parser, ParserOptions } from "./Parser.js";
-export { Parser, type ParserOptions } from "./Parser.js";
+export { Handler, Parser, type ParserOptions } from "./Parser.js";
 
 import {
     DomHandler,
