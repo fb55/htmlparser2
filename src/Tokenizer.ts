@@ -69,6 +69,7 @@ const enum State {
 
     // Special tags
     BeforeSpecialS, // Decide if we deal with `<script` or `<style`
+    BeforeSpecialT, // Decide if we deal with `<title` or `<textarea`
     SpecialStartSequence,
     InSpecialTag,
 
@@ -134,6 +135,9 @@ const Sequences = {
     ScriptEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `</script`
     StyleEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
     TitleEnd: new Uint8Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
+    TextareaEnd: new Uint8Array([
+        0x3c, 0x2f, 0x74, 0x65, 0x78, 0x74, 0x61, 0x72, 0x65, 0x61,
+    ]), // `</textarea`
 };
 
 export default class Tokenizer {
@@ -383,13 +387,14 @@ export default class Tokenizer {
         } else if (this.isTagStartChar(c)) {
             const lower = c | 0x20;
             this.sectionStart = this.index;
-            if (!this.xmlMode && lower === Sequences.TitleEnd[2]) {
-                this.startSpecial(Sequences.TitleEnd, 3);
+            if (this.xmlMode) {
+                this.state = State.InTagName;
+            } else if (lower === Sequences.ScriptEnd[2]) {
+                this.state = State.BeforeSpecialS;
+            } else if (lower === Sequences.TitleEnd[2]) {
+                this.state = State.BeforeSpecialT;
             } else {
-                this.state =
-                    !this.xmlMode && lower === Sequences.ScriptEnd[2]
-                        ? State.BeforeSpecialS
-                        : State.InTagName;
+                this.state = State.InTagName;
             }
         } else if (c === CharCodes.Slash) {
             this.state = State.BeforeClosingTagName;
@@ -586,6 +591,18 @@ export default class Tokenizer {
         }
     }
 
+    private stateBeforeSpecialT(c: number): void {
+        const lower = c | 0x20;
+        if (lower === Sequences.TitleEnd[3]) {
+            this.startSpecial(Sequences.TitleEnd, 4);
+        } else if (lower === Sequences.TextareaEnd[3]) {
+            this.startSpecial(Sequences.TextareaEnd, 4);
+        } else {
+            this.state = State.InTagName;
+            this.stateInTagName(c); // Consume the token again
+        }
+    }
+
     private startEntity() {
         this.baseState = this.state;
         this.state = State.InEntity;
@@ -725,6 +742,10 @@ export default class Tokenizer {
                 }
                 case State.BeforeSpecialS: {
                     this.stateBeforeSpecialS(c);
+                    break;
+                }
+                case State.BeforeSpecialT: {
+                    this.stateBeforeSpecialT(c);
                     break;
                 }
                 case State.InAttributeValueNq: {

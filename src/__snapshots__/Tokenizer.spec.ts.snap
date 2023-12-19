@@ -425,6 +425,37 @@ exports[`Tokenizer should support self-closing special tags for self-closing sty
 ]
 `;
 
+exports[`Tokenizer should support self-closing special tags for self-closing textarea tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onselfclosingtag",
+    11,
+  ],
+  [
+    "onopentagname",
+    13,
+    16,
+  ],
+  [
+    "onopentagend",
+    16,
+  ],
+  [
+    "onclosetag",
+    19,
+    22,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer should support self-closing special tags for self-closing title tag 1`] = `
 [
   [
@@ -556,6 +587,150 @@ exports[`Tokenizer should support standard special tags for normal style tag 1`]
   [
     "onclosetag",
     22,
+    25,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should support standard special tags for normal textarea tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onopentagend",
+    9,
+  ],
+  [
+    "onclosetag",
+    12,
+    20,
+  ],
+  [
+    "onopentagname",
+    22,
+    25,
+  ],
+  [
+    "onopentagend",
+    25,
+  ],
+  [
+    "onclosetag",
+    28,
+    31,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should treat html inside special tags as text for div inside script tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    7,
+  ],
+  [
+    "onopentagend",
+    7,
+  ],
+  [
+    "ontext",
+    8,
+    19,
+  ],
+  [
+    "onclosetag",
+    21,
+    27,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should treat html inside special tags as text for div inside style tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onopentagend",
+    6,
+  ],
+  [
+    "ontext",
+    7,
+    18,
+  ],
+  [
+    "onclosetag",
+    20,
+    25,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should treat html inside special tags as text for div inside textarea tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onopentagend",
+    9,
+  ],
+  [
+    "ontext",
+    10,
+    21,
+  ],
+  [
+    "onclosetag",
+    23,
+    31,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer should treat html inside special tags as text for div inside title tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onopentagend",
+    6,
+  ],
+  [
+    "ontext",
+    7,
+    18,
+  ],
+  [
+    "onclosetag",
+    20,
     25,
   ],
   [
