@@ -33,6 +33,9 @@ describe("Tokenizer", () => {
         it("for self-closing title tag", () => {
             expect(tokenize("<title /><div></div>")).toMatchSnapshot();
         });
+        it("for self-closing textarea tag", () => {
+            expect(tokenize("<textarea /><div></div>")).toMatchSnapshot();
+        });
     });
 
     describe("should support standard special tags", () => {
@@ -44,6 +47,28 @@ describe("Tokenizer", () => {
         });
         it("for normal sitle tag", () => {
             expect(tokenize("<title></title><div></div>")).toMatchSnapshot();
+        });
+        it("for normal textarea tag", () => {
+            expect(
+                tokenize("<textarea></textarea><div></div>"),
+            ).toMatchSnapshot();
+        });
+    });
+
+    describe("should treat html inside special tags as text", () => {
+        it("for div inside script tag", () => {
+            expect(tokenize("<script><div></div></script>")).toMatchSnapshot();
+        });
+        it("for div inside style tag", () => {
+            expect(tokenize("<style><div></div></style>")).toMatchSnapshot();
+        });
+        it("for div inside title tag", () => {
+            expect(tokenize("<title><div></div></title>")).toMatchSnapshot();
+        });
+        it("for div inside textarea tag", () => {
+            expect(
+                tokenize("<textarea><div></div></textarea>"),
+            ).toMatchSnapshot();
         });
     });
 
