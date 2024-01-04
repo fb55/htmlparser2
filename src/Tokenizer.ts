@@ -611,9 +611,9 @@ export default class Tokenizer {
             this.xmlMode
                 ? DecodingMode.Strict
                 : this.baseState === State.Text ||
-                  this.baseState === State.InSpecialTag
-                ? DecodingMode.Legacy
-                : DecodingMode.Attribute,
+                    this.baseState === State.InSpecialTag
+                  ? DecodingMode.Legacy
+                  : DecodingMode.Attribute,
         );
     }
 

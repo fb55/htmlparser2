@@ -434,10 +434,10 @@ export class Parser implements Callbacks {
             quote === QuoteType.Double
                 ? '"'
                 : quote === QuoteType.Single
-                ? "'"
-                : quote === QuoteType.NoValue
-                ? undefined
-                : null,
+                  ? "'"
+                  : quote === QuoteType.NoValue
+                    ? undefined
+                    : null,
         );
 
         if (
