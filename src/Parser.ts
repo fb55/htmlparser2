@@ -1,4 +1,4 @@
-import Tokenizer, { Callbacks, QuoteType } from "./Tokenizer.js";
+import Tokenizer, { type Callbacks, QuoteType } from "./Tokenizer.js";
 import { fromCodePoint } from "entities/lib/decode.js";
 
 const formTags = new Set([
