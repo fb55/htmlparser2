@@ -1,12 +1,13 @@
-import { Parser, ParserOptions } from "./Parser.js";
-export { Parser, type ParserOptions } from "./Parser.js";
+import { Parser, type ParserOptions } from "./Parser.js";
+export type { Handler, ParserOptions } from "./Parser.js";
+export { Parser } from "./Parser.js";
 
 import {
     DomHandler,
-    DomHandlerOptions,
-    ChildNode,
-    Element,
-    Document,
+    type DomHandlerOptions,
+    type ChildNode,
+    type Element,
+    type Document,
 } from "domhandler";
 
 export {

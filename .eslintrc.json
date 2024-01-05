@@ -68,6 +68,11 @@
                 "@typescript-eslint/no-unnecessary-condition": 2,
                 "@typescript-eslint/switch-exhaustiveness-check": 2,
                 "@typescript-eslint/prefer-nullish-coalescing": 2,
+                "@typescript-eslint/consistent-type-imports": [
+                    2,
+                    { "fixStyle": "inline-type-imports" }
+                ],
+                "@typescript-eslint/consistent-type-exports": 2,
 
                 "n/no-unsupported-features/es-syntax": 0
             }

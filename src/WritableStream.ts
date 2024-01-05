@@ -1,4 +1,4 @@
-import { Parser, Handler, ParserOptions } from "./Parser.js";
+import { Parser, type Handler, type ParserOptions } from "./Parser.js";
 /*
  * NOTE: If either of these two imports produces a type error,
  * please update your @types/node dependency!
