@@ -26,13 +26,13 @@
         /* Module Resolution Options */
         "esModuleInterop": true,
         "moduleResolution": "node",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
     },
     "include": ["src"],
     "exclude": [
         "**/*.spec.ts",
         "**/__fixtures__/*",
         "**/__tests__/*",
-        "**/__snapshots__/*"
-    ]
+        "**/__snapshots__/*",
+    ],
 }
