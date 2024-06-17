@@ -74,6 +74,7 @@
                 ],
                 "@typescript-eslint/consistent-type-exports": 2,
 
+                "n/no-missing-import": 0,
                 "n/no-unsupported-features/es-syntax": 0
             }
         }
