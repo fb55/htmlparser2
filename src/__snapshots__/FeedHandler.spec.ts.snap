@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`parseFeed (atomFeed) 1`] = `
+exports[`parseFeed > (atomFeed) 1`] = `
 {
   "author": "johndoe@example.com",
   "description": "A subtitle.",
@@ -25,7 +25,7 @@ exports[`parseFeed (atomFeed) 1`] = `
 }
 `;
 
-exports[`parseFeed (rdfFeed) 1`] = `
+exports[`parseFeed > (rdfFeed) 1`] = `
 {
   "id": "",
   "items": [
@@ -50,7 +50,7 @@ exports[`parseFeed (rdfFeed) 1`] = `
 }
 `;
 
-exports[`parseFeed (rssFeed) 1`] = `
+exports[`parseFeed > (rssFeed) 1`] = `
 {
   "author": "editor@example.com",
   "description": "Liftoff to Space Exploration.",

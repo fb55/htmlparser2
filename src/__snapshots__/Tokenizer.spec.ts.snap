@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Tokenizer should correctly mark attributes for double quotes attribute 1`] = `
+exports[`Tokenizer > should correctly mark attributes > for double quotes attribute 1`] = `
 [
   [
     "onopentagname",
@@ -32,7 +32,7 @@ exports[`Tokenizer should correctly mark attributes for double quotes attribute 
 ]
 `;
 
-exports[`Tokenizer should correctly mark attributes for no quotes attribute 1`] = `
+exports[`Tokenizer > should correctly mark attributes > for no quotes attribute 1`] = `
 [
   [
     "onopentagname",
@@ -64,7 +64,7 @@ exports[`Tokenizer should correctly mark attributes for no quotes attribute 1`] 
 ]
 `;
 
-exports[`Tokenizer should correctly mark attributes for no value attribute 1`] = `
+exports[`Tokenizer > should correctly mark attributes > for no value attribute 1`] = `
 [
   [
     "onopentagname",
@@ -91,7 +91,7 @@ exports[`Tokenizer should correctly mark attributes for no value attribute 1`] =
 ]
 `;
 
-exports[`Tokenizer should correctly mark attributes for single quotes attribute 1`] = `
+exports[`Tokenizer > should correctly mark attributes > for single quotes attribute 1`] = `
 [
   [
     "onopentagname",
@@ -123,7 +123,7 @@ exports[`Tokenizer should correctly mark attributes for single quotes attribute 
 ]
 `;
 
-exports[`Tokenizer should handle entities for XML entities 1`] = `
+exports[`Tokenizer > should handle entities > for XML entities 1`] = `
 [
   [
     "ontextentity",
@@ -176,7 +176,7 @@ exports[`Tokenizer should handle entities for XML entities 1`] = `
 ]
 `;
 
-exports[`Tokenizer should handle entities for entities in attributes (#276) 1`] = `
+exports[`Tokenizer > should handle entities > for entities in attributes (#276) 1`] = `
 [
   [
     "onopentagname",
@@ -232,7 +232,7 @@ exports[`Tokenizer should handle entities for entities in attributes (#276) 1`] 
 ]
 `;
 
-exports[`Tokenizer should handle entities for multi-byte entities 1`] = `
+exports[`Tokenizer > should handle entities > for multi-byte entities 1`] = `
 [
   [
     "ontextentity",
@@ -250,7 +250,7 @@ exports[`Tokenizer should handle entities for multi-byte entities 1`] = `
 ]
 `;
 
-exports[`Tokenizer should handle entities for trailing legacy entity 1`] = `
+exports[`Tokenizer > should handle entities > for trailing legacy entity 1`] = `
 [
   [
     "ontextentity",
@@ -273,7 +273,7 @@ exports[`Tokenizer should handle entities for trailing legacy entity 1`] = `
 ]
 `;
 
-exports[`Tokenizer should not break after special tag followed by an entity for normal special tag 1`] = `
+exports[`Tokenizer > should not break after special tag followed by an entity > for normal special tag 1`] = `
 [
   [
     "onopentagname",
@@ -314,7 +314,7 @@ exports[`Tokenizer should not break after special tag followed by an entity for 
 ]
 `;
 
-exports[`Tokenizer should not break after special tag followed by an entity for self-closing special tag 1`] = `
+exports[`Tokenizer > should not break after special tag followed by an entity > for self-closing special tag 1`] = `
 [
   [
     "onopentagname",
@@ -345,7 +345,7 @@ exports[`Tokenizer should not break after special tag followed by an entity for 
 ]
 `;
 
-exports[`Tokenizer should not lose data when pausing 1`] = `
+exports[`Tokenizer > should not lose data when pausing 1`] = `
 [
   [
     "ontextentity",
@@ -363,7 +363,7 @@ exports[`Tokenizer should not lose data when pausing 1`] = `
 ]
 `;
 
-exports[`Tokenizer should support self-closing special tags for self-closing script tag 1`] = `
+exports[`Tokenizer > should support self-closing special tags > for self-closing script tag 1`] = `
 [
   [
     "onopentagname",
@@ -394,7 +394,7 @@ exports[`Tokenizer should support self-closing special tags for self-closing scr
 ]
 `;
 
-exports[`Tokenizer should support self-closing special tags for self-closing style tag 1`] = `
+exports[`Tokenizer > should support self-closing special tags > for self-closing style tag 1`] = `
 [
   [
     "onopentagname",
@@ -425,7 +425,7 @@ exports[`Tokenizer should support self-closing special tags for self-closing sty
 ]
 `;
 
-exports[`Tokenizer should support self-closing special tags for self-closing textarea tag 1`] = `
+exports[`Tokenizer > should support self-closing special tags > for self-closing textarea tag 1`] = `
 [
   [
     "onopentagname",
@@ -456,7 +456,7 @@ exports[`Tokenizer should support self-closing special tags for self-closing tex
 ]
 `;
 
-exports[`Tokenizer should support self-closing special tags for self-closing title tag 1`] = `
+exports[`Tokenizer > should support self-closing special tags > for self-closing title tag 1`] = `
 [
   [
     "onopentagname",
@@ -487,7 +487,7 @@ exports[`Tokenizer should support self-closing special tags for self-closing tit
 ]
 `;
 
-exports[`Tokenizer should support standard special tags for normal script tag 1`] = `
+exports[`Tokenizer > should support standard special tags > for normal script tag 1`] = `
 [
   [
     "onopentagname",
@@ -523,7 +523,7 @@ exports[`Tokenizer should support standard special tags for normal script tag 1`
 ]
 `;
 
-exports[`Tokenizer should support standard special tags for normal sitle tag 1`] = `
+exports[`Tokenizer > should support standard special tags > for normal sitle tag 1`] = `
 [
   [
     "onopentagname",
@@ -559,7 +559,7 @@ exports[`Tokenizer should support standard special tags for normal sitle tag 1`]
 ]
 `;
 
-exports[`Tokenizer should support standard special tags for normal style tag 1`] = `
+exports[`Tokenizer > should support standard special tags > for normal style tag 1`] = `
 [
   [
     "onopentagname",
@@ -595,7 +595,7 @@ exports[`Tokenizer should support standard special tags for normal style tag 1`]
 ]
 `;
 
-exports[`Tokenizer should support standard special tags for normal textarea tag 1`] = `
+exports[`Tokenizer > should support standard special tags > for normal textarea tag 1`] = `
 [
   [
     "onopentagname",
@@ -631,7 +631,7 @@ exports[`Tokenizer should support standard special tags for normal textarea tag 
 ]
 `;
 
-exports[`Tokenizer should treat html inside special tags as text for div inside script tag 1`] = `
+exports[`Tokenizer > should treat html inside special tags as text > for div inside script tag 1`] = `
 [
   [
     "onopentagname",
@@ -658,7 +658,7 @@ exports[`Tokenizer should treat html inside special tags as text for div inside 
 ]
 `;
 
-exports[`Tokenizer should treat html inside special tags as text for div inside style tag 1`] = `
+exports[`Tokenizer > should treat html inside special tags as text > for div inside style tag 1`] = `
 [
   [
     "onopentagname",
@@ -685,7 +685,7 @@ exports[`Tokenizer should treat html inside special tags as text for div inside 
 ]
 `;
 
-exports[`Tokenizer should treat html inside special tags as text for div inside textarea tag 1`] = `
+exports[`Tokenizer > should treat html inside special tags as text > for div inside textarea tag 1`] = `
 [
   [
     "onopentagname",
@@ -712,7 +712,7 @@ exports[`Tokenizer should treat html inside special tags as text for div inside 
 ]
 `;
 
-exports[`Tokenizer should treat html inside special tags as text for div inside title tag 1`] = `
+exports[`Tokenizer > should treat html inside special tags as text > for div inside title tag 1`] = `
 [
   [
     "onopentagname",

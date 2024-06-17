@@ -1,8 +1,9 @@
 // Runs tests for feeds
 
-import { parseFeed } from "./index.js";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { describe, it, expect } from "vitest";
+import { parseFeed } from "./index.js";
 
 const documents = path.join(__dirname, "__fixtures__", "Documents");
 

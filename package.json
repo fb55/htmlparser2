@@ -46,8 +46,8 @@
         "lib/**/*"
     ],
     "scripts": {
-        "test": "npm run test:jest && npm run lint",
-        "test:jest": "jest",
+        "test": "npm run test:vi && npm run lint",
+        "test:vi": "vitest run",
         "lint": "npm run lint:es && npm run lint:prettier",
         "lint:es": "eslint src",
         "lint:prettier": "npm run format:prettier:raw -- --check",
@@ -67,7 +67,6 @@
         "entities": "^4.5.0"
     },
     "devDependencies": {
-        "@types/jest": "^29.5.12",
         "@types/node": "^20.14.2",
         "@typescript-eslint/eslint-plugin": "^7.13.0",
         "@typescript-eslint/parser": "^7.13.0",
@@ -75,21 +74,9 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-n": "^17.9.0",
         "eslint-plugin-unicorn": "^53.0.0",
-        "jest": "^29.7.0",
         "prettier": "^3.3.2",
-        "ts-jest": "^29.1.4",
-        "typescript": "^5.4.5"
-    },
-    "jest": {
-        "preset": "ts-jest",
-        "testEnvironment": "node",
-        "coverageProvider": "v8",
-        "moduleNameMapper": {
-            "^(.*)\\.js$": [
-                "$1",
-                "$1.js"
-            ]
-        }
+        "typescript": "^5.4.5",
+        "vitest": "^1.6.0"
     },
     "prettier": {
         "tabWidth": 4
