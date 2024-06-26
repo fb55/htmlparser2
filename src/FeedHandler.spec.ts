@@ -1,18 +1,15 @@
-// Runs tests for feeds
-
 import fs from "node:fs/promises";
-import path from "node:path";
 import { describe, it, expect } from "vitest";
 import { parseFeed } from "./index.js";
 
-const documents = path.join(__dirname, "__fixtures__", "Documents");
+const documents = new URL("__fixtures__/Documents/", import.meta.url);
 
 describe("parseFeed", () => {
     it("(rssFeed)", async () =>
         expect(
             parseFeed(
                 await fs.readFile(
-                    path.join(documents, "RSS_Example.xml"),
+                    new URL("RSS_Example.xml", documents),
                     "utf8",
                 ),
             ),
@@ -22,7 +19,7 @@ describe("parseFeed", () => {
         expect(
             parseFeed(
                 await fs.readFile(
-                    path.join(documents, "Atom_Example.xml"),
+                    new URL("Atom_Example.xml", documents),
                     "utf8",
                 ),
             ),
@@ -32,7 +29,7 @@ describe("parseFeed", () => {
         expect(
             parseFeed(
                 await fs.readFile(
-                    path.join(documents, "RDF_Example.xml"),
+                    new URL("RDF_Example.xml", documents),
                     "utf8",
                 ),
             ),

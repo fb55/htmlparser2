@@ -28,12 +28,23 @@
         "curly": [2, "multi-line"],
         "no-else-return": 2,
 
-        "unicorn/prefer-module": 0,
-        "unicorn/filename-case": 0,
+        "n/no-unpublished-import": 0,
+
+        "unicorn/filename-case": [
+            2,
+            {
+                "cases": {
+                    "camelCase": true,
+                    "pascalCase": true
+                }
+            }
+        ],
         "unicorn/no-null": 0,
         "unicorn/prefer-code-point": 0,
         "unicorn/prefer-string-slice": 0,
-        "unicorn/prefer-add-event-listener": 0
+        "unicorn/prefer-add-event-listener": 0,
+        "unicorn/prefer-at": 0,
+        "unicorn/prefer-string-replace-all": 0
     },
     "overrides": [
         {
@@ -45,9 +56,11 @@
             ],
             "parserOptions": {
                 "sourceType": "module",
-                "project": "./tsconfig.eslint.json"
+                "project": "./tsconfig.json"
             },
             "rules": {
+                "curly": [2, "multi-line"],
+
                 "@typescript-eslint/prefer-for-of": 0,
                 "@typescript-eslint/member-ordering": 0,
                 "@typescript-eslint/explicit-function-return-type": 0,
@@ -76,6 +89,12 @@
 
                 "n/no-missing-import": 0,
                 "n/no-unsupported-features/es-syntax": 0
+            }
+        },
+        {
+            "files": "*.spec.ts",
+            "rules": {
+                "n/no-unsupported-features/node-builtins": 0
             }
         }
     ]

@@ -1,11 +1,10 @@
 import { createReadStream } from "node:fs";
 import * as fs from "node:fs/promises";
-import path from "node:path";
 import * as stream from "node:stream";
 import { describe, it, expect, vi } from "vitest";
 import type { Handler, ParserOptions } from "./Parser.js";
 import { WritableStream } from "./WritableStream.js";
-import * as helper from "./__fixtures__/test-helper.js";
+import * as helper from "./__fixtures__/testHelper.js";
 
 describe("WritableStream", () => {
     it("should decode fragmented unicode characters", () => {
@@ -57,7 +56,7 @@ async function testStream(
     file: string,
     options?: ParserOptions,
 ): Promise<void> {
-    const filePath = path.join(__dirname, "__fixtures__", "Documents", file);
+    const filePath = new URL(`__fixtures__/Documents/${file}`, import.meta.url);
 
     const [streamHandler, eventsPromise] = getPromiseEventCollector();
 
