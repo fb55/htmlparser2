@@ -52,7 +52,7 @@ describe("Index", () => {
         return expect(documentPromise).resolves.toMatchSnapshot();
     });
 
-    it("createDomStream", (done) => {
+    it("createDomStream", () => {
         let domStream!: Parser;
 
         const domPromise = new Promise(
