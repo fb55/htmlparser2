@@ -3,7 +3,7 @@ import {
     DecodingMode,
     htmlDecodeTree,
     xmlDecodeTree,
-} from "entities/lib/decode.js";
+} from "entities/dist/decode.js";
 
 const enum CharCodes {
     Tab = 0x9, // "\t"
