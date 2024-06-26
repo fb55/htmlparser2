@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import {
     parseDocument,
     parseDOM,
@@ -5,6 +6,7 @@ import {
     createDomStream,
     DomHandler,
     DefaultHandler,
+    type Parser,
 } from "./index.js";
 import { Element } from "domhandler";
 
@@ -21,44 +23,52 @@ Object.defineProperty(Element.prototype, "attributes", {
 });
 
 describe("Index", () => {
-    test("parseDocument", () => {
+    it("parseDocument", () => {
         const dom = parseDocument("<a foo><b><c><?foo>Yay!");
         expect(dom).toMatchSnapshot();
     });
 
-    test("parseDOM", () => {
+    it("parseDOM", () => {
         const dom = parseDOM("<a foo><b><c><?foo>Yay!");
         expect(dom).toMatchSnapshot();
     });
 
-    test("createDocumentStream", (done) => {
-        const domStream = createDocumentStream((error, dom) => {
-            expect(error).toBeNull();
-            expect(dom).toMatchSnapshot();
+    it("createDocumentStream", () => {
+        let documentStream!: Parser;
 
-            done();
-        });
+        const documentPromise = new Promise(
+            (resolve, reject) =>
+                (documentStream = createDocumentStream((error, dom) =>
+                    error ? reject(error) : resolve(dom),
+                )),
+        );
 
         for (const c of "&amp;This is text<!-- and comments --><tags>") {
-            domStream.write(c);
+            documentStream.write(c);
         }
 
-        domStream.end();
+        documentStream.end();
+
+        return expect(documentPromise).resolves.toMatchSnapshot();
     });
 
-    test("createDomStream", (done) => {
-        const domStream = createDomStream((error, dom) => {
-            expect(error).toBeNull();
-            expect(dom).toMatchSnapshot();
+    it("createDomStream", () => {
+        let domStream!: Parser;
 
-            done();
-        });
+        const domPromise = new Promise(
+            (resolve, reject) =>
+                (domStream = createDomStream((error, dom) =>
+                    error ? reject(error) : resolve(dom),
+                )),
+        );
 
         for (const c of "&amp;This is text<!-- and comments --><tags>") {
             domStream.write(c);
         }
 
         domStream.end();
+
+        return expect(domPromise).resolves.toMatchSnapshot();
     });
 
     describe("API", () => {

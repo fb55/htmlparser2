@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Events </title> in <script> (#745) 1`] = `
+exports[`Events > </title> in <script> (#745) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -40,7 +40,7 @@ exports[`Events </title> in <script> (#745) 1`] = `
 ]
 `;
 
-exports[`Events Attribute in XML (see #1350) 1`] = `
+exports[`Events > Attribute in XML (see #1350) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -95,7 +95,7 @@ exports[`Events Attribute in XML (see #1350) 1`] = `
 ]
 `;
 
-exports[`Events CDATA (inside special) 1`] = `
+exports[`Events > CDATA (inside special) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -135,7 +135,7 @@ exports[`Events CDATA (inside special) 1`] = `
 ]
 `;
 
-exports[`Events CDATA 1`] = `
+exports[`Events > CDATA 1`] = `
 [
   {
     "$event": "opentagname",
@@ -196,7 +196,7 @@ exports[`Events CDATA 1`] = `
 ]
 `;
 
-exports[`Events CDATA edge-cases 1`] = `
+exports[`Events > CDATA edge-cases 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -250,7 +250,7 @@ exports[`Events CDATA edge-cases 1`] = `
 ]
 `;
 
-exports[`Events CDATA in HTML 1`] = `
+exports[`Events > CDATA in HTML 1`] = `
 [
   {
     "$event": "comment",
@@ -269,7 +269,7 @@ exports[`Events CDATA in HTML 1`] = `
 ]
 `;
 
-exports[`Events CDATA more edge-cases 1`] = `
+exports[`Events > CDATA more edge-cases 1`] = `
 [
   {
     "$event": "cdatastart",
@@ -294,7 +294,7 @@ exports[`Events CDATA more edge-cases 1`] = `
 ]
 `;
 
-exports[`Events Comment edge-cases 1`] = `
+exports[`Events > Comment edge-cases 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -336,7 +336,7 @@ exports[`Events Comment edge-cases 1`] = `
 ]
 `;
 
-exports[`Events Comment false ending 1`] = `
+exports[`Events > Comment false ending 1`] = `
 [
   {
     "$event": "comment",
@@ -355,7 +355,7 @@ exports[`Events Comment false ending 1`] = `
 ]
 `;
 
-exports[`Events Empty tag name 1`] = `
+exports[`Events > Empty tag name 1`] = `
 [
   {
     "$event": "text",
@@ -368,7 +368,7 @@ exports[`Events Empty tag name 1`] = `
 ]
 `;
 
-exports[`Events Entities in attributes 1`] = `
+exports[`Events > Entities in attributes 1`] = `
 [
   {
     "$event": "opentagname",
@@ -445,7 +445,7 @@ exports[`Events Entities in attributes 1`] = `
 ]
 `;
 
-exports[`Events Entity after < 1`] = `
+exports[`Events > Entity after < 1`] = `
 [
   {
     "$event": "text",
@@ -458,7 +458,7 @@ exports[`Events Entity after < 1`] = `
 ]
 `;
 
-exports[`Events Implicit close tags 1`] = `
+exports[`Events > Implicit close tags 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1165,7 +1165,7 @@ exports[`Events Implicit close tags 1`] = `
 ]
 `;
 
-exports[`Events Implicit open p and br tags 1`] = `
+exports[`Events > Implicit open p and br tags 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1321,7 +1321,7 @@ exports[`Events Implicit open p and br tags 1`] = `
 ]
 `;
 
-exports[`Events Long CDATA ending 1`] = `
+exports[`Events > Long CDATA ending 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1427,7 +1427,7 @@ exports[`Events Long CDATA ending 1`] = `
 ]
 `;
 
-exports[`Events Long comment ending 1`] = `
+exports[`Events > Long comment ending 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1524,7 +1524,7 @@ exports[`Events Long comment ending 1`] = `
 ]
 `;
 
-exports[`Events Lowercase tags 1`] = `
+exports[`Events > Lowercase tags 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1576,7 +1576,7 @@ exports[`Events Lowercase tags 1`] = `
 ]
 `;
 
-exports[`Events Multi-byte entity 1`] = `
+exports[`Events > Multi-byte entity 1`] = `
 [
   {
     "$event": "text",
@@ -1589,7 +1589,7 @@ exports[`Events Multi-byte entity 1`] = `
 ]
 `;
 
-exports[`Events Not quite closed 1`] = `
+exports[`Events > Not quite closed 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1632,7 +1632,7 @@ exports[`Events Not quite closed 1`] = `
 ]
 `;
 
-exports[`Events Scripts creating other scripts 1`] = `
+exports[`Events > Scripts creating other scripts 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1699,7 +1699,7 @@ exports[`Events Scripts creating other scripts 1`] = `
 ]
 `;
 
-exports[`Events Scripts ending with < 1`] = `
+exports[`Events > Scripts ending with < 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1739,7 +1739,7 @@ exports[`Events Scripts ending with < 1`] = `
 ]
 `;
 
-exports[`Events Self-closing indices (#941) 1`] = `
+exports[`Events > Self-closing indices (#941) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -1825,7 +1825,7 @@ exports[`Events Self-closing indices (#941) 1`] = `
 ]
 `;
 
-exports[`Events Special special tags 1`] = `
+exports[`Events > Special special tags 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2151,7 +2151,7 @@ exports[`Events Special special tags 1`] = `
 ]
 `;
 
-exports[`Events Start & end indices from domhandler 1`] = `
+exports[`Events > Start & end indices from domhandler 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -2363,7 +2363,7 @@ exports[`Events Start & end indices from domhandler 1`] = `
 ]
 `;
 
-exports[`Events Template script tags 1`] = `
+exports[`Events > Template script tags 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2442,7 +2442,7 @@ exports[`Events Template script tags 1`] = `
 ]
 `;
 
-exports[`Events Trailing legacy entity 1`] = `
+exports[`Events > Trailing legacy entity 1`] = `
 [
   {
     "$event": "text",
@@ -2455,7 +2455,7 @@ exports[`Events Trailing legacy entity 1`] = `
 ]
 `;
 
-exports[`Events Trailing numeric entity 1`] = `
+exports[`Events > Trailing numeric entity 1`] = `
 [
   {
     "$event": "text",
@@ -2468,7 +2468,7 @@ exports[`Events Trailing numeric entity 1`] = `
 ]
 `;
 
-exports[`Events XML tags 1`] = `
+exports[`Events > XML tags 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2527,7 +2527,7 @@ exports[`Events XML tags 1`] = `
 ]
 `;
 
-exports[`Events attributes (no white space, no value, no quotes) 1`] = `
+exports[`Events > attributes (no white space, no value, no quotes) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2611,7 +2611,7 @@ exports[`Events attributes (no white space, no value, no quotes) 1`] = `
 ]
 `;
 
-exports[`Events crazy attribute 1`] = `
+exports[`Events > crazy attribute 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2673,7 +2673,7 @@ exports[`Events crazy attribute 1`] = `
 ]
 `;
 
-exports[`Events double attribute 1`] = `
+exports[`Events > double attribute 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2727,7 +2727,7 @@ exports[`Events double attribute 1`] = `
 ]
 `;
 
-exports[`Events double brackets 1`] = `
+exports[`Events > double brackets 1`] = `
 [
   {
     "$event": "text",
@@ -2775,7 +2775,7 @@ exports[`Events double brackets 1`] = `
 ]
 `;
 
-exports[`Events end slash: as part of attrib value of non-void element 1`] = `
+exports[`Events > end slash: as part of attrib value of non-void element 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2862,7 +2862,7 @@ exports[`Events end slash: as part of attrib value of non-void element 1`] = `
 ]
 `;
 
-exports[`Events end slash: as part of attrib value of void element 1`] = `
+exports[`Events > end slash: as part of attrib value of void element 1`] = `
 [
   {
     "$event": "opentagname",
@@ -2941,7 +2941,7 @@ exports[`Events end slash: as part of attrib value of void element 1`] = `
 ]
 `;
 
-exports[`Events end slash: non-void element ending with /> 1`] = `
+exports[`Events > end slash: non-void element ending with /> 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3008,7 +3008,7 @@ exports[`Events end slash: non-void element ending with /> 1`] = `
 ]
 `;
 
-exports[`Events end slash: non-void element ending with />, recognizeSelfClosing=true 1`] = `
+exports[`Events > end slash: non-void element ending with />, recognizeSelfClosing=true 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3075,7 +3075,7 @@ exports[`Events end slash: non-void element ending with />, recognizeSelfClosing
 ]
 `;
 
-exports[`Events end slash: non-void element ending with />, xmlMode=true 1`] = `
+exports[`Events > end slash: non-void element ending with />, xmlMode=true 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3142,7 +3142,7 @@ exports[`Events end slash: non-void element ending with />, xmlMode=true 1`] = `
 ]
 `;
 
-exports[`Events end slash: void element ending with /> 1`] = `
+exports[`Events > end slash: void element ending with /> 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3209,7 +3209,7 @@ exports[`Events end slash: void element ending with /> 1`] = `
 ]
 `;
 
-exports[`Events end slash: void element ending with > 1`] = `
+exports[`Events > end slash: void element ending with > 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3276,7 +3276,7 @@ exports[`Events end slash: void element ending with > 1`] = `
 ]
 `;
 
-exports[`Events end slash: void element ending with >, xmlMode=true 1`] = `
+exports[`Events > end slash: void element ending with >, xmlMode=true 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3343,7 +3343,7 @@ exports[`Events end slash: void element ending with >, xmlMode=true 1`] = `
 ]
 `;
 
-exports[`Events entity in attribute (#276) 1`] = `
+exports[`Events > entity in attribute (#276) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3395,7 +3395,7 @@ exports[`Events entity in attribute (#276) 1`] = `
 ]
 `;
 
-exports[`Events entity in attribute 1`] = `
+exports[`Events > entity in attribute 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3439,7 +3439,7 @@ exports[`Events entity in attribute 1`] = `
 ]
 `;
 
-exports[`Events entity in title (#592) 1`] = `
+exports[`Events > entity in title (#592) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3479,7 +3479,7 @@ exports[`Events entity in title (#592) 1`] = `
 ]
 `;
 
-exports[`Events entity in title - decodeEntities=false (#592) 1`] = `
+exports[`Events > entity in title - decodeEntities=false (#592) 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3519,7 +3519,7 @@ exports[`Events entity in title - decodeEntities=false (#592) 1`] = `
 ]
 `;
 
-exports[`Events leading lt 1`] = `
+exports[`Events > leading lt 1`] = `
 [
   {
     "$event": "text",
@@ -3532,7 +3532,7 @@ exports[`Events leading lt 1`] = `
 ]
 `;
 
-exports[`Events legacy entities 1`] = `
+exports[`Events > legacy entities 1`] = `
 [
   {
     "$event": "text",
@@ -3545,7 +3545,7 @@ exports[`Events legacy entities 1`] = `
 ]
 `;
 
-exports[`Events legacy entities fail 1`] = `
+exports[`Events > legacy entities fail 1`] = `
 [
   {
     "$event": "text",
@@ -3558,7 +3558,7 @@ exports[`Events legacy entities fail 1`] = `
 ]
 `;
 
-exports[`Events lt followed by whitespace 1`] = `
+exports[`Events > lt followed by whitespace 1`] = `
 [
   {
     "$event": "text",
@@ -3571,7 +3571,7 @@ exports[`Events lt followed by whitespace 1`] = `
 ]
 `;
 
-exports[`Events named entities 1`] = `
+exports[`Events > named entities 1`] = `
 [
   {
     "$event": "text",
@@ -3584,7 +3584,7 @@ exports[`Events named entities 1`] = `
 ]
 `;
 
-exports[`Events numeric entities 1`] = `
+exports[`Events > numeric entities 1`] = `
 [
   {
     "$event": "text",
@@ -3597,7 +3597,7 @@ exports[`Events numeric entities 1`] = `
 ]
 `;
 
-exports[`Events open-implies-close case of (non-br) void close tag in non-XML mode 1`] = `
+exports[`Events > open-implies-close case of (non-br) void close tag in non-XML mode 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3656,7 +3656,7 @@ exports[`Events open-implies-close case of (non-br) void close tag in non-XML mo
 ]
 `;
 
-exports[`Events simple 1`] = `
+exports[`Events > simple 1`] = `
 [
   {
     "$event": "opentagname",
@@ -3708,7 +3708,7 @@ exports[`Events simple 1`] = `
 ]
 `;
 
-exports[`Events tag names are not ASCII alpha 1`] = `
+exports[`Events > tag names are not ASCII alpha 1`] = `
 [
   {
     "$event": "text",
@@ -3735,7 +3735,7 @@ exports[`Events tag names are not ASCII alpha 1`] = `
 ]
 `;
 
-exports[`Events xml entities 1`] = `
+exports[`Events > xml entities 1`] = `
 [
   {
     "$event": "text",

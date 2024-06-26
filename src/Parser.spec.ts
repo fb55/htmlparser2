@@ -1,9 +1,10 @@
+import { describe, it, expect, vi } from "vitest";
 import { Parser, Tokenizer } from "./index.js";
 import type { Handler } from "./Parser.js";
 
 describe("API", () => {
-    test("should work without callbacks", () => {
-        const cbs: Partial<Handler> = { onerror: jest.fn() };
+    it("should work without callbacks", () => {
+        const cbs: Partial<Handler> = { onerror: vi.fn() };
         const p = new Parser(cbs, {
             xmlMode: true,
             lowerCaseAttributeNames: true,
@@ -30,13 +31,13 @@ describe("API", () => {
         p.reset();
 
         // Remove method
-        cbs.onopentag = jest.fn();
+        cbs.onopentag = vi.fn();
         p.write("<a foo");
         delete cbs.onopentag;
         p.write(">");
 
         // Pause/resume
-        const onText = jest.fn();
+        const onText = vi.fn();
         cbs.ontext = onText;
         p.pause();
         p.write("foo");
@@ -55,8 +56,8 @@ describe("API", () => {
         expect(onText).toHaveBeenLastCalledWith("bar");
     });
 
-    test("should back out of numeric entities (#125)", () => {
-        const onend = jest.fn();
+    it("should back out of numeric entities (#125)", () => {
+        const onend = vi.fn();
         let text = "";
         const p = new Parser({
             ontext(data) {
@@ -79,9 +80,9 @@ describe("API", () => {
         expect(text).toBe("0&#xn");
     });
 
-    test("should not have the start index be greater than the end index", () => {
-        const onopentag = jest.fn();
-        const onclosetag = jest.fn();
+    it("should not have the start index be greater than the end index", () => {
+        const onopentag = vi.fn();
+        const onclosetag = vi.fn();
 
         const p = new Parser({
             onopentag(tag) {
@@ -109,7 +110,7 @@ describe("API", () => {
         expect(onclosetag).toHaveBeenNthCalledWith(2, "hr", 9);
     });
 
-    test("should update the position when a single tag is spread across multiple chunks", () => {
+    it("should update the position when a single tag is spread across multiple chunks", () => {
         let called = false;
         const p = new Parser({
             onopentag() {
@@ -125,7 +126,7 @@ describe("API", () => {
         expect(called).toBe(true);
     });
 
-    test("should have the correct position for implied opening tags", () => {
+    it("should have the correct position for implied opening tags", () => {
         let called = false;
         const p = new Parser({
             onopentag() {
@@ -139,14 +140,14 @@ describe("API", () => {
         expect(called).toBe(true);
     });
 
-    test("should parse <__proto__> (#387)", () => {
+    it("should parse <__proto__> (#387)", () => {
         const p = new Parser(null);
 
         // Should not throw
         p.parseChunk("<__proto__>");
     });
 
-    test("should support custom tokenizer", () => {
+    it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 
         const p = new Parser(

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Index createDocumentStream 1`] = `
+exports[`Index > createDocumentStream 1`] = `
 Document {
   "children": [
     &This is text,
@@ -16,7 +16,7 @@ Document {
 }
 `;
 
-exports[`Index createDomStream 1`] = `
+exports[`Index > createDomStream 1`] = `
 [
   &This is text,
   <!-- and comments -->,
@@ -24,7 +24,7 @@ exports[`Index createDomStream 1`] = `
 ]
 `;
 
-exports[`Index parseDOM 1`] = `
+exports[`Index > parseDOM 1`] = `
 [
   <a
     foo=""
@@ -51,7 +51,7 @@ exports[`Index parseDOM 1`] = `
 ]
 `;
 
-exports[`Index parseDocument 1`] = `
+exports[`Index > parseDocument 1`] = `
 Document {
   "children": [
     <a
