@@ -83,7 +83,7 @@
         "entities": "^5.0.0"
     },
     "devDependencies": {
-        "@types/node": "^20.14.9",
+        "@types/node": "^20.14.10",
         "@typescript-eslint/eslint-plugin": "^7.15.0",
         "@typescript-eslint/parser": "^7.15.0",
         "@vitest/coverage-v8": "^1.6.0",
