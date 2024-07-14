@@ -92,7 +92,7 @@
         "eslint-plugin-n": "^17.9.0",
         "eslint-plugin-unicorn": "^54.0.0",
         "prettier": "^3.3.2",
-        "tshy": "^1.17.0",
+        "tshy": "^3.0.2",
         "typescript": "^5.5.3",
         "vitest": "^2.0.2"
     },
