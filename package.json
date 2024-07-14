@@ -86,7 +86,7 @@
         "@types/node": "^20.14.10",
         "@typescript-eslint/eslint-plugin": "^7.16.0",
         "@typescript-eslint/parser": "^7.16.0",
-        "@vitest/coverage-v8": "^1.6.0",
+        "@vitest/coverage-v8": "^2.0.2",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-n": "^17.9.0",
@@ -94,7 +94,7 @@
         "prettier": "^3.3.2",
         "tshy": "^1.17.0",
         "typescript": "^5.5.3",
-        "vitest": "^1.6.0"
+        "vitest": "^2.0.2"
     },
     "tshy": {
         "exclude": [
