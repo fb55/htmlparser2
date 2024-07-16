@@ -40,7 +40,7 @@
                 "default": "./dist/commonjs/index.js"
             }
         },
-        "./dist/WritableStream": {
+        "./WritableStream": {
             "import": {
                 "source": "./src/WritableStream.ts",
                 "types": "./dist/esm/WritableStream.d.ts",
@@ -105,7 +105,7 @@
         ],
         "exports": {
             ".": "./src/index.ts",
-            "./dist/WritableStream": "./src/WritableStream.ts"
+            "./WritableStream": "./src/WritableStream.ts"
         }
     }
 }
