@@ -37,6 +37,9 @@ describe("Tokenizer", () => {
         it("for self-closing textarea tag", () => {
             expect(tokenize("<textarea /><div></div>")).toMatchSnapshot();
         });
+        it("for self-closing xmp tag", () => {
+            expect(tokenize("<xmp /><div></div>")).toMatchSnapshot();
+        });
     });
 
     describe("should support standard special tags", () => {
@@ -54,6 +57,9 @@ describe("Tokenizer", () => {
                 tokenize("<textarea></textarea><div></div>"),
             ).toMatchSnapshot();
         });
+        it("for normal xmp tag", () => {
+            expect(tokenize("<xmp></xmp><div></div>")).toMatchSnapshot();
+        });
     });
 
     describe("should treat html inside special tags as text", () => {
@@ -70,6 +76,9 @@ describe("Tokenizer", () => {
             expect(
                 tokenize("<textarea><div></div></textarea>"),
             ).toMatchSnapshot();
+        });
+        it("for div inside xmp tag", () => {
+            expect(tokenize("<xmp><div></div></xmp>")).toMatchSnapshot();
         });
     });
 

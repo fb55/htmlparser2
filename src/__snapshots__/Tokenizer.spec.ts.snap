@@ -487,6 +487,37 @@ exports[`Tokenizer > should support self-closing special tags > for self-closing
 ]
 `;
 
+exports[`Tokenizer > should support self-closing special tags > for self-closing xmp tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onselfclosingtag",
+    6,
+  ],
+  [
+    "onopentagname",
+    8,
+    11,
+  ],
+  [
+    "onopentagend",
+    11,
+  ],
+  [
+    "onclosetag",
+    14,
+    17,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should support standard special tags > for normal script tag 1`] = `
 [
   [
@@ -631,6 +662,42 @@ exports[`Tokenizer > should support standard special tags > for normal textarea 
 ]
 `;
 
+exports[`Tokenizer > should support standard special tags > for normal xmp tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onopentagend",
+    4,
+  ],
+  [
+    "onclosetag",
+    7,
+    10,
+  ],
+  [
+    "onopentagname",
+    12,
+    15,
+  ],
+  [
+    "onopentagend",
+    15,
+  ],
+  [
+    "onclosetag",
+    18,
+    21,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should treat html inside special tags as text > for div inside script tag 1`] = `
 [
   [
@@ -732,6 +799,33 @@ exports[`Tokenizer > should treat html inside special tags as text > for div ins
     "onclosetag",
     20,
     25,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat html inside special tags as text > for div inside xmp tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onopentagend",
+    4,
+  ],
+  [
+    "ontext",
+    5,
+    16,
+  ],
+  [
+    "onclosetag",
+    18,
+    21,
   ],
   [
     "onend",
