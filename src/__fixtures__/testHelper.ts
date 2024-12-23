@@ -73,8 +73,6 @@ export function getEventCollector(
                     endIndex: parser.endIndex,
                     data,
                 });
-
-                parser.endIndex;
             }
         }
     }
