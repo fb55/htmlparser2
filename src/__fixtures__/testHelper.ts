@@ -16,7 +16,7 @@ interface Event {
  */
 export function getEventCollector(
     callback: (error: Error | null, events?: Event[]) => void,
-): Partial {
+): Partial<Handler> {
     const events: Event[] = [];
     let parser: Parser;
 
