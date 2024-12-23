@@ -16,7 +16,7 @@ interface Event {
  */
 export function getEventCollector(
     callback: (error: Error | null, events?: Event[]) => void,
-): Partial<Handler> {
+): Partial {
     const events: Event[] = [];
     let parser: Parser;
 
@@ -73,8 +73,6 @@ export function getEventCollector(
                     endIndex: parser.endIndex,
                     data,
                 });
-
-                parser.endIndex;
             }
         }
     }
