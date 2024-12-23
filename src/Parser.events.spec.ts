@@ -1,5 +1,6 @@
-import { Parser, type ParserOptions } from "../index.js";
-import * as helper from "../__fixtures__/test-helper.js";
+import { describe, it, expect, vi } from "vitest";
+import { Parser, type ParserOptions } from "./Parser.js";
+import * as helper from "./__fixtures__/testHelper.js";
 
 /**
  * Write to the parser twice, once a bytes, once as a single blob. Then check
@@ -212,7 +213,7 @@ describe("Events", () => {
 
 describe("Helper", () => {
     it("should handle errors", () => {
-        const eventCallback = jest.fn();
+        const eventCallback = vi.fn();
         const parser = new Parser(helper.getEventCollector(eventCallback));
 
         parser.end();

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`WritableStream Atom feed 1`] = `
+exports[`WritableStream > Atom feed 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -995,7 +995,7 @@ exports[`WritableStream Atom feed 1`] = `
 ]
 `;
 
-exports[`WritableStream Attributes 1`] = `
+exports[`WritableStream > Attributes 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -1492,7 +1492,7 @@ exports[`WritableStream Attributes 1`] = `
 ]
 `;
 
-exports[`WritableStream Basic html 1`] = `
+exports[`WritableStream > Basic html 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -1603,7 +1603,7 @@ exports[`WritableStream Basic html 1`] = `
 ]
 `;
 
-exports[`WritableStream RDF feed 1`] = `
+exports[`WritableStream > RDF feed 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -3603,7 +3603,7 @@ This space intentionally left blank
 ]
 `;
 
-exports[`WritableStream RSS feed 1`] = `
+exports[`WritableStream > RSS feed 1`] = `
 [
   {
     "$event": "processinginstruction",
@@ -5241,7 +5241,7 @@ exports[`WritableStream RSS feed 1`] = `
 ]
 `;
 
-exports[`WritableStream SVG 1`] = `
+exports[`WritableStream > SVG 1`] = `
 [
   {
     "$event": "processinginstruction",
