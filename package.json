@@ -53,6 +53,7 @@
     "module": "./dist/esm/index.js",
     "types": "./dist/commonjs/index.d.ts",
     "files": [
+        "WritableStream.js",
         "dist",
         "src"
     ],
