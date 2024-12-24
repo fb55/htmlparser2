@@ -76,7 +76,7 @@
     "dependencies": {
         "domelementtype": "^2.3.0",
         "domhandler": "^5.0.3",
-        "domutils": "^3.1.0",
+        "domutils": "^3.2.1",
         "entities": "^6.0.0"
     },
     "devDependencies": {
