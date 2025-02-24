@@ -92,7 +92,7 @@
         "prettier": "^3.5.2",
         "tshy": "^3.0.2",
         "typescript": "^5.7.3",
-        "vitest": "^2.0.2"
+        "vitest": "^3.0.6"
     },
     "tshy": {
         "exclude": [
