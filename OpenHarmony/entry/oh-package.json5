@@ -1,0 +1,13 @@
+{
+  "license": "",
+  "devDependencies": {},
+  "author": "",
+  "name": "entry",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.2",
+  "dependencies": {
+    "htmlparser2": "file:../library",
+    "domhandler": "^5.0.3"
+  }
+}

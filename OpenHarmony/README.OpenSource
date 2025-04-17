@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "htmlparser2",
+        "License": "MIT License",
+        "License File": " LICENSE ",
+        "Version Number": "9.0.0",
+        "Owner" : "xiafeng@huawei.com",
+        "Upstream URL": "https://github.com/fb55/htmlparser2",
+        "Description": "htmlparser2 is the fastest HTML parser, and takes some shortcuts to get there. If you need strict HTML spec compliance, have a look at parse5."
+    }
+]

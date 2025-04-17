@@ -1,0 +1,12 @@
+{
+  "license": "",
+  "devDependencies": {
+    "@ohos/hypium": "1.0.11"
+  },
+  "author": "",
+  "name": "htmlparser2",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.2",
+  "dependencies": {}
+}

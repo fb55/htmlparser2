@@ -1,0 +1,24 @@
+{
+  "license": "MIT License",
+  "types": "src/main/ets/esm/index.d.ts",
+  "devDependencies": {},
+  "keywords": [
+    "OpenHarmony",
+    "htmlparser2",
+    "HarmonyOS"
+  ],
+  "author": "hihope",
+  "name": "@ohos/htmlparser2",
+  "description": "The fast \u0026 forgiving HTML and XML parser",
+  "main": "src/main/ets/esm/index.js",
+  "type": "module",
+  "repository": "https://gitcode.com/openharmony-tpc/openharmony_tpc_samples/tree/master/htmlparser2",
+  "version": "1.0.3",
+  "dependencies": {
+    "@ohos/node-polyfill": "1.0.0",
+    "entities": "^4.5.0",
+    "domelementtype": "^2.3.0",
+    "domhandler": "^5.0.3",
+    "domutils": "^3.1.0"
+  }
+}
