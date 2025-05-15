@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Parsing_HTML",
+      "value": "解析html"
+    },
+    {
+      "name": "ParseComplete",
+      "value": "解析完成"
+    },
+    {
+      "name": "Parse_fail",
+      "value": "解析失败"
+    },
+    {
+      "name": "ParseDocument",
+      "value": "解析文档"
+    },
+    {
+      "name": "Parse_feed_string",
+      "value": "解析feed字符串"
+    },
+    {
+      "name": "createDocumentStream",
+      "value": "创建文档流"
+    },
+    {
+      "name": "Decompose_HTML_documents_into_individual_tokens",
+      "value": "将HTML文档分解成一个个的标记(tokens)"
+    },
+    {
+      "name": "Parse_results",
+      "value": "解析结果"
+    }
+  ]
+}
