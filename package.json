@@ -87,7 +87,7 @@
         "@vitest/coverage-v8": "^2.1.8",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^10.1.5",
-        "eslint-plugin-n": "^17.19.0",
+        "eslint-plugin-n": "^17.20.0",
         "eslint-plugin-unicorn": "^56.0.1",
         "prettier": "^3.5.3",
         "tshy": "^3.0.2",
