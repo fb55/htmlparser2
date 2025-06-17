@@ -55,7 +55,10 @@
     "files": [
         "WritableStream.js",
         "dist",
-        "src"
+        "src",
+        "!src/*.spec.ts",
+        "!src/__fixtures__",
+        "!src/__snapshots__"
     ],
     "scripts": {
         "build": "tshy",
