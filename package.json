@@ -91,7 +91,7 @@
         "eslint-plugin-unicorn": "^56.0.1",
         "prettier": "^3.6.2",
         "tshy": "^3.0.2",
-        "typescript": "^5.8.3",
+        "typescript": "^5.9.2",
         "vitest": "^2.0.2"
     },
     "tshy": {
