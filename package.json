@@ -83,7 +83,7 @@
     "devDependencies": {
         "@types/node": "^22.15.30",
         "@typescript-eslint/eslint-plugin": "^8.39.0",
-        "@typescript-eslint/parser": "^8.36.0",
+        "@typescript-eslint/parser": "^8.39.1",
         "@vitest/coverage-v8": "^2.1.8",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^10.1.8",
