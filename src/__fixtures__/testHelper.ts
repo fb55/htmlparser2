@@ -44,7 +44,6 @@ export function getEventCollector(
                 break;
             }
             default: {
-                // eslint-disable-next-line unicorn/prefer-at
                 const last = events[events.length - 1];
 
                 // Combine text nodes
