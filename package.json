@@ -83,7 +83,7 @@
     "devDependencies": {
         "@eslint/js": "^9.36.0",
         "@types/node": "^22.15.30",
-        "@vitest/coverage-v8": "^2.1.8",
+        "@vitest/coverage-v8": "^3.2.4",
         "eslint": "^9.36.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-n": "^17.23.1",
@@ -93,7 +93,7 @@
         "tshy": "^3.0.3",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.45.0",
-        "vitest": "^2.0.2"
+        "vitest": "^3.2.4"
     },
     "tshy": {
         "exclude": [
