@@ -83,7 +83,7 @@
     "devDependencies": {
         "@eslint/js": "^9.38.0",
         "@types/node": "^22.15.30",
-        "@vitest/coverage-v8": "^2.1.8",
+        "@vitest/coverage-v8": "^4.0.2",
         "eslint": "^9.38.0",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-n": "^17.23.1",
