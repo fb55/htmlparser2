@@ -635,19 +635,26 @@ export default class Tokenizer {
     }
 
     private stateInEntity(): void {
-        const length = this.entityDecoder.write(
-            this.buffer,
-            this.index - this.offset,
-        );
+        const indexInBuffer = this.index - this.offset;
+        const length = this.entityDecoder.write(this.buffer, indexInBuffer);
 
         // If `length` is positive, we are done with the entity.
         if (length >= 0) {
             this.state = this.baseState;
 
             if (length === 0) {
-                this.index = this.entityStart;
+                this.index -= 1;
             }
         } else {
+            if (
+                indexInBuffer < this.buffer.length &&
+                this.buffer.charCodeAt(indexInBuffer) === CharCodes.Amp
+            ) {
+                this.state = this.baseState;
+                this.index -= 1;
+                return;
+            }
+
             // Mark buffer as consumed.
             this.index = this.offset + this.buffer.length - 1;
         }
