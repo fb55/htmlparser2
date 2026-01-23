@@ -91,7 +91,7 @@
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-n": "^17.23.2",
         "eslint-plugin-unicorn": "^62.0.0",
-        "globals": "^17.0.0",
+        "globals": "^17.1.0",
         "prettier": "^3.8.1",
         "tshy": "^3.1.0",
         "typescript": "^5.9.3",
