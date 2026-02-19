@@ -84,7 +84,7 @@
         "entities": "^7.0.1"
     },
     "devDependencies": {
-        "@eslint/js": "^9.39.2",
+        "@eslint/js": "^10.0.1",
         "@types/node": "^25.3.0",
         "@vitest/coverage-v8": "^4.0.18",
         "eslint": "^9.39.2",
