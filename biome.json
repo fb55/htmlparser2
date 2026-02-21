@@ -7,10 +7,7 @@
     },
     "files": {
         "ignoreUnknown": true,
-        "includes": [
-            "**/*.{ts,md,json,yml}",
-            "!**/.*"
-        ]
+        "includes": ["**/*.{ts,md,json,yml}", "!**/.*"]
     },
     "formatter": {
         "enabled": true,
@@ -36,10 +33,7 @@
     },
     "overrides": [
         {
-            "includes": [
-                "**/*.{test,spec}.ts",
-                "test/**/*.ts"
-            ],
+            "includes": ["**/*.{test,spec}.ts", "test/**/*.ts"],
             "javascript": {
                 "globals": [
                     "jest",
@@ -53,12 +47,7 @@
             }
         },
         {
-            "includes": [
-                "**/*.ts",
-                "**/*.cts",
-                "**/*.mts",
-                "**/*.tsx"
-            ],
+            "includes": ["**/*.ts", "**/*.cts", "**/*.mts", "**/*.tsx"],
             "linter": {
                 "rules": {
                     "complexity": {
