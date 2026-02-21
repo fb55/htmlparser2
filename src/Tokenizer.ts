@@ -1,11 +1,11 @@
 import {
-    EntityDecoder,
     DecodingMode,
+    EntityDecoder,
     htmlDecodeTree,
     xmlDecodeTree,
 } from "entities/decode";
 
-const enum CharCodes {
+enum CharCodes {
     Tab = 0x9, // "\t"
     NewLine = 0xa, // "\n"
     FormFeed = 0xc, // "\f"
@@ -36,7 +36,7 @@ const enum CharCodes {
 }
 
 /** All the states the tokenizer can be in. */
-const enum State {
+enum State {
     Text = 1,
     BeforeTagName, // After <
     InTagName,
