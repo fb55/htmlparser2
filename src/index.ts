@@ -18,6 +18,9 @@ export {
     type DomHandlerOptions,
 } from "domhandler";
 
+/**
+ * Combined parser and handler options.
+ */
 export type Options = ParserOptions & DomHandlerOptions;
 
 // Helper methods

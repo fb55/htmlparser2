@@ -101,6 +101,9 @@ const htmlIntegrationElements = new Set([
     "title",
 ]);
 
+/**
+ * Options for the streaming HTML/XML parser.
+ */
 export interface ParserOptions {
     /**
      * Indicates whether special tags (`<script>`, `<style>`, and `<title>`) should get special treatment
@@ -155,6 +158,9 @@ export interface ParserOptions {
     Tokenizer?: typeof Tokenizer;
 }
 
+/**
+ * Parser callback interface used by the tokenizer.
+ */
 export interface Handler {
     onparserinit(parser: Parser): void;
 
@@ -196,6 +202,9 @@ export interface Handler {
 
 const reNameEnd = /\s|\//;
 
+/**
+ * Incremental parser implementation.
+ */
 export class Parser implements Callbacks {
     /** The start index of the last event. */
     public startIndex = 0;

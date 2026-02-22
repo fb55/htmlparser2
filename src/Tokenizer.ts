@@ -97,6 +97,9 @@ function isASCIIAlpha(c: number): boolean {
     );
 }
 
+/**
+ * Quote style used for parsed attributes.
+ */
 export enum QuoteType {
     NoValue = 0,
     Unquoted = 1,
@@ -104,6 +107,9 @@ export enum QuoteType {
     Double = 3,
 }
 
+/**
+ * Low-level tokenizer callback interface.
+ */
 export interface Callbacks {
     onattribdata(start: number, endIndex: number): void;
     onattribentity(codepoint: number): void;
@@ -141,6 +147,9 @@ const Sequences = {
     XmpEnd: new Uint8Array([0x3c, 0x2f, 0x78, 0x6d, 0x70]), // `</xmp`
 };
 
+/**
+ * Tokenizer implementation used by `Parser`.
+ */
 export default class Tokenizer {
     /** The current state the tokenizer is in. */
     private state = State.Text;
