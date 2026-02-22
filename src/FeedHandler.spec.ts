@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { parseFeed } from "./index.js";
 
 const documents = new URL("__fixtures__/Documents/", import.meta.url);

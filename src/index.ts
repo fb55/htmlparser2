@@ -1,13 +1,14 @@
 import { Parser, type ParserOptions } from "./Parser.js";
+
 export type { Handler, ParserOptions } from "./Parser.js";
 export { Parser } from "./Parser.js";
 
 import {
+    type ChildNode,
+    type Document,
     DomHandler,
     type DomHandlerOptions,
-    type ChildNode,
     type Element,
-    type Document,
 } from "domhandler";
 
 export {
@@ -17,6 +18,9 @@ export {
     type DomHandlerOptions,
 } from "domhandler";
 
+/**
+ * Combined parser and handler options.
+ */
 export type Options = ParserOptions & DomHandlerOptions;
 
 // Helper methods
@@ -81,21 +85,20 @@ export function createDomStream(
     return new Parser(handler, options);
 }
 
-export {
-    default as Tokenizer,
-    type Callbacks as TokenizerCallbacks,
-    QuoteType,
-} from "./Tokenizer.js";
-
 /*
  * All of the following exports exist for backwards-compatibility.
  * They should probably be removed eventually.
  */
 export * as ElementType from "domelementtype";
+export {
+    type Callbacks as TokenizerCallbacks,
+    default as Tokenizer,
+    QuoteType,
+} from "./Tokenizer.js";
 
-import { getFeed, type Feed } from "domutils";
+import { type Feed, getFeed } from "domutils";
 
-export { getFeed, type Feed } from "domutils";
+export { type Feed, getFeed } from "domutils";
 
 const parseFeedDefaultOptions = { xmlMode: true };
 

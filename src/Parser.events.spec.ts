@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
-import { Parser, type ParserOptions } from "./Parser.js";
+import { describe, expect, it, vi } from "vitest";
 import * as helper from "./__fixtures__/testHelper.js";
+import { Parser, type ParserOptions } from "./Parser.js";
 
 /**
  * Write to the parser twice, once a bytes, once as a single blob. Then check

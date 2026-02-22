@@ -1,4 +1,4 @@
-import type { Parser, Handler } from "../Parser.js";
+import type { Handler, Parser } from "../Parser.js";
 
 interface Event {
     $event: string;

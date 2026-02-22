@@ -1,10 +1,10 @@
-import { Parser, type Handler, type ParserOptions } from "./Parser.js";
 /*
  * NOTE: If either of these two imports produces a type error,
  * please update your @types/node dependency!
  */
 import { Writable } from "node:stream";
 import { StringDecoder } from "node:string_decoder";
+import { type Handler, Parser, type ParserOptions } from "./Parser.js";
 
 // Following the example in https://nodejs.org/api/stream.html#stream_decoding_buffers_in_a_writable_stream
 function isBuffer(_chunk: string | Buffer, encoding: string): _chunk is Buffer {

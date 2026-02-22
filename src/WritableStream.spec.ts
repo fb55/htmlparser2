@@ -1,10 +1,10 @@
 import { createReadStream } from "node:fs";
 import * as fs from "node:fs/promises";
 import * as stream from "node:stream";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import * as helper from "./__fixtures__/testHelper.js";
 import type { Handler, ParserOptions } from "./Parser.js";
 import { WritableStream } from "./WritableStream.js";
-import * as helper from "./__fixtures__/testHelper.js";
 
 describe("WritableStream", () => {
     it("should decode fragmented unicode characters", () => {
