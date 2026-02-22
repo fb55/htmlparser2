@@ -5,7 +5,7 @@ import {
     xmlDecodeTree,
 } from "entities/decode";
 
-enum CharCodes {
+const enum CharCodes {
     Tab = 0x9, // "\t"
     NewLine = 0xa, // "\n"
     FormFeed = 0xc, // "\f"
@@ -36,7 +36,7 @@ enum CharCodes {
 }
 
 /** All the states the tokenizer can be in. */
-enum State {
+const enum State {
     Text = 1,
     BeforeTagName, // After <
     InTagName,
