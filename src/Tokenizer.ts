@@ -135,6 +135,7 @@ export interface Callbacks {
  * sequences with an increased offset.
  */
 const Sequences = {
+    Empty: new Uint8Array(0),
     Cdata: new Uint8Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
     CdataEnd: new Uint8Array([0x5d, 0x5d, 0x3e]), // ]]>
     CommentEnd: new Uint8Array([0x2d, 0x2d, 0x3e]), // `-->`
@@ -195,7 +196,7 @@ export default class Tokenizer {
         this.sectionStart = 0;
         this.index = 0;
         this.baseState = State.Text;
-        this.currentSequence = new Uint8Array(0);
+        this.currentSequence = Sequences.Empty;
         this.running = true;
         this.offset = 0;
     }
@@ -236,7 +237,7 @@ export default class Tokenizer {
         }
     }
 
-    private currentSequence: Uint8Array = new Uint8Array(0);
+    private currentSequence: Uint8Array = Sequences.Empty;
     private sequenceIndex = 0;
     private stateSpecialStartSequence(c: number): void {
         const isEnd = this.sequenceIndex === this.currentSequence.length;
