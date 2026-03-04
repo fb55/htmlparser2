@@ -22,7 +22,41 @@
         "rules": {
             "recommended": true,
             "suspicious": {
-                "noConstEnum": "off"
+                "noConstEnum": "off",
+                "noConstantBinaryExpressions": "error",
+                "useAwait": "error"
+            },
+            "complexity": {
+                "noUselessStringConcat": "error",
+                "noUselessUndefined": "error",
+                "useSimplifiedLogicExpression": "error",
+                "useWhile": "error"
+            },
+            "performance": {
+                "useTopLevelRegex": "error"
+            },
+            "style": {
+                "noInferrableTypes": "error",
+                "noNegationElse": "error",
+                "noUnusedTemplateLiteral": "error",
+                "noUselessElse": "error",
+                "noYodaExpression": "error",
+                "useAsConstAssertion": "error",
+                "useCollapsedElseIf": "error",
+                "useCollapsedIf": "error",
+                "useConsistentArrayType": "error",
+                "useConsistentArrowReturn": "error",
+                "useConsistentMemberAccessibility": "error",
+                "useConsistentObjectDefinitions": "error",
+                "useConsistentTypeDefinitions": "error",
+                "useDefaultParameterLast": "error",
+                "useExplicitLengthCheck": "error",
+                "useFilenamingConvention": "error",
+                "useNumberNamespace": "error",
+                "useNumericSeparators": "error",
+                "useObjectSpread": "error",
+                "useShorthandAssign": "error",
+                "useUnifiedTypeSignatures": "error"
             }
         }
     },

@@ -1,12 +1,20 @@
 import { defineConfig } from "eslint/config";
 import { commonTypeScriptRules } from "@feedic/eslint-config/typescript";
 import tseslint from "typescript-eslint";
-import eslintConfigPrettier from "eslint-config-prettier";
+import eslintConfigBiome from "eslint-config-biome";
 import feedicFlatConfig from "@feedic/eslint-config";
 
 export default defineConfig([
     ...feedicFlatConfig,
-    eslintConfigPrettier,
+    {
+        linterOptions: {
+            reportUnusedDisableDirectives: "error",
+        },
+    },
+    eslintConfigBiome,
+    {
+        ignores: ["coverage/**", "dist/**", "eslint.config.{js,cjs,mjs}"],
+    },
     {
         rules: {
             "n/no-unpublished-import": 0,
@@ -37,16 +45,6 @@ export default defineConfig([
 
         rules: {
             ...commonTypeScriptRules,
-            "@typescript-eslint/no-unused-vars": 0,
-
-            "@typescript-eslint/consistent-type-imports": [
-                2,
-                {
-                    fixStyle: "inline-type-imports",
-                },
-            ],
-
-            "@typescript-eslint/consistent-type-exports": 2,
         },
     },
     {

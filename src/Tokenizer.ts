@@ -166,7 +166,7 @@ export default class Tokenizer {
     /** For special parsing behavior inside of script and style tags. */
     private isSpecial = false;
     /** Indicates whether the tokenizer has been paused. */
-    public running = true;
+    running = true;
     /** The offset of the current buffer. */
     private offset = 0;
 
@@ -189,32 +189,32 @@ export default class Tokenizer {
         );
     }
 
-    public reset(): void {
+    reset(): void {
         this.state = State.Text;
         this.buffer = "";
         this.sectionStart = 0;
         this.index = 0;
         this.baseState = State.Text;
-        this.currentSequence = undefined!;
+        this.currentSequence = new Uint8Array(0);
         this.running = true;
         this.offset = 0;
     }
 
-    public write(chunk: string): void {
+    write(chunk: string): void {
         this.offset += this.buffer.length;
         this.buffer = chunk;
         this.parse();
     }
 
-    public end(): void {
+    end(): void {
         if (this.running) this.finish();
     }
 
-    public pause(): void {
+    pause(): void {
         this.running = false;
     }
 
-    public resume(): void {
+    resume(): void {
         this.running = true;
         if (this.index < this.buffer.length + this.offset) {
             this.parse();
@@ -236,7 +236,7 @@ export default class Tokenizer {
         }
     }
 
-    private currentSequence: Uint8Array = undefined!;
+    private currentSequence: Uint8Array = new Uint8Array(0);
     private sequenceIndex = 0;
     private stateSpecialStartSequence(c: number): void {
         const isEnd = this.sequenceIndex === this.currentSequence.length;
@@ -258,7 +258,10 @@ export default class Tokenizer {
         this.stateInTagName(c);
     }
 
-    /** Look for an end tag. For <title> tags, also decode entities. */
+    /**
+     * Look for an end tag. For <title> tags, also decode entities.
+     * @param c Current character code point.
+     */
     private stateInSpecialTag(c: number): void {
         if (this.sequenceIndex === this.currentSequence.length) {
             if (c === CharCodes.Gt || isWhitespace(c)) {
@@ -317,7 +320,7 @@ export default class Tokenizer {
     /**
      * When we wait for one specific character, we can speed things up
      * by skipping through the buffer until we find it.
-     *
+     * @param c Current character code point.
      * @returns Whether the character was found.
      */
     private fastForwardTo(c: number): boolean {
@@ -345,6 +348,7 @@ export default class Tokenizer {
      * - Their end sequences have a distinct character they start with.
      * - That character is then repeated, so we have to check multiple repeats.
      * - All characters but the start character of the sequence can be skipped.
+     * @param c Current character code point.
      */
     private stateInCommentLike(c: number): void {
         if (c === this.currentSequence[this.sequenceIndex]) {
@@ -375,6 +379,7 @@ export default class Tokenizer {
      *
      * XML allows a lot more characters here (@see https://www.w3.org/TR/REC-xml/#NT-NameStartChar).
      * We allow anything that wouldn't end the tag.
+     * @param c Current character code point.
      */
     private isTagStartChar(c: number) {
         return this.xmlMode ? !isEndOfTagSection(c) : isASCIIAlpha(c);

@@ -5,7 +5,6 @@ import { Parser, type ParserOptions } from "./Parser.js";
 /**
  * Write to the parser twice, once a bytes, once as a single blob. Then check
  * that we received the expected events.
- *
  * @internal
  * @param input Data to write.
  * @param options Parser options.

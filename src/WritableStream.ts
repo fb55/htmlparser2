@@ -13,7 +13,6 @@ function isBuffer(_chunk: string | Buffer, encoding: string): _chunk is Buffer {
 
 /**
  * WritableStream makes the `Parser` interface available as a NodeJS stream.
- *
  * @see Parser
  */
 export class WritableStream extends Writable {

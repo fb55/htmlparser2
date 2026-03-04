@@ -42,7 +42,11 @@ function getPromiseEventCollector(): [
         });
     });
 
-    return [handler!, promise];
+    if (!handler) {
+        throw new Error("Failed to initialize event handler");
+    }
+
+    return [handler, promise];
 }
 
 // TODO[engine:node@>=16]: Use promise version of `stream.finished` instead.

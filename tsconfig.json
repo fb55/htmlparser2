@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         /* Basic Options */
-        "target": "es2019",
+        "target": "es2022",
         "module": "nodenext",
         "declaration": true,
         "declarationMap": true,

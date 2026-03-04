@@ -10,7 +10,6 @@ interface Event {
 /**
  * Creates a handler that calls the supplied callback with simplified events on
  * completion.
- *
  * @internal
  * @param callback Function to call with all events.
  */

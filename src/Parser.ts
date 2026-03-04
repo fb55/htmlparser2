@@ -110,28 +110,24 @@ export interface ParserOptions {
      * and if "empty" tags (eg. `<br>`) can have children.  If `false`, the content of special tags
      * will be text only. For feeds and other XML content (documents that don't consist of HTML),
      * set this to `true`.
-     *
      * @default false
      */
     xmlMode?: boolean;
 
     /**
      * Decode entities within the document.
-     *
      * @default true
      */
     decodeEntities?: boolean;
 
     /**
      * If set to true, all tags will be lowercased.
-     *
      * @default !xmlMode
      */
     lowerCaseTags?: boolean;
 
     /**
      * If set to `true`, all attribute names will be lowercased. This has noticeable impact on speed.
-     *
      * @default !xmlMode
      */
     lowerCaseAttributeNames?: boolean;
@@ -139,7 +135,6 @@ export interface ParserOptions {
     /**
      * If set to true, CDATA sections will be recognized as text even if the xmlMode option is not enabled.
      * NOTE: If xmlMode is set to `true` then CDATA sections will always be recognized as text.
-     *
      * @default xmlMode
      */
     recognizeCDATA?: boolean;
@@ -147,7 +142,6 @@ export interface ParserOptions {
     /**
      * If set to `true`, self-closing tags will trigger the onclosetag event even if xmlMode is not set to `true`.
      * NOTE: If xmlMode is set to `true` then self-closing tags will always be recognized.
-     *
      * @default xmlMode
      */
     recognizeSelfClosing?: boolean;
@@ -207,9 +201,9 @@ const reNameEnd = /\s|\//;
  */
 export class Parser implements Callbacks {
     /** The start index of the last event. */
-    public startIndex = 0;
+    startIndex = 0;
     /** The end index of the last event. */
-    public endIndex = 0;
+    endIndex = 0;
     /**
      * Store the start index of the current open tag,
      * so we can update the start index for attributes.
@@ -259,7 +253,11 @@ export class Parser implements Callbacks {
 
     // Tokenizer event handlers
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     ontext(start: number, endIndex: number): void {
         const data = this.getSlice(start, endIndex);
         this.endIndex = endIndex - 1;
@@ -267,7 +265,11 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex;
     }
 
-    /** @internal */
+    /**
+     * @param cp Current Unicode code point.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     ontextentity(cp: number, endIndex: number): void {
         this.endIndex = endIndex - 1;
         this.cbs.ontext?.(fromCodePoint(cp));
@@ -277,12 +279,17 @@ export class Parser implements Callbacks {
     /**
      * Checks if the current tag is a void element. Override this if you want
      * to specify your own additional void elements.
+     * @param name Name of the pseudo selector.
      */
     protected isVoidElement(name: string): boolean {
         return this.htmlMode && voidElements.has(name);
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onopentagname(start: number, endIndex: number): void {
         this.endIndex = endIndex;
 
@@ -303,7 +310,10 @@ export class Parser implements Callbacks {
 
         if (impliesClose) {
             while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
-                const element = this.stack.shift()!;
+                const element = this.stack.shift();
+                if (element === undefined) {
+                    break;
+                }
                 this.cbs.onclosetag?.(element, true);
             }
         }
@@ -336,7 +346,10 @@ export class Parser implements Callbacks {
         this.tagname = "";
     }
 
-    /** @internal */
+    /**
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onopentagend(endIndex: number): void {
         this.endIndex = endIndex;
         this.endOpenTag(false);
@@ -345,7 +358,11 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex + 1;
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onclosetag(start: number, endIndex: number): void {
         this.endIndex = endIndex;
 
@@ -367,8 +384,10 @@ export class Parser implements Callbacks {
             const pos = this.stack.indexOf(name);
             if (pos !== -1) {
                 for (let index = 0; index <= pos; index++) {
-                    const element = this.stack.shift()!;
-                    // We know the stack has sufficient elements.
+                    const element = this.stack.shift();
+                    if (element === undefined) {
+                        break;
+                    }
                     this.cbs.onclosetag?.(element, index !== pos);
                 }
             } else if (this.htmlMode && name === "p") {
@@ -387,7 +406,10 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex + 1;
     }
 
-    /** @internal */
+    /**
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onselfclosingtag(endIndex: number): void {
         this.endIndex = endIndex;
         if (this.recognizeSelfClosing || this.foreignContext[0]) {
@@ -413,7 +435,11 @@ export class Parser implements Callbacks {
         }
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onattribname(start: number, endIndex: number): void {
         this.startIndex = start;
         const name = this.getSlice(start, endIndex);
@@ -423,17 +449,28 @@ export class Parser implements Callbacks {
             : name;
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onattribdata(start: number, endIndex: number): void {
         this.attribvalue += this.getSlice(start, endIndex);
     }
 
-    /** @internal */
+    /**
+     * @param cp Current Unicode code point.
+     * @internal
+     */
     onattribentity(cp: number): void {
         this.attribvalue += fromCodePoint(cp);
     }
 
-    /** @internal */
+    /**
+     * @param quote Quote type used for the current attribute.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onattribend(quote: QuoteType, endIndex: number): void {
         this.endIndex = endIndex;
 
@@ -449,10 +486,7 @@ export class Parser implements Callbacks {
                     : null,
         );
 
-        if (
-            this.attribs &&
-            !Object.prototype.hasOwnProperty.call(this.attribs, this.attribname)
-        ) {
+        if (this.attribs && !Object.hasOwn(this.attribs, this.attribname)) {
             this.attribs[this.attribname] = this.attribvalue;
         }
         this.attribvalue = "";
@@ -469,7 +503,11 @@ export class Parser implements Callbacks {
         return name;
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     ondeclaration(start: number, endIndex: number): void {
         this.endIndex = endIndex;
         const value = this.getSlice(start, endIndex);
@@ -483,7 +521,11 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex + 1;
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @internal
+     */
     onprocessinginstruction(start: number, endIndex: number): void {
         this.endIndex = endIndex;
         const value = this.getSlice(start, endIndex);
@@ -497,7 +539,12 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex + 1;
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @param offset Offset applied when computing parser indices.
+     * @internal
+     */
     oncomment(start: number, endIndex: number, offset: number): void {
         this.endIndex = endIndex;
 
@@ -508,7 +555,12 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex + 1;
     }
 
-    /** @internal */
+    /**
+     * @param start Start index for the current parser event.
+     * @param endIndex End index for the current parser event.
+     * @param offset Offset applied when computing parser indices.
+     * @internal
+     */
     oncdata(start: number, endIndex: number, offset: number): void {
         this.endIndex = endIndex;
         const value = this.getSlice(start, endIndex - offset);
@@ -541,7 +593,7 @@ export class Parser implements Callbacks {
     /**
      * Resets the parser to a blank state, ready to parse a new HTML document
      */
-    public reset(): void {
+    reset(): void {
         this.cbs.onreset?.();
         this.tokenizer.reset();
         this.tagname = "";
@@ -562,10 +614,9 @@ export class Parser implements Callbacks {
     /**
      * Resets the parser, then parses a complete document and
      * pushes it to the handler.
-     *
      * @param data Document to parse.
      */
-    public parseComplete(data: string): void {
+    parseComplete(data: string): void {
         this.reset();
         this.end(data);
     }
@@ -596,10 +647,9 @@ export class Parser implements Callbacks {
 
     /**
      * Parses a chunk of data and calls the corresponding callbacks.
-     *
      * @param chunk Chunk to parse.
      */
-    public write(chunk: string): void {
+    write(chunk: string): void {
         if (this.ended) {
             this.cbs.onerror?.(new Error(".write() after done!"));
             return;
@@ -614,10 +664,9 @@ export class Parser implements Callbacks {
 
     /**
      * Parses the end of the buffer and clears the stack, calls onend.
-     *
      * @param chunk Optional final chunk to parse.
      */
-    public end(chunk?: string): void {
+    end(chunk?: string): void {
         if (this.ended) {
             this.cbs.onerror?.(new Error(".end() after done!"));
             return;
@@ -631,14 +680,14 @@ export class Parser implements Callbacks {
     /**
      * Pauses parsing. The parser won't emit events until `resume` is called.
      */
-    public pause(): void {
+    pause(): void {
         this.tokenizer.pause();
     }
 
     /**
      * Resumes parsing after `pause` was called.
      */
-    public resume(): void {
+    resume(): void {
         this.tokenizer.resume();
 
         while (
@@ -653,20 +702,18 @@ export class Parser implements Callbacks {
 
     /**
      * Alias of `write`, for backwards compatibility.
-     *
      * @param chunk Chunk to parse.
      * @deprecated
      */
-    public parseChunk(chunk: string): void {
+    parseChunk(chunk: string): void {
         this.write(chunk);
     }
     /**
      * Alias of `end`, for backwards compatibility.
-     *
      * @param chunk Optional final chunk to parse.
      * @deprecated
      */
-    public done(chunk?: string): void {
+    done(chunk?: string): void {
         this.end(chunk);
     }
 }
