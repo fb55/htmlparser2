@@ -1,4 +1,4 @@
-import type { Parser, Handler } from "../Parser.js";
+import type { Handler, Parser } from "../Parser.js";
 
 interface Event {
     $event: string;
@@ -10,7 +10,6 @@ interface Event {
 /**
  * Creates a handler that calls the supplied callback with simplified events on
  * completion.
- *
  * @internal
  * @param callback Function to call with all events.
  */

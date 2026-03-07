@@ -1,14 +1,14 @@
-import { describe, it, expect } from "vitest";
+import { Element } from "domhandler";
+import { describe, expect, it } from "vitest";
 import {
-    parseDocument,
-    parseDOM,
     createDocumentStream,
     createDomStream,
-    DomHandler,
     DefaultHandler,
+    DomHandler,
     type Parser,
+    parseDOM,
+    parseDocument,
 } from "./index.js";
-import { Element } from "domhandler";
 
 // Add an `attributes` prop to the Element for now, to make it possible for Jest to render DOM nodes.
 Object.defineProperty(Element.prototype, "attributes", {
@@ -36,12 +36,11 @@ describe("Index", () => {
     it("createDocumentStream", () => {
         let documentStream!: Parser;
 
-        const documentPromise = new Promise(
-            (resolve, reject) =>
-                (documentStream = createDocumentStream((error, dom) =>
-                    error ? reject(error) : resolve(dom),
-                )),
-        );
+        const documentPromise = new Promise((resolve, reject) => {
+            documentStream = createDocumentStream((error, dom) =>
+                error ? reject(error) : resolve(dom),
+            );
+        });
 
         for (const c of "&amp;This is text<!-- and comments --><tags>") {
             documentStream.write(c);
@@ -55,12 +54,11 @@ describe("Index", () => {
     it("createDomStream", () => {
         let domStream!: Parser;
 
-        const domPromise = new Promise(
-            (resolve, reject) =>
-                (domStream = createDomStream((error, dom) =>
-                    error ? reject(error) : resolve(dom),
-                )),
-        );
+        const domPromise = new Promise((resolve, reject) => {
+            domStream = createDomStream((error, dom) =>
+                error ? reject(error) : resolve(dom),
+            );
+        });
 
         for (const c of "&amp;This is text<!-- and comments --><tags>") {
             domStream.write(c);

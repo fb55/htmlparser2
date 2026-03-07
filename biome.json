@@ -1,0 +1,96 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    "files": {
+        "ignoreUnknown": true,
+        "includes": ["**/*.{ts,md,json,yml}", "!**/.*"]
+    },
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "javascript": {
+        "formatter": {}
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "suspicious": {
+                "noConstEnum": "off",
+                "noConstantBinaryExpressions": "error",
+                "useAwait": "error"
+            },
+            "complexity": {
+                "noUselessStringConcat": "error",
+                "noUselessUndefined": "error",
+                "useSimplifiedLogicExpression": "error",
+                "useWhile": "error"
+            },
+            "performance": {
+                "useTopLevelRegex": "error"
+            },
+            "style": {
+                "noInferrableTypes": "error",
+                "noNegationElse": "error",
+                "noUnusedTemplateLiteral": "error",
+                "noUselessElse": "error",
+                "noYodaExpression": "error",
+                "useAsConstAssertion": "error",
+                "useCollapsedElseIf": "error",
+                "useCollapsedIf": "error",
+                "useConsistentArrayType": "error",
+                "useConsistentArrowReturn": "error",
+                "useConsistentMemberAccessibility": "error",
+                "useConsistentObjectDefinitions": "error",
+                "useConsistentTypeDefinitions": "error",
+                "useDefaultParameterLast": "error",
+                "useExplicitLengthCheck": "error",
+                "useNumberNamespace": "error",
+                "useNumericSeparators": "error",
+                "useObjectSpread": "error",
+                "useShorthandAssign": "error",
+                "useUnifiedTypeSignatures": "error"
+            }
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["**/*.{test,spec}.ts", "test/**/*.ts"],
+            "javascript": {
+                "globals": [
+                    "jest",
+                    "describe",
+                    "it",
+                    "beforeEach",
+                    "afterEach",
+                    "expect",
+                    "vi"
+                ]
+            }
+        },
+        {
+            "includes": ["**/*.ts", "**/*.cts", "**/*.mts", "**/*.tsx"],
+            "linter": {
+                "rules": {
+                    "complexity": {
+                        "useLiteralKeys": "off"
+                    }
+                }
+            }
+        }
+    ]
+}

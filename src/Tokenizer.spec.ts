@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { Tokenizer } from "./index.js";
 import type { Callbacks } from "./Tokenizer.js";
 
