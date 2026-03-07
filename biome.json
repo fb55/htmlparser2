@@ -51,7 +51,6 @@
                 "useConsistentTypeDefinitions": "error",
                 "useDefaultParameterLast": "error",
                 "useExplicitLengthCheck": "error",
-                "useFilenamingConvention": "error",
                 "useNumberNamespace": "error",
                 "useNumericSeparators": "error",
                 "useObjectSpread": "error",
