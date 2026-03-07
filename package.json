@@ -80,11 +80,11 @@
         "entities": "^7.0.1"
     },
     "devDependencies": {
-        "@biomejs/biome": "^2.4.5",
+        "@biomejs/biome": "^2.4.6",
         "@feedic/eslint-config": "^0.2.3",
-        "@types/node": "^25.3.3",
+        "@types/node": "^25.3.5",
         "@vitest/coverage-v8": "^4.0.18",
-        "eslint": "^10.0.2",
+        "eslint": "^10.0.3",
         "eslint-config-biome": "^2.1.3",
         "tshy": "^3.3.2",
         "typescript": "^5.9.3",
