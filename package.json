@@ -89,7 +89,7 @@
         "tshy": "^3.3.2",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.57.0",
-        "vitest": "^4.0.12"
+        "vitest": "^4.1.0"
     },
     "engines": {
         "node": ">=16.9.0"
