@@ -32,6 +32,10 @@
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
         },
+        "./WebWritableStream": {
+            "types": "./dist/WebWritableStream.d.ts",
+            "default": "./dist/WebWritableStream.js"
+        },
         "./WritableStream": {
             "types": "./dist/WritableStream.d.ts",
             "default": "./dist/WritableStream.js"
