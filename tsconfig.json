@@ -6,6 +6,7 @@
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
+        "inlineSources": true,
 
         /* Strict Type-Checking Options */
         "strict": true,
