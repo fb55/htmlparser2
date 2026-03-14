@@ -38,6 +38,16 @@
                 "default": "./dist/commonjs/index.js"
             }
         },
+        "./WebWritableStream": {
+            "import": {
+                "types": "./dist/esm/WritableStreamWeb.d.ts",
+                "default": "./dist/esm/WritableStreamWeb.js"
+            },
+            "require": {
+                "types": "./dist/commonjs/WritableStreamWeb.d.ts",
+                "default": "./dist/commonjs/WritableStreamWeb.js"
+            }
+        },
         "./WritableStream": {
             "import": {
                 "types": "./dist/esm/WritableStream.d.ts",
@@ -103,6 +113,7 @@
         ],
         "exports": {
             ".": "./src/index.ts",
+            "./WebWritableStream": "./src/WritableStreamWeb.ts",
             "./WritableStream": "./src/WritableStream.ts"
         }
     }
