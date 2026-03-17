@@ -144,7 +144,7 @@ describe("API", () => {
         const p = new Parser(null);
 
         // Should not throw
-        p.parseChunk("<__proto__>");
+        p.write("<__proto__>");
     });
 
     it("should support custom tokenizer", () => {
@@ -159,6 +159,6 @@ describe("API", () => {
             },
             { Tokenizer: CustomTokenizer },
         );
-        p.done();
+        p.end();
     });
 });

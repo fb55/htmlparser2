@@ -9,10 +9,9 @@ on:
 env:
     CI: true
     FORCE_COLOR: 2
-    NODE_COV: lts/* # The Node.js version to run coveralls on
 
 permissions:
-    contents: read #  to fetch code (actions/checkout)
+    contents: read
 
 jobs:
     lint:
@@ -27,10 +26,6 @@ jobs:
             - run: npm run lint
 
     test:
-        permissions:
-            contents: read #  to fetch code (actions/checkout)
-            checks: write #  to create new checks (coverallsapp/github-action)
-
         name: Node ${{ matrix.node }}
         runs-on: ubuntu-latest
 
@@ -38,10 +33,10 @@ jobs:
             fail-fast: false
             matrix:
                 node:
-                    - 18
                     - 20
                     - 22
-                    - lts/*
+                    - 24
+                    - "lts/*"
 
         steps:
             - uses: actions/checkout@v6
@@ -52,18 +47,5 @@ jobs:
                   cache: npm
             - run: npm ci
             - run: npm run build --if-present
-
             - name: Run tests
               run: npm run test:vi
-              if: matrix.node != env.NODE_COV
-
-            - name: Run tests with coverage
-              run: npm run test:vi -- --coverage
-              if: matrix.node == env.NODE_COV
-
-            - name: Run Coveralls
-              uses: coverallsapp/github-action@v2.3.7
-              if: matrix.node == env.NODE_COV
-              continue-on-error: true
-              with:
-                  github-token: "${{ secrets.GITHUB_TOKEN }}"

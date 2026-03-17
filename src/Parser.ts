@@ -1,4 +1,5 @@
-import { fromCodePoint } from "entities/decode";
+const { fromCodePoint } = String;
+
 import Tokenizer, { type Callbacks, QuoteType } from "./Tokenizer.js";
 
 const formTags = new Set([
@@ -698,22 +699,5 @@ export class Parser implements Callbacks {
         }
 
         if (this.ended) this.tokenizer.end();
-    }
-
-    /**
-     * Alias of `write`, for backwards compatibility.
-     * @param chunk Chunk to parse.
-     * @deprecated
-     */
-    parseChunk(chunk: string): void {
-        this.write(chunk);
-    }
-    /**
-     * Alias of `end`, for backwards compatibility.
-     * @param chunk Optional final chunk to parse.
-     * @deprecated
-     */
-    done(chunk?: string): void {
-        this.end(chunk);
     }
 }
