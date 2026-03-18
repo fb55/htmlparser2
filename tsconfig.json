@@ -3,9 +3,11 @@
         /* Basic Options */
         "target": "es2022",
         "module": "nodenext",
+        "moduleResolution": "nodenext",
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
+        "outDir": "dist",
 
         /* Strict Type-Checking Options */
         "strict": true,
@@ -23,7 +25,13 @@
         "noUnusedParameters": true,
 
         /* Module Resolution Options */
-        "esModuleInterop": true,
         "resolveJsonModule": true
-    }
+    },
+    "include": ["src"],
+    "exclude": [
+        "**/*.spec.ts",
+        "**/__fixtures__/*",
+        "**/__tests__/*",
+        "**/__snapshots__/*"
+    ]
 }

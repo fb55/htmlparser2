@@ -2,11 +2,9 @@ import { Element } from "domhandler";
 import { describe, expect, it } from "vitest";
 import {
     createDocumentStream,
-    createDomStream,
     DefaultHandler,
     DomHandler,
     type Parser,
-    parseDOM,
     parseDocument,
 } from "./index.js";
 
@@ -28,11 +26,6 @@ describe("Index", () => {
         expect(dom).toMatchSnapshot();
     });
 
-    it("parseDOM", () => {
-        const dom = parseDOM("<a foo><b><c><?foo>Yay!");
-        expect(dom).toMatchSnapshot();
-    });
-
     it("createDocumentStream", () => {
         let documentStream!: Parser;
 
@@ -49,24 +42,6 @@ describe("Index", () => {
         documentStream.end();
 
         return expect(documentPromise).resolves.toMatchSnapshot();
-    });
-
-    it("createDomStream", () => {
-        let domStream!: Parser;
-
-        const domPromise = new Promise((resolve, reject) => {
-            domStream = createDomStream((error, dom) =>
-                error ? reject(error) : resolve(dom),
-            );
-        });
-
-        for (const c of "&amp;This is text<!-- and comments --><tags>") {
-            domStream.write(c);
-        }
-
-        domStream.end();
-
-        return expect(domPromise).resolves.toMatchSnapshot();
     });
 
     describe("API", () => {
