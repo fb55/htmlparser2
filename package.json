@@ -42,7 +42,10 @@
     "files": [
         "dist",
         "src",
-        "!**/*.spec.ts"
+        "!**/*.spec.ts",
+        "!src/**/__tests__/**",
+        "!src/**/__fixtures__/**",
+        "!src/**/__snapshots__/**"
     ],
     "scripts": {
         "build": "tsc",
