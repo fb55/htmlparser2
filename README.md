@@ -83,8 +83,37 @@ JS! Hooray!
 That's it?!
 ```
 
-This example only shows three of the possible events.
-Read more about the parser, its events and options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
+### Parser events
+
+All callbacks are optional. The handler object you pass to `Parser` may implement any subset of these:
+
+| Event                                        | Description                                                                                                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `onopentag(name, attribs, isImplied)`        | Opening tag. `attribs` is an object mapping attribute names to values. `isImplied` is `true` when the tag was opened implicitly (HTML mode only). |
+| `onopentagname(name)`                        | Emitted for the tag name as soon as it is available (before attributes are parsed).                                                              |
+| `onattribute(name, value, quote)`            | Attribute. `quote` is `"` / `'` / `null` (unquoted) / `undefined` (no value, e.g. `disabled`).                                                  |
+| `onclosetag(name, isImplied)`                | Closing tag. `isImplied` is `true` when the tag was closed implicitly (HTML mode only).                                                          |
+| `ontext(data)`                               | Text content. May fire multiple times for a single text node.                                                                                    |
+| `oncomment(data)`                            | Comment (content between `<!--` and `-->`).                                                                                                      |
+| `oncdatastart()`                             | Opening of a CDATA section (`<![CDATA[`).                                                                                                        |
+| `oncdataend()`                               | End of a CDATA section (`]]>`).                                                                                                                  |
+| `onprocessinginstruction(name, data)`        | Processing instruction (e.g. `<?xml ...?>`).                                                                                                     |
+| `oncommentend()`                             | Fires after a comment has ended.                                                                                                                 |
+| `onparserinit(parser)`                       | Fires when the parser is initialized or reset.                                                                                                   |
+| `onreset()`                                  | Fires when `parser.reset()` is called.                                                                                                           |
+| `onend()`                                    | Fires when parsing is complete.                                                                                                                  |
+| `onerror(error)`                             | Fires on error.                                                                                                                                  |
+
+### Parser options
+
+| Option                   | Type      | Default    | Description                                                                                                                                              |
+| ------------------------ | --------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `xmlMode`                | `boolean` | `false`    | Treat the document as XML. This affects entity decoding, self-closing tags, CDATA handling, and more. Set this to `true` for XML, RSS, Atom and RDF feeds. |
+| `decodeEntities`         | `boolean` | `true`     | Decode HTML entities (e.g. `&amp;` -> `&`).                                                                                                              |
+| `lowerCaseTags`          | `boolean` | `!xmlMode` | Lowercase tag names.                                                                                                                                     |
+| `lowerCaseAttributeNames`| `boolean` | `!xmlMode` | Lowercase attribute names.                                                                                                                               |
+| `recognizeSelfClosing`   | `boolean` | `xmlMode`  | Recognize self-closing tags (e.g. `<br/>`). Always enabled in `xmlMode`.                                                                                 |
+| `recognizeCDATA`         | `boolean` | `xmlMode`  | Recognize CDATA sections as text. Always enabled in `xmlMode`.                                                                                           |
 
 ### Usage with streams
 
@@ -106,24 +135,99 @@ htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
 
 ## Getting a DOM
 
-The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
+The `parseDocument` helper parses a string and returns a DOM tree (a [`Document`](https://github.com/fb55/domhandler) node).
 
 ```js
 import * as htmlparser2 from "htmlparser2";
 
-const dom = htmlparser2.parseDocument(htmlString);
+const dom = htmlparser2.parseDocument(
+    `<ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="orange">Orange</li>
+    </ul>`,
+);
 ```
 
-The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler).
-Have a look at that for further information.
+`parseDocument` accepts an optional second argument with both parser and [DOM handler options](https://github.com/fb55/domhandler):
 
-## Parsing Feeds
+```js
+const dom = htmlparser2.parseDocument(data, {
+    // Parser options
+    xmlMode: true,
+
+    // domhandler options
+    withStartIndices: true, // Add `startIndex` to each node
+    withEndIndices: true,   // Add `endIndex` to each node
+});
+```
+
+### Searching the DOM
+
+The [`DomUtils`](https://github.com/fb55/domutils) module (re-exported on the main `htmlparser2` export) provides helpers for finding nodes:
+
+```js
+import * as htmlparser2 from "htmlparser2";
+
+const dom = htmlparser2.parseDocument(`<div><p id="greeting">Hello</p></div>`);
+
+// Find elements by ID, tag name, or class
+const greeting = htmlparser2.DomUtils.getElementById("greeting", dom);
+const paragraphs = htmlparser2.DomUtils.getElementsByTagName("p", dom);
+
+// Find elements with custom test functions
+const all = htmlparser2.DomUtils.findAll(
+    (el) => el.attribs?.class === "active",
+    dom,
+);
+
+// Get text content
+htmlparser2.DomUtils.textContent(greeting); // "Hello"
+```
+
+For CSS selector queries, use [`css-select`](https://github.com/fb55/css-select):
+
+```js
+import { selectAll, selectOne } from "css-select";
+
+const results = selectAll("ul#fruits > li", dom);
+const first = selectOne("li.apple", dom);
+```
+
+Or, if you'd prefer a jQuery-like API, use [`cheerio`](https://github.com/cheeriojs/cheerio).
+
+### Modifying and serializing the DOM
+
+Use `DomUtils` to modify the tree, and [`dom-serializer`](https://github.com/cheeriojs/dom-serializer) (also available as `DomUtils.getOuterHTML`) to serialize it back to HTML:
+
+```js
+import * as htmlparser2 from "htmlparser2";
+
+const dom = htmlparser2.parseDocument(
+    `<ul><li>Apple</li><li>Orange</li></ul>`,
+);
+
+// Remove the first <li>
+const items = htmlparser2.DomUtils.getElementsByTagName("li", dom);
+htmlparser2.DomUtils.removeElement(items[0]);
+
+// Serialize back to HTML
+const html = htmlparser2.DomUtils.getOuterHTML(dom);
+// "<ul><li>Orange</li></ul>"
+```
+
+Other manipulation helpers include `appendChild`, `prependChild`, `append`, `prepend`, and `replaceElement` -- see the [`domutils` docs](https://github.com/fb55/domutils) for the full API.
+
+## Parsing feeds
 
 `htmlparser2` makes it easy to parse RSS, RDF and Atom feeds, by providing a `parseFeed` method:
 
 ```javascript
-const feed = htmlparser2.parseFeed(content, options);
+const feed = htmlparser2.parseFeed(content);
 ```
+
+This returns an object with `type`, `title`, `link`, `description`, `updated`, `author`, and `items` (an array of feed entries), or `null` if the document isn't a recognized feed format.
+
+The `xmlMode` option is enabled by default for `parseFeed`. If you pass custom options, make sure to include `xmlMode: true`.
 
 ## Performance
 
@@ -147,20 +251,7 @@ saxes              : 45.7921 ms/file ± 128.691
 html5              : 120.844 ms/file ± 153.944
 ```
 
-## How does this module differ from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
-
-In 2011, this module started as a fork of the `htmlparser` module.
-`htmlparser2` was rewritten multiple times and, while it maintains an API that's mostly compatible with `htmlparser`, the projects don't share any code anymore.
-
-The parser now provides a callback interface inspired by [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)).
-As a result, old handlers won't work anymore.
-
-The `DefaultHandler` was renamed to clarify its purpose (to `DomHandler`). The old name is still available when requiring `htmlparser2` and your code should work as expected.
-
-The `RssHandler` was replaced with a `getFeed` function that takes a `DomHandler` DOM and returns a feed object. There is a `parseFeed` helper function that can be used to parse a feed from a string.
-
 ## Security contact information
 
 To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
 Tidelift will coordinate the fix and disclosure.
-
