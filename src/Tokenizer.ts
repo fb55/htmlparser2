@@ -138,7 +138,7 @@ const Sequences = {
     Empty: new Uint8Array(0),
     Cdata: new Uint8Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
     CdataEnd: new Uint8Array([0x5d, 0x5d, 0x3e]), // ]]>
-    CommentEnd: new Uint8Array([0x2d, 0x2d, 0x3e]), // `-->`
+    CommentEnd: new Uint8Array([0x2d, 0x2d, 0x21, 0x3e]), // `--!>`
     ScriptEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `</script`
     StyleEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
     TitleEnd: new Uint8Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
@@ -196,7 +196,9 @@ export default class Tokenizer {
         this.sectionStart = 0;
         this.index = 0;
         this.baseState = State.Text;
+        this.isSpecial = false;
         this.currentSequence = Sequences.Empty;
+        this.sequenceIndex = 0;
         this.running = true;
         this.offset = 0;
     }
@@ -265,7 +267,7 @@ export default class Tokenizer {
      */
     private stateInSpecialTag(c: number): void {
         if (this.sequenceIndex === this.currentSequence.length) {
-            if (c === CharCodes.Gt || isWhitespace(c)) {
+            if (isEndOfTagSection(c)) {
                 const endOfText = this.index - this.currentSequence.length;
 
                 if (this.sectionStart < endOfText) {
@@ -352,12 +354,29 @@ export default class Tokenizer {
      * @param c Current character code point.
      */
     private stateInCommentLike(c: number): void {
-        if (c === this.currentSequence[this.sequenceIndex]) {
+        if (
+            this.currentSequence === Sequences.CommentEnd &&
+            this.sequenceIndex === 2 &&
+            c === CharCodes.Gt
+        ) {
+            // `!` is optional here, so the same sequence also accepts `-->`.
+            this.cbs.oncomment(this.sectionStart, this.index, 2);
+
+            this.sequenceIndex = 0;
+            this.sectionStart = this.index + 1;
+            this.state = State.Text;
+        } else if (
+            this.currentSequence === Sequences.CommentEnd &&
+            this.sequenceIndex === this.currentSequence.length - 1 &&
+            c !== CharCodes.Gt
+        ) {
+            this.sequenceIndex = Number(c === CharCodes.Dash);
+        } else if (c === this.currentSequence[this.sequenceIndex]) {
             if (++this.sequenceIndex === this.currentSequence.length) {
                 if (this.currentSequence === Sequences.CdataEnd) {
                     this.cbs.oncdata(this.sectionStart, this.index, 2);
                 } else {
-                    this.cbs.oncomment(this.sectionStart, this.index, 2);
+                    this.cbs.oncomment(this.sectionStart, this.index, 3);
                 }
 
                 this.sequenceIndex = 0;
@@ -399,6 +418,7 @@ export default class Tokenizer {
             this.sectionStart = this.index + 1;
         } else if (c === CharCodes.Questionmark) {
             this.state = State.InProcessingInstruction;
+            this.sequenceIndex = 0;
             this.sectionStart = this.index + 1;
         } else if (this.isTagStartChar(c)) {
             const lower = c | 0x20;
@@ -443,7 +463,7 @@ export default class Tokenizer {
         }
     }
     private stateInClosingTagName(c: number): void {
-        if (c === CharCodes.Gt || isWhitespace(c)) {
+        if (isEndOfTagSection(c)) {
             this.cbs.onclosetag(this.sectionStart, this.index);
             this.sectionStart = -1;
             this.state = State.AfterClosingTagName;
@@ -574,7 +594,25 @@ export default class Tokenizer {
         }
     }
     private stateInProcessingInstruction(c: number): void {
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
+        if (this.xmlMode) {
+            if (c === CharCodes.Questionmark) {
+                // Remember that we just consumed `?`, so the next `>` closes the PI.
+                this.sequenceIndex = 1;
+            } else if (c === CharCodes.Gt && this.sequenceIndex === 1) {
+                this.cbs.onprocessinginstruction(
+                    this.sectionStart,
+                    this.index - 1,
+                );
+                this.sequenceIndex = 0;
+                this.state = State.Text;
+                this.sectionStart = this.index + 1;
+            } else {
+                // Keep scanning for the next `?`, which can start a closing `?>`.
+                this.sequenceIndex = Number(
+                    this.fastForwardTo(CharCodes.Questionmark),
+                );
+            }
+        } else if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
             this.cbs.onprocessinginstruction(this.sectionStart, this.index);
             this.state = State.Text;
             this.sectionStart = this.index + 1;

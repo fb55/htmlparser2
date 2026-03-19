@@ -6,9 +6,9 @@ exports[`WritableStream > Atom feed 1`] = `
     "$event": "processinginstruction",
     "data": [
       "?xml",
-      "?xml version="1.0" encoding="utf-8"?",
+      "?xml version="1.0" encoding="utf-8"",
     ],
-    "endIndex": 37,
+    "endIndex": 36,
     "startIndex": 0,
   },
   {
@@ -18,7 +18,7 @@ exports[`WritableStream > Atom feed 1`] = `
 ",
     ],
     "endIndex": 38,
-    "startIndex": 38,
+    "startIndex": 37,
   },
   {
     "$event": "comment",
@@ -1609,9 +1609,9 @@ exports[`WritableStream > RDF feed 1`] = `
     "$event": "processinginstruction",
     "data": [
       "?xml",
-      "?xml version="1.0" encoding="UTF-8"?",
+      "?xml version="1.0" encoding="UTF-8"",
     ],
-    "endIndex": 37,
+    "endIndex": 36,
     "startIndex": 0,
   },
   {
@@ -1621,7 +1621,7 @@ exports[`WritableStream > RDF feed 1`] = `
 ",
     ],
     "endIndex": 38,
-    "startIndex": 38,
+    "startIndex": 37,
   },
   {
     "$event": "opentagname",
@@ -3609,9 +3609,9 @@ exports[`WritableStream > RSS feed 1`] = `
     "$event": "processinginstruction",
     "data": [
       "?xml",
-      "?xml version="1.0"?",
+      "?xml version="1.0"",
     ],
-    "endIndex": 20,
+    "endIndex": 19,
     "startIndex": 0,
   },
   {
@@ -3621,7 +3621,7 @@ exports[`WritableStream > RSS feed 1`] = `
 ",
     ],
     "endIndex": 21,
-    "startIndex": 21,
+    "startIndex": 20,
   },
   {
     "$event": "comment",

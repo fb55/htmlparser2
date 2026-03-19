@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 import { Tokenizer } from "./index.js";
 import type { Callbacks } from "./Tokenizer.js";
 
-function tokenize(data: string, options = {}) {
+function tokenize(
+    data: string | ((tokenizer: Tokenizer, log: unknown[][]) => void),
+    options = {},
+) {
     const log: unknown[][] = [];
     const tokenizer = new Tokenizer(
         options,
@@ -17,8 +20,12 @@ function tokenize(data: string, options = {}) {
         ) as Callbacks,
     );
 
-    tokenizer.write(data);
-    tokenizer.end();
+    if (typeof data === "function") {
+        data(tokenizer, log);
+    } else {
+        tokenizer.write(data);
+        tokenizer.end();
+    }
 
     return log;
 }
@@ -82,6 +89,23 @@ describe("Tokenizer", () => {
         });
     });
 
+    describe("should close special tags on end tags ending with />", () => {
+        it("for script tag", () => {
+            expect(tokenize("<script>safe</script/><img>")).toMatchSnapshot();
+        });
+        it("for style tag", () => {
+            expect(tokenize("<style>safe</style/><img>")).toMatchSnapshot();
+        });
+        it("for title tag", () => {
+            expect(tokenize("<title>safe</title/><img>")).toMatchSnapshot();
+        });
+        it("for textarea tag", () => {
+            expect(
+                tokenize("<textarea>safe</textarea/><img>"),
+            ).toMatchSnapshot();
+        });
+    });
+
     describe("should correctly mark attributes", () => {
         it("for no value attribute", () => {
             expect(tokenize("<div aaaaaaa >")).toMatchSnapshot();
@@ -126,6 +150,42 @@ describe("Tokenizer", () => {
 
         it("for multi-byte entities", () =>
             expect(tokenize("&NotGreaterFullEqual;")).toMatchSnapshot());
+    });
+
+    it("should close comments on --!>", () => {
+        expect(
+            tokenize("<!-- --!><img src=x onerror=alert(1)>-->"),
+        ).toMatchSnapshot();
+    });
+
+    it.each([
+        "script",
+        "style",
+        "title",
+        "textarea",
+    ])("should reset after an unclosed %s tag", (tag) => {
+        expect(
+            tokenize((tokenizer, events) => {
+                tokenizer.write(`<${tag}>body{color:red}`);
+                tokenizer.end();
+                events.length = 0;
+                tokenizer.reset();
+                tokenizer.write("<div>hello</div>");
+                tokenizer.end();
+            }).map(([event]) => event),
+        ).toEqual([
+            "onopentagname",
+            "onopentagend",
+            "ontext",
+            "onclosetag",
+            "onend",
+        ]);
+    });
+
+    it("should terminate XML processing instructions on ?>", () => {
+        expect(
+            tokenize("<?target data > injected ?>", { xmlMode: true }),
+        ).toMatchSnapshot();
     });
 
     it("should not lose data when pausing", () => {

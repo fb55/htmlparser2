@@ -164,6 +164,18 @@ describe("Events", () => {
 
     it("Scripts ending with <", () => runTest("<script><</script>"));
 
+    it("Special end tags ending with /> in script", () =>
+        runTest("<script>safe</script/><img>"));
+
+    it("Special end tags ending with /> in style", () =>
+        runTest("<style>safe</style/><img>"));
+
+    it("Special end tags ending with /> in title", () =>
+        runTest("<title>safe</title/><img>"));
+
+    it("Special end tags ending with /> in textarea", () =>
+        runTest("<textarea>safe</textarea/><img>"));
+
     it("CDATA more edge-cases", () =>
         runTest("<![CDATA[foo]bar]>baz]]>", { recognizeCDATA: true }));
 
