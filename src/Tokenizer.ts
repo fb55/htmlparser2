@@ -622,8 +622,9 @@ export default class Tokenizer {
         if (c === CharCodes.Dash) {
             this.state = State.InCommentLike;
             this.currentSequence = Sequences.CommentEnd;
-            // Allow short comments (eg. <!-->)
-            this.sequenceIndex = 2;
+            // In HTML, `<!-->` is a valid empty comment. In XML, comments
+            // must be closed by `-->`, so we require the full sequence.
+            this.sequenceIndex = this.xmlMode ? 0 : 2;
             this.sectionStart = this.index + 1;
         } else {
             this.state = State.InDeclaration;
