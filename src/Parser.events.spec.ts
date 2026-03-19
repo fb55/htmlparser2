@@ -80,6 +80,12 @@ describe("Events", () => {
     it("end slash: non-void element ending with />, recognizeSelfClosing=true", () =>
         runTest("<xx / ><p>Hold the line.", { recognizeSelfClosing: true }));
 
+    it("end slash: special tag ending with />, recognizeSelfClosing=true", () =>
+        runTest("<script/><b>x</b>", { recognizeSelfClosing: true }));
+
+    it("end slash: plaintext tag ending with />, recognizeSelfClosing=true", () =>
+        runTest("<plaintext/><b>x</b>", { recognizeSelfClosing: true }));
+
     it("end slash: as part of attrib value of void element", () =>
         runTest("<img src=gif.com/123/><p>Hold the line."));
 
@@ -162,6 +168,60 @@ describe("Events", () => {
 
     it("Comment false ending", () => runTest("<!-- a-b-> -->"));
 
+    it("Short bang comment", () => runTest("<!--!>"));
+
+    it("Abruptly closed comment", () => runTest("<!--->text"));
+
+    it("Empty EOF comment", () => runTest("<!--"));
+
+    it("HTML bogus comments", () => runTest("<?foo><!foo>"));
+
+    it("Short HTML bogus comments", () => runTest("<!><!->"));
+
+    it("Bogus comment after </ and whitespace", () => runTest("<div></ div>"));
+
+    it("Empty closing tag", () => runTest("</>"));
+
+    it("Empty closing tag, xmlMode=true", () =>
+        runTest("</>", { xmlMode: true }));
+
+    it("Doctype without whitespace", () => runTest("<!DOCTYPEhtml>"));
+
+    it("Foreign CDATA in SVG", () => runTest("<svg><![CDATA[a<b]]></svg>"));
+
+    it("Foreign CDATA in MathML", () =>
+        runTest("<math><![CDATA[a<b]]></math>"));
+
+    it("SVG title is not HTML special", () =>
+        runTest("<svg><title>&amp;<b>x</b></title></svg>"));
+
+    it("SVG tag case adjustment", () =>
+        runTest("<svg><foreignObject><b>x</b></foreignObject></svg>"));
+
+    it("HTML image alias", () => runTest("<image></image>"));
+
+    it("SVG image is not aliased", () => runTest("<svg><image></image></svg>"));
+
+    it("EOF bogus comments", () => runTest("<!-"));
+
+    it("EOF empty bogus comment", () => runTest("<!"));
+
+    it("EOF partial doctype", () => runTest("<!DOC"));
+
+    it("EOF complete doctype", () => runTest("<!DOCTYPE"));
+
+    it("EOF incomplete doctype", () => runTest("<!DOCTYPE h"));
+
+    it("EOF processing instruction", () => runTest("<?"));
+
+    it("Partial CDATA match with >", () => runTest("<![CD>"));
+
+    it("Unclosed CDATA at EOF", () => runTest("<![CDATA[foo"));
+
+    it("Empty unclosed CDATA at EOF", () => runTest("<![CDATA["));
+
+    it("Partial CDATA at EOF", () => runTest("<![C"));
+
     it("Scripts ending with <", () => runTest("<script><</script>"));
 
     it("Special end tags ending with /> in script", () =>
@@ -191,8 +251,12 @@ describe("Events", () => {
 
     it("entity in title (#592)", () => runTest("<title>the &quot;title&quot"));
 
+    it("entity in textarea", () => runTest("<textarea>&amp;</textarea>"));
+
     it("entity in title - decodeEntities=false (#592)", () =>
         runTest("<title>the &quot;title&quot;", { decodeEntities: false }));
+
+    it("plaintext", () => runTest("<plaintext><b>hi</b>"));
 
     it("</title> in <script> (#745)", () =>
         runTest("<script>'</title>'</script>"));

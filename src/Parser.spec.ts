@@ -110,6 +110,38 @@ describe("API", () => {
         expect(onclosetag).toHaveBeenNthCalledWith(2, "hr", 9);
     });
 
+    it("should preserve declaration names outside of HTML mode", () => {
+        const onprocessinginstruction = vi.fn();
+
+        new Parser(
+            {
+                onprocessinginstruction,
+            },
+            { xmlMode: true },
+        ).end("<!DOCTYPEhtml>");
+
+        expect(onprocessinginstruction).toHaveBeenCalledWith(
+            "!DOCTYPEhtml",
+            "!DOCTYPEhtml",
+        );
+    });
+
+    it("should preserve declaration casing when lowerCaseTags is disabled", () => {
+        const onprocessinginstruction = vi.fn();
+
+        new Parser(
+            {
+                onprocessinginstruction,
+            },
+            { lowerCaseTags: false },
+        ).end("<!DOCTYPEhtml>");
+
+        expect(onprocessinginstruction).toHaveBeenCalledWith(
+            "!DOCTYPE",
+            "!DOCTYPEhtml",
+        );
+    });
+
     it("should update the position when a single tag is spread across multiple chunks", () => {
         let called = false;
         const p = new Parser({
