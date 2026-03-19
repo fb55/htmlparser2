@@ -1825,6 +1825,274 @@ exports[`Events > Self-closing indices (#941) 1`] = `
 ]
 `;
 
+exports[`Events > Special end tags ending with /> in script 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "script",
+    ],
+    "endIndex": 7,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "script",
+      {},
+      false,
+    ],
+    "endIndex": 7,
+    "startIndex": 0,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "safe",
+    ],
+    "endIndex": 11,
+    "startIndex": 8,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "script",
+      false,
+    ],
+    "endIndex": 20,
+    "startIndex": 12,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "img",
+    ],
+    "endIndex": 26,
+    "startIndex": 21,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "img",
+      {},
+      false,
+    ],
+    "endIndex": 26,
+    "startIndex": 21,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "img",
+      true,
+    ],
+    "endIndex": 26,
+    "startIndex": 21,
+  },
+]
+`;
+
+exports[`Events > Special end tags ending with /> in style 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "style",
+    ],
+    "endIndex": 6,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "style",
+      {},
+      false,
+    ],
+    "endIndex": 6,
+    "startIndex": 0,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "safe",
+    ],
+    "endIndex": 10,
+    "startIndex": 7,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "style",
+      false,
+    ],
+    "endIndex": 18,
+    "startIndex": 11,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "img",
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "img",
+      {},
+      false,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "img",
+      true,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+]
+`;
+
+exports[`Events > Special end tags ending with /> in textarea 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "textarea",
+    ],
+    "endIndex": 9,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "textarea",
+      {},
+      false,
+    ],
+    "endIndex": 9,
+    "startIndex": 0,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "safe",
+    ],
+    "endIndex": 13,
+    "startIndex": 10,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "textarea",
+      false,
+    ],
+    "endIndex": 24,
+    "startIndex": 14,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "img",
+    ],
+    "endIndex": 30,
+    "startIndex": 25,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "img",
+      {},
+      false,
+    ],
+    "endIndex": 30,
+    "startIndex": 25,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "img",
+      true,
+    ],
+    "endIndex": 30,
+    "startIndex": 25,
+  },
+]
+`;
+
+exports[`Events > Special end tags ending with /> in title 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "title",
+    ],
+    "endIndex": 6,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "title",
+      {},
+      false,
+    ],
+    "endIndex": 6,
+    "startIndex": 0,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "safe",
+    ],
+    "endIndex": 10,
+    "startIndex": 7,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "title",
+      false,
+    ],
+    "endIndex": 18,
+    "startIndex": 11,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "img",
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "img",
+      {},
+      false,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "img",
+      true,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+]
+`;
+
 exports[`Events > Special special tags 1`] = `
 [
   {

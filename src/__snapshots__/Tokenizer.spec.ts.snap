@@ -1,5 +1,207 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Tokenizer > should close comments on --!> 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    8,
+    3,
+  ],
+  [
+    "onopentagname",
+    10,
+    13,
+  ],
+  [
+    "onattribname",
+    14,
+    17,
+  ],
+  [
+    "onattribdata",
+    18,
+    19,
+  ],
+  [
+    "onattribend",
+    1,
+    19,
+  ],
+  [
+    "onattribname",
+    20,
+    27,
+  ],
+  [
+    "onattribdata",
+    28,
+    36,
+  ],
+  [
+    "onattribend",
+    1,
+    36,
+  ],
+  [
+    "onopentagend",
+    36,
+  ],
+  [
+    "ontext",
+    37,
+    40,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should close special tags on end tags ending with /> > for script tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    7,
+  ],
+  [
+    "onopentagend",
+    7,
+  ],
+  [
+    "ontext",
+    8,
+    12,
+  ],
+  [
+    "onclosetag",
+    14,
+    20,
+  ],
+  [
+    "onopentagname",
+    23,
+    26,
+  ],
+  [
+    "onopentagend",
+    26,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should close special tags on end tags ending with /> > for style tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onopentagend",
+    6,
+  ],
+  [
+    "ontext",
+    7,
+    11,
+  ],
+  [
+    "onclosetag",
+    13,
+    18,
+  ],
+  [
+    "onopentagname",
+    21,
+    24,
+  ],
+  [
+    "onopentagend",
+    24,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should close special tags on end tags ending with /> > for textarea tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onopentagend",
+    9,
+  ],
+  [
+    "ontext",
+    10,
+    14,
+  ],
+  [
+    "onclosetag",
+    16,
+    24,
+  ],
+  [
+    "onopentagname",
+    27,
+    30,
+  ],
+  [
+    "onopentagend",
+    30,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should close special tags on end tags ending with /> > for title tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onopentagend",
+    6,
+  ],
+  [
+    "ontext",
+    7,
+    11,
+  ],
+  [
+    "onclosetag",
+    13,
+    18,
+  ],
+  [
+    "onopentagname",
+    21,
+    24,
+  ],
+  [
+    "onopentagend",
+    24,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should correctly mark attributes > for double quotes attribute 1`] = `
 [
   [
@@ -691,6 +893,19 @@ exports[`Tokenizer > should support standard special tags > for normal xmp tag 1
     "onclosetag",
     18,
     21,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should terminate XML processing instructions on ?> 1`] = `
+[
+  [
+    "onprocessinginstruction",
+    2,
+    25,
   ],
   [
     "onend",
