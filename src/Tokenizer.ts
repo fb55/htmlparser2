@@ -622,8 +622,10 @@ export default class Tokenizer {
         if (c === CharCodes.Dash) {
             this.state = State.InCommentLike;
             this.currentSequence = Sequences.CommentEnd;
-            // In HTML, `<!-->` is a valid empty comment. In XML, comments
-            // must be closed by `-->`, so we require the full sequence.
+            /*
+             * In HTML, `<!-->` is a valid empty comment. In XML, comments
+             * must be closed by `-->`, so we require the full sequence.
+             */
             this.sequenceIndex = this.xmlMode ? 0 : 2;
             this.sectionStart = this.index + 1;
         } else {
