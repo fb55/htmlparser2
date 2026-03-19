@@ -565,6 +565,72 @@ exports[`Tokenizer > should not lose data when pausing 1`] = `
 ]
 `;
 
+exports[`Tokenizer > should not treat <!-->  as a complete comment in xmlMode 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    5,
+  ],
+  [
+    "onopentagend",
+    5,
+  ],
+  [
+    "onopentagname",
+    7,
+    11,
+  ],
+  [
+    "onopentagend",
+    11,
+  ],
+  [
+    "ontext",
+    12,
+    17,
+  ],
+  [
+    "onclosetag",
+    19,
+    23,
+  ],
+  [
+    "oncomment",
+    28,
+    58,
+    2,
+  ],
+  [
+    "onopentagname",
+    60,
+    64,
+  ],
+  [
+    "onopentagend",
+    64,
+  ],
+  [
+    "ontext",
+    65,
+    68,
+  ],
+  [
+    "onclosetag",
+    70,
+    74,
+  ],
+  [
+    "onclosetag",
+    77,
+    81,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should support self-closing special tags > for self-closing script tag 1`] = `
 [
   [

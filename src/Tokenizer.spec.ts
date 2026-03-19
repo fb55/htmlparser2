@@ -158,6 +158,15 @@ describe("Tokenizer", () => {
         ).toMatchSnapshot();
     });
 
+    it("should not treat <!-->  as a complete comment in xmlMode", () => {
+        expect(
+            tokenize(
+                "<root><node>start</node><!--><node>should ignore</node><--><node>end</node></root>",
+                { xmlMode: true },
+            ),
+        ).toMatchSnapshot();
+    });
+
     it.each([
         "script",
         "style",
