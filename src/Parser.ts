@@ -94,6 +94,12 @@ const voidElements = new Set([
 
 const foreignContextElements = new Set(["math", "svg"]);
 
+/**
+ * Elements that can be used to integrate HTML content within foreign namespaces (e.g., SVG or MathML).
+ * 
+ * Entries must use the SVG-adjusted casing (e.g. "foreignObject" not
+ * "foreignobject") since they are compared against adjusted tag names.
+ */
 const htmlIntegrationElements = new Set([
     "mi",
     "mo",
@@ -364,8 +370,10 @@ export class Parser implements Callbacks {
 
         /*
          * Closing tags for SVG elements inside HTML integration points
-         * (e.g. </foreignObject> while inside its own content) still need
-         * case adjustment so the name matches what was pushed to the stack.
+         * (e.g. </foreignObject> while inside its own content) need case
+         * adjustment so the name matches what was pushed to the stack.
+         * `foreignContext.length > 1` means a foreign ancestor exists —
+         * the base [None] entry plus at least one pushed context.
          */
         if (this.foreignContext.length > 1) {
             const adjusted = svgTagNameAdjustments.get(name);
@@ -395,7 +403,12 @@ export class Parser implements Callbacks {
         this.openTagStart = this.startIndex;
         this.tagname = name;
 
-        // The spec ignores a second <form> when one is already open.
+        /*
+         * The spec ignores a second <form> when one is already open.
+         * Setting tagname to "" suppresses all downstream effects: attribs
+         * stays null so endOpenTag is a no-op, and closeCurrentTag can't
+         * match "" on the stack.
+         */
         if (this.htmlMode && name === "form" && this.stack.includes("form")) {
             this.tagname = "";
             return;

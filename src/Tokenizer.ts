@@ -420,10 +420,15 @@ export default class Tokenizer {
             !this.xmlMode &&
             this.currentSequence === Sequences.CommentEnd &&
             this.sequenceIndex <= 1 &&
+            /*
+             * We're still at the very start of the comment: the only
+             * characters consumed since `<!--` are the dashes that
+             * advanced sequenceIndex (0 for `<!-->`, 1 for `<!--->`).
+             */
             this.index === this.sectionStart + this.sequenceIndex &&
             c === CharCodes.Gt
         ) {
-            // `<!-->` and `<!--->` are valid empty HTML comments.
+            // Abruptly closed empty HTML comment.
             this.emitComment(this.sequenceIndex);
         } else if (
             this.currentSequence === Sequences.CommentEnd &&
