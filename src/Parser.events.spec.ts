@@ -198,6 +198,19 @@ describe("Events", () => {
     it("SVG tag case adjustment", () =>
         runTest("<svg><foreignObject><b>x</b></foreignObject></svg>"));
 
+    it("SVG integration point closing with unclosed child", () =>
+        runTest(
+            "<svg><foreignObject><div>x</foreignObject></svg>after",
+        ));
+
+    it("Content after SVG integration point", () =>
+        runTest(
+            "<svg><foreignObject><b>x</b></foreignObject><rect/></svg>",
+        ));
+
+    it("Stray </svg> does not break foreign context", () =>
+        runTest("</svg><script><b>not a tag</b></script>"));
+
     it("HTML image alias", () => runTest("<image></image>"));
 
     it("SVG image is not aliased", () => runTest("<svg><image></image></svg>"));

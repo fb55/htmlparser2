@@ -432,6 +432,127 @@ exports[`Events > Comment false ending 1`] = `
 ]
 `;
 
+exports[`Events > Content after SVG integration point 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "foreignObject",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "foreignObject",
+      {},
+      false,
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "b",
+    ],
+    "endIndex": 22,
+    "startIndex": 20,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "b",
+      {},
+      false,
+    ],
+    "endIndex": 22,
+    "startIndex": 20,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x",
+    ],
+    "endIndex": 23,
+    "startIndex": 23,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "b",
+      false,
+    ],
+    "endIndex": 27,
+    "startIndex": 24,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "foreignObject",
+      false,
+    ],
+    "endIndex": 43,
+    "startIndex": 28,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "rect",
+    ],
+    "endIndex": 49,
+    "startIndex": 44,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "rect",
+      {},
+      false,
+    ],
+    "endIndex": 50,
+    "startIndex": 44,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "rect",
+      true,
+    ],
+    "endIndex": 50,
+    "startIndex": 44,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      false,
+    ],
+    "endIndex": 56,
+    "startIndex": 51,
+  },
+]
+`;
+
 exports[`Events > Doctype without whitespace 1`] = `
 [
   {
@@ -2112,6 +2233,108 @@ exports[`Events > SVG image is not aliased 1`] = `
 ]
 `;
 
+exports[`Events > SVG integration point closing with unclosed child 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "foreignObject",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "foreignObject",
+      {},
+      false,
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "div",
+    ],
+    "endIndex": 24,
+    "startIndex": 20,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "div",
+      {},
+      false,
+    ],
+    "endIndex": 24,
+    "startIndex": 20,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x",
+    ],
+    "endIndex": 25,
+    "startIndex": 25,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "div",
+      true,
+    ],
+    "endIndex": 41,
+    "startIndex": 26,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "foreignObject",
+      false,
+    ],
+    "endIndex": 41,
+    "startIndex": 26,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      false,
+    ],
+    "endIndex": 47,
+    "startIndex": 42,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "after",
+    ],
+    "endIndex": 52,
+    "startIndex": 48,
+  },
+]
+`;
+
 exports[`Events > SVG tag case adjustment 1`] = `
 [
   {
@@ -2189,10 +2412,10 @@ exports[`Events > SVG tag case adjustment 1`] = `
     "$event": "closetag",
     "data": [
       "foreignObject",
-      true,
+      false,
     ],
-    "endIndex": 49,
-    "startIndex": 44,
+    "endIndex": 43,
+    "startIndex": 28,
   },
   {
     "$event": "closetag",
@@ -3355,6 +3578,46 @@ exports[`Events > Start & end indices from domhandler 1`] = `
     ],
     "endIndex": 121,
     "startIndex": 121,
+  },
+]
+`;
+
+exports[`Events > Stray </svg> does not break foreign context 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "script",
+    ],
+    "endIndex": 13,
+    "startIndex": 6,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "script",
+      {},
+      false,
+    ],
+    "endIndex": 13,
+    "startIndex": 6,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "<b>not a tag</b>",
+    ],
+    "endIndex": 29,
+    "startIndex": 14,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "script",
+      false,
+    ],
+    "endIndex": 38,
+    "startIndex": 30,
   },
 ]
 `;

@@ -358,23 +358,24 @@ export class Parser implements Callbacks {
             return name;
         }
 
-        if (!this.isInForeignContext()) {
-            return name === "image" ? "img" : name;
-        }
-
         if (this.foreignContext[0] === ForeignContext.Svg) {
             return svgTagNameAdjustments.get(name) ?? name;
         }
 
         /*
          * Closing tags for SVG elements inside HTML integration points
-         * (e.g. </foreignObject>) still need case adjustment.
+         * (e.g. </foreignObject> while inside its own content) still need
+         * case adjustment so the name matches what was pushed to the stack.
          */
         if (this.foreignContext.length > 1) {
             const adjusted = svgTagNameAdjustments.get(name);
-            if (adjusted !== undefined && adjusted === this.stack[0]) {
+            if (adjusted !== undefined && this.stack.includes(adjusted)) {
                 return adjusted;
             }
+        }
+
+        if (!this.isInForeignContext()) {
+            return name === "image" ? "img" : name;
         }
 
         return name;
@@ -463,17 +464,18 @@ export class Parser implements Callbacks {
         this.endIndex = endIndex;
         const name = this.readTagName(start, endIndex);
 
-        if (
-            this.htmlMode &&
-            (foreignContextElements.has(name) ||
-                htmlIntegrationElements.has(name))
-        ) {
-            this.foreignContext.shift();
-        }
-
         if (!this.isVoidElement(name)) {
             const pos = this.stack.indexOf(name);
             if (pos !== -1) {
+                // Only shift foreignContext when the element is actually on
+                // the stack — a stray </svg> must not underflow the stack.
+                if (
+                    this.htmlMode &&
+                    (foreignContextElements.has(name) ||
+                        htmlIntegrationElements.has(name))
+                ) {
+                    this.foreignContext.shift();
+                }
                 for (let index = 0; index <= pos; index++) {
                     const element = this.stack.shift();
                     if (element === undefined) {
