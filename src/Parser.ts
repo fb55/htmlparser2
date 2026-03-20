@@ -96,7 +96,7 @@ const foreignContextElements = new Set(["math", "svg"]);
 
 /**
  * Elements that can be used to integrate HTML content within foreign namespaces (e.g., SVG or MathML).
- * 
+ *
  * Entries must use the SVG-adjusted casing (e.g. "foreignObject" not
  * "foreignobject") since they are compared against adjusted tag names.
  */
