@@ -12,6 +12,7 @@ const formTags = new Set([
     "textarea",
 ]);
 const pTag = new Set(["p"]);
+const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6", "p"]);
 const tableSectionTags = new Set(["thead", "tbody"]);
 const ddtTags = new Set(["dd", "dt"]);
 const rtpTags = new Set(["rt", "rp"]);
@@ -21,14 +22,15 @@ const openImpliesClose = new Map<string, Set<string>>([
     ["th", new Set(["th"])],
     ["td", new Set(["thead", "th", "td"])],
     ["body", new Set(["head", "link", "script"])],
+    ["a", new Set(["a"])],
     ["li", new Set(["li"])],
     ["p", pTag],
-    ["h1", pTag],
-    ["h2", pTag],
-    ["h3", pTag],
-    ["h4", pTag],
-    ["h5", pTag],
-    ["h6", pTag],
+    ["h1", headingTags],
+    ["h2", headingTags],
+    ["h3", headingTags],
+    ["h4", headingTags],
+    ["h5", headingTags],
+    ["h6", headingTags],
     ["select", formTags],
     ["input", formTags],
     ["output", formTags],
@@ -66,6 +68,8 @@ const openImpliesClose = new Map<string, Set<string>>([
     ["tfoot", tableSectionTags],
 ]);
 
+const DOCUMENT_TYPE = "doctype";
+
 const voidElements = new Set([
     "area",
     "base",
@@ -90,6 +94,12 @@ const voidElements = new Set([
 
 const foreignContextElements = new Set(["math", "svg"]);
 
+/**
+ * Elements that can be used to integrate HTML content within foreign namespaces (e.g., SVG or MathML).
+ *
+ * Entries must use the SVG-adjusted casing (e.g. "foreignObject" not
+ * "foreignobject") since they are compared against adjusted tag names.
+ */
 const htmlIntegrationElements = new Set([
     "mi",
     "mo",
@@ -97,10 +107,56 @@ const htmlIntegrationElements = new Set([
     "ms",
     "mtext",
     "annotation-xml",
-    "foreignobject",
+    "foreignObject",
     "desc",
     "title",
 ]);
+
+const svgTagNameAdjustments = new Map<string, string>([
+    ["altglyph", "altGlyph"],
+    ["altglyphdef", "altGlyphDef"],
+    ["altglyphitem", "altGlyphItem"],
+    ["animatecolor", "animateColor"],
+    ["animatemotion", "animateMotion"],
+    ["animatetransform", "animateTransform"],
+    ["clippath", "clipPath"],
+    ["feblend", "feBlend"],
+    ["fecolormatrix", "feColorMatrix"],
+    ["fecomponenttransfer", "feComponentTransfer"],
+    ["fecomposite", "feComposite"],
+    ["feconvolvematrix", "feConvolveMatrix"],
+    ["fediffuselighting", "feDiffuseLighting"],
+    ["fedisplacementmap", "feDisplacementMap"],
+    ["fedistantlight", "feDistantLight"],
+    ["fedropshadow", "feDropShadow"],
+    ["feflood", "feFlood"],
+    ["fefunca", "feFuncA"],
+    ["fefuncb", "feFuncB"],
+    ["fefuncg", "feFuncG"],
+    ["fefuncr", "feFuncR"],
+    ["fegaussianblur", "feGaussianBlur"],
+    ["feimage", "feImage"],
+    ["femerge", "feMerge"],
+    ["femergenode", "feMergeNode"],
+    ["femorphology", "feMorphology"],
+    ["feoffset", "feOffset"],
+    ["fepointlight", "fePointLight"],
+    ["fespecularlighting", "feSpecularLighting"],
+    ["fespotlight", "feSpotLight"],
+    ["fetile", "feTile"],
+    ["feturbulence", "feTurbulence"],
+    ["foreignobject", "foreignObject"],
+    ["glyphref", "glyphRef"],
+    ["lineargradient", "linearGradient"],
+    ["radialgradient", "radialGradient"],
+    ["textpath", "textPath"],
+]);
+
+const enum ForeignContext {
+    None,
+    Svg,
+    MathML,
+}
 
 /**
  * Options for the streaming HTML/XML parser.
@@ -216,8 +272,7 @@ export class Parser implements Callbacks {
     private attribvalue = "";
     private attribs: null | { [key: string]: string } = null;
     private readonly stack: string[] = [];
-    /** Determines whether self-closing tags are recognized. */
-    private readonly foreignContext: boolean[];
+    private readonly foreignContext: ForeignContext[];
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
     private readonly lowerCaseAttributeNames: boolean;
@@ -248,7 +303,7 @@ export class Parser implements Callbacks {
             this.options,
             this,
         );
-        this.foreignContext = [!this.htmlMode];
+        this.foreignContext = [ForeignContext.None];
         this.cbs.onparserinit?.(this);
     }
 
@@ -277,6 +332,11 @@ export class Parser implements Callbacks {
         this.startIndex = endIndex;
     }
 
+    /** @internal */
+    isInForeignContext(): boolean {
+        return this.foreignContext[0] !== ForeignContext.None;
+    }
+
     /**
      * Checks if the current tag is a void element. Override this if you want
      * to specify your own additional void elements.
@@ -287,45 +347,90 @@ export class Parser implements Callbacks {
     }
 
     /**
+     * Read a tag name from the buffer.
+     *
+     * When `lowerCaseTagNames` is enabled (the default in HTML mode), the name
+     * is lowercased and may be adjusted for SVG casing or the `image` → `img`
+     * alias.
+     * @param start Start index of the tag name in the buffer.
+     * @param endIndex End index of the tag name in the buffer.
+     */
+    private readTagName(start: number, endIndex: number): string {
+        const name = this.lowerCaseTagNames
+            ? this.getSlice(start, endIndex).toLowerCase()
+            : this.getSlice(start, endIndex);
+
+        if (!(this.lowerCaseTagNames && this.htmlMode)) {
+            return name;
+        }
+
+        if (this.foreignContext[0] === ForeignContext.Svg) {
+            return svgTagNameAdjustments.get(name) ?? name;
+        }
+
+        /*
+         * Closing tags for SVG elements inside HTML integration points
+         * (e.g. </foreignObject> while inside its own content) need case
+         * adjustment so the name matches what was pushed to the stack.
+         * `foreignContext.length > 1` means a foreign ancestor exists —
+         * the base [None] entry plus at least one pushed context.
+         */
+        if (this.foreignContext.length > 1) {
+            const adjusted = svgTagNameAdjustments.get(name);
+            if (adjusted !== undefined && this.stack.includes(adjusted)) {
+                return adjusted;
+            }
+        }
+
+        if (!this.isInForeignContext()) {
+            return name === "image" ? "img" : name;
+        }
+
+        return name;
+    }
+
+    /**
      * @param start Start index for the current parser event.
      * @param endIndex End index for the current parser event.
      * @internal
      */
     onopentagname(start: number, endIndex: number): void {
         this.endIndex = endIndex;
-
-        let name = this.getSlice(start, endIndex);
-
-        if (this.lowerCaseTagNames) {
-            name = name.toLowerCase();
-        }
-
-        this.emitOpenTag(name);
+        this.emitOpenTag(this.readTagName(start, endIndex));
     }
 
     private emitOpenTag(name: string) {
         this.openTagStart = this.startIndex;
         this.tagname = name;
 
+        /*
+         * The spec ignores a second <form> when one is already open.
+         * Setting tagname to "" suppresses all downstream effects: attribs
+         * stays null so endOpenTag is a no-op, and closeCurrentTag can't
+         * match "" on the stack.
+         */
+        if (this.htmlMode && name === "form" && this.stack.includes("form")) {
+            this.tagname = "";
+            return;
+        }
+
         const impliesClose = this.htmlMode && openImpliesClose.get(name);
 
         if (impliesClose) {
             while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
-                const element = this.stack.shift();
-                if (element === undefined) {
-                    break;
-                }
-                this.cbs.onclosetag?.(element, true);
+                this.popElement(true);
             }
         }
         if (!this.isVoidElement(name)) {
             this.stack.unshift(name);
 
             if (this.htmlMode) {
-                if (foreignContextElements.has(name)) {
-                    this.foreignContext.unshift(true);
+                if (name === "svg") {
+                    this.foreignContext.unshift(ForeignContext.Svg);
+                } else if (name === "math") {
+                    this.foreignContext.unshift(ForeignContext.MathML);
                 } else if (htmlIntegrationElements.has(name)) {
-                    this.foreignContext.unshift(false);
+                    this.foreignContext.unshift(ForeignContext.None);
                 }
             }
         }
@@ -366,31 +471,15 @@ export class Parser implements Callbacks {
      */
     onclosetag(start: number, endIndex: number): void {
         this.endIndex = endIndex;
-
-        let name = this.getSlice(start, endIndex);
-
-        if (this.lowerCaseTagNames) {
-            name = name.toLowerCase();
-        }
-
-        if (
-            this.htmlMode &&
-            (foreignContextElements.has(name) ||
-                htmlIntegrationElements.has(name))
-        ) {
-            this.foreignContext.shift();
-        }
+        const name = this.readTagName(start, endIndex);
 
         if (!this.isVoidElement(name)) {
             const pos = this.stack.indexOf(name);
             if (pos !== -1) {
-                for (let index = 0; index <= pos; index++) {
-                    const element = this.stack.shift();
-                    if (element === undefined) {
-                        break;
-                    }
-                    this.cbs.onclosetag?.(element, index !== pos);
+                for (let index = 0; index < pos; index++) {
+                    this.popElement(true);
                 }
+                this.popElement(false);
             } else if (this.htmlMode && name === "p") {
                 // Implicit open before close
                 this.emitOpenTag("p");
@@ -413,7 +502,7 @@ export class Parser implements Callbacks {
      */
     onselfclosingtag(endIndex: number): void {
         this.endIndex = endIndex;
-        if (this.recognizeSelfClosing || this.foreignContext[0]) {
+        if (this.recognizeSelfClosing || this.isInForeignContext()) {
             this.closeCurrentTag(false);
 
             // Set `startIndex` for next node
@@ -424,15 +513,31 @@ export class Parser implements Callbacks {
         }
     }
 
+    /**
+     * Pop the top element off the stack, emit a close event, and maintain
+     * the foreign context stack.
+     * @param implied Whether this close is implied (not from an explicit end tag).
+     */
+    private popElement(implied: boolean): void {
+        // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
+        const element = this.stack.shift()!;
+        if (
+            this.htmlMode &&
+            (foreignContextElements.has(element) ||
+                htmlIntegrationElements.has(element))
+        ) {
+            this.foreignContext.shift();
+        }
+        this.cbs.onclosetag?.(element, implied);
+    }
+
     private closeCurrentTag(isOpenImplied: boolean) {
         const name = this.tagname;
         this.endOpenTag(isOpenImplied);
 
         // Self-closing tags will be on the top of the stack
         if (this.stack[0] === name) {
-            // If the opening tag isn't implied, the closing tag has to be implied.
-            this.cbs.onclosetag?.(name, !isOpenImplied);
-            this.stack.shift();
+            this.popElement(!isOpenImplied);
         }
     }
 
@@ -514,7 +619,15 @@ export class Parser implements Callbacks {
         const value = this.getSlice(start, endIndex);
 
         if (this.cbs.onprocessinginstruction) {
-            const name = this.getInstructionName(value);
+            /*
+             * In HTML mode, ondeclaration is only reached for DOCTYPE
+             * (the tokenizer routes everything else to bogus comments).
+             */
+            const name = this.htmlMode
+                ? this.lowerCaseTagNames
+                    ? DOCUMENT_TYPE
+                    : value.slice(0, DOCUMENT_TYPE.length)
+                : this.getInstructionName(value);
             this.cbs.onprocessinginstruction(`!${name}`, `!${value}`);
         }
 
@@ -570,6 +683,8 @@ export class Parser implements Callbacks {
             this.cbs.oncdatastart?.();
             this.cbs.ontext?.(value);
             this.cbs.oncdataend?.();
+        } else if (this.isInForeignContext()) {
+            this.cbs.ontext?.(value);
         } else {
             this.cbs.oncomment?.(`[CDATA[${value}]]`);
             this.cbs.oncommentend?.();
@@ -599,6 +714,7 @@ export class Parser implements Callbacks {
         this.tokenizer.reset();
         this.tagname = "";
         this.attribname = "";
+        this.attribvalue = "";
         this.attribs = null;
         this.stack.length = 0;
         this.startIndex = 0;
@@ -606,7 +722,7 @@ export class Parser implements Callbacks {
         this.cbs.onparserinit?.(this);
         this.buffers.length = 0;
         this.foreignContext.length = 0;
-        this.foreignContext.unshift(!this.htmlMode);
+        this.foreignContext.unshift(ForeignContext.None);
         this.bufferOffset = 0;
         this.writeIndex = 0;
         this.ended = false;
@@ -623,6 +739,10 @@ export class Parser implements Callbacks {
     }
 
     private getSlice(start: number, end: number) {
+        if (start === end) {
+            return "";
+        }
+
         while (start - this.bufferOffset >= this.buffers[0].length) {
             this.shiftBuffer();
         }

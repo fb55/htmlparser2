@@ -26,6 +26,11 @@ describe("Index", () => {
         expect(dom).toMatchSnapshot();
     });
 
+    it("parseDocument in foreign content", () => {
+        const dom = parseDocument("<svg><![CDATA[a<b]]></svg>");
+        expect(dom).toMatchSnapshot();
+    });
+
     it("createDocumentStream", () => {
         let documentStream!: Parser;
 

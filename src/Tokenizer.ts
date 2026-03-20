@@ -64,14 +64,14 @@ const enum State {
     // Comments & CDATA
     BeforeComment,
     CDATASequence,
+    DeclarationSequence,
     InSpecialComment,
     InCommentLike,
 
     // Special tags
-    BeforeSpecialS, // Decide if we deal with `<script` or `<style`
-    BeforeSpecialT, // Decide if we deal with `<title` or `<textarea`
     SpecialStartSequence,
     InSpecialTag,
+    InPlainText,
 
     InEntity,
 }
@@ -126,6 +126,7 @@ export interface Callbacks {
     onselfclosingtag(endIndex: number): void;
     ontext(start: number, endIndex: number): void;
     ontextentity(codepoint: number, endIndex: number): void;
+    isInForeignContext?(): boolean;
 }
 
 /**
@@ -139,6 +140,17 @@ const Sequences = {
     Cdata: new Uint8Array([0x43, 0x44, 0x41, 0x54, 0x41, 0x5b]), // CDATA[
     CdataEnd: new Uint8Array([0x5d, 0x5d, 0x3e]), // ]]>
     CommentEnd: new Uint8Array([0x2d, 0x2d, 0x21, 0x3e]), // `--!>`
+    Doctype: new Uint8Array([0x64, 0x6f, 0x63, 0x74, 0x79, 0x70, 0x65]), // `doctype`
+    IframeEnd: new Uint8Array([0x3c, 0x2f, 0x69, 0x66, 0x72, 0x61, 0x6d, 0x65]), // `</iframe`
+    NoembedEnd: new Uint8Array([
+        0x3c, 0x2f, 0x6e, 0x6f, 0x65, 0x6d, 0x62, 0x65, 0x64,
+    ]), // `</noembed`
+    NoframesEnd: new Uint8Array([
+        0x3c, 0x2f, 0x6e, 0x6f, 0x66, 0x72, 0x61, 0x6d, 0x65, 0x73,
+    ]), // `</noframes`
+    Plaintext: new Uint8Array([
+        0x3c, 0x2f, 0x70, 0x6c, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x78, 0x74,
+    ]), // `</plaintext`
     ScriptEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74]), // `</script`
     StyleEnd: new Uint8Array([0x3c, 0x2f, 0x73, 0x74, 0x79, 0x6c, 0x65]), // `</style`
     TitleEnd: new Uint8Array([0x3c, 0x2f, 0x74, 0x69, 0x74, 0x6c, 0x65]), // `</title`
@@ -147,6 +159,21 @@ const Sequences = {
     ]), // `</textarea`
     XmpEnd: new Uint8Array([0x3c, 0x2f, 0x78, 0x6d, 0x70]), // `</xmp`
 };
+
+/**
+ * Maps the first lowercase character of an HTML tag name to the sequence
+ * used for special-tag detection.  All sequences share a common layout
+ * where index 2 is the first tag-name character, so matching always
+ * continues from offset 3.
+ */
+const specialStartSequences = new Map<number, Uint8Array>([
+    [Sequences.IframeEnd[2], Sequences.IframeEnd],
+    [Sequences.NoembedEnd[2], Sequences.NoembedEnd],
+    [Sequences.Plaintext[2], Sequences.Plaintext],
+    [Sequences.ScriptEnd[2], Sequences.ScriptEnd],
+    [Sequences.TitleEnd[2], Sequences.TitleEnd],
+    [Sequences.XmpEnd[2], Sequences.XmpEnd],
+]);
 
 /**
  * Tokenizer implementation used by `Parser`.
@@ -173,17 +200,24 @@ export default class Tokenizer {
 
     private readonly xmlMode: boolean;
     private readonly decodeEntities: boolean;
+    private readonly recognizeSelfClosing: boolean;
     private readonly entityDecoder: EntityDecoder;
 
     constructor(
         {
             xmlMode = false,
             decodeEntities = true,
-        }: { xmlMode?: boolean; decodeEntities?: boolean },
+            recognizeSelfClosing = xmlMode,
+        }: {
+            xmlMode?: boolean;
+            decodeEntities?: boolean;
+            recognizeSelfClosing?: boolean;
+        },
         private readonly cbs: Callbacks,
     ) {
         this.xmlMode = xmlMode;
         this.decodeEntities = decodeEntities;
+        this.recognizeSelfClosing = recognizeSelfClosing;
         this.entityDecoder = new EntityDecoder(
             xmlMode ? xmlDecodeTree : htmlDecodeTree,
             (cp, consumed) => this.emitCodePoint(cp, consumed),
@@ -241,68 +275,80 @@ export default class Tokenizer {
 
     private currentSequence: Uint8Array = Sequences.Empty;
     private sequenceIndex = 0;
-    private stateSpecialStartSequence(c: number): void {
-        const isEnd = this.sequenceIndex === this.currentSequence.length;
-        const isMatch = isEnd
-            ? // If we are at the end of the sequence, make sure the tag name has ended
-              isEndOfTagSection(c)
-            : // Otherwise, do a case-insensitive comparison
-              (c | 0x20) === this.currentSequence[this.sequenceIndex];
 
-        if (!isMatch) {
-            this.isSpecial = false;
-        } else if (!isEnd) {
-            this.sequenceIndex++;
-            return;
+    private enterTagBody(): void {
+        if (this.currentSequence === Sequences.Plaintext) {
+            this.currentSequence = Sequences.Empty;
+            this.state = State.InPlainText;
+        } else if (this.isSpecial) {
+            this.state = State.InSpecialTag;
+            this.sequenceIndex = 0;
+        } else {
+            this.state = State.Text;
         }
-
-        this.sequenceIndex = 0;
-        this.state = State.InTagName;
-        this.stateInTagName(c);
     }
 
     /**
-     * Look for an end tag. For <title> tags, also decode entities.
+     * Match the opening tag name against an HTML text-only tag sequence.
+     *
+     * Some tags share an initial prefix (`script`/`style`, `title`/`textarea`,
+     * `noembed`/`noframes`), so we may switch to an alternate sequence at the
+     * first distinguishing byte.  On a successful full match we fall back to
+     * the normal tag-name state; a later `>` will enter raw-text, RCDATA, or
+     * plaintext mode based on `currentSequence` / `isSpecial`.
      * @param c Current character code point.
      */
-    private stateInSpecialTag(c: number): void {
-        if (this.sequenceIndex === this.currentSequence.length) {
-            if (isEndOfTagSection(c)) {
-                const endOfText = this.index - this.currentSequence.length;
+    private stateSpecialStartSequence(c: number): void {
+        const lower = c | 0x20;
 
-                if (this.sectionStart < endOfText) {
-                    // Spoof the index so that reported locations match up.
-                    const actualIndex = this.index;
-                    this.index = endOfText;
-                    this.cbs.ontext(this.sectionStart, endOfText);
-                    this.index = actualIndex;
-                }
-
-                this.isSpecial = false;
-                this.sectionStart = endOfText + 2; // Skip over the `</`
-                this.stateInClosingTagName(c);
-                return; // We are done; skip the rest of the function.
+        // Still matching — check for an alternate sequence at branch points.
+        if (this.sequenceIndex < this.currentSequence.length) {
+            if (lower === this.currentSequence[this.sequenceIndex]) {
+                this.sequenceIndex++;
+                return;
             }
 
+            if (this.sequenceIndex === 3) {
+                if (
+                    this.currentSequence === Sequences.ScriptEnd &&
+                    lower === Sequences.StyleEnd[3]
+                ) {
+                    this.currentSequence = Sequences.StyleEnd;
+                    this.sequenceIndex = 4;
+                    return;
+                }
+
+                if (
+                    this.currentSequence === Sequences.TitleEnd &&
+                    lower === Sequences.TextareaEnd[3]
+                ) {
+                    this.currentSequence = Sequences.TextareaEnd;
+                    this.sequenceIndex = 4;
+                    return;
+                }
+            } else if (
+                this.sequenceIndex === 4 &&
+                this.currentSequence === Sequences.NoembedEnd &&
+                lower === Sequences.NoframesEnd[4]
+            ) {
+                this.currentSequence = Sequences.NoframesEnd;
+                this.sequenceIndex = 5;
+                return;
+            }
+        } else if (isEndOfTagSection(c)) {
+            // Full match on a valid tag boundary — keep the sequence.
             this.sequenceIndex = 0;
+            this.state = State.InTagName;
+            this.stateInTagName(c);
+            return;
         }
 
-        if ((c | 0x20) === this.currentSequence[this.sequenceIndex]) {
-            this.sequenceIndex += 1;
-        } else if (this.sequenceIndex === 0) {
-            if (this.currentSequence === Sequences.TitleEnd) {
-                // We have to parse entities in <title> tags.
-                if (this.decodeEntities && c === CharCodes.Amp) {
-                    this.startEntity();
-                }
-            } else if (this.fastForwardTo(CharCodes.Lt)) {
-                // Outside of <title> tags, we can fast-forward.
-                this.sequenceIndex = 1;
-            }
-        } else {
-            // If we see a `<`, set the sequence index to 1; useful for eg. `<</script>`.
-            this.sequenceIndex = Number(c === CharCodes.Lt);
-        }
+        // No match — abandon special-tag detection.
+        this.isSpecial = false;
+        this.currentSequence = Sequences.Empty;
+        this.sequenceIndex = 0;
+        this.state = State.InTagName;
+        this.stateInTagName(c);
     }
 
     private stateCDATASequence(c: number): void {
@@ -315,8 +361,13 @@ export default class Tokenizer {
             }
         } else {
             this.sequenceIndex = 0;
-            this.state = State.InDeclaration;
-            this.stateInDeclaration(c); // Reconsume the character
+            if (this.xmlMode) {
+                this.state = State.InDeclaration;
+                this.stateInDeclaration(c); // Reconsume the character
+            } else {
+                this.state = State.InSpecialComment;
+                this.stateInSpecialComment(c); // Reconsume the character
+            }
         }
     }
 
@@ -345,6 +396,17 @@ export default class Tokenizer {
     }
 
     /**
+     * Emit a comment token and return to the text state.
+     * @param offset Number of characters in the end sequence that have already been matched.
+     */
+    private emitComment(offset: number): void {
+        this.cbs.oncomment(this.sectionStart, this.index, offset);
+        this.sequenceIndex = 0;
+        this.sectionStart = this.index + 1;
+        this.state = State.Text;
+    }
+
+    /**
      * Comments and CDATA end with `-->` and `]]>`.
      *
      * Their common qualities are:
@@ -355,16 +417,26 @@ export default class Tokenizer {
      */
     private stateInCommentLike(c: number): void {
         if (
+            !this.xmlMode &&
+            this.currentSequence === Sequences.CommentEnd &&
+            this.sequenceIndex <= 1 &&
+            /*
+             * We're still at the very start of the comment: the only
+             * characters consumed since `<!--` are the dashes that
+             * advanced sequenceIndex (0 for `<!-->`, 1 for `<!--->`).
+             */
+            this.index === this.sectionStart + this.sequenceIndex &&
+            c === CharCodes.Gt
+        ) {
+            // Abruptly closed empty HTML comment.
+            this.emitComment(this.sequenceIndex);
+        } else if (
             this.currentSequence === Sequences.CommentEnd &&
             this.sequenceIndex === 2 &&
             c === CharCodes.Gt
         ) {
             // `!` is optional here, so the same sequence also accepts `-->`.
-            this.cbs.oncomment(this.sectionStart, this.index, 2);
-
-            this.sequenceIndex = 0;
-            this.sectionStart = this.index + 1;
-            this.state = State.Text;
+            this.emitComment(2);
         } else if (
             this.currentSequence === Sequences.CommentEnd &&
             this.sequenceIndex === this.currentSequence.length - 1 &&
@@ -405,11 +477,54 @@ export default class Tokenizer {
         return this.xmlMode ? !isEndOfTagSection(c) : isASCIIAlpha(c);
     }
 
-    private startSpecial(sequence: Uint8Array, offset: number) {
-        this.isSpecial = true;
-        this.currentSequence = sequence;
-        this.sequenceIndex = offset;
-        this.state = State.SpecialStartSequence;
+    /**
+     * Scan raw-text / RCDATA content for the matching end tag.
+     *
+     * For RCDATA tags (`<title>`, `<textarea>`) entities are decoded inline.
+     * For raw-text tags (`<script>`, `<style>`, etc.) we fast-forward to `<`.
+     * @param c Current character code point.
+     */
+    private stateInSpecialTag(c: number): void {
+        if (this.sequenceIndex === this.currentSequence.length) {
+            if (isEndOfTagSection(c)) {
+                const endOfText = this.index - this.currentSequence.length;
+
+                if (this.sectionStart < endOfText) {
+                    // Spoof the index so that reported locations match up.
+                    const actualIndex = this.index;
+                    this.index = endOfText;
+                    this.cbs.ontext(this.sectionStart, endOfText);
+                    this.index = actualIndex;
+                }
+
+                this.isSpecial = false;
+                this.sectionStart = endOfText + 2; // Skip over the `</`
+                this.stateInClosingTagName(c);
+                return; // We are done; skip the rest of the function.
+            }
+
+            this.sequenceIndex = 0;
+        }
+
+        if ((c | 0x20) === this.currentSequence[this.sequenceIndex]) {
+            this.sequenceIndex += 1;
+        } else if (this.sequenceIndex === 0) {
+            if (
+                this.currentSequence === Sequences.TitleEnd ||
+                this.currentSequence === Sequences.TextareaEnd
+            ) {
+                // RCDATA tags have to parse entities while still looking for their end tag.
+                if (this.decodeEntities && c === CharCodes.Amp) {
+                    this.startEntity();
+                }
+            } else if (this.fastForwardTo(CharCodes.Lt)) {
+                // Outside of RCDATA tags, we can fast-forward.
+                this.sequenceIndex = 1;
+            }
+        } else {
+            // If we see a `<`, set the sequence index to 1; useful for eg. `<</script>`.
+            this.sequenceIndex = Number(c === CharCodes.Lt);
+        }
     }
 
     private stateBeforeTagName(c: number): void {
@@ -417,23 +532,29 @@ export default class Tokenizer {
             this.state = State.BeforeDeclaration;
             this.sectionStart = this.index + 1;
         } else if (c === CharCodes.Questionmark) {
-            this.state = State.InProcessingInstruction;
-            this.sequenceIndex = 0;
-            this.sectionStart = this.index + 1;
-        } else if (this.isTagStartChar(c)) {
-            const lower = c | 0x20;
-            this.sectionStart = this.index;
             if (this.xmlMode) {
-                this.state = State.InTagName;
-            } else if (lower === Sequences.ScriptEnd[2]) {
-                this.state = State.BeforeSpecialS;
-            } else if (
-                lower === Sequences.TitleEnd[2] ||
-                lower === Sequences.XmpEnd[2]
-            ) {
-                this.state = State.BeforeSpecialT;
+                this.state = State.InProcessingInstruction;
+                this.sequenceIndex = 0;
+                this.sectionStart = this.index + 1;
             } else {
+                this.state = State.InSpecialComment;
+                this.sectionStart = this.index;
+            }
+        } else if (this.isTagStartChar(c)) {
+            this.sectionStart = this.index;
+
+            const special =
+                this.xmlMode || this.cbs.isInForeignContext?.()
+                    ? undefined
+                    : specialStartSequences.get(c | 0x20);
+
+            if (special === undefined) {
                 this.state = State.InTagName;
+            } else {
+                this.isSpecial = true;
+                this.currentSequence = special;
+                this.sequenceIndex = 3;
+                this.state = State.SpecialStartSequence;
             }
         } else if (c === CharCodes.Slash) {
             this.state = State.BeforeClosingTagName;
@@ -452,9 +573,17 @@ export default class Tokenizer {
     }
     private stateBeforeClosingTagName(c: number): void {
         if (isWhitespace(c)) {
-            // Ignore
+            if (this.xmlMode) {
+                // Ignore
+            } else {
+                this.state = State.InSpecialComment;
+                this.sectionStart = this.index;
+            }
         } else if (c === CharCodes.Gt) {
             this.state = State.Text;
+            if (!this.xmlMode) {
+                this.sectionStart = this.index + 1;
+            }
         } else {
             this.state = this.isTagStartChar(c)
                 ? State.InClosingTagName
@@ -480,12 +609,7 @@ export default class Tokenizer {
     private stateBeforeAttributeName(c: number): void {
         if (c === CharCodes.Gt) {
             this.cbs.onopentagend(this.index);
-            if (this.isSpecial) {
-                this.state = State.InSpecialTag;
-                this.sequenceIndex = 0;
-            } else {
-                this.state = State.Text;
-            }
+            this.enterTagBody();
             this.sectionStart = this.index + 1;
         } else if (c === CharCodes.Slash) {
             this.state = State.InSelfClosingTag;
@@ -494,12 +618,28 @@ export default class Tokenizer {
             this.sectionStart = this.index;
         }
     }
+    /**
+     * Handle `/` before `>` in an opening tag.
+     *
+     * In HTML mode, text-only tags ignore the self-closing flag and still enter
+     * their raw-text/RCDATA/plaintext state unless self-closing tags are being
+     * recognized. In XML mode, or for ordinary tags, the tokenizer returns to
+     * regular text parsing after emitting the self-closing callback.
+     * @param c Current character code point.
+     */
     private stateInSelfClosingTag(c: number): void {
         if (c === CharCodes.Gt) {
             this.cbs.onselfclosingtag(this.index);
-            this.state = State.Text;
             this.sectionStart = this.index + 1;
+
+            if (!this.recognizeSelfClosing) {
+                this.enterTagBody();
+                return;
+            }
+
+            this.state = State.Text;
             this.isSpecial = false; // Reset special state, in case of self-closing special tags
+            this.currentSequence = Sequences.Empty;
         } else if (!isWhitespace(c)) {
             this.state = State.BeforeAttributeName;
             this.stateBeforeAttributeName(c);
@@ -575,15 +715,57 @@ export default class Tokenizer {
             this.startEntity();
         }
     }
+    /**
+     * Distinguish between CDATA, declarations, HTML comments, and HTML bogus
+     * comments after `<!`.
+     *
+     * In HTML mode, only real comments and doctypes stay on declaration paths;
+     * everything else becomes a bogus comment terminated by the next `>`.
+     * @param c Current character code point.
+     */
     private stateBeforeDeclaration(c: number): void {
         if (c === CharCodes.OpeningSquareBracket) {
             this.state = State.CDATASequence;
             this.sequenceIndex = 0;
-        } else {
+        } else if (this.xmlMode) {
             this.state =
                 c === CharCodes.Dash
                     ? State.BeforeComment
                     : State.InDeclaration;
+        } else if ((c | 0x20) === Sequences.Doctype[0]) {
+            this.state = State.DeclarationSequence;
+            this.currentSequence = Sequences.Doctype;
+            this.sequenceIndex = 1;
+        } else if (c === CharCodes.Gt) {
+            this.cbs.oncomment(this.sectionStart, this.index, 0);
+            this.state = State.Text;
+            this.sectionStart = this.index + 1;
+        } else if (c === CharCodes.Dash) {
+            this.state = State.BeforeComment;
+        } else {
+            this.state = State.InSpecialComment;
+        }
+    }
+    /**
+     * Continue matching `doctype` after `<!d`.
+     *
+     * A full `doctype` match stays on the declaration path; any other name falls
+     * back to an HTML bogus comment, which matches browser behavior for
+     * non-doctype `<!...>` constructs.
+     * @param c Current character code point.
+     */
+    private stateDeclarationSequence(c: number): void {
+        if (this.sequenceIndex === this.currentSequence.length) {
+            this.state = State.InDeclaration;
+            this.stateInDeclaration(c);
+        } else if ((c | 0x20) === this.currentSequence[this.sequenceIndex]) {
+            this.sequenceIndex += 1;
+        } else if (c === CharCodes.Gt) {
+            this.cbs.oncomment(this.sectionStart, this.index, 0);
+            this.state = State.Text;
+            this.sectionStart = this.index + 1;
+        } else {
+            this.state = State.InSpecialComment;
         }
     }
     private stateInDeclaration(c: number): void {
@@ -593,43 +775,43 @@ export default class Tokenizer {
             this.sectionStart = this.index + 1;
         }
     }
+    /**
+     * XML processing instructions (`<?...?>`).
+     *
+     * In HTML mode `<?` is routed to `InSpecialComment` instead, so this
+     * state is only reachable in XML mode.
+     * @param c Current character code point.
+     */
     private stateInProcessingInstruction(c: number): void {
-        if (this.xmlMode) {
-            if (c === CharCodes.Questionmark) {
-                // Remember that we just consumed `?`, so the next `>` closes the PI.
-                this.sequenceIndex = 1;
-            } else if (c === CharCodes.Gt && this.sequenceIndex === 1) {
-                this.cbs.onprocessinginstruction(
-                    this.sectionStart,
-                    this.index - 1,
-                );
-                this.sequenceIndex = 0;
-                this.state = State.Text;
-                this.sectionStart = this.index + 1;
-            } else {
-                // Keep scanning for the next `?`, which can start a closing `?>`.
-                this.sequenceIndex = Number(
-                    this.fastForwardTo(CharCodes.Questionmark),
-                );
-            }
-        } else if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.onprocessinginstruction(this.sectionStart, this.index);
+        if (c === CharCodes.Questionmark) {
+            // Remember that we just consumed `?`, so the next `>` closes the PI.
+            this.sequenceIndex = 1;
+        } else if (c === CharCodes.Gt && this.sequenceIndex === 1) {
+            this.cbs.onprocessinginstruction(this.sectionStart, this.index - 1);
+            this.sequenceIndex = 0;
             this.state = State.Text;
             this.sectionStart = this.index + 1;
+        } else {
+            // Keep scanning for the next `?`, which can start a closing `?>`.
+            this.sequenceIndex = Number(
+                this.fastForwardTo(CharCodes.Questionmark),
+            );
         }
     }
     private stateBeforeComment(c: number): void {
         if (c === CharCodes.Dash) {
             this.state = State.InCommentLike;
             this.currentSequence = Sequences.CommentEnd;
-            /*
-             * In HTML, `<!-->` is a valid empty comment. In XML, comments
-             * must be closed by `-->`, so we require the full sequence.
-             */
-            this.sequenceIndex = this.xmlMode ? 0 : 2;
+            this.sequenceIndex = 0;
+            this.sectionStart = this.index + 1;
+        } else if (this.xmlMode) {
+            this.state = State.InDeclaration;
+        } else if (c === CharCodes.Gt) {
+            this.cbs.oncomment(this.sectionStart, this.index, 0);
+            this.state = State.Text;
             this.sectionStart = this.index + 1;
         } else {
-            this.state = State.InDeclaration;
+            this.state = State.InSpecialComment;
         }
     }
     private stateInSpecialComment(c: number): void {
@@ -637,42 +819,6 @@ export default class Tokenizer {
             this.cbs.oncomment(this.sectionStart, this.index, 0);
             this.state = State.Text;
             this.sectionStart = this.index + 1;
-        }
-    }
-    private stateBeforeSpecialS(c: number): void {
-        const lower = c | 0x20;
-        if (lower === Sequences.ScriptEnd[3]) {
-            this.startSpecial(Sequences.ScriptEnd, 4);
-        } else if (lower === Sequences.StyleEnd[3]) {
-            this.startSpecial(Sequences.StyleEnd, 4);
-        } else {
-            this.state = State.InTagName;
-            this.stateInTagName(c); // Consume the token again
-        }
-    }
-
-    private stateBeforeSpecialT(c: number): void {
-        const lower = c | 0x20;
-        switch (lower) {
-            case Sequences.TitleEnd[3]: {
-                this.startSpecial(Sequences.TitleEnd, 4);
-
-                break;
-            }
-            case Sequences.TextareaEnd[3]: {
-                this.startSpecial(Sequences.TextareaEnd, 4);
-
-                break;
-            }
-            case Sequences.XmpEnd[3]: {
-                this.startSpecial(Sequences.XmpEnd, 4);
-
-                break;
-            }
-            default: {
-                this.state = State.InTagName;
-                this.stateInTagName(c); // Consume the token again
-            }
         }
     }
 
@@ -724,6 +870,7 @@ export default class Tokenizer {
         if (this.running && this.sectionStart !== this.index) {
             if (
                 this.state === State.Text ||
+                this.state === State.InPlainText ||
                 (this.state === State.InSpecialTag && this.sequenceIndex === 0)
             ) {
                 this.cbs.ontext(this.sectionStart, this.index);
@@ -756,6 +903,11 @@ export default class Tokenizer {
                     this.stateText(c);
                     break;
                 }
+                case State.InPlainText: {
+                    // Skip to end of buffer; cleanup() emits the text.
+                    this.index = this.buffer.length + this.offset - 1;
+                    break;
+                }
                 case State.SpecialStartSequence: {
                     this.stateSpecialStartSequence(c);
                     break;
@@ -766,6 +918,10 @@ export default class Tokenizer {
                 }
                 case State.CDATASequence: {
                     this.stateCDATASequence(c);
+                    break;
+                }
+                case State.DeclarationSequence: {
+                    this.stateDeclarationSequence(c);
                     break;
                 }
                 case State.InAttributeValueDq: {
@@ -820,14 +976,6 @@ export default class Tokenizer {
                     this.stateAfterClosingTagName(c);
                     break;
                 }
-                case State.BeforeSpecialS: {
-                    this.stateBeforeSpecialS(c);
-                    break;
-                }
-                case State.BeforeSpecialT: {
-                    this.stateBeforeSpecialT(c);
-                    break;
-                }
                 case State.InAttributeValueNq: {
                     this.stateInAttributeValueNoQuotes(c);
                     break;
@@ -873,38 +1021,107 @@ export default class Tokenizer {
         this.cbs.onend();
     }
 
+    private handleTrailingCommentLikeData(endIndex: number): boolean {
+        if (this.state !== State.InCommentLike) {
+            return false;
+        }
+
+        if (this.currentSequence === Sequences.CdataEnd) {
+            if (this.xmlMode) {
+                if (this.sectionStart < endIndex) {
+                    this.cbs.oncdata(this.sectionStart, endIndex, 0);
+                }
+            } else {
+                /* In HTML mode, unclosed CDATA is a bogus comment. */
+                const cdataStart =
+                    this.sectionStart - Sequences.Cdata.length - 1;
+                this.cbs.oncomment(cdataStart, endIndex, 0);
+            }
+        } else {
+            const offset = this.xmlMode
+                ? 0
+                : Math.min(this.sequenceIndex, Sequences.CommentEnd.length - 1);
+            this.cbs.oncomment(this.sectionStart, endIndex, offset);
+        }
+
+        return true;
+    }
+
+    private handleTrailingMarkupDeclaration(endIndex: number): boolean {
+        if (this.xmlMode) {
+            switch (this.state) {
+                case State.InSpecialComment:
+                case State.BeforeComment:
+                case State.CDATASequence:
+                case State.DeclarationSequence:
+                case State.InDeclaration: {
+                    this.cbs.ontext(this.sectionStart, endIndex);
+                    return true;
+                }
+                default: {
+                    return false;
+                }
+            }
+        }
+
+        switch (this.state) {
+            case State.BeforeDeclaration:
+            case State.InSpecialComment:
+            case State.BeforeComment:
+            case State.CDATASequence: {
+                this.cbs.oncomment(this.sectionStart, endIndex, 0);
+                return true;
+            }
+            case State.DeclarationSequence: {
+                if (this.sequenceIndex !== Sequences.Doctype.length) {
+                    this.cbs.oncomment(this.sectionStart, endIndex, 0);
+                }
+                return true;
+            }
+            case State.InDeclaration: {
+                return true;
+            }
+            default: {
+                return false;
+            }
+        }
+    }
+
     /** Handle any trailing data. */
     private handleTrailingData() {
         const endIndex = this.buffer.length + this.offset;
+
+        if (
+            this.handleTrailingCommentLikeData(endIndex) ||
+            this.handleTrailingMarkupDeclaration(endIndex)
+        ) {
+            return;
+        }
 
         // If there is no remaining data, we are done.
         if (this.sectionStart >= endIndex) {
             return;
         }
 
-        if (this.state === State.InCommentLike) {
-            if (this.currentSequence === Sequences.CdataEnd) {
-                this.cbs.oncdata(this.sectionStart, endIndex, 0);
-            } else {
-                this.cbs.oncomment(this.sectionStart, endIndex, 0);
+        switch (this.state) {
+            case State.InTagName:
+            case State.BeforeAttributeName:
+            case State.BeforeAttributeValue:
+            case State.AfterAttributeName:
+            case State.InAttributeName:
+            case State.InAttributeValueSq:
+            case State.InAttributeValueDq:
+            case State.InAttributeValueNq:
+            case State.InClosingTagName: {
+                /*
+                 * If we are currently in an opening or closing tag, us not calling the
+                 * respective callback signals that the tag should be ignored.
+                 */
+                break;
             }
-        } else if (
-            this.state === State.InTagName ||
-            this.state === State.BeforeAttributeName ||
-            this.state === State.BeforeAttributeValue ||
-            this.state === State.AfterAttributeName ||
-            this.state === State.InAttributeName ||
-            this.state === State.InAttributeValueSq ||
-            this.state === State.InAttributeValueDq ||
-            this.state === State.InAttributeValueNq ||
-            this.state === State.InClosingTagName
-        ) {
-            /*
-             * If we are currently in an opening or closing tag, us not calling the
-             * respective callback signals that the tag should be ignored.
-             */
-        } else {
-            this.cbs.ontext(this.sectionStart, endIndex);
+            default: {
+                this.cbs.ontext(this.sectionStart, endIndex);
+            }
         }
     }
 

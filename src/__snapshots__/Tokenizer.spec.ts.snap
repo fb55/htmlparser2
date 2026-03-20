@@ -325,6 +325,25 @@ exports[`Tokenizer > should correctly mark attributes > for single quotes attrib
 ]
 `;
 
+exports[`Tokenizer > should handle abruptly closed comments 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    5,
+    1,
+  ],
+  [
+    "ontext",
+    6,
+    10,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should handle entities > for XML entities 1`] = `
 [
   [
@@ -475,6 +494,212 @@ exports[`Tokenizer > should handle entities > for trailing legacy entity 1`] = `
 ]
 `;
 
+exports[`Tokenizer > should ignore empty closing tags 1`] = `
+[
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing iframe tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    7,
+  ],
+  [
+    "onselfclosingtag",
+    9,
+  ],
+  [
+    "ontext",
+    10,
+    21,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing noembed tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    8,
+  ],
+  [
+    "onselfclosingtag",
+    10,
+  ],
+  [
+    "ontext",
+    11,
+    22,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing noframes tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onselfclosingtag",
+    11,
+  ],
+  [
+    "ontext",
+    12,
+    23,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing plaintext tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    10,
+  ],
+  [
+    "onselfclosingtag",
+    12,
+  ],
+  [
+    "ontext",
+    13,
+    24,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing script tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    7,
+  ],
+  [
+    "onselfclosingtag",
+    9,
+  ],
+  [
+    "ontext",
+    10,
+    21,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing style tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onselfclosingtag",
+    8,
+  ],
+  [
+    "ontext",
+    9,
+    20,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing textarea tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onselfclosingtag",
+    11,
+  ],
+  [
+    "ontext",
+    12,
+    23,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing title tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onselfclosingtag",
+    8,
+  ],
+  [
+    "ontext",
+    9,
+    20,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should ignore self-closing slash in text-only HTML tags > for self-closing xmp tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    4,
+  ],
+  [
+    "onselfclosingtag",
+    6,
+  ],
+  [
+    "ontext",
+    7,
+    18,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should not break after special tag followed by an entity > for normal special tag 1`] = `
 [
   [
@@ -516,7 +741,7 @@ exports[`Tokenizer > should not break after special tag followed by an entity > 
 ]
 `;
 
-exports[`Tokenizer > should not break after special tag followed by an entity > for self-closing special tag 1`] = `
+exports[`Tokenizer > should not break after special tag followed by an entity > for recognized self-closing special tag 1`] = `
 [
   [
     "onopentagname",
@@ -540,6 +765,28 @@ exports[`Tokenizer > should not break after special tag followed by an entity > 
   [
     "onselfclosingtag",
     19,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should not break after special tag followed by an entity > for self-closing special tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    6,
+  ],
+  [
+    "onselfclosingtag",
+    8,
+  ],
+  [
+    "ontext",
+    9,
+    20,
   ],
   [
     "onend",
@@ -624,161 +871,6 @@ exports[`Tokenizer > should not treat <!-->  as a complete comment in xmlMode 1`
     "onclosetag",
     77,
     81,
-  ],
-  [
-    "onend",
-  ],
-]
-`;
-
-exports[`Tokenizer > should support self-closing special tags > for self-closing script tag 1`] = `
-[
-  [
-    "onopentagname",
-    1,
-    7,
-  ],
-  [
-    "onselfclosingtag",
-    9,
-  ],
-  [
-    "onopentagname",
-    11,
-    14,
-  ],
-  [
-    "onopentagend",
-    14,
-  ],
-  [
-    "onclosetag",
-    17,
-    20,
-  ],
-  [
-    "onend",
-  ],
-]
-`;
-
-exports[`Tokenizer > should support self-closing special tags > for self-closing style tag 1`] = `
-[
-  [
-    "onopentagname",
-    1,
-    6,
-  ],
-  [
-    "onselfclosingtag",
-    8,
-  ],
-  [
-    "onopentagname",
-    10,
-    13,
-  ],
-  [
-    "onopentagend",
-    13,
-  ],
-  [
-    "onclosetag",
-    16,
-    19,
-  ],
-  [
-    "onend",
-  ],
-]
-`;
-
-exports[`Tokenizer > should support self-closing special tags > for self-closing textarea tag 1`] = `
-[
-  [
-    "onopentagname",
-    1,
-    9,
-  ],
-  [
-    "onselfclosingtag",
-    11,
-  ],
-  [
-    "onopentagname",
-    13,
-    16,
-  ],
-  [
-    "onopentagend",
-    16,
-  ],
-  [
-    "onclosetag",
-    19,
-    22,
-  ],
-  [
-    "onend",
-  ],
-]
-`;
-
-exports[`Tokenizer > should support self-closing special tags > for self-closing title tag 1`] = `
-[
-  [
-    "onopentagname",
-    1,
-    6,
-  ],
-  [
-    "onselfclosingtag",
-    8,
-  ],
-  [
-    "onopentagname",
-    10,
-    13,
-  ],
-  [
-    "onopentagend",
-    13,
-  ],
-  [
-    "onclosetag",
-    16,
-    19,
-  ],
-  [
-    "onend",
-  ],
-]
-`;
-
-exports[`Tokenizer > should support self-closing special tags > for self-closing xmp tag 1`] = `
-[
-  [
-    "onopentagname",
-    1,
-    4,
-  ],
-  [
-    "onselfclosingtag",
-    6,
-  ],
-  [
-    "onopentagname",
-    8,
-    11,
-  ],
-  [
-    "onopentagend",
-    11,
-  ],
-  [
-    "onclosetag",
-    14,
-    17,
   ],
   [
     "onend",
@@ -979,6 +1071,148 @@ exports[`Tokenizer > should terminate XML processing instructions on ?> 1`] = `
 ]
 `;
 
+exports[`Tokenizer > should treat <!> as a bogus comment 1`] = `
+[
+  [
+    "oncomment",
+    2,
+    2,
+    0,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat <!-> as a bogus comment 1`] = `
+[
+  [
+    "oncomment",
+    2,
+    3,
+    0,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat <!DOCTYPEhtml> as a declaration 1`] = `
+[
+  [
+    "ondeclaration",
+    2,
+    13,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat <? and <! as bogus comments in HTML 1`] = `
+[
+  [
+    "oncomment",
+    1,
+    5,
+    0,
+  ],
+  [
+    "oncomment",
+    8,
+    11,
+    0,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat html inside raw-text tags as text > for div inside iframe tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    7,
+  ],
+  [
+    "onopentagend",
+    7,
+  ],
+  [
+    "ontext",
+    8,
+    24,
+  ],
+  [
+    "onclosetag",
+    26,
+    32,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat html inside raw-text tags as text > for div inside noembed tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    8,
+  ],
+  [
+    "onopentagend",
+    8,
+  ],
+  [
+    "ontext",
+    9,
+    25,
+  ],
+  [
+    "onclosetag",
+    27,
+    34,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should treat html inside raw-text tags as text > for div inside noframes tag 1`] = `
+[
+  [
+    "onopentagname",
+    1,
+    9,
+  ],
+  [
+    "onopentagend",
+    9,
+  ],
+  [
+    "ontext",
+    10,
+    26,
+  ],
+  [
+    "onclosetag",
+    28,
+    36,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
 exports[`Tokenizer > should treat html inside special tags as text > for div inside script tag 1`] = `
 [
   [
@@ -1107,6 +1341,90 @@ exports[`Tokenizer > should treat html inside special tags as text > for div ins
     "onclosetag",
     18,
     21,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should trim unfinished HTML comment closes at EOF for <!-- 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    4,
+    0,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should trim unfinished HTML comment closes at EOF for <!--- 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    5,
+    1,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should trim unfinished HTML comment closes at EOF for <!---- 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    6,
+    2,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should trim unfinished HTML comment closes at EOF for <!--a- 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    6,
+    1,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should trim unfinished HTML comment closes at EOF for <!--a-- 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    7,
+    2,
+  ],
+  [
+    "onend",
+  ],
+]
+`;
+
+exports[`Tokenizer > should trim unfinished HTML comment closes at EOF for <!--a--! 1`] = `
+[
+  [
+    "oncomment",
+    4,
+    8,
+    3,
   ],
   [
     "onend",

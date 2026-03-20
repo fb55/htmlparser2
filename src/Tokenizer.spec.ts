@@ -10,9 +10,12 @@ function tokenize(
     const tokenizer = new Tokenizer(
         options,
         new Proxy(
-            {},
+            { isInForeignContext: () => false },
             {
-                get(_, property) {
+                get(target, property) {
+                    if (property === "isInForeignContext") {
+                        return target.isInForeignContext;
+                    }
                     return (...values: unknown[]) =>
                         log.push([property, ...values]);
                 },
@@ -31,7 +34,7 @@ function tokenize(
 }
 
 describe("Tokenizer", () => {
-    describe("should support self-closing special tags", () => {
+    describe("should ignore self-closing slash in text-only HTML tags", () => {
         it("for self-closing script tag", () => {
             expect(tokenize("<script /><div></div>")).toMatchSnapshot();
         });
@@ -46,6 +49,18 @@ describe("Tokenizer", () => {
         });
         it("for self-closing xmp tag", () => {
             expect(tokenize("<xmp /><div></div>")).toMatchSnapshot();
+        });
+        it("for self-closing plaintext tag", () => {
+            expect(tokenize("<plaintext /><div></div>")).toMatchSnapshot();
+        });
+        it("for self-closing iframe tag", () => {
+            expect(tokenize("<iframe /><div></div>")).toMatchSnapshot();
+        });
+        it("for self-closing noembed tag", () => {
+            expect(tokenize("<noembed /><div></div>")).toMatchSnapshot();
+        });
+        it("for self-closing noframes tag", () => {
+            expect(tokenize("<noframes /><div></div>")).toMatchSnapshot();
         });
     });
 
@@ -89,6 +104,24 @@ describe("Tokenizer", () => {
         });
     });
 
+    describe("should treat html inside raw-text tags as text", () => {
+        it("for div inside iframe tag", () => {
+            expect(
+                tokenize("<iframe>&amp;<div></div></iframe>"),
+            ).toMatchSnapshot();
+        });
+        it("for div inside noembed tag", () => {
+            expect(
+                tokenize("<noembed>&amp;<div></div></noembed>"),
+            ).toMatchSnapshot();
+        });
+        it("for div inside noframes tag", () => {
+            expect(
+                tokenize("<noframes>&amp;<div></div></noframes>"),
+            ).toMatchSnapshot();
+        });
+    });
+
     describe("should close special tags on end tags ending with />", () => {
         it("for script tag", () => {
             expect(tokenize("<script>safe</script/><img>")).toMatchSnapshot();
@@ -128,6 +161,13 @@ describe("Tokenizer", () => {
         it("for self-closing special tag", () => {
             expect(tokenize("<style />&apos;<br/>")).toMatchSnapshot();
         });
+        it("for recognized self-closing special tag", () => {
+            expect(
+                tokenize("<style />&apos;<br/>", {
+                    recognizeSelfClosing: true,
+                }),
+            ).toMatchSnapshot();
+        });
     });
 
     describe("should handle entities", () => {
@@ -156,6 +196,37 @@ describe("Tokenizer", () => {
         expect(
             tokenize("<!-- --!><img src=x onerror=alert(1)>-->"),
         ).toMatchSnapshot();
+    });
+
+    it("should handle abruptly closed comments", () => {
+        expect(tokenize("<!--->text")).toMatchSnapshot();
+    });
+
+    it.each(["<!>", "<!->"])("should treat %s as a bogus comment", (input) => {
+        expect(tokenize(input)).toMatchSnapshot();
+    });
+
+    it.each([
+        "<!--",
+        "<!---",
+        "<!----",
+        "<!--a-",
+        "<!--a--",
+        "<!--a--!",
+    ])("should trim unfinished HTML comment closes at EOF for %s", (input) => {
+        expect(tokenize(input)).toMatchSnapshot();
+    });
+
+    it("should treat <? and <! as bogus comments in HTML", () => {
+        expect(tokenize("<?foo><!foo>")).toMatchSnapshot();
+    });
+
+    it("should ignore empty closing tags", () => {
+        expect(tokenize("</>")).toMatchSnapshot();
+    });
+
+    it("should treat <!DOCTYPEhtml> as a declaration", () => {
+        expect(tokenize("<!DOCTYPEhtml>")).toMatchSnapshot();
     });
 
     it("should not treat <!-->  as a complete comment in xmlMode", () => {
@@ -202,9 +273,12 @@ describe("Tokenizer", () => {
         const tokenizer = new Tokenizer(
             {},
             new Proxy(
-                {},
+                { isInForeignContext: () => false },
                 {
-                    get(_, property) {
+                    get(target, property) {
+                        if (property === "isInForeignContext") {
+                            return target.isInForeignContext;
+                        }
                         return (...values: unknown[]) => {
                             if (property === "ontext") {
                                 tokenizer.pause();
