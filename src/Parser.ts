@@ -405,11 +405,7 @@ export class Parser implements Callbacks {
 
         if (impliesClose) {
             while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
-                const element = this.stack.shift();
-                if (element === undefined) {
-                    break;
-                }
-                this.cbs.onclosetag?.(element, true);
+                this.popElement(true);
             }
         }
         if (!this.isVoidElement(name)) {
@@ -705,6 +701,7 @@ export class Parser implements Callbacks {
         this.tokenizer.reset();
         this.tagname = "";
         this.attribname = "";
+        this.attribvalue = "";
         this.attribs = null;
         this.stack.length = 0;
         this.startIndex = 0;

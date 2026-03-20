@@ -207,7 +207,7 @@ export default class Tokenizer {
         {
             xmlMode = false,
             decodeEntities = true,
-            recognizeSelfClosing = false,
+            recognizeSelfClosing = xmlMode,
         }: {
             xmlMode?: boolean;
             decodeEntities?: boolean;
@@ -513,7 +513,7 @@ export default class Tokenizer {
                     this.startEntity();
                 }
             } else if (this.fastForwardTo(CharCodes.Lt)) {
-                // Outside of <title> tags, we can fast-forward.
+                // Outside of RCDATA tags, we can fast-forward.
                 this.sequenceIndex = 1;
             }
         } else {
@@ -627,7 +627,7 @@ export default class Tokenizer {
             this.cbs.onselfclosingtag(this.index);
             this.sectionStart = this.index + 1;
 
-            if (!(this.xmlMode || this.recognizeSelfClosing)) {
+            if (!this.recognizeSelfClosing) {
                 this.enterTagBody();
                 return;
             }
