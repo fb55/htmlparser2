@@ -199,17 +199,21 @@ describe("Events", () => {
         runTest("<svg><foreignObject><b>x</b></foreignObject></svg>"));
 
     it("SVG integration point closing with unclosed child", () =>
-        runTest(
-            "<svg><foreignObject><div>x</foreignObject></svg>after",
-        ));
+        runTest("<svg><foreignObject><div>x</foreignObject></svg>after"));
 
     it("Content after SVG integration point", () =>
-        runTest(
-            "<svg><foreignObject><b>x</b></foreignObject><rect/></svg>",
-        ));
+        runTest("<svg><foreignObject><b>x</b></foreignObject><rect/></svg>"));
 
     it("Stray </svg> does not break foreign context", () =>
         runTest("</svg><script><b>not a tag</b></script>"));
+
+    it("Implicit close of nested foreign elements", () =>
+        runTest("<svg><math><mi>text</svg><script><b>x</b></script>"));
+
+    it("Self-closing foreign element with recognizeSelfClosing", () =>
+        runTest("<svg/><script><b>x</b></script>", {
+            recognizeSelfClosing: true,
+        }));
 
     it("HTML image alias", () => runTest("<image></image>"));
 

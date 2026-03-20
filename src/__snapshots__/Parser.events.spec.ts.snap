@@ -962,6 +962,135 @@ exports[`Events > HTML image alias 1`] = `
 ]
 `;
 
+exports[`Events > Implicit close of nested foreign elements 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "math",
+    ],
+    "endIndex": 10,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "math",
+      {},
+      false,
+    ],
+    "endIndex": 10,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "mi",
+    ],
+    "endIndex": 14,
+    "startIndex": 11,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "mi",
+      {},
+      false,
+    ],
+    "endIndex": 14,
+    "startIndex": 11,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "text",
+    ],
+    "endIndex": 18,
+    "startIndex": 15,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "mi",
+      true,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "math",
+      true,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      false,
+    ],
+    "endIndex": 24,
+    "startIndex": 19,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "script",
+    ],
+    "endIndex": 32,
+    "startIndex": 25,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "script",
+      {},
+      false,
+    ],
+    "endIndex": 32,
+    "startIndex": 25,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "<b>x</b>",
+    ],
+    "endIndex": 40,
+    "startIndex": 33,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "script",
+      false,
+    ],
+    "endIndex": 49,
+    "startIndex": 41,
+  },
+]
+`;
+
 exports[`Events > Implicit close tags 1`] = `
 [
   {
@@ -2634,6 +2763,73 @@ exports[`Events > Scripts ending with < 1`] = `
     ],
     "endIndex": 17,
     "startIndex": 9,
+  },
+]
+`;
+
+exports[`Events > Self-closing foreign element with recognizeSelfClosing 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 5,
+    "startIndex": 0,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      true,
+    ],
+    "endIndex": 5,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "script",
+    ],
+    "endIndex": 13,
+    "startIndex": 6,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "script",
+      {},
+      false,
+    ],
+    "endIndex": 13,
+    "startIndex": 6,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "<b>x</b>",
+    ],
+    "endIndex": 21,
+    "startIndex": 14,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "script",
+      false,
+    ],
+    "endIndex": 30,
+    "startIndex": 22,
   },
 ]
 `;

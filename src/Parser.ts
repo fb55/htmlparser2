@@ -467,22 +467,10 @@ export class Parser implements Callbacks {
         if (!this.isVoidElement(name)) {
             const pos = this.stack.indexOf(name);
             if (pos !== -1) {
-                // Only shift foreignContext when the element is actually on
-                // the stack — a stray </svg> must not underflow the stack.
-                if (
-                    this.htmlMode &&
-                    (foreignContextElements.has(name) ||
-                        htmlIntegrationElements.has(name))
-                ) {
-                    this.foreignContext.shift();
+                for (let index = 0; index < pos; index++) {
+                    this.popElement(true);
                 }
-                for (let index = 0; index <= pos; index++) {
-                    const element = this.stack.shift();
-                    if (element === undefined) {
-                        break;
-                    }
-                    this.cbs.onclosetag?.(element, index !== pos);
-                }
+                this.popElement(false);
             } else if (this.htmlMode && name === "p") {
                 // Implicit open before close
                 this.emitOpenTag("p");
@@ -516,15 +504,31 @@ export class Parser implements Callbacks {
         }
     }
 
+    /**
+     * Pop the top element off the stack, emit a close event, and maintain
+     * the foreign context stack.
+     * @param implied Whether this close is implied (not from an explicit end tag).
+     */
+    private popElement(implied: boolean): void {
+        // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
+        const element = this.stack.shift()!;
+        if (
+            this.htmlMode &&
+            (foreignContextElements.has(element) ||
+                htmlIntegrationElements.has(element))
+        ) {
+            this.foreignContext.shift();
+        }
+        this.cbs.onclosetag?.(element, implied);
+    }
+
     private closeCurrentTag(isOpenImplied: boolean) {
         const name = this.tagname;
         this.endOpenTag(isOpenImplied);
 
         // Self-closing tags will be on the top of the stack
         if (this.stack[0] === name) {
-            // If the opening tag isn't implied, the closing tag has to be implied.
-            this.cbs.onclosetag?.(name, !isOpenImplied);
-            this.stack.shift();
+            this.popElement(!isOpenImplied);
         }
     }
 

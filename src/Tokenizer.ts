@@ -899,6 +899,8 @@ export default class Tokenizer {
                     break;
                 }
                 case State.InPlainText: {
+                    // Skip to end of buffer; cleanup() emits the text.
+                    this.index = this.buffer.length + this.offset - 1;
                     break;
                 }
                 case State.SpecialStartSequence: {
