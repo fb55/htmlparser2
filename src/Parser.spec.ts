@@ -179,6 +179,43 @@ describe("API", () => {
         p.write("<__proto__>");
     });
 
+    it("should implicitly close table sections when another section opens", () => {
+        const onopentagname = vi.fn();
+        const onclosetag = vi.fn();
+
+        // <tbody> must auto-close <tfoot>
+        new Parser({ onopentagname, onclosetag }).end(
+            "<table><tfoot><tr><td>F<tbody><tr><td>B</table>",
+        );
+
+        expect(onclosetag).toHaveBeenCalledWith("tfoot", true);
+        const tfootClose = onclosetag.mock.calls.findIndex(
+            ([name]: [string]) => name === "tfoot",
+        );
+        const tbodyOpen = onopentagname.mock.calls.findIndex(
+            ([name]: [string]) => name === "tbody",
+        );
+        expect(tfootClose).toBeLessThan(tbodyOpen);
+    });
+
+    it("should implicitly close <tbody> when <thead> opens", () => {
+        const onopentagname = vi.fn();
+        const onclosetag = vi.fn();
+
+        new Parser({ onopentagname, onclosetag }).end(
+            "<table><tbody><tr><td>B<thead><tr><th>H</table>",
+        );
+
+        expect(onclosetag).toHaveBeenCalledWith("tbody", true);
+        const tbodyClose = onclosetag.mock.calls.findIndex(
+            ([name]: [string]) => name === "tbody",
+        );
+        const theadOpen = onopentagname.mock.calls.findIndex(
+            ([name]: [string]) => name === "thead",
+        );
+        expect(tbodyClose).toBeLessThan(theadOpen);
+    });
+
     it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 

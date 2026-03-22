@@ -13,7 +13,7 @@ const formTags = new Set([
 ]);
 const pTag = new Set(["p"]);
 const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6", "p"]);
-const tableSectionTags = new Set(["thead", "tbody"]);
+const tableSectionTags = new Set(["thead", "tbody", "tfoot", "tr", "td", "th"]);
 const ddtTags = new Set(["dd", "dt"]);
 const rtpTags = new Set(["rt", "rp"]);
 
@@ -64,6 +64,7 @@ const openImpliesClose = new Map<string, Set<string>>([
     ["ul", pTag],
     ["rt", rtpTags],
     ["rp", rtpTags],
+    ["thead", tableSectionTags],
     ["tbody", tableSectionTags],
     ["tfoot", tableSectionTags],
 ]);
