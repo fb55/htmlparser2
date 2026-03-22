@@ -179,6 +179,25 @@ describe("API", () => {
         p.write("<__proto__>");
     });
 
+    it("should implicitly close <td> when <th> opens", () => {
+        const onclosetag = vi.fn();
+        const onopentagname = vi.fn();
+
+        new Parser({ onclosetag, onopentagname }).end(
+            "<table><tr><td>A<th>B</tr></table>",
+        );
+
+        // <th> must auto-close <td>, making them siblings per the HTML spec
+        expect(onclosetag).toHaveBeenCalledWith("td", true);
+        const tdClose = onclosetag.mock.calls.findIndex(
+            ([name]: [string]) => name === "td",
+        );
+        const thOpen = onopentagname.mock.calls.findIndex(
+            ([name]: [string]) => name === "th",
+        );
+        expect(tdClose).toBeLessThan(thOpen);
+    });
+
     it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 

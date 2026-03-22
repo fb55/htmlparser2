@@ -19,7 +19,7 @@ const rtpTags = new Set(["rt", "rp"]);
 
 const openImpliesClose = new Map<string, Set<string>>([
     ["tr", new Set(["tr", "th", "td"])],
-    ["th", new Set(["th"])],
+    ["th", new Set(["th", "td"])],
     ["td", new Set(["thead", "th", "td"])],
     ["body", new Set(["head", "link", "script"])],
     ["a", new Set(["a"])],
