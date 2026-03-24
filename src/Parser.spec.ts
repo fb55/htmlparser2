@@ -190,10 +190,10 @@ describe("API", () => {
 
         expect(onclosetag).toHaveBeenCalledWith("tfoot", true);
         const tfootClose = onclosetag.mock.calls.findIndex(
-            ([name]: [string]) => name === "tfoot",
+            ([name]) => name === "tfoot",
         );
         const tbodyOpen = onopentagname.mock.calls.findIndex(
-            ([name]: [string]) => name === "tbody",
+            ([name]) => name === "tbody",
         );
         expect(tfootClose).toBeLessThan(tbodyOpen);
     });
@@ -208,10 +208,10 @@ describe("API", () => {
 
         expect(onclosetag).toHaveBeenCalledWith("tbody", true);
         const tbodyClose = onclosetag.mock.calls.findIndex(
-            ([name]: [string]) => name === "tbody",
+            ([name]) => name === "tbody",
         );
         const theadOpen = onopentagname.mock.calls.findIndex(
-            ([name]: [string]) => name === "thead",
+            ([name]) => name === "thead",
         );
         expect(tbodyClose).toBeLessThan(theadOpen);
     });
@@ -227,10 +227,10 @@ describe("API", () => {
         // <th> must auto-close <td>, making them siblings per the HTML spec
         expect(onclosetag).toHaveBeenCalledWith("td", true);
         const tdClose = onclosetag.mock.calls.findIndex(
-            ([name]: [string]) => name === "td",
+            ([name]) => name === "td",
         );
         const thOpen = onopentagname.mock.calls.findIndex(
-            ([name]: [string]) => name === "th",
+            ([name]) => name === "th",
         );
         expect(tdClose).toBeLessThan(thOpen);
     });
