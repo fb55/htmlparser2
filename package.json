@@ -59,7 +59,7 @@
         "lint": "npm run lint:es && npm run lint:ts && npm run lint:biome",
         "lint:biome": "biome check .",
         "lint:es": "eslint .",
-        "lint:ts": "tsc --noEmit",
+        "lint:ts": "tsc --noEmit -p tsconfig.eslint.json",
         "prepublishOnly": "npm run build",
         "test": "npm run test:vi && npm run lint",
         "test:vi": "vitest run"
