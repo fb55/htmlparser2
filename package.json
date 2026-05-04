@@ -72,7 +72,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.8",
-        "@feedic/eslint-config": "^0.3.1",
+        "@feedic/eslint-config": "^0.4.1",
         "@types/node": "^25.5.0",
         "eslint": "^10.0.3",
         "eslint-config-biome": "^2.1.3",
