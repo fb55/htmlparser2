@@ -179,6 +179,43 @@ describe("API", () => {
         p.write("<__proto__>");
     });
 
+    it("should implicitly close table sections when another section opens", () => {
+        const onopentagname = vi.fn();
+        const onclosetag = vi.fn();
+
+        // <tbody> must auto-close <tfoot>
+        new Parser({ onopentagname, onclosetag }).end(
+            "<table><tfoot><tr><td>F<tbody><tr><td>B</table>",
+        );
+
+        expect(onclosetag).toHaveBeenCalledWith("tfoot", true);
+        const tfootClose = onclosetag.mock.calls.findIndex(
+            ([name]) => name === "tfoot",
+        );
+        const tbodyOpen = onopentagname.mock.calls.findIndex(
+            ([name]) => name === "tbody",
+        );
+        expect(tfootClose).toBeLessThan(tbodyOpen);
+    });
+
+    it("should implicitly close <tbody> when <thead> opens", () => {
+        const onopentagname = vi.fn();
+        const onclosetag = vi.fn();
+
+        new Parser({ onopentagname, onclosetag }).end(
+            "<table><tbody><tr><td>B<thead><tr><th>H</table>",
+        );
+
+        expect(onclosetag).toHaveBeenCalledWith("tbody", true);
+        const tbodyClose = onclosetag.mock.calls.findIndex(
+            ([name]) => name === "tbody",
+        );
+        const theadOpen = onopentagname.mock.calls.findIndex(
+            ([name]) => name === "thead",
+        );
+        expect(tbodyClose).toBeLessThan(theadOpen);
+    });
+
     it("should implicitly close <td> when <th> opens", () => {
         const onclosetag = vi.fn();
         const onopentagname = vi.fn();
@@ -190,10 +227,10 @@ describe("API", () => {
         // <th> must auto-close <td>, making them siblings per the HTML spec
         expect(onclosetag).toHaveBeenCalledWith("td", true);
         const tdClose = onclosetag.mock.calls.findIndex(
-            ([name]: [string]) => name === "td",
+            ([name]) => name === "td",
         );
         const thOpen = onopentagname.mock.calls.findIndex(
-            ([name]: [string]) => name === "th",
+            ([name]) => name === "th",
         );
         expect(tdClose).toBeLessThan(thOpen);
     });
