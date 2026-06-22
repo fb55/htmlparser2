@@ -14,7 +14,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git://github.com/fb55/htmlparser2.git"
+        "url": "https://github.com/fb55/htmlparser2.git"
     },
     "funding": [
         "https://github.com/fb55/htmlparser2?sponsor=1",
