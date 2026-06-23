@@ -8,6 +8,8 @@
         "declarationMap": true,
         "sourceMap": true,
         "outDir": "dist",
+        "rootDir": "src",
+        "types": ["node"],
 
         /* Strict Type-Checking Options */
         "strict": true,
