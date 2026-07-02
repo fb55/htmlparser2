@@ -292,7 +292,6 @@ export class Parser implements Callbacks {
     private readonly recognizeSelfClosing: boolean;
     /** We are parsing HTML. Inverse of the `xmlMode` option. */
     private readonly htmlMode: boolean;
-    private readonly openImpliesClose: boolean;
     /** Whether implicit open/close logic is active (requires HTML mode + openImpliesClose option). */
     private readonly impliesCloseEnabled: boolean;
     private readonly tokenizer: Tokenizer;
@@ -310,8 +309,7 @@ export class Parser implements Callbacks {
     ) {
         this.cbs = cbs ?? {};
         this.htmlMode = !this.options.xmlMode;
-        this.openImpliesClose = options.openImpliesClose ?? this.htmlMode;
-        this.impliesCloseEnabled = this.htmlMode && this.openImpliesClose;
+        this.impliesCloseEnabled = this.htmlMode && (options.openImpliesClose ?? this.htmlMode);
         this.lowerCaseTagNames = options.lowerCaseTags ?? this.htmlMode;
         this.lowerCaseAttributeNames =
             options.lowerCaseAttributeNames ?? this.htmlMode;
