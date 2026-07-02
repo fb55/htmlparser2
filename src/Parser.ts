@@ -17,7 +17,7 @@ const tableSectionTags = new Set(["thead", "tbody", "tfoot", "tr", "td", "th"]);
 const ddtTags = new Set(["dd", "dt"]);
 const rtpTags = new Set(["rt", "rp"]);
 
-const openImpliesClose = new Map<string, Set<string>>([
+const impliesCloseMap = new Map<string, Set<string>>([
     ["tr", new Set(["tr", "th", "td"])],
     ["th", new Set(["th", "td"])],
     ["td", new Set(["thead", "th", "td"])],
@@ -427,7 +427,7 @@ export class Parser implements Callbacks {
             return;
         }
 
-        const impliesClose = this.htmlMode && this.openImpliesClose && openImpliesClose.get(name);
+        const impliesClose = this.htmlMode && this.openImpliesClose && impliesCloseMap.get(name);
 
         if (impliesClose) {
             while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
