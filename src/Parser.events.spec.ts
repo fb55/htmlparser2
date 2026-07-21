@@ -301,6 +301,15 @@ describe("Events", () => {
             '<Page\n    title="Hello world"\n    actionBarVisible="false"/>',
             { xmlMode: true },
         ));
+
+    it("openImpliesClose=false: no implicit close via map", () =>
+        runTest("<p>first<p>second</p></p>", { openImpliesClose: false }));
+
+    it("openImpliesClose=false: no implicit p open before close", () =>
+        runTest("<div>text</p></div>", { openImpliesClose: false }));
+
+    it("openImpliesClose=false: no implicit br open before close", () =>
+        runTest("<div>text</br></div>", { openImpliesClose: false }));
 });
 
 describe("Helper", () => {
