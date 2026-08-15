@@ -215,6 +215,15 @@ describe("Events", () => {
             recognizeSelfClosing: true,
         }));
 
+    it("Self-closing SVG integration point acknowledges the slash", () =>
+        runTest("<svg><foreignObject/>x</svg>"));
+
+    it("Self-closing SVG title acknowledges the slash", () =>
+        runTest("<svg><title/>x</svg>"));
+
+    it("Self-closing MathML integration point acknowledges the slash", () =>
+        runTest("<math><mi/>x</math>"));
+
     it("HTML image alias", () => runTest("<image></image>"));
 
     it("SVG image is not aliased", () => runTest("<svg><image></image></svg>"));

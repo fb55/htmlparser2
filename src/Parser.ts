@@ -339,6 +339,25 @@ export class Parser implements Callbacks {
     }
 
     /**
+     * Whether the element currently being opened is a foreign (SVG/MathML)
+     * element. Foreign elements acknowledge the self-closing flag even in HTML
+     * mode.
+     *
+     * HTML integration points (e.g. `<foreignObject>`, or `<title>` inside
+     * `<svg>`) switch their *children* back to the HTML context, so
+     * `isInForeignContext()` reports `false` for them even though the element
+     * itself is foreign. For those, check the enclosing context instead.
+     */
+    private currentTagIsForeign(): boolean {
+        return (
+            this.isInForeignContext() ||
+            (this.htmlMode &&
+                htmlIntegrationElements.has(this.tagname) &&
+                this.foreignContext[1] !== ForeignContext.None)
+        );
+    }
+
+    /**
      * Checks if the current tag is a void element. Override this if you want
      * to specify your own additional void elements.
      * @param name Name of the pseudo selector.
@@ -503,7 +522,7 @@ export class Parser implements Callbacks {
      */
     onselfclosingtag(endIndex: number): void {
         this.endIndex = endIndex;
-        if (this.recognizeSelfClosing || this.isInForeignContext()) {
+        if (this.recognizeSelfClosing || this.currentTagIsForeign()) {
             this.closeCurrentTag(false);
 
             // Set `startIndex` for next node
