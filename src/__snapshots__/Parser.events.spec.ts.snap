@@ -2767,6 +2767,167 @@ exports[`Events > Scripts ending with < 1`] = `
 ]
 `;
 
+exports[`Events > Self-closing HTML descendant of an integration point ignores the slash 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "foreignObject",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "foreignObject",
+      {},
+      false,
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "title",
+    ],
+    "endIndex": 26,
+    "startIndex": 20,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "title",
+      {},
+      false,
+    ],
+    "endIndex": 27,
+    "startIndex": 20,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x</foreignObject></svg>",
+    ],
+    "endIndex": 50,
+    "startIndex": 28,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "title",
+      true,
+    ],
+    "endIndex": 51,
+    "startIndex": 51,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "foreignObject",
+      true,
+    ],
+    "endIndex": 51,
+    "startIndex": 51,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      true,
+    ],
+    "endIndex": 51,
+    "startIndex": 51,
+  },
+]
+`;
+
+exports[`Events > Self-closing MathML annotation-xml acknowledges the slash 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "math",
+    ],
+    "endIndex": 5,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "math",
+      {},
+      false,
+    ],
+    "endIndex": 5,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "annotation-xml",
+    ],
+    "endIndex": 21,
+    "startIndex": 6,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "annotation-xml",
+      {},
+      false,
+    ],
+    "endIndex": 22,
+    "startIndex": 6,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "annotation-xml",
+      true,
+    ],
+    "endIndex": 22,
+    "startIndex": 6,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x",
+    ],
+    "endIndex": 23,
+    "startIndex": 23,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "math",
+      false,
+    ],
+    "endIndex": 30,
+    "startIndex": 24,
+  },
+]
+`;
+
 exports[`Events > Self-closing MathML integration point acknowledges the slash 1`] = `
 [
   {
@@ -2830,6 +2991,73 @@ exports[`Events > Self-closing MathML integration point acknowledges the slash 1
     ],
     "endIndex": 18,
     "startIndex": 12,
+  },
+]
+`;
+
+exports[`Events > Self-closing SVG desc acknowledges the slash 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "desc",
+    ],
+    "endIndex": 10,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "desc",
+      {},
+      false,
+    ],
+    "endIndex": 11,
+    "startIndex": 5,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "desc",
+      true,
+    ],
+    "endIndex": 11,
+    "startIndex": 5,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x",
+    ],
+    "endIndex": 12,
+    "startIndex": 12,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      false,
+    ],
+    "endIndex": 18,
+    "startIndex": 13,
   },
 ]
 `;
