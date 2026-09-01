@@ -201,6 +201,7 @@ export default class Tokenizer {
     private readonly xmlMode: boolean;
     private readonly decodeEntities: boolean;
     private readonly recognizeSelfClosing: boolean;
+    private readonly recognizeCDATA: boolean;
     private readonly entityDecoder: EntityDecoder;
 
     constructor(
@@ -208,16 +209,19 @@ export default class Tokenizer {
             xmlMode = false,
             decodeEntities = true,
             recognizeSelfClosing = xmlMode,
+            recognizeCDATA = false,
         }: {
             xmlMode?: boolean;
             decodeEntities?: boolean;
             recognizeSelfClosing?: boolean;
+            recognizeCDATA?: boolean;
         },
         private readonly cbs: Callbacks,
     ) {
         this.xmlMode = xmlMode;
         this.decodeEntities = decodeEntities;
         this.recognizeSelfClosing = recognizeSelfClosing;
+        this.recognizeCDATA = recognizeCDATA;
         this.entityDecoder = new EntityDecoder(
             xmlMode ? xmlDecodeTree : htmlDecodeTree,
             (cp, consumed) => this.emitCodePoint(cp, consumed),
@@ -354,10 +358,19 @@ export default class Tokenizer {
     private stateCDATASequence(c: number): void {
         if (c === Sequences.Cdata[this.sequenceIndex]) {
             if (++this.sequenceIndex === Sequences.Cdata.length) {
-                this.state = State.InCommentLike;
-                this.currentSequence = Sequences.CdataEnd;
                 this.sequenceIndex = 0;
-                this.sectionStart = this.index + 1;
+                if (this.shouldRecognizeCDATA()) {
+                    this.state = State.InCommentLike;
+                    this.currentSequence = Sequences.CdataEnd;
+                    this.sectionStart = this.index + 1;
+                } else {
+                    /*
+                     * Outside XML / foreign content `<![CDATA[` is a bogus
+                     * comment that ends at the first `>`, per WHATWG HTML
+                     * §13.2.5.42/§13.2.5.43, leaving following markup live.
+                     */
+                    this.state = State.InSpecialComment;
+                }
             }
         } else {
             this.sequenceIndex = 0;
@@ -369,6 +382,14 @@ export default class Tokenizer {
                 this.stateInSpecialComment(c); // Reconsume the character
             }
         }
+    }
+
+    private shouldRecognizeCDATA(): boolean {
+        return (
+            this.xmlMode ||
+            this.recognizeCDATA ||
+            (this.cbs.isInForeignContext?.() ?? false)
+        );
     }
 
     /**
