@@ -198,6 +198,24 @@ describe("API", () => {
         expect(tfootClose).toBeLessThan(tbodyOpen);
     });
 
+    it("should close an open <p> when a block element that implies closing starts", () => {
+        const onopentag = vi.fn();
+        const onclosetag = vi.fn();
+
+        new Parser({ onopentag, onclosetag }).end(
+            "<p>text<hgroup>inner</hgroup>",
+        );
+
+        expect(onclosetag).toHaveBeenCalledWith("p", true);
+        const pClose = onclosetag.mock.calls.findIndex(
+            ([name]) => name === "p",
+        );
+        const hgroupOpen = onopentag.mock.calls.findIndex(
+            ([name]) => name === "hgroup",
+        );
+        expect(pClose).toBeLessThan(hgroupOpen);
+    });
+
     it("should implicitly close <tbody> when <thead> opens", () => {
         const onopentagname = vi.fn();
         const onclosetag = vi.fn();
