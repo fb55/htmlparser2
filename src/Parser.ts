@@ -255,6 +255,39 @@ export interface Handler {
 const reNameEnd = /\s|\//;
 
 /**
+ * Index of the innermost open tag with the given name in `stack`, or -1.
+ *
+ * Equivalent to `stack.lastIndexOf(name)`, spelled out because
+ * `Array#lastIndexOf` is a good deal slower than `indexOf` here: tag names are
+ * freshly sliced out of the buffer, so they are not internalized and every
+ * comparison is a full string compare.
+ *
+ * A module-level function rather than a private method, so that it cannot
+ * collide with a private member of the same name on a subclass.
+ * @param stack Open tag names, outermost first.
+ * @param name Tag name to look for.
+ */
+function findInnermost(stack: string[], name: string): number {
+    const top = stack.length - 1;
+
+    // A well-formed end tag closes the tag we are currently inside.
+    if (top >= 0 && stack[top] === name) return top;
+
+    /*
+     * Otherwise the name is often not open at all, which is the common case for
+     * a stray end tag. `indexOf` answers that in one fast builtin scan, and when
+     * it does match it bounds the scan below.
+     */
+    const outermost = stack.indexOf(name);
+    if (outermost === -1) return -1;
+
+    for (let index = top - 1; index > outermost; index--) {
+        if (stack[index] === name) return index;
+    }
+    return outermost;
+}
+
+/**
  * Incremental parser implementation.
  */
 export class Parser implements Callbacks {
@@ -272,7 +305,14 @@ export class Parser implements Callbacks {
     private attribname = "";
     private attribvalue = "";
     private attribs: null | { [key: string]: string } = null;
+    /**
+     * The stack of currently open tags, outermost first. The innermost (current)
+     * tag is the *last* element, so pushing and popping are `push`/`pop`: an
+     * `unshift`/`shift`-based stack would move every entry on each tag, making
+     * a document of depth `d` cost O(d^2).
+     */
     private readonly stack: string[] = [];
+    /** Foreign (SVG/MathML) contexts, outermost first  - see `stack`. */
     private readonly foreignContext: ForeignContext[];
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
@@ -335,7 +375,11 @@ export class Parser implements Callbacks {
 
     /** @internal */
     isInForeignContext(): boolean {
-        return this.foreignContext[0] !== ForeignContext.None;
+        return this.currentForeignContext() !== ForeignContext.None;
+    }
+
+    private currentForeignContext(): ForeignContext {
+        return this.foreignContext[this.foreignContext.length - 1];
     }
 
     /**
@@ -365,7 +409,7 @@ export class Parser implements Callbacks {
             return name;
         }
 
-        if (this.foreignContext[0] === ForeignContext.Svg) {
+        if (this.currentForeignContext() === ForeignContext.Svg) {
             return svgTagNameAdjustments.get(name) ?? name;
         }
 
@@ -373,7 +417,7 @@ export class Parser implements Callbacks {
          * Closing tags for SVG elements inside HTML integration points
          * (e.g. </foreignObject> while inside its own content) need case
          * adjustment so the name matches what was pushed to the stack.
-         * `foreignContext.length > 1` means a foreign ancestor exists —
+         * `foreignContext.length > 1` means a foreign ancestor exists  -
          * the base [None] entry plus at least one pushed context.
          */
         if (this.foreignContext.length > 1) {
@@ -418,20 +462,23 @@ export class Parser implements Callbacks {
         const impliesClose = this.htmlMode && openImpliesClose.get(name);
 
         if (impliesClose) {
-            while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
+            while (
+                this.stack.length > 0 &&
+                impliesClose.has(this.stack[this.stack.length - 1])
+            ) {
                 this.popElement(true);
             }
         }
         if (!this.isVoidElement(name)) {
-            this.stack.unshift(name);
+            this.stack.push(name);
 
             if (this.htmlMode) {
                 if (name === "svg") {
-                    this.foreignContext.unshift(ForeignContext.Svg);
+                    this.foreignContext.push(ForeignContext.Svg);
                 } else if (name === "math") {
-                    this.foreignContext.unshift(ForeignContext.MathML);
+                    this.foreignContext.push(ForeignContext.MathML);
                 } else if (htmlIntegrationElements.has(name)) {
-                    this.foreignContext.unshift(ForeignContext.None);
+                    this.foreignContext.push(ForeignContext.None);
                 }
             }
         }
@@ -475,9 +522,10 @@ export class Parser implements Callbacks {
         const name = this.readTagName(start, endIndex);
 
         if (!this.isVoidElement(name)) {
-            const pos = this.stack.indexOf(name);
+            // The innermost matching tag is closest to the end of the stack.
+            const pos = findInnermost(this.stack, name);
             if (pos !== -1) {
-                for (let index = 0; index < pos; index++) {
+                for (let index = this.stack.length - 1; index > pos; index--) {
                     this.popElement(true);
                 }
                 this.popElement(false);
@@ -521,13 +569,13 @@ export class Parser implements Callbacks {
      */
     private popElement(implied: boolean): void {
         // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
-        const element = this.stack.shift()!;
+        const element = this.stack.pop()!;
         if (
             this.htmlMode &&
             (foreignContextElements.has(element) ||
                 htmlIntegrationElements.has(element))
         ) {
-            this.foreignContext.shift();
+            this.foreignContext.pop();
         }
         this.cbs.onclosetag?.(element, implied);
     }
@@ -537,7 +585,7 @@ export class Parser implements Callbacks {
         this.endOpenTag(isOpenImplied);
 
         // Self-closing tags will be on the top of the stack
-        if (this.stack[0] === name) {
+        if (this.stack[this.stack.length - 1] === name) {
             this.popElement(!isOpenImplied);
         }
     }
@@ -700,7 +748,17 @@ export class Parser implements Callbacks {
         if (this.cbs.onclosetag) {
             // Set the end index for all remaining tags
             this.endIndex = this.startIndex;
-            for (let index = 0; index < this.stack.length; index++) {
+            /*
+             * Close from the innermost tag outwards. The upper bound is re-read
+             * every iteration because `onclosetag` is a user callback and may
+             * shrink the stack  - `reset()` empties it  - and a snapshot bound
+             * would then read past the end and emit `onclosetag(undefined)`.
+             */
+            for (
+                let index = this.stack.length - 1;
+                index >= 0 && index < this.stack.length;
+                index--
+            ) {
                 this.cbs.onclosetag(this.stack[index], true);
             }
         }
@@ -723,7 +781,7 @@ export class Parser implements Callbacks {
         this.cbs.onparserinit?.(this);
         this.buffers.length = 0;
         this.foreignContext.length = 0;
-        this.foreignContext.unshift(ForeignContext.None);
+        this.foreignContext.push(ForeignContext.None);
         this.bufferOffset = 0;
         this.writeIndex = 0;
         this.ended = false;
