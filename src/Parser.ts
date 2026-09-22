@@ -17,7 +17,7 @@ const tableSectionTags = new Set(["thead", "tbody", "tfoot", "tr", "td", "th"]);
 const ddtTags = new Set(["dd", "dt"]);
 const rtpTags = new Set(["rt", "rp"]);
 
-const openImpliesClose = new Map<string, Set<string>>([
+const impliesCloseMap = new Map<string, Set<string>>([
     ["tr", new Set(["tr", "th", "td"])],
     ["th", new Set(["th", "td"])],
     ["td", new Set(["thead", "th", "td"])],
@@ -208,6 +208,18 @@ export interface ParserOptions {
      * Allows the default tokenizer to be overwritten.
      */
     Tokenizer?: typeof Tokenizer;
+
+    /**
+     * If set to `true`, the parser will implicitly open and close HTML tags
+     * according to the HTML5 spec (e.g. `<p>` will implicitly close another
+     * `<p>` that is still open, `</p>` will implicitly open `<p>` if none is
+     * open). Set to `false` to disable all implicit HTML changes, preserving
+     * the original document structure more closely.
+     *
+     * This option has no effect when `xmlMode` is `true`.
+     * @default !xmlMode
+     */
+    openImpliesClose?: boolean;
 }
 
 /**
@@ -280,6 +292,8 @@ export class Parser implements Callbacks {
     private readonly recognizeSelfClosing: boolean;
     /** We are parsing HTML. Inverse of the `xmlMode` option. */
     private readonly htmlMode: boolean;
+    /** Whether implicit open/close logic is active (requires HTML mode + openImpliesClose option). */
+    private readonly impliesCloseEnabled: boolean;
     private readonly tokenizer: Tokenizer;
 
     private readonly buffers: string[] = [];
@@ -295,6 +309,7 @@ export class Parser implements Callbacks {
     ) {
         this.cbs = cbs ?? {};
         this.htmlMode = !this.options.xmlMode;
+        this.impliesCloseEnabled = this.htmlMode && (options.openImpliesClose ?? this.htmlMode);
         this.lowerCaseTagNames = options.lowerCaseTags ?? this.htmlMode;
         this.lowerCaseAttributeNames =
             options.lowerCaseAttributeNames ?? this.htmlMode;
@@ -410,12 +425,12 @@ export class Parser implements Callbacks {
          * stays null so endOpenTag is a no-op, and closeCurrentTag can't
          * match "" on the stack.
          */
-        if (this.htmlMode && name === "form" && this.stack.includes("form")) {
+        if (this.impliesCloseEnabled && name === "form" && this.stack.includes("form")) {
             this.tagname = "";
             return;
         }
 
-        const impliesClose = this.htmlMode && openImpliesClose.get(name);
+        const impliesClose = this.impliesCloseEnabled && impliesCloseMap.get(name);
 
         if (impliesClose) {
             while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
@@ -481,12 +496,12 @@ export class Parser implements Callbacks {
                     this.popElement(true);
                 }
                 this.popElement(false);
-            } else if (this.htmlMode && name === "p") {
+            } else if (this.impliesCloseEnabled && name === "p") {
                 // Implicit open before close
                 this.emitOpenTag("p");
                 this.closeCurrentTag(true);
             }
-        } else if (this.htmlMode && name === "br") {
+        } else if (this.impliesCloseEnabled && name === "br") {
             // We can't use `emitOpenTag` for implicit open, as `br` would be implicitly closed.
             this.cbs.onopentagname?.("br");
             this.cbs.onopentag?.("br", {}, true);
