@@ -334,6 +334,23 @@ describe("API", () => {
         expect(events).toStrictEqual(["×", "bar", "end"]);
     });
 
+    it("should parse chunks queued after reset in a callback", () => {
+        const texts: string[] = [];
+        const parser = new Parser({
+            ontext(text) {
+                texts.push(text);
+                if (text === "first") parser.reset();
+                else if (text === "second") parser.pause();
+            },
+        });
+        parser.write("first");
+        parser.write("second");
+        parser.write("third");
+        parser.resume();
+        parser.end();
+        expect(texts).toStrictEqual(["first", "second", "third"]);
+    });
+
     it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 

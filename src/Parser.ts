@@ -790,8 +790,9 @@ export class Parser implements Callbacks {
 
         this.buffers.push(chunk);
         if (this.tokenizer.running) {
-            this.tokenizer.write(chunk);
+            // Count the chunk first, as a callback may call `reset()`.
             this.writeIndex++;
+            this.tokenizer.write(chunk);
         }
     }
 
