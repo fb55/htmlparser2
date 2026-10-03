@@ -625,10 +625,11 @@ export class Parser implements Callbacks {
                     ? -1
                     : this.stack.lastIndexOf(name);
             if (pos !== -1) {
-                for (let index = this.stack.length - 1; index > pos; index--) {
+                // A callback may have reset the stack.
+                while (this.stack.length > pos + 1) {
                     this.popElement(true);
                 }
-                this.popElement(false);
+                if (this.stack.length === pos + 1) this.popElement(false);
             } else if (this.htmlMode && name === "p") {
                 // Implicit open before close
                 this.emitOpenTag("p");
