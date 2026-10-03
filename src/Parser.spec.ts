@@ -303,6 +303,18 @@ describe("API", () => {
         expect(texts).toStrictEqual(["first", "second", "third"]);
     });
 
+    it("should stop closing elements after reset in onclosetag", () => {
+        const closed: string[] = [];
+        const parser = new Parser({
+            onclosetag(name) {
+                closed.push(name);
+                if (name === "c") parser.reset();
+            },
+        });
+        parser.write("<a><b><c></a>");
+        expect(closed).toStrictEqual(["c"]);
+    });
+
     it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 
