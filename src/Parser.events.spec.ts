@@ -215,6 +215,28 @@ describe("Events", () => {
             recognizeSelfClosing: true,
         }));
 
+    it("Self-closing SVG integration point acknowledges the slash", () =>
+        runTest("<svg><foreignObject/>x</svg>"));
+
+    it("Self-closing SVG title acknowledges the slash", () =>
+        runTest("<svg><title/>x</svg>"));
+
+    it("Self-closing SVG desc acknowledges the slash", () =>
+        runTest("<svg><desc/>x</svg>"));
+
+    it("Self-closing MathML integration point acknowledges the slash", () =>
+        runTest("<math><mi/>x</math>"));
+
+    it("Self-closing MathML annotation-xml acknowledges the slash", () =>
+        runTest("<math><annotation-xml/>x</math>"));
+
+    it("Self-closing HTML descendant of an integration point ignores the slash", () =>
+        /*
+         * `title` here is HTML (inside foreignObject's HTML context), not a
+         * foreign integration point, so its slash must not be acknowledged.
+         */
+        runTest("<svg><foreignObject><title/>x</foreignObject></svg>"));
+
     it("HTML image alias", () => runTest("<image></image>"));
 
     it("SVG image is not aliased", () => runTest("<svg><image></image></svg>"));
