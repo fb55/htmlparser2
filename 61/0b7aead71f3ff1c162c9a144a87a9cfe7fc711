@@ -1,0 +1,23 @@
+src/Tokenizer.ts
+  s_6bbbbbc7cea8e7::t_7821ad80dafb27 198-199,243,254,263,1026
+src/Parser.ts
+  s_6bbbbbc7cea8e7::t_7821ad80dafb27 291-292,341,499-500,503,716,742,775,798-801,805,810-813,815-818,824-844,846-854,869,871
+src/Parser.spec.ts
+  s_6bbbbbc7cea8e7::t_7821ad80dafb27 324-472
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "610b7aead71f3ff1c162c9a144a87a9cfe7fc711",
+  "prompts": {},
+  "sessions": {
+    "s_6bbbbbc7cea8e7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "477ae3a9-56cd-4535-bf0f-8d24ed1686d9",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
