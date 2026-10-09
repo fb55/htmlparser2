@@ -564,12 +564,14 @@ export default class Tokenizer {
         }
     }
     private stateInTagName(c: number): void {
-        if (isEndOfTagSection(c)) {
-            this.cbs.onopentagname(this.sectionStart, this.index);
-            this.sectionStart = -1;
-            this.state = State.BeforeAttributeName;
-            this.stateBeforeAttributeName(c);
+        if (!isEndOfTagSection(c)) {
+            return;
         }
+
+        this.cbs.onopentagname(this.sectionStart, this.index);
+        this.sectionStart = -1;
+        this.state = State.BeforeAttributeName;
+        this.stateBeforeAttributeName(c);
     }
     private stateBeforeClosingTagName(c: number): void {
         if (isWhitespace(c)) {
@@ -592,19 +594,23 @@ export default class Tokenizer {
         }
     }
     private stateInClosingTagName(c: number): void {
-        if (isEndOfTagSection(c)) {
-            this.cbs.onclosetag(this.sectionStart, this.index);
-            this.sectionStart = -1;
-            this.state = State.AfterClosingTagName;
-            this.stateAfterClosingTagName(c);
+        if (!isEndOfTagSection(c)) {
+            return;
         }
+
+        this.cbs.onclosetag(this.sectionStart, this.index);
+        this.sectionStart = -1;
+        this.state = State.AfterClosingTagName;
+        this.stateAfterClosingTagName(c);
     }
     private stateAfterClosingTagName(c: number): void {
         // Skip everything until ">"
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.state = State.Text;
-            this.sectionStart = this.index + 1;
+        if (!(c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt))) {
+            return;
         }
+
+        this.state = State.Text;
+        this.sectionStart = this.index + 1;
     }
     private stateBeforeAttributeName(c: number): void {
         if (c === CharCodes.Gt) {
@@ -646,12 +652,14 @@ export default class Tokenizer {
         }
     }
     private stateInAttributeName(c: number): void {
-        if (c === CharCodes.Eq || isEndOfTagSection(c)) {
-            this.cbs.onattribname(this.sectionStart, this.index);
-            this.sectionStart = this.index;
-            this.state = State.AfterAttributeName;
-            this.stateAfterAttributeName(c);
+        if (!(c === CharCodes.Eq || isEndOfTagSection(c))) {
+            return;
         }
+
+        this.cbs.onattribname(this.sectionStart, this.index);
+        this.sectionStart = this.index;
+        this.state = State.AfterAttributeName;
+        this.stateAfterAttributeName(c);
     }
     private stateAfterAttributeName(c: number): void {
         if (c === CharCodes.Eq) {
@@ -769,11 +777,13 @@ export default class Tokenizer {
         }
     }
     private stateInDeclaration(c: number): void {
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.ondeclaration(this.sectionStart, this.index);
-            this.state = State.Text;
-            this.sectionStart = this.index + 1;
+        if (!(c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt))) {
+            return;
         }
+
+        this.cbs.ondeclaration(this.sectionStart, this.index);
+        this.state = State.Text;
+        this.sectionStart = this.index + 1;
     }
     /**
      * XML processing instructions (`<?...?>`).
@@ -815,11 +825,13 @@ export default class Tokenizer {
         }
     }
     private stateInSpecialComment(c: number): void {
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.oncomment(this.sectionStart, this.index, 0);
-            this.state = State.Text;
-            this.sectionStart = this.index + 1;
+        if (!(c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt))) {
+            return;
         }
+
+        this.cbs.oncomment(this.sectionStart, this.index, 0);
+        this.state = State.Text;
+        this.sectionStart = this.index + 1;
     }
 
     private startEntity() {

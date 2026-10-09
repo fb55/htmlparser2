@@ -90,6 +90,7 @@ describe("Events", () => {
         runTest("<img src=gif.com/123/><p>Hold the line."));
 
     it("end slash: as part of attrib value of non-void element", () =>
+        // eslint-disable-next-line unicorn/prefer-https -- Match the original HTTP fixture exactly.
         runTest("<a href=http://test.com/>Foo</a><p>Hold the line."));
 
     it("Implicit close tags", () =>
@@ -137,6 +138,7 @@ describe("Events", () => {
 
     it("entity in attribute", () =>
         runTest(
+            // eslint-disable-next-line unicorn/prefer-https -- Match the original HTTP fixture exactly.
             "<a href='http://example.com/p&#x61;#x61ge?param=value&param2&param3=&lt;val&; & &'>",
         ));
 
