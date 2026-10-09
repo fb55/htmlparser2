@@ -201,6 +201,7 @@ export default class Tokenizer {
     private readonly xmlMode: boolean;
     private readonly decodeEntities: boolean;
     private readonly recognizeSelfClosing: boolean;
+    private readonly recognizeCDATA: boolean;
     private readonly entityDecoder: EntityDecoder;
 
     constructor(
@@ -208,16 +209,19 @@ export default class Tokenizer {
             xmlMode = false,
             decodeEntities = true,
             recognizeSelfClosing = xmlMode,
+            recognizeCDATA = xmlMode,
         }: {
             xmlMode?: boolean;
             decodeEntities?: boolean;
             recognizeSelfClosing?: boolean;
+            recognizeCDATA?: boolean;
         },
         private readonly cbs: Callbacks,
     ) {
         this.xmlMode = xmlMode;
         this.decodeEntities = decodeEntities;
         this.recognizeSelfClosing = recognizeSelfClosing;
+        this.recognizeCDATA = xmlMode || recognizeCDATA;
         this.entityDecoder = new EntityDecoder(
             xmlMode ? xmlDecodeTree : htmlDecodeTree,
             (cp, consumed) => this.emitCodePoint(cp, consumed),
@@ -354,10 +358,15 @@ export default class Tokenizer {
     private stateCDATASequence(c: number): void {
         if (c === Sequences.Cdata[this.sequenceIndex]) {
             if (++this.sequenceIndex === Sequences.Cdata.length) {
-                this.state = State.InCommentLike;
-                this.currentSequence = Sequences.CdataEnd;
                 this.sequenceIndex = 0;
-                this.sectionStart = this.index + 1;
+                if (this.recognizeCDATA || this.cbs.isInForeignContext?.()) {
+                    this.state = State.InCommentLike;
+                    this.currentSequence = Sequences.CdataEnd;
+                    this.sectionStart = this.index + 1;
+                } else {
+                    // In HTML, `<![CDATA[` is a bogus comment that ends at the first `>`.
+                    this.state = State.InSpecialComment;
+                }
             }
         } else {
             this.sequenceIndex = 0;
