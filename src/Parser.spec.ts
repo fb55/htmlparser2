@@ -143,10 +143,10 @@ describe("API", () => {
     });
 
     it("should update the position when a single tag is spread across multiple chunks", () => {
-        let called = false;
+        let isCalled = false;
         const p = new Parser({
             onopentag() {
-                called = true;
+                isCalled = true;
                 expect(p.startIndex).toBe(0);
                 expect(p.endIndex).toBe(12);
             },
@@ -155,21 +155,21 @@ describe("API", () => {
         p.write("<div ");
         p.write("foo=bar>");
 
-        expect(called).toBe(true);
+        expect(isCalled).toBe(true);
     });
 
     it("should have the correct position for implied opening tags", () => {
-        let called = false;
+        let isCalled = false;
         const p = new Parser({
             onopentag() {
-                called = true;
+                isCalled = true;
                 expect(p.startIndex).toBe(0);
                 expect(p.endIndex).toBe(3);
             },
         });
 
         p.write("</p>");
-        expect(called).toBe(true);
+        expect(isCalled).toBe(true);
     });
 
     it("should parse <__proto__> (#387)", () => {
