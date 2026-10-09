@@ -206,16 +206,12 @@ describe("Tokenizer", () => {
         expect(tokenize(input)).toMatchSnapshot();
     });
 
-    it.each([
-        "<!--",
-        "<!---",
-        "<!----",
-        "<!--a-",
-        "<!--a--",
-        "<!--a--!",
-    ])("should trim unfinished HTML comment closes at EOF for %s", (input) => {
-        expect(tokenize(input)).toMatchSnapshot();
-    });
+    it.each(["<!--", "<!---", "<!----", "<!--a-", "<!--a--", "<!--a--!"])(
+        "should trim unfinished HTML comment closes at EOF for %s",
+        (input) => {
+            expect(tokenize(input)).toMatchSnapshot();
+        },
+    );
 
     it("should treat <? and <! as bogus comments in HTML", () => {
         expect(tokenize("<?foo><!foo>")).toMatchSnapshot();
@@ -238,29 +234,27 @@ describe("Tokenizer", () => {
         ).toMatchSnapshot();
     });
 
-    it.each([
-        "script",
-        "style",
-        "title",
-        "textarea",
-    ])("should reset after an unclosed %s tag", (tag) => {
-        expect(
-            tokenize((tokenizer, events) => {
-                tokenizer.write(`<${tag}>body{color:red}`);
-                tokenizer.end();
-                events.length = 0;
-                tokenizer.reset();
-                tokenizer.write("<div>hello</div>");
-                tokenizer.end();
-            }).map(([event]) => event),
-        ).toEqual([
-            "onopentagname",
-            "onopentagend",
-            "ontext",
-            "onclosetag",
-            "onend",
-        ]);
-    });
+    it.each(["script", "style", "title", "textarea"])(
+        "should reset after an unclosed %s tag",
+        (tag) => {
+            expect(
+                tokenize((tokenizer, events) => {
+                    tokenizer.write(`<${tag}>body{color:red}`);
+                    tokenizer.end();
+                    events.length = 0;
+                    tokenizer.reset();
+                    tokenizer.write("<div>hello</div>");
+                    tokenizer.end();
+                }).map(([event]) => event),
+            ).toEqual([
+                "onopentagname",
+                "onopentagend",
+                "ontext",
+                "onclosetag",
+                "onend",
+            ]);
+        },
+    );
 
     it("should terminate XML processing instructions on ?>", () => {
         expect(
