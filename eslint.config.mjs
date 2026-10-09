@@ -65,7 +65,7 @@ export default defineConfig([
                         camelCase: true,
                         pascalCase: true,
                     },
-                    ignore: ["^__fixtures__$"],
+                    checkDirectories: false,
                 },
             ],
         },
