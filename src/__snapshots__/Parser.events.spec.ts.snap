@@ -341,6 +341,52 @@ exports[`Events > CDATA in HTML 1`] = `
 ]
 `;
 
+exports[`Events > CDATA in HTML ends at the first > 1`] = `
+[
+  {
+    "$event": "comment",
+    "data": [
+      "[CDATA[x",
+    ],
+    "endIndex": 10,
+    "startIndex": 0,
+  },
+  {
+    "$event": "commentend",
+    "data": [],
+    "endIndex": 10,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "b",
+    ],
+    "endIndex": 13,
+    "startIndex": 11,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "b",
+      {},
+      false,
+    ],
+    "endIndex": 13,
+    "startIndex": 11,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "b",
+      true,
+    ],
+    "endIndex": 14,
+    "startIndex": 14,
+  },
+]
+`;
+
 exports[`Events > CDATA more edge-cases 1`] = `
 [
   {
