@@ -335,7 +335,10 @@ export class Parser implements Callbacks {
 
     /** @internal */
     isInForeignContext(): boolean {
-        return this.foreignContext[0] !== ForeignContext.None;
+        return (
+            this.foreignContext[this.foreignContext.length - 1] !==
+            ForeignContext.None
+        );
     }
 
     /**
@@ -365,7 +368,10 @@ export class Parser implements Callbacks {
             return name;
         }
 
-        if (this.foreignContext[0] === ForeignContext.Svg) {
+        if (
+            this.foreignContext[this.foreignContext.length - 1] ===
+            ForeignContext.Svg
+        ) {
             return svgTagNameAdjustments.get(name) ?? name;
         }
 
@@ -418,20 +424,23 @@ export class Parser implements Callbacks {
         const impliesClose = this.htmlMode && openImpliesClose.get(name);
 
         if (impliesClose) {
-            while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
+            while (
+                this.stack.length > 0 &&
+                impliesClose.has(this.stack[this.stack.length - 1])
+            ) {
                 this.popElement(true);
             }
         }
         if (!this.isVoidElement(name)) {
-            this.stack.unshift(name);
+            this.stack.push(name);
 
             if (this.htmlMode) {
                 if (name === "svg") {
-                    this.foreignContext.unshift(ForeignContext.Svg);
+                    this.foreignContext.push(ForeignContext.Svg);
                 } else if (name === "math") {
-                    this.foreignContext.unshift(ForeignContext.MathML);
+                    this.foreignContext.push(ForeignContext.MathML);
                 } else if (htmlIntegrationElements.has(name)) {
-                    this.foreignContext.unshift(ForeignContext.None);
+                    this.foreignContext.push(ForeignContext.None);
                 }
             }
         }
@@ -475,9 +484,9 @@ export class Parser implements Callbacks {
         const name = this.readTagName(start, endIndex);
 
         if (!this.isVoidElement(name)) {
-            const pos = this.stack.indexOf(name);
+            const pos = this.stack.lastIndexOf(name);
             if (pos !== -1) {
-                for (let index = 0; index < pos; index++) {
+                for (let index = this.stack.length - 1; index > pos; index--) {
                     this.popElement(true);
                 }
                 this.popElement(false);
@@ -521,13 +530,13 @@ export class Parser implements Callbacks {
      */
     private popElement(isImplied: boolean): void {
         // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
-        const element = this.stack.shift()!;
+        const element = this.stack.pop()!;
         if (
             this.htmlMode &&
             (foreignContextElements.has(element) ||
                 htmlIntegrationElements.has(element))
         ) {
-            this.foreignContext.shift();
+            this.foreignContext.pop();
         }
         this.cbs.onclosetag?.(element, isImplied);
     }
@@ -537,7 +546,7 @@ export class Parser implements Callbacks {
         this.endOpenTag(isOpenImplied);
 
         // Self-closing tags will be on the top of the stack
-        if (this.stack[0] === name) {
+        if (this.stack[this.stack.length - 1] === name) {
             this.popElement(!isOpenImplied);
         }
     }
@@ -700,7 +709,9 @@ export class Parser implements Callbacks {
         if (this.cbs.onclosetag) {
             // Set the end index for all remaining tags
             this.endIndex = this.startIndex;
-            for (let index = 0; index < this.stack.length; index++) {
+            for (let index = this.stack.length - 1; index >= 0; index--) {
+                // A callback may have reset the parser.
+                if (index >= this.stack.length) break;
                 this.cbs.onclosetag(this.stack[index], true);
             }
         }

@@ -2,6 +2,24 @@ import { describe, expect, it, vi } from "vitest";
 import { Parser, Tokenizer } from "./index.js";
 import type { Handler } from "./Parser.js";
 
+const arrayIndex = /^\d+$/;
+
+// Count indexed reads, including the moves made by shift/unshift/splice.
+function countArrayReads(parser: Parser, key: string, run: () => void): number {
+    const arrays = parser as unknown as Record<string, string[]>;
+    let reads = 0;
+    arrays[key] = new Proxy(arrays[key], {
+        get(target, property, receiver) {
+            if (typeof property === "string" && arrayIndex.test(property)) {
+                reads++;
+            }
+            return Reflect.get(target, property, receiver);
+        },
+    });
+    run();
+    return reads;
+}
+
 describe("API", () => {
     it("should work without callbacks", () => {
         const cbs: Partial<Handler> = { onerror: vi.fn() };
@@ -233,6 +251,41 @@ describe("API", () => {
             ([name]) => name === "th",
         );
         expect(tdClose).toBeLessThan(thOpen);
+    });
+
+    it.each(["div", "svg", "a"])(
+        "should do linear stack work for nested %s elements",
+        (name) => {
+            const depth = 500;
+            const parser = new Parser({}, { xmlMode: name === "a" });
+            const input =
+                `<${name}>`.repeat(depth) + `</${name}>`.repeat(depth);
+            const reads = countArrayReads(parser, "stack", () =>
+                parser.end(input),
+            );
+            expect(reads).toBeLessThan(depth * 10);
+        },
+    );
+
+    it("should do linear work on the foreign context stack", () => {
+        const depth = 500;
+        const parser = new Parser({});
+        const reads = countArrayReads(parser, "foreignContext", () =>
+            parser.end("<svg>".repeat(depth) + "</svg>".repeat(depth)),
+        );
+        expect(reads).toBeLessThan(depth * 10);
+    });
+
+    it("should stop closing elements when reset at the end of the input", () => {
+        const closed: string[] = [];
+        const parser = new Parser({
+            onclosetag(name) {
+                closed.push(name);
+                if (name === "b") parser.reset();
+            },
+        });
+        parser.end("<a><b><c>");
+        expect(closed).toStrictEqual(["c", "b"]);
     });
 
     it("should support custom tokenizer", () => {

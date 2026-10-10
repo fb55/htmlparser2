@@ -160,6 +160,7 @@ describe("Events", () => {
         runTest("<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>"));
 
     it("CDATA in HTML", () => runTest("<![CDATA[ foo ]]>"));
+    it("CDATA in HTML ends at the first >", () => runTest("<![CDATA[x><b>"));
 
     it("Comment edge-cases", () => runTest("<!-foo><!-- --- --><!--foo"));
 
