@@ -127,6 +127,7 @@ export interface Callbacks {
     ontext(start: number, endIndex: number): void;
     ontextentity(codepoint: number, endIndex: number): void;
     isInForeignContext?(): boolean;
+    isCurrentNodeForeign?(): boolean;
 }
 
 /**
@@ -359,7 +360,11 @@ export default class Tokenizer {
         if (c === Sequences.Cdata[this.sequenceIndex]) {
             if (++this.sequenceIndex === Sequences.Cdata.length) {
                 this.sequenceIndex = 0;
-                if (this.recognizeCDATA || this.cbs.isInForeignContext?.()) {
+                if (
+                    this.recognizeCDATA ||
+                    (this.cbs.isCurrentNodeForeign?.() ??
+                        this.cbs.isInForeignContext?.())
+                ) {
                     this.state = State.InCommentLike;
                     this.currentSequence = Sequences.CdataEnd;
                     this.sectionStart = this.index + 1;

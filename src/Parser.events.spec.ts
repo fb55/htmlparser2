@@ -193,6 +193,17 @@ describe("Events", () => {
     it("Foreign CDATA in MathML", () =>
         runTest("<math><![CDATA[a<b]]></math>"));
 
+    it("Foreign CDATA in an SVG integration point", () =>
+        runTest("<svg><foreignObject><![CDATA[x><b>]]></foreignObject></svg>"));
+
+    it("Foreign CDATA in a MathML integration point", () =>
+        runTest("<math><mtext><![CDATA[x><b>]]></mtext></math>"));
+
+    it("CDATA in HTML inside an integration point", () =>
+        runTest(
+            "<svg><foreignObject><p><![CDATA[x><b>]]></p></foreignObject></svg>",
+        ));
+
     it("SVG title is not HTML special", () =>
         runTest("<svg><title>&amp;<b>x</b></title></svg>"));
 

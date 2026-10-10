@@ -342,6 +342,26 @@ export class Parser implements Callbacks {
     }
 
     /**
+     * Whether the current node is an SVG or MathML element. Unlike
+     * `isInForeignContext`, this is also true for an HTML integration point
+     * itself (e.g. `foreignObject`). It decides whether `<![CDATA[` starts a
+     * CDATA section.
+     * @internal
+     */
+    isCurrentNodeForeign(): boolean {
+        if (
+            this.foreignContext.length > 1 &&
+            htmlIntegrationElements.has(this.stack[this.stack.length - 1])
+        ) {
+            return (
+                this.foreignContext[this.foreignContext.length - 2] !==
+                ForeignContext.None
+            );
+        }
+        return this.isInForeignContext();
+    }
+
+    /**
      * Checks if the current tag is a void element. Override this if you want
      * to specify your own additional void elements.
      * @param name Name of the pseudo selector.
@@ -693,7 +713,7 @@ export class Parser implements Callbacks {
             this.cbs.oncdatastart?.();
             this.cbs.ontext?.(value);
             this.cbs.oncdataend?.();
-        } else if (this.isInForeignContext()) {
+        } else if (this.isCurrentNodeForeign()) {
             this.cbs.ontext?.(value);
         } else {
             this.cbs.oncomment?.(`[CDATA[${value}]]`);
