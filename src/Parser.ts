@@ -486,10 +486,11 @@ export class Parser implements Callbacks {
         if (!this.isVoidElement(name)) {
             const pos = this.stack.lastIndexOf(name);
             if (pos !== -1) {
-                for (let index = this.stack.length - 1; index > pos; index--) {
+                // A callback may have reset the stack.
+                while (this.stack.length > pos + 1) {
                     this.popElement(true);
                 }
-                this.popElement(false);
+                if (this.stack.length === pos + 1) this.popElement(false);
             } else if (this.htmlMode && name === "p") {
                 // Implicit open before close
                 this.emitOpenTag("p");
@@ -790,8 +791,9 @@ export class Parser implements Callbacks {
 
         this.buffers.push(chunk);
         if (this.tokenizer.running) {
-            this.tokenizer.write(chunk);
+            // Count the chunk first, as a callback may call `reset()`.
             this.writeIndex++;
+            this.tokenizer.write(chunk);
         }
     }
 

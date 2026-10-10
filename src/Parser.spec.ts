@@ -286,6 +286,35 @@ describe("API", () => {
         expect(closed).toStrictEqual(["c", "b"]);
     });
 
+    it("should parse chunks queued after reset in a callback", () => {
+        const texts: string[] = [];
+        const parser = new Parser({
+            ontext(text) {
+                texts.push(text);
+                if (text === "first") parser.reset();
+                if (text === "second") parser.pause();
+            },
+        });
+        parser.write("first");
+        parser.write("second");
+        parser.write("third");
+        parser.resume();
+        parser.end();
+        expect(texts).toStrictEqual(["first", "second", "third"]);
+    });
+
+    it("should stop closing elements after reset in onclosetag", () => {
+        const closed: string[] = [];
+        const parser = new Parser({
+            onclosetag(name) {
+                closed.push(name);
+                if (name === "c") parser.reset();
+            },
+        });
+        parser.write("<a><b><c></a>");
+        expect(closed).toStrictEqual(["c"]);
+    });
+
     it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 
