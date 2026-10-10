@@ -161,10 +161,10 @@ describe("API", () => {
     });
 
     it("should update the position when a single tag is spread across multiple chunks", () => {
-        let called = false;
+        let isCalled = false;
         const p = new Parser({
             onopentag() {
-                called = true;
+                isCalled = true;
                 expect(p.startIndex).toBe(0);
                 expect(p.endIndex).toBe(12);
             },
@@ -173,21 +173,21 @@ describe("API", () => {
         p.write("<div ");
         p.write("foo=bar>");
 
-        expect(called).toBe(true);
+        expect(isCalled).toBe(true);
     });
 
     it("should have the correct position for implied opening tags", () => {
-        let called = false;
+        let isCalled = false;
         const p = new Parser({
             onopentag() {
-                called = true;
+                isCalled = true;
                 expect(p.startIndex).toBe(0);
                 expect(p.endIndex).toBe(3);
             },
         });
 
         p.write("</p>");
-        expect(called).toBe(true);
+        expect(isCalled).toBe(true);
     });
 
     it("should parse <__proto__> (#387)", () => {
@@ -253,17 +253,19 @@ describe("API", () => {
         expect(tdClose).toBeLessThan(thOpen);
     });
 
-    it.each([
-        "div",
-        "svg",
-        "a",
-    ])("should do linear stack work for nested %s elements", (name) => {
-        const depth = 500;
-        const parser = new Parser({}, { xmlMode: name === "a" });
-        const input = `<${name}>`.repeat(depth) + `</${name}>`.repeat(depth);
-        const reads = countArrayReads(parser, "stack", () => parser.end(input));
-        expect(reads).toBeLessThan(depth * 10);
-    });
+    it.each(["div", "svg", "a"])(
+        "should do linear stack work for nested %s elements",
+        (name) => {
+            const depth = 500;
+            const parser = new Parser({}, { xmlMode: name === "a" });
+            const input =
+                `<${name}>`.repeat(depth) + `</${name}>`.repeat(depth);
+            const reads = countArrayReads(parser, "stack", () =>
+                parser.end(input),
+            );
+            expect(reads).toBeLessThan(depth * 10);
+        },
+    );
 
     it("should do linear work on the foreign context stack", () => {
         const depth = 500;

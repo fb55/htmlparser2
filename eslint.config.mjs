@@ -54,4 +54,44 @@ export default defineConfig([
             "n/no-unsupported-features/node-builtins": 0,
         },
     },
+    // Retain the conventional fixture directory while checking other names.
+    {
+        files: ["src/__fixtures__/testHelper.ts"],
+        rules: {
+            "unicorn/filename-case": [
+                "error",
+                {
+                    cases: {
+                        camelCase: true,
+                        pascalCase: true,
+                    },
+                    checkDirectories: false,
+                },
+            ],
+        },
+    },
+
+    // Preserve the observable class field initialization order.
+    {
+        files: ["src/Parser.ts", "src/Tokenizer.ts"],
+        rules: {
+            "unicorn/consistent-class-member-order": "off",
+        },
+    },
+
+    // Keep hot ASCII comparisons allocation free.
+    {
+        files: ["src/Tokenizer.ts"],
+        rules: {
+            "unicorn/prefer-includes-over-repeated-comparisons": "off",
+        },
+    },
+
+    // Keep the tokenizer state dispatch inline in its character-processing loop.
+    {
+        files: ["src/Tokenizer.ts"],
+        rules: {
+            "unicorn/no-break-in-nested-loop": "off",
+        },
+    },
 ]);

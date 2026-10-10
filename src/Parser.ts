@@ -526,9 +526,9 @@ export class Parser implements Callbacks {
     /**
      * Pop the top element off the stack, emit a close event, and maintain
      * the foreign context stack.
-     * @param implied Whether this close is implied (not from an explicit end tag).
+     * @param isImplied Whether this close is implied (not from an explicit end tag).
      */
-    private popElement(implied: boolean): void {
+    private popElement(isImplied: boolean): void {
         // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
         const element = this.stack.pop()!;
         if (
@@ -538,7 +538,7 @@ export class Parser implements Callbacks {
         ) {
             this.foreignContext.pop();
         }
-        this.cbs.onclosetag?.(element, implied);
+        this.cbs.onclosetag?.(element, isImplied);
     }
 
     private closeCurrentTag(isOpenImplied: boolean) {

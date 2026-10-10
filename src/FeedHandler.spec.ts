@@ -5,33 +5,14 @@ import { parseFeed } from "./index.js";
 const documents = new URL("__fixtures__/Documents/", import.meta.url);
 
 describe("parseFeed", () => {
-    it("(rssFeed)", async () =>
-        expect(
-            parseFeed(
-                await fs.readFile(
-                    new URL("RSS_Example.xml", documents),
-                    "utf8",
-                ),
-            ),
-        ).toMatchSnapshot());
-
-    it("(atomFeed)", async () =>
-        expect(
-            parseFeed(
-                await fs.readFile(
-                    new URL("Atom_Example.xml", documents),
-                    "utf8",
-                ),
-            ),
-        ).toMatchSnapshot());
-
-    it("(rdfFeed)", async () =>
-        expect(
-            parseFeed(
-                await fs.readFile(
-                    new URL("RDF_Example.xml", documents),
-                    "utf8",
-                ),
-            ),
-        ).toMatchSnapshot());
+    for (const [name, file] of [
+        ["rssFeed", "RSS_Example.xml"],
+        ["atomFeed", "Atom_Example.xml"],
+        ["rdfFeed", "RDF_Example.xml"],
+    ]) {
+        it(`(${name})`, async () => {
+            const content = await fs.readFile(new URL(file, documents), "utf8");
+            expect(parseFeed(content)).toMatchSnapshot();
+        });
+    }
 });

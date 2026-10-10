@@ -59,7 +59,7 @@ export function getEventCollector(
                     data.pop();
                 }
 
-                if (!(parser.startIndex <= parser.endIndex)) {
+                if (parser.startIndex > parser.endIndex) {
                     throw new Error(
                         `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`,
                     );

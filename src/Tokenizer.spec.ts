@@ -16,8 +16,9 @@ function tokenize(
                     if (property === "isInForeignContext") {
                         return target.isInForeignContext;
                     }
-                    return (...values: unknown[]) =>
+                    return (...values: unknown[]) => {
                         log.push([property, ...values]);
+                    };
                 },
             },
         ) as Callbacks,
