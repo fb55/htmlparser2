@@ -204,6 +204,11 @@ describe("Events", () => {
             "<svg><foreignObject><p><![CDATA[x><b>]]></p></foreignObject></svg>",
         ));
 
+    it("Unclosed foreign CDATA at EOF", () => runTest("<svg><![CDATA[x><b>"));
+
+    it("Unclosed CDATA at EOF in an integration point", () =>
+        runTest("<svg><foreignObject><![CDATA[x><b>"));
+
     it("SVG title is not HTML special", () =>
         runTest("<svg><title>&amp;<b>x</b></title></svg>"));
 

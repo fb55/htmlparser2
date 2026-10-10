@@ -4257,6 +4257,113 @@ exports[`Events > Unclosed CDATA at EOF 1`] = `
 ]
 `;
 
+exports[`Events > Unclosed CDATA at EOF in an integration point 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "foreignObject",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "foreignObject",
+      {},
+      false,
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x><b>",
+    ],
+    "endIndex": 34,
+    "startIndex": 20,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "foreignObject",
+      true,
+    ],
+    "endIndex": 35,
+    "startIndex": 35,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      true,
+    ],
+    "endIndex": 35,
+    "startIndex": 35,
+  },
+]
+`;
+
+exports[`Events > Unclosed foreign CDATA at EOF 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x><b>",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      true,
+    ],
+    "endIndex": 20,
+    "startIndex": 20,
+  },
+]
+`;
+
 exports[`Events > XML tags 1`] = `
 [
   {

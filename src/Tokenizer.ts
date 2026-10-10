@@ -356,15 +356,20 @@ export default class Tokenizer {
         this.stateInTagName(c);
     }
 
+    /** Whether the current node is an SVG or MathML element, per the parser. */
+    private isCurrentNodeForeign(): boolean {
+        return (
+            this.cbs.isCurrentNodeForeign?.() ??
+            this.cbs.isInForeignContext?.() ??
+            false
+        );
+    }
+
     private stateCDATASequence(c: number): void {
         if (c === Sequences.Cdata[this.sequenceIndex]) {
             if (++this.sequenceIndex === Sequences.Cdata.length) {
                 this.sequenceIndex = 0;
-                if (
-                    this.recognizeCDATA ||
-                    (this.cbs.isCurrentNodeForeign?.() ??
-                        this.cbs.isInForeignContext?.())
-                ) {
+                if (this.recognizeCDATA || this.isCurrentNodeForeign()) {
                     this.state = State.InCommentLike;
                     this.currentSequence = Sequences.CdataEnd;
                     this.sectionStart = this.index + 1;
@@ -1041,12 +1046,12 @@ export default class Tokenizer {
         }
 
         if (this.currentSequence === Sequences.CdataEnd) {
-            if (this.xmlMode) {
+            if (this.xmlMode || this.isCurrentNodeForeign()) {
                 if (this.sectionStart < endIndex) {
                     this.cbs.oncdata(this.sectionStart, endIndex, 0);
                 }
             } else {
-                /* In HTML mode, unclosed CDATA is a bogus comment. */
+                /* In HTML content, unclosed CDATA is a bogus comment. */
                 const cdataStart =
                     this.sectionStart - Sequences.Cdata.length - 1;
                 this.cbs.oncomment(cdataStart, endIndex, 0);
