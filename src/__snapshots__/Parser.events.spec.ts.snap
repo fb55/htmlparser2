@@ -387,6 +387,141 @@ exports[`Events > CDATA in HTML ends at the first > 1`] = `
 ]
 `;
 
+exports[`Events > CDATA in HTML inside an integration point 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "foreignObject",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "foreignObject",
+      {},
+      false,
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "p",
+    ],
+    "endIndex": 22,
+    "startIndex": 20,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "p",
+      {},
+      false,
+    ],
+    "endIndex": 22,
+    "startIndex": 20,
+  },
+  {
+    "$event": "comment",
+    "data": [
+      "[CDATA[x",
+    ],
+    "endIndex": 33,
+    "startIndex": 23,
+  },
+  {
+    "$event": "commentend",
+    "data": [],
+    "endIndex": 33,
+    "startIndex": 23,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "b",
+    ],
+    "endIndex": 36,
+    "startIndex": 34,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "b",
+      {},
+      false,
+    ],
+    "endIndex": 36,
+    "startIndex": 34,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "]]>",
+    ],
+    "endIndex": 39,
+    "startIndex": 37,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "b",
+      true,
+    ],
+    "endIndex": 43,
+    "startIndex": 40,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "p",
+      false,
+    ],
+    "endIndex": 43,
+    "startIndex": 40,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "foreignObject",
+      false,
+    ],
+    "endIndex": 59,
+    "startIndex": 44,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      false,
+    ],
+    "endIndex": 65,
+    "startIndex": 60,
+  },
+]
+`;
+
 exports[`Events > CDATA more edge-cases 1`] = `
 [
   {
@@ -939,6 +1074,140 @@ exports[`Events > Foreign CDATA in SVG 1`] = `
     ],
     "endIndex": 25,
     "startIndex": 20,
+  },
+]
+`;
+
+exports[`Events > Foreign CDATA in a MathML integration point 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "math",
+    ],
+    "endIndex": 5,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "math",
+      {},
+      false,
+    ],
+    "endIndex": 5,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "mtext",
+    ],
+    "endIndex": 12,
+    "startIndex": 6,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "mtext",
+      {},
+      false,
+    ],
+    "endIndex": 12,
+    "startIndex": 6,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x><b>",
+    ],
+    "endIndex": 29,
+    "startIndex": 13,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "mtext",
+      false,
+    ],
+    "endIndex": 37,
+    "startIndex": 30,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "math",
+      false,
+    ],
+    "endIndex": 44,
+    "startIndex": 38,
+  },
+]
+`;
+
+exports[`Events > Foreign CDATA in an SVG integration point 1`] = `
+[
+  {
+    "$event": "opentagname",
+    "data": [
+      "svg",
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "svg",
+      {},
+      false,
+    ],
+    "endIndex": 4,
+    "startIndex": 0,
+  },
+  {
+    "$event": "opentagname",
+    "data": [
+      "foreignObject",
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "opentag",
+    "data": [
+      "foreignObject",
+      {},
+      false,
+    ],
+    "endIndex": 19,
+    "startIndex": 5,
+  },
+  {
+    "$event": "text",
+    "data": [
+      "x><b>",
+    ],
+    "endIndex": 36,
+    "startIndex": 20,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "foreignObject",
+      false,
+    ],
+    "endIndex": 52,
+    "startIndex": 37,
+  },
+  {
+    "$event": "closetag",
+    "data": [
+      "svg",
+      false,
+    ],
+    "endIndex": 58,
+    "startIndex": 53,
   },
 ]
 `;
