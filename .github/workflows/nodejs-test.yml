@@ -26,7 +26,7 @@ jobs:
             - run: npm run lint
 
     test:
-        name: Node ${{ matrix.node == '22.22.2' && '22' || matrix.node }}
+        name: Node ${{ matrix.node }}
         runs-on: ubuntu-latest
 
         strategy:
@@ -34,7 +34,7 @@ jobs:
             matrix:
                 node:
                     - 20
-                    - 22.22.2 # Minimum Node.js version for the development toolchain.
+                    - 22
                     - 24
                     - 26
                     - "lts/*"
@@ -49,4 +49,4 @@ jobs:
             - run: npm ci
             - run: npm run build --if-present
             - name: Run tests
-              run: npm run ${{ matrix.node == '22.22.2' && 'test' || 'test:vi' }}
+              run: npm run test:vi
