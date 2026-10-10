@@ -40,6 +40,21 @@ function runTest(input: string, options?: ParserOptions) {
 }
 
 describe("Events", () => {
+    it.each([
+        [Number.NaN, 0],
+        [0, Number.NaN],
+        [2, 1],
+    ])("should reject invalid event indices %s, %s", (startIndex, endIndex) => {
+        const handler = helper.getEventCollector(() => {});
+        const parser = new Parser(handler);
+        parser.startIndex = startIndex;
+        parser.endIndex = endIndex;
+
+        expect(() => handler.ontext?.("test")).toThrow(
+            "Invalid start/end index",
+        );
+    });
+
     it("simple", () => runTest("<h1 class=test>adsf</h1>"));
 
     it("Template script tags", () =>

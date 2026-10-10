@@ -18,6 +18,8 @@ export default defineConfig([
     {
         rules: {
             "n/no-unpublished-import": 0,
+            // Use the Number namespace required by the Biome configuration.
+            "unicorn/prefer-global-number-constants": 0,
 
             "unicorn/filename-case": [
                 2,
@@ -68,14 +70,6 @@ export default defineConfig([
                     checkDirectories: false,
                 },
             ],
-        },
-    },
-
-    // Preserve the observable class field initialization order.
-    {
-        files: ["src/Parser.ts", "src/Tokenizer.ts"],
-        rules: {
-            "unicorn/consistent-class-member-order": "off",
         },
     },
 ]);

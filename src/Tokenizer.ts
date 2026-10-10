@@ -196,8 +196,6 @@ export default class Tokenizer {
     private baseState = State.Text;
     /** For special parsing behavior inside of script and style tags. */
     private isSpecial = false;
-    /** Indicates whether the tokenizer has been paused. */
-    running = true;
     /** The offset of the current buffer. */
     private offset = 0;
 
@@ -206,6 +204,11 @@ export default class Tokenizer {
     private readonly recognizeSelfClosing: boolean;
     private readonly recognizeCDATA: boolean;
     private readonly entityDecoder: EntityDecoder;
+
+    private currentSequence: Uint8Array = Sequences.Empty;
+    private sequenceIndex = 0;
+    /** Indicates whether the tokenizer has been paused. */
+    running = true;
 
     constructor(
         {
@@ -231,40 +234,6 @@ export default class Tokenizer {
         );
     }
 
-    reset(): void {
-        this.state = State.Text;
-        this.buffer = "";
-        this.sectionStart = 0;
-        this.index = 0;
-        this.baseState = State.Text;
-        this.isSpecial = false;
-        this.currentSequence = Sequences.Empty;
-        this.sequenceIndex = 0;
-        this.running = true;
-        this.offset = 0;
-    }
-
-    write(chunk: string): void {
-        this.offset += this.buffer.length;
-        this.buffer = chunk;
-        this.parse();
-    }
-
-    end(): void {
-        if (this.running) this.finish();
-    }
-
-    pause(): void {
-        this.running = false;
-    }
-
-    resume(): void {
-        this.running = true;
-        if (this.index < this.buffer.length + this.offset) {
-            this.parse();
-        }
-    }
-
     private stateText(c: number): void {
         if (
             c === CharCodes.Lt ||
@@ -279,9 +248,6 @@ export default class Tokenizer {
             this.startEntity();
         }
     }
-
-    private currentSequence: Uint8Array = Sequences.Empty;
-    private sequenceIndex = 0;
 
     private enterTagBody(): void {
         if (this.currentSequence === Sequences.Plaintext) {
@@ -1169,6 +1135,40 @@ export default class Tokenizer {
             this.index = this.sectionStart - 1;
 
             this.cbs.ontextentity(cp, this.sectionStart);
+        }
+    }
+
+    reset(): void {
+        this.state = State.Text;
+        this.buffer = "";
+        this.sectionStart = 0;
+        this.index = 0;
+        this.baseState = State.Text;
+        this.isSpecial = false;
+        this.currentSequence = Sequences.Empty;
+        this.sequenceIndex = 0;
+        this.running = true;
+        this.offset = 0;
+    }
+
+    write(chunk: string): void {
+        this.offset += this.buffer.length;
+        this.buffer = chunk;
+        this.parse();
+    }
+
+    end(): void {
+        if (this.running) this.finish();
+    }
+
+    pause(): void {
+        this.running = false;
+    }
+
+    resume(): void {
+        this.running = true;
+        if (this.index < this.buffer.length + this.offset) {
+            this.parse();
         }
     }
 }
