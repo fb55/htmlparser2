@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/prefer-includes-over-repeated-comparisons -- Keep hot ASCII comparisons allocation free. */
+/* eslint-disable unicorn/no-break-in-nested-loop -- Keep the tokenizer state dispatch inline in its character-processing loop. */
+
 import {
     DecodingMode,
     EntityDecoder,
