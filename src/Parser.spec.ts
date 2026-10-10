@@ -286,6 +286,53 @@ describe("API", () => {
         expect(closed).toStrictEqual(["c", "b"]);
     });
 
+    it.each([
+        "abc",
+        "<!--ab",
+        "&amp",
+    ])("should only handle the end of %s once after pause/resume", (input) => {
+        const events: string[] = [];
+        const parser = new Parser({
+            ontext(data) {
+                events.push(data);
+                parser.pause();
+            },
+            oncomment(data) {
+                events.push(data);
+                parser.pause();
+            },
+            onend() {
+                events.push("end");
+            },
+        });
+        parser.end(input);
+        parser.resume();
+        const first = [...events];
+        parser.resume();
+        expect(events).toStrictEqual(first);
+        expect(events.filter((event) => event === "end")).toHaveLength(1);
+        parser.reset();
+        parser.end("next");
+        parser.resume();
+        expect(events.slice(first.length)).toStrictEqual(["next", "end"]);
+    });
+
+    it("should not parse an entity suffix again after end", () => {
+        const events: string[] = [];
+        const parser = new Parser({
+            ontext: (data) => {
+                events.push(data);
+            },
+            onend: () => {
+                events.push("end");
+            },
+        });
+        parser.end("&timesbar");
+        expect(events).toStrictEqual(["×", "bar", "end"]);
+        parser.resume();
+        expect(events).toStrictEqual(["×", "bar", "end"]);
+    });
+
     it("should support custom tokenizer", () => {
         class CustomTokenizer extends Tokenizer {}
 

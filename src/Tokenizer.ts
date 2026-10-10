@@ -195,6 +195,8 @@ export default class Tokenizer {
     private isSpecial = false;
     /** Indicates whether the tokenizer has been paused. */
     running = true;
+    /** Indicates whether the end of the input has been handled. */
+    private finished = false;
     /** The offset of the current buffer. */
     private offset = 0;
 
@@ -238,6 +240,7 @@ export default class Tokenizer {
         this.currentSequence = Sequences.Empty;
         this.sequenceIndex = 0;
         this.running = true;
+        this.finished = false;
         this.offset = 0;
     }
 
@@ -248,7 +251,7 @@ export default class Tokenizer {
     }
 
     end(): void {
-        if (this.running) this.finish();
+        if (this.running && !this.finished) this.finish();
     }
 
     pause(): void {
@@ -257,7 +260,7 @@ export default class Tokenizer {
 
     resume(): void {
         this.running = true;
-        if (this.index < this.buffer.length + this.offset) {
+        if (!this.finished && this.index < this.buffer.length + this.offset) {
             this.parse();
         }
     }
@@ -1020,6 +1023,7 @@ export default class Tokenizer {
     }
 
     private finish() {
+        this.finished = true;
         if (this.state === State.InEntity) {
             this.entityDecoder.end();
             this.state = this.baseState;
