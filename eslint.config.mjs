@@ -18,6 +18,8 @@ export default defineConfig([
     {
         rules: {
             "n/no-unpublished-import": 0,
+            // Use the Number namespace required by the Biome configuration.
+            "unicorn/prefer-global-number-constants": 0,
 
             "unicorn/filename-case": [
                 2,
@@ -52,6 +54,22 @@ export default defineConfig([
 
         rules: {
             "n/no-unsupported-features/node-builtins": 0,
+        },
+    },
+    // Retain the conventional fixture directory while checking other names.
+    {
+        files: ["src/__fixtures__/**"],
+        rules: {
+            "unicorn/filename-case": [
+                "error",
+                {
+                    cases: {
+                        camelCase: true,
+                        pascalCase: true,
+                    },
+                    checkDirectories: false,
+                },
+            ],
         },
     },
 ]);
