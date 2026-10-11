@@ -1,0 +1,30 @@
+src/Parser.spec.ts
+  s_98abc3499f7493::t_be8237bd54dc44 320-336
+  s_6bbbbbc7cea8e7::t_728c3ce2c77fab 256-268,291-319
+src/Tokenizer.ts
+  s_98abc3499f7493::t_66cc63e07e896d 1006
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "efd5f79bbbbf7473a615d916e230a74e73db5a5c",
+  "prompts": {},
+  "sessions": {
+    "s_6bbbbbc7cea8e7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "477ae3a9-56cd-4535-bf0f-8d24ed1686d9",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": null
+    },
+    "s_98abc3499f7493": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a103bb-669a-74b3-b59e-3acc3bc180fe",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
