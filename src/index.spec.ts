@@ -11,9 +11,10 @@ import {
 // Add an `attributes` prop to the Element for now, to make it possible for Jest to render DOM nodes.
 Object.defineProperty(Element.prototype, "attributes", {
     get() {
-        return Object.keys(this.attribs).map((name) => ({
+        // eslint-disable-next-line unicorn/no-this-outside-of-class -- This prototype getter uses the receiving Element instance.
+        return Object.entries(this.attribs).map(([name, value]) => ({
             name,
-            value: this.attribs[name],
+            value,
         }));
     },
     configurable: true,
