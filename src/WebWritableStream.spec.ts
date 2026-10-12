@@ -5,6 +5,17 @@ import type { Handler, ParserOptions } from "./Parser.js";
 import { WebWritableStream } from "./WebWritableStream.js";
 
 describe("WebWritableStream", () => {
+    it("should preserve a BOM when strings precede the first bytes", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write("x");
+        await writer.write(new Uint8Array([0xef, 0xbb, 0xbf, 0x61]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe(
+            "x\u{FEFF}a",
+        );
+    });
+
     it("should preserve a midstream BOM after string chunks", async () => {
         const ontext = vi.fn();
         const writer = new WebWritableStream({ ontext }).getWriter();

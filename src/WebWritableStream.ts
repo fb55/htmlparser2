@@ -24,20 +24,18 @@ export class WebWritableStream extends WritableStream<string | Uint8Array> {
     constructor(cbs: Partial<Handler>, options?: ParserOptions) {
         const parser = new Parser(cbs, options);
         let decoder = new TextDecoder();
-        let hasBinaryInput = false;
         const streamOption: TextDecodeOptions = { stream: true };
 
         super({
             write(chunk) {
                 if (typeof chunk === "string") {
                     const remaining = chunk ? decoder.decode() : "";
-                    if (chunk && hasBinaryInput && !decoder.ignoreBOM) {
-                        // Only the original binary input may have a leading BOM.
+                    if (chunk && !decoder.ignoreBOM) {
+                        // A BOM following text is part of the document content.
                         decoder = new TextDecoder("utf-8", { ignoreBOM: true });
                     }
                     parser.write(remaining + chunk);
                 } else {
-                    hasBinaryInput ||= chunk.byteLength > 0;
                     parser.write(decoder.decode(chunk, streamOption));
                 }
             },
