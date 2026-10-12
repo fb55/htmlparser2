@@ -5,6 +5,26 @@ import type { Handler, ParserOptions } from "./Parser.js";
 import { WebWritableStream } from "./WebWritableStream.js";
 
 describe("WebWritableStream", () => {
+    it("should flush incomplete bytes before a string chunk", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write(new Uint8Array([0xe2, 0x82]));
+        await writer.write("text");
+        await writer.write(new Uint8Array([0xac]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe("�text�");
+    });
+
+    it("should keep incomplete bytes across an empty string chunk", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write(new Uint8Array([0xe2, 0x82]));
+        await writer.write("");
+        await writer.write(new Uint8Array([0xac]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe("€");
+    });
+
     it("should decode fragmented unicode characters", async () => {
         const ontext = vi.fn();
         const stream = new WebWritableStream({ ontext });

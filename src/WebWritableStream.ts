@@ -28,11 +28,11 @@ export class WebWritableStream extends WritableStream<string | Uint8Array> {
 
         super({
             write(chunk) {
-                parser.write(
-                    typeof chunk === "string"
-                        ? chunk
-                        : decoder.decode(chunk, streamOption),
-                );
+                if (typeof chunk === "string") {
+                    parser.write((chunk ? decoder.decode() : "") + chunk);
+                } else {
+                    parser.write(decoder.decode(chunk, streamOption));
+                }
             },
             close() {
                 // Flush any remaining bytes in the decoder
