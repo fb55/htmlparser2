@@ -1,0 +1,31 @@
+src/Parser.ts
+  s_6bbbbbc7cea8e7::t_f3ca510a16f26e 279-280,440,442-446,539,551-552,564,768
+  s_00d32ce91e753c::t_65d22ef1903ffa 156-158,392,424,441,447,499,538,540-543,548-550,554-555,565-569
+  s_6bbbbbc7cea8e7::t_a6388acc799c6d 544-547,553
+src/Parser.spec.ts
+  s_00d32ce91e753c::t_8f7eb5cefe4bcf 289-312
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f11308e550fa3362efb8f027495803f8801b72e9",
+  "prompts": {},
+  "sessions": {
+    "s_00d32ce91e753c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a103bb-107f-7910-8983-a0cf2ff5e075",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    },
+    "s_6bbbbbc7cea8e7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "477ae3a9-56cd-4535-bf0f-8d24ed1686d9",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": null
+    }
+  }
+}
