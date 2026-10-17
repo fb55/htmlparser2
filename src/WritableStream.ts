@@ -29,9 +29,11 @@ export class WritableStream extends Writable {
         encoding: string,
         callback: () => void,
     ): void {
-        this._parser.write(
-            isBuffer(chunk, encoding) ? this._decoder.write(chunk) : chunk,
-        );
+        if (isBuffer(chunk, encoding)) {
+            this._parser.write(this._decoder.write(chunk));
+        } else {
+            this._parser.write((chunk ? this._decoder.end() : "") + chunk);
+        }
         callback();
     }
 
