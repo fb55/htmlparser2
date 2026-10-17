@@ -2,6 +2,24 @@ import { describe, expect, it, vi } from "vitest";
 import { Parser, Tokenizer } from "./index.js";
 import type { Handler } from "./Parser.js";
 
+const arrayIndex = /^\d+$/;
+
+// Count indexed reads, including the moves made by shift/unshift/splice.
+function countArrayReads(parser: Parser, key: string, run: () => void): number {
+    const arrays = parser as unknown as Record<string, string[]>;
+    let reads = 0;
+    arrays[key] = new Proxy(arrays[key], {
+        get(target, property, receiver) {
+            if (typeof property === "string" && arrayIndex.test(property)) {
+                reads++;
+            }
+            return Reflect.get(target, property, receiver);
+        },
+    });
+    run();
+    return reads;
+}
+
 describe("API", () => {
     it("should work without callbacks", () => {
         const cbs: Partial<Handler> = { onerror: vi.fn() };
@@ -143,10 +161,10 @@ describe("API", () => {
     });
 
     it("should update the position when a single tag is spread across multiple chunks", () => {
-        let called = false;
+        let isCalled = false;
         const p = new Parser({
             onopentag() {
-                called = true;
+                isCalled = true;
                 expect(p.startIndex).toBe(0);
                 expect(p.endIndex).toBe(12);
             },
@@ -155,21 +173,21 @@ describe("API", () => {
         p.write("<div ");
         p.write("foo=bar>");
 
-        expect(called).toBe(true);
+        expect(isCalled).toBe(true);
     });
 
     it("should have the correct position for implied opening tags", () => {
-        let called = false;
+        let isCalled = false;
         const p = new Parser({
             onopentag() {
-                called = true;
+                isCalled = true;
                 expect(p.startIndex).toBe(0);
                 expect(p.endIndex).toBe(3);
             },
         });
 
         p.write("</p>");
-        expect(called).toBe(true);
+        expect(isCalled).toBe(true);
     });
 
     it("should parse <__proto__> (#387)", () => {
@@ -251,6 +269,87 @@ describe("API", () => {
             ([name]) => name === "th",
         );
         expect(tdClose).toBeLessThan(thOpen);
+    });
+
+    it.each(["div", "svg", "a"])(
+        "should do linear stack work for nested %s elements",
+        (name) => {
+            const depth = 500;
+            const parser = new Parser({}, { xmlMode: name === "a" });
+            const input =
+                `<${name}>`.repeat(depth) + `</${name}>`.repeat(depth);
+            const reads = countArrayReads(parser, "stack", () =>
+                parser.end(input),
+            );
+            expect(reads).toBeLessThan(depth * 10);
+        },
+    );
+
+    it("should do linear work on the foreign context stack", () => {
+        const depth = 500;
+        const parser = new Parser({});
+        const reads = countArrayReads(parser, "foreignContext", () =>
+            parser.end("<svg>".repeat(depth) + "</svg>".repeat(depth)),
+        );
+        expect(reads).toBeLessThan(depth * 10);
+    });
+
+    it("should stop closing elements when reset at the end of the input", () => {
+        const closed: string[] = [];
+        const parser = new Parser({
+            onclosetag(name) {
+                closed.push(name);
+                if (name === "b") parser.reset();
+            },
+        });
+        parser.end("<a><b><c>");
+        expect(closed).toStrictEqual(["c", "b"]);
+    });
+
+    it.each(["abc", "<!--ab", "&amp"])(
+        "should only handle the end of %s once after pause/resume",
+        (input) => {
+            const events: string[] = [];
+            const parser = new Parser({
+                ontext(data) {
+                    events.push(data);
+                    parser.pause();
+                },
+                oncomment(data) {
+                    events.push(data);
+                    parser.pause();
+                },
+                onend() {
+                    events.push("end");
+                },
+            });
+            parser.end(input);
+            parser.resume();
+            const first = [...events];
+            parser.resume();
+            expect(events).toStrictEqual(first);
+            expect(events.filter((event) => event === "end")).toHaveLength(1);
+            parser.reset();
+            parser.end("next");
+            parser.resume();
+            expect(events.slice(first.length)).toStrictEqual(["next", "end"]);
+        },
+    );
+
+    it("should not parse an entity suffix again after end", () => {
+        const events: string[] = [];
+        const parser = new Parser({
+            ontext: (data) => {
+                events.push(data);
+            },
+            onend: () => {
+                events.push("end");
+            },
+        });
+        parser.end("&timesbar");
+        expect(events).toStrictEqual(["×", "bar", "end"]);
+        parser.resume();
+        expect(events).toStrictEqual(["×", "bar", "end"]);
     });
 
     it("should support custom tokenizer", () => {

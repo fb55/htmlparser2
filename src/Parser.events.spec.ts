@@ -40,6 +40,21 @@ function runTest(input: string, options?: ParserOptions) {
 }
 
 describe("Events", () => {
+    it.each([
+        [Number.NaN, 0],
+        [0, Number.NaN],
+        [2, 1],
+    ])("should reject invalid event indices %s, %s", (startIndex, endIndex) => {
+        const handler = helper.getEventCollector(() => {});
+        const parser = new Parser(handler);
+        parser.startIndex = startIndex;
+        parser.endIndex = endIndex;
+
+        expect(() => handler.ontext?.("test")).toThrow(
+            "Invalid start/end index",
+        );
+    });
+
     it("simple", () => runTest("<h1 class=test>adsf</h1>"));
 
     it("Template script tags", () =>
@@ -90,6 +105,7 @@ describe("Events", () => {
         runTest("<img src=gif.com/123/><p>Hold the line."));
 
     it("end slash: as part of attrib value of non-void element", () =>
+        // eslint-disable-next-line unicorn/prefer-https -- Match the original HTTP fixture exactly.
         runTest("<a href=http://test.com/>Foo</a><p>Hold the line."));
 
     it("Implicit close tags", () =>
@@ -137,6 +153,7 @@ describe("Events", () => {
 
     it("entity in attribute", () =>
         runTest(
+            // eslint-disable-next-line unicorn/prefer-https -- Match the original HTTP fixture exactly.
             "<a href='http://example.com/p&#x61;#x61ge?param=value&param2&param3=&lt;val&; & &'>",
         ));
 
@@ -158,6 +175,7 @@ describe("Events", () => {
         runTest("<foo bar=&amp; baz=\"&amp;\" boo='&amp;' noo=>"));
 
     it("CDATA in HTML", () => runTest("<![CDATA[ foo ]]>"));
+    it("CDATA in HTML ends at the first >", () => runTest("<![CDATA[x><b>"));
 
     it("Comment edge-cases", () => runTest("<!-foo><!-- --- --><!--foo"));
 

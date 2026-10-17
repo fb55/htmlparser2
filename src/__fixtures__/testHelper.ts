@@ -59,6 +59,7 @@ export function getEventCollector(
                     data.pop();
                 }
 
+                // eslint-disable-next-line unicorn/no-negated-comparison -- Negating <= also rejects NaN indices.
                 if (!(parser.startIndex <= parser.endIndex)) {
                     throw new Error(
                         `Invalid start/end index ${parser.startIndex} > ${parser.endIndex}`,

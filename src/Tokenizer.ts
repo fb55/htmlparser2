@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/prefer-includes-over-repeated-comparisons -- Keep hot ASCII comparisons allocation free. */
+/* eslint-disable unicorn/no-break-in-nested-loop -- Keep the tokenizer state dispatch inline in its character-processing loop. */
+
 import {
     DecodingMode,
     EntityDecoder,
@@ -193,69 +196,44 @@ export default class Tokenizer {
     private baseState = State.Text;
     /** For special parsing behavior inside of script and style tags. */
     private isSpecial = false;
-    /** Indicates whether the tokenizer has been paused. */
-    running = true;
     /** The offset of the current buffer. */
     private offset = 0;
 
     private readonly xmlMode: boolean;
     private readonly decodeEntities: boolean;
     private readonly recognizeSelfClosing: boolean;
+    private readonly recognizeCDATA: boolean;
     private readonly entityDecoder: EntityDecoder;
+
+    private currentSequence: Uint8Array = Sequences.Empty;
+    private sequenceIndex = 0;
+    /** Indicates whether the end of the input has been handled. */
+    private finished = false;
+    /** Indicates whether the tokenizer has been paused. */
+    running = true;
 
     constructor(
         {
             xmlMode = false,
             decodeEntities = true,
             recognizeSelfClosing = xmlMode,
+            recognizeCDATA = xmlMode,
         }: {
             xmlMode?: boolean;
             decodeEntities?: boolean;
             recognizeSelfClosing?: boolean;
+            recognizeCDATA?: boolean;
         },
         private readonly cbs: Callbacks,
     ) {
         this.xmlMode = xmlMode;
         this.decodeEntities = decodeEntities;
         this.recognizeSelfClosing = recognizeSelfClosing;
+        this.recognizeCDATA = xmlMode || recognizeCDATA;
         this.entityDecoder = new EntityDecoder(
             xmlMode ? xmlDecodeTree : htmlDecodeTree,
             (cp, consumed) => this.emitCodePoint(cp, consumed),
         );
-    }
-
-    reset(): void {
-        this.state = State.Text;
-        this.buffer = "";
-        this.sectionStart = 0;
-        this.index = 0;
-        this.baseState = State.Text;
-        this.isSpecial = false;
-        this.currentSequence = Sequences.Empty;
-        this.sequenceIndex = 0;
-        this.running = true;
-        this.offset = 0;
-    }
-
-    write(chunk: string): void {
-        this.offset += this.buffer.length;
-        this.buffer = chunk;
-        this.parse();
-    }
-
-    end(): void {
-        if (this.running) this.finish();
-    }
-
-    pause(): void {
-        this.running = false;
-    }
-
-    resume(): void {
-        this.running = true;
-        if (this.index < this.buffer.length + this.offset) {
-            this.parse();
-        }
     }
 
     private stateText(c: number): void {
@@ -272,9 +250,6 @@ export default class Tokenizer {
             this.startEntity();
         }
     }
-
-    private currentSequence: Uint8Array = Sequences.Empty;
-    private sequenceIndex = 0;
 
     private enterTagBody(): void {
         if (this.currentSequence === Sequences.Plaintext) {
@@ -354,10 +329,15 @@ export default class Tokenizer {
     private stateCDATASequence(c: number): void {
         if (c === Sequences.Cdata[this.sequenceIndex]) {
             if (++this.sequenceIndex === Sequences.Cdata.length) {
-                this.state = State.InCommentLike;
-                this.currentSequence = Sequences.CdataEnd;
                 this.sequenceIndex = 0;
-                this.sectionStart = this.index + 1;
+                if (this.recognizeCDATA || this.cbs.isInForeignContext?.()) {
+                    this.state = State.InCommentLike;
+                    this.currentSequence = Sequences.CdataEnd;
+                    this.sectionStart = this.index + 1;
+                } else {
+                    // In HTML, `<![CDATA[` is a bogus comment that ends at the first `>`.
+                    this.state = State.InSpecialComment;
+                }
             }
         } else {
             this.sequenceIndex = 0;
@@ -564,12 +544,14 @@ export default class Tokenizer {
         }
     }
     private stateInTagName(c: number): void {
-        if (isEndOfTagSection(c)) {
-            this.cbs.onopentagname(this.sectionStart, this.index);
-            this.sectionStart = -1;
-            this.state = State.BeforeAttributeName;
-            this.stateBeforeAttributeName(c);
+        if (!isEndOfTagSection(c)) {
+            return;
         }
+
+        this.cbs.onopentagname(this.sectionStart, this.index);
+        this.sectionStart = -1;
+        this.state = State.BeforeAttributeName;
+        this.stateBeforeAttributeName(c);
     }
     private stateBeforeClosingTagName(c: number): void {
         if (isWhitespace(c)) {
@@ -592,19 +574,23 @@ export default class Tokenizer {
         }
     }
     private stateInClosingTagName(c: number): void {
-        if (isEndOfTagSection(c)) {
-            this.cbs.onclosetag(this.sectionStart, this.index);
-            this.sectionStart = -1;
-            this.state = State.AfterClosingTagName;
-            this.stateAfterClosingTagName(c);
+        if (!isEndOfTagSection(c)) {
+            return;
         }
+
+        this.cbs.onclosetag(this.sectionStart, this.index);
+        this.sectionStart = -1;
+        this.state = State.AfterClosingTagName;
+        this.stateAfterClosingTagName(c);
     }
     private stateAfterClosingTagName(c: number): void {
         // Skip everything until ">"
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.state = State.Text;
-            this.sectionStart = this.index + 1;
+        if (!(c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt))) {
+            return;
         }
+
+        this.state = State.Text;
+        this.sectionStart = this.index + 1;
     }
     private stateBeforeAttributeName(c: number): void {
         if (c === CharCodes.Gt) {
@@ -646,12 +632,14 @@ export default class Tokenizer {
         }
     }
     private stateInAttributeName(c: number): void {
-        if (c === CharCodes.Eq || isEndOfTagSection(c)) {
-            this.cbs.onattribname(this.sectionStart, this.index);
-            this.sectionStart = this.index;
-            this.state = State.AfterAttributeName;
-            this.stateAfterAttributeName(c);
+        if (!(c === CharCodes.Eq || isEndOfTagSection(c))) {
+            return;
         }
+
+        this.cbs.onattribname(this.sectionStart, this.index);
+        this.sectionStart = this.index;
+        this.state = State.AfterAttributeName;
+        this.stateAfterAttributeName(c);
     }
     private stateAfterAttributeName(c: number): void {
         if (c === CharCodes.Eq) {
@@ -769,11 +757,13 @@ export default class Tokenizer {
         }
     }
     private stateInDeclaration(c: number): void {
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.ondeclaration(this.sectionStart, this.index);
-            this.state = State.Text;
-            this.sectionStart = this.index + 1;
+        if (!(c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt))) {
+            return;
         }
+
+        this.cbs.ondeclaration(this.sectionStart, this.index);
+        this.state = State.Text;
+        this.sectionStart = this.index + 1;
     }
     /**
      * XML processing instructions (`<?...?>`).
@@ -815,11 +805,13 @@ export default class Tokenizer {
         }
     }
     private stateInSpecialComment(c: number): void {
-        if (c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt)) {
-            this.cbs.oncomment(this.sectionStart, this.index, 0);
-            this.state = State.Text;
-            this.sectionStart = this.index + 1;
+        if (!(c === CharCodes.Gt || this.fastForwardTo(CharCodes.Gt))) {
+            return;
         }
+
+        this.cbs.oncomment(this.sectionStart, this.index, 0);
+        this.state = State.Text;
+        this.sectionStart = this.index + 1;
     }
 
     private startEntity() {
@@ -1011,6 +1003,7 @@ export default class Tokenizer {
     }
 
     private finish() {
+        this.finished = true;
         if (this.state === State.InEntity) {
             this.entityDecoder.end();
             this.state = this.baseState;
@@ -1145,6 +1138,41 @@ export default class Tokenizer {
             this.index = this.sectionStart - 1;
 
             this.cbs.ontextentity(cp, this.sectionStart);
+        }
+    }
+
+    reset(): void {
+        this.state = State.Text;
+        this.buffer = "";
+        this.sectionStart = 0;
+        this.index = 0;
+        this.baseState = State.Text;
+        this.isSpecial = false;
+        this.currentSequence = Sequences.Empty;
+        this.sequenceIndex = 0;
+        this.running = true;
+        this.finished = false;
+        this.offset = 0;
+    }
+
+    write(chunk: string): void {
+        this.offset += this.buffer.length;
+        this.buffer = chunk;
+        this.parse();
+    }
+
+    end(): void {
+        if (this.running && !this.finished) this.finish();
+    }
+
+    pause(): void {
+        this.running = false;
+    }
+
+    resume(): void {
+        this.running = true;
+        if (!this.finished && this.index < this.buffer.length + this.offset) {
+            this.parse();
         }
     }
 }

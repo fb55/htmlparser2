@@ -265,10 +265,6 @@ const reNameEnd = /\s|\//;
  * Incremental parser implementation.
  */
 export class Parser implements Callbacks {
-    /** The start index of the last event. */
-    startIndex = 0;
-    /** The end index of the last event. */
-    endIndex = 0;
     /**
      * Store the start index of the current open tag,
      * so we can update the start index for attributes.
@@ -295,6 +291,10 @@ export class Parser implements Callbacks {
     private writeIndex = 0;
     /** Indicates whether the parser has finished running / `.end` has been called. */
     private ended = false;
+    /** The start index of the last event. */
+    startIndex = 0;
+    /** The end index of the last event. */
+    endIndex = 0;
 
     constructor(
         cbs?: Partial<Handler> | null,
@@ -313,6 +313,175 @@ export class Parser implements Callbacks {
         );
         this.foreignContext = [ForeignContext.None];
         this.cbs.onparserinit?.(this);
+    }
+
+    /**
+     * Read a tag name from the buffer.
+     *
+     * When `lowerCaseTagNames` is enabled (the default in HTML mode), the name
+     * is lowercased and may be adjusted for SVG casing or the `image` → `img`
+     * alias.
+     * @param start Start index of the tag name in the buffer.
+     * @param endIndex End index of the tag name in the buffer.
+     */
+    private readTagName(start: number, endIndex: number): string {
+        const name = this.lowerCaseTagNames
+            ? this.getSlice(start, endIndex).toLowerCase()
+            : this.getSlice(start, endIndex);
+
+        if (!(this.lowerCaseTagNames && this.htmlMode)) {
+            return name;
+        }
+
+        if (
+            this.foreignContext[this.foreignContext.length - 1] ===
+            ForeignContext.Svg
+        ) {
+            return svgTagNameAdjustments.get(name) ?? name;
+        }
+
+        /*
+         * Closing tags for SVG elements inside HTML integration points
+         * (e.g. </foreignObject> while inside its own content) need case
+         * adjustment so the name matches what was pushed to the stack.
+         * `foreignContext.length > 1` means a foreign ancestor exists —
+         * the base [None] entry plus at least one pushed context.
+         */
+        if (this.foreignContext.length > 1) {
+            const adjusted = svgTagNameAdjustments.get(name);
+            if (adjusted !== undefined && this.stack.includes(adjusted)) {
+                return adjusted;
+            }
+        }
+
+        if (!this.isInForeignContext()) {
+            return name === "image" ? "img" : name;
+        }
+
+        return name;
+    }
+
+    private emitOpenTag(name: string) {
+        this.openTagStart = this.startIndex;
+        this.tagname = name;
+
+        /*
+         * The spec ignores a second <form> when one is already open.
+         * Setting tagname to "" suppresses all downstream effects: attribs
+         * stays null so endOpenTag is a no-op, and closeCurrentTag can't
+         * match "" on the stack.
+         */
+        if (this.htmlMode && name === "form" && this.stack.includes("form")) {
+            this.tagname = "";
+            return;
+        }
+
+        const impliesClose = this.htmlMode && openImpliesClose.get(name);
+
+        if (impliesClose) {
+            while (
+                this.stack.length > 0 &&
+                impliesClose.has(this.stack[this.stack.length - 1])
+            ) {
+                this.popElement(true);
+            }
+        }
+        if (!this.isVoidElement(name)) {
+            this.stack.push(name);
+
+            if (this.htmlMode) {
+                if (name === "svg") {
+                    this.foreignContext.push(ForeignContext.Svg);
+                } else if (name === "math") {
+                    this.foreignContext.push(ForeignContext.MathML);
+                } else if (htmlIntegrationElements.has(name)) {
+                    this.foreignContext.push(ForeignContext.None);
+                }
+            }
+        }
+        this.cbs.onopentagname?.(name);
+        if (this.cbs.onopentag) this.attribs = {};
+    }
+
+    private endOpenTag(isImplied: boolean) {
+        this.startIndex = this.openTagStart;
+
+        if (this.attribs) {
+            this.cbs.onopentag?.(this.tagname, this.attribs, isImplied);
+            this.attribs = null;
+        }
+        if (this.cbs.onclosetag && this.isVoidElement(this.tagname)) {
+            this.cbs.onclosetag(this.tagname, true);
+        }
+
+        this.tagname = "";
+    }
+
+    /**
+     * Pop the top element off the stack, emit a close event, and maintain
+     * the foreign context stack.
+     * @param isImplied Whether this close is implied (not from an explicit end tag).
+     */
+    private popElement(isImplied: boolean): void {
+        // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
+        const element = this.stack.pop()!;
+        if (
+            this.htmlMode &&
+            (foreignContextElements.has(element) ||
+                htmlIntegrationElements.has(element))
+        ) {
+            this.foreignContext.pop();
+        }
+        this.cbs.onclosetag?.(element, isImplied);
+    }
+
+    private closeCurrentTag(isOpenImplied: boolean) {
+        const name = this.tagname;
+        this.endOpenTag(isOpenImplied);
+
+        // Self-closing tags will be on the top of the stack
+        if (this.stack[this.stack.length - 1] === name) {
+            this.popElement(!isOpenImplied);
+        }
+    }
+
+    private getInstructionName(value: string) {
+        const index = value.search(reNameEnd);
+        let name = index < 0 ? value : value.substr(0, index);
+
+        if (this.lowerCaseTagNames) {
+            name = name.toLowerCase();
+        }
+
+        return name;
+    }
+
+    private getSlice(start: number, end: number) {
+        if (start === end) {
+            return "";
+        }
+
+        while (start - this.bufferOffset >= this.buffers[0].length) {
+            this.shiftBuffer();
+        }
+
+        let slice = this.buffers[0].slice(
+            start - this.bufferOffset,
+            end - this.bufferOffset,
+        );
+
+        while (end - this.bufferOffset > this.buffers[0].length) {
+            this.shiftBuffer();
+            slice += this.buffers[0].slice(0, end - this.bufferOffset);
+        }
+
+        return slice;
+    }
+
+    private shiftBuffer(): void {
+        this.bufferOffset += this.buffers[0].length;
+        this.writeIndex--;
+        this.buffers.shift();
     }
 
     // Tokenizer event handlers
@@ -342,7 +511,10 @@ export class Parser implements Callbacks {
 
     /** @internal */
     isInForeignContext(): boolean {
-        return this.foreignContext[0] !== ForeignContext.None;
+        return (
+            this.foreignContext[this.foreignContext.length - 1] !==
+            ForeignContext.None
+        );
     }
 
     /**
@@ -355,49 +527,6 @@ export class Parser implements Callbacks {
     }
 
     /**
-     * Read a tag name from the buffer.
-     *
-     * When `lowerCaseTagNames` is enabled (the default in HTML mode), the name
-     * is lowercased and may be adjusted for SVG casing or the `image` → `img`
-     * alias.
-     * @param start Start index of the tag name in the buffer.
-     * @param endIndex End index of the tag name in the buffer.
-     */
-    private readTagName(start: number, endIndex: number): string {
-        const name = this.lowerCaseTagNames
-            ? this.getSlice(start, endIndex).toLowerCase()
-            : this.getSlice(start, endIndex);
-
-        if (!(this.lowerCaseTagNames && this.htmlMode)) {
-            return name;
-        }
-
-        if (this.foreignContext[0] === ForeignContext.Svg) {
-            return svgTagNameAdjustments.get(name) ?? name;
-        }
-
-        /*
-         * Closing tags for SVG elements inside HTML integration points
-         * (e.g. </foreignObject> while inside its own content) need case
-         * adjustment so the name matches what was pushed to the stack.
-         * `foreignContext.length > 1` means a foreign ancestor exists —
-         * the base [None] entry plus at least one pushed context.
-         */
-        if (this.foreignContext.length > 1) {
-            const adjusted = svgTagNameAdjustments.get(name);
-            if (adjusted !== undefined && this.stack.includes(adjusted)) {
-                return adjusted;
-            }
-        }
-
-        if (!this.isInForeignContext()) {
-            return name === "image" ? "img" : name;
-        }
-
-        return name;
-    }
-
-    /**
      * @param start Start index for the current parser event.
      * @param endIndex End index for the current parser event.
      * @internal
@@ -405,59 +534,6 @@ export class Parser implements Callbacks {
     onopentagname(start: number, endIndex: number): void {
         this.endIndex = endIndex;
         this.emitOpenTag(this.readTagName(start, endIndex));
-    }
-
-    private emitOpenTag(name: string) {
-        this.openTagStart = this.startIndex;
-        this.tagname = name;
-
-        /*
-         * The spec ignores a second <form> when one is already open.
-         * Setting tagname to "" suppresses all downstream effects: attribs
-         * stays null so endOpenTag is a no-op, and closeCurrentTag can't
-         * match "" on the stack.
-         */
-        if (this.htmlMode && name === "form" && this.stack.includes("form")) {
-            this.tagname = "";
-            return;
-        }
-
-        const impliesClose = this.htmlMode && openImpliesClose.get(name);
-
-        if (impliesClose) {
-            while (this.stack.length > 0 && impliesClose.has(this.stack[0])) {
-                this.popElement(true);
-            }
-        }
-        if (!this.isVoidElement(name)) {
-            this.stack.unshift(name);
-
-            if (this.htmlMode) {
-                if (name === "svg") {
-                    this.foreignContext.unshift(ForeignContext.Svg);
-                } else if (name === "math") {
-                    this.foreignContext.unshift(ForeignContext.MathML);
-                } else if (htmlIntegrationElements.has(name)) {
-                    this.foreignContext.unshift(ForeignContext.None);
-                }
-            }
-        }
-        this.cbs.onopentagname?.(name);
-        if (this.cbs.onopentag) this.attribs = {};
-    }
-
-    private endOpenTag(isImplied: boolean) {
-        this.startIndex = this.openTagStart;
-
-        if (this.attribs) {
-            this.cbs.onopentag?.(this.tagname, this.attribs, isImplied);
-            this.attribs = null;
-        }
-        if (this.cbs.onclosetag && this.isVoidElement(this.tagname)) {
-            this.cbs.onclosetag(this.tagname, true);
-        }
-
-        this.tagname = "";
     }
 
     /**
@@ -482,9 +558,9 @@ export class Parser implements Callbacks {
         const name = this.readTagName(start, endIndex);
 
         if (!this.isVoidElement(name)) {
-            const pos = this.stack.indexOf(name);
+            const pos = this.stack.lastIndexOf(name);
             if (pos !== -1) {
-                for (let index = 0; index < pos; index++) {
+                for (let index = this.stack.length - 1; index > pos; index--) {
                     this.popElement(true);
                 }
                 this.popElement(false);
@@ -518,34 +594,6 @@ export class Parser implements Callbacks {
         } else {
             // Ignore the fact that the tag is self-closing.
             this.onopentagend(endIndex);
-        }
-    }
-
-    /**
-     * Pop the top element off the stack, emit a close event, and maintain
-     * the foreign context stack.
-     * @param implied Whether this close is implied (not from an explicit end tag).
-     */
-    private popElement(implied: boolean): void {
-        // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
-        const element = this.stack.shift()!;
-        if (
-            this.htmlMode &&
-            (foreignContextElements.has(element) ||
-                htmlIntegrationElements.has(element))
-        ) {
-            this.foreignContext.shift();
-        }
-        this.cbs.onclosetag?.(element, implied);
-    }
-
-    private closeCurrentTag(isOpenImplied: boolean) {
-        const name = this.tagname;
-        this.endOpenTag(isOpenImplied);
-
-        // Self-closing tags will be on the top of the stack
-        if (this.stack[0] === name) {
-            this.popElement(!isOpenImplied);
         }
     }
 
@@ -604,17 +652,6 @@ export class Parser implements Callbacks {
             this.attribs[this.attribname] = this.attribvalue;
         }
         this.attribvalue = "";
-    }
-
-    private getInstructionName(value: string) {
-        const index = value.search(reNameEnd);
-        let name = index < 0 ? value : value.substr(0, index);
-
-        if (this.lowerCaseTagNames) {
-            name = name.toLowerCase();
-        }
-
-        return name;
     }
 
     /**
@@ -707,7 +744,9 @@ export class Parser implements Callbacks {
         if (this.cbs.onclosetag) {
             // Set the end index for all remaining tags
             this.endIndex = this.startIndex;
-            for (let index = 0; index < this.stack.length; index++) {
+            for (let index = this.stack.length - 1; index >= 0; index--) {
+                // A callback may have reset the parser.
+                if (index >= this.stack.length) break;
                 this.cbs.onclosetag(this.stack[index], true);
             }
         }
@@ -744,34 +783,6 @@ export class Parser implements Callbacks {
     parseComplete(data: string): void {
         this.reset();
         this.end(data);
-    }
-
-    private getSlice(start: number, end: number) {
-        if (start === end) {
-            return "";
-        }
-
-        while (start - this.bufferOffset >= this.buffers[0].length) {
-            this.shiftBuffer();
-        }
-
-        let slice = this.buffers[0].slice(
-            start - this.bufferOffset,
-            end - this.bufferOffset,
-        );
-
-        while (end - this.bufferOffset > this.buffers[0].length) {
-            this.shiftBuffer();
-            slice += this.buffers[0].slice(0, end - this.bufferOffset);
-        }
-
-        return slice;
-    }
-
-    private shiftBuffer(): void {
-        this.bufferOffset += this.buffers[0].length;
-        this.writeIndex--;
-        this.buffers.shift();
     }
 
     /**
