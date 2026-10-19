@@ -294,6 +294,19 @@ describe("API", () => {
         expect(reads).toBeLessThan(depth * 10);
     });
 
+    it.each([
+        ["end tags nobody opened", "<div>", "</span>"],
+        ["repeated form tags", "<div>", "<form>"],
+        ["SVG-cased names in an integration point", "<div>", "<clippath>"],
+    ])("should do linear stack work for %s", (_, open, next) => {
+        const depth = 500;
+        const parser = new Parser({});
+        const prefix = next === "<clippath>" ? "<svg><foreignObject>" : "";
+        const input = prefix + open.repeat(depth) + next.repeat(depth);
+        const reads = countArrayReads(parser, "stack", () => parser.end(input));
+        expect(reads).toBeLessThan(depth * 10);
+    });
+
     it("should stop closing elements when reset at the end of the input", () => {
         const closed: string[] = [];
         const parser = new Parser({
