@@ -20,6 +20,20 @@ function countArrayReads(parser: Parser, key: string, run: () => void): number {
     return reads;
 }
 
+// Record open and close tag events in the order they are emitted.
+function tagEvents(html: string): string[] {
+    const events: string[] = [];
+    new Parser({
+        onopentagname(name) {
+            events.push(`<${name}>`);
+        },
+        onclosetag(name) {
+            events.push(`</${name}>`);
+        },
+    }).end(html);
+    return events;
+}
+
 describe("API", () => {
     it("should work without callbacks", () => {
         const cbs: Partial<Handler> = { onerror: vi.fn() };
@@ -232,6 +246,41 @@ describe("API", () => {
             ([name]) => name === "hgroup",
         );
         expect(pClose).toBeLessThan(hgroupOpen);
+    });
+
+    it.each(["li", "dd", "dt", "listing", "plaintext", "xmp"])(
+        "should close an open <p> when <%s> starts",
+        (tag) => {
+            expect(tagEvents(`<p>text<${tag}>inner`)).toEqual([
+                "<p>",
+                "</p>",
+                `<${tag}>`,
+                `</${tag}>`,
+            ]);
+        },
+    );
+
+    it("should close an open <p> together with the previous list item", () => {
+        expect(
+            tagEvents("<ul><li><p>a<li>b</ul><dl><dt><p>c<dd>d</dl>"),
+        ).toEqual([
+            "<ul>",
+            "<li>",
+            "<p>",
+            "</p>",
+            "</li>",
+            "<li>",
+            "</li>",
+            "</ul>",
+            "<dl>",
+            "<dt>",
+            "<p>",
+            "</p>",
+            "</dt>",
+            "<dd>",
+            "</dd>",
+            "</dl>",
+        ]);
     });
 
     it("should implicitly close <tbody> when <thead> opens", () => {
