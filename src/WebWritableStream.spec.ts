@@ -5,6 +5,67 @@ import type { Handler, ParserOptions } from "./Parser.js";
 import { WebWritableStream } from "./WebWritableStream.js";
 
 describe("WebWritableStream", () => {
+    it("should preserve a BOM when strings precede the first bytes", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write("x");
+        await writer.write(new Uint8Array([0xef, 0xbb, 0xbf, 0x61]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe(
+            "x\u{FEFF}a",
+        );
+    });
+
+    it("should preserve a midstream BOM after string chunks", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write(new Uint8Array([0x61]));
+        await writer.write("x");
+        await writer.write(new Uint8Array([0xef, 0xbb, 0xbf, 0x62]));
+        await writer.write("y");
+        await writer.write(new Uint8Array([0xef, 0xbb, 0xbf, 0x63]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe(
+            "ax\u{FEFF}by\u{FEFF}c",
+        );
+    });
+
+    it("should still omit a leading BOM across empty chunks", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write(new Uint8Array());
+        await writer.write("");
+        await writer.write(new Uint8Array([0xef, 0xbb]));
+        await writer.write("");
+        await writer.write(new Uint8Array([0xbf, 0x61]));
+        await writer.write("x");
+        await writer.write(new Uint8Array([0xef, 0xbb, 0xbf, 0x62]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe(
+            "ax\u{FEFF}b",
+        );
+    });
+
+    it("should flush incomplete bytes before a string chunk", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write(new Uint8Array([0xe2, 0x82]));
+        await writer.write("text");
+        await writer.write(new Uint8Array([0xac]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe("�text�");
+    });
+
+    it("should keep incomplete bytes across an empty string chunk", async () => {
+        const ontext = vi.fn();
+        const writer = new WebWritableStream({ ontext }).getWriter();
+        await writer.write(new Uint8Array([0xe2, 0x82]));
+        await writer.write("");
+        await writer.write(new Uint8Array([0xac]));
+        await writer.close();
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe("€");
+    });
+
     it("should decode fragmented unicode characters", async () => {
         const ontext = vi.fn();
         const stream = new WebWritableStream({ ontext });
