@@ -1,0 +1,19 @@
+src/Parser.ts
+  s_173ca9ea90a33e::t_eb4b6c8bdb092e 163-165,283-285,287,361,383,400-410,440-445,454-460,595-599,805
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "44f7610366df058697236b512453f914b80459be",
+  "prompts": {},
+  "sessions": {
+    "s_173ca9ea90a33e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "707c2ba5-c81c-46be-ad9b-127e1a683e6c",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
