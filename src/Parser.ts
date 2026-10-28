@@ -276,6 +276,11 @@ export class Parser implements Callbacks {
     private attribvalue = "";
     private attribs: null | { [key: string]: string } = null;
     private readonly stack: string[] = [];
+    /**
+     * How many elements of each name `stack` holds. Asking whether a name is
+     * open is one lookup instead of a scan of every open element.
+     */
+    private readonly openCounts = new Map<string, number>();
     private readonly foreignContext: ForeignContext[];
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
@@ -349,7 +354,7 @@ export class Parser implements Callbacks {
          */
         if (this.foreignContext.length > 1) {
             const adjusted = svgTagNameAdjustments.get(name);
-            if (adjusted !== undefined && this.stack.includes(adjusted)) {
+            if (adjusted !== undefined && this.openCounts.has(adjusted)) {
                 return adjusted;
             }
         }
@@ -371,7 +376,7 @@ export class Parser implements Callbacks {
          * stays null so endOpenTag is a no-op, and closeCurrentTag can't
          * match "" on the stack.
          */
-        if (this.htmlMode && name === "form" && this.stack.includes("form")) {
+        if (this.htmlMode && name === "form" && this.openCounts.has("form")) {
             this.tagname = "";
             return;
         }
@@ -388,6 +393,7 @@ export class Parser implements Callbacks {
         }
         if (!this.isVoidElement(name)) {
             this.stack.push(name);
+            this.openCounts.set(name, (this.openCounts.get(name) ?? 0) + 1);
 
             if (this.htmlMode) {
                 if (name === "svg") {
@@ -419,12 +425,18 @@ export class Parser implements Callbacks {
 
     /**
      * Pop the top element off the stack, emit a close event, and maintain
-     * the foreign context stack.
+     * the open-name counts and the foreign context stack.
      * @param isImplied Whether this close is implied (not from an explicit end tag).
      */
     private popElement(isImplied: boolean): void {
         // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
         const element = this.stack.pop()!;
+        const count = this.openCounts.get(element) ?? 0;
+        if (count > 1) {
+            this.openCounts.set(element, count - 1);
+        } else {
+            this.openCounts.delete(element);
+        }
         if (
             this.htmlMode &&
             (foreignContextElements.has(element) ||
@@ -558,7 +570,14 @@ export class Parser implements Callbacks {
         const name = this.readTagName(start, endIndex);
 
         if (!this.isVoidElement(name)) {
-            const pos = this.stack.lastIndexOf(name);
+            /*
+             * A name nobody opened is a miss without reading the stack. An
+             * open one is found from the top, so the scan only passes the
+             * elements this close tag then pops.
+             */
+            const pos = this.openCounts.has(name)
+                ? this.stack.lastIndexOf(name)
+                : -1;
             if (pos !== -1) {
                 for (let index = this.stack.length - 1; index > pos; index--) {
                     this.popElement(true);
@@ -764,6 +783,7 @@ export class Parser implements Callbacks {
         this.attribvalue = "";
         this.attribs = null;
         this.stack.length = 0;
+        this.openCounts.clear();
         this.startIndex = 0;
         this.endIndex = 0;
         this.cbs.onparserinit?.(this);
