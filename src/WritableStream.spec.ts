@@ -7,6 +7,24 @@ import type { Handler, ParserOptions } from "./Parser.js";
 import { WritableStream } from "./WritableStream.js";
 
 describe("WritableStream", () => {
+    it("should flush incomplete bytes before a string chunk", () => {
+        const ontext = vi.fn();
+        const stream = new WritableStream({ ontext });
+        stream.write(Buffer.from([0xe2, 0x82]));
+        stream.write("text");
+        stream.end(Buffer.from([0xac]));
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe("�text�");
+    });
+
+    it("should keep incomplete bytes across an empty string chunk", () => {
+        const ontext = vi.fn();
+        const stream = new WritableStream({ ontext });
+        stream.write(Buffer.from([0xe2, 0x82]));
+        stream.write("");
+        stream.end(Buffer.from([0xac]));
+        expect(ontext.mock.calls.map(([text]) => text).join("")).toBe("€");
+    });
+
     it("should decode fragmented unicode characters", () => {
         const ontext = vi.fn();
         const stream = new WritableStream({ ontext });

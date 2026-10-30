@@ -23,16 +23,21 @@ import { type Handler, Parser, type ParserOptions } from "./Parser.js";
 export class WebWritableStream extends WritableStream<string | Uint8Array> {
     constructor(cbs: Partial<Handler>, options?: ParserOptions) {
         const parser = new Parser(cbs, options);
-        const decoder = new TextDecoder();
+        let decoder = new TextDecoder();
         const streamOption: TextDecodeOptions = { stream: true };
 
         super({
             write(chunk) {
-                parser.write(
-                    typeof chunk === "string"
-                        ? chunk
-                        : decoder.decode(chunk, streamOption),
-                );
+                if (typeof chunk === "string") {
+                    const remaining = chunk ? decoder.decode() : "";
+                    if (chunk && !decoder.ignoreBOM) {
+                        // A BOM following text is part of the document content.
+                        decoder = new TextDecoder("utf-8", { ignoreBOM: true });
+                    }
+                    parser.write(remaining + chunk);
+                } else {
+                    parser.write(decoder.decode(chunk, streamOption));
+                }
             },
             close() {
                 // Flush any remaining bytes in the decoder
