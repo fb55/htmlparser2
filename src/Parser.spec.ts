@@ -21,6 +21,25 @@ function countArrayReads(parser: Parser, key: string, run: () => void): number {
 }
 
 describe("API", () => {
+    it("should preserve prototype-named attributes", () => {
+        const onopentag = vi.fn<Handler["onopentag"]>();
+        new Parser({ onopentag }).end(
+            '<div __proto__="first" __proto__="second" constructor="third"></div>',
+        );
+
+        const expected = {
+            ["__proto__"]: "first",
+            constructor: "third",
+        };
+        expect(onopentag).toHaveBeenCalledWith("div", expected, false);
+        const attributes = onopentag.mock.calls[0][1];
+        expect(Object.keys(attributes)).toStrictEqual([
+            "__proto__",
+            "constructor",
+        ]);
+        expect(Object.getPrototypeOf(attributes)).toBe(Object.prototype);
+    });
+
     it("should work without callbacks", () => {
         const cbs: Partial<Handler> = { onerror: vi.fn() };
         const p = new Parser(cbs, {

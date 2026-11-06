@@ -649,7 +649,16 @@ export class Parser implements Callbacks {
         );
 
         if (this.attribs && !Object.hasOwn(this.attribs, this.attribname)) {
-            this.attribs[this.attribname] = this.attribvalue;
+            if (this.attribname === "__proto__") {
+                Object.defineProperty(this.attribs, this.attribname, {
+                    value: this.attribvalue,
+                    writable: true,
+                    enumerable: true,
+                    configurable: true,
+                });
+            } else {
+                this.attribs[this.attribname] = this.attribvalue;
+            }
         }
         this.attribvalue = "";
     }
