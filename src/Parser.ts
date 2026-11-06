@@ -160,6 +160,9 @@ const svgTagNameAdjustments = new Map<string, string>([
     ["textpath", "textPath"],
 ]);
 
+// Keep ordinary shallow documents out of the per-name bookkeeping.
+const STACK_SCAN_LIMIT = 64;
+
 const enum ForeignContext {
     None,
     Svg,
@@ -277,10 +280,11 @@ export class Parser implements Callbacks {
     private attribs: null | { [key: string]: string } = null;
     private readonly stack: string[] = [];
     /**
-     * How many elements of each name `stack` holds. Asking whether a name is
-     * open is one lookup instead of a scan of every open element.
+     * How many elements of each name `stack` holds, kept once the stack is
+     * deeper than `STACK_SCAN_LIMIT`. Asking whether a name is open is then
+     * one lookup instead of a scan of every open element.
      */
-    private readonly openCounts = new Map<string, number>();
+    private openCounts: Map<string, number> | null = null;
     private readonly foreignContext: ForeignContext[];
     private readonly cbs: Partial<Handler>;
     private readonly lowerCaseTagNames: boolean;
@@ -354,7 +358,12 @@ export class Parser implements Callbacks {
          */
         if (this.foreignContext.length > 1) {
             const adjusted = svgTagNameAdjustments.get(name);
-            if (adjusted !== undefined && this.openCounts.has(adjusted)) {
+            if (
+                adjusted !== undefined &&
+                (this.openCounts
+                    ? this.openCounts.has(adjusted)
+                    : this.stack.includes(adjusted))
+            ) {
                 return adjusted;
             }
         }
@@ -376,7 +385,13 @@ export class Parser implements Callbacks {
          * stays null so endOpenTag is a no-op, and closeCurrentTag can't
          * match "" on the stack.
          */
-        if (this.htmlMode && name === "form" && this.openCounts.has("form")) {
+        if (
+            this.htmlMode &&
+            name === "form" &&
+            (this.openCounts
+                ? this.openCounts.has("form")
+                : this.stack.includes("form"))
+        ) {
             this.tagname = "";
             return;
         }
@@ -393,7 +408,17 @@ export class Parser implements Callbacks {
         }
         if (!this.isVoidElement(name)) {
             this.stack.push(name);
-            this.openCounts.set(name, (this.openCounts.get(name) ?? 0) + 1);
+            if (this.openCounts) {
+                this.openCounts.set(name, (this.openCounts.get(name) ?? 0) + 1);
+            } else if (this.stack.length > STACK_SCAN_LIMIT) {
+                this.openCounts = new Map();
+                for (const open of this.stack) {
+                    this.openCounts.set(
+                        open,
+                        (this.openCounts.get(open) ?? 0) + 1,
+                    );
+                }
+            }
 
             if (this.htmlMode) {
                 if (name === "svg") {
@@ -431,11 +456,13 @@ export class Parser implements Callbacks {
     private popElement(isImplied: boolean): void {
         // biome-ignore lint/style/noNonNullAssertion: The element is guaranteed to exist.
         const element = this.stack.pop()!;
-        const count = this.openCounts.get(element) ?? 0;
-        if (count > 1) {
-            this.openCounts.set(element, count - 1);
-        } else {
-            this.openCounts.delete(element);
+        if (this.openCounts) {
+            const count = this.openCounts.get(element) ?? 0;
+            if (count > 1) {
+                this.openCounts.set(element, count - 1);
+            } else {
+                this.openCounts.delete(element);
+            }
         }
         if (
             this.htmlMode &&
@@ -570,14 +597,10 @@ export class Parser implements Callbacks {
         const name = this.readTagName(start, endIndex);
 
         if (!this.isVoidElement(name)) {
-            /*
-             * A name nobody opened is a miss without reading the stack. An
-             * open one is found from the top, so the scan only passes the
-             * elements this close tag then pops.
-             */
-            const pos = this.openCounts.has(name)
-                ? this.stack.lastIndexOf(name)
-                : -1;
+            const pos =
+                this.openCounts && !this.openCounts.has(name)
+                    ? -1
+                    : this.stack.lastIndexOf(name);
             if (pos !== -1) {
                 for (let index = this.stack.length - 1; index > pos; index--) {
                     this.popElement(true);
@@ -783,7 +806,7 @@ export class Parser implements Callbacks {
         this.attribvalue = "";
         this.attribs = null;
         this.stack.length = 0;
-        this.openCounts.clear();
+        this.openCounts = null;
         this.startIndex = 0;
         this.endIndex = 0;
         this.cbs.onparserinit?.(this);
