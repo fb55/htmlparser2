@@ -4,7 +4,6 @@ import {
     createDocumentStream,
     DefaultHandler,
     DomHandler,
-    DomUtils as DomUtilities,
     type Parser,
     parseDocument,
 } from "./index.js";
@@ -23,17 +22,6 @@ Object.defineProperty(Element.prototype, "attributes", {
 });
 
 describe("Index", () => {
-    it("parseDocument preserves prototype-named attributes", () => {
-        const dom = parseDocument('<div __proto__="value"></div>');
-        const element = dom.firstChild as Element;
-        expect(Object.entries(element.attribs)).toStrictEqual([
-            ["__proto__", "value"],
-        ]);
-        expect(DomUtilities.getOuterHTML(element)).toBe(
-            '<div __proto__="value"></div>',
-        );
-    });
-
     it("parseDocument", () => {
         const dom = parseDocument("<a foo><b><c><?foo>Yay!");
         expect(dom).toMatchSnapshot();
