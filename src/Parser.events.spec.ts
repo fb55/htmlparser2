@@ -210,6 +210,11 @@ describe("Events", () => {
     it("Foreign CDATA in MathML", () =>
         runTest("<math><![CDATA[a<b]]></math>"));
 
+    it("Foreign CDATA in an SVG integration point", () =>
+        runTest("<svg><foreignObject><![CDATA[x><b>]]></foreignObject></svg>"));
+
+    it("Unclosed foreign CDATA at EOF", () => runTest("<svg><![CDATA[x><b>"));
+
     it("SVG title is not HTML special", () =>
         runTest("<svg><title>&amp;<b>x</b></title></svg>"));
 
