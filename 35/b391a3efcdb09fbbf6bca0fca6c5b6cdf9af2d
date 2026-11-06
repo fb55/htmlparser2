@@ -2,6 +2,7 @@ src/Parser.spec.ts
   s_98abc3499f7493::t_8d34b06c0f5a3c 462-492
 src/Parser.ts
   s_98abc3499f7493::t_92633efa28c05c 301-302,864
+  s_f6234ddc05f0f8::t_18fc60bd599fe5 508-511,515,520-523,525-528,535-543
 ---
 {
   "schema_version": "authorship/3.0.0",
@@ -14,6 +15,14 @@ src/Parser.ts
         "tool": "codex",
         "id": "01a103bb-669a-74b3-b59e-3acc3bc180fe",
         "model": "gpt-6-astra"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    },
+    "s_f6234ddc05f0f8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e4162214-46ae-4c84-a9a3-101b3cfcbd0b",
+        "model": "claude-opus-5-5"
       },
       "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
     }
