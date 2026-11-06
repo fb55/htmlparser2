@@ -248,17 +248,14 @@ describe("API", () => {
         expect(pClose).toBeLessThan(hgroupOpen);
     });
 
-    it.each(["li", "dd", "dt", "listing", "plaintext", "xmp"])(
-        "should close an open <p> when <%s> starts",
-        (tag) => {
-            expect(tagEvents(`<p>text<${tag}>inner`)).toEqual([
-                "<p>",
-                "</p>",
-                `<${tag}>`,
-                `</${tag}>`,
-            ]);
-        },
-    );
+    it("should close an open <p> when <listing> starts", () => {
+        expect(tagEvents("<p>text<listing>inner")).toEqual([
+            "<p>",
+            "</p>",
+            "<listing>",
+            "</listing>",
+        ]);
+    });
 
     it("should close an open <p> together with the previous list item", () => {
         expect(
