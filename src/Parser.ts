@@ -14,7 +14,7 @@ const formTags = new Set([
 const pTag = new Set(["p"]);
 const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6", "p"]);
 const tableSectionTags = new Set(["thead", "tbody", "tfoot", "tr", "td", "th"]);
-const ddtTags = new Set(["dd", "dt"]);
+const ddtTags = new Set(["dd", "dt", "p"]);
 const rtpTags = new Set(["rt", "rp"]);
 
 const openImpliesClose = new Map<string, Set<string>>([
@@ -23,7 +23,7 @@ const openImpliesClose = new Map<string, Set<string>>([
     ["td", new Set(["thead", "th", "td"])],
     ["body", new Set(["head", "link", "script"])],
     ["a", new Set(["a"])],
-    ["li", new Set(["li"])],
+    ["li", new Set(["li", "p"])],
     ["p", pTag],
     ["h1", headingTags],
     ["h2", headingTags],
@@ -59,16 +59,19 @@ const openImpliesClose = new Map<string, Set<string>>([
     ["header", pTag],
     ["hgroup", pTag],
     ["hr", pTag],
+    ["listing", pTag],
     ["main", pTag],
     ["menu", pTag],
     ["nav", pTag],
     ["ol", pTag],
+    ["plaintext", pTag],
     ["pre", pTag],
     ["search", pTag],
     ["section", pTag],
     ["summary", pTag],
     ["table", pTag],
     ["ul", pTag],
+    ["xmp", pTag],
     ["rt", rtpTags],
     ["rp", rtpTags],
     ["thead", tableSectionTags],
