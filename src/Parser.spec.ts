@@ -199,6 +199,19 @@ describe("API", () => {
         ]);
     });
 
+    it("should not include the closing `?` in processing instruction names", () => {
+        const onprocessinginstruction = vi.fn();
+
+        new Parser({ onprocessinginstruction }, { xmlMode: true }).end(
+            "<?foo?><?bar baz?>",
+        );
+
+        expect(onprocessinginstruction.mock.calls).toEqual([
+            ["?foo", "?foo?"],
+            ["?bar", "?bar baz?"],
+        ]);
+    });
+
     it("should preserve declaration casing when lowerCaseTags is disabled", () => {
         const onprocessinginstruction = vi.fn();
 

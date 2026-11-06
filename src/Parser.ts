@@ -765,7 +765,10 @@ export class Parser implements Callbacks {
         const value = this.getSlice(start, endIndex);
 
         if (this.cbs.onprocessinginstruction) {
-            const name = this.getInstructionName(value);
+            // The closing `?` of `?>` belongs to the data, not to the name.
+            const name = this.getInstructionName(
+                value.endsWith("?") ? value.slice(0, -1) : value,
+            );
             this.cbs.onprocessinginstruction(`?${name}`, `?${value}`);
         }
 
