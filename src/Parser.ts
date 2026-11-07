@@ -266,6 +266,7 @@ export interface Handler {
 }
 
 const reNameEnd = /\s|\//;
+const reTrailingQuestionMark = /\?$/;
 
 /**
  * Incremental parser implementation.
@@ -765,9 +766,13 @@ export class Parser implements Callbacks {
         const value = this.getSlice(start, endIndex);
 
         if (this.cbs.onprocessinginstruction) {
-            // In XML mode the slice ends with the `?` of the closer, which is
-            // part of the instruction but not of its name.
-            const name = this.getInstructionName(value.replace(/\?$/, ""));
+            /*
+             * In XML mode the slice ends with the `?` of the closer, which is
+             * part of the instruction but not of its name.
+             */
+            const name = this.getInstructionName(
+                value.replace(reTrailingQuestionMark, ""),
+            );
             this.cbs.onprocessinginstruction(`?${name}`, `?${value}`);
         }
 
