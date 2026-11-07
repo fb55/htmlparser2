@@ -32,6 +32,16 @@ describe("Index", () => {
         expect(dom).toMatchSnapshot();
     });
 
+    it("parseDocument keeps the `?>` of an XML processing instruction", () => {
+        const dom = parseDocument('<?xml version="1.0"?><a/>', {
+            xmlMode: true,
+        });
+
+        // `dom-serializer` wraps the data in `<…>`, so the data has to keep the `?`.
+        const [instruction] = dom.children;
+        expect(instruction).toHaveProperty("data", '?xml version="1.0"?');
+    });
+
     it("createDocumentStream", () => {
         let documentStream!: Parser;
 
