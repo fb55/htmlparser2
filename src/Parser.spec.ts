@@ -193,6 +193,42 @@ describe("API", () => {
         );
     });
 
+    it("should keep the trailing question mark of XML processing instructions", () => {
+        const onprocessinginstruction = vi.fn();
+
+        const parser = new Parser(
+            {
+                onprocessinginstruction,
+            },
+            { xmlMode: true },
+        );
+
+        // Split the instruction, so the slice has to span two chunks.
+        parser.write('<?xml version="1.0"');
+        parser.end("?>");
+
+        expect(onprocessinginstruction).toHaveBeenCalledWith(
+            "?xml",
+            '?xml version="1.0"?',
+        );
+    });
+
+    it("should not include the closing question mark in instruction names", () => {
+        const onprocessinginstruction = vi.fn();
+
+        new Parser(
+            {
+                onprocessinginstruction,
+            },
+            { xmlMode: true },
+        ).end("<?target?>");
+
+        expect(onprocessinginstruction).toHaveBeenCalledWith(
+            "?target",
+            "?target?",
+        );
+    });
+
     it("should update the position when a single tag is spread across multiple chunks", () => {
         let isCalled = false;
         const p = new Parser({
