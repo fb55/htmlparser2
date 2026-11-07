@@ -213,6 +213,22 @@ describe("API", () => {
         );
     });
 
+    it("should not include the closing question mark in instruction names", () => {
+        const onprocessinginstruction = vi.fn();
+
+        new Parser(
+            {
+                onprocessinginstruction,
+            },
+            { xmlMode: true },
+        ).end("<?target?>");
+
+        expect(onprocessinginstruction).toHaveBeenCalledWith(
+            "?target",
+            "?target?",
+        );
+    });
+
     it("should update the position when a single tag is spread across multiple chunks", () => {
         let isCalled = false;
         const p = new Parser({
