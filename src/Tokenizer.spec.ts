@@ -225,9 +225,15 @@ describe("Tokenizer", () => {
     it.each(["a</b ", "a<b /"])(
         "should not emit text for an unfinished tag at EOF for %s",
         (input) => {
-            expect(
-                tokenize(input).filter(([event]) => event === "ontext"),
-            ).toEqual([["ontext", 0, 1]]);
+            for (let split = 0; split <= input.length; split++) {
+                expect(
+                    tokenize((tokenizer) => {
+                        tokenizer.write(input.slice(0, split));
+                        tokenizer.write(input.slice(split));
+                        tokenizer.end();
+                    }).filter(([event]) => event === "ontext"),
+                ).toEqual([["ontext", 0, 1]]);
+            }
         },
     );
 
