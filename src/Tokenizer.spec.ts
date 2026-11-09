@@ -222,6 +222,15 @@ describe("Tokenizer", () => {
         expect(tokenize("</>")).toMatchSnapshot();
     });
 
+    it.each(["a</b ", "a<b /"])(
+        "should not emit text for an unfinished tag at EOF for %s",
+        (input) => {
+            expect(
+                tokenize(input).filter(([event]) => event === "ontext"),
+            ).toEqual([["ontext", 0, 1]]);
+        },
+    );
+
     it("should treat <!DOCTYPEhtml> as a declaration", () => {
         expect(tokenize("<!DOCTYPEhtml>")).toMatchSnapshot();
     });
