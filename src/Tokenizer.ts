@@ -1114,7 +1114,9 @@ export default class Tokenizer {
             case State.InAttributeValueSq:
             case State.InAttributeValueDq:
             case State.InAttributeValueNq:
-            case State.InClosingTagName: {
+            case State.InSelfClosingTag:
+            case State.InClosingTagName:
+            case State.AfterClosingTagName: {
                 /*
                  * If we are currently in an opening or closing tag, us not calling the
                  * respective callback signals that the tag should be ignored.
