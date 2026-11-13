@@ -87,33 +87,33 @@ That's it?!
 
 All callbacks are optional. The handler object you pass to `Parser` may implement any subset of these:
 
-| Event                                        | Description                                                                                                                                      |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `onopentag(name, attribs, isImplied)`        | Opening tag. `attribs` is an object mapping attribute names to values. `isImplied` is `true` when the tag was opened implicitly (HTML mode only). |
-| `onopentagname(name)`                        | Emitted for the tag name as soon as it is available (before attributes are parsed).                                                              |
-| `onattribute(name, value, quote)`            | Attribute. `quote` is `"` / `'` / `null` (unquoted) / `undefined` (no value, e.g. `disabled`).                                                  |
-| `onclosetag(name, isImplied)`                | Closing tag. `isImplied` is `true` when the tag was closed implicitly (HTML mode only).                                                          |
-| `ontext(data)`                               | Text content. May fire multiple times for a single text node.                                                                                    |
-| `oncomment(data)`                            | Comment (content between `<!--` and `-->`).                                                                                                      |
-| `oncdatastart()`                             | Opening of a CDATA section (`<![CDATA[`).                                                                                                        |
-| `oncdataend()`                               | End of a CDATA section (`]]>`).                                                                                                                  |
-| `onprocessinginstruction(name, data)`        | Processing instruction (e.g. `<?xml ...?>`).                                                                                                     |
-| `oncommentend()`                             | Fires after a comment has ended.                                                                                                                 |
-| `onparserinit(parser)`                       | Fires when the parser is initialized or reset.                                                                                                   |
-| `onreset()`                                  | Fires when `parser.reset()` is called.                                                                                                           |
-| `onend()`                                    | Fires when parsing is complete.                                                                                                                  |
-| `onerror(error)`                             | Fires on error.                                                                                                                                  |
+| Event                                 | Description                                                                                                                                       |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onopentag(name, attribs, isImplied)` | Opening tag. `attribs` is an object mapping attribute names to values. `isImplied` is `true` when the tag was opened implicitly (HTML mode only). |
+| `onopentagname(name)`                 | Emitted for the tag name as soon as it is available (before attributes are parsed).                                                               |
+| `onattribute(name, value, quote)`     | Attribute. `quote` is `"` / `'` / `null` (unquoted) / `undefined` (no value, e.g. `disabled`).                                                    |
+| `onclosetag(name, isImplied)`         | Closing tag. `isImplied` is `true` when the tag was closed implicitly (HTML mode only).                                                           |
+| `ontext(data)`                        | Text content. May fire multiple times for a single text node.                                                                                     |
+| `oncomment(data)`                     | Comment (content between `<!--` and `-->`).                                                                                                       |
+| `oncdatastart()`                      | Opening of a CDATA section (`<![CDATA[`).                                                                                                         |
+| `oncdataend()`                        | End of a CDATA section (`]]>`).                                                                                                                   |
+| `onprocessinginstruction(name, data)` | Processing instruction (e.g. `<?xml ...?>`).                                                                                                      |
+| `oncommentend()`                      | Fires after a comment has ended.                                                                                                                  |
+| `onparserinit(parser)`                | Fires when the parser is initialized or reset.                                                                                                    |
+| `onreset()`                           | Fires when `parser.reset()` is called.                                                                                                            |
+| `onend()`                             | Fires when parsing is complete.                                                                                                                   |
+| `onerror(error)`                      | Fires on error.                                                                                                                                   |
 
 ### Parser options
 
-| Option                   | Type      | Default    | Description                                                                                                                                              |
-| ------------------------ | --------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `xmlMode`                | `boolean` | `false`    | Treat the document as XML. This affects entity decoding, self-closing tags, CDATA handling, and more. Set this to `true` for XML, RSS, Atom and RDF feeds. |
-| `decodeEntities`         | `boolean` | `true`     | Decode HTML entities (e.g. `&amp;` -> `&`).                                                                                                              |
-| `lowerCaseTags`          | `boolean` | `!xmlMode` | Lowercase tag names.                                                                                                                                     |
-| `lowerCaseAttributeNames`| `boolean` | `!xmlMode` | Lowercase attribute names.                                                                                                                               |
-| `recognizeSelfClosing`   | `boolean` | `xmlMode`  | Recognize self-closing tags (e.g. `<br/>`). Always enabled in `xmlMode`.                                                                                 |
-| `recognizeCDATA`         | `boolean` | `xmlMode`  | Recognize CDATA sections as text. Always enabled in `xmlMode`.                                                                                           |
+| Option                    | Type      | Default    | Description                                                                                                                                                |
+| ------------------------- | --------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `xmlMode`                 | `boolean` | `false`    | Treat the document as XML. This affects entity decoding, self-closing tags, CDATA handling, and more. Set this to `true` for XML, RSS, Atom and RDF feeds. |
+| `decodeEntities`          | `boolean` | `true`     | Decode HTML entities (e.g. `&amp;` -> `&`).                                                                                                                |
+| `lowerCaseTags`           | `boolean` | `!xmlMode` | Lowercase tag names.                                                                                                                                       |
+| `lowerCaseAttributeNames` | `boolean` | `!xmlMode` | Lowercase attribute names.                                                                                                                                 |
+| `recognizeSelfClosing`    | `boolean` | `xmlMode`  | Recognize self-closing tags (e.g. `<br/>`). Always enabled in `xmlMode`.                                                                                   |
+| `recognizeCDATA`          | `boolean` | `xmlMode`  | Recognize CDATA sections as text. Always enabled in `xmlMode`.                                                                                             |
 
 ### Usage with streams
 
@@ -157,7 +157,7 @@ const dom = htmlparser2.parseDocument(data, {
 
     // domhandler options
     withStartIndices: true, // Add `startIndex` to each node
-    withEndIndices: true,   // Add `endIndex` to each node
+    withEndIndices: true, // Add `endIndex` to each node
 });
 ```
 
@@ -202,9 +202,7 @@ Use `DomUtils` to modify the tree, and [`dom-serializer`](https://github.com/che
 ```js
 import * as htmlparser2 from "htmlparser2";
 
-const dom = htmlparser2.parseDocument(
-    `<ul><li>Apple</li><li>Orange</li></ul>`,
-);
+const dom = htmlparser2.parseDocument(`<ul><li>Apple</li><li>Orange</li></ul>`);
 
 // Remove the first <li>
 const items = htmlparser2.DomUtils.getElementsByTagName("li", dom);
