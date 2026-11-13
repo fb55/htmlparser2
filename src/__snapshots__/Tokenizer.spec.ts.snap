@@ -1063,7 +1063,7 @@ exports[`Tokenizer > should terminate XML processing instructions on ?> 1`] = `
   [
     "onprocessinginstruction",
     2,
-    25,
+    26,
   ],
   [
     "onend",
