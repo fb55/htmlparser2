@@ -247,8 +247,20 @@ export default class Tokenizer {
             }
             this.state = State.BeforeTagName;
             this.sectionStart = this.index;
-        } else if (this.decodeEntities && c === CharCodes.Amp) {
-            this.startEntity();
+        } else if (this.decodeEntities) {
+            if (c === CharCodes.Amp) {
+                this.startEntity();
+                return;
+            }
+            // Skip to the next `<` or `&`, or the end of the buffer.
+            const { buffer, offset } = this;
+            let index = this.index - offset + 1;
+            while (index < buffer.length) {
+                const next = buffer.charCodeAt(index);
+                if (next === CharCodes.Lt || next === CharCodes.Amp) break;
+                index++;
+            }
+            this.index = index + offset - 1;
         }
     }
 

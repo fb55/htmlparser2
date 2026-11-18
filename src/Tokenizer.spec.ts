@@ -191,6 +191,27 @@ describe("Tokenizer", () => {
 
         it("for multi-byte entities", () =>
             expect(tokenize("&NotGreaterFullEqual;")).toMatchSnapshot());
+
+        it("for text and entities split across chunks", () =>
+            expect(
+                tokenize((tokenizer) => {
+                    tokenizer.write("one & two &amp; three");
+                    tokenizer.write(" four<b>five</b>six &lt");
+                    tokenizer.end();
+                }),
+            ).toEqual([
+                ["ontext", 0, 10],
+                ["ontextentity", 38, 15],
+                ["ontext", 15, 21],
+                ["ontext", 21, 26],
+                ["onopentagname", 27, 28],
+                ["onopentagend", 28],
+                ["ontext", 29, 33],
+                ["onclosetag", 35, 36],
+                ["ontext", 37, 41],
+                ["ontextentity", 60, 44],
+                ["onend"],
+            ]));
     });
 
     it("should close comments on --!>", () => {
