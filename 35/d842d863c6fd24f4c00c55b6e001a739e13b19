@@ -1,0 +1,21 @@
+src/Parser.detach.spec.ts
+  s_9a85b66ce275ea::t_f0315d9a24352a 1-44
+src/Parser.ts
+  s_9a85b66ce275ea::t_51a002cbab87c0 220-228,540-543
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "35d842d863c6fd24f4c00c55b6e001a739e13b19",
+  "prompts": {},
+  "sessions": {
+    "s_9a85b66ce275ea": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "712c7a9e-5c8c-4614-b63f-39e3779270a1",
+        "model": "claude-mythos-5-2"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
