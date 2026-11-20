@@ -317,6 +317,32 @@ describe("API", () => {
         expect(tbodyClose).toBeLessThan(theadOpen);
     });
 
+    it("should keep a <button> inside <select> open (customizable select)", () => {
+        expect(
+            tagEvents(
+                "<select><button><selectedcontent></selectedcontent></button><option>A</option></select>",
+            ),
+        ).toEqual([
+            "<select>",
+            "<button>",
+            "<selectedcontent>",
+            "</selectedcontent>",
+            "</button>",
+            "<option>",
+            "</option>",
+            "</select>",
+        ]);
+    });
+
+    it("should still close an open <button> when another <button> starts", () => {
+        expect(tagEvents("<button>A<button>B")).toEqual([
+            "<button>",
+            "</button>",
+            "<button>",
+            "</button>",
+        ]);
+    });
+
     it("should implicitly close <td> when <th> opens", () => {
         const onclosetag = vi.fn();
         const onopentagname = vi.fn();
