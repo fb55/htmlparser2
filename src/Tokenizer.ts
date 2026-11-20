@@ -687,8 +687,20 @@ export default class Tokenizer {
                 this.index + 1,
             );
             this.state = State.BeforeAttributeName;
-        } else if (this.decodeEntities && c === CharCodes.Amp) {
-            this.startEntity();
+        } else if (this.decodeEntities) {
+            if (c === CharCodes.Amp) {
+                this.startEntity();
+                return;
+            }
+            // Skip to the next quote or `&`, or the end of the buffer.
+            const { buffer, offset } = this;
+            let index = this.index - offset + 1;
+            while (index < buffer.length) {
+                const next = buffer.charCodeAt(index);
+                if (next === quote || next === CharCodes.Amp) break;
+                index++;
+            }
+            this.index = index + offset - 1;
         }
     }
     private stateInAttributeValueDoubleQuotes(c: number): void {
