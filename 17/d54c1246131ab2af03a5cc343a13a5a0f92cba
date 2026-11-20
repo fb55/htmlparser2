@@ -1,0 +1,23 @@
+README.md
+  s_df8c9068556d70::t_628ad44a41f6f4 90-105,109-117,161,206-208
+src/Parser.detach.spec.ts
+  s_df8c9068556d70::t_a925f8ddbf8e2f 1-44
+src/Parser.ts
+  s_df8c9068556d70::t_ab520d6e77469b 220-228,540-543
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "17d54c1246131ab2af03a5cc343a13a5a0f92cba",
+  "prompts": {},
+  "sessions": {
+    "s_df8c9068556d70": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2176b5d5-73a1-443d-a899-14df2b42c391",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
