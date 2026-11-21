@@ -1,0 +1,26 @@
+src/Tokenizer.ts
+  s_7e0db00896eb43::t_ddcff05e2e399f 607,616-635
+  s_7e0db00896eb43::t_5013ca67c1c2bd 598-602,611
+  s_7e0db00896eb43::t_48976b5eefa697 202-207
+  s_7e0db00896eb43::t_9deff3db5b7dc8 1204
+  s_7e0db00896eb43::t_df92593d1d83c9 608-609,636
+  s_7e0db00896eb43::t_ba718a696a6806 603-606
+src/Tokenizer.spec.ts
+  s_7e0db00896eb43::t_d85cfb69015b33 289-308
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2152625ad47c3600a56452f56126ba8a9a95ea19",
+  "prompts": {},
+  "sessions": {
+    "s_7e0db00896eb43": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "30d26772-c5ad-4dbc-a202-336986559fad",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": null
+    }
+  }
+}
