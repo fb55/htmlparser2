@@ -177,6 +177,41 @@ describe("API", () => {
         );
     });
 
+    it("should keep the trailing `?` of processing instructions (#2562)", () => {
+        const events: unknown[] = [];
+        const p = new Parser(
+            {
+                onprocessinginstruction(name, data) {
+                    events.push([name, data, p.startIndex, p.endIndex]);
+                },
+                ontext(data) {
+                    events.push([data, p.startIndex, p.endIndex]);
+                },
+            },
+            { xmlMode: true },
+        );
+
+        p.end('<?xml version="1.0"?>a');
+
+        expect(events).toEqual([
+            ["?xml", '?xml version="1.0"?', 0, 20],
+            ["a", 21, 21],
+        ]);
+    });
+
+    it("should not include the closing `?` in processing instruction names", () => {
+        const onprocessinginstruction = vi.fn();
+
+        new Parser({ onprocessinginstruction }, { xmlMode: true }).end(
+            "<?foo?><?bar baz?>",
+        );
+
+        expect(onprocessinginstruction.mock.calls).toEqual([
+            ["?foo", "?foo?"],
+            ["?bar", "?bar baz?"],
+        ]);
+    });
+
     it("should preserve declaration casing when lowerCaseTags is disabled", () => {
         const onprocessinginstruction = vi.fn();
 

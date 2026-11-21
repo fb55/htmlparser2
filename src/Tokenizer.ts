@@ -782,7 +782,7 @@ export default class Tokenizer {
             // Remember that we just consumed `?`, so the next `>` closes the PI.
             this.sequenceIndex = 1;
         } else if (c === CharCodes.Gt && this.sequenceIndex === 1) {
-            this.cbs.onprocessinginstruction(this.sectionStart, this.index - 1);
+            this.cbs.onprocessinginstruction(this.sectionStart, this.index);
             this.sequenceIndex = 0;
             this.state = State.Text;
             this.sectionStart = this.index + 1;
