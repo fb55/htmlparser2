@@ -1,0 +1,23 @@
+src/Tokenizer.ts
+  s_7e0db00896eb43::t_48976b5eefa697 202-207
+  s_7e0db00896eb43::t_9deff3db5b7dc8 1200
+  s_7e0db00896eb43::t_df92593d1d83c9 598-630
+src/Tokenizer.spec.ts
+  s_7e0db00896eb43::t_d85cfb69015b33 281-300
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9c91711781ced085446f034fe6aebd12ed851d6c",
+  "prompts": {},
+  "sessions": {
+    "s_7e0db00896eb43": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "30d26772-c5ad-4dbc-a202-336986559fad",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
