@@ -1,9 +1,9 @@
 README.md
-  s_7e0db00896eb43::t_8c754e05d17a2b 90-105,109-117,161,206-208
+  s_7e0db00896eb43::t_487ce09b744ec7 90-105,109-117,161,206-208
 src/Parser.detach.spec.ts
-  s_7e0db00896eb43::t_21d0875c2d4383 1-44
+  s_7e0db00896eb43::t_61d1e85ef0b38e 1-44
 src/Parser.ts
-  s_7e0db00896eb43::t_d44868fd879ef8 220-228,540-543
+  s_7e0db00896eb43::t_519fcd1426332a 220-228,540-543
 ---
 {
   "schema_version": "authorship/3.0.0",
