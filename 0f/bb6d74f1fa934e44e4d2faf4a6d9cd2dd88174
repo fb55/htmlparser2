@@ -6,6 +6,8 @@ src/Parser.ts
 src/Parser.detach.spec.ts
   s_954e1264cddd78::t_1904bfa29d027f 24-28
   s_954e1264cddd78::t_69cb3feb98671d 1-23,29-44
+README.md
+  s_1ec02224f7adc5::t_31514b6a89b299 117
 ---
 {
   "schema_version": "authorship/3.0.0",
@@ -17,6 +19,14 @@ src/Parser.detach.spec.ts
       "agent_id": {
         "tool": "claude",
         "id": "707c2ba5-c81c-46be-ad9b-127e1a683e6c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    },
+    "s_1ec02224f7adc5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "104a266a-3c34-4ca1-a5f5-4b674932f86d",
         "model": "claude-opus-5-5"
       },
       "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
