@@ -1,0 +1,32 @@
+src/Parser.ts
+  s_3eee7a60890a39::t_9a3760a54b83ef 626,628,648,925-936
+  s_954e1264cddd78::t_99ab21ddb33a47 937-938
+  s_3eee7a60890a39::t_ace3ebc9d3cb54 108-109,111-156,460-463,762,796-799
+src/Parser.spec.ts
+  s_3eee7a60890a39::t_17111a31ca4e01 484-490
+  s_3eee7a60890a39::t_9a3760a54b83ef 491-505
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "464b272f71d31a2c57cd86190729f64ab191facf",
+  "prompts": {},
+  "sessions": {
+    "s_3eee7a60890a39": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "dbf09c40-c1a7-4c62-8cc9-09be62ab1cbb",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": null
+    },
+    "s_954e1264cddd78": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c0a438a-e066-496f-94b9-b0d813f89f15",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": null
+    }
+  }
+}
