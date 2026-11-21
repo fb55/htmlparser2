@@ -1,0 +1,29 @@
+src/Parser.detach.spec.ts
+  s_3b239fdc6effb0::t_fc195b9f3f95ad 1-44
+src/Parser.ts
+  s_539a788cee7219::t_3bd5ee96f30466 220-228,540-543
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1e6f7e79acca8f2b3f033da92349c431b5774aec",
+  "prompts": {},
+  "sessions": {
+    "s_3b239fdc6effb0": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1fb79-4440-75a3-a319-f3e128ae00a1",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    },
+    "s_539a788cee7219": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5d718e55-9c66-44fe-a3a1-9363a0725ad4",
+        "model": "claude-mythos-5-2"
+      },
+      "human_author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
