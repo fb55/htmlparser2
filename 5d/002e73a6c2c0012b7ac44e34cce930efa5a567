@@ -1,0 +1,14 @@
+README.md
+  h_c09f8bd1046292 118-122
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5d002e73a6c2c0012b7ac44e34cce930efa5a567",
+  "prompts": {},
+  "humans": {
+    "h_c09f8bd1046292": {
+      "author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
