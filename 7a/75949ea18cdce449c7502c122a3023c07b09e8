@@ -1,0 +1,26 @@
+src/quirks.ts
+  s_806c1998a58614::t_136b5df938cc8f 60,65-69,76-77,79,87,89,98
+  s_806c1998a58614::t_7701c794df35df 1-59,61-64,70-75,78,80-86,88,90-97,99
+src/Parser.spec.ts
+  s_806c1998a58614::t_d2c76a32e754b3 302-304,313,325
+  s_806c1998a58614::t_7701c794df35df 305-312,314-324
+src/Parser.ts
+  s_806c1998a58614::t_136b5df938cc8f 3
+  s_806c1998a58614::t_94e8f28d00dd07 425,440,566,613,922-924,936-941,1016,1232-1233,1330
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7a75949ea18cdce449c7502c122a3023c07b09e8",
+  "prompts": {},
+  "sessions": {
+    "s_806c1998a58614": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a204e5-1822-70b0-b46f-e4f9fb39819b",
+        "model": "gpt-6.2-astra"
+      },
+      "human_author": null
+    }
+  }
+}
