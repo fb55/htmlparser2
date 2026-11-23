@@ -1,0 +1,16 @@
+src/Parser.spec.ts
+  h_c09f8bd1046292 927-942
+src/Parser.ts
+  h_c09f8bd1046292 1046-1050
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "61f0efa8c9a6915cbf6b92ae8b9fd70435ae4ee9",
+  "prompts": {},
+  "humans": {
+    "h_c09f8bd1046292": {
+      "author": "Felix Boehm <188768+fb55@users.noreply.github.com>"
+    }
+  }
+}
