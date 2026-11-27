@@ -3,9 +3,8 @@
 
 import {
     DecodingMode,
-    EntityDecoder,
-    htmlDecodeTree,
-    xmlDecodeTree,
+    HtmlEntityDecoder,
+    XmlEntityDecoder,
 } from "entities/decode";
 
 const enum CharCodes {
@@ -204,7 +203,7 @@ export default class Tokenizer {
     private readonly decodeEntities: boolean;
     private readonly recognizeSelfClosing: boolean;
     private readonly recognizeCDATA: boolean;
-    private readonly entityDecoder: EntityDecoder;
+    private readonly entityDecoder: HtmlEntityDecoder | XmlEntityDecoder;
 
     private currentSequence: Uint8Array = Sequences.Empty;
     private sequenceIndex = 0;
@@ -231,10 +230,9 @@ export default class Tokenizer {
         this.decodeEntities = decodeEntities;
         this.recognizeSelfClosing = recognizeSelfClosing;
         this.recognizeCDATA = xmlMode || recognizeCDATA;
-        this.entityDecoder = new EntityDecoder(
-            xmlMode ? xmlDecodeTree : htmlDecodeTree,
-            (cp, consumed) => this.emitCodePoint(cp, consumed),
-        );
+        this.entityDecoder = new (
+            xmlMode ? XmlEntityDecoder : HtmlEntityDecoder
+        )((cp, consumed) => this.emitCodePoint(cp, consumed));
     }
 
     private stateText(c: number): void {
