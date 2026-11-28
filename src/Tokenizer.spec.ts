@@ -192,7 +192,7 @@ describe("Tokenizer", () => {
         it("for multi-byte entities", () =>
             expect(tokenize("&NotGreaterFullEqual;")).toMatchSnapshot());
 
-        it("for text and entities split across chunks", () =>
+        it("for text across writes and a trailing entity decoded at EOF", () =>
             expect(
                 tokenize((tokenizer) => {
                     tokenizer.write("one & two &amp; three");
