@@ -11,6 +11,8 @@ const formTags = new Set([
     "datalist",
     "textarea",
 ]);
+// A customizable `<select>` may start with a `<button>`, so it is the one form tag a button leaves open.
+const buttonTags = new Set([...formTags].filter((tag) => tag !== "select"));
 const pTag = new Set(["p"]);
 const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6", "p"]);
 const tableSectionTags = new Set(["thead", "tbody", "tfoot", "tr", "td", "th"]);
@@ -34,7 +36,7 @@ const openImpliesClose = new Map<string, Set<string>>([
     ["select", formTags],
     ["input", formTags],
     ["output", formTags],
-    ["button", formTags],
+    ["button", buttonTags],
     ["datalist", formTags],
     ["textarea", formTags],
     ["option", new Set(["option"])],
